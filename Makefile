@@ -60,10 +60,10 @@ am__make_running_with_option = \
   test $$has_opt = yes
 am__make_dryrun = (target_option=n; $(am__make_running_with_option))
 am__make_keepgoing = (target_option=k; $(am__make_running_with_option))
-pkgdatadir = $(datadir)/customer_credit_check
-pkgincludedir = $(includedir)/customer_credit_check
-pkglibdir = $(libdir)/customer_credit_check
-pkglibexecdir = $(libexecdir)/customer_credit_check
+pkgdatadir = $(datadir)/data_exchange_gw
+pkgincludedir = $(includedir)/data_exchange_gw
+pkglibdir = $(libdir)/data_exchange_gw
+pkglibexecdir = $(libexecdir)/data_exchange_gw
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 install_sh_DATA = $(install_sh) -c -m 644
 install_sh_PROGRAM = $(install_sh) -c
@@ -76,7 +76,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = customer_credit_check$(EXEEXT)
+bin_PROGRAMS = data_exchange_gw$(EXEEXT)
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) depcomp \
@@ -92,11 +92,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_customer_credit_check_OBJECTS = main.$(OBJEXT) MySql.$(OBJEXT) \
+am_data_exchange_gw_OBJECTS = main.$(OBJEXT) MySql.$(OBJEXT) \
 	MySqlException.$(OBJEXT) MySqlPreparedStatement.$(OBJEXT) \
 	OutputBinder.$(OBJEXT)
-customer_credit_check_OBJECTS = $(am_customer_credit_check_OBJECTS)
-customer_credit_check_DEPENDENCIES = lib/librestbed.a
+data_exchange_gw_OBJECTS = $(am_data_exchange_gw_OBJECTS)
+data_exchange_gw_DEPENDENCIES = lib/librestbed.a
 AM_V_P = $(am__v_P_$(V))
 am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))
 am__v_P_0 = false
@@ -142,8 +142,8 @@ AM_V_CCLD = $(am__v_CCLD_$(V))
 am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(customer_credit_check_SOURCES)
-DIST_SOURCES = $(customer_credit_check_SOURCES)
+SOURCES = $(data_exchange_gw_SOURCES)
+DIST_SOURCES = $(data_exchange_gw_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -187,12 +187,12 @@ distuninstallcheck_listfiles = find . -type f -print
 am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \
   | sed 's|^\./|$(prefix)/|' | grep -v '$(infodir)/dir$$'
 distcleancheck_listfiles = find . -type f -print
-ACLOCAL = ${SHELL} /root/customer_credit_check/missing aclocal-1.13
+ACLOCAL = ${SHELL} /root/data_exchange_gw/missing aclocal-1.13
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /root/customer_credit_check/missing autoconf
-AUTOHEADER = ${SHELL} /root/customer_credit_check/missing autoheader
-AUTOMAKE = ${SHELL} /root/customer_credit_check/missing automake-1.13
+AUTOCONF = ${SHELL} /root/data_exchange_gw/missing autoconf
+AUTOHEADER = ${SHELL} /root/data_exchange_gw/missing autoheader
+AUTOMAKE = ${SHELL} /root/data_exchange_gw/missing automake-1.13
 AWK = gawk
 CC = gcc
 CCDEPMODE = depmode=gcc3
@@ -203,7 +203,7 @@ CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -std=c++11 -pg -O3 -Isrc -Iinclude -Werror -lboost_program_options -lboost_filesystem -lboost_coroutine -lboost_system -lboost_thread -lpthread -lboost_context -lboost_date_time -lboost_log_setup -lboost_log -lssl -lcrypto -lboost_regex -lcurl -lboost_timer -lmysqlclient_r -DBUILD_SSL
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"customer_credit_check\" -DPACKAGE_TARNAME=\"customer_credit_check\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"customer_credit_check\ 1.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"customer_credit_check\" -DVERSION=\"1.0\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_SOCKET=1
+DEFS = -DPACKAGE_NAME=\"data_exchange_gw\" -DPACKAGE_TARNAME=\"data_exchange_gw\" -DPACKAGE_VERSION=\"1.0\" -DPACKAGE_STRING=\"data_exchange_gw\ 1.0\" -DPACKAGE_BUGREPORT=\"\" -DPACKAGE_URL=\"\" -DPACKAGE=\"data_exchange_gw\" -DVERSION=\"1.0\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_SOCKET=1
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -220,14 +220,14 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /root/customer_credit_check/missing makeinfo
+MAKEINFO = ${SHELL} /root/data_exchange_gw/missing makeinfo
 MKDIR_P = /usr/bin/mkdir -p
 OBJEXT = o
-PACKAGE = customer_credit_check
+PACKAGE = data_exchange_gw
 PACKAGE_BUGREPORT = 
-PACKAGE_NAME = customer_credit_check
-PACKAGE_STRING = customer_credit_check 1.0
-PACKAGE_TARNAME = customer_credit_check
+PACKAGE_NAME = data_exchange_gw
+PACKAGE_STRING = data_exchange_gw 1.0
+PACKAGE_TARNAME = data_exchange_gw
 PACKAGE_URL = 
 PACKAGE_VERSION = 1.0
 PATH_SEPARATOR = :
@@ -236,10 +236,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 1.0
-abs_builddir = /root/customer_credit_check
-abs_srcdir = /root/customer_credit_check
-abs_top_builddir = /root/customer_credit_check
-abs_top_srcdir = /root/customer_credit_check
+abs_builddir = /root/data_exchange_gw
+abs_srcdir = /root/data_exchange_gw
+abs_top_builddir = /root/data_exchange_gw
+abs_top_srcdir = /root/data_exchange_gw
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -259,7 +259,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /root/customer_credit_check/install-sh
+install_sh = ${SHELL} /root/data_exchange_gw/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -280,8 +280,8 @@ top_build_prefix =
 top_builddir = .
 top_srcdir = .
 AUTOMAKE_OPTIONS = foreign
-customer_credit_check_SOURCES = src/curl_client.hpp src/client_http.hpp src/renesolalog.hpp src/serverResource.hpp src/main.cpp src/mysql/MySql.cpp src/mysql/MySqlException.cpp src/mysql/MySqlPreparedStatement.cpp src/mysql/OutputBinder.cpp
-customer_credit_check_LDADD = lib/librestbed.a
+data_exchange_gw_SOURCES = src/curl_client.hpp src/client_http.hpp src/renesolalog.hpp src/serverResource.hpp src/main.cpp src/mysql/MySql.cpp src/mysql/MySqlException.cpp src/mysql/MySqlPreparedStatement.cpp src/mysql/OutputBinder.cpp
+data_exchange_gw_LDADD = lib/librestbed.a
 all: all-am
 
 .SUFFIXES:
@@ -363,9 +363,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-customer_credit_check$(EXEEXT): $(customer_credit_check_OBJECTS) $(customer_credit_check_DEPENDENCIES) $(EXTRA_customer_credit_check_DEPENDENCIES) 
-	@rm -f customer_credit_check$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(customer_credit_check_OBJECTS) $(customer_credit_check_LDADD) $(LIBS)
+data_exchange_gw$(EXEEXT): $(data_exchange_gw_OBJECTS) $(data_exchange_gw_DEPENDENCIES) $(EXTRA_data_exchange_gw_DEPENDENCIES) 
+	@rm -f data_exchange_gw$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(data_exchange_gw_OBJECTS) $(data_exchange_gw_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

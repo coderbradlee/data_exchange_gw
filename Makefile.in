@@ -76,7 +76,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-bin_PROGRAMS = customer_credit_check$(EXEEXT)
+bin_PROGRAMS = data_exchange_gw$(EXEEXT)
 subdir = .
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/configure $(am__configure_deps) depcomp \
@@ -92,11 +92,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_customer_credit_check_OBJECTS = main.$(OBJEXT) MySql.$(OBJEXT) \
+am_data_exchange_gw_OBJECTS = main.$(OBJEXT) MySql.$(OBJEXT) \
 	MySqlException.$(OBJEXT) MySqlPreparedStatement.$(OBJEXT) \
 	OutputBinder.$(OBJEXT)
-customer_credit_check_OBJECTS = $(am_customer_credit_check_OBJECTS)
-customer_credit_check_DEPENDENCIES = lib/librestbed.a
+data_exchange_gw_OBJECTS = $(am_data_exchange_gw_OBJECTS)
+data_exchange_gw_DEPENDENCIES = lib/librestbed.a
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -142,8 +142,8 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-SOURCES = $(customer_credit_check_SOURCES)
-DIST_SOURCES = $(customer_credit_check_SOURCES)
+SOURCES = $(data_exchange_gw_SOURCES)
+DIST_SOURCES = $(data_exchange_gw_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -280,8 +280,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-customer_credit_check_SOURCES = src/curl_client.hpp src/client_http.hpp src/renesolalog.hpp src/serverResource.hpp src/main.cpp src/mysql/MySql.cpp src/mysql/MySqlException.cpp src/mysql/MySqlPreparedStatement.cpp src/mysql/OutputBinder.cpp
-customer_credit_check_LDADD = lib/librestbed.a
+data_exchange_gw_SOURCES = src/curl_client.hpp src/client_http.hpp src/renesolalog.hpp src/serverResource.hpp src/main.cpp src/mysql/MySql.cpp src/mysql/MySqlException.cpp src/mysql/MySqlPreparedStatement.cpp src/mysql/OutputBinder.cpp
+data_exchange_gw_LDADD = lib/librestbed.a
 all: all-am
 
 .SUFFIXES:
@@ -363,9 +363,9 @@ uninstall-binPROGRAMS:
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 
-customer_credit_check$(EXEEXT): $(customer_credit_check_OBJECTS) $(customer_credit_check_DEPENDENCIES) $(EXTRA_customer_credit_check_DEPENDENCIES) 
-	@rm -f customer_credit_check$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(customer_credit_check_OBJECTS) $(customer_credit_check_LDADD) $(LIBS)
+data_exchange_gw$(EXEEXT): $(data_exchange_gw_OBJECTS) $(data_exchange_gw_DEPENDENCIES) $(EXTRA_data_exchange_gw_DEPENDENCIES) 
+	@rm -f data_exchange_gw$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(data_exchange_gw_OBJECTS) $(data_exchange_gw_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
