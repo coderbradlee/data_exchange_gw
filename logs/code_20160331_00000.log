@@ -1,3 +1,0 @@
-0: [notification] [2016-Mar-31 16:08:30.261725] [0x00007f082e4be840] - SELECT customer_credit_flow_id,balance,customer_master_id FROM apollo_os.t_customer_credit_flow_20160317bk where expire_date='2016-03-31' and balance>0 and dr=0 and transaction_type=0
-1: [notification] [2016-Mar-31 16:08:30.262172] [0x00007f082e4be840] - nothing need to update
-2: [notification] [2016-Mar-31 16:08:36.081046] [0x00007f082e4be840] - 191
