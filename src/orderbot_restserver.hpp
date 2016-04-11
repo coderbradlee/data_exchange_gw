@@ -210,8 +210,9 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 		//orderbot 接口
 		
 		//string temp_content(content_body.data(),(int)content_body.size());
-		string temp_content;
-		sprintf(temp_content, "%.*s\n", (int)content_body.size(), content_body.data());
+		// string temp_content;
+		// sprintf(temp_content, "%.*s\n", (int)content_body.size(), content_body.data());
+		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("POST", "/admin/orders.json/", "", temp_content);
 
