@@ -184,7 +184,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("PUT", "/admin/orders.json/"+order_num, "", temp_content);
-
+		cout<<temp_content<<endl;
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		session->close(OK, order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
 	});
