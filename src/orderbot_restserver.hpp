@@ -219,7 +219,7 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		// string body = "{\"response_code\": 1,\"message\": \"Success\",\"order_process_result\": [{\"response_code\": 0,\"orderbot_order_id\": 79,\"reference_order_id\": \"aabb15998966\",\"success\": true,\"message\": \"Order has been placed successfully!\"}]}";
 
-		session->close(OK, order->get_data(), { { "Content-Length", order->get_data().length() } });
+		session->close(OK, order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 		
 }
