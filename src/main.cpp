@@ -2,13 +2,16 @@
 #include "orderbot.hpp"
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
-
+#include "orderbot_restserver_resource.hpp"
 
 int main()
 {
 	try
 	{
-		
+		{
+			//orderbot server
+			orderbot_server_start();
+		}
 		
 		{
 			boost::timer::cpu_timer pass;
