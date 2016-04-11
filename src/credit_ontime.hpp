@@ -9,7 +9,7 @@ class credit_ontime
 public:
 	credit_ontime()
 	{
-		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_ip.c_str(), get_config->m_username.c_str(), get_config->m_password.c_str(), get_config->m_database.c_str(), get_config->m_port));
+		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
 		
 		m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
 	}
@@ -21,7 +21,7 @@ public:
 			
 			//typedef tuple<string,double> credit_tuple;
 			vector<credit_tuple> credits;
-			string query_sql = "SELECT customer_credit_flow_id,balance,customer_master_id FROM " + get_config->m_database + "." + get_config->m_table + " where expire_date='" + m_today_string + "' and balance>0 and dr=0 and transaction_type=0";
+			string query_sql = "SELECT customer_credit_flow_id,balance,customer_master_id FROM " + get_config->m_mysql_database + "." + get_config->m_mysql_table + " where expire_date='" + m_today_string + "' and balance>0 and dr=0 and transaction_type=0";
 			cout << query_sql << endl;
 			m_conn->runQuery(&credits, query_sql.c_str());
 
@@ -40,14 +40,14 @@ public:
 			{
 				cout << item << endl;
 
-				string update_sql = "update " + get_config->m_database + "." + get_config->m_table + " set balance=0 where customer_credit_flow_id='" + *(std::get<0>(item))+"'";
+				string update_sql = "update " + get_config->m_mysql_database + "." + get_config->m_mysql_table + " set balance=0 where customer_credit_flow_id='" + *(std::get<0>(item))+"'";
 				cout << update_sql << endl;
 				string update_sql2;
 				try
 				{
 					m_conn->runCommand(update_sql.c_str());
 					//¸üÐÂÁíÒ»¸ö±í
-					update_sql2 = "update " + get_config->m_database + "." + get_config->m_table2 + " set credit_balance=0 where customer_master_id='" + *(std::get<2>(item))+"'";
+					update_sql2 = "update " + get_config->m_mysql_database + "." + get_config->m_mysql_table2 + " set credit_balance=0 where customer_master_id='" + *(std::get<2>(item))+"'";
 					cout << update_sql2 << endl;
 					m_conn->runCommand(update_sql2.c_str());
 					
