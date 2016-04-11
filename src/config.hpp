@@ -26,14 +26,15 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		iconfig(const std::string& filename)
 		{			
 			boost::property_tree::ini_parser::read_ini(filename, m_pt);
-			m_ip = m_pt.get<std::string>("mysql.ip");
-			m_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql.port"));
-			m_username = m_pt.get<std::string>("mysql.username");
-			m_password = m_pt.get<std::string>("mysql.password");
-			m_database = m_pt.get<std::string>("mysql.database");
-			m_table = m_pt.get<std::string>("mysql.table");
-			m_table2 = m_pt.get<std::string>("mysql.table2");
+			m_mysql_ip = m_pt.get<std::string>("mysql.ip");
+			m_mysql_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql.port"));
+			m_mysql_username = m_pt.get<std::string>("mysql.username");
+			m_mysql_password = m_pt.get<std::string>("mysql.password");
+			m_mysql_database = m_pt.get<std::string>("mysql.database");
+			m_mysql_table = m_pt.get<std::string>("mysql.table");
+			m_mysql_table2 = m_pt.get<std::string>("mysql.table2");
 			m_threads = boost::lexical_cast<size_t>(m_pt.get<std::string>("webserver.threads"));
+			m_port = boost::lexical_cast<size_t>(m_pt.get<std::string>("webserver.port"));
 			m_orderbot_username = m_pt.get<std::string>("orderbot.username");
 			m_orderbot_password = m_pt.get<std::string>("orderbot.password");
 			m_orderbot_url = m_pt.get<std::string>("orderbot.url");	
@@ -42,16 +43,17 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_activemq_url = m_pt.get<std::string>("activemq.url");	
 			m_activemq_read_queue = m_pt.get<std::string>("activemq.read_queue");
 			m_activemq_write_queue = m_pt.get<std::string>("activemq.write_queue");	
+
 		}
 	public:
 		boost::property_tree::ptree m_pt;
-		string m_ip;
-		unsigned short m_port;
-		string m_username;
-		string m_password;
-		string m_database;
-		string m_table;
-		string m_table2;
+		string m_mysql_ip;
+		unsigned short m_mysql_port;
+		string m_mysql_username;
+		string m_mysql_password;
+		string m_mysql_database;
+		string m_mysql_table;
+		string m_mysql_table2;
 		size_t m_threads;
 		string m_orderbot_username;
 		string m_orderbot_password;
