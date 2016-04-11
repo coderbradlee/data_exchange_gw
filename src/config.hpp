@@ -40,6 +40,8 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_activemq_username = m_pt.get<std::string>("activemq.username");
 			m_activemq_password = m_pt.get<std::string>("activemq.password");
 			m_activemq_url = m_pt.get<std::string>("activemq.url");	
+			m_activemq_read_queue = m_pt.get<std::string>("activemq.read_queue");
+			m_activemq_write_queue = m_pt.get<std::string>("activemq.write_queue");	
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -56,7 +58,9 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_orderbot_url;	
 		string m_activemq_username;
 		string m_activemq_password;
-		string m_activemq_url;			
+		string m_activemq_url;
+		string m_activemq_read_queue;
+		string m_activemq_write_queue;		
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
 };

@@ -250,5 +250,10 @@ protected:
 	std::smatch path_match;
 };
 CURLSH* activemq::share_handle = NULL;
+class read_activemq_on_time
+{
+public:
+	
+};
 #endif
 
