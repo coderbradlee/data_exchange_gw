@@ -207,10 +207,14 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 	{
 		//fprintf(stdout, "%.*s\n", (int)content_body.size(), content_body.data());
 		//session->close(OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } });
+		//orderbot 接口
+		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+		order->request("POST", "/admin/orders.json/", "", content_body);
 
-		string body = "{\"response_code\": 1,\"message\": \"Success\",\"order_process_result\": [{\"response_code\": 0,\"orderbot_order_id\": 79,\"reference_order_id\": \"aabb15998966\",\"success\": true,\"message\": \"Order has been placed successfully!\"}]}";
+		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		// string body = "{\"response_code\": 1,\"message\": \"Success\",\"order_process_result\": [{\"response_code\": 0,\"orderbot_order_id\": 79,\"reference_order_id\": \"aabb15998966\",\"success\": true,\"message\": \"Order has been placed successfully!\"}]}";
 
-		session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+		session->close(OK, body, { { "Content-Length", order->get_data() } });
 	});
 		
 }
