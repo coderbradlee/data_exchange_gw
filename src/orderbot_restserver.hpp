@@ -155,9 +155,9 @@ void authentication_handler(const std::shared_ptr< Session > session,
 }
 /////////////////regular
 void get_orders_num_func(const std::shared_ptr< Session > session)
-{
-	string order_num = session->get_request()->get_path_parameter("name");
-	const auto request = session->get_request();
+{	const auto request = session->get_request();
+	string order_num = request->get_path_parameter("name");
+	
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
@@ -174,8 +174,9 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 }
 void put_orders_num_func(const std::shared_ptr< Session > session)
 {
-	string order_num = session->get_request()->get_path_parameter("name");
 	const auto request = session->get_request();
+	string order_num = request->get_path_parameter("name");
+	
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
