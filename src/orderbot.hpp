@@ -68,7 +68,7 @@ public:
 	{
 		return m_data;
 	}
-	long get_status()
+	long int get_status()
 	{
 		return m_request_status;
 	}
@@ -129,7 +129,10 @@ protected:
   		curl_easy_setopt(m_curl, CURLOPT_POSTFIELDSIZE_LARGE, (curl_off_t)content.length());
 		if(on_request())
 		{
-			curl_easy_getinfo(m_curl, CURLINFO_RESPONSE_CODE,&m_request_status);
+			if(CURLE_OK==curl_easy_getinfo(m_curl, CURLINFO_RESPONSE_CODE,&m_request_status))
+			{
+				cout<<"get status success"<<endl;
+			}
 		}
 
 	}
@@ -258,7 +261,7 @@ protected:
 	    std::function<void()> > > > > m_opt_resource;
 	std::function<void()> m_data_parse_callback;
 	std::smatch path_match;
-	long m_request_status;
+	long int m_request_status;
 };
 CURLSH* orderbot::share_handle = NULL;
 #endif
