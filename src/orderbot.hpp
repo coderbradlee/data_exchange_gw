@@ -29,6 +29,8 @@ public:
 		}
 		curl_easy_setopt(m_curl, CURLOPT_SHARE, share_handle);
 		curl_easy_setopt(m_curl, CURLOPT_DNS_CACHE_TIMEOUT, 60 * 5);
+		curl_easy_setopt(m_curl, CURLOPT_TIMEOUT, 100 );
+		curl_easy_setopt(m_curl, CURLOPT_CONNECTTIMEOUT,5);
 	}
 	virtual ~orderbot()
 	{
