@@ -167,8 +167,8 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("GET", "/admin/orders.json/"+order_num, "", temp_content);
 
-		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
-		session->close(OK, order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 
 }
@@ -185,7 +185,6 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("PUT", "/admin/orders.json/"+order_num, "", temp_content);
-		cout<<temp_content<<endl;
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
@@ -221,17 +220,14 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 void get_orders_param_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
-	//string order_num = request->get_path_parameter("name");
 	
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
 	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
-		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", "/admin/orders.json/", "", temp_content);
-		cout<<temp_content<<endl;
+		order->request("GET", "/admin/orders.json/", "", "");
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });

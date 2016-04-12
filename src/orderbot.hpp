@@ -37,6 +37,10 @@ public:
 	}
 	void request(const std::string& method, const std::string& path, const std::string& param, const std::string& content)
 	{
+		cout<<"method:"<<method<<endl;
+		cout<<"path:"<<path<<endl;
+		cout<<"param:"<<param<<endl;
+		cout<<"content:"<<content<<endl;
 		//find data parser callback
 		for (auto& res : m_opt_resource)
 		{
