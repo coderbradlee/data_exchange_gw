@@ -181,7 +181,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
-	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
 		cout<<__LINE__<<":"<<request_path<<endl;
 		const string temp_content( content_body.begin( ), content_body.end( ) );
