@@ -176,7 +176,8 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
 	string order_num = request->get_path_parameter("name");
-	
+	string path = request->get_path();
+	cout<<__LINE__<<":"<<path<<endl;
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
