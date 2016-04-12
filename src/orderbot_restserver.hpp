@@ -183,6 +183,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 
 	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
+		cout<<__LINE__<<":"<<path<<endl;
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("PUT", path, "", temp_content);
