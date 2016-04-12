@@ -157,14 +157,23 @@ void authentication_handler(const std::shared_ptr< Session > session,
 void get_orders_param_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
-	string param = request->get_path_parameter("name");
-	cout<<param<<endl;
 	string path = request->get_path();
+	path+="?";
+	auto ret = request->get_query_parameters();
+	for (auto& r : ret)
+	{	
+		//cout << r.first << ":" << r.second << endl;
+		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+		path+=r.first+"="+r.second+"&";
+	}
+
+	
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
+		cout<<__LINE__<<":"<<path<<endl;
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("GET", path, "", "");
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
