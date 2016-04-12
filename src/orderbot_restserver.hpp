@@ -168,7 +168,7 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 		order->request("GET", path, "", temp_content);
 
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
-		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 
 }
@@ -189,7 +189,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 		order->request("PUT", request_path, "", temp_content);
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 }
 void post_orders_param_func(const std::shared_ptr< Session > session)
@@ -215,7 +215,7 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		// string body = "{\"response_code\": 1,\"message\": \"Success\",\"order_process_result\": [{\"response_code\": 0,\"orderbot_order_id\": 79,\"reference_order_id\": \"aabb15998966\",\"success\": true,\"message\": \"Order has been placed successfully!\"}]}";
 		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 		
 }
@@ -232,7 +232,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 		order->request("GET", "/admin/orders.json/", "", "");
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { { "Content-Type", "text/html" },{ "Content-Length", ::to_string(order->get_data().length()) } });
+		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 }
 
