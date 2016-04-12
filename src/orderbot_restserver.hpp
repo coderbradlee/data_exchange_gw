@@ -176,14 +176,14 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
 	//string order_num = request->get_path_parameter("name");
-	string path = request->get_path();
-	cout<<__LINE__<<":"<<path<<endl;
+	string request_path = request->get_path();
+	cout<<__LINE__<<":"<<request_path<<endl;
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
 	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
-		cout<<__LINE__<<":"<<path<<endl;
+		cout<<__LINE__<<":"<<request_path<<endl;
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("PUT", path, "", temp_content);
