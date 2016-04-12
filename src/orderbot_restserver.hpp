@@ -232,7 +232,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 		order->request("GET", "/admin/orders.json/", "", "");
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+		session->close(order->get_status(), order->get_data(), { { "Content-Type", "text/html" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 }
 
