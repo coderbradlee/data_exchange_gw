@@ -239,7 +239,7 @@ void orderbot_server_start()
 		auto settings = std::make_shared< Settings >();
 		settings->set_port(get_config->m_port);
 		settings->set_worker_limit(get_config->m_threads);
-		settings->set_default_header("Connection", "close");
+		settings->set_default_header("Connection", "keep-alive");
 		cout << "server started with port:" << get_config->m_port << ",thread num:" << get_config->m_threads << endl;
 		Service service;
 		service.publish(default_index);
