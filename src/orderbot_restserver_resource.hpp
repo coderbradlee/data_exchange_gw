@@ -242,8 +242,7 @@ void orderbot_server_start()
 		settings->set_default_header("Connection", "keep-alive");
 		cout << "server started with port:" << get_config->m_port << ",thread num:" << get_config->m_threads << endl;
 		Service service;
-		service.publish(default_index);
-		service.publish(default_index2);
+		
 		service.publish(get_orders_num);
 		//service.publish(put_orders_num);
 		service.publish(get_orders_param);
@@ -284,6 +283,8 @@ void orderbot_server_start()
 		service.publish(get_distribution_centers_param);
 		service.publish(get_websites_param);
 
+		service.publish(default_index);
+		service.publish(default_index2);
 
 
 		service.set_authentication_handler(authentication_handler);
