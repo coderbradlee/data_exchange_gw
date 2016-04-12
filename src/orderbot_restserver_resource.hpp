@@ -7,7 +7,7 @@ void orderbot_server_start()
 	/////////////////////////////////////////////////////////
 		auto default_index = std::make_shared< Resource >();
 		//default_index->set_path({ "/{filename: .*}", "/" });
-		default_index->set_path("/((?!/).)*");
+		default_index->set_path("^/((?!/).)*$");
 		default_index->set_method_handler("GET", default_handler);
 		auto default_index2 = std::make_shared< Resource >();
 		//default_index->set_path({ "/{filename: .*}", "/" });
