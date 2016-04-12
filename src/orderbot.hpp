@@ -7,7 +7,7 @@
 class orderbot
 {
 public:
-	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr)
+	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0)
 	{
 		//register callback
 		register_callback();
@@ -127,7 +127,10 @@ protected:
 		curl_easy_setopt(m_curl, CURLOPT_POSTFIELDS, content.c_str());
 
   		curl_easy_setopt(m_curl, CURLOPT_POSTFIELDSIZE_LARGE, (curl_off_t)content.length());
-		on_request();
+		if(on_request())
+		{
+			curl_easy_getinfo(m_curl, CURLINFO_RESPONSE_CODE,&m_request_status);
+		}
 
 	}
 	void set_url(const std::string& url) const
@@ -153,7 +156,7 @@ protected:
 
 		//cout<<m_data<<endl;
 		//find right call back
-		curl_easy_getinfo(m_curl, CURLINFO_RESPONSE_CODE,&m_request_status);
+		
 		if (m_data_parse_callback)
 		{
 			cout << __LINE__ << endl;
