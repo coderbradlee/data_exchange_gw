@@ -153,7 +153,7 @@ protected:
 
 		//cout<<m_data<<endl;
 		//find right call back
-		curl_easy_getinfo(m_curl, CURLINFO_HTTP_CODE,&m_request_status);
+		curl_easy_getinfo(m_curl, CURLINFO_RESPONSE_CODE,&m_request_status);
 		if (m_data_parse_callback)
 		{
 			cout << __LINE__ << endl;
