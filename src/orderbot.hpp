@@ -68,7 +68,7 @@ public:
 	{
 		return m_data;
 	}
-	int get_status()
+	long get_status()
 	{
 		return m_request_status;
 	}
