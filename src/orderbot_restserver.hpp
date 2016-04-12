@@ -157,6 +157,8 @@ void authentication_handler(const std::shared_ptr< Session > session,
 void get_orders_param_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
+	string param = request->get_path_parameter("name");
+	cout<<param<<endl;
 	string path = request->get_path();
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
