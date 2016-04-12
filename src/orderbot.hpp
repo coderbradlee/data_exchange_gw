@@ -68,6 +68,10 @@ public:
 	{
 		return m_data;
 	}
+	int get_status()
+	{
+		return m_request_status;
+	}
 protected:
 
 	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
@@ -149,6 +153,7 @@ protected:
 
 		//cout<<m_data<<endl;
 		//find right call back
+		m_request_status = curl_getinfo(m_curl, CURLINFO_HTTP_CODE);
 		if (m_data_parse_callback)
 		{
 			cout << __LINE__ << endl;
@@ -250,6 +255,7 @@ protected:
 	    std::function<void()> > > > > m_opt_resource;
 	std::function<void()> m_data_parse_callback;
 	std::smatch path_match;
+	int m_request_status;
 };
 CURLSH* orderbot::share_handle = NULL;
 #endif

@@ -187,6 +187,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 		order->request("PUT", "/admin/orders.json/"+order_num, "", temp_content);
 		cout<<temp_content<<endl;
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		cout<<"status:"<<order->get_status()<<endl;
 		session->close(OK, order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
 	});
 }
