@@ -28,7 +28,8 @@ void orderbot_server_start()
 		
 		/////////////////////////////////////
 		auto get_orders_param = std::make_shared< Resource >();
-		get_orders_param->set_path("/admin/orders.json/{name: [[:alpha:]].*}");
+		//get_orders_param->set_path("/admin/orders.json/{name: [\\?].*}");
+		get_orders_param->set_path("/admin/orders.json/.*");
 		//curl -u testapi@orderbot.com:ShinyElephant232# -X GET http://172.18.100.85:8688/admin/orders.json/?created_at_min=2015-01-01\&limit=200\&page=1\&order_status=unconfirmed,unshipped,to_be_shipped\&Sales_channels=dtc,wholesale
 		//http://172.18.100.85:8688/admin/orders.json/?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
 		get_orders_param->set_method_handler("GET", get_orders_param_func);
