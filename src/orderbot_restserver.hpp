@@ -161,7 +161,7 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
-	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
@@ -177,13 +177,13 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 	const auto request = session->get_request();
 	//string order_num = request->get_path_parameter("name");
 	string request_path = request->get_path();
-	cout<<__LINE__<<":"<<request_path<<endl;
+	//cout<<__LINE__<<":"<<request_path<<endl;
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
-		cout<<__LINE__<<":"<<request_path<<endl;
+		//cout<<__LINE__<<":"<<request_path<<endl;
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("PUT", request_path, "", temp_content);
@@ -199,7 +199,7 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 	request->get_header("Content-Length", content_length);
 	cout << content_length << endl;
 	//string ret = session->get_body();
-	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
 		//fprintf(stdout, "%.*s\n", (int)content_body.size(), content_body.data());
 		//session->close(OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } });
@@ -226,7 +226,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
-	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("GET", "/admin/orders.json/", "", "");
