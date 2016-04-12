@@ -158,7 +158,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
 	string path = request->get_path();
-	string param;
+	string param="";
 	auto ret = request->get_query_parameters();
 	for (auto& r : ret)
 	{	
