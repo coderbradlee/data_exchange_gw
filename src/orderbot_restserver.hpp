@@ -220,16 +220,22 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 }
 void get_orders_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
 	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[{\"order_id\": 2, \"customer_po\" : null, \"order_date\" : \"2015-04-16\", \"last_modified\" : \"2015-08-13\", \"ship_date\" : \"2015-04-16\", \"shipping_method\" : \"UPS Ground\", \"order_status\" : \"unshipped\", \"customer_id\" : 1, \"order_tax_total\" : 0, \"shipping_total\" : 0, \"discount_total\" : 0, \"order_total\" : 0, \"notes\" : \"\", \"internal_notes\" : \"\", \"shipping_address\" : {\"store_name\": null, \"full_name\" : \"John Smith\", \"street1\" : \"123 1st St.\", \"street2\" : \"\", \"city\" : \"San Francisco\", \"state\" : \"CA\", \"postal_code\" : \"11223\", \"country\" : \"US\", \"phone\" : \"5555555555\", \"fax\" : null, \"email\" : \"support@orderbot.com\", \"website\" : null}, \"billing_address\" : {\"sales_channel\": \"DTC\", \"full_name\" : \"John Smith\", \"street1\" : \"123 1st St.\", \"street2\" : \"\", \"city\" : \"San Francisco\", \"state\" : \"CA\", \"postal_code\" : \"11223\", \"country\" : \"US\", \"phone\" : \"5555555555\", \"fax\" : null, \"email\" : \"support@orderbot.com\", \"website\" : null}, \"payment\" : [{\"payment_method\": \"Paid From Web\", \"amount_paid\" : 0.1}, { \"payment_method\": \"VOID\", \"amount_paid\" : -24.96 }, { \"payment_method\": \"Credit\", \"amount_paid\" : 24.96 }, { \"payment_method\": \"Customer Service\", \"amount_paid\" : -0.1 }], \"items\" : [{\"item_id\": 0, \"product_id\" : 96211, \"sku\" : \"ASDF123\", \"name\" : \"Test Product\", \"quantity\" : 1, \"unit_price\" : 0, \"discount\" : 0, \"product_tax\" : 0, \"product_tax_total\" : 0, \"product_total\" : 0, \"weight\" : 0.5}], \"tracking_numbers\" : null, \"other_charges\" : null}, { \"order_id\": 4, \"customer_po\" : \"MONCLAIR 430\", \"order_date\" : \"2015-05-01\", \"last_modified\" : \"2015-05-20\", \"ship_date\" : \"2015-05-01\", \"shipping_method\" : \"Express\", \"order_status\" : \"unshipped\", \"customer_id\" : 1, \"order_tax_total\" : 50, \"shipping_total\" : 50, \"discount_total\" : 0, \"order_total\" : 2373, \"notes\" : \"\", \"internal_notes\" : \"Please quote white glove ASDF123\", \"shipping_address\" : {\"store_name\": null, \"full_name\" : \"test contact name \", \"street1\" : \"123 Will Let You Know\", \"street2\" : \"\", \"city\" : \"New Hyde Park\", \"state\" : \"NY\", \"postal_code\" : \"11040\", \"country\" : \"US\", \"phone\" : \"7788721267\", \"fax\" : null, \"email\" : \"support@orderbot.com\", \"website\" : null}, \"billing_address\" : {\"sales_channel\": \"DTC\", \"full_name\" : \" \", \"street1\" : \"347 West 36th St\", \"street2\" : \"Suite 1300\", \"city\" : \"New York\", \"state\" : \"NY\", \"postal_code\" : \"10018\", \"country\" : \"US\", \"phone\" : \"\", \"fax\" : null, \"email\" : \"support@orderbot.com\", \"website\" : null}, \"payment\" : [], \"items\" : [{\"item_id\": 0, \"product_id\" : 96211, \"sku\" : \"ASDF123\", \"name\" : \"Test Product\", \"quantity\" : 1, \"unit_price\" : 2273, \"discount\" : 0, \"product_tax\" : 0, \"product_tax_total\" : 0, \"product_total\" : 2273, \"weight\" : 0.5}], \"tracking_numbers\" : null, \"other_charges\" : null }]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	//string order_num = request->get_path_parameter("name");
+	
+	size_t content_length = 0;
+	request->get_header("Content-Length", content_length);
+
+	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	{
+		const string temp_content( content_body.begin( ), content_body.end( ) );
+		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+		order->request("GET", "/admin/orders.json/", "", temp_content);
+		cout<<temp_content<<endl;
+		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		cout<<"status:"<<order->get_status()<<endl;
+		session->close(OK, order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
+	});
 }
 
 void get_products_num_func(const std::shared_ptr< Session > session)
