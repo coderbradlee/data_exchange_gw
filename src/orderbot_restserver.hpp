@@ -156,8 +156,8 @@ void authentication_handler(const std::shared_ptr< Session > session,
 /////////////////regular
 void get_orders_num_func(const std::shared_ptr< Session > session)
 {	const auto request = session->get_request();
-	string order_num = request->get_path_parameter("name");
-	
+	//string order_num = request->get_path_parameter("name");
+	string path = request->get_path();
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
@@ -165,7 +165,7 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 	{
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", "/admin/orders.json/"+order_num, "", temp_content);
+		order->request("GET", path, "", temp_content);
 
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
@@ -175,7 +175,7 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 void put_orders_num_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
-	string order_num = request->get_path_parameter("name");
+	//string order_num = request->get_path_parameter("name");
 	string path = request->get_path();
 	cout<<__LINE__<<":"<<path<<endl;
 	size_t content_length = 0;
@@ -185,7 +185,7 @@ void put_orders_num_func(const std::shared_ptr< Session > session)
 	{
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("PUT", "/admin/orders.json/"+order_num, "", temp_content);
+		order->request("PUT", path, "", temp_content);
 		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Length", ::to_string(order->get_data().length()) } });
