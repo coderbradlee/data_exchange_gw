@@ -154,6 +154,22 @@ void authentication_handler(const std::shared_ptr< Session > session,
 	}
 }
 /////////////////regular
+void get_orders_param_func(const std::shared_ptr< Session > session)
+{
+	const auto request = session->get_request();
+	string path = request->get_path();
+	size_t content_length = 0;
+	request->get_header("Content-Length", content_length);
+
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
+	{
+		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+		order->request("GET", path, "", "");
+		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		cout<<"status:"<<order->get_status()<<endl;
+		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
+	});
+}
 void get_orders_num_func(const std::shared_ptr< Session > session)
 {	const auto request = session->get_request();
 	//string order_num = request->get_path_parameter("name");
@@ -219,22 +235,7 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 	});
 		
 }
-void get_orders_param_func(const std::shared_ptr< Session > session)
-{
-	const auto request = session->get_request();
-	
-	size_t content_length = 0;
-	request->get_header("Content-Length", content_length);
 
-	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
-	{
-		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", "/admin/orders.json/", "", "");
-		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
-		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
-	});
-}
 
 void get_products_num_func(const std::shared_ptr< Session > session)
 {/*
