@@ -230,7 +230,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 	{
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 		order->request("GET", "/admin/orders.json/", "", "");
-		cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
 		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
 	});
