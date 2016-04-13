@@ -187,7 +187,36 @@ void get_general_func(const std::shared_ptr< Session > session)
 }
 void get_orders_param_func(const std::shared_ptr< Session > session)
 {
-	get_general_func(session);
+	//get_general_func(session);
+	const auto request = session->get_request();
+	string path = request->get_path();
+	string param="";
+	auto ret = request->get_query_parameters();
+	for (auto& r : ret)
+	{	
+		//cout << r.first << ":" << r.second << endl;
+		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+		param+=r.first+"="+r.second+"&";
+	}
+
+	
+	size_t content_length = 0;
+	request->get_header("Content-Length", content_length);
+	//cout<<__LINE__<<":"<<request->get_header( "SessionID" )<<endl;
+	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
+	{
+		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+		order->request("GET", path, param, "");
+		
+		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
+		cout<<"status:"<<order->get_status()<<endl;
+		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
+		
+		////////////////////////////////////////////////////////////
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<order->get_status()<<":"<<order->get_data();
+		boost_log->get_initsink()->flush();
+		/////////////////////////////////////////////////////
+	});
 }
 void get_orders_num_func(const std::shared_ptr< Session > session)
 {	get_general_func(session);
