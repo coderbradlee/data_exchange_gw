@@ -26,6 +26,7 @@ curl -u testapi@orderbot.com:ShinyElephant232# -X GET 'http://api.devbot.ca/admi
 
 curl -u testapi@orderbot.com:ShinyElephant232# -X PUT --data '{  \"ship_date\": \"2015-09-26\",  \"order_status\": \"to_be_shipped\",  \"order_notes\": \"Test notes77777\",  \"internal_notes\": \"Test notes\",  \"shipping_total\":10.00,
 \"payments\": [  {  \"payments\":\"payments\",  \"amount_paid\":10.00,  \"pre_auth_id\":81  }  ]  ,\"tracking_numbers\": [  {  \"tracking_number\": \"3333333\",  \"cost\": 10,  \"weight\": 5  }  ]  }' 'http://api.devbot.ca/admin/orders.json/1'
+
 curl -u testapi@orderbot.com:ShinyElephant232# -X PUT --data '{  \"ship_date\": \"2016-04-14\",  \"order_status\": \"to_be_shipped\",  \"order_notes\": \"Test notes77777\",  \"internal_notes\": \"Test notes\",  \"shipping_total\":10.00,
 \"payments\": [  {  \"payments\":\"payments\",  \"amount_paid\":10.00,  \"pre_auth_id\":81  }  ]  ,\"tracking_numbers\": [  {  \"tracking_number\": \"3333344\",  \"cost\": 10,  \"weight\": 5  }  ]  }' 'http://172.18.100.85:8888/admin/orders.json/2'
 

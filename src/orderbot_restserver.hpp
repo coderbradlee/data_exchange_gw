@@ -33,7 +33,7 @@ void default_handler(const std::shared_ptr< Session > session)
 {
 	try
 	{
-		cout << "default handler" << endl;
+		//cout << "default handler" << endl;
 		/*string body = "this is default page";
 		session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });	*/
 		const auto request = session->get_request();
@@ -154,9 +154,10 @@ void authentication_handler(const std::shared_ptr< Session > session,
 	}
 }
 /////////////////regular
-void get_orders_param_func(const std::shared_ptr< Session > session)
+void get_general_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
+	//string order_num = request->get_path_parameter("name");
 	string path = request->get_path();
 	string param="";
 	auto ret = request->get_query_parameters();
@@ -166,30 +167,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
 		param+=r.first+"="+r.second+"&";
 	}
-
 	
-	size_t content_length = 0;
-	request->get_header("Content-Length", content_length);
-	//cout<<__LINE__<<":"<<request->get_header( "SessionID" )<<endl;
-	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
-	{
-		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", path, param, "");
-		
-		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
-		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
-		
-		////////////////////////////////////////////////////////////
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<order->get_status()<<":"<<order->get_data();
-		boost_log->get_initsink()->flush();
-		/////////////////////////////////////////////////////
-	});
-}
-void get_orders_num_func(const std::shared_ptr< Session > session)
-{	const auto request = session->get_request();
-	//string order_num = request->get_path_parameter("name");
-	string path = request->get_path();
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 
@@ -197,7 +175,7 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 	{
 		const string temp_content( content_body.begin( ), content_body.end( ) );
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", path, "", temp_content);
+		order->request("GET", path, param, temp_content);
 
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
@@ -206,6 +184,13 @@ void get_orders_num_func(const std::shared_ptr< Session > session)
 		boost_log->get_initsink()->flush();
 		/////////////////////////////////////////////////////
 	});
+}
+void get_orders_param_func(const std::shared_ptr< Session > session)
+{
+	get_general_func(session);
+}
+void get_orders_num_func(const std::shared_ptr< Session > session)
+{	get_general_func(session);
 
 }
 void put_orders_num_func(const std::shared_ptr< Session > session)
@@ -267,14 +252,8 @@ void post_orders_param_func(const std::shared_ptr< Session > session)
 
 
 void get_products_num_func(const std::shared_ptr< Session > session)
-{/*
-	stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-	string first = "{ \"product_category_id\": 2, \"product_category\": \"Rings\", \"product_group_id\": 4, \"product_group\": \"Bands\", \"product_id\": 469315, \"product_name\": \"TestAPI \", \"sku\": \"testAPI\", \"upc\": \"12345678\", \"cost\": 2, \"descriptive_title\": \"\", \"description\": \"\", \"is_parent\": false,\"parent_id\": 0, \"units_of_measure\": \"Each\", \"taxable\": true, \"shipping_units_of_measure\": \"Lbs\", \"weight\": 1, \"active\": true, \"base_price\": 10, \"lead_times\": null, \"variable_group_id\": 0, \"variable_group_name\": null, \"variable1_id\": 0, \"variable1_name\": null, \"variable_Value1_id\": 0, \"variable_value1_name\": null, \"variable2_id\": 0, \"variable2_name\": null, \"variable_value2_id\": 0, \"variable_value2_name\": null, \"custom_fields\": [], \"tags\": [], \"image_urls\": [], \"visibility_on_webs\": null, \"optional_description_fields\": { \"description1\": \"\", \"description2\": \"\", \"description3\": \"\", \"description4\": \"\", \"description5\": \"\", \"description6\": \"\" } }";
-	string order_num = session->get_request()->get_path_parameter("name");
-	string body = first;
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+{
+	get_general_func(session);
 }
 void put_products_num_func(const std::shared_ptr< Session > session)
 {
@@ -298,16 +277,7 @@ void put_products_num_func(const std::shared_ptr< Session > session)
 }
 void get_products_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[{\"product_category_id\": 2, \"product_category\" : \"Rings\", \"product_group_id\" : 4, \"product_group\" : \"Bands\", \"product_id\" : 469315, \"product_name\" : \"TestAPI \", \"sku\" : \"testAPI\", \"upc\" : \"12345678\", \"cost\" : 2, \"descriptive_title\" : \"\", \"description\" : \"\", \"is_parent\" : false, \"parent_id\" : 0, \"units_of_measure\" : \"Each\", \"taxable\" : true, \"shipping_units_of_measure\" : \"Lbs\", \"weight\" : 1, \"active\" : true, \"base_price\" : 10, \"lead_times\" : null, \"variable_group_id\" : 0, \"variable_group_name\" : null, \"variable1_id\" : 0, \"variable1_name\" : null, \"variable_Value1_id\" : 0, \"variable_value1_name\" : null, \"variable2_id\" : 0, \"variable2_name\" : null, \"variable_value2_id\" : 0, \"variable_value2_name\" : null, \"custom_fields\" : [], \"tags\" : [], \"image_urls\" : [], \"visibility_on_web\" : null, \"optional_description_fields\" : {\"description1\": \"\", \"description2\" : \"\", \"description3\" : \"\", \"description4\" : \"\", \"description5\" : \"\", \"description6\" : \"\"}}, { \"product_category_id\": 2, \"product_category\" : \"Rings\", \"product_group_id\" : 3, \"product_group\" : \"With Stones\", \"product_id\" : 469316, \"product_name\" : \"Ring Stone\", \"sku\" : \"stone\", \"upc\" : \"\", \"cost\" : 3, \"descriptive_title\" : \"\", \"description\" : \"\", \"is_parent\" : false, \"parent_id\" : 0, \"units_of_measure\" : \"Each\", \"taxable\" : false, \"shipping_units_of_measure\" : \"Lbs\", \"weight\" : 1, \"active\" : true, \"base_price\" : 12, \"lead_times\" : null, \"variable_group_id\" : 0, \"variable_group_name\" : null, \"variable1_id\" : 0, \"variable1_name\" : null, \"variable_Value1_id\" : 0, \"variable_value1_name\" : null, \"variable2_id\" : 0, \"variable2_name\" : null, \"variable_value2_id\" : 0, \"variable_value2_name\" : null, \"custom_fields\" : [], \"tags\" : [], \"image_urls\" : [], \"visibility_on_webs\" : null, \"optional_description_fields\" : {\"description1\": \"test1\", \"description2\" : \"test2 \", \"description3\" : \"\", \"description4\" : \"\", \"description5\" : \"\", \"description6\" : \"\"} }]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void post_products_param_func(const std::shared_ptr< Session > session)
 {
@@ -327,14 +297,8 @@ void post_products_param_func(const std::shared_ptr< Session > session)
 }
 
 void get_customers_num_func(const std::shared_ptr< Session > session)
-{/*
-	stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-	string first = "{  \"customer_id\": 2,  \"account_id\": 2,  \"customer_name\": \" \",  \"address\": \"555\",  \"address2\": \"\",  \"city\": \"Vancouver\",  \"state\": \"AL\",  \"country\": \"US\",  \"postal_code\": \"90210\",  \"phone\": \"5555555555\",  \"phone_ext\": \"\",  \"sales_rep_id\": null,  \"commission_rate\": 0,  \"email\": \"\",  \"customer_hash_id\": null,  \"other_id\": \"7777777\",  \"active\": true  }";
-	string order_num = session->get_request()->get_path_parameter("name");
-	string body = first;
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+{	
+	get_general_func(session);
 }
 void put_customers_num_func(const std::shared_ptr< Session > session)
 {
@@ -358,16 +322,7 @@ void put_customers_num_func(const std::shared_ptr< Session > session)
 }
 void get_customers_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[{\"customer_id\": 2,\"account_id\": 2,\"customer_name\": \" \",\"address\": \"555\",\"address2\": \"\",\"city\": \"Vancouver\",\"state\": \"AL\",\"country\": \"US\",\"postal_code\": \"90210\",\"phone\": \"5555555555\",\"phone_ext\": \"\",\"sales_rep_id\": null,\"commission_rate\": 0,\"email\": \"\",\"customer_hash_id\": null,\"other_id\": \"7777777\",\"active\": true},{\"customer_id\": 3,\"account_id\": 3,\"customer_name\": \" \",\"address\": \"555\",\"address2\": \"\",\"city\": \"Vancouver\",\"state\": \"AL\",\"country\": \"US\",\"postal_code\": \"90210\",\"phone\": \"5555555555\",\"phone_ext\": \"\",\"sales_rep_id\": null,\"commission_rate\": 0,\"email\": \"\",\"customer_hash_id\": null,\"other_id\": null,\"active\": true},{\"customer_id\": 9,\"account_id\": 9,\"customer_name\": \"Peter Lin\",\"address\": \"122 sdgdfg\",\"address2\": \"12342\",\"city\": \"sfsdf\",\"state\": \"AL\",\"country\": \"US\",\"postal_code\": \"98001\",\"phone\": \"11111111\",\"phone_ext\": \"\",\"sales_rep_id\": 461,\"commission_rate\": 0,\"email\": \"Test@orderbot.com\",\"customer_hash_id\": null,\"other_id\": null,\"active\": true}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void post_customers_param_func(const std::shared_ptr< Session > session)
 {
@@ -390,14 +345,8 @@ void post_customers_param_func(const std::shared_ptr< Session > session)
 
 
 void get_salesreps_num_func(const std::shared_ptr< Session > session)
-{/*
-	stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-	string first = "{\"sales_rep_id\": 461,\"sales_name\":\"Andrew\",\"commission\": 8,\"email_invoices\":null}";
-	string order_num = session->get_request()->get_path_parameter("name");
-	string body = first;
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+{
+	get_general_func(session);
 }
 void put_salesreps_num_func(const std::shared_ptr< Session > session)
 { 
@@ -419,16 +368,7 @@ void put_salesreps_num_func(const std::shared_ptr< Session > session)
 }
 void get_salesreps_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	/*auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;*/
-	string body = "[{\"sales_rep_id\": 461,\"sales_name\": \"Andrew\",\"commission\": 8,\"email_invoices\": null},{\"sales_rep_id\": 463,\"sales_name\": \"test s\",\"commission\": 0,\"email_invoices\": null},{\"sales_rep_id\": 509,\"sales_name\": \"Sales User\",\"commission\": 0,\"email_invoices\": null},{\"sales_rep_id\": 557,\"sales_name\": \"Peter\",\"commission\": 10,\"email_invoices\": null},{\"sales_rep_id\": 558,\"sales_name\": \"Sales Rep\",\"commission\": 5,\"email_invoices\": \"\"},{\"sales_rep_id\": 559,\"sales_name\": \"Anna\",\"commission\": 6,\"email_invoices\": null}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void post_salesreps_param_func(const std::shared_ptr< Session > session)
 {
@@ -633,173 +573,56 @@ void post_product_variable_values_param_func(const std::shared_ptr< Session > se
 
 void get_account_groups_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"account_groups\" : [ { \"account_group_id\" : 18,\"account_group_name\" : \"Default\"},{ \"account_group_id\" : 33,\"account_group_name\" : \"Default\"},{ \"account_group_id\" : 34,\"account_group_name\" : \"Default\"},{ \"account_group_id\" : 91,\"account_group_name\" : \"Default\"},{ \"account_group_id\" : 92,\"account_group_name\" : \"Default\"}],\"sales_channel_id\" : 1,\"sales_channel_name\" : \"DTC\"}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_units_of_measurement_types_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"name\" : \"Each\",\"units_of_measure_id\" : 1},{ \"name\" : \"Pk\",\"units_of_measure_id\" : 2},{ \"name\" : \"Lbs\",\"units_of_measure_id\" : 4},{ \"name\" : \"v\",\"units_of_measure_id\" : 8}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_order_guides_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"name\" : \"Default\",\"order_guide_id\" : 364,\"sales_channel_id\" : 1,\"sales_channel_name\" : \"DTC\"},{ \"name\" : \"Default\",\"order_guide_id\" : 511,\"sales_channel_id\" : 2,\"sales_channel_name\" : \"Wholesale\"},{ \"name\" : \"Default\",\"order_guide_id\" : 512,\"sales_channel_id\" : 4,\"sales_channel_name\" : \"Distributors\"}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_product_structure_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"class_type_id\" : 2,\"class_type_name\" : \"Assembly\",\"product_classes\" : [ { \"categories\" : [ ],\"product_class_id\" : 26,\"product_class_name\" : \"Assembly\"},{ \"categories\" : [ ],\"product_class_id\" : 312,\"product_class_name\" : \"Assembly2\"},{ \"categories\" : [ ],\"product_class_id\" : 317,\"product_class_name\" : \"Assembly3\"}]},{ \"class_type_id\" : 1,\"class_type_name\" : \"Component\",\"product_classes\" : [ { \"categories\" : [ { \"category_id\" : 616,\"category_name\" : \"Your category1 \",\"groups\" : [ { \"group_id\" : 2631,\"group_name\" : \"Your group1 \"},{ \"group_id\" : 2632,\"group_name\" : \" Your group2\"}]} ],\"product_class_id\" : 25,\"product_class_name\" : \"Inventory 1\"},{ \"categories\" : [ ],\"product_class_id\" : 83,\"product_class_name\" : \"Inventory 2\"},{ \"categories\" : [ ],\"product_class_id\" : 311,\"product_class_name\" : \"Inventory4\"},{ \"categories\" : [ ],\"product_class_id\" : 315,\"product_class_name\" : \"Inventory5\"}]},{ \"class_type_id\" : 4,\"class_type_name\" : \"Sales\",\"product_classes\" : [ { \"categories\" : [ { \"category_id\" : 1,\"category_name\" : \"Your category1\",\"groups\" : [ { \"group_id\" : 1,\"group_name\" : \"Your group1\"},{ \"group_id\" : 2,\"group_name\" : \"Your group2\"}]},{ \"category_id\" : 2,\"category_name\" : \"Rings\",\"groups\" : [ { \"group_id\" : 3,\"group_name\" : \"With Stones\"},{ \"group_id\" : 4,\"group_name\" : \"Bands\"}]}],\"product_class_id\" : 33,\"product_class_name\" : \"Products\"} ]}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_product_variables_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"product_variables\" : [ { \"product_variable_values\" : [ { \"variable_value_id\" : 317,\"variable_value_name\" : \"XS\"},{ \"variable_value_id\" : 318,\"variable_value_name\" : \"S\"},{ \"variable_value_id\" : 319,\"variable_value_name\" : \"M\"},{ \"variable_value_id\" : 320,\"variable_value_name\" : \"L\"},{ \"variable_value_id\" : 321,\"variable_value_name\" : \"XL\"}],\"variable_id\" : 37,\"variable_name\" : \"Sizes\"},{ \"product_variable_values\" : [ { \"variable_value_id\" : 322,\"variable_value_name\" : \"Black\"},{ \"variable_value_id\" : 323,\"variable_value_name\" : \"Blue\"},{ \"variable_value_id\" : 324,\"variable_value_name\" : \"Green\"},{ \"variable_value_id\" : 325,\"variable_value_name\" : \"Red\"},{ \"variable_value_id\" : 326,\"variable_value_name\" : \"Orange\"},{ \"variable_value_id\" : 327,\"variable_value_name\" : \"Pink\"},{ \"variable_value_id\" : 328,\"variable_value_name\" : \"Purple\"},{ \"variable_value_id\" : 329,\"variable_value_name\" : \"White\"},{ \"variable_value_id\" : 330,\"variable_value_name\" : \"Yellow\"}],\"variable_id\" : 38,\"variable_name\" : \"Colours\"}],\"variable_group_id\" : 37,\"variable_group_name\" : \"General\"} ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 
 void get_purchase_unit_categories_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"purchase_unit_category_id\" : 1,  \"purchase_unit_category_name\" : \"Default\"  },  { \"purchase_unit_category_id\" : 218,  \"purchase_unit_category_name\" : \"\"  }  ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_vendor_purchase_unit_of_measurements_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"vendor_purchase_unit_of_measurement_id\" : 61,  \"vendor_purchase_unit_of_measurement_name\" : \"Each\"  } ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_salesrep_groups_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"commission\" : 0.0,\"sales_rep_group_id\" : 1,\"sales_rep_group_name\" : \"Default\"} ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_Vendors_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"vendor_id\" : 864,  \"vendor_name\" : \"TEST VENDOR\"  },  { \"vendor_id\" : 1840,  \"vendor_name\" : \"USD Test Vendor\"  }  ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_Countries_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"country\" : \"Canada\",\"country_id\" : 38,\"iso2\" : \"CA\",\"iso3\" : \"CAN\"},{ \"country\" : \"United States\",\"country_id\" : 226,\"iso2\" : \"US\",\"iso3\" : \"USA\"}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_States_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"abbreviation\" : \"AL\",  \"state\" : \"Alabama\",  \"state_id\" : 1  },  { \"abbreviation\" : \"AK\",  \"state\" : \"Alaska\",  \"state_id\" : 2  },  { \"abbreviation\" : \"AZ\",  \"state\" : \"Arizona\",  \"state_id\" : 3  },  { \"abbreviation\" : \"AR\",  \"state\" : \"Arkansas\",  \"state_id\" : 4  }]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_distribution_centers_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"address\" : \"Warehouse address\",\"address2\" : \"\",\"city\" : \"Warehouse city\",\"contact\" : \"warehosue contact\",\"country\" : \"US\",\"distribution_center_id\" : 1,\"distribution_center_name\" : \"Your warehouse\",\"email\" : \"warehouse@email.com\",\"fax\" : \"\",\"phone\" : \"999 - 888 - 7777\",\"postal_code\" : \"11111\",\"state\" : \"AL\",\"website\" : \"\"},{ \"address\" : \"New address \",\"address2\" : \"\",\"city\" : \"New City\",\"contact\" : \"\",\"country\" : \"CA\",\"distribution_center_id\" : 138,\"distribution_center_name\" : \"NEW DC\",\"email\" : \"\",\"fax\" : \"\",\"phone\" : \"\",\"postal_code\" : \"12345\",\"state\" : \"CA\",\"website\" : \"\"}]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 void get_websites_param_func(const std::shared_ptr< Session > session)
 {
-	/*stringstream id;
-	id << ::this_thread::get_id();
-	auto body = String::format("Thread:%s,Password Protected! \n", id.str().data());*/
-
-	const auto request = session->get_request();
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-		cout << r.first << ":" << r.second << endl;
-	string body = "[ { \"Website_Id\" : 35,  \"website_name\" : \"DTC Frontend\"  } ]";
-	session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	get_general_func(session);
 }
 
 std::string&   replace_all(std::string&   str,const   std::string&   old_value,const   std::string&   new_value)     
