@@ -56,6 +56,22 @@ void orderbot_server_start()
 		get_products_param->set_error_handler(&resource_error_handler);
 		////////////////////////////////////////////////////////////
 
+
+//http://172.18.100.85:8688/admin/account.json/
+		auto get_account_num = std::make_shared< Resource >();
+		get_account_num->set_path("/admin/account.json/{name: ([0-9]+)}");
+		get_account_num->set_method_handler("GET", get_account_num_func);
+		get_account_num->set_method_handler("PUT", put_account_num_func);
+		get_account_num->set_error_handler(&resource_error_handler);
+		/////////////////////////////////////
+		//http://172.18.100.85:8688/admin/account.json/?active=true&sales_channel_name=wholesale
+		auto get_account_param = std::make_shared< Resource >();
+		get_account_param->set_path("/admin/account.json/");
+		get_account_param->set_method_handler("GET", get_account_param_func);
+		get_account_param->set_method_handler("POST", post_account_param_func);
+		get_account_param->set_error_handler(&resource_error_handler);
+////////////////////////////////////////////////////////////
+
 		//http://172.18.100.85:8688/admin/customers.json/1223
 		auto get_customers_num = std::make_shared< Resource >();
 		get_customers_num->set_path("/admin/customers.json/{name: ([0-9]+)}");
@@ -253,7 +269,9 @@ void orderbot_server_start()
 		service.publish(get_products_num);
 		//service.publish(put_products_num);
 		service.publish(get_products_param);
-
+		
+		service.publish(get_account_num);
+		service.publish(get_account_param);
 
 		service.publish(get_customers_num);
 		service.publish(get_customers_param);

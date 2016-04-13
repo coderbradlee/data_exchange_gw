@@ -371,7 +371,52 @@ void post_customers_param_func(const std::shared_ptr< Session > session)
 	});
 }
 
+void put_account_num_func(const std::shared_ptr< Session > session)
+{
+	
+	string product_num = session->get_request()->get_path_parameter("name");
+	//cout << "product_num:" << product_num << endl;
+	const auto request = session->get_request();
+	size_t content_length = 0;
+	request->get_header("Content-Length", content_length);
+	cout << content_length << endl;
+	//string ret = session->get_body();
+	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	{
+		fprintf(stdout, "%.*s\n", (int)content_body.size(), content_body.data());
 
+		string body = "{  \"reference_customer_id\": \"7777777\",  \"orderbot_customer_id\": 2,  \"success\": true,  \"message\": \"Customer updated successfully\"  }";
+
+		session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	});
+
+}
+
+void get_account_num_func(const std::shared_ptr< Session > session)
+{	
+	get_general_func(session);
+}
+void get_account_param_func(const std::shared_ptr< Session > session)
+{
+	get_general_func(session);
+}
+void post_account_param_func(const std::shared_ptr< Session > session)
+{
+	
+	const auto request = session->get_request();
+	size_t content_length = 0;
+	request->get_header("Content-Length", content_length);
+	cout << content_length << endl;
+	//string ret = session->get_body();
+	session->fetch(content_length, [&](const std::shared_ptr< Session > session, const Bytes & content_body)
+	{
+		fprintf(stdout, "%.*s\n", (int)content_body.size(), content_body.data());
+
+		string body = "[  {  \"reference_account_id\": \"1000111\",  \"orderbot_account_id\": 36,  \"customers\": [  {  \"reference_customer_id\": \"10001\",  \"orderbot_customer_id\": 36,  \"success\": true,  \"message\": \"Customer successfully created\"  }  ],  \"success\": true,  \"message\": \"Account successfully created\"  },  {  \"reference_account_id\": \"1000113\",  \"orderbot_account_id\": 37,  \"customers\": [  {  \"reference_customer_id\": \"10001\",  \"orderbot_customer_id\": 37,  \"success\": true,  \"message\": \"Customer successfully created\"  }  ],  \"success\": true,  \"message\": \"Account successfully created\"  }  ]";
+
+		session->close(OK, body, { { "Content-Length", ::to_string(body.length()) } });
+	});
+}
 
 void get_salesreps_num_func(const std::shared_ptr< Session > session)
 {
