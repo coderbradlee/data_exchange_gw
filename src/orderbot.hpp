@@ -180,36 +180,36 @@ protected:
 			try
 			{
 				//parse m_data and update mysql
-				ptree pt;
-				std::istringstream content(m_data);
-				read_json(content, pt);
-				for (auto p = pt.begin(); p != pt.end(); ++p)
-				{
-					cout << p->second.get<int>("product_category_id") << endl;
-					cout << p->second.get<string>("product_category") << endl;
-					cout << p->second.get<int>("product_group_id") << endl;
-					cout << p->second.get<string>("product_group") << endl;
-					cout << p->second.get<int>("product_id") << endl;
-					cout << p->second.get<string>("product_name") << endl;
-					cout << p->second.get<string>("sku") << endl;
+				// ptree pt;
+				// std::istringstream content(m_data);
+				// read_json(content, pt);
+				// for (auto p = pt.begin(); p != pt.end(); ++p)
+				// {
+				// 	cout << p->second.get<int>("product_category_id") << endl;
+				// 	cout << p->second.get<string>("product_category") << endl;
+				// 	cout << p->second.get<int>("product_group_id") << endl;
+				// 	cout << p->second.get<string>("product_group") << endl;
+				// 	cout << p->second.get<int>("product_id") << endl;
+				// 	cout << p->second.get<string>("product_name") << endl;
+				// 	cout << p->second.get<string>("sku") << endl;
 
 
-					ptree pChild = p->second.get_child("inventory_quantities");
+				// 	ptree pChild = p->second.get_child("inventory_quantities");
 
-					for (auto it = pChild.begin(); it != pChild.end(); ++it)
-					{
-						cout << "--------------------------" << endl;
-						cout << it->second.get<int>("distribution_center_id") << endl;
-						cout << it->second.get<string>("distribution_center_name") << endl;
-						cout << it->second.get<double>("inventory_quantity") << endl;
-						//scout<<"--------------------------"<<endl;
-					}
-					cout << "#####################################################" << endl;
-				}
+				// 	for (auto it = pChild.begin(); it != pChild.end(); ++it)
+				// 	{
+				// 		cout << "--------------------------" << endl;
+				// 		cout << it->second.get<int>("distribution_center_id") << endl;
+				// 		cout << it->second.get<string>("distribution_center_name") << endl;
+				// 		cout << it->second.get<double>("inventory_quantity") << endl;
+				// 		//scout<<"--------------------------"<<endl;
+				// 	}
+				// 	cout << "#####################################################" << endl;
+				// }
 
-				//cout<<m_data<<endl;
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << __LINE__;
-				boost_log->get_initsink()->flush();
+				// //cout<<m_data<<endl;
+				// BOOST_LOG_SEV(slg, boost_log->get_log_level()) << __LINE__;
+				// boost_log->get_initsink()->flush();
 
 			}
 			catch (json_parser_error& e)
