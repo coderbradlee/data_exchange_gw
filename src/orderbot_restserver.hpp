@@ -170,7 +170,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 	
 	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
-
+	cout<<__LINE__<<":"<<request->get_header( "SessionID" )<<endl;
 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
@@ -182,7 +182,7 @@ void get_orders_param_func(const std::shared_ptr< Session > session)
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		cout<<"status:"<<order->get_status()<<endl;
 		session->close(order->get_status(), order->get_data(), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
-		cout<<session->get_id()<<endl;
+		
 		////////////////////////////////////////////////////////////
 		//BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "["<<session->get_id()<<"]"<< "response:"<<order->get_status()<<":"<<order->get_data();
 		boost_log->get_initsink()->flush();
