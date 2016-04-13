@@ -168,7 +168,7 @@ protected:
 		
 		if (m_data_parse_callback)
 		{
-			cout << __LINE__ << endl;
+			//cout << __LINE__ << endl;
 			m_data_parse_callback();
 		}
 
