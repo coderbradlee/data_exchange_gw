@@ -11,7 +11,7 @@
 #include <memory>
 #include <string>
 #include <cstdint>
-#include<boost/shared_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 //Project Includes
 
@@ -60,7 +60,7 @@ namespace restbed
             
             bool get_case_insensitive_uris( void ) const;
             
-            boost::posix_time::milliseconds get_connection_timeout( void ) const;
+            std::chrono::milliseconds get_connection_timeout( void ) const;
             
             std::string get_status_message( const int code ) const;
             
@@ -87,7 +87,9 @@ namespace restbed
             
             void set_case_insensitive_uris( const bool value );
             
-            void set_connection_timeout( const boost::posix_time::milliseconds& value );
+            void set_connection_timeout( const std::chrono::seconds& value );
+            
+            void set_connection_timeout( const std::chrono::milliseconds& value );
             
             void set_status_message( const int code, const std::string& message );
             

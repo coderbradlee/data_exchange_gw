@@ -14,7 +14,7 @@
 
 //Project Includes
 #include <corvusoft/restbed/byte.hpp>
-#include<boost/shared_ptr.hpp>
+#include <corvusoft/restbed/string.hpp>
 //External Includes
 
 //System Namespaces
@@ -33,6 +33,7 @@ namespace restbed
     
     namespace detail
     {
+        class HttpImpl;
         class SessionImpl;
         class ServiceImpl;
         struct RequestImpl;
@@ -57,9 +58,9 @@ namespace restbed
             
             bool has_header( const std::string& name ) const;
             
-            bool has_path_parameter( const std::string& name, const bool ignore_case = true ) const;
+            bool has_path_parameter( const std::string& name, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            bool has_query_parameter( const std::string& name, const bool ignore_case = true ) const;
+            bool has_query_parameter( const std::string& name, const String::Option option = String::CASE_INSENSITIVE ) const;
             
             //Getters
             uint16_t get_port( void ) const;
@@ -118,13 +119,13 @@ namespace restbed
             
             void get_query_parameter( const std::string& name, unsigned long long& value, const unsigned long long default_value = 0 ) const;
             
-            std::string get_query_parameter( const std::string& name, const bool ignore_case = true ) const;
+            std::string get_query_parameter( const std::string& name, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::string get_query_parameter( const std::string& name, const std::string& default_value, bool ignore_case = true ) const;
+            std::string get_query_parameter( const std::string& name, const std::string& default_value, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::string get_query_parameter( const std::string& name, const std::function< std::string ( const std::string& ) >& transform, bool ignore_case = true ) const;
+            std::string get_query_parameter( const std::string& name, const std::function< std::string ( const std::string& ) >& transform, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::multimap< std::string, std::string > get_query_parameters( const std::string& name = "", const bool ignore_case = true ) const;
+            std::multimap< std::string, std::string > get_query_parameters( const std::string& name = "", const String::Option option = String::CASE_INSENSITIVE ) const;
             
             void get_path_parameter( const std::string& name, int& value, const int default_value = 0 ) const;
             
@@ -142,13 +143,13 @@ namespace restbed
             
             void get_path_parameter( const std::string& name, unsigned long long& value, const unsigned long long default_value = 0 ) const;
             
-            std::string get_path_parameter( const std::string& name, const bool ignore_case = true ) const;
+            std::string get_path_parameter( const std::string& name, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::string get_path_parameter( const std::string& name, const std::string& default_value, bool ignore_case = true ) const;
+            std::string get_path_parameter( const std::string& name, const std::string& default_value, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::string get_path_parameter( const std::string& name, const std::function< std::string ( const std::string& ) >& transform, bool ignore_case = true ) const;
+            std::string get_path_parameter( const std::string& name, const std::function< std::string ( const std::string& ) >& transform, const String::Option option = String::CASE_INSENSITIVE ) const;
             
-            std::map< std::string, std::string > get_path_parameters( const std::string& name = "", const bool ignore_case = true ) const;
+            std::map< std::string, std::string > get_path_parameters( const std::string& name = "", const String::Option option = String::CASE_INSENSITIVE ) const;
             
             //Setters
             void set_body( const Bytes& value );
@@ -200,6 +201,7 @@ namespace restbed
             //Friends
             friend Http;
             friend Session;
+            friend detail::HttpImpl;
             friend detail::SessionImpl;
             friend detail::ServiceImpl;
             

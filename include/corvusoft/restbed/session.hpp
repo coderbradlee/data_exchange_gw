@@ -101,7 +101,7 @@ namespace restbed
             
             void fetch( const std::string& delimiter, const std::function< void ( const std::shared_ptr< Session >, const Bytes& ) >& callback );
             
-            void sleep_for( const boost::posix_time::milliseconds& delay, const std::function< void ( const std::shared_ptr< Session > ) >& callback );
+            void sleep_for( const std::chrono::milliseconds& delay, const std::function< void ( const std::shared_ptr< Session > ) >& callback );
             
             //Getters
             const std::string& get_id( void ) const;
