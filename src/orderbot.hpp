@@ -7,7 +7,7 @@
 class orderbot
 {
 public:
-	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0)
+	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0),m_data(nullptr)
 	{
 		//register callback
 		register_callback();
@@ -70,7 +70,7 @@ public:
 		}
 		curl(path, method, param, content);
 	}
-	string get_data()
+	boost::shared_ptr<string> get_data()
 	{
 		return m_data;
 	}
@@ -102,7 +102,7 @@ protected:
 		{
 			//cout << __LINE__ << endl;
 			//m_data.clear();
-			m_data.append(buffer, size * nmemb);
+			(*m_data).append(buffer, size * nmemb);
 			// cout<<"m_data:"<<m_data.size()<<endl;
 			// cout<<"max_size:"<<m_data.max_size() <<endl;
 			// cout<<"capacity:"<<m_data.capacity()<<endl;
@@ -148,7 +148,14 @@ protected:
 	}
 	bool on_request()
 	{
-		m_data.clear();
+		if(m_data)
+		{
+			(*m_data).clear();
+		}
+		else
+		{
+			m_data=boost::shared_ptr<string>(new string());
+		}
 		return 0 == curl_easy_perform(m_curl);
 	}
 	static int close_socket_callback(void *clientp, curl_socket_t item)
@@ -255,7 +262,7 @@ protected:
 		}
 	}
 protected:
-	std::string m_data;
+	boost::shared_ptr<std::string> m_data;
 	CURL* m_curl;
 	std::string m_url;
 	std::string m_username;
