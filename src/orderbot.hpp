@@ -78,6 +78,10 @@ public:
 	{
 		return m_request_status;
 	}
+	long int get_length()
+	{
+		return (*m_data).length();
+	}
 protected:
 
 	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
