@@ -303,8 +303,8 @@ void orderbot_server_start()
 		service.publish(get_distribution_centers_param);
 		service.publish(get_websites_param);
 
-		service.publish(default_index);
-		service.publish(default_index2);
+		// service.publish(default_index);
+		// service.publish(default_index2);
 
 
 		service.set_authentication_handler(authentication_handler);

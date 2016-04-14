@@ -173,9 +173,10 @@ void get_general_func(const std::shared_ptr< Session > session)
 
 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
-		const string temp_content( content_body.begin( ), content_body.end( ) );
+		//const string temp_content( content_body.begin( ), content_body.end( ) );
+		std::shared_ptr<std::string> temp_content(new std::string( content_body.get_body().begin( ), content_body.get_body().end( ) ));
 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", path, param, temp_content);
+		order->request("GET", path, param, *temp_content);
 
 		//cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
 		session->close(order->get_status(), order->get_data(), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_data().length()) } });
