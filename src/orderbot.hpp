@@ -7,7 +7,7 @@
 class orderbot
 {
 public:
-	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0),m_data(nullptr)
+	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0),m_data(nullptr)//,m_content(&m_content_buffer)
 	{
 		//register callback
 		register_callback();
@@ -72,6 +72,7 @@ public:
 	}
 	boost::shared_ptr<string> get_data()
 	{
+
 		return m_data;
 	}
 	long int get_status()
@@ -107,6 +108,9 @@ protected:
 			//cout << __LINE__ << endl;
 			//m_data.clear();
 			(*m_data).append(buffer, size * nmemb);
+			// response->content.read(&buffer[0], length);
+            // content.write(&buffer[0], length);
+            //m_content.read(buffer,size * nmemb)
 			// cout<<"m_data:"<<m_data.size()<<endl;
 			// cout<<"max_size:"<<m_data.max_size() <<endl;
 			// cout<<"capacity:"<<m_data.capacity()<<endl;
@@ -279,6 +283,8 @@ protected:
 	std::function<void()> m_data_parse_callback;
 	std::smatch path_match;
 	long int m_request_status;
+	// boost::asio::streambuf m_content_buffer;
+	// std::istream m_content;
 };
 CURLSH* orderbot::share_handle = NULL;
 #endif
