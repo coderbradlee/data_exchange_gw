@@ -45,9 +45,9 @@ public:
 				ptree child = sub.second.get_child("inventory_quantities");
 				for(auto& subchild:child)
 				{
-					int distribution_center_id=subchild.second.get<int>("distribution_center_id");
+					long distribution_center_id=subchild.second.get<long>("distribution_center_id");
 					string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-					int inventory_quantity=subchild.second.get<int>("inventory_quantity");
+					long inventory_quantity=subchild.second.get<long>("inventory_quantity");
 					cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
 				}
 			}
