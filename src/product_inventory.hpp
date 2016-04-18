@@ -20,14 +20,14 @@ public:
 		order->request("GET", "/admin/products.json/", "", "");
 
 		m_product_all=order->m_data;
-		cout<<__FILE__<<":"<<__LINE__<<":"<<*(order->m_data)<<endl;
+		cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 	void start_update()
 	{
 		try
 		{
 			get_product_all();
-			cout<<__FILE__<<":"<<__LINE__<<":"<<*m_product_all<<endl;
+			cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			// typedef tuple<unique_ptr<string>, unique_ptr<double> ,unique_ptr<string>> credit_tuple;
 			
 			// //typedef tuple<string,double> credit_tuple;
