@@ -269,8 +269,9 @@ protected:
 			}
 		}
 	}
-protected:
+public:
 	boost::shared_ptr<std::string> m_data;
+protected:	
 	CURL* m_curl;
 	std::string m_url;
 	std::string m_username;

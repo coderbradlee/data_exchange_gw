@@ -3,6 +3,7 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
+#include "product_inventory.hpp"
 struct free_throws
 { 
 	int x;	
@@ -19,10 +20,8 @@ int main()
 	try
 	{
 		{
-			free_throws test;
-			test.x=10;
-			const free_throws &jolly=clone(test);
-			cout<<jolly.x<<endl;
+			product_inventory t;
+			t.start_update();
 		}
 		{
 			//orderbot server
