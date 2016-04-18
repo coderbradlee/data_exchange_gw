@@ -103,16 +103,23 @@ public:
 
 			// credits.clear();
 			}
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();
-		}
+			catch(json_parser_error& e) 
+			{
+				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+					boost_log->get_initsink()->flush();
+					cout<<e.what()<<endl;
+			}
+
+			catch (const MySqlException& e)
+			{
+				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			}
+			catch(std::exception& e)
+			{
+				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			}
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
