@@ -40,7 +40,7 @@ public:
 				string product_name=sub.second.get<string>("product_name");
 				string sku=sub.second.get<string>("sku");
 
-				cout<<product_name<<":"<<sku<<endl;
+				cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
 				
 				ptree child = sub.second.get_child("inventory_quantities");
 
@@ -49,11 +49,11 @@ public:
 					for(auto& subchild:child)
 					{
 					
-						// long distribution_center_id=subchild.second.get<long>("distribution_center_id");
+						//long distribution_center_id=subchild.second.get<long>("distribution_center_id");
 						string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-						// long inventory_quantity=subchild.second.get<long>("inventory_quantity");
-						//cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
-						cout<<distribution_center_name<<endl;
+						long inventory_quantity=subchild.second.get<long>("inventory_quantity");
+						cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
+						
 					}
 				}
 			}
