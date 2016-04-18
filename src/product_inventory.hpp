@@ -32,7 +32,6 @@ public:
 			 ptree pt;
 			 std::istringstream is(*m_product_all);
 			read_json(is, pt);
-			//ptree child = pt.get_value();
 			for(auto& sub:pt)
 			{
 
@@ -40,7 +39,17 @@ public:
 				int product_id=sub.second.get<int>("product_id");
 				string product_name=sub.second.get<string>("product_name");
 				string sku=sub.second.get<string>("sku");
+
 				cout<<product_name<<":"<<sku<<endl;
+				
+				ptree child = sub.second.get_value("inventory_quantities");
+				for(auto& subchild:child)
+				{
+					int distribution_center_id=sub.second.get<int>("distribution_center_id");
+					string distribution_center_name=sub.second.get<string>("distribution_center_name");
+					int inventory_quantity=sub.second.get<int>("inventory_quantity");
+					cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
+				}
 			}
 			
 
