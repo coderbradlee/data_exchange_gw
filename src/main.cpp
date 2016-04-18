@@ -21,7 +21,7 @@ int main()
 		{
 			free_throws test;
 			test.x=10;
-			free_throws &jolly=clone(test);
+			const free_throws &jolly=clone(test);
 			cout<<jolly.x<<endl;
 		}
 		{
