@@ -15,7 +15,7 @@ int main()
 	try
 	{
 		{
-			long a=3,b=5;
+			int a=3,b=5;
 			swapr(a,b);
 			cout<<a<<":"<<b<<endl;
 		}
