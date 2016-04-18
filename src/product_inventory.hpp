@@ -20,7 +20,7 @@ public:
 		order->request("GET", "/admin/products.json/", "", "");
 
 		m_product_all=order->m_data;
-		cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+		//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 	void start_update()
 	{
