@@ -3,6 +3,10 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
+struct free_throw
+{ 
+	int x;	
+};
 const free_throws& clone(free_throws& ft)
 {
 	free_throws* pt;
@@ -15,7 +19,8 @@ int main()
 	try
 	{
 		{
-			
+			free_throw test;
+			clone(test);
 		}
 		{
 			//orderbot server
