@@ -20,6 +20,7 @@ int main()
 	{
 		{
 			free_throws test;
+			test.x=10;
 			clone(test);
 		}
 		{
