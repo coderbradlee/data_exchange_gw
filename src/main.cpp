@@ -3,7 +3,7 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
-struct free_throw
+struct free_throws
 { 
 	int x;	
 };
@@ -19,7 +19,7 @@ int main()
 	try
 	{
 		{
-			free_throw test;
+			free_throws test;
 			clone(test);
 		}
 		{
