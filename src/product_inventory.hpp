@@ -32,7 +32,7 @@ public:
 			 ptree pt;
 			 std::istringstream is(*m_product_all);
 			read_json(is, pt);
-			ptree child = pt.get_child();
+			ptree child = pt.get_value();
 			for(auto& sub:child)
 			{
 				
