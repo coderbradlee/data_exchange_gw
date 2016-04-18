@@ -42,7 +42,7 @@ public:
 
 				cout<<product_name<<":"<<sku<<endl;
 				
-				ptree child = sub.second.get_child("inventory_quantities");
+				ptree child = sub.second.get_value("inventory_quantities");
 				for(auto& subchild:child)
 				{
 					cout<< "{" << subchild.first << "}" << "[" << subchild.second.data() << "]\n";  
