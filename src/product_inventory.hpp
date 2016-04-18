@@ -36,10 +36,10 @@ public:
 			for(auto& sub:pt)
 			{
 
-	   			string product_category_id=sub.get<string>("product_category_id");
-				int product_id=sub.get<int>("product_id");
-				string product_name=sub.get<string>("product_name");
-				string sku=sub.get<string>("sku");
+	   			string product_category_id=sub.second.get<string>("product_category_id");
+				int product_id=sub.second.get<int>("product_id");
+				string product_name=sub.second.get<string>("product_name");
+				string sku=sub.second.get<string>("sku");
 				cout<<product_name<<":"<<sku<<endl;
 			}
 			
