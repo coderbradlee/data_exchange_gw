@@ -3,21 +3,19 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
-void swapr(int &a,int & b)
+const free_throws& clone(free_throws& ft)
 {
-	int temp;
-	temp=a;
-	a=b;
-	b=temp;
+	free_throws* pt;
+	*pt=ft;
+	cout<<(int*)pt<<endl;
+	return *pt;
 }
 int main()
 {
 	try
 	{
 		{
-			int a=3,b=5;
-			swapr(a,b);
-			cout<<a<<":"<<b<<endl;
+			
 		}
 		{
 			//orderbot server
