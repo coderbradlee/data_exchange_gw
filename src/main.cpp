@@ -21,7 +21,8 @@ int main()
 		{
 			free_throws test;
 			test.x=10;
-			clone(test);
+			free_throws &jolly=clone(test);
+			cout<<jolly.x<<endl;
 		}
 		{
 			//orderbot server
