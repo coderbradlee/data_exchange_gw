@@ -3,14 +3,25 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
-
+void swapr(int &a,int & b)
+{
+	int temp;
+	temp=a;
+	a=b;
+	b=temp;
+}
 int main()
 {
 	try
 	{
 		{
+			long a=3,b=5;
+			swapr(a,b);
+			cout<<a<<":"<<b<<endl;
+		}
+		{
 			//orderbot server
-			orderbot_server_start();
+			//orderbot_server_start();
 		}
 		
 		{
