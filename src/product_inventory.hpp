@@ -27,7 +27,21 @@ public:
 		try
 		{
 			get_product_all();
-			cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			//cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			//
+			 ptree pt;
+			 std::istringstream is(*m_product_all);
+			read_json(is, pt);
+			for(auto& sub:pt)
+			{
+	   			string product_category_id=sub.get<string>("product_category_id");
+				int product_id=sub.get<int>("product_id");
+				string product_name=sub.get<string>("product_name");
+				string sku=sub.get<string>("sku");
+				cout<<product_name<<":"<<sku<<endl;
+			}
+			
+
 			// typedef tuple<unique_ptr<string>, unique_ptr<double> ,unique_ptr<string>> credit_tuple;
 			
 			// //typedef tuple<string,double> credit_tuple;
