@@ -40,6 +40,7 @@ public:
 			//cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			//
 			 ptree pt,ret_json_all;
+			 ptree test;
 			 std::istringstream is(*m_product_all);
 			read_json(is, pt);
 			for(auto& sub:pt)
@@ -74,7 +75,7 @@ public:
 				// }
 
 				ret_json_all.push_back(std::make_pair("", ret_json));
-				ptree test;
+
 				test.push_back(std::make_pair("", ret_json_all));
 				break;
 			}
