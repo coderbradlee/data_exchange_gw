@@ -38,10 +38,10 @@ using namespace activemq::MessageProducer;
 class activemq_cms_producer : public Runnable {
 private:
 
-    Connection* connection;
-    Session* session;
-    Destination* destination;
-    MessageProducer* producer;
+    activemq::Connection* connection;
+    activemq::Session* session;
+    activemq::Destination* destination;
+   activemq:: MessageProducer* producer;
     bool useTopic;
     bool clientAck;
     unsigned int numMessages;
