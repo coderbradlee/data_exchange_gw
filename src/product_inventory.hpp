@@ -72,11 +72,14 @@ public:
 						
 				// 	}
 				// }
+
 				ret_json_all.push_back(std::make_pair("", ret_json));
+				ptree test;
+				test.push_back(std::make_pair("", ret_json_all));
 				break;
 			}
 				
-				write_json(m_ss, ret_json_all);
+				write_json(m_ss, test);
 				send_to_mq();
 			}
 			catch(json_parser_error& e) 
