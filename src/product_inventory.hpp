@@ -80,7 +80,7 @@ public:
 				
 				//break;
 			}
-				return_json.push_back(std::make_pair("", ret_json_all));
+				return_json.push_back(std::make_pair("product", ret_json_all));
 				write_json(m_ss, return_json);
 				send_to_mq();
 			}
