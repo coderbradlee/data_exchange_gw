@@ -126,7 +126,7 @@ public:
             producer = session->createProducer( destination );
             producer->setDeliveryMode( DeliveryMode::PERSISTENT );
             //producer->setTimeToLive(10000);
-            producer->setPriority(5);
+            //producer->setPriority(5);
             // Create the Thread Id String
             string threadIdStr = Long::toString( Thread::currentThread()->getId() );
 
@@ -138,7 +138,7 @@ public:
                 TextMessage* message = session->createTextMessage( m_messages );
 
                 message->setIntProperty( "Integer", ix );
-
+                message->setStringProperty("testkey","testvalue");
                 // Tell the producer to send the message
                 printf( "Sent message #%d from thread %s\n", ix+1, threadIdStr.c_str() );
                 producer->send( message );
