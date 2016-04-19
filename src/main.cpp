@@ -14,11 +14,11 @@ int main()
 			activemq::library::ActiveMQCPP::initializeLibrary();
 			std::string brokerURI =
 		        "failover://(tcp://"+get_config->m_activemq_url+""
-		//        "?wireFormat=openwire"
-		//        "&connection.useAsyncSend=true"
-		//        "&transport.commandTracingEnabled=true"
-		//        "&transport.tcpTracingEnabled=true"
-		//        "&wireFormat.tightEncodingEnabled=true"
+		       "?wireFormat=openwire"
+		       "&connection.useAsyncSend=true"
+		       "&transport.commandTracingEnabled=true"
+		       "&transport.tcpTracingEnabled=true"
+		       "&wireFormat.tightEncodingEnabled=true"
 		        ")";
 
 		    bool useTopics = false;
