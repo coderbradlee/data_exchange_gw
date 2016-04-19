@@ -43,6 +43,7 @@
 //#include <boost/asio/spawn.hpp>
 #include <boost/asio/ssl.hpp>
 #define BOOST_DATE_TIME_SOURCE  
+#define BOOST_SPIRIT_THREADSAFE 
 using namespace boost::asio;
 using namespace std;
 using namespace boost::property_tree;

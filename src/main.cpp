@@ -4,24 +4,36 @@
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
 #include "product_inventory.hpp"
-struct free_throws
-{ 
-	int x;	
-};
-const free_throws& clone(free_throws& ft)
-{
-	free_throws* pt;
-	*pt=ft;
-	cout<<(int*)pt<<endl;
-	return *pt;
-}
+#include "activemq_cms.hpp"
+
 int main()
 {
 	try
 	{
 		{
+			activemq::library::ActiveMQCPP::initializeLibrary();
+			std::string brokerURI =
+		        "failover://(tcp://"+get_config->m_activemq_url+""
+		//        "?wireFormat=openwire"
+		//        "&connection.useAsyncSend=true"
+		//        "&transport.commandTracingEnabled=true"
+		//        "&transport.tcpTracingEnabled=true"
+		//        "&wireFormat.tightEncodingEnabled=true"
+		        ")";
+
+		    bool useTopics = false;
+
+		    activemq_cms_producer producer( brokerURI, numMessages, get_config->m_activemq_write_product_queue, useTopics );
+
+		    producer.run();
+
+		    producer.close();
+
+		    activemq::library::ActiveMQCPP::shutdownLibrary();
+		}
+		{
 			product_inventory t;
-			t.start_update();
+			//t.start_update();
 			//t.start_update();
 		}
 		{
