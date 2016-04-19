@@ -30,18 +30,18 @@ using namespace decaf::util;
 using namespace decaf::util::concurrent;
 using namespace cms;
 using namespace std;
-using namespace activemq::Session;
-using namespace activemq::Connection;
-using namespace activemq::Destination;
-using namespace activemq::MessageProducer;
+using namespace cms::Session;
+using namespace cms::Connection;
+using namespace cms::Destination;
+using namespace cms::MessageProducer;
 ////////////////////////////////////////////////////////////////////////////////
 class activemq_cms_producer : public Runnable {
 private:
 
-    activemq::Connection* connection;
-    activemq::Session* session;
-    activemq::Destination* destination;
-   activemq:: MessageProducer* producer;
+    cms::Connection* connection;
+    cms::Session* session;
+    cms::Destination* destination;
+   	cms:: MessageProducer* producer;
     bool useTopic;
     bool clientAck;
     unsigned int numMessages;
