@@ -131,7 +131,7 @@ public:
 		{
 			cout << item << endl;
 
-			return std::get<0>(item);			
+			return *(std::get<0>(item));			
 		}
 	}
 	catch (const MySqlException& e)
