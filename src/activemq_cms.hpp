@@ -35,7 +35,8 @@ using namespace std;
 // using namespace cms::Destination;
 // using namespace cms::MessageProducer;
 ////////////////////////////////////////////////////////////////////////////////
-class activemq_cms_producer : public Runnable {
+class activemq_cms_producer : public Runnable
+{
 private:
 
     Connection* connection;
@@ -65,18 +66,24 @@ public:
         clientAck(clientAck),
         numMessages(numMessages),
         brokerURI(brokerURI),
-        destURI(destURI) {
-    }
+        destURI(destURI) 
+        {
+        	cout<<brokerURI<<endl;
+        	cout<<destURI<<endl;
+        }
 
-    virtual ~activemq_cms_producer(){
+    virtual ~activemq_cms_producer()
+    {
         cleanup();
     }
 
-    void close() {
+    void close() 
+    {
         this->cleanup();
     }
 
-    virtual void run() {
+    virtual void run() 
+    {
         try {
 
             // Create a ConnectionFactory
@@ -84,25 +91,34 @@ public:
                 new ActiveMQConnectionFactory( brokerURI ) );
 
             // Create a Connection
-            try{
+            try
+            {
                 connection = connectionFactory->createConnection();
                 connection->start();
-            } catch( CMSException& e ) {
+            } 
+            catch( CMSException& e ) 
+            {
                 e.printStackTrace();
                 throw e;
             }
 
             // Create a Session
-            if( clientAck ) {
+            if( clientAck ) 
+            {
                 session = connection->createSession( cms::Session::CLIENT_ACKNOWLEDGE );
-            } else {
+            } 
+            else 
+            {
                 session = connection->createSession( cms::Session::AUTO_ACKNOWLEDGE );
             }
 
             // Create the destination (Topic or Queue)
-            if( useTopic ) {
+            if( useTopic ) 
+            {
                 destination = session->createTopic( destURI );
-            } else {
+            } 
+            else 
+            {
                 destination = session->createQueue( destURI );
             }
 
@@ -116,7 +132,8 @@ public:
             // Create a messages
             string text = (string)"Hello world! from thread " + threadIdStr;
 
-            for( unsigned int ix=0; ix<numMessages; ++ix ){
+            for( unsigned int ix=0; ix<numMessages; ++ix )
+            {
                 TextMessage* message = session->createTextMessage( text );
 
                 message->setIntProperty( "Integer", ix );
@@ -128,40 +145,68 @@ public:
                 delete message;
             }
 
-        }catch ( CMSException& e ) {
+        }
+        catch ( CMSException& e ) 
+        {
             e.printStackTrace();
         }
     }
 
 private:
 
-    void cleanup(){
+    void cleanup()
+    {
 
         // Destroy resources.
-        try{
+        try
+        {
             if( destination != NULL ) delete destination;
-        }catch ( CMSException& e ) { e.printStackTrace(); }
+        }
+        catch ( CMSException& e ) 
+        { 
+        	e.printStackTrace(); 
+        }
         destination = NULL;
 
-        try{
+        try
+        {
             if( producer != NULL ) delete producer;
-        }catch ( CMSException& e ) { e.printStackTrace(); }
+        }
+        catch ( CMSException& e )
+        {
+          e.printStackTrace();
+        }
         producer = NULL;
 
         // Close open resources.
-        try{
+        try
+        {
             if( session != NULL ) session->close();
             if( connection != NULL ) connection->close();
-        }catch ( CMSException& e ) { e.printStackTrace(); }
+        }
+        catch ( CMSException& e ) 
+        {
+         	e.printStackTrace(); 
+     	}
 
-        try{
+        try
+        {
             if( session != NULL ) delete session;
-        }catch ( CMSException& e ) { e.printStackTrace(); }
+        }
+        catch ( CMSException& e ) 
+        { 
+        	e.printStackTrace(); 
+        }
         session = NULL;
 
-        try{
+        try
+        {
             if( connection != NULL ) delete connection;
-        }catch ( CMSException& e ) { e.printStackTrace(); }
+        }
+        catch ( CMSException& e ) 
+        { 
+        	e.printStackTrace(); 
+        }
         connection = NULL;
     }
 };

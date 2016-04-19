@@ -23,7 +23,7 @@ int main()
 
 		    bool useTopics = false;
 
-		    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics );
+		    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
 
 		    producer.run();
 
