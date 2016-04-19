@@ -5,7 +5,7 @@
 //#define DEBUG
 #include "mysql/mysql_api.hpp"
 #include "orderbot.hpp"
-
+#include "activemq_cms.hpp"
 
 class product_inventory
 {
@@ -77,7 +77,7 @@ public:
 			}
 				return_json.push_back(std::make_pair("product", ret_json_all));
 				write_json(m_ss, return_json);
-				send_to_mq();
+				send_messge_to_activemq();
 			}
 			catch(json_parser_error& e) 
 			{
@@ -162,7 +162,31 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 			return "";
 		}
-}
+	}
+	void send_messge_to_activemq()
+	{
+		string message(m_ss.str());
+		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+		activemq::library::ActiveMQCPP::initializeLibrary();
+		std::string brokerURI =
+	        "failover://(tcp://"+get_config->m_activemq_url+""
+	       // "?wireFormat=openwire"
+	       // "&connection.useAsyncSend=true"
+	       // "&transport.commandTracingEnabled=true"
+	       // "&transport.tcpTracingEnabled=true"
+	       // "&wireFormat.tightEncodingEnabled=true"
+	        ")";
+
+	    bool useTopics = false;
+
+	    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
+
+	    producer.run(message);
+
+	    producer.close();
+
+	    activemq::library::ActiveMQCPP::shutdownLibrary();
+	}
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;

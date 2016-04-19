@@ -11,11 +11,11 @@ int main()
 	try
 	{
 		{
-			send_messge_to_activemq("");
+			
 		}
 		{
 			product_inventory t;
-			//t.start_update();
+			t.start_update();
 			//t.start_update();
 		}
 		{
