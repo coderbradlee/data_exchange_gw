@@ -30,7 +30,7 @@ using namespace decaf::util;
 using namespace decaf::util::concurrent;
 using namespace cms;
 using namespace std;
-using namespace cms::Session;
+//using namespace cms::Session;
 // using namespace cms::Connection;
 // using namespace cms::Destination;
 // using namespace cms::MessageProducer;
@@ -39,7 +39,7 @@ class activemq_cms_producer : public Runnable {
 private:
 
     Connection* connection;
-    Session* session;
+    cms::Session* session;
     Destination* destination;
    	MessageProducer* producer;
     bool useTopic;
@@ -94,9 +94,9 @@ public:
 
             // Create a Session
             if( clientAck ) {
-                session = connection->createSession( Session::CLIENT_ACKNOWLEDGE );
+                session = connection->createSession( cms::Session::CLIENT_ACKNOWLEDGE );
             } else {
-                session = connection->createSession( Session::AUTO_ACKNOWLEDGE );
+                session = connection->createSession( cms::Session::AUTO_ACKNOWLEDGE );
             }
 
             // Create the destination (Topic or Queue)
