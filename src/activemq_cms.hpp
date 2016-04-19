@@ -125,7 +125,8 @@ public:
             // Create a MessageProducer from the Session to the Topic or Queue
             producer = session->createProducer( destination );
             producer->setDeliveryMode( DeliveryMode::PERSISTENT );
-            producer->setTimeToLive(10000);
+            //producer->setTimeToLive(10000);
+            producer->setPriority(5);
             // Create the Thread Id String
             string threadIdStr = Long::toString( Thread::currentThread()->getId() );
 
