@@ -30,7 +30,7 @@ using namespace decaf::util;
 using namespace decaf::util::concurrent;
 using namespace cms;
 using namespace std;
-
+using namespace activemq::Session;
 ////////////////////////////////////////////////////////////////////////////////
 class activemq_cms_producer : public Runnable {
 private:
