@@ -11,25 +11,7 @@ int main()
 	try
 	{
 		{
-			activemq::library::ActiveMQCPP::initializeLibrary();
-			std::string brokerURI =
-		        "failover://(tcp://"+get_config->m_activemq_url+""
-		       "?wireFormat=openwire"
-		       "&connection.useAsyncSend=true"
-		       "&transport.commandTracingEnabled=true"
-		       "&transport.tcpTracingEnabled=true"
-		       "&wireFormat.tightEncodingEnabled=true"
-		        ")";
-
-		    bool useTopics = false;
-
-		    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
-
-		    producer.run();
-
-		    producer.close();
-
-		    activemq::library::ActiveMQCPP::shutdownLibrary();
+			send_messge_to_activemq("");
 		}
 		{
 			product_inventory t;

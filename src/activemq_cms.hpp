@@ -82,7 +82,7 @@ public:
         this->cleanup();
     }
 
-    virtual void run() 
+    virtual void run(const string& message) 
     {
         try {
 
@@ -130,11 +130,11 @@ public:
             string threadIdStr = Long::toString( Thread::currentThread()->getId() );
 
             // Create a messages
-            string text = (string)"Hello world! from thread " + threadIdStr;
+            //string text = (string)"Hello world! from thread " + threadIdStr;
 
             for( unsigned int ix=0; ix<numMessages; ++ix )
             {
-                TextMessage* message = session->createTextMessage( text );
+                TextMessage* message = session->createTextMessage( message );
 
                 message->setIntProperty( "Integer", ix );
 
@@ -210,6 +210,27 @@ private:
         connection = NULL;
     }
 };
+void send_messge_to_activemq(const string& message)
+{
+	activemq::library::ActiveMQCPP::initializeLibrary();
+	std::string brokerURI =
+        "failover://(tcp://"+get_config->m_activemq_url+""
+       // "?wireFormat=openwire"
+       // "&connection.useAsyncSend=true"
+       // "&transport.commandTracingEnabled=true"
+       // "&transport.tcpTracingEnabled=true"
+       // "&wireFormat.tightEncodingEnabled=true"
+        ")";
 
+    bool useTopics = false;
+
+    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
+
+    producer.run();
+
+    producer.close();
+
+    activemq::library::ActiveMQCPP::shutdownLibrary();
+}
 #endif
 
