@@ -5,6 +5,46 @@
 //#define DEBUG
 #include "mysql/mysql_api.hpp"
 #include "orderbot.hpp"
+
+string get_product_id(const string& product_name)
+{
+	try
+	{
+		typedef tuple<unique_ptr<string>> product_tuple;
+			
+		//typedef tuple<string,double> credit_tuple;
+		vector<product_tuple> product;
+		string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
+		cout << query_sql << endl;
+		m_conn->runQuery(&product, query_sql.c_str());
+
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+		boost_log->get_initsink()->flush();
+		/********************************/
+		cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+		/********************************/
+		if(product.empty())
+		{
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
+			boost_log->get_initsink()->flush();
+			cout<<"get nothing from t_item_master"<<endl;
+			return "";
+		}
+		for (const auto& item : product)
+		{
+			cout << item << endl;
+
+			return std::get<0>(item);			
+		}
+		credits.clear();
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+}
 class product_inventory
 {
 public:
@@ -29,20 +69,28 @@ public:
 			get_product_all();
 			//cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			//
-			 ptree pt;
+			 ptree pt,ret_json;
 			 std::istringstream is(*m_product_all);
 			read_json(is, pt);
 			for(auto& sub:pt)
 			{
-
+				product_json send_to_mq_json;
 	   			string product_category_id=sub.second.get<string>("product_category_id");
 				int product_id=sub.second.get<int>("product_id");
 				string product_name=sub.second.get<string>("product_name");
 				string sku=sub.second.get<string>("sku");
 
 				cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-				
+				ret_json.put<std::string>("product_name",product_name);
+				send_to_mq_json.product_name=product_name;
+
+				{
+					ret_json.put<std::string>("product_code",get_product_id(product_name);
+				}
+
 				ptree child = sub.second.get_child("inventory_quantities");
+				ret_json.add_child("inventory_quantities", child);
+				
 
 				if(!child.empty())
 				{
@@ -56,58 +104,11 @@ public:
 						
 					}
 				}
+				send_to_mq(ret_json..str());
 			}
 			
 
-			// typedef tuple<unique_ptr<string>, unique_ptr<double> ,unique_ptr<string>> credit_tuple;
 			
-			// //typedef tuple<string,double> credit_tuple;
-			// vector<credit_tuple> credits;
-			// string query_sql = "SELECT customer_credit_flow_id,balance,customer_master_id FROM " + get_config->m_mysql_database + "." + get_config->m_mysql_table + " where expire_date='" + m_today_string + "' and balance>0 and dr=0 and transaction_type=0";
-			// cout << query_sql << endl;
-			// m_conn->runQuery(&credits, query_sql.c_str());
-
-			// BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			// boost_log->get_initsink()->flush();
-			// /********************************/
-			// cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
-			// /********************************/
-			// if(credits.empty())
-			// {
-			// 	BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing need to update";
-			// 	boost_log->get_initsink()->flush();
-			// 	cout<<"nothing need to update"<<endl;
-			// }
-			// for (const auto& item : credits)
-			// {
-			// 	cout << item << endl;
-
-			// 	string update_sql = "update " + get_config->m_mysql_database + "." + get_config->m_mysql_table + " set balance=0 where customer_credit_flow_id='" + *(std::get<0>(item))+"'";
-			// 	cout << update_sql << endl;
-			// 	string update_sql2;
-			// 	try
-			// 	{
-			// 		m_conn->runCommand(update_sql.c_str());
-			// 		//¸üÐÂÁíÒ»¸ö±í
-			// 		update_sql2 = "update " + get_config->m_mysql_database + "." + get_config->m_mysql_table2 + " set credit_balance=0 where customer_master_id='" + *(std::get<2>(item))+"'";
-			// 		cout << update_sql2 << endl;
-			// 		m_conn->runCommand(update_sql2.c_str());
-					
-			// 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << update_sql;
-			// 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << update_sql2;
-			// 		boost_log->get_initsink()->flush();
-			// 	}
-			// 	catch (const MySqlException& e)
-			// 	{
-			// 		BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << update_sql << "(2)" << update_sql2 << "(exception:)" << e.what();
-			// 		boost_log->get_initsink()->flush();
-			// 	}
-				
-
-				
-			// }
-
-			// credits.clear();
 			}
 			catch(json_parser_error& e) 
 			{
@@ -126,6 +127,19 @@ public:
 				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 			}
+	}
+	void send_to_mq(const string& message)
+	{
+		//orderbot 接口
+		boost::shared_ptr<activemq> am = boost::shared_ptr<activemq>(new activemq(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
+		am->request("POST", "/api/message/TEST", "type=queue", "body="+message);
+		cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
+		// am->request("GET", "/api/message/TEST", "type=queue&clientId=consumerA", "");
+		// cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
+		// 
+		// 
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << am->get_data();
+		boost_log->get_initsink()->flush();
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
