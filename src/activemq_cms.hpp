@@ -30,7 +30,7 @@ using namespace decaf::util;
 using namespace decaf::util::concurrent;
 using namespace cms;
 using namespace std;
-// using namespace cms::Session;
+using namespace cms::Session;
 // using namespace cms::Connection;
 // using namespace cms::Destination;
 // using namespace cms::MessageProducer;
