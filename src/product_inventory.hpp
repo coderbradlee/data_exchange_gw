@@ -49,9 +49,9 @@ public:
 					for(auto& subchild:child)
 					{
 					
-						//long distribution_center_id=subchild.second.get<long>("distribution_center_id");
+						double distribution_center_id=subchild.second.get<double>("distribution_center_id");
 						string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-						long inventory_quantity=subchild.second.get<long>("inventory_quantity");
+						double inventory_quantity=subchild.second.get<double>("inventory_quantity");
 						cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
 						
 					}
