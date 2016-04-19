@@ -101,7 +101,9 @@ public:
 						
 					}
 				}
-				send_to_mq(ret_json.str());
+				std::stringstream ss;
+				write_json(ss, ret_json);
+				send_to_mq(ss.str());
 			}
 			
 
