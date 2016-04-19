@@ -74,11 +74,9 @@ public:
 				// }
 				ret_json_all.push_back(std::make_pair("", ret_json));
 			}
-				std::stringstream ss;
-				write_json(ss, ret_json_all);
-				send_to_mq(ss.str());
-
-			
+				
+				write_json(m_ss, ret_json_all);
+				send_to_mq();
 			}
 			catch(json_parser_error& e) 
 			{
@@ -98,10 +96,11 @@ public:
 				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 			}
 	}
-	void send_to_mq(const string& message)
+	void send_to_mq()
 	{
 		try
 		{
+			string message(m_ss.str());
 			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 			//orderbot 接口
 			boost::shared_ptr<activemq> am = boost::shared_ptr<activemq>(new activemq(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
@@ -167,6 +166,7 @@ private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
 	boost::shared_ptr<string> m_product_all;
+	std::stringstream m_ss;
 };
 
 #endif
