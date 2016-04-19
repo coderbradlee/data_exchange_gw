@@ -4,10 +4,10 @@
 #include  "include.hpp"
 //#define DEBUG
 
-class activemq
+class activemq_rest
 {
 public:
-	activemq(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr)
+	activemq_rest(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr)
 	{
 		//register callback
 		register_callback();
@@ -30,7 +30,7 @@ public:
 		curl_easy_setopt(m_curl, CURLOPT_SHARE, share_handle);
 		curl_easy_setopt(m_curl, CURLOPT_DNS_CACHE_TIMEOUT, 60 * 5);
 	}
-	virtual ~activemq()
+	virtual ~activemq_rest()
 	{
 		curl_easy_cleanup(m_curl);
 		curl_global_cleanup();
@@ -75,7 +75,7 @@ protected:
 		if (thisPtr)
 		{
 			//cout << __LINE__ << endl;
-			return ((activemq*)thisPtr)->request_write_data(buffer, size, nmemb);
+			return ((activemq_rest*)thisPtr)->request_write_data(buffer, size, nmemb);
 		}
 
 		else
@@ -140,7 +140,7 @@ protected:
 		if (clientp)
 		{
 			//cout << __LINE__ << endl;
-			((activemq*)clientp)->process_content();
+			((activemq_rest*)clientp)->process_content();
 		}
 
 	}
@@ -249,11 +249,7 @@ protected:
 	std::function<void()> m_data_parse_callback;
 	std::smatch path_match;
 };
-CURLSH* activemq::share_handle = NULL;
-class read_activemq_on_time
-{
-public:
-	
-};
+CURLSH* activemq_rest::share_handle = NULL;
+
 #endif
 
