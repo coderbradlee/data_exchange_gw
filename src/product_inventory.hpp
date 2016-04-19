@@ -179,9 +179,9 @@ public:
 
 	    bool useTopics = false;
 
-	    activemq_cms_producer producer( brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
+	    activemq_cms_producer producer(message,brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
 
-	    producer.run(message);
+	    producer.run();
 
 	    producer.close();
 

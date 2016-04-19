@@ -48,7 +48,7 @@ private:
     unsigned int numMessages;
     std::string brokerURI;
     std::string destURI;
-
+    std::string m_messages;
 private:
 
     activemq_cms_producer( const activemq_cms_producer& );
@@ -56,7 +56,7 @@ private:
 
 public:
 
-    activemq_cms_producer( const std::string& brokerURI, unsigned int numMessages,
+    activemq_cms_producer(const std::string& message, const std::string& brokerURI, unsigned int numMessages,
                     const std::string& destURI, bool useTopic = false, bool clientAck = false ) :
         connection(NULL),
         session(NULL),
@@ -66,7 +66,7 @@ public:
         clientAck(clientAck),
         numMessages(numMessages),
         brokerURI(brokerURI),
-        destURI(destURI) 
+        destURI(destURI),m_messages(message) 
         {
         	cout<<brokerURI<<endl;
         	cout<<destURI<<endl;
@@ -82,7 +82,7 @@ public:
         this->cleanup();
     }
 
-    virtual void run(const string& messages) 
+    virtual void run() 
     {
         try {
 
@@ -134,7 +134,7 @@ public:
 
             for( unsigned int ix=0; ix<numMessages; ++ix )
             {
-                TextMessage* message = session->createTextMessage( messages );
+                TextMessage* message = session->createTextMessage( m_messages );
 
                 message->setIntProperty( "Integer", ix );
 
