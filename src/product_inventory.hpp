@@ -132,7 +132,7 @@ public:
 			//typedef tuple<string,double> credit_tuple;
 			vector<product_tuple> product;
 			string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
-			cout << query_sql << endl;
+			//cout << query_sql << endl;
 			m_conn->runQuery(&product, query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
