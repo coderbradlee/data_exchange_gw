@@ -18,11 +18,19 @@ public:
 	}
 	void get_product_all()
 	{
-		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", "/admin/products.json/", "", "");
+		try
+		{
+			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+			order->request("GET", "/admin/products.json/", "", "");
 
-		m_product_all=order->m_data;
-		//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			m_product_all=order->m_data;
+			//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	void start_update()
 	{
@@ -91,55 +99,67 @@ public:
 	}
 	void send_to_mq(const string& message)
 	{
-		//orderbot 接口
-		boost::shared_ptr<activemq> am = boost::shared_ptr<activemq>(new activemq(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
-		am->request("POST", "/api/message/"+get_config->m_activemq_write_product_queue, "type=queue", "body="+message);
-		cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
-		// am->request("GET", "/api/message/TEST", "type=queue&clientId=consumerA", "");
-		// cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
-		// 
-		// 
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << am->get_data();
-		boost_log->get_initsink()->flush();
+		try
+		{
+			//orderbot 接口
+			boost::shared_ptr<activemq> am = boost::shared_ptr<activemq>(new activemq(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
+			am->request("POST", "/api/message/"+get_config->m_activemq_write_product_queue, "type=queue", "body="+message);
+			cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
+			// am->request("GET", "/api/message/TEST", "type=queue&clientId=consumerA", "");
+			// cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
+			// 
+			// 
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << am->get_data();
+			boost_log->get_initsink()->flush();
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	string get_product_id(const string& product_name)
-{
-	try
 	{
-		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
-		typedef tuple<unique_ptr<string>> product_tuple;
-			
-		//typedef tuple<string,double> credit_tuple;
-		vector<product_tuple> product;
-		string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
-		cout << query_sql << endl;
-		m_conn->runQuery(&product, query_sql.c_str());
-
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-		boost_log->get_initsink()->flush();
-		/********************************/
-		cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
-		/********************************/
-		if(product.empty())
+		try
 		{
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
+			m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
+			typedef tuple<unique_ptr<string>> product_tuple;
+				
+			//typedef tuple<string,double> credit_tuple;
+			vector<product_tuple> product;
+			string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&product, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			boost_log->get_initsink()->flush();
-			cout<<"get nothing from t_item_master"<<endl;
+			/********************************/
+			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			/********************************/
+			if(product.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
+				boost_log->get_initsink()->flush();
+				cout<<"get nothing from t_item_master"<<endl;
+				return "";
+			}
+			else
+			{
+				for (const auto& item : product)
+				{
+					cout << item << endl;
+
+					return *(std::get<0>(item));			
+				}
+			}
+
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 			return "";
 		}
-		for (const auto& item : product)
-		{
-			cout << item << endl;
-
-			return *(std::get<0>(item));			
-		}
-	}
-	catch (const MySqlException& e)
-	{
-		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		return "";
-	}
 }
 private:
 	boost::shared_ptr<MySql> m_conn;
