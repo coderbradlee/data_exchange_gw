@@ -36,14 +36,13 @@ string get_product_id(const string& product_name)
 
 			return std::get<0>(item);			
 		}
-		credits.clear();
-		}
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			return "";
-		}
+	}
+	catch (const MySqlException& e)
+	{
+		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		return "";
+	}
 }
 class product_inventory
 {
