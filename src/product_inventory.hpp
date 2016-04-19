@@ -39,11 +39,12 @@ public:
 			get_product_all();
 			//cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			//
-			 ptree pt,ret_json;
+			 ptree pt,ret_json_all;
 			 std::istringstream is(*m_product_all);
 			read_json(is, pt);
 			for(auto& sub:pt)
 			{
+				ptree ret_json;
 	   			string product_category_id=sub.second.get<string>("product_category_id");
 				int product_id=sub.second.get<int>("product_id");
 				string product_name=sub.second.get<string>("product_name");
@@ -59,23 +60,23 @@ public:
 				ret_json.add_child("inventory_quantities", child);
 				
 
-				if(!child.empty())
-				{
-					for(auto& subchild:child)
-					{
+				// if(!child.empty())
+				// {
+				// 	for(auto& subchild:child)
+				// 	{
 					
-						double distribution_center_id=subchild.second.get<double>("distribution_center_id");
-						string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-						double inventory_quantity=subchild.second.get<double>("inventory_quantity");
-						cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
+				// 		double distribution_center_id=subchild.second.get<double>("distribution_center_id");
+				// 		string distribution_center_name=subchild.second.get<string>("distribution_center_name");
+				// 		double inventory_quantity=subchild.second.get<double>("inventory_quantity");
+				// 		cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
 						
-					}
-				}
-				std::stringstream ss;
-				write_json(ss, ret_json);
-				send_to_mq(ss.str());
+				// 	}
+				// }
+				ret_json_all.push_back(std::make_pair("", ret_json));
 			}
-			
+				std::stringstream ss;
+				write_json(ss, ret_json_all);
+				send_to_mq(ss.str());
 
 			
 			}
@@ -101,6 +102,7 @@ public:
 	{
 		try
 		{
+			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 			//orderbot 接口
 			boost::shared_ptr<activemq> am = boost::shared_ptr<activemq>(new activemq(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
 			am->request("POST", "/api/message/"+get_config->m_activemq_write_product_queue, "type=queue", "body="+message);
