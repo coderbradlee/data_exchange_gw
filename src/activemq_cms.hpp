@@ -87,7 +87,7 @@ public:
         try {
 
             // Create a ConnectionFactory
-            auto_ptr<ActiveMQConnectionFactory> connectionFactory(
+            boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
                 new ActiveMQConnectionFactory( brokerURI ) );
 
             // Create a Connection
@@ -125,7 +125,7 @@ public:
             // Create a MessageProducer from the Session to the Topic or Queue
             producer = session->createProducer( destination );
             producer->setDeliveryMode( DeliveryMode::PERSISTENT );
-
+            producer->setTimeToLive(10000);
             // Create the Thread Id String
             string threadIdStr = Long::toString( Thread::currentThread()->getId() );
 
