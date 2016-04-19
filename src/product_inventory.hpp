@@ -73,6 +73,7 @@ public:
 				// 	}
 				// }
 				ret_json_all.push_back(std::make_pair("", ret_json));
+				break;
 			}
 				
 				write_json(m_ss, ret_json_all);
