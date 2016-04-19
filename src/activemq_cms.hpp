@@ -31,6 +31,9 @@ using namespace decaf::util::concurrent;
 using namespace cms;
 using namespace std;
 using namespace activemq::Session;
+using namespace activemq::Connection;
+using namespace activemq::Destination;
+using namespace activemq::MessageProducer;
 ////////////////////////////////////////////////////////////////////////////////
 class activemq_cms_producer : public Runnable {
 private:
