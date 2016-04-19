@@ -52,10 +52,8 @@ public:
 				string sku=sub.second.get<string>("sku");
 
 				//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-				ret_json.put<std::string>("product_name",product_name);
-
 				ret_json.put<std::string>("product_code",get_product_id(product_name));
-
+				ret_json.put<std::string>("product_name",product_name);
 
 				ptree child = sub.second.get_child("inventory_quantities");
 				ret_json.add_child("inventory_quantities", child);
