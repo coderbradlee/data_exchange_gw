@@ -51,7 +51,7 @@ public:
 				string product_name=sub.second.get<string>("product_name");
 				string sku=sub.second.get<string>("sku");
 
-				cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
+				//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
 				ret_json.put<std::string>("product_name",product_name);
 
 				ret_json.put<std::string>("product_code",get_product_id(product_name));
@@ -76,9 +76,6 @@ public:
 
 				ret_json_all.push_back(std::make_pair("", ret_json));
 
-				//return_json.add_child("dd", ret_json_all);
-				
-				//break;
 			}
 				return_json.push_back(std::make_pair("product", ret_json_all));
 				write_json(m_ss, return_json);

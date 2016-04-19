@@ -22,7 +22,7 @@ int main()
 		{
 			product_inventory t;
 			t.start_update();
-			t.start_update();
+			//t.start_update();
 		}
 		{
 			//orderbot server
