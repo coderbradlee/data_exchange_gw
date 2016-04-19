@@ -6,44 +6,7 @@
 #include "mysql/mysql_api.hpp"
 #include "orderbot.hpp"
 
-string get_product_id(const string& product_name)
-{
-	try
-	{
-		typedef tuple<unique_ptr<string>> product_tuple;
-			
-		//typedef tuple<string,double> credit_tuple;
-		vector<product_tuple> product;
-		string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
-		cout << query_sql << endl;
-		m_conn->runQuery(&product, query_sql.c_str());
 
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-		boost_log->get_initsink()->flush();
-		/********************************/
-		cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
-		/********************************/
-		if(product.empty())
-		{
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
-			boost_log->get_initsink()->flush();
-			cout<<"get nothing from t_item_master"<<endl;
-			return "";
-		}
-		for (const auto& item : product)
-		{
-			cout << item << endl;
-
-			return std::get<0>(item);			
-		}
-	}
-	catch (const MySqlException& e)
-	{
-		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		return "";
-	}
-}
 class product_inventory
 {
 public:
@@ -139,6 +102,45 @@ public:
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << am->get_data();
 		boost_log->get_initsink()->flush();
 	}
+	string get_product_id(const string& product_name)
+{
+	try
+	{
+		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
+		typedef tuple<unique_ptr<string>> product_tuple;
+			
+		//typedef tuple<string,double> credit_tuple;
+		vector<product_tuple> product;
+		string query_sql = "SELECT product_code FROM " + get_config->m_mysql_database + ".t_item_master where product_name='" + product_name + "'";
+		cout << query_sql << endl;
+		m_conn->runQuery(&product, query_sql.c_str());
+
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+		boost_log->get_initsink()->flush();
+		/********************************/
+		cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+		/********************************/
+		if(product.empty())
+		{
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
+			boost_log->get_initsink()->flush();
+			cout<<"get nothing from t_item_master"<<endl;
+			return "";
+		}
+		for (const auto& item : product)
+		{
+			cout << item << endl;
+
+			return std::get<0>(item);			
+		}
+	}
+	catch (const MySqlException& e)
+	{
+		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		return "";
+	}
+}
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
