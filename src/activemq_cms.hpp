@@ -2,8 +2,9 @@
 #define	ACTIVEMQ_CMS_HPP
 
 #include  "include.hpp"
-#include <sys/mman.h>
+
 #include <activemq/core/ActiveMQConnection.h>
+#include <sys/mman.h>
 #include <activemq/transport/DefaultTransportListener.h>
 #include <decaf/lang/Integer.h>
 #include <activemq/util/Config.h>
