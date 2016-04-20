@@ -30,7 +30,7 @@ public:
 
     // Create the consumer
     activemq_cms_consumer consumer( brokerURI, get_config->m_activemq_read_order_queue, useTopics, clientAck );
-    cout<<__FILE__<<":"<<__LINE__<<endl;
+    //cout<<__FILE__<<":"<<__LINE__<<endl;
     // Start it up and it will listen forever.
     consumer.runConsumer();
 
