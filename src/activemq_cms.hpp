@@ -265,7 +265,7 @@ public:
     void runConsumer() {
 
         try {
-        	cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
+        	//cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a ConnectionFactory
             //ActiveMQConnectionFactory* connectionFactory =
               //  new ActiveMQConnectionFactory( brokerURI );
