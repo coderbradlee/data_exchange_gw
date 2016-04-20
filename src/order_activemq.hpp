@@ -12,7 +12,7 @@ class order_activemq
 	void start_listener()
 	{
 		std::string brokerURI =
-        "failover://(tcp://"+get_config->m_activemq_url
+        "failover://(tcp://"+get_config->m_activemq_url+
 //        "?wireFormat=openwire"
 //        "&connection.useAsyncSend=true"
 //        "&transport.commandTracingEnabled=true"
