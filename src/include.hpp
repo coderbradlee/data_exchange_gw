@@ -18,6 +18,7 @@
 #include <assert.h>
 #include <boost/thread.hpp>
 #include <boost/algorithm/string.hpp>
+#include <activemq/core/ActiveMQConnection.h> // put "mman.h" after "activemq/core/ActiveMQConnection.h"solve define conflict of MAP_TYPE 
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/timer/timer.hpp>
