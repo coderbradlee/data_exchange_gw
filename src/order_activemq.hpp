@@ -22,7 +22,8 @@ public:
 //        "&transport.tcpTracingEnabled=true"
 //        "&wireFormat.tightEncodingEnabled=true"
         ")";
-        std::string brokerURI=brokerURI1;
+        //std::string brokerURI=brokerURI1;
+	    std::string brokerURI="failover://(tcp://172.18.100.204:61616)";
 	    bool useTopics = false;
 
 	    //============================================================
