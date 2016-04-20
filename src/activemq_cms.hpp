@@ -269,11 +269,11 @@ public:
             // Create a ConnectionFactory
             ActiveMQConnectionFactory* connectionFactory =
                 new ActiveMQConnectionFactory( brokerURI );
-
+cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a Connection
             connection = connectionFactory->createConnection();
             delete connectionFactory;
-
+cout<<__FILE__<<":"<<__LINE__<<endl;
             ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
             if( amqConnection != NULL ) {
                 amqConnection->addTransportListener( this );
