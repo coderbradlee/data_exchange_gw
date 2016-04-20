@@ -279,9 +279,11 @@ public:
                 amqConnection->addTransportListener( this );
             }
 
+            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->start();
-
+            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->setExceptionListener(this);
+            cout<<__FILE__<<":"<<__LINE__<<endl;
 
             // Create a Session
             if( clientAck ) {
