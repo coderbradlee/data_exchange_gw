@@ -29,9 +29,9 @@ public:
 	    // instead of the default auto ack mode.
 	    //============================================================
 	    bool clientAck = false;
-
+	    string read_queue_name=get_config->m_activemq_read_order_queue;
 	    // Create the consumer
-	    activemq_cms_consumer consumer( brokerURI, get_config->m_activemq_read_order_queue, useTopics, clientAck );
+	    activemq_cms_consumer consumer( brokerURI, read_queue_name, useTopics, clientAck );
 	    //cout<<__FILE__<<":"<<__LINE__<<endl;
 	    // Start it up and it will listen forever.
 	    consumer.runConsumer();
