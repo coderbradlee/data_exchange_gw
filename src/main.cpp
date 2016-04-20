@@ -12,12 +12,12 @@ int main()
 	{
 		{
 			order_activemq t;
-			// t.start_listener();
+			t.start_consume_listener();
 			// this_thread::sleep_for(chrono::seconds(10));
 		}
 		{
 			product_inventory t;
-			t.start_update();
+			//t.start_update();
 			//t.start_update();
 		}
 		{

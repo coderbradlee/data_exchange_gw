@@ -10,7 +10,7 @@
 class order_activemq
 {
 public:
-	void start_listener()
+	void start_consume_listener()
 	{
 		std::string brokerURI =
         "failover://(tcp://"+get_config->m_activemq_url+
