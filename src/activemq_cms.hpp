@@ -275,7 +275,7 @@ public:
 cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a Connection
             connection = connectionFactory->createConnection();
-            delete connectionFactory;
+            //delete connectionFactory;
 cout<<__FILE__<<":"<<__LINE__<<endl;
             ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
             if( amqConnection != NULL ) {
