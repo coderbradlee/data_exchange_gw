@@ -11,7 +11,8 @@ int main()
 	try
 	{
 		{
-			
+			order_activemq t;
+			t.start_listener();
 		}
 		{
 			product_inventory t;
