@@ -14,7 +14,7 @@ public:
 
 	void start_consume_listener()
 	{
-		std::string brokerURI =
+		std::string brokerURI1 =
         "failover://(tcp://"+get_config->m_activemq_url+
 //        "?wireFormat=openwire"
 //        "&connection.useAsyncSend=true"
@@ -22,6 +22,7 @@ public:
 //        "&transport.tcpTracingEnabled=true"
 //        "&wireFormat.tightEncodingEnabled=true"
         ")";
+        std::string brokerURI=brokerURI1;
 	    bool useTopics = false;
 
 	    //============================================================
@@ -29,7 +30,7 @@ public:
 	    // instead of the default auto ack mode.
 	    //============================================================
 	    bool clientAck = false;
-	    string read_queue_name=get_config->m_activemq_read_order_queue;
+	    std::string read_queue_name=get_config->m_activemq_read_order_queue;
 	    // Create the consumer
 	    activemq_cms_consumer consumer( brokerURI, read_queue_name, useTopics, clientAck );
 	    //cout<<__FILE__<<":"<<__LINE__<<endl;
