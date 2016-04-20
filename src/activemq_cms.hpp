@@ -218,7 +218,7 @@ class activemq_cms_consumer : public ExceptionListener,
 private:
 
     Connection* connection;
-    Session* session;
+    cms::Session* session;
     Destination* destination;
     MessageConsumer* consumer;
     bool useTopic;
