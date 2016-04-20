@@ -220,7 +220,8 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 class activemq_cms_consumer : public ExceptionListener,
                             public MessageListener,
-                            public DefaultTransportListener {
+                            public DefaultTransportListener 
+                            {
 private:
 
     Connection* connection;

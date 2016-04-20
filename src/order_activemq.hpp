@@ -9,6 +9,7 @@
 
 class order_activemq
 {
+public:
 	void start_listener()
 	{
 		std::string brokerURI =

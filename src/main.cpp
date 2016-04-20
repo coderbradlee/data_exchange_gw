@@ -4,7 +4,7 @@
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
 #include "product_inventory.hpp"
-//#include "activemq_cms.hpp"
+#include "activemq_cms.hpp"
 #include "order_activemq.hpp"
 int main()
 {
