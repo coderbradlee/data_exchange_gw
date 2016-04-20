@@ -169,7 +169,7 @@ public:
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 		activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =
-	        "failover://(tcp://"+get_config->m_activemq_url+"?JMSExpiration=100000"
+	        "failover://(tcp://"+get_config->m_activemq_url+
 	       // "?wireFormat=openwire"
 	       // "&connection.useAsyncSend=true"
 	       // "&transport.commandTracingEnabled=true"
