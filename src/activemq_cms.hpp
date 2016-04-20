@@ -306,9 +306,20 @@ cout<<__FILE__<<":"<<__LINE__<<endl;
             consumer = session->createConsumer( destination );
             consumer->setMessageListener( this );
 
-        } catch (CMSException& e) {
+        } 
+        catch (CMSException& e) 
+        {
             e.printStackTrace();
         }
+        catch (std::exception& e)
+		{
+			//cout << diagnostic_information(e) << endl;
+			cout << e.what() << endl;
+		}
+		catch (...)
+		{
+
+		}
     }
 
     // Called from the consumer since this class is a registered MessageListener.
