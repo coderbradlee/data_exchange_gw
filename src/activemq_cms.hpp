@@ -267,15 +267,15 @@ public:
         try {
         	//cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a ConnectionFactory
-            //ActiveMQConnectionFactory* connectionFactory =
-              //  new ActiveMQConnectionFactory( brokerURI );
+            ActiveMQConnectionFactory* connectionFactory =
+            new ActiveMQConnectionFactory( brokerURI );
                 // Create a ConnectionFactory
-            boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
-                new ActiveMQConnectionFactory( brokerURI ) );
+            // boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
+            //     new ActiveMQConnectionFactory( brokerURI ) );
 cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a Connection
             connection = connectionFactory->createConnection();
-            //delete connectionFactory;
+            delete connectionFactory;
 cout<<__FILE__<<":"<<__LINE__<<endl;
             ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
             if( amqConnection != NULL ) {
