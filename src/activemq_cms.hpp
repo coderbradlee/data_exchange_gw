@@ -2,6 +2,12 @@
 #define	ACTIVEMQ_CMS_HPP
 
 #include  "include.hpp"
+
+#include <activemq/core/ActiveMQConnection.h>
+#include <activemq/transport/DefaultTransportListener.h>
+#include <decaf/lang/Integer.h>
+#include <activemq/util/Config.h>
+#include <decaf/util/Date.h>
 #include <decaf/lang/Thread.h>
 #include <decaf/lang/Runnable.h>
 #include <decaf/util/concurrent/CountDownLatch.h>
