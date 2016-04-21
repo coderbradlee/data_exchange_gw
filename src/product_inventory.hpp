@@ -199,7 +199,7 @@ public:
 
 	    producer.run();
 
-	    producer.close();
+	    //producer.close();
 
 	    activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
