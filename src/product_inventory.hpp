@@ -43,8 +43,8 @@ public:
     {  
         if(!error)  
         {  
-        	//start_update();
-        	cout<<"handle wait"<<endl;
+        	start_update();
+        	//cout<<"handle wait"<<endl;
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));  
             m_d_t.async_wait(boost::bind(&product_inventory::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
     	}   
@@ -54,11 +54,11 @@ public:
 		try
 		{
 			get_product_all();
-			//cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			//
-			 ptree pt,ret_json_all;
-			 ptree return_json;
-			 std::istringstream is(*m_product_all);
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+
+			ptree pt,ret_json_all;
+			ptree return_json;
+			std::istringstream is(*m_product_all);
 			read_json(is, pt);
 			for(auto& sub:pt)
 			{
@@ -94,7 +94,7 @@ public:
 			}
 				return_json.push_back(std::make_pair("product", ret_json_all));
 				write_json(m_ss, return_json);
-				send_messge_to_activemq();
+				//send_messge_to_activemq();
 			}
 			catch(json_parser_error& e) 
 			{
