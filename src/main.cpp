@@ -16,11 +16,10 @@ int main()
 			t.start_consume_listener_multithread();
 			//t.start_consume_listener();//ok
 			// this_thread::sleep_for(chrono::seconds(10));
-		}
-		{
-			product_inventory t;
-			//t.start_update();
-			//t.start_update();
+		
+			product_inventory pro;
+			pro.start_update();
+			pro.start_update();
 		}
 		{
 			//orderbot server
