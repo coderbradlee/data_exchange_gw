@@ -10,6 +10,8 @@
 #include "activemq_product_inventory.hpp"
 class activemq_producer_consumer
 {
+public:
+	
 	void start()
 	{
 		activemq::library::ActiveMQCPP::initializeLibrary();
