@@ -14,7 +14,7 @@ int main()
 			//failover://(tcp://172.18.100.204:61616)
 			order_activemq t;
 			//t.start_consume_listener_multithread();
-			t.start_consume_listener();
+			t.start_consume_listener();//ok
 			// this_thread::sleep_for(chrono::seconds(10));
 		}
 		{
