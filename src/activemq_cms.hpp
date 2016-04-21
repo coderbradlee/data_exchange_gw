@@ -342,7 +342,7 @@ public:
         }
 
         // No matter what, tag the count down latch until done.
-        doneLatch.countDown();
+        //doneLatch.countDown();
     }
 
     // If something bad happens you see it here as this class is also been
