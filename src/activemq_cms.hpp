@@ -303,7 +303,7 @@ public:
 
             // Indicate we are ready for messages.
             latch.countDown();
-
+			cout<<__FILE__<<":"<<__LINE__<<endl;
             // Wait while asynchronous messages come in.
             //doneLatch.await(waitMillis);
 			doneLatch.await();
@@ -315,29 +315,35 @@ public:
     }
 
     // Called from the consumer since this class is a registered MessageListener.
-    virtual void onMessage(const Message* message) {
-
+    virtual void onMessage(const Message* message)
+     {
         static int count = 0;
-
-        try {
+        try 
+        {
             count++;
             boost::shared_ptr<const TextMessage> textMessage(dynamic_cast<const TextMessage*> (message));
             string text = "";
 
-            if (textMessage != NULL) {
+            if (textMessage != NULL) 
+            {
                 text = textMessage->getText();
-            } else {
+            } 
+            else
+            {
                 text = "NOT A TEXTMESSAGE!";
             }
+            cout<<"Message "<<count<<" Received:"<<text<<endl;
 
-            printf("Message #%d Received: %s\n", count, text.c_str());
             //doneLatch.await();
-        } catch (CMSException& e) {
+        } 
+        catch (CMSException& e) 
+        {
             e.printStackTrace();
         }
 
         // Commit all messages.
-        if (this->sessionTransacted) {
+        if (this->sessionTransacted) 
+        {
             session->commit();
         }
 

@@ -47,12 +47,12 @@ public:
 	    // Start the consumer thread.
 	    Thread consumerThread(&consumer);
 	    consumerThread.start();
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+
 	    // Wait for the consumer to indicate that its ready to go.
 	    consumer.waitUntilReady();
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+
 	    consumerThread.join();
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+
 	    consumer.close();
 
 	    activemq::library::ActiveMQCPP::shutdownLibrary();
