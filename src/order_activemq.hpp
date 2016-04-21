@@ -7,11 +7,11 @@
 #include "orderbot.hpp"
 #include "activemq_cms.hpp"
 
-class order_activemq:public Runnable
+class order_activemq
 {
 public:
 	order_activemq(){}
-	virtual void run() 
+	virtual void start() 
 	{
         try 
         {

@@ -12,8 +12,9 @@ int main()
 	{
 		{	//failover://(tcp://172.18.100.204:61616)
 			//failover://(tcp://172.18.100.204:61616)
-			order_activemq t;		
-			t.run();	
+			order_activemq consume;		
+			thread consume_thread([&consume](){consume.start();});	
+			consume_thread.join();
 			// Thread consumerThread(&t);
 		 //    consumerThread.run();
 
