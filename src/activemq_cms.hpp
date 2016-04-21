@@ -323,7 +323,7 @@ public:
         try 
         {
             count++;
-            boost::shared_ptr<const TextMessage> textMessage(dynamic_cast<const TextMessage*> (message));
+            const TextMessage* textMessage=dynamic_cast<const TextMessage*> (message);
             string text = "";
 
             if (textMessage != NULL) 
@@ -334,9 +334,9 @@ public:
             {
                 text = "NOT A TEXTMESSAGE!";
             }
-            cout<<"Message "<<count<<" Received:"<<text<<endl;
+            cout<<"Message "<<count<<" Received: "<<text<<endl;
 
-            doneLatch.await();
+            //doneLatch.await();
         } 
         catch (CMSException& e) 
         {
