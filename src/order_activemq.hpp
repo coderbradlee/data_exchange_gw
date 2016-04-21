@@ -27,7 +27,7 @@ public:
 	    bool sessionTransacted = false;
 	    int numMessages = 1;
 
-        activemq_cms_consumer consumer(brokerURI, numMessages, useTopics, sessionTransacted);
+        activemq_cms_consumer_multithread consumer(brokerURI, numMessages, useTopics, sessionTransacted);
 
 	    // Start the consumer thread.
 	    Thread consumerThread(&consumer);
