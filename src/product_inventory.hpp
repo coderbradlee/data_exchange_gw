@@ -43,7 +43,8 @@ public:
     {  
         if(!error)  
         {  
-        	start_update();
+        	//start_update();
+        	cout<<"handle wait"<<endl;
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));  
             m_d_t.async_wait(boost::bind(&product_inventory::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
     	}   
