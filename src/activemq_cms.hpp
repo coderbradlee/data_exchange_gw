@@ -305,8 +305,8 @@ public:
             latch.countDown();
 
             // Wait while asynchronous messages come in.
-            doneLatch.await(waitMillis);
-
+            //doneLatch.await(waitMillis);
+			doneLatch.await();
         } catch (CMSException& e) {
             // Indicate we are ready for messages.
             latch.countDown();
@@ -331,7 +331,7 @@ public:
             }
 
             printf("Message #%d Received: %s\n", count, text.c_str());
-            doneLatch.await(waitMillis);
+            doneLatch.await();
         } catch (CMSException& e) {
             e.printStackTrace();
         }
