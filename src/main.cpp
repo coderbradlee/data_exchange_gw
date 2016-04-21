@@ -25,14 +25,14 @@ int main()
 	        boost::shared_ptr<order_activemq> consumer(new order_activemq);
 
 		    // Start the consumer thread.
-		    Thread consumerThread(&consumer);
+		    thread consumerThread(&consumer);
 		    consumerThread.start();
 
 		    // Wait for the consumer to indicate that its ready to go.
 		    consumer->waitUntilReady();
 
 		    // Start the producer thread.
-		    Thread producerThread(&producer);
+		    threads producerThread(&producer);
 		    producerThread.start();
 
 		    // Wait for the threads to complete.
