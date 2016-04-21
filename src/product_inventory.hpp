@@ -99,7 +99,7 @@ public:
 			}
 				return_json.push_back(std::make_pair("product", ret_json_all));
 				write_json(m_ss, return_json);
-				//send_messge_to_activemq();
+				send_message_to_activemq();
 			}
 			catch(json_parser_error& e) 
 			{
@@ -185,7 +185,7 @@ public:
 			return "";
 		}
 	}
-	void send_messge_to_activemq()
+	void send_message_to_activemq()
 	{
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
