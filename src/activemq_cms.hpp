@@ -307,7 +307,9 @@ public:
             // Wait while asynchronous messages come in.
             //doneLatch.await(waitMillis);
 			doneLatch.await();
-        } catch (CMSException& e) {
+        } 
+        catch (CMSException& e) 
+        {
             // Indicate we are ready for messages.
             latch.countDown();
             e.printStackTrace();
@@ -334,7 +336,7 @@ public:
             }
             cout<<"Message "<<count<<" Received:"<<text<<endl;
 
-            //doneLatch.await();
+            doneLatch.await();
         } 
         catch (CMSException& e) 
         {
@@ -353,7 +355,8 @@ public:
 
     // If something bad happens you see it here as this class is also been
     // registered as an ExceptionListener with the connection.
-    virtual void onException(const CMSException& ex AMQCPP_UNUSED) {
+    virtual void onException(const CMSException& ex AMQCPP_UNUSED) 
+    {
         printf("CMS Exception occurred.  Shutting down client.\n");
         ex.printStackTrace();
         exit(1);
