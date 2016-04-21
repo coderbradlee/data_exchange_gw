@@ -12,9 +12,14 @@ class product_inventory:public boost::enable_shared_from_this<product_inventory>
 public:
 	product_inventory():m_d_t(m_io_s)
 	{
+		activemq::library::ActiveMQCPP::initializeLibrary();
 		// m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
 		
 		// m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
+	}
+	~product_inventory()
+	{
+		activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
 	void get_product_all()
 	{
@@ -54,7 +59,7 @@ public:
 		try
 		{
 			get_product_all();
-			cout<<__FILE__<<":"<<__LINE__<<endl;
+			//cout<<__FILE__<<":"<<__LINE__<<endl;
 
 			ptree pt,ret_json_all;
 			ptree return_json;
@@ -159,7 +164,7 @@ public:
 			{
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "get nothing from t_item_master";
 				boost_log->get_initsink()->flush();
-				cout<<"get nothing from t_item_master"<<endl;
+				//cout<<"get nothing from t_item_master"<<endl;
 				return "";
 			}
 			else
@@ -184,7 +189,7 @@ public:
 	{
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-		activemq::library::ActiveMQCPP::initializeLibrary();
+		
 		std::string brokerURI =
 	        "failover://(tcp://"+get_config->m_activemq_url+
 	       // "?wireFormat=openwire"
@@ -196,13 +201,13 @@ public:
 
 	    bool useTopics = false;
 
-	    activemq_cms_producer producer(message,brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true );
+	    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_product_queue, useTopics,true ));
 
-	    producer.run();
+	    producer->run();
 
-	    //producer.close();
+	    producer->close();
 
-	    activemq::library::ActiveMQCPP::shutdownLibrary();
+
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
