@@ -355,12 +355,17 @@ public:
 
 private:
 
-    void cleanup() {
-        if (connection != NULL) {
-            try {
+    void cleanup() 
+    {
+        if (connection != NULL) 
+        {
+            try 
+            {
                 connection->close();
-                connection=NULL;
-            } catch (cms::CMSException& ex) {
+                //connection=NULL;
+            } 
+            catch (cms::CMSException& ex) 
+            {
                 ex.printStackTrace();
             }
         }
