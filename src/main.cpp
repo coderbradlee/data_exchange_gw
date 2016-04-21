@@ -12,11 +12,12 @@ int main()
 	{
 		{	//failover://(tcp://172.18.100.204:61616)
 			//failover://(tcp://172.18.100.204:61616)
-			order_activemq t;			
-			Thread consumerThread(&t);
-		    consumerThread.run();
+			order_activemq t;		
+			t.run();	
+			// Thread consumerThread(&t);
+		 //    consumerThread.run();
 
-		    consumerThread.join();
+		 //    consumerThread.join();
 		
 			// product_inventory pro;
 			// pro.start_update();
