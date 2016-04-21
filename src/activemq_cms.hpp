@@ -147,7 +147,7 @@ public:
                 message->setStringProperty("testkey","testvalue");
                 // Tell the producer to send the message
                 printf( "Sent message #%d from thread %s\n", ix+1, threadIdStr.c_str() );
-                producer->send( message );
+                producer->send( message.get() );
 
                 //delete message;
             }
@@ -437,7 +437,7 @@ public:
 
             // Create a Connection
             connection = connectionFactory->createConnection();
-            delete connectionFactory;
+            //delete connectionFactory;
 
             boost::shared_ptr<ActiveMQConnection> amqConnection(dynamic_cast<ActiveMQConnection*>( connection ));
             if( amqConnection != NULL ) {
