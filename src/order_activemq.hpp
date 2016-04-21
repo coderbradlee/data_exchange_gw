@@ -23,7 +23,7 @@ public:
 //        "&transport.tcpTracingEnabled=true"
 //        "&wireFormat.tightEncodingEnabled=true"
         ")";
-		 bool useTopics = true;
+		 bool useTopics = false;
 	    bool sessionTransacted = false;
 	    int numMessages = 1;
 
