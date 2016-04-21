@@ -359,6 +359,7 @@ private:
         if (connection != NULL) {
             try {
                 connection->close();
+                connection=NULL;
             } catch (cms::CMSException& ex) {
                 ex.printStackTrace();
             }
@@ -366,17 +367,32 @@ private:
 
         // Destroy resources.
         try {
-            delete destination;
-            destination = NULL;
-            delete consumer;
-            consumer = NULL;
-            delete session;
-            session = NULL;
-            delete connection;
-            connection = NULL;
-        } catch (CMSException& e) {
-            e.printStackTrace();
-        }
+	        	if (destination != NULL)
+	           	{
+	           	 	delete destination;
+	           	 	destination=NULL;
+	           	}
+	            if (consumer != NULL)
+	           	{
+	           	 	delete consumer;
+	           	 	consumer=NULL;
+	           	}
+	            if (session != NULL)
+	           	{
+	           	 	delete session;
+	           	 	session=NULL;
+	           	}
+	            if (connection != NULL)
+	           	{
+	           	 	delete connection;
+	           	 	connection=NULL;
+	           	}
+	           
+        	} 
+        	catch (CMSException& e) 
+        	{
+            	e.printStackTrace();
+        	}
     }
 };
 ////////////////////////////////////////////////////////////////////////////////

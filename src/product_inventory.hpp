@@ -12,14 +12,14 @@ class product_inventory:public boost::enable_shared_from_this<product_inventory>
 public:
 	product_inventory():m_d_t(m_io_s)
 	{
-		activemq::library::ActiveMQCPP::initializeLibrary();
+		
 		// m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
 		
 		// m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
 	}
 	~product_inventory()
 	{
-		activemq::library::ActiveMQCPP::shutdownLibrary();
+		
 	}
 	void get_product_all()
 	{
@@ -189,7 +189,7 @@ public:
 	{
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-		
+		activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =
 	        "failover://(tcp://"+get_config->m_activemq_url+
 	       // "?wireFormat=openwire"
@@ -207,7 +207,7 @@ public:
 
 	    producer->close();
 
-
+	    activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
