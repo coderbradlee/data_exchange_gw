@@ -3,43 +3,15 @@
 #include "credit_ontime.hpp"
 #include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
-#include "product_inventory.hpp"
-#include "activemq_cms.hpp"
-#include "order_activemq.hpp"
+#include "activemq_producer_consumer.hpp"
 int main()
 {
 	try
 	{
 		{	
-			activemq::library::ActiveMQCPP::initializeLibrary();
-			// boost::shared_ptr<order_activemq> consume(new order_activemq);		
-			// thread consume_thread([&consume](){consume->start();});	
-			//////////////////////////
-			// boost::shared_ptr<product_inventory> produce(new product_inventory);
-			// thread produce_thread([&produce](){produce->start();});	
-			
-			// produce_thread.join();
-			//consume_thread.join();
-			
-
-			boost::shared_ptr<product_inventory> producer(new product_inventory);
-	        boost::shared_ptr<order_activemq> consumer(new order_activemq);
-
-		    // Start the consumer thread.
-		    thread consumerThread([&consumer](){consumer->start();});
-		    //consumerThread.start();
-
-		    // Wait for the consumer to indicate that its ready to go.
-		    //consumer->waitUntilReady();
-
-		    // Start the producer thread.
-		    thread producerThread([&producer](){producer->start();});
-		    //producerThread.start();
-
-		    // Wait for the threads to complete.
-		    producerThread.join();
-		    consumerThread.join();
- 			activemq::library::ActiveMQCPP::shutdownLibrary();
+			boost::shared_ptr<activemq_producer_consumer> producer_consumer(new activemq_producer_consumer);
+			thread producer_consumer_thread([&producer_consumer](){producer_consumer->start();});
+			producer_consumer_thread.join();
 		}
 		{
 			//orderbot server
