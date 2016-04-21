@@ -7,11 +7,26 @@
 #include "orderbot.hpp"
 #include "activemq_cms.hpp"
 
-class order_activemq
+class order_activemq:public Runnable
 {
 public:
 	order_activemq(){}
-
+	virtual void run() 
+	{
+        try 
+        {
+        	start_consume_listener_multithread();
+        }
+        catch (CMSException& e) 
+        {
+            
+        }
+        catch (std::exception& e)
+		{
+			//cout << diagnostic_information(e) << endl;
+			cout << e.what() << endl;
+		}
+    }
 	void start_consume_listener_multithread()
 	{
 		activemq::library::ActiveMQCPP::initializeLibrary();
