@@ -7,7 +7,7 @@
 #include "orderbot.hpp"
 #include "activemq_cms.hpp"
 
-class product_inventory:public boost::enable_shared_from_this<product_inventory>
+class product_inventory:virtual public boost::enable_shared_from_this<product_inventory>
 {
 public:
 	product_inventory():m_d_t(m_io_s)
