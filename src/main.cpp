@@ -11,8 +11,8 @@ int main()
 	try
 	{
 		{	
-			boost::shared_ptr<order_activemq> consume(new order_activemq);
-			consume->start();
+			boost::shared_ptr<product_inventory> produce(new product_inventory);
+			produce->start();
 			boost::shared_ptr<order_activemq> consume(new order_activemq);		
 			thread consume_thread([&consume](){consume->start();});	
 			//////////////////////////
