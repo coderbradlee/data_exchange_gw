@@ -15,8 +15,8 @@ int main()
 			order_activemq consume;		
 			thread consume_thread([&consume](){consume.start();});	
 			//////////////////////////
-			product_inventory produce;
-			thread produce_thread([&produce](){produce.start();});	
+			boost::shared_ptr<product_inventory> produce(new product_inventory);
+			thread produce_thread([&produce](){produce->start();});	
 			
 			produce_thread.join();
 			consume_thread.join();
