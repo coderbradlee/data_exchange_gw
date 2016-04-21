@@ -189,7 +189,7 @@ public:
 	{
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-		activemq::library::ActiveMQCPP::initializeLibrary();
+		//activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =
 	        "failover://(tcp://"+get_config->m_activemq_url+
 	       // "?wireFormat=openwire"
@@ -207,7 +207,7 @@ public:
 
 	    producer->close();
 
-	    activemq::library::ActiveMQCPP::shutdownLibrary();
+	    //activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;

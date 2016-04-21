@@ -11,6 +11,7 @@ int main()
 	try
 	{
 		{	
+			activemq::library::ActiveMQCPP::initializeLibrary();
 			// boost::shared_ptr<order_activemq> consume(new order_activemq);		
 			// thread consume_thread([&consume](){consume->start();});	
 			//////////////////////////
@@ -38,7 +39,7 @@ int main()
 		    // Wait for the threads to complete.
 		    producerThread.join();
 		    consumerThread.join();
-
+ 			activemq::library::ActiveMQCPP::shutdownLibrary();
 		}
 		{
 			//orderbot server

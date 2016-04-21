@@ -29,7 +29,7 @@ public:
     }
 	void start_consume_listener_multithread()
 	{
-		activemq::library::ActiveMQCPP::initializeLibrary();
+		//activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =
         "failover://(tcp://"+get_config->m_activemq_url+
 //        "?wireFormat=openwire"
@@ -55,7 +55,7 @@ public:
 
 	    consumer.close();
 
-	    activemq::library::ActiveMQCPP::shutdownLibrary();
+	    //activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
 	
 		private:
