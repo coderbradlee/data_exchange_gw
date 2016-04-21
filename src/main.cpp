@@ -16,7 +16,7 @@ int main()
 			thread consume_thread([&consume](){consume.start();});	
 			//////////////////////////
 			product_inventory produce;
-			thread produce_thread([&produce](){consume.start_update();});	
+			thread produce_thread([&produce](){produce.start_update();});	
 			
 			produce_thread.join();
 			consume_thread.join();
