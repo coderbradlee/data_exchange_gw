@@ -69,7 +69,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_activemq_read_queue;
 		string m_activemq_write_queue;	
 		string m_activemq_write_product_queue;	
-		size_t m_write_product_interval
+		size_t m_write_product_interval;
 		string m_activemq_read_order_queue;	
 		string m_activemq_write_order_queue;			
 		static boost::mutex m_mu;	

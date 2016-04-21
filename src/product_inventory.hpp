@@ -10,7 +10,7 @@
 class product_inventory:public boost::enable_shared_from_this<product_inventory>
 {
 public:
-	product_inventory()
+	product_inventory():m_d_t(m_io_s)
 	{
 		// m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
 		
@@ -34,8 +34,6 @@ public:
 	}
 	void start()
 	{
-		m_d_t(m_io_s);
-	    
 	    m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));
 	  
 	    m_d_t.async_wait(boost::bind(&product_inventory::handle_wait, boost::shared_from_this(), boost::asio::placeholders::error));  
