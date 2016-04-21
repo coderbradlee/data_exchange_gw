@@ -331,7 +331,7 @@ public:
             }
 
             printf("Message #%d Received: %s\n", count, text.c_str());
-            doneLatch.await();
+            //doneLatch.await();
         } catch (CMSException& e) {
             e.printStackTrace();
         }
