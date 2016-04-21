@@ -80,11 +80,13 @@ public:
 
     virtual ~activemq_cms_producer()
     {
+    	cout<<"~activemq_cms_producer"<<endl;
         cleanup();
     }
 
     void close() 
     {
+    	cout<<"producer close"<<endl;
         this->cleanup();
     }
 
@@ -254,11 +256,15 @@ public:
         brokerURI(brokerURI) {
     }
 
-    virtual ~activemq_cms_consumer_multithread() {
+    virtual ~activemq_cms_consumer_multithread() 
+    {
+    	cout<<"~activemq_cms_consumer_multithread"<<endl;
         cleanup();
     }
 
-    void close() {
+    void close() 
+    {
+    	cout<<"activemq_cms_consumer_multithread close"<<endl;
         this->cleanup();
     }
 
@@ -303,7 +309,7 @@ public:
 
             // Indicate we are ready for messages.
             latch.countDown();
-			cout<<__FILE__<<":"<<__LINE__<<endl;
+			cout<<__FILE__<<":"<<__LINE__<<":"<<"consumer start to listen"<<endl;
             // Wait while asynchronous messages come in.
             //doneLatch.await(waitMillis);
 			doneLatch.await();
