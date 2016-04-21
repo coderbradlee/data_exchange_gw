@@ -434,21 +434,18 @@ public:
                 // Create a ConnectionFactory
             // boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
             //     new ActiveMQConnectionFactory( brokerURI ) );
-cout<<__FILE__<<":"<<__LINE__<<endl;
+
             // Create a Connection
             connection = connectionFactory->createConnection();
             delete connectionFactory;
-cout<<__FILE__<<":"<<__LINE__<<endl;
+
             ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
             if( amqConnection != NULL ) {
                 amqConnection->addTransportListener( this );
             }
 
-            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->start();
-            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->setExceptionListener(this);
-            cout<<__FILE__<<":"<<__LINE__<<endl;
 
             // Create a Session
             if( clientAck ) {
