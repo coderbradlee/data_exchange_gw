@@ -169,7 +169,11 @@ private:
         // Destroy resources.
         try
         {
-            if( destination != NULL ) delete destination;
+            if( destination != NULL )
+            {
+            	delete destination;
+            	cout<<__FILE__<<":"<<__LINE__<<":delete destination"<<endl;
+            } 
         }
         catch ( CMSException& e ) 
         { 
@@ -179,7 +183,11 @@ private:
 
         try
         {
-            if( producer != NULL ) delete producer;
+            if( producer != NULL )
+            {
+            	delete producer;
+            	cout<<__FILE__<<":"<<__LINE__<<":delete producer"<<endl;
+            } 
         }
         catch ( CMSException& e )
         {
@@ -200,7 +208,11 @@ private:
 
         try
         {
-            if( session != NULL ) delete session;
+            if( session != NULL )
+            {
+            	delete session;
+            	cout<<__FILE__<<":"<<__LINE__<<":delete session"<<endl;
+            } 
         }
         catch ( CMSException& e ) 
         { 
@@ -210,7 +222,11 @@ private:
 
         try
         {
-            if( connection != NULL ) delete connection;
+            if( connection != NULL )
+            {
+            	delete connection;
+            	cout<<__FILE__<<":"<<__LINE__<<":delete connection"<<endl;
+            } 
         }
         catch ( CMSException& e ) 
         { 
