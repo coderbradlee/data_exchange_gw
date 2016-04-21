@@ -10,17 +10,22 @@ int main()
 {
 	try
 	{
-		{	//failover://(tcp://172.18.100.204:61616)
-			//failover://(tcp://172.18.100.204:61616)
+		{	
+			
 			order_activemq consume;		
 			thread consume_thread([&consume](){consume.start();});	
+			//////////////////////////
+			product_inventory produce;
+			thread produce_thread([&produce](){consume.start_update();});	
+			
+			produce_thread.join();
 			consume_thread.join();
 			// Thread consumerThread(&t);
 		 //    consumerThread.run();
 
 		 //    consumerThread.join();
 		
-			// product_inventory pro;
+			// 
 			// pro.start_update();
 			// pro.start_update();
 		}
