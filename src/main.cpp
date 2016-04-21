@@ -33,7 +33,7 @@ int main()
 		    //consumer->waitUntilReady();
 
 		    // Start the producer thread.
-		    thread producerThread(&producer](){producer->start();});
+		    thread producerThread([&producer](){producer->start();});
 		    //producerThread.start();
 
 		    // Wait for the threads to complete.
