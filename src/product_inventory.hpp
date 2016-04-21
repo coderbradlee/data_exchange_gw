@@ -36,7 +36,7 @@ public:
 	{
 	    m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));
 	  
-	    m_d_t.async_wait(boost::bind(&product_inventory::handle_wait, boost::shared_from_this(), boost::asio::placeholders::error));  
+	    m_d_t.async_wait(boost::bind(&product_inventory::handle_wait, shared_from_this(), boost::asio::placeholders::error));  
 		m_io_s.run();
 	}
 	void handle_wait(const boost::system::error_code& error)  
@@ -45,7 +45,7 @@ public:
         {  
         	start_update();
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));  
-            m_d_t.async_wait(boost::bind(&product_inventory::handle_wait,boost::shared_from_this(), boost::asio::placeholders::error));                 
+            m_d_t.async_wait(boost::bind(&product_inventory::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
     	}   
 	}  
 	void start_update()
