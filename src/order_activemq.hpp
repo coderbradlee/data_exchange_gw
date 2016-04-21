@@ -12,7 +12,7 @@ class order_activemq
 public:
 	order_activemq(){}
 
-	void start_consume_listener()
+	void start_consume_listener_multithread()
 	{
 		activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =

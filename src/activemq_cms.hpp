@@ -217,7 +217,7 @@ private:
         connection = NULL;
     }
 };
-class activemq_cms_consumer : public ExceptionListener,
+class activemq_cms_consumer_multithread : public ExceptionListener,
                            public MessageListener,
                            public Runnable {
 
@@ -236,12 +236,12 @@ private:
 
 private:
 
-    activemq_cms_consumer(const activemq_cms_consumer&);
-    activemq_cms_consumer& operator=(const activemq_cms_consumer&);
+    activemq_cms_consumer_multithread(const activemq_cms_consumer_multithread&);
+    activemq_cms_consumer_multithread& operator=(const activemq_cms_consumer_multithread&);
 
 public:
 
-    activemq_cms_consumer(const std::string& brokerURI, int numMessages, bool useTopic = false, bool sessionTransacted = false, int waitMillis = 30000) :
+    activemq_cms_consumer_multithread(const std::string& brokerURI, int numMessages, bool useTopic = false, bool sessionTransacted = false, int waitMillis = 30000) :
         latch(1),
         doneLatch(numMessages),
         connection(NULL),
@@ -254,7 +254,7 @@ public:
         brokerURI(brokerURI) {
     }
 
-    virtual ~activemq_cms_consumer() {
+    virtual ~activemq_cms_consumer_multithread() {
         cleanup();
     }
 
