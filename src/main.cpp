@@ -11,24 +11,34 @@ int main()
 	try
 	{
 		{	
-			boost::shared_ptr<product_inventory> produce(new product_inventory);
-			produce->start();
-			boost::shared_ptr<order_activemq> consume(new order_activemq);		
-			thread consume_thread([&consume](){consume->start();});	
+			// boost::shared_ptr<order_activemq> consume(new order_activemq);		
+			// thread consume_thread([&consume](){consume->start();});	
 			//////////////////////////
 			// boost::shared_ptr<product_inventory> produce(new product_inventory);
 			// thread produce_thread([&produce](){produce->start();});	
 			
-			//produce_thread.join();
-			consume_thread.join();
-			// Thread consumerThread(&t);
-		 //    consumerThread.run();
+			// produce_thread.join();
+			//consume_thread.join();
+			
 
-		 //    consumerThread.join();
-		
-			// 
-			// pro.start_update();
-			// pro.start_update();
+			boost::shared_ptr<product_inventory> producer(new product_inventory);
+	        boost::shared_ptr<order_activemq> consumer(new order_activemq);
+
+		    // Start the consumer thread.
+		    Thread consumerThread(&consumer);
+		    consumerThread.start();
+
+		    // Wait for the consumer to indicate that its ready to go.
+		    consumer->waitUntilReady();
+
+		    // Start the producer thread.
+		    Thread producerThread(&producer);
+		    producerThread.start();
+
+		    // Wait for the threads to complete.
+		    producerThread.join();
+		    consumerThread.join();
+
 		}
 		{
 			//orderbot server
