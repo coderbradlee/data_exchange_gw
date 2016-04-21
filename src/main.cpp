@@ -14,8 +14,8 @@ int main()
 			//failover://(tcp://172.18.100.204:61616)
 			order_activemq t;			
 			Thread consumerThread(&t);
-		    consumerThread.start();
-		    
+		    consumerThread.run();
+
 		    consumerThread.join();
 		
 			// product_inventory pro;
