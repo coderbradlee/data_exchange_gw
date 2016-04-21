@@ -141,7 +141,7 @@ public:
 
             for( unsigned int ix=0; ix<numMessages; ++ix )
             {
-                TextMessage* message = session->createTextMessage( m_messages );
+                boost::shared_ptr<TextMessage> message(session->createTextMessage( m_messages ));
 
                 message->setIntProperty( "Integer", ix );
                 message->setStringProperty("testkey","testvalue");
@@ -149,7 +149,7 @@ public:
                 printf( "Sent message #%d from thread %s\n", ix+1, threadIdStr.c_str() );
                 producer->send( message );
 
-                delete message;
+                //delete message;
             }
 
         }
@@ -321,7 +321,7 @@ public:
 
         try {
             count++;
-            const TextMessage* textMessage = dynamic_cast<const TextMessage*> (message);
+            boost::shared_ptr<const TextMessage> textMessage(dynamic_cast<const TextMessage*> (message));
             string text = "";
 
             if (textMessage != NULL) {
@@ -429,8 +429,8 @@ public:
         try {
         	//cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory* connectionFactory =
-            new ActiveMQConnectionFactory( brokerURI );
+            boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
+            new ActiveMQConnectionFactory( brokerURI ));
                 // Create a ConnectionFactory
             // boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
             //     new ActiveMQConnectionFactory( brokerURI ) );
@@ -439,7 +439,7 @@ public:
             connection = connectionFactory->createConnection();
             delete connectionFactory;
 
-            ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
+            boost::shared_ptr<ActiveMQConnection> amqConnection(dynamic_cast<ActiveMQConnection*>( connection ));
             if( amqConnection != NULL ) {
                 amqConnection->addTransportListener( this );
             }
@@ -489,8 +489,8 @@ public:
         try
         {
             count++;
-            const TextMessage* textMessage =
-                dynamic_cast< const TextMessage* >( message );
+            boost::shared_ptr<const TextMessage> textMessage(
+                dynamic_cast< const TextMessage* >( message ));
             string text = "";
 
             if( textMessage != NULL ) {
