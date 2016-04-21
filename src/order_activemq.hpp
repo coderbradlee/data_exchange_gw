@@ -14,7 +14,8 @@ public:
 
 	void start_consume_listener()
 	{
-		std::string brokerURI1 =
+		activemq::library::ActiveMQCPP::initializeLibrary();
+		std::string brokerURI =
         "failover://(tcp://"+get_config->m_activemq_url+
 //        "?wireFormat=openwire"
 //        "&connection.useAsyncSend=true"
@@ -22,31 +23,25 @@ public:
 //        "&transport.tcpTracingEnabled=true"
 //        "&wireFormat.tightEncodingEnabled=true"
         ")";
-        //std::string brokerURI=brokerURI1;
-	    std::string brokerURI="failover://(tcp://172.18.100.204:61616)";
-	    bool useTopics = false;
+		 bool useTopics = true;
+	    bool sessionTransacted = false;
+	    int numMessages = 1;
 
-	    //============================================================
-	    // set to true if you want the consumer to use client ack mode
-	    // instead of the default auto ack mode.
-	    //============================================================
-	    bool clientAck = false;
-	    std::string read_queue_name=get_config->m_activemq_read_order_queue;
-	    // Create the consumer
-	    activemq_cms_consumer consumer( brokerURI, read_queue_name, useTopics, clientAck );
-	    //cout<<__FILE__<<":"<<__LINE__<<endl;
-	    // Start it up and it will listen forever.
-	    consumer.runConsumer();
+        activemq_cms_consumer consumer(brokerURI, numMessages, useTopics, sessionTransacted);
 
-	    // Wait to exit.
-	    std::cout << "Press 'q' to quit" << std::endl;
-	    while( std::cin.get() != 'q') {}
+	    // Start the consumer thread.
+	    Thread consumerThread(&consumer);
+	    consumerThread.start();
 
-	    // All CMS resources should be closed before the library is shutdown.
+	    // Wait for the consumer to indicate that its ready to go.
+	    consumer.waitUntilReady();
+
+	    consumerThread.join();
+
 	    consumer.close();
 
 	    activemq::library::ActiveMQCPP::shutdownLibrary();
-		}
+	}
 		private:
 		//boost::shared_ptr<MySql> m_conn;
 		string m_today_string;

@@ -217,192 +217,354 @@ private:
         connection = NULL;
     }
 };
-////////////////////////////////////////////////////////////////////////////////
 class activemq_cms_consumer : public ExceptionListener,
-                            public MessageListener,
-                            public activemq::transport::DefaultTransportListener 
-                            {
+                           public MessageListener,
+                           public Runnable {
+
 private:
 
+    CountDownLatch latch;
+    CountDownLatch doneLatch;
     Connection* connection;
     cms::Session* session;
     Destination* destination;
     MessageConsumer* consumer;
+    long waitMillis;
     bool useTopic;
+    bool sessionTransacted;
     std::string brokerURI;
-    std::string destURI;
-    bool clientAck;
 
 private:
 
-    activemq_cms_consumer( const activemq_cms_consumer& );
-    activemq_cms_consumer& operator= ( const activemq_cms_consumer& );
+    activemq_cms_consumer(const activemq_cms_consumer&);
+    activemq_cms_consumer& operator=(const activemq_cms_consumer&);
 
 public:
 
-    activemq_cms_consumer( const std::string& brokerURI,
-                         const std::string& destURI,
-                         bool useTopic = false,
-                         bool clientAck = false ) :
+    activemq_cms_consumer(const std::string& brokerURI, int numMessages, bool useTopic = false, bool sessionTransacted = false, int waitMillis = 30000) :
+        latch(1),
+        doneLatch(numMessages),
         connection(NULL),
         session(NULL),
         destination(NULL),
         consumer(NULL),
+        waitMillis(waitMillis),
         useTopic(useTopic),
-        brokerURI(brokerURI),
-        destURI(destURI),
-        clientAck(clientAck) {
+        sessionTransacted(sessionTransacted),
+        brokerURI(brokerURI) {
     }
 
     virtual ~activemq_cms_consumer() {
-        this->cleanup();
+        cleanup();
     }
 
     void close() {
         this->cleanup();
     }
 
-    void runConsumer() {
+    void waitUntilReady() {
+        latch.await();
+    }
+
+    virtual void run() {
 
         try {
-        	//cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
+
             // Create a ConnectionFactory
-            ActiveMQConnectionFactory* connectionFactory =
-            new ActiveMQConnectionFactory( brokerURI );
-                // Create a ConnectionFactory
-            // boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
-            //     new ActiveMQConnectionFactory( brokerURI ) );
-cout<<__FILE__<<":"<<__LINE__<<endl;
+            boost::shared_ptr<ConnectionFactory> connectionFactory(
+                ConnectionFactory::createCMSConnectionFactory(brokerURI));
+
             // Create a Connection
             connection = connectionFactory->createConnection();
-            delete connectionFactory;
-cout<<__FILE__<<":"<<__LINE__<<endl;
-            ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
-            if( amqConnection != NULL ) {
-                amqConnection->addTransportListener( this );
-            }
-
-            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->start();
-            cout<<__FILE__<<":"<<__LINE__<<endl;
             connection->setExceptionListener(this);
-            cout<<__FILE__<<":"<<__LINE__<<endl;
 
             // Create a Session
-            if( clientAck ) {
-                session = connection->createSession( cms::Session::CLIENT_ACKNOWLEDGE );
+            if (this->sessionTransacted == true) {
+                session = connection->createSession(cms::Session::SESSION_TRANSACTED);
             } else {
-                session = connection->createSession( cms::Session::AUTO_ACKNOWLEDGE );
+                session = connection->createSession(cms::Session::AUTO_ACKNOWLEDGE);
             }
 
             // Create the destination (Topic or Queue)
-            if( useTopic ) {
-                destination = session->createTopic( destURI );
+            if (useTopic) {
+                destination = session->createTopic(get_config->m_activemq_read_order_queue);
             } else {
-                destination = session->createQueue( destURI );
+                destination = session->createQueue(get_config->m_activemq_read_order_queue);
             }
 
             // Create a MessageConsumer from the Session to the Topic or Queue
-            consumer = session->createConsumer( destination );
-            consumer->setMessageListener( this );
+            consumer = session->createConsumer(destination);
 
-        } 
-        catch (CMSException& e) 
-        {
+            consumer->setMessageListener(this);
+
+            std::cout.flush();
+            std::cerr.flush();
+
+            // Indicate we are ready for messages.
+            latch.countDown();
+
+            // Wait while asynchronous messages come in.
+            doneLatch.await(waitMillis);
+
+        } catch (CMSException& e) {
+            // Indicate we are ready for messages.
+            latch.countDown();
             e.printStackTrace();
         }
-        catch (std::exception& e)
-		{
-			//cout << diagnostic_information(e) << endl;
-			cout << e.what() << endl;
-		}
-		catch (...)
-		{
-
-		}
     }
 
     // Called from the consumer since this class is a registered MessageListener.
-    virtual void onMessage( const Message* message ) {
+    virtual void onMessage(const Message* message) {
 
         static int count = 0;
 
-        try
-        {
+        try {
             count++;
-            const TextMessage* textMessage =
-                dynamic_cast< const TextMessage* >( message );
+            const TextMessage* textMessage = dynamic_cast<const TextMessage*> (message);
             string text = "";
 
-            if( textMessage != NULL ) {
+            if (textMessage != NULL) {
                 text = textMessage->getText();
             } else {
                 text = "NOT A TEXTMESSAGE!";
             }
 
-            if( clientAck ) {
-                message->acknowledge();
-            }
+            printf("Message #%d Received: %s\n", count, text.c_str());
 
-            printf( "Message #%d Received: %s\n", count, text.c_str() );
         } catch (CMSException& e) {
             e.printStackTrace();
         }
+
+        // Commit all messages.
+        if (this->sessionTransacted) {
+            session->commit();
+        }
+
+        // No matter what, tag the count down latch until done.
+        doneLatch.countDown();
     }
 
     // If something bad happens you see it here as this class is also been
     // registered as an ExceptionListener with the connection.
-    virtual void onException( const CMSException& ex AMQCPP_UNUSED ) {
+    virtual void onException(const CMSException& ex AMQCPP_UNUSED) {
         printf("CMS Exception occurred.  Shutting down client.\n");
+        ex.printStackTrace();
         exit(1);
-    }
-
-    virtual void transportInterrupted() {
-        std::cout << "The Connection's Transport has been Interrupted." << std::endl;
-    }
-
-    virtual void transportResumed() {
-        std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
 
 private:
 
-    void cleanup(){
-
-        //*************************************************
-        // Always close destination, consumers and producers before
-        // you destroy their sessions and connection.
-        //*************************************************
+    void cleanup() {
+        if (connection != NULL) {
+            try {
+                connection->close();
+            } catch (cms::CMSException& ex) {
+                ex.printStackTrace();
+            }
+        }
 
         // Destroy resources.
-        try{
-            if( destination != NULL ) delete destination;
-        }catch (CMSException& e) {}
-        destination = NULL;
-
-        try{
-            if( consumer != NULL ) delete consumer;
-        }catch (CMSException& e) {}
-        consumer = NULL;
-
-        // Close open resources.
-        try{
-            if( session != NULL ) session->close();
-            if( connection != NULL ) connection->close();
-        }catch (CMSException& e) {}
-
-        // Now Destroy them
-        try{
-            if( session != NULL ) delete session;
-        }catch (CMSException& e) {}
-        session = NULL;
-
-        try{
-            if( connection != NULL ) delete connection;
-        }catch (CMSException& e) {}
-        connection = NULL;
+        try {
+            delete destination;
+            destination = NULL;
+            delete consumer;
+            consumer = NULL;
+            delete session;
+            session = NULL;
+            delete connection;
+            connection = NULL;
+        } catch (CMSException& e) {
+            e.printStackTrace();
+        }
     }
 };
+////////////////////////////////////////////////////////////////////////////////
+// class activemq_cms_consumer : public ExceptionListener,
+//                             public MessageListener,
+//                             public activemq::transport::DefaultTransportListener 
+//                             {
+// private:
+
+//     Connection* connection;
+//     cms::Session* session;
+//     Destination* destination;
+//     MessageConsumer* consumer;
+//     bool useTopic;
+//     std::string brokerURI;
+//     std::string destURI;
+//     bool clientAck;
+
+// private:
+
+//     activemq_cms_consumer( const activemq_cms_consumer& );
+//     activemq_cms_consumer& operator= ( const activemq_cms_consumer& );
+
+// public:
+
+//     activemq_cms_consumer( const std::string& brokerURI,
+//                          const std::string& destURI,
+//                          bool useTopic = false,
+//                          bool clientAck = false ) :
+//         connection(NULL),
+//         session(NULL),
+//         destination(NULL),
+//         consumer(NULL),
+//         useTopic(useTopic),
+//         brokerURI(brokerURI),
+//         destURI(destURI),
+//         clientAck(clientAck) {
+//     }
+
+//     virtual ~activemq_cms_consumer() {
+//         this->cleanup();
+//     }
+
+//     void close() {
+//         this->cleanup();
+//     }
+
+//     void runConsumer() {
+
+//         try {
+//         	//cout<<brokerURI<<endl;cout<<__FILE__<<":"<<__LINE__<<endl;
+//             // Create a ConnectionFactory
+//             ActiveMQConnectionFactory* connectionFactory =
+//             new ActiveMQConnectionFactory( brokerURI );
+//                 // Create a ConnectionFactory
+//             // boost::shared_ptr<ActiveMQConnectionFactory> connectionFactory(
+//             //     new ActiveMQConnectionFactory( brokerURI ) );
+// cout<<__FILE__<<":"<<__LINE__<<endl;
+//             // Create a Connection
+//             connection = connectionFactory->createConnection();
+//             delete connectionFactory;
+// cout<<__FILE__<<":"<<__LINE__<<endl;
+//             ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
+//             if( amqConnection != NULL ) {
+//                 amqConnection->addTransportListener( this );
+//             }
+
+//             cout<<__FILE__<<":"<<__LINE__<<endl;
+//             connection->start();
+//             cout<<__FILE__<<":"<<__LINE__<<endl;
+//             connection->setExceptionListener(this);
+//             cout<<__FILE__<<":"<<__LINE__<<endl;
+
+//             // Create a Session
+//             if( clientAck ) {
+//                 session = connection->createSession( cms::Session::CLIENT_ACKNOWLEDGE );
+//             } else {
+//                 session = connection->createSession( cms::Session::AUTO_ACKNOWLEDGE );
+//             }
+
+//             // Create the destination (Topic or Queue)
+//             if( useTopic ) {
+//                 destination = session->createTopic( destURI );
+//             } else {
+//                 destination = session->createQueue( destURI );
+//             }
+
+//             // Create a MessageConsumer from the Session to the Topic or Queue
+//             consumer = session->createConsumer( destination );
+//             consumer->setMessageListener( this );
+
+//         } 
+//         catch (CMSException& e) 
+//         {
+//             e.printStackTrace();
+//         }
+//         catch (std::exception& e)
+// 		{
+// 			//cout << diagnostic_information(e) << endl;
+// 			cout << e.what() << endl;
+// 		}
+// 		catch (...)
+// 		{
+
+// 		}
+//     }
+
+//     // Called from the consumer since this class is a registered MessageListener.
+//     virtual void onMessage( const Message* message ) {
+
+//         static int count = 0;
+
+//         try
+//         {
+//             count++;
+//             const TextMessage* textMessage =
+//                 dynamic_cast< const TextMessage* >( message );
+//             string text = "";
+
+//             if( textMessage != NULL ) {
+//                 text = textMessage->getText();
+//             } else {
+//                 text = "NOT A TEXTMESSAGE!";
+//             }
+
+//             if( clientAck ) {
+//                 message->acknowledge();
+//             }
+
+//             printf( "Message #%d Received: %s\n", count, text.c_str() );
+//         } catch (CMSException& e) {
+//             e.printStackTrace();
+//         }
+//     }
+
+//     // If something bad happens you see it here as this class is also been
+//     // registered as an ExceptionListener with the connection.
+//     virtual void onException( const CMSException& ex AMQCPP_UNUSED ) {
+//         printf("CMS Exception occurred.  Shutting down client.\n");
+//         exit(1);
+//     }
+
+//     virtual void transportInterrupted() {
+//         std::cout << "The Connection's Transport has been Interrupted." << std::endl;
+//     }
+
+//     virtual void transportResumed() {
+//         std::cout << "The Connection's Transport has been Restored." << std::endl;
+//     }
+
+// private:
+
+//     void cleanup(){
+
+//         //*************************************************
+//         // Always close destination, consumers and producers before
+//         // you destroy their sessions and connection.
+//         //*************************************************
+
+//         // Destroy resources.
+//         try{
+//             if( destination != NULL ) delete destination;
+//         }catch (CMSException& e) {}
+//         destination = NULL;
+
+//         try{
+//             if( consumer != NULL ) delete consumer;
+//         }catch (CMSException& e) {}
+//         consumer = NULL;
+
+//         // Close open resources.
+//         try{
+//             if( session != NULL ) session->close();
+//             if( connection != NULL ) connection->close();
+//         }catch (CMSException& e) {}
+
+//         // Now Destroy them
+//         try{
+//             if( session != NULL ) delete session;
+//         }catch (CMSException& e) {}
+//         session = NULL;
+
+//         try{
+//             if( connection != NULL ) delete connection;
+//         }catch (CMSException& e) {}
+//         connection = NULL;
+//     }
+// };
 
 ////////////////////////////////////////////////////////////////////////////////
 #endif
