@@ -19,15 +19,15 @@ public:
 			activemq::library::ActiveMQCPP::initializeLibrary();
 
 			boost::shared_ptr<product_inventory> producer(new product_inventory);
-	        //boost::shared_ptr<order_activemq> consumer(new order_activemq);
+	        boost::shared_ptr<order_activemq> consumer(new order_activemq);
 
-		    // Start the consumer thread.
-		    //thread consumerThread([&consumer](){consumer->start();});
+		    // ///////////Start the consumer thread.
+		    thread consumerThread([&consumer](){consumer->start();});
 
 		    thread producerThread([&producer](){producer->start();});
 
 		    producerThread.join();
-		    //consumerThread.join();
+		    consumerThread.join();
 			activemq::library::ActiveMQCPP::shutdownLibrary();
 		}
 		catch(json_parser_error& e) 

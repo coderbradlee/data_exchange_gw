@@ -7,7 +7,7 @@
 #include "boost_signalset.hpp"
 int main()
 {
-	for(int i=0;i<60;++i)
+	for(int i=1;i<64;++i)
 	std::signal(i, sig_handler);  
 	//std::raise(SIGINT);
 	try
