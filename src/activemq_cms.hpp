@@ -251,7 +251,7 @@ private:
     bool useTopic;
     bool sessionTransacted;
     std::string brokerURI;
-
+    std::stringstream m_ss;
 private:
 
     activemq_cms_consumer_multithread(const activemq_cms_consumer_multithread&);
@@ -341,10 +341,10 @@ public:
     // Called from the consumer since this class is a registered MessageListener.
     virtual void onMessage(const Message* message)
      {
-        static int count = 0;
+        //static int count = 0;
         try 
         {
-            count++;
+            //count++;
             const TextMessage* textMessage=dynamic_cast<const TextMessage*> (message);
             string text = "";
 
@@ -356,9 +356,11 @@ public:
             {
                 text = "NOT A TEXTMESSAGE!";
             }
-            cout<<"Message "<<count<<" Received: "<<text<<endl;
+            cout<<"Message Received: "<<text<<endl;
 
             //doneLatch.await();
+            //decode text and request to orderbot,then put results to activemq
+            decode_request_orderbot(text);
         } 
         catch (CMSException& e) 
         {
@@ -384,6 +386,76 @@ public:
         exit(1);
     }
 
+    void decode_request_orderbot(const string& text)
+    {
+    	try
+    	{
+    		ptree pt,ret_json_all;
+			ptree return_json;
+			std::istringstream is(*m_product_all);
+			read_json(is, pt);
+			// for(auto& sub:pt)
+			// {
+			//ptree ret_json;
+	  //  			string product_category_id=sub.second.get<string>("product_category_id");
+			// 	int product_id=sub.second.get<int>("product_id");
+			// 	string product_name=sub.second.get<string>("product_name");
+			// 	string sku=sub.second.get<string>("sku");
+
+			// 	//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
+			// 	ret_json.put<std::string>("product_code",get_product_id(product_name));
+			// 	ret_json.put<std::string>("product_name",product_name);
+
+			// 	ptree child = sub.second.get_child("inventory_quantities");
+			// 	ret_json.add_child("inventory_quantities", child);
+
+			// 	ret_json_all.push_back(std::make_pair("", ret_json));
+
+			// }
+			// 	return_json.push_back(std::make_pair("product", ret_json_all));
+			// 	write_json(m_ss, return_json);
+			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+			order->request("GET", "/admin/orders.json/1", "", "");
+
+			return_json.put<std::string>("orders1",order->m_data);
+			write_json(m_ss,return_json)
+			send_message_to_activemq();
+    			
+    	}
+    	catch (json_parser_error& e)
+		{
+			
+		}
+    	catch (std::exception& e)
+		{
+			//cout << diagnostic_information(e) << endl;
+			cout << e.what() << endl;
+		}
+    }
+    void send_message_to_activemq()
+	{
+		string message(m_ss.str());
+		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+		//activemq::library::ActiveMQCPP::initializeLibrary();
+		std::string brokerURI =
+	        "failover://(tcp://"+get_config->m_activemq_url+
+	       // "?wireFormat=openwire"
+	       // "&connection.useAsyncSend=true"
+	       // "&transport.commandTracingEnabled=true"
+	       // "&transport.tcpTracingEnabled=true"
+	       // "&wireFormat.tightEncodingEnabled=true"
+	        ")";
+
+	    bool useTopics = false;
+
+	    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_order_queue, useTopics,true ));
+
+	    producer->run();
+
+	    producer->close();
+
+	    //activemq::library::ActiveMQCPP::shutdownLibrary();
+	}
 private:
 
     void cleanup() 
