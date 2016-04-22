@@ -142,7 +142,14 @@ public:
 
 			}
 				return_json.push_back(std::make_pair("product", ret_json_all));
-				write_json(m_ss, return_json);
+				if(!return_json.empty())
+				{
+					write_json(m_ss, return_json);
+				}
+				else
+				{
+					m_ss<<""<<endl;
+				}
 				send_message_to_activemq();
 			}
 			catch(json_parser_error& e) 
