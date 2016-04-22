@@ -21,8 +21,10 @@ void sig_handler (int signal_number)
 	BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<signal_number;
 	boost_log->get_initsink()->flush();
 	cout<<"(exception:signal)" <<signal_number<<endl;
+	exit(signal_number);  
 }
-void (*prev_handler)(int) prev_handler = signal (SIGINT, sig_handler);
+
+signal(SIGINT, sig_handler);  
 raise(SIGINT);
 #endif	/* BOOST_SIGNALSET_HPP */
 

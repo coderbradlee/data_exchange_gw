@@ -48,7 +48,7 @@
 #include <boost/asio/ssl.hpp>
 #include <boost/signals2/deconstruct.hpp>
 #include <boost/asio/signal_set.hpp>
-#include <signal.h>
+#include <csignal>
 #define BOOST_DATE_TIME_SOURCE  
 #define BOOST_SPIRIT_THREADSAFE 
 using namespace boost::asio;
