@@ -13,7 +13,7 @@ AC_PROG_CC
 # Checks for libraries.
 AC_PROG_RANLIB
 # Checks for libraries. -DBOOST_ASIO_ENABLE_HANDLER_TRACKING
-CXXFLAGS="-std=c++11 -g -O0 -Isrc -Iinclude -I/usr/local/include/activemqcpp -I/usr/include/apr-1 -I/usr/include/c++/5.1.0 -I/usr/include/c++ -Werror -Wc++0x-compat -lboost_program_options -lboost_filesystem -lboost_coroutine -lboost_system -lboost_thread -lpthread -lboost_context -lboost_date_time -lboost_log_setup -lboost_log -lssl -lcrypto -lboost_regex -lcurl -lboost_timer -lmysqlclient_r -DBUILD_SSL -lactivemq-cpp"
+CXXFLAGS="-std=c++11 -g -O0 -Isrc -Iinclude -I/usr/local/include/activemqcpp -I/usr/include/apr-1 -I/usr/include/c++/5.1.0 -I/usr/include/c++ -Werror -Wnoc++0x-compat -lboost_program_options -lboost_filesystem -lboost_coroutine -lboost_system -lboost_thread -lpthread -lboost_context -lboost_date_time -lboost_log_setup -lboost_log -lssl -lcrypto -lboost_regex -lcurl -lboost_timer -lmysqlclient_r -DBUILD_SSL -lactivemq-cpp"
 SUBDIRS = src include
 # Checks for header files.
 
