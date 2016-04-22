@@ -10,7 +10,7 @@
 class product_inventory:public boost::enable_shared_from_this<product_inventory>
 {
 public:
-	product_inventory():m_d_t(m_io_s)
+	product_inventory():m_d_t(m_io_s),m_product_all(nullptr)
 	{
 		
 		// m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
@@ -103,6 +103,10 @@ public:
 
 			ptree pt,ret_json_all;
 			ptree return_json;
+			if(m_product_all==nullptr||(*m_product_all).length()==0)
+			{
+				*m_product_all="";
+			}
 			std::istringstream is(*m_product_all);
 			read_json(is, pt);
 			for(auto& sub:pt)
