@@ -418,9 +418,10 @@ public:
 			order->request("GET", "/admin/orders.json/1", "", "");
 
 			return_json.put<std::string>("orders1",*(order->m_data));
+			cout<<__FILE__<<":"<<__LINE__<<endl;
 			write_json(m_ss,return_json);
 			send_message_to_activemq();
-   
+			cout<<__FILE__<<":"<<__LINE__<<endl;   
 
     	}
     	catch (json_parser_error& e)
@@ -435,6 +436,7 @@ public:
     }
     void send_message_to_activemq()
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 		//activemq::library::ActiveMQCPP::initializeLibrary();
@@ -454,7 +456,7 @@ public:
 	    producer->run();
 
 	    producer->close();
-
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 	    //activemq::library::ActiveMQCPP::shutdownLibrary();
 	}
 private:
