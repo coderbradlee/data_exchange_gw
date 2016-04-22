@@ -4,7 +4,7 @@
 
 //boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
 //signals.add(SIGUSR1); // 也可以直接用add函数添加信号
-boost::asio::signal_set signal_set_all(io_service);
+boost::asio::signal_set signal_set_all(SIGTERM);
 signal_set_all.async_wait(boost::bind(handler, _1, _2));
 
 void handler(
