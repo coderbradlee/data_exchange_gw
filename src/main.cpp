@@ -7,6 +7,8 @@
 #include "boost_signalset.hpp"
 int main()
 {
+	std::signal(SIGINT, sig_handler);  
+	std::raise(SIGINT);
 	try
 	{
 		{	
