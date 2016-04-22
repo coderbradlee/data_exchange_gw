@@ -417,7 +417,7 @@ public:
 			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 			order->request("GET", "/admin/orders.json/1", "", "");
 
-			return_json.put<std::string>("orders1",order->m_data);
+			return_json.put<std::string>("orders1",*(order->m_data));
 			write_json(m_ss,return_json);
 			send_message_to_activemq();
    
