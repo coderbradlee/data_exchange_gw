@@ -44,7 +44,8 @@ using namespace std;
 class activemq_cms_producer : public Runnable
 {
 private:
-
+	friend class boost::signals2::deconstruct_access;  // give boost::signals2::deconstruct access to private constructor
+    // private constructor forces use of boost::signals2::deconstruct to create objects.
     Connection* connection;
     cms::Session* session;
     Destination* destination;
@@ -61,6 +62,19 @@ private:
     activemq_cms_producer& operator= ( const activemq_cms_producer& );
 
 public:
+
+/* This adl_predestruct friend function will be found by
+    via argument-dependent lookup when using boost::signals2::deconstruct. */
+    friend void adl_predestruct(activemq_cms_producer *)
+    {
+      std::cout << "Goodbye, ";
+    }
+    /* boost::signals2::deconstruct always requires an adl_postconstruct function
+    which can be found via argument-dependent, so we define one which does nothing. */
+    template<typename T> friend
+      void adl_postconstruct(const boost::shared_ptr<T> &, activemq_cms_producer *)
+    {}
+
 
     activemq_cms_producer(const std::string& message, const std::string& brokerURI, unsigned int numMessages,
                     const std::string& destURI, bool useTopic = false, bool clientAck = false ) :
