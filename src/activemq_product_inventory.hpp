@@ -1,5 +1,5 @@
-#ifndef PRODUCT_INVENTORY_HPP
-#define	PRODUCT_INVENTORY_HPP
+#ifndef ACTIVEMQ_PRODUCT_INVENTORY_HPP
+#define	ACTIVEMQ_PRODUCT_INVENTORY_HPP
 
 #include  "include.hpp"
 //#define DEBUG

@@ -1,5 +1,5 @@
-#ifndef ORDER_ACTIVEMQ_HPP
-#define	ORDER_ACTIVEMQ_HPP
+#ifndef ACTIVEMQ_ORDER_HPP
+#define	ACTIVEMQ_ORDER_HPP
 
 #include  "include.hpp"
 //#define DEBUG
