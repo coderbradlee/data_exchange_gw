@@ -17,18 +17,32 @@ public:
         {
         	start_consume_listener_multithread();
         }
-        catch (CMSException& e) 
-        {
-            
-        }
-        catch (std::exception& e)
+        catch(json_parser_error& e) 
 		{
-			//cout << diagnostic_information(e) << endl;
-			cout << e.what() << endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
     }
 	void start_consume_listener_multithread()
 	{
+		try
+		{
 		//activemq::library::ActiveMQCPP::initializeLibrary();
 		std::string brokerURI =
         "failover://(tcp://"+get_config->m_activemq_url+
@@ -56,6 +70,28 @@ public:
 	    consumer.close();
 
 	    //activemq::library::ActiveMQCPP::shutdownLibrary();
+	    }
+	    catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	
 		private:

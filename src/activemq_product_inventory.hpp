@@ -31,6 +31,22 @@ public:
 			m_product_all=order->m_data;
 			//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
+		catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -39,10 +55,34 @@ public:
 	}
 	void start()
 	{
-	    m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));
-	  
-	    m_d_t.async_wait(boost::bind(&product_inventory::handle_wait, shared_from_this(), boost::asio::placeholders::error));  
-		m_io_s.run();
+		try
+		{
+		    m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));
+		  
+		    m_d_t.async_wait(boost::bind(&product_inventory::handle_wait, shared_from_this(), boost::asio::placeholders::error));  
+			m_io_s.run();
+		}
+		catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
@@ -107,7 +147,11 @@ public:
 					boost_log->get_initsink()->flush();
 					cout<<e.what()<<endl;
 			}
-
+			catch (CMSException& e) 
+	        {
+	            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+	        }
 			catch (const MySqlException& e)
 			{
 				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -135,6 +179,22 @@ public:
 			// 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << am->get_data();
 			boost_log->get_initsink()->flush();
+		}
+		catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 		catch(std::exception& e)
 		{
@@ -178,7 +238,26 @@ public:
 			}
 
 		}
+		
+		catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+				return "";
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;return "";
+        }
 		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
@@ -187,6 +266,8 @@ public:
 	}
 	void send_message_to_activemq()
 	{
+		try
+		{
 		string message(m_ss.str());
 		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 		//activemq::library::ActiveMQCPP::initializeLibrary();
@@ -208,6 +289,28 @@ public:
 	    producer->close();
 
 	    //activemq::library::ActiveMQCPP::shutdownLibrary();
+	    }
+	    catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;

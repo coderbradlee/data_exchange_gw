@@ -80,13 +80,13 @@ public:
 
     virtual ~activemq_cms_producer()
     {
-    	cout<<"~activemq_cms_producer"<<endl;
+    	//cout<<"~activemq_cms_producer"<<endl;
         cleanup();
     }
 
     void close() 
     {
-    	cout<<"producer close"<<endl;
+    	//cout<<"producer close"<<endl;
         this->cleanup();
     }
 
@@ -155,10 +155,31 @@ public:
             }
 
         }
-        catch ( CMSException& e ) 
+        // catch ( CMSException& e ) 
+        // {
+        //     e.printStackTrace();
+        // }
+        catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
         {
-            e.printStackTrace();
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
         }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
     }
 
 private:
@@ -330,12 +351,34 @@ public:
             //doneLatch.await(waitMillis);
 			doneLatch.await();
         } 
-        catch (CMSException& e) 
+        // catch (CMSException& e) 
+        // {
+        //     // Indicate we are ready for messages.
+        //     latch.countDown();
+        //     e.printStackTrace();
+        // }
+        catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
         {
-            // Indicate we are ready for messages.
-            latch.countDown();
-            e.printStackTrace();
+        	latch.countDown();
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
         }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
     }
 
     // Called from the consumer since this class is a registered MessageListener.
@@ -362,11 +405,31 @@ public:
             //decode text and request to orderbot,then put results to activemq
             decode_request_orderbot(text);
         } 
-        catch (CMSException& e) 
+        // catch (CMSException& e) 
+        // {
+        //     e.printStackTrace();
+        // }
+        catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
         {
-            e.printStackTrace();
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
         }
-
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
         // Commit all messages.
         if (this->sessionTransacted) 
         {
@@ -425,40 +488,76 @@ public:
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
 
     	}
-    	catch (json_parser_error& e)
+    	catch(json_parser_error& e) 
 		{
-			cout << e.what() << endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
 		}
-    	catch (std::exception& e)
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
 		{
-			//cout << diagnostic_information(e) << endl;
-			cout << e.what() << endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
     }
     void send_message_to_activemq()
 	{
-		cout<<__FILE__<<":"<<__LINE__<<endl;
-		string message(m_ss.str());
-		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-		//activemq::library::ActiveMQCPP::initializeLibrary();
-		std::string brokerURI =
-	        "failover://(tcp://"+get_config->m_activemq_url+
-	       // "?wireFormat=openwire"
-	       // "&connection.useAsyncSend=true"
-	       // "&transport.commandTracingEnabled=true"
-	       // "&transport.tcpTracingEnabled=true"
-	       // "&wireFormat.tightEncodingEnabled=true"
-	        ")";
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			string message(m_ss.str());
+			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+			//activemq::library::ActiveMQCPP::initializeLibrary();
+			std::string brokerURI =
+		        "failover://(tcp://"+get_config->m_activemq_url+
+		       // "?wireFormat=openwire"
+		       // "&connection.useAsyncSend=true"
+		       // "&transport.commandTracingEnabled=true"
+		       // "&transport.tcpTracingEnabled=true"
+		       // "&wireFormat.tightEncodingEnabled=true"
+		        ")";
 
-	    bool useTopics = false;
+		    bool useTopics = false;
 
-	    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_order_queue, useTopics,true ));
+		    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_order_queue, useTopics,true ));
 
-	    producer->run();
+		    producer->run();
 
-	    producer->close();
-		cout<<__FILE__<<":"<<__LINE__<<endl;
-	    //activemq::library::ActiveMQCPP::shutdownLibrary();
+		    producer->close();
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+		    //activemq::library::ActiveMQCPP::shutdownLibrary();
+	    }
+	    catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 private:
 
