@@ -392,7 +392,7 @@ public:
     	{
     		ptree pt,ret_json_all;
 			ptree return_json;
-			std::istringstream is(*m_product_all);
+			std::istringstream is(text);
 			read_json(is, pt);
 			// for(auto& sub:pt)
 			// {
