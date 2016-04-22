@@ -414,6 +414,8 @@ public:
 			// }
 			// 	return_json.push_back(std::make_pair("product", ret_json_all));
 			// 	write_json(m_ss, return_json);
+			
+			cout<<__FILE__<<":"<<__LINE__<<endl;
 			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 			order->request("GET", "/admin/orders.json/1", "", "");
 
