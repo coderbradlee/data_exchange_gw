@@ -2,9 +2,9 @@
 #define	BOOST_SIGNALSET_HPP
 #include "include.hpp"
 
-boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
-signals.add(SIGUSR1); // 也可以直接用add函数添加信号
-
+//boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
+//signals.add(SIGUSR1); // 也可以直接用add函数添加信号
+boost::asio::signal_set signals(io_service);
 signals.async_wait(boost::bind(handler, _1, _2));
 
 void handler(
