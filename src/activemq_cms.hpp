@@ -392,8 +392,8 @@ public:
     	{
     		ptree pt,ret_json_all;
 			ptree return_json;
-			std::istringstream is(text);
-			read_json(is, pt);
+			// std::istringstream is(text);
+			// read_json(is, pt);
 			// for(auto& sub:pt)
 			// {
 			//ptree ret_json;
@@ -415,12 +415,11 @@ public:
 			// 	return_json.push_back(std::make_pair("product", ret_json_all));
 			// 	write_json(m_ss, return_json);
 			
-			cout<<__FILE__<<":"<<__LINE__<<endl;
 			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 			order->request("GET", "/admin/orders.json/1", "", "");
 
 			return_json.put<std::string>("orders1",*(order->m_data));
-			cout<<__FILE__<<":"<<__LINE__<<endl;
+			
 			write_json(m_ss,return_json);
 			send_message_to_activemq();
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
@@ -428,7 +427,7 @@ public:
     	}
     	catch (json_parser_error& e)
 		{
-			
+			cout << e.what() << endl;
 		}
     	catch (std::exception& e)
 		{
