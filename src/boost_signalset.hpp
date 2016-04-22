@@ -22,8 +22,7 @@ void sig_handler (int signal_number)
 	boost_log->get_initsink()->flush();
 	cout<<"(exception:signal)" <<signal_number<<endl;
 }
-void (*prev_handler)(int);
-prev_handler = signal (SIGINT, sig_handler);
+void (*prev_handler)(int) prev_handler = signal (SIGINT, sig_handler);
 raise(SIGINT);
 #endif	/* BOOST_SIGNALSET_HPP */
 
