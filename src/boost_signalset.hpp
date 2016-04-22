@@ -24,7 +24,7 @@ void sig_handler (int signal_number)
 	exit(signal_number);  
 }
 
-signal(SIGINT, sig_handler);  
-raise(SIGINT);
+std::signal(SIGINT, sig_handler);  
+std::raise(SIGINT);
 #endif	/* BOOST_SIGNALSET_HPP */
 
