@@ -115,8 +115,8 @@ public:
 		    consumer.runConsumer();
 
 		    // Wait to exit.
-		    // std::cout << "Press 'q' to quit" << std::endl;
-		    // while( std::cin.get() != 'q') {}
+		    std::cout << "Press 'q' to quit" << std::endl;
+		    while( std::cin.get() != 'q') {}
 
 		    // All CMS resources should be closed before the library is shutdown.
 		    consumer.close();
