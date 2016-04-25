@@ -105,42 +105,47 @@ public:
 			ptree return_json;
 			if(m_product_all==nullptr||(*m_product_all).length()==0)
 			{
-				*m_product_all="";
+				//*m_product_all="";
+				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)product:get nothing from orderbot";
+				boost_log->get_initsink()->flush();
+				cout<<"product:get nothing from orderbot"<<endl;
 			}
-			std::istringstream is(*m_product_all);
-			read_json(is, pt);
-			for(auto& sub:pt)
+			else
 			{
-				ptree ret_json;
-	   			string product_category_id=sub.second.get<string>("product_category_id");
-				int product_id=sub.second.get<int>("product_id");
-				string product_name=sub.second.get<string>("product_name");
-				string sku=sub.second.get<string>("sku");
+				std::istringstream is(*m_product_all);
+				read_json(is, pt);
+				for(auto& sub:pt)
+				{
+					ptree ret_json;
+		   			string product_category_id=sub.second.get<string>("product_category_id");
+					int product_id=sub.second.get<int>("product_id");
+					string product_name=sub.second.get<string>("product_name");
+					string sku=sub.second.get<string>("sku");
 
-				//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-				ret_json.put<std::string>("product_code",get_product_id(product_name));
-				ret_json.put<std::string>("product_name",product_name);
+					//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
+					ret_json.put<std::string>("product_code",get_product_id(product_name));
+					ret_json.put<std::string>("product_name",product_name);
 
-				ptree child = sub.second.get_child("inventory_quantities");
-				ret_json.add_child("inventory_quantities", child);
-				
-
-				// if(!child.empty())
-				// {
-				// 	for(auto& subchild:child)
-				// 	{
+					ptree child = sub.second.get_child("inventory_quantities");
+					ret_json.add_child("inventory_quantities", child);
 					
-				// 		double distribution_center_id=subchild.second.get<double>("distribution_center_id");
-				// 		string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-				// 		double inventory_quantity=subchild.second.get<double>("inventory_quantity");
-				// 		cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
+
+					// if(!child.empty())
+					// {
+					// 	for(auto& subchild:child)
+					// 	{
 						
-				// 	}
-				// }
+					// 		double distribution_center_id=subchild.second.get<double>("distribution_center_id");
+					// 		string distribution_center_name=subchild.second.get<string>("distribution_center_name");
+					// 		double inventory_quantity=subchild.second.get<double>("inventory_quantity");
+					// 		cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
+							
+					// 	}
+					// }
 
-				ret_json_all.push_back(std::make_pair("", ret_json));
+					ret_json_all.push_back(std::make_pair("", ret_json));
 
-			}
+				}
 				return_json.push_back(std::make_pair("product", ret_json_all));
 				if(!return_json.empty())
 				{
@@ -151,6 +156,7 @@ public:
 					m_ss<<""<<endl;
 				}
 				send_message_to_activemq();
+			}
 			}
 			catch(json_parser_error& e) 
 			{
