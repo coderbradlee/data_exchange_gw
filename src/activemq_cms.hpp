@@ -693,9 +693,9 @@ public:
 
             // Create a Session
             if( clientAck ) {
-                session = connection->createSession( Session::CLIENT_ACKNOWLEDGE );
+                session = connection->createSession( cms::Session::CLIENT_ACKNOWLEDGE );
             } else {
-                session = connection->createSession( Session::AUTO_ACKNOWLEDGE );
+                session = connection->createSession( cms::Session::AUTO_ACKNOWLEDGE );
             }
 
             // Create the destination (Topic or Queue)
