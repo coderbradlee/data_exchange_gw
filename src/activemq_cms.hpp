@@ -159,10 +159,12 @@ public:
             {
                 boost::shared_ptr<TextMessage> message(session->createTextMessage( m_messages ));
 
-                message->setIntProperty( "Integer", ix );
-                message->setStringProperty("testkey","testvalue");
+                // message->setIntProperty( "Integer", ix );
+                // message->setStringProperty("testkey","testvalue");
                 // Tell the producer to send the message
                 printf( "Sent message #%d from thread %s\n", ix+1, threadIdStr.c_str() );
+                BOOST_LOG_SEV(slg, severity_level::error) <<"(message send to activemq:)" << m_messages;
+				boost_log->get_initsink()->flush();
                 producer->send( message.get() );
 
                 //delete message;
@@ -363,6 +365,8 @@ public:
 			cout<<__FILE__<<":"<<__LINE__<<":"<<"consumer start to listen"<<endl;
             // Wait while asynchronous messages come in.
             //doneLatch.await(waitMillis);
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(consumer start to listen:)";
+			boost_log->get_initsink()->flush();
 			doneLatch.await();
         } 
         // catch (CMSException& e) 
@@ -414,7 +418,8 @@ public:
                 text = "NOT A TEXTMESSAGE!";
             }
             cout<<"Message Received: "<<text<<endl;
-
+            BOOST_LOG_SEV(slg, severity_level::error) <<"consumer Message Received: "<<text;
+			boost_log->get_initsink()->flush();
             //doneLatch.await();
             //decode text and request to orderbot,then put results to activemq
             decode_request_orderbot(text);
@@ -459,6 +464,8 @@ public:
     virtual void onException(const CMSException& ex AMQCPP_UNUSED) 
     {
         printf("CMS Exception occurred.  Shutting down client.\n");
+        BOOST_LOG_SEV(slg, severity_level::error) <<"CMS Exception occurred.  Shutting down client";
+		boost_log->get_initsink()->flush();
         ex.printStackTrace();
         exit(1);
     }
