@@ -109,7 +109,7 @@ public:
 				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)product:get nothing from orderbot";
 				boost_log->get_initsink()->flush();
 				cout<<"product:get nothing from orderbot"<<endl;
-				m_product_all="";
+				*m_product_all="";
 			}
 			else
 			{
