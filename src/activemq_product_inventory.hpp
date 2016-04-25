@@ -105,10 +105,11 @@ public:
 			ptree return_json;
 			if(m_product_all==nullptr||(*m_product_all).length()==0)
 			{
-				//*m_product_all="";
+				//*
 				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)product:get nothing from orderbot";
 				boost_log->get_initsink()->flush();
 				cout<<"product:get nothing from orderbot"<<endl;
+				m_product_all="";
 			}
 			else
 			{
@@ -157,28 +158,28 @@ public:
 				}
 				send_message_to_activemq();
 			}
-			}
-			catch(json_parser_error& e) 
-			{
-				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-					boost_log->get_initsink()->flush();
-					cout<<e.what()<<endl;
-			}
-			catch (CMSException& e) 
-	        {
-	            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-	        }
-			catch (const MySqlException& e)
-			{
-				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			}
-			catch(std::exception& e)
-			{
-				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			}
+		}
+		catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	void send_to_mq()
 	{
