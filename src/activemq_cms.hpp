@@ -627,6 +627,282 @@ private:
         	}
     }
 };
+class activemq_cms_consumer : public ExceptionListener,
+                            public MessageListener,
+                            public DefaultTransportListener {
+private:
 
+    Connection* connection;
+    Session* session;
+    Destination* destination;
+    MessageConsumer* consumer;
+    bool useTopic;
+    std::string brokerURI;
+    std::string destURI;
+    bool clientAck;
+    std::stringstream m_ss;
+private:
+
+    activemq_cms_consumer( const activemq_cms_consumer& );
+    activemq_cms_consumer& operator= ( const activemq_cms_consumer& );
+
+public:
+
+    activemq_cms_consumer( const std::string& brokerURI,
+                         const std::string& destURI,
+                         bool useTopic = false,
+                         bool clientAck = false ) :
+        connection(NULL),
+        session(NULL),
+        destination(NULL),
+        consumer(NULL),
+        useTopic(useTopic),
+        brokerURI(brokerURI),
+        destURI(destURI),
+        clientAck(clientAck) {
+    }
+
+    virtual ~activemq_cms_consumer() {
+        this->cleanup();
+    }
+
+    void close() {
+        this->cleanup();
+    }
+
+    void runConsumer() {
+
+        try {
+
+            // Create a ConnectionFactory
+            ActiveMQConnectionFactory* connectionFactory =
+                new ActiveMQConnectionFactory( brokerURI );
+
+            // Create a Connection
+            connection = connectionFactory->createConnection();
+            delete connectionFactory;
+
+            ActiveMQConnection* amqConnection = dynamic_cast<ActiveMQConnection*>( connection );
+            if( amqConnection != NULL ) {
+                amqConnection->addTransportListener( this );
+            }
+
+            connection->start();
+
+            connection->setExceptionListener(this);
+
+            // Create a Session
+            if( clientAck ) {
+                session = connection->createSession( Session::CLIENT_ACKNOWLEDGE );
+            } else {
+                session = connection->createSession( Session::AUTO_ACKNOWLEDGE );
+            }
+
+            // Create the destination (Topic or Queue)
+            if( useTopic ) {
+                destination = session->createTopic( destURI );
+            } else {
+                destination = session->createQueue( destURI );
+            }
+
+            // Create a MessageConsumer from the Session to the Topic or Queue
+            consumer = session->createConsumer( destination );
+            consumer->setMessageListener( this );
+
+        } catch (CMSException& e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Called from the consumer since this class is a registered MessageListener.
+    virtual void onMessage( const Message* message ) {
+
+        static int count = 0;
+
+        try
+        {
+            //count++;
+            const TextMessage* textMessage =
+                dynamic_cast< const TextMessage* >( message );
+            string text = "";
+
+            if( textMessage != NULL ) {
+                text = textMessage->getText();
+            } else {
+                text = "NOT A TEXTMESSAGE!";
+            }
+
+            if( clientAck ) {
+                message->acknowledge();
+            }
+            decode_request_orderbot(text);
+            cout<<"Message Received:"<<text<<endl;
+        } catch (CMSException& e) {
+            e.printStackTrace();
+        }
+    }
+
+    // If something bad happens you see it here as this class is also been
+    // registered as an ExceptionListener with the connection.
+    virtual void onException( const CMSException& ex AMQCPP_UNUSED ) {
+        printf("CMS Exception occurred.  Shutting down client.\n");
+        exit(1);
+    }
+
+    virtual void transportInterrupted() {
+        std::cout << "The Connection's Transport has been Interrupted." << std::endl;
+    }
+
+    virtual void transportResumed() {
+        std::cout << "The Connection's Transport has been Restored." << std::endl;
+    }
+	void decode_request_orderbot(const string& text)
+    {
+    	try
+    	{
+    		ptree pt,ret_json_all;
+			ptree return_json;
+			// std::istringstream is(text);
+			// read_json(is, pt);
+			// for(auto& sub:pt)
+			// {
+			//ptree ret_json;
+	  //  			string product_category_id=sub.second.get<string>("product_category_id");
+			// 	int product_id=sub.second.get<int>("product_id");
+			// 	string product_name=sub.second.get<string>("product_name");
+			// 	string sku=sub.second.get<string>("sku");
+
+			// 	//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
+			// 	ret_json.put<std::string>("product_code",get_product_id(product_name));
+			// 	ret_json.put<std::string>("product_name",product_name);
+
+			// 	ptree child = sub.second.get_child("inventory_quantities");
+			// 	ret_json.add_child("inventory_quantities", child);
+
+			// 	ret_json_all.push_back(std::make_pair("", ret_json));
+
+			// }
+			// 	return_json.push_back(std::make_pair("product", ret_json_all));
+			// 	write_json(m_ss, return_json);
+			
+			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+			order->request("GET", "/admin/orders.json/1", "", "");
+
+			return_json.put<std::string>("orders1",*(order->m_data));
+			
+			write_json(m_ss,return_json);
+			send_message_to_activemq();
+			cout<<__FILE__<<":"<<__LINE__<<endl;   
+
+    	}
+    	catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+    }
+    void send_message_to_activemq()
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			string message(m_ss.str());
+			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+			//activemq::library::ActiveMQCPP::initializeLibrary();
+			std::string brokerURI =
+		        "failover://(tcp://"+get_config->m_activemq_url+
+		       // "?wireFormat=openwire"
+		       // "&connection.useAsyncSend=true"
+		       // "&transport.commandTracingEnabled=true"
+		       // "&transport.tcpTracingEnabled=true"
+		       // "&wireFormat.tightEncodingEnabled=true"
+		        ")";
+
+		    bool useTopics = false;
+
+		    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_order_queue, useTopics,true ));
+
+		    producer->run();
+
+		    producer->close();
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+		    //activemq::library::ActiveMQCPP::shutdownLibrary();
+	    }
+	    catch(json_parser_error& e) 
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+				boost_log->get_initsink()->flush();
+				cout<<e.what()<<endl;
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+	}
+private:
+
+    void cleanup(){
+
+        //*************************************************
+        // Always close destination, consumers and producers before
+        // you destroy their sessions and connection.
+        //*************************************************
+
+        // Destroy resources.
+        try{
+            if( destination != NULL ) delete destination;
+        }catch (CMSException& e) {}
+        destination = NULL;
+
+        try{
+            if( consumer != NULL ) delete consumer;
+        }catch (CMSException& e) {}
+        consumer = NULL;
+
+        // Close open resources.
+        try{
+            if( session != NULL ) session->close();
+            if( connection != NULL ) connection->close();
+        }catch (CMSException& e) {}
+
+        // Now Destroy them
+        try{
+            if( session != NULL ) delete session;
+        }catch (CMSException& e) {}
+        session = NULL;
+
+        try{
+            if( connection != NULL ) delete connection;
+        }catch (CMSException& e) {}
+        connection = NULL;
+    }
+};
 #endif
 
