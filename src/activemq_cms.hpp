@@ -88,8 +88,8 @@ public:
         brokerURI(brokerURI),
         destURI(destURI),m_messages(message) 
         {
-        	cout<<brokerURI<<endl;
-        	cout<<destURI<<endl;
+        	// cout<<brokerURI<<endl;
+        	// cout<<destURI<<endl;
         }
 
     virtual ~activemq_cms_producer()
@@ -174,7 +174,7 @@ public:
         // catch ( CMSException& e ) 
         // {
         //     e.printStackTrace();
-        // }
+        // } 
         catch(json_parser_error& e) 
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
