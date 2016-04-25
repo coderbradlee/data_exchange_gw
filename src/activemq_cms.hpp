@@ -209,7 +209,7 @@ private:
             if( destination != NULL )
             {
             	delete destination;
-            	cout<<__FILE__<<":"<<__LINE__<<":delete destination"<<endl;
+            	cout<<__FILE__<<":"<<__LINE__<<":activemq_cms_producer delete destination"<<endl;
             } 
         }
         catch ( CMSException& e ) 
@@ -223,7 +223,7 @@ private:
             if( producer != NULL )
             {
             	delete producer;
-            	cout<<__FILE__<<":"<<__LINE__<<":delete producer"<<endl;
+            	cout<<__FILE__<<":"<<__LINE__<<":activemq_cms_producer delete producer"<<endl;
             } 
         }
         catch ( CMSException& e )
@@ -248,7 +248,7 @@ private:
             if( session != NULL )
             {
             	delete session;
-            	cout<<__FILE__<<":"<<__LINE__<<":delete session"<<endl;
+            	cout<<__FILE__<<":"<<__LINE__<<":activemq_cms_producer delete session"<<endl;
             } 
         }
         catch ( CMSException& e ) 
@@ -262,7 +262,7 @@ private:
             if( connection != NULL )
             {
             	delete connection;
-            	cout<<__FILE__<<":"<<__LINE__<<":delete connection"<<endl;
+            	cout<<__FILE__<<":"<<__LINE__<<":activemq_cms_producer delete connection"<<endl;
             } 
         }
         catch ( CMSException& e ) 
