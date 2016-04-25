@@ -109,7 +109,7 @@ public:
         ")";
 
 		    // Create the consumer
-		    SimpleAsyncConsumer consumer( brokerURI, get_config->m_activemq_read_order_queue);
+		    activemq_cms_consumer consumer( brokerURI, get_config->m_activemq_read_order_queue);
 
 		    // Start it up and it will listen forever.
 		    consumer.runConsumer();
