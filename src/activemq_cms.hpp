@@ -629,11 +629,11 @@ private:
 };
 class activemq_cms_consumer : public ExceptionListener,
                             public MessageListener,
-                            public DefaultTransportListener {
+                            public activemq::transport::DefaultTransportListener {
 private:
 
     Connection* connection;
-    Session* session;
+    cms::Session* session;
     Destination* destination;
     MessageConsumer* consumer;
     bool useTopic;
