@@ -16,9 +16,8 @@ int main()
 			boost::timer::cpu_timer pass;
 			pass.start();
 			credit_ontime test;
-			//test.start_update();
+			test.start_update();
 
-			std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 		}
 		{	
 			boost::shared_ptr<activemq_producer_consumer> producer_consumer(new activemq_producer_consumer);
