@@ -448,6 +448,8 @@ public:
             string note=pt.get<string>("note");
             
 ///////////////////////////////////////////////////////////////////////////
+///
+            ret_json_all.put<std::string>("orderbot_account_id","null");
             ret_json_all.put<std::string>("order_date",order_date);
             ret_json_all.put<std::string>("ship_date",requested_delivery_date);
             ret_json_all.put<std::string>("orderbot_customer_id","need get from orderbot");//need get from orderbot
@@ -565,8 +567,8 @@ public:
                 ret_json_all.push_back(std::make_pair("order_lines", order_lines));
 
             }
-                return_json.push_back(std::make_pair("product", ret_json_all));
-                write_json(m_ss, return_json,false);
+               // return_json.push_back(std::make_pair("product", ret_json_all));
+                write_json(m_ss, ret_json_all,false);
                 cout<<m_ss.str()<<":"<<__FILE__<<":"<<__LINE__<<endl;
     }
     void decode_request_orderbot(const string& texts)
@@ -574,9 +576,11 @@ public:
     	try
     	{
             parser_json_write_ss(texts);
-
+            string request_content="["+m_ss.str()+"]";
+            request_content=replace_all_distinct(request_content,"\"null\"","null");
+            
 			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-			order->request("POST", "/admin/orders.json/", "", m_ss.str());
+			order->request("POST", "/admin/orders.json/", "",request_content);
 
 			// return_json.put<std::string>("orders1",*(order->m_data));
 			
