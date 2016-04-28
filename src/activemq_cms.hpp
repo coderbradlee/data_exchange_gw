@@ -566,7 +566,7 @@ public:
             }
                 return_json.push_back(std::make_pair("product", ret_json_all));
                 write_json(m_ss, return_json,false);
-                cout<<m_ss<<<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                cout<<m_ss<<":"<<__FILE__<<":"<<__LINE__<<endl;
     }
     void decode_request_orderbot(const string& texts)
     {
