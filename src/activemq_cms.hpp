@@ -450,7 +450,7 @@ public:
 ///////////////////////////////////////////////////////////////////////////
             ret_json_all.put<std::string>("order_date",order_date);
             ret_json_all.put<std::string>("ship_date",requested_delivery_date);
-            ret_json_all.put<std::string>("orderbot_customer_id",);//need get from orderbot
+            ret_json_all.put<std::string>("orderbot_customer_id","need get from orderbot");//need get from orderbot
             ret_json_all.put<std::string>("reference_customer_id",customer_master_id);
             ret_json_all.put<std::string>("reference_order_id",sales_order_id);
             ret_json_all.put<std::string>("customer_po", sales_order_id);
@@ -544,7 +544,7 @@ public:
                 {
                    BOOST_LOG_SEV(slg, severity_level::error) <<__FILE__<<":"<<__LINE__<<":(exception:)" << e.what();
                     boost_log->get_initsink()->flush();
-                    cout<<__FILE__<<":"<<__LINE__<<<<":"<<e.what()<<endl; 
+                    cout<<__FILE__<<":"<<__LINE__<<":"<<e.what()<<endl; 
                    order_lines.put<int>("line_number",0);
                 }
 
