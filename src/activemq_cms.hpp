@@ -477,10 +477,10 @@ public:
             ret_json_all.put<bool>("insure_packages", false);//not sure
             ret_json_all.put<std::string>("shipping_code", "A1");//need get from orderbot
             ret_json_all.put<std::string>("email_confirmation_address", "test@orderbot.com");
-            ret_json_all.put<std::string>("subtotal", sub_total);
-            ret_json_all.put<std::string>("shipping", shipping_cost_total);
-            ret_json_all.put<std::string>("order_discount", 0);
-            ret_json_all.put<std::string>("order_total", grand_total);
+            ret_json_all.put<double>("subtotal", sub_total);
+            ret_json_all.put<double>("shipping", shipping_cost_total);
+            ret_json_all.put<double>("order_discount", 0);
+            ret_json_all.put<double>("order_total", grand_total);
 
             ptree shipping_tax;
             shipping_tax.put<std::string>("tax_name","TAX");
