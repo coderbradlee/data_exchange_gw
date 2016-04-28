@@ -272,361 +272,7 @@ private:
         connection = NULL;
     }
 };
-class activemq_cms_consumer_multithread : public ExceptionListener,
-                           public MessageListener,
-                           public Runnable {
 
-private:
-
-    CountDownLatch latch;
-    CountDownLatch doneLatch;
-    Connection* connection;
-    cms::Session* session;
-    Destination* destination;
-    MessageConsumer* consumer;
-    long waitMillis;
-    bool useTopic;
-    bool sessionTransacted;
-    std::string brokerURI;
-    std::stringstream m_ss;
-private:
-
-    activemq_cms_consumer_multithread(const activemq_cms_consumer_multithread&);
-    activemq_cms_consumer_multithread& operator=(const activemq_cms_consumer_multithread&);
-
-public:
-
-    activemq_cms_consumer_multithread(const std::string& brokerURI, int numMessages, bool useTopic = false, bool sessionTransacted = false, int waitMillis = 30000) :
-        latch(1),
-        doneLatch(numMessages),
-        connection(NULL),
-        session(NULL),
-        destination(NULL),
-        consumer(NULL),
-        waitMillis(waitMillis),
-        useTopic(useTopic),
-        sessionTransacted(sessionTransacted),
-        brokerURI(brokerURI) {
-    }
-
-    virtual ~activemq_cms_consumer_multithread() 
-    {
-    	cout<<"~activemq_cms_consumer_multithread"<<endl;
-        cleanup();
-    }
-
-    void close() 
-    {
-    	cout<<"activemq_cms_consumer_multithread close"<<endl;
-        this->cleanup();
-    }
-
-    void waitUntilReady() {
-        latch.await();
-    }
-
-    virtual void run() {
-
-        try {
-
-            // Create a ConnectionFactory
-            boost::shared_ptr<ConnectionFactory> connectionFactory(
-                ConnectionFactory::createCMSConnectionFactory(brokerURI));
-
-            // Create a Connection
-            connection = connectionFactory->createConnection();
-            connection->start();
-            connection->setExceptionListener(this);
-
-            // Create a Session
-            if (this->sessionTransacted == true) {
-                session = connection->createSession(cms::Session::SESSION_TRANSACTED);
-            } else {
-                session = connection->createSession(cms::Session::AUTO_ACKNOWLEDGE);
-            }
-
-            // Create the destination (Topic or Queue)
-            if (useTopic) {
-                destination = session->createTopic(get_config->m_activemq_read_order_queue);
-            } else {
-                destination = session->createQueue(get_config->m_activemq_read_order_queue);
-            }
-
-            // Create a MessageConsumer from the Session to the Topic or Queue
-            consumer = session->createConsumer(destination);
-
-            consumer->setMessageListener(this);
-
-            std::cout.flush();
-            std::cerr.flush();
-
-            // Indicate we are ready for messages.
-            latch.countDown();
-			cout<<__FILE__<<":"<<__LINE__<<":"<<"consumer start to listen"<<endl;
-            // Wait while asynchronous messages come in.
-            //doneLatch.await(waitMillis);
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(consumer start to listen:)";
-			boost_log->get_initsink()->flush();
-			doneLatch.await();
-        } 
-        // catch (CMSException& e) 
-        // {
-        //     // Indicate we are ready for messages.
-        //     latch.countDown();
-        //     e.printStackTrace();
-        // }
-        catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-        	latch.countDown();
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-    }
-
-    // Called from the consumer since this class is a registered MessageListener.
-    virtual void onMessage(const Message* message)
-     {
-        //static int count = 0;
-        try 
-        {
-            //count++;
-            const TextMessage* textMessage=dynamic_cast<const TextMessage*> (message);
-            string text = "";
-
-            if (textMessage != NULL) 
-            {
-                text = textMessage->getText();
-            } 
-            else
-            {
-                text = "NOT A TEXTMESSAGE!";
-            }
-            cout<<"Message Received: "<<text<<endl;
-            BOOST_LOG_SEV(slg, severity_level::error) <<"consumer Message Received: "<<text;
-			boost_log->get_initsink()->flush();
-            //doneLatch.await();
-            //decode text and request to orderbot,then put results to activemq
-            decode_request_orderbot(text);
-        } 
-        // catch (CMSException& e) 
-        // {
-        //     e.printStackTrace();
-        // }
-        catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-        // Commit all messages.
-        if (this->sessionTransacted) 
-        {
-            session->commit();
-        }
-
-        // No matter what, tag the count down latch until done.
-        //doneLatch.countDown();
-    }
-
-    // If something bad happens you see it here as this class is also been
-    // registered as an ExceptionListener with the connection.
-    virtual void onException(const CMSException& ex AMQCPP_UNUSED) 
-    {
-        printf("CMS Exception occurred.  Shutting down client.\n");
-        BOOST_LOG_SEV(slg, severity_level::error) <<"CMS Exception occurred.  Shutting down client";
-		boost_log->get_initsink()->flush();
-        ex.printStackTrace();
-        exit(1);
-    }
-
-    void decode_request_orderbot(const string& text)
-    {
-    	try
-    	{
-    		ptree pt,ret_json_all;
-			ptree return_json;
-			// std::istringstream is(text);
-			// read_json(is, pt);
-			// for(auto& sub:pt)
-			// {
-			//ptree ret_json;
-	  //  			string product_category_id=sub.second.get<string>("product_category_id");
-			// 	int product_id=sub.second.get<int>("product_id");
-			// 	string product_name=sub.second.get<string>("product_name");
-			// 	string sku=sub.second.get<string>("sku");
-
-			// 	//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-			// 	ret_json.put<std::string>("product_code",get_product_id(product_name));
-			// 	ret_json.put<std::string>("product_name",product_name);
-
-			// 	ptree child = sub.second.get_child("inventory_quantities");
-			// 	ret_json.add_child("inventory_quantities", child);
-
-			// 	ret_json_all.push_back(std::make_pair("", ret_json));
-
-			// }
-			// 	return_json.push_back(std::make_pair("product", ret_json_all));
-			// 	write_json(m_ss, return_json);
-			
-			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-			order->request("GET", "/admin/orders.json/1", "", "");
-
-			return_json.put<std::string>("orders1",*(order->m_data));
-			
-			write_json(m_ss,return_json);
-			send_message_to_activemq();
-			cout<<__FILE__<<":"<<__LINE__<<endl;   
-
-    	}
-    	catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-    }
-    void send_message_to_activemq()
-	{
-		try
-		{
-			cout<<__FILE__<<":"<<__LINE__<<endl;
-			string message(m_ss.str());
-			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-			//activemq::library::ActiveMQCPP::initializeLibrary();
-			std::string brokerURI =
-		        "failover://(tcp://"+get_config->m_activemq_url+
-		       // "?wireFormat=openwire"
-		       // "&connection.useAsyncSend=true"
-		       // "&transport.commandTracingEnabled=true"
-		       // "&transport.tcpTracingEnabled=true"
-		       // "&wireFormat.tightEncodingEnabled=true"
-		        ")";
-
-		    bool useTopics = false;
-
-		    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_activemq_write_order_queue, useTopics,true ));
-
-		    producer->run();
-
-		    producer->close();
-			cout<<__FILE__<<":"<<__LINE__<<endl;
-		    //activemq::library::ActiveMQCPP::shutdownLibrary();
-	    }
-	    catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-	}
-private:
-
-    void cleanup() 
-    {
-        if (connection != NULL) 
-        {
-            try 
-            {
-                connection->close();
-                //connection=NULL;
-            } 
-            catch (cms::CMSException& ex) 
-            {
-                ex.printStackTrace();
-            }
-        }
-
-        // Destroy resources.
-        try {
-	        	if (destination != NULL)
-	           	{
-	           	 	delete destination;
-	           	 	destination=NULL;
-	           	}
-	            if (consumer != NULL)
-	           	{
-	           	 	delete consumer;
-	           	 	consumer=NULL;
-	           	}
-	            if (session != NULL)
-	           	{
-	           	 	delete session;
-	           	 	session=NULL;
-	           	}
-	            if (connection != NULL)
-	           	{
-	           	 	delete connection;
-	           	 	connection=NULL;
-	           	}
-	           
-        	} 
-        	catch (CMSException& e) 
-        	{
-            	e.printStackTrace();
-        	}
-    }
-};
 class activemq_cms_consumer : public ExceptionListener,
                             public MessageListener,
                             public activemq::transport::DefaultTransportListener {
@@ -756,42 +402,186 @@ public:
     virtual void transportResumed() {
         std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
-	void decode_request_orderbot(const string& text)
+	void parser_json_write_ss(const string& text)
+    {
+        string text="{\"sales_order_id\" : \"\",\"so_no\" : \"\",\"po_no\" : \"\",\"status\" : 0,\"order_date\" : \"\",\"company_id\" : \"\",\"sales_id\" : \"\",\"currency_id\" : \"\",\"ss_currency_daily_exchange_rate\" : 6.45,\"tax_schedule_id\" : \"\",\"ss_tax_rate\" : 7.2,\"customer_master_id\" : \"\",\"customer_contact_id\" : \"\",\"customer_invoice_address_id\" : \"\",\"ship_to_customer_name\" : \"\",\"ship_to_address\" : \"\",\"ship_to_state\" : \"\",\"ship_to_city\" : \"\",\"ship_to_zip_code\" : \"\",\"ship_to_contact_name\" : \"\",\"ship_to_contact_phone_number\" : \"\",\"ship_to_contact_email\" : \"\",\"trade_term_id\" : \"\",\"ss_landed_cost_coefficient\" : 3.3,\"dispatch_warehouse_id\" : \"\",\"requested_delivery_date\" : \"\",\"promotion_code\" : \"\",\"company_bank_account_id\" : \"\",\"shipping_cost_total\" : 25.48,\"saving_total\" : 3.56,\"tax_total\" : 22.51,\"sub_total\" : 180.37,\"grand_total\" : 218.67,\"note\" : \"\",   \"detail\" : [{\"sales_order_detail_id\" : \"\",\"item_master_id\" : \"\",\"ss_guidance_price\" : 5.46,\"ss_promotion_price\" : 5.41,\"unit_price\" : 5.43,\"uom_id\" : \"\",\"quantity\" : 12,\"sub_total\" : 63.67,\"sub_tax\" : 4.33,\"sub_shipping_cost\" : 5.68,\"sub_discount\" : 0.0,\"note\" : \"\"}]}";
+            ptree pt,ret_json_all;
+            ptree return_json;
+            std::istringstream is(text);
+            read_json(is, pt);
+
+            string sales_order_id=pt.get<string>("sales_order_id");
+
+            string so_no=pt.get<string>("so_no");
+            string po_no=pt.get<string>("po_no");
+            size_t status=pt.get<size_t>("status");
+            string order_date=pt.get<string>("order_date");
+            string company_id=pt.get<string>("company_id");
+            string sales_id=pt.get<string>("sales_id");
+            string currency_id=pt.get<string>("currency_id");
+            double ss_currency_daily_exchange_rate=pt.get<double>("ss_currency_daily_exchange_rate");
+            string tax_schedule_id=pt.get<string>("tax_schedule_id");
+            double ss_tax_rate=pt.get<double>("ss_tax_rate");
+            string customer_master_id=pt.get<string>("customer_master_id");
+            string customer_contact_id=pt.get<string>("customer_contact_id");
+            string customer_invoice_address_id=pt.get<string>("customer_invoice_address_id");
+            string ship_to_customer_name=pt.get<string>("ship_to_customer_name");
+            string ship_to_address=pt.get<string>("ship_to_address");
+            string ship_to_state=pt.get<string>("ship_to_state");
+            string ship_to_city=pt.get<string>("ship_to_city");
+            string ship_to_zip_code=pt.get<string>("ship_to_zip_code");
+            string ship_to_contact_name=pt.get<string>("ship_to_contact_name");
+            string ship_to_contact_phone_number=pt.get<string>("ship_to_contact_phone_number");
+            string ship_to_contact_email=pt.get<string>("ship_to_contact_email");
+            string trade_term_id=pt.get<string>("trade_term_id");
+            double ss_landed_cost_coefficient=pt.get<double>("ss_landed_cost_coefficient");
+            string dispatch_warehouse_id=pt.get<string>("dispatch_warehouse_id");
+            string requested_delivery_date=pt.get<string>("requested_delivery_date");
+            string promotion_code=pt.get<string>("promotion_code");
+            string company_bank_account_id=pt.get<string>("company_bank_account_id");
+            double shipping_cost_total=pt.get<double>("shipping_cost_total");
+            double saving_total=pt.get<double>("saving_total");
+            double tax_total=pt.get<double>("tax_total");
+            double sub_total=pt.get<double>("sub_total");
+            double grand_total=pt.get<double>("grand_total");
+            string note=pt.get<string>("note");
+            ptree detail_child = pt.get_child("detail");
+///////////////////////////////////////////////////////////////////////////
+            ret_json_all.put<std::string>("order_date",order_date);
+            ret_json_all.put<std::string>("ship_date",requested_delivery_date);
+            ret_json_all.put<std::string>("orderbot_customer_id",);//need get from orderbot
+            ret_json_all.put<std::string>("reference_customer_id",customer_master_id);
+            ret_json_all.put<std::string>("reference_order_id",sales_order_id);
+            ret_json_all.put<std::string>("customer_po", sales_order_id);
+            
+            //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
+            if(status==0||status==1)
+            {
+               ret_json_all.put<std::string>("order_status", "unshipped");
+            }
+            else if(status==2)
+            {
+                ret_json_all.put<std::string>("order_status", "do_not_ship");
+            }
+            else
+            {
+                ret_json_all.put<std::string>("order_status", "unconfirmed");
+            }  
+            ret_json_all.put<std::string>("order_notes", note);
+            ret_json_all.put<std::string>("internal_notes", "test internal");
+            ret_json_all.put<std::string>("bill_third_party", false);
+            ret_json_all.put<std::string>("distribution_center_id", "null");//need get from orderbot
+            ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
+            ret_json_all.put<int>("order_guide_id", 0);//need get from orderbot
+            ret_json_all.put<std::string>("insure_packages", false);//not sure
+            ret_json_all.put<std::string>("shipping_code", "A1");//need get from orderbot
+            ret_json_all.put<std::string>("email_confirmation_address", "test@orderbot.com");
+            ret_json_all.put<std::string>("subtotal", sub_total);
+            ret_json_all.put<std::string>("shipping", shipping_cost_total);
+            ret_json_all.put<std::string>("order_discount", 0);
+            ret_json_all.put<std::string>("order_total", grand_total);
+
+            ptree shipping_tax;
+            shipping_tax.put<std::string>("tax_name","TAX");
+            shipping_tax.put<double>("tax_rate",0.05);
+            shipping_tax.put<double>("amount",0.15);
+              
+            //ret_json_all.push_back(std::make_pair("shipping_tax", shipping_tax));
+
+
+            ptree shipping_address;
+            shipping_address.put<std::string>("store_name", "Test Store");
+            shipping_address.put<std::string>("first_name", ship_to_contact_name);
+            shipping_address.put<std::string>("last_name", "x");
+            shipping_address.put<std::string>("address1", ship_to_address);
+            shipping_address.put<std::string>("address2", "");
+            shipping_address.put<std::string>("city", ship_to_city);
+            shipping_address.put<std::string>("state", ship_to_state);
+            shipping_address.put<std::string>("postal_code",ship_to_zip_code);
+            shipping_address.put<std::string>("country", "US");
+            shipping_address.put<std::string>("phone_number", ship_to_contact_phone_number);
+            shipping_address.put<std::string>("email",ship_to_contact_email);
+            ret_json_all.push_back(std::make_pair("shipping_address", shipping_address));
+
+            ptree billing_address;
+            billing_address.put<std::string>("account_name", "Test Store");
+            billing_address.put<std::string>("first_name", ship_to_contact_name);
+            billing_address.put<std::string>("last_name", "x");
+            billing_address.put<std::string>("address1", ship_to_address);
+            billing_address.put<std::string>("address2", "");
+            billing_address.put<std::string>("city", ship_to_city);
+            billing_address.put<std::string>("state", ship_to_state);
+            billing_address.put<std::string>("postal_code", ship_to_zip_code);
+            billing_address.put<std::string>("country", "US");
+            billing_address.put<std::string>("phone_number", ship_to_contact_phone_number);
+            billing_address.put<std::string>("email", shipping_address);
+            ret_json_all.push_back(std::make_pair("billing_address", billing_address));
+
+
+            for(auto& sub:detail_child)
+            {
+                string sales_order_detail_id=sub.get<string>("sales_order_detail_id");
+                string item_master_id=sub.get<string>("item_master_id");
+                double ss_guidance_price=sub.get<double>("ss_guidance_price");
+                double ss_promotion_price=sub.get<double>("ss_promotion_price");
+                double unit_price=sub.get<double>("unit_price");
+                string uom_id=sub.get<string>("uom_id");
+                size_t quantity=sub.get<size_t>("quantity");
+                double sub_total=sub.get<double>("sub_total");
+                double sub_tax=sub.get<double>("sub_tax");
+                double sub_shipping_cost=sub.get<double>("sub_shipping_cost");
+                double sub_discount=sub.get<double>("sub_discount");
+                string note=sub.get<string>("note");
+
+                ptree order_lines;
+
+                try 
+                {
+                    order_lines.put<int>("line_number", boost::lexical_cast<int>(sales_order_detail_id));
+                }
+                catch(boost::bad_lexical_cast& e) 
+                {
+                   BOOST_LOG_SEV(slg, severity_level::error) <<__FILE__<<":"<<__LINE__<<":(exception:)" << e.what();
+                    boost_log->get_initsink()->flush();
+                    cout<<__FILE__<<":"<<__LINE__<<<<":"<<e.what()<<endl; 
+                   order_lines.put<int>("line_number",0);
+                }
+
+                
+                order_lines.put<std::string>("product_sku", "123");
+                order_lines.put<std::string>("custom_description", note);
+                order_lines.put<size_t>("quantity", quantity);
+                order_lines.put<double>("price", unit_price);
+                order_lines.put<double>("product_discount",sub_discount);
+                ptree product_taxes;
+                product_taxes.put<std::string>("tax_name", "TAX");
+                product_taxes.put<double>("tax_rate",sub_tax/sub_total);
+                product_taxes.put<double>("amount", quantity);
+
+                order_lines.push_back(std::make_pair("product_taxes", product_taxes));
+
+                ret_json_all.push_back(std::make_pair("order_lines", order_lines));
+
+            }
+                return_json.push_back(std::make_pair("product", ret_json_all));
+                write_json(m_ss, return_json,false);
+                cout<<m_ss<<<<":"<<__FILE__<<":"<<__LINE__<<endl;
+    }
+    void decode_request_orderbot(const string& texts)
     {
     	try
     	{
-    		ptree pt,ret_json_all;
-			ptree return_json;
-			// std::istringstream is(text);
-			// read_json(is, pt);
-			// for(auto& sub:pt)
-			// {
-			//ptree ret_json;
-	  //  			string product_category_id=sub.second.get<string>("product_category_id");
-			// 	int product_id=sub.second.get<int>("product_id");
-			// 	string product_name=sub.second.get<string>("product_name");
-			// 	string sku=sub.second.get<string>("sku");
+            parser_json_write_ss(texts);
 
-			// 	//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-			// 	ret_json.put<std::string>("product_code",get_product_id(product_name));
-			// 	ret_json.put<std::string>("product_name",product_name);
-
-			// 	ptree child = sub.second.get_child("inventory_quantities");
-			// 	ret_json.add_child("inventory_quantities", child);
-
-			// 	ret_json_all.push_back(std::make_pair("", ret_json));
-
-			// }
-			// 	return_json.push_back(std::make_pair("product", ret_json_all));
-			// 	write_json(m_ss, return_json);
-			
 			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-			order->request("GET", "/admin/orders.json/1", "", "");
+			order->request("POST", "/admin/orders.json/", "", m_ss.str());
 
-			return_json.put<std::string>("orders1",*(order->m_data));
+			// return_json.put<std::string>("orders1",*(order->m_data));
 			
-			write_json(m_ss,return_json);
-			send_message_to_activemq();
+			// write_json(m_ss,return_json);
+            // 
+	        m_ss_tomq<<*(order->m_data);
+    		send_message_to_activemq();
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
 
     	}
@@ -822,7 +612,7 @@ public:
 		try
 		{
 			cout<<__FILE__<<":"<<__LINE__<<endl;
-			string message(m_ss.str());
+			string message(m_ss_tomq.str());
 			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
 			//activemq::library::ActiveMQCPP::initializeLibrary();
 			std::string brokerURI =

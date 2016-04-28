@@ -1,0 +1,73 @@
+{\"sales_order_id\" : \"\",\"so_no\" : \"\",\"po_no\" : \"\",\"status\" : 0,\"order_date\" : \"\",\"company_id\" : \"\",\"sales_id\" : \"\",\"currency_id\" : \"\",\"ss_currency_daily_exchange_rate\" : 6.45,\"tax_schedule_id\" : \"\",\"ss_tax_rate\" : 7.2,\"customer_master_id\" : \"\",\"customer_contact_id\" : \"\",\"customer_invoice_address_id\" : \"\",\"ship_to_customer_name\" : \"\",\"ship_to_address\" : \"\",\"ship_to_state\" : \"\",\"ship_to_city\" : \"\",\"ship_to_zip_code\" : \"\",\"ship_to_contact_name\" : \"\",\"ship_to_contact_phone_number\" : \"\",\"ship_to_contact_email\" : \"\",\"trade_term_id\" : \"\",\"ss_landed_cost_coefficient\" : 3.3,\"dispatch_warehouse_id\" : \"\",\"requested_delivery_date\" : \"\",\"promotion_code\" : \"\",\"company_bank_account_id\" : \"\",\"shipping_cost_total\" : 25.48,\"saving_total\" : 3.56,\"tax_total\" : 22.51,\"sub_total\" : 180.37,\"grand_total\" : 218.67,\"note\" : \"\",   \"detail\" : [{\"sales_order_detail_id\" : \"\",\"item_master_id\" : \"\",\"ss_guidance_price\" : 5.46,\"ss_promotion_price\" : 5.41,\"unit_price\" : 5.43,\"uom_id\" : \"\",\"quantity\" : 12,\"sub_total\" : 63.67,\"sub_tax\" : 4.33,\"sub_shipping_cost\" : 5.68,\"sub_discount\" : 0.0,\"note\" : \"\"}]}
+
+
+[{"orderbot_account_id": null,"order_date": "2015-08-26","ship_date": "2015-08-26","orderbot_customer_id": 10,"reference_customer_id": "98000234","reference_order_id": "aabb15998966","customer_po": "12345678","order_status": "unshipped","order_notes": "test","internal_notes": "test internal","bill_third_party": false,"distribution_center_id": 1,"account_group_id": 0,"order_guide_id": 0,"insure_packages": false,"shipping_code": "A1","email_confirmation_address": "test@orderbot.com","subtotal": 10.89,"shipping": 3,"order_discount": 0,"order_total": 19.73,"shipping_tax": [{"tax_name": "TAX","tax_rate": 0.05,"amount": 0.15}],"shipping_address": {"store_name": "Test Store","first_name": "f","last_name": "x","address1": "350 5th Avenue","address2": "","city": "New York","state": "NY","postal_code": "10118","country": "US","phone_number": "+1 800-428-4322","email": ""},"billing_address": {"account_name": "Test Store","first_name": "x","last_name": "x","address1": "350 5th Avenue","address2": "","city": "New York","state": "NY","postal_code": "10118","country": "US","phone_number": "+1 800-428-4322","email": null},"payments": [{"payment_type": "visa","payment_date": "2015-08-26","amount_paid": 19.73,"check_no": null,"notes": null,"credit_card_info": {"transaction_id": "2239012792","authorization_code": "YT0VX3","last_four_digits": "0002","gateway_customer_profile_id": "36724516","gateway_customer_payment_profile_id": "33204462","pay_by_cim": true}}],"order_lines": [{"line_number": 1,"product_sku": "123","custom_description": "Test Product","quantity": 1,"price": 10.89,"product_discount": 0,"product_taxes": [{"tax_name": "TAX","tax_rate": 0.05,"amount": 0.54}]}],"other_charges": [{"other_charge_id": 60,"amount": 5,"other_charge_taxes": [{"tax_name": "TAX","tax_rate": 0.05,"amount": 0.15}]}]}]
+
+Response:
+{
+"response_code": 1,
+"message": "Success",
+"order_process_result": [
+{
+"response_code": 0,
+"orderbot_order_id": 79,
+"reference_order_id": "aabb15998966",
+"success": true,
+"message": "Order has been placed successfully!"
+}
+]
+}
+
+
+
+{
+“sales_order_id” : “”, /*销售订单id, <String>*/
+“so_no” : “”, /*销售订单编码, <String>*/
+“po_no” : “”, /*外部采购订单编码, <String>*/
+“status” : 0, /*状态, Integer*/
+“order_date” : “”, /*下单日期, <String>*/
+“company_id” : “”, /*交易公司id, <String>*/
+“sales_id” : “”, /*销售代表id, <String>*/
+“currency_id” : “”, /*交易币种id, <String>*/
+“ss_currency_daily_exchange_rate” : 6.45, /*交易币种日汇率快照, <BigDecimal>*/
+“tax_schedule_id” : “”, /*税组id, <String>*/
+“ss_tax_rate” : 7.2, /*税率快照, <BigDecimal>*/
+“customer_master_id” : “”, /*客户管理档案id, <String>*/
+“customer_contact_id” : “”, /*客户联系人id, <String>*/
+“customer_invoice_address_id” : “”, /*客户发票地址id, <String>*/
+“ship_to_customer_name” : “”, /*收货客户名称, <String>*/
+“ship_to_address” : “”, /*收货地址, <String>*/
+“ship_to_state” : “”, /*收货地址所在州名称, <String>*/
+“ship_to_city” : “”, /*收货地址所在城市名称, <String>*/
+“ship_to_zip_code” : “”, /*收货地址邮政编码, <String>*/
+“ship_to_contact_name” : “”, /*收货人名称, <String>*/
+“ship_to_contact_phone_number” : “”, /*收货人联系电话, <String>*/
+“ship_to_contact_email” : “”, /*收货人邮箱, <String>*/
+“trade_term_id” : “”, /*贸易方式id, <String>*/
+“ss_landed_cost_coefficient” : 3.3, /*运费系数快照, <BigDecimal>*/
+“dispatch_warehouse_id” : “”, /*发货仓库id, <String>*/
+“requested_delivery_date” : “”, /*要求的交货时间, <String>*/
+“promotion_code” : “”, /*促销活动编码, <String>*/
+“company_bank_account_id” : “”, /*交易公司银行帐户id, <String>*/
+“shipping_cost_total” : 25.48, /*总运费, <BigDecimal>*/
+“saving_total” : 3.56, /*总免除金额, <BigDecimal>*/
+“tax_total” : 22.51, /*总税额, <BigDecimal>*/
+“sub_total” : 180.37, /*产品总金额, <BigDecimal>*/
+“grand_total” : 218.67, /*整单总交易金额, <BigDecimal>*/
+“note” : “”, /*备注, <String>*/
+   “detail” : [{
+“sales_order_detail_id” : “”, /*销售订单行id, <String>*/
+“item_master_id” : “”, char(20), /*物料管理档案id, <String>*/
+“ss_guidance_price” : 5.46, /*销售指导价快照, <BigDecimal>*/
+“ss_promotion_price” : 5.41, /*促销价快照, <BigDecimal>*/
+“unit_price” : 5.43, /*执行单价, <BigDecimal>*/
+
+“uom_id” : “”, /*销售计量单位, <String>*/
+“quantity” : 12, /*订货数量, <BigDecimal>*/
+“sub_total” : 63.67, /*每项商品金额, <BigDecimal>*/
+“sub_tax” : 4.33, /*每项税额, <BigDecimal>*/
+“sub_shipping_cost” : 5.68, /*每项运费, <BigDecimal>*/
+“sub_discount” : 0.0%, /*每项折扣, <BigDecimal>*/
+“note” : “” /*备注, <String>*/
+}]
+}
