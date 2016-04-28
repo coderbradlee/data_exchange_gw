@@ -568,6 +568,7 @@ public:
 
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
+                m_ss.str("");
                 write_json(m_ss, ret_json_all,false);
                 
     }
@@ -588,6 +589,7 @@ public:
 			
 			// write_json(m_ss,return_json);
             // 
+            m_ss_tomq.str("");
 	        m_ss_tomq<<*(order->m_data);
     		send_message_to_activemq();
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
