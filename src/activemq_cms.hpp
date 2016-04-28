@@ -287,6 +287,7 @@ private:
     std::string destURI;
     bool clientAck;
     std::stringstream m_ss;
+    std::stringstream m_ss_tomq;
 private:
 
     activemq_cms_consumer( const activemq_cms_consumer& );
