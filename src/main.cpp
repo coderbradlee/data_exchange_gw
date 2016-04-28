@@ -13,11 +13,8 @@ int main()
 	try
 	{
 		{
-			boost::timer::cpu_timer pass;
-			pass.start();
-			credit_ontime test;
-			test.start_update();
-
+			// credit_ontime test;
+			// test.start_update();
 		}
 		{	
 			boost::shared_ptr<activemq_producer_consumer> producer_consumer(new activemq_producer_consumer);
