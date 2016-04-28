@@ -578,7 +578,7 @@ public:
             parser_json_write_ss(texts);
             string request_content="["+m_ss.str()+"]";
             request_content=replace_all_distinct(request_content,"\"null\"","null");
-
+            request_content.erase(remove(request_content.begin(), request_content.end(), '\n'), request_content.end());
             cout<<request_content<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			
             boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
