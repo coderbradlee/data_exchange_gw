@@ -446,7 +446,7 @@ public:
             double sub_total=pt.get<double>("sub_total");
             double grand_total=pt.get<double>("grand_total");
             string note=pt.get<string>("note");
-            ptree detail_child = pt.get_child("detail");
+            
 ///////////////////////////////////////////////////////////////////////////
             ret_json_all.put<std::string>("order_date",order_date);
             ret_json_all.put<std::string>("ship_date",requested_delivery_date);
@@ -515,24 +515,25 @@ public:
             billing_address.put<std::string>("postal_code", ship_to_zip_code);
             billing_address.put<std::string>("country", "US");
             billing_address.put<std::string>("phone_number", ship_to_contact_phone_number);
-            billing_address.put<std::string>("email", shipping_address);
+            billing_address.put<std::string>("email", ship_to_contact_email);
             ret_json_all.push_back(std::make_pair("billing_address", billing_address));
 
 
+            ptree detail_child = pt.get_child("detail");
             for(auto& sub:detail_child)
             {
-                string sales_order_detail_id=sub.get<string>("sales_order_detail_id");
-                string item_master_id=sub.get<string>("item_master_id");
-                double ss_guidance_price=sub.get<double>("ss_guidance_price");
-                double ss_promotion_price=sub.get<double>("ss_promotion_price");
-                double unit_price=sub.get<double>("unit_price");
-                string uom_id=sub.get<string>("uom_id");
-                size_t quantity=sub.get<size_t>("quantity");
-                double sub_total=sub.get<double>("sub_total");
-                double sub_tax=sub.get<double>("sub_tax");
-                double sub_shipping_cost=sub.get<double>("sub_shipping_cost");
-                double sub_discount=sub.get<double>("sub_discount");
-                string note=sub.get<string>("note");
+                string sales_order_detail_id=sub.second.get<string>("sales_order_detail_id");
+                string item_master_id=sub.second.get<string>("item_master_id");
+                double ss_guidance_price=sub.second.get<double>("ss_guidance_price");
+                double ss_promotion_price=sub.second.get<double>("ss_promotion_price");
+                double unit_price=sub.second.get<double>("unit_price");
+                string uom_id=sub.second.get<string>("uom_id");
+                size_t quantity=sub.second.get<size_t>("quantity");
+                double sub_total=sub.second.get<double>("sub_total");
+                double sub_tax=sub.second.get<double>("sub_tax");
+                double sub_shipping_cost=sub.second.get<double>("sub_shipping_cost");
+                double sub_discount=sub.second.get<double>("sub_discount");
+                string note=sub.second.get<string>("note");
 
                 ptree order_lines;
 
