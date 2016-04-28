@@ -589,7 +589,7 @@ public:
 			
 			// write_json(m_ss,return_json);
             // 
-            m_ss_tomq.str("");
+            
 	        m_ss_tomq<<*(order->m_data);
     		send_message_to_activemq();
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
@@ -624,6 +624,7 @@ public:
 			cout<<__FILE__<<":"<<__LINE__<<endl;
 			string message(m_ss_tomq.str());
 			message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+            m_ss_tomq.str("");
 			//activemq::library::ActiveMQCPP::initializeLibrary();
 			std::string brokerURI =
 		        "failover://(tcp://"+get_config->m_activemq_url+
