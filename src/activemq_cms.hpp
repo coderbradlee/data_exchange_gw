@@ -470,11 +470,11 @@ public:
             }  
             ret_json_all.put<std::string>("order_notes", note);
             ret_json_all.put<std::string>("internal_notes", "test internal");
-            ret_json_all.put<std::string>("bill_third_party", false);
+            ret_json_all.put<bool>("bill_third_party", false);
             ret_json_all.put<std::string>("distribution_center_id", "null");//need get from orderbot
             ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
             ret_json_all.put<int>("order_guide_id", 0);//need get from orderbot
-            ret_json_all.put<std::string>("insure_packages", false);//not sure
+            ret_json_all.put<bool>("insure_packages", false);//not sure
             ret_json_all.put<std::string>("shipping_code", "A1");//need get from orderbot
             ret_json_all.put<std::string>("email_confirmation_address", "test@orderbot.com");
             ret_json_all.put<std::string>("subtotal", sub_total);
