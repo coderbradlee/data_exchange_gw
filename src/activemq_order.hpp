@@ -40,60 +40,60 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
     }
-	void start_consume_listener_multithread()
-	{
-		try
-		{
-		//activemq::library::ActiveMQCPP::initializeLibrary();
-		std::string brokerURI =
-        "failover://(tcp://"+get_config->m_activemq_url+
-//        "?wireFormat=openwire"
-//        "&connection.useAsyncSend=true"
-//        "&transport.commandTracingEnabled=true"
-//        "&transport.tcpTracingEnabled=true"
-//        "&wireFormat.tightEncodingEnabled=true"
-        ")";
-		 bool useTopics = false;
-	    bool sessionTransacted = false;
-	    int numMessages = 1;
+// 	void start_consume_listener_multithread()
+// 	{
+// 		try
+// 		{
+// 		//activemq::library::ActiveMQCPP::initializeLibrary();
+// 		std::string brokerURI =
+//         "failover://(tcp://"+get_config->m_activemq_url+
+// //        "?wireFormat=openwire"
+// //        "&connection.useAsyncSend=true"
+// //        "&transport.commandTracingEnabled=true"
+// //        "&transport.tcpTracingEnabled=true"
+// //        "&wireFormat.tightEncodingEnabled=true"
+//         ")";
+// 		 bool useTopics = false;
+// 	    bool sessionTransacted = false;
+// 	    int numMessages = 1;
 
-        activemq_cms_consumer_multithread consumer(brokerURI, numMessages, useTopics, sessionTransacted);
+//         activemq_cms_consumer_multithread consumer(brokerURI, numMessages, useTopics, sessionTransacted);
 
-	    // Start the consumer thread.
-	    Thread consumerThread(&consumer);
-	    consumerThread.start();
+// 	    // Start the consumer thread.
+// 	    Thread consumerThread(&consumer);
+// 	    consumerThread.start();
 
-	    // Wait for the consumer to indicate that its ready to go.
-	    consumer.waitUntilReady();
+// 	    // Wait for the consumer to indicate that its ready to go.
+// 	    consumer.waitUntilReady();
 
-	    consumerThread.join();
+// 	    consumerThread.join();
 
-	    consumer.close();
+// 	    consumer.close();
 
-	    //activemq::library::ActiveMQCPP::shutdownLibrary();
-	    }
-	    catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-	}
+// 	    //activemq::library::ActiveMQCPP::shutdownLibrary();
+// 	    }
+// 	    catch(json_parser_error& e) 
+// 		{
+// 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+// 				boost_log->get_initsink()->flush();
+// 				cout<<e.what()<<endl;
+// 		}
+// 		catch (CMSException& e) 
+//         {
+//             BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+// 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+//         }
+// 		catch (const MySqlException& e)
+// 		{
+// 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+// 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+// 		}
+// 		catch(std::exception& e)
+// 		{
+// 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+// 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+// 		}
+// 	}
 	void start_consume_listener()
 	{
 		try
