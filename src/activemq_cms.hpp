@@ -569,7 +569,7 @@ public:
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
                 write_json(m_ss, ret_json_all,false);
-                cout<<m_ss.str()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                
     }
     void decode_request_orderbot(const string& texts)
     {
@@ -578,8 +578,10 @@ public:
             parser_json_write_ss(texts);
             string request_content="["+m_ss.str()+"]";
             request_content=replace_all_distinct(request_content,"\"null\"","null");
-            
-			boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+
+            cout<<request_content<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			
+            boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
 			order->request("POST", "/admin/orders.json/", "",request_content);
 
 			// return_json.put<std::string>("orders1",*(order->m_data));
