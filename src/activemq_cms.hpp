@@ -567,6 +567,7 @@ public:
                 //ret_json_all.push_back(std::make_pair("order_lines", order_lines));
 
                 ret_json_all.add_child("order_lines",order_lines);
+                ret_json_all.add_child("order_lines",order_lines);
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
                 m_ss.str("");
