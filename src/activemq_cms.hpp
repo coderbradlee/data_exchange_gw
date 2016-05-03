@@ -473,7 +473,7 @@ public:
             ret_json_all.put<std::string>("order_notes", note);
             ret_json_all.put<std::string>("internal_notes", "test internal");
             ret_json_all.put<bool>("bill_third_party", false);
-            ret_json_all.put<std::string>("distribution_center_id", "null");//need get from orderbot
+            ret_json_all.put<std::string>("distribution_center_id", dispatch_warehouse_id);//need get from orderbot
             ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
             ret_json_all.put<std::string>("order_guide_id", "null");//need get from orderbot
             ret_json_all.put<bool>("insure_packages", false);//not sure
@@ -590,6 +590,8 @@ public:
             string request_content="["+m_ss.str()+"]";
             request_content=replace_all_distinct(request_content,"\"null\"","null");
             request_content.erase(remove(request_content.begin(), request_content.end(), '\n'), request_content.end());
+            request_content=replace_all_distinct(request_content,"\"false\"","false");
+            request_content=replace_all_distinct(request_content,"\"true\"","true");
             cout<<request_content<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			
             boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
