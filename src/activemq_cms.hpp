@@ -563,11 +563,12 @@ public:
                 product_taxes.put<double>("amount", quantity);
 
                 order_lines.push_back(std::make_pair("product_taxes", product_taxes));
-
+                ptree order_lines_array;
+                order_lines_array.push_back(std::make_pair("", order_lines));
                 //ret_json_all.push_back(std::make_pair("order_lines", order_lines));
 
-                ret_json_all.add_child("order_lines",order_lines);
-                ret_json_all.add_child("order_lines",order_lines);
+                ret_json_all.add_child("order_lines",order_lines_array);
+                //ret_json_all.add_child("order_lines",order_lines);
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
                 m_ss.str("");
