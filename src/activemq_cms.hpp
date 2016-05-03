@@ -564,7 +564,7 @@ public:
 
                 ptree product_taxes_array;
                 product_taxes_array.push_back(std::make_pair("", product_taxes));
-                order_lines.push_back(std::make_pair("product_taxes", product_taxes_array));
+                order_lines.add_child("product_taxes", product_taxes_array);
                 ptree order_lines_array;
                 order_lines_array.push_back(std::make_pair("", order_lines));
                 //ret_json_all.push_back(std::make_pair("order_lines", order_lines));
@@ -574,7 +574,11 @@ public:
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
                 m_ss.str("");
-                write_json(m_ss, ret_json_all,false);
+                ptree ret_json_all_array,ret_json_all_array_out;
+                ret_json_all_array.push_back(std::make_pair("", ret_json_all));
+
+                ret_json_all_array_out.add_child("", ret_json_all_array);
+                write_json(m_ss, ret_json_all_array_out,false);
                 
     }
     void decode_request_orderbot(const string& texts)
