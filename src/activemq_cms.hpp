@@ -578,9 +578,9 @@ public:
                 ptree ret_json_all_array,ret_json_all_array_out;
                 ret_json_all_array.push_back(std::make_pair("", ret_json_all));
 
-                ret_json_all_array_out.add_child("", ret_json_all_array);
-                write_json(m_ss, ret_json_all_array_out,false);
-                //write_json(m_ss, ret_json_all,false);
+                // ret_json_all_array_out.add_child("", ret_json_all_array);
+                // write_json(m_ss, ret_json_all_array_out,false);
+                write_json(m_ss, ret_json_all,false);
     }
     void decode_request_orderbot(const string& texts)
     {
