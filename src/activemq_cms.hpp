@@ -405,7 +405,7 @@ public:
     }
 	void parser_json_write_ss(const string& texts)
     {
-        string text="{\"sales_order_id\" : \"\",\"so_no\" : \"\",\"po_no\" : \"\",\"status\" : 0,\"order_date\" : \"\",\"company_id\" : \"\",\"sales_id\" : \"\",\"currency_id\" : \"\",\"ss_currency_daily_exchange_rate\" : 6.45,\"tax_schedule_id\" : \"\",\"ss_tax_rate\" : 7.2,\"customer_master_id\" : \"\",\"customer_contact_id\" : \"\",\"customer_invoice_address_id\" : \"\",\"ship_to_customer_name\" : \"\",\"ship_to_address\" : \"\",\"ship_to_state\" : \"\",\"ship_to_city\" : \"\",\"ship_to_zip_code\" : \"\",\"ship_to_contact_name\" : \"\",\"ship_to_contact_phone_number\" : \"\",\"ship_to_contact_email\" : \"\",\"trade_term_id\" : \"\",\"ss_landed_cost_coefficient\" : 3.3,\"dispatch_warehouse_id\" : \"\",\"requested_delivery_date\" : \"\",\"promotion_code\" : \"\",\"company_bank_account_id\" : \"\",\"shipping_cost_total\" : 25.48,\"saving_total\" : 3.56,\"tax_total\" : 22.51,\"sub_total\" : 180.37,\"grand_total\" : 218.67,\"note\" : \"\",   \"detail\" : [{\"sales_order_detail_id\" : \"44\",\"item_master_id\" : \"\",\"ss_guidance_price\" : 5.46,\"ss_promotion_price\" : 5.41,\"unit_price\" : 5.43,\"uom_id\" : \"\",\"quantity\" : 12,\"sub_total\" : 63.67,\"sub_tax\" : 4.33,\"sub_shipping_cost\" : 5.68,\"sub_discount\" : 0.0,\"note\" : \"\"}]}";
+        string text="{\"sales_order_id\" : \"\",\"so_no\" : \"\",\"po_no\" : \"\",\"status\" : 0,\"order_date\" : \"\",\"company_id\" : \"\",\"sales_id\" : \"\",\"currency_id\" : \"\",\"ss_currency_daily_exchange_rate\" : 6.45,\"tax_schedule_id\" : \"\",\"ss_tax_rate\" : 7.2,\"customer_master_id\" : \"\",\"customer_contact_id\" : \"\",\"customer_invoice_address_id\" : \"\",\"ship_to_customer_name\" : \"\",\"ship_to_address\" : \"\",\"ship_to_state\" : \"\",\"ship_to_city\" : \"\",\"ship_to_zip_code\" : \"\",\"ship_to_contact_name\" : \"\",\"ship_to_contact_phone_number\" : \"\",\"ship_to_contact_email\" : \"\",\"trade_term_id\" : \"\",\"ss_landed_cost_coefficient\" : 3.3,\"dispatch_warehouse_id\" : \"\",\"requested_delivery_date\" : \"\",\"promotion_code\" : \"\",\"company_bank_account_id\" : \"\",\"shipping_cost_total\" : 25.48,\"saving_total\" : 3.56,\"tax_total\" : 22.51,\"sub_total\" : 180.37,\"grand_total\" : 218.67,\"note\" : \"\",   \"detail\" : [{\"sales_order_detail_id\" : 44,\"item_master_id\" : \"\",\"ss_guidance_price\" : 5.46,\"ss_promotion_price\" : 5.41,\"unit_price\" : 5.43,\"uom_id\" : \"\",\"quantity\" : 12,\"sub_total\" : 63.67,\"sub_tax\" : 4.33,\"sub_shipping_cost\" : 5.68,\"sub_discount\" : 0.0,\"note\" : \"\"}]}";
             ptree pt,ret_json_all;
             ptree return_json;
             std::istringstream is(text);
@@ -575,12 +575,12 @@ public:
             }
                // return_json.push_back(std::make_pair("product", ret_json_all));
                 m_ss.str("");
-                // ptree ret_json_all_array,ret_json_all_array_out;
-                // ret_json_all_array.push_back(std::make_pair("", ret_json_all));
+                ptree ret_json_all_array,ret_json_all_array_out;
+                ret_json_all_array.push_back(std::make_pair("", ret_json_all));
 
-                // ret_json_all_array_out.add_child("", ret_json_all_array);
-                // write_json(m_ss, ret_json_all_array_out,false);
-                write_json(m_ss, ret_json_all,false);
+                ret_json_all_array_out.add_child("", ret_json_all_array);
+                write_json(m_ss, ret_json_all_array_out,false);
+                //write_json(m_ss, ret_json_all,false);
     }
     void decode_request_orderbot(const string& texts)
     {
