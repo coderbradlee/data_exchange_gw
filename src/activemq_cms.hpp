@@ -436,7 +436,7 @@ public:
             string ship_to_contact_email=pt.get<string>("ship_to_contact_email");
             string trade_term_id=pt.get<string>("trade_term_id");
             double ss_landed_cost_coefficient=pt.get<double>("ss_landed_cost_coefficient");
-            string dispatch_warehouse_id=pt.get<string>("dispatch_warehouse_id");
+            size_t dispatch_warehouse_id=pt.get<size_t>("dispatch_warehouse_id");
             string requested_delivery_date=pt.get<string>("requested_delivery_date");
             string promotion_code=pt.get<string>("promotion_code");
             string company_bank_account_id=pt.get<string>("company_bank_account_id");
@@ -473,7 +473,7 @@ public:
             ret_json_all.put<std::string>("order_notes", note);
             ret_json_all.put<std::string>("internal_notes", "test internal");
             ret_json_all.put<bool>("bill_third_party", false);
-            ret_json_all.put<std::string>("distribution_center_id", dispatch_warehouse_id);//need get from orderbot
+            ret_json_all.put<size_t>("distribution_center_id", dispatch_warehouse_id);//need get from orderbot
             ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
             ret_json_all.put<std::string>("order_guide_id", "null");//need get from orderbot
             ret_json_all.put<bool>("insure_packages", false);//not sure
@@ -530,7 +530,7 @@ public:
                 double ss_promotion_price=sub.second.get<double>("ss_promotion_price");
                 double unit_price=sub.second.get<double>("unit_price");
                 string uom_id=sub.second.get<string>("uom_id");
-                size_t quantity=sub.second.get<size_t>("quantity");
+                double quantity=sub.second.get<double>("quantity");
                 double sub_total=sub.second.get<double>("sub_total");
                 double sub_tax=sub.second.get<double>("sub_tax");
                 double sub_shipping_cost=sub.second.get<double>("sub_shipping_cost");
@@ -555,7 +555,7 @@ public:
                 
                 order_lines.put<std::string>("product_sku", "123");
                 order_lines.put<std::string>("custom_description", note);
-                order_lines.put<size_t>("quantity", quantity);
+                order_lines.put<double>("quantity", quantity);
                 order_lines.put<double>("price", unit_price);
                 order_lines.put<double>("product_discount",sub_discount);
                 ptree product_taxes;
