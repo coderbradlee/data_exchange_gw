@@ -475,7 +475,7 @@ public:
             ret_json_all.put<bool>("bill_third_party", false);
             ret_json_all.put<std::string>("distribution_center_id", "null");//need get from orderbot
             ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
-            ret_json_all.put<int>("order_guide_id", 0);//need get from orderbot
+            ret_json_all.put<std::string>("order_guide_id", "null");//need get from orderbot
             ret_json_all.put<bool>("insure_packages", false);//not sure
             ret_json_all.put<std::string>("shipping_code", "A1");//need get from orderbot
             ret_json_all.put<std::string>("email_confirmation_address", "test@orderbot.com");
@@ -559,7 +559,7 @@ public:
                 order_lines.put<double>("product_discount",sub_discount);
                 ptree product_taxes;
                 product_taxes.put<std::string>("tax_name", "TAX");
-                product_taxes.put<double>("tax_rate",sub_tax/sub_total);
+                product_taxes.put<double>("tax_rate",sub_tax);
                 product_taxes.put<double>("amount", quantity);
 
                 order_lines.push_back(std::make_pair("product_taxes", product_taxes));
