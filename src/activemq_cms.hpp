@@ -524,7 +524,7 @@ public:
             ptree detail_child = pt.get_child("detail");
             for(auto& sub:detail_child)
             {
-                string sales_order_detail_id=sub.second.get<string>("sales_order_detail_id");
+                size_t sales_order_detail_id=sub.second.get<size_t>("sales_order_detail_id");
                 string item_master_id=sub.second.get<string>("item_master_id");
                 double ss_guidance_price=sub.second.get<double>("ss_guidance_price");
                 double ss_promotion_price=sub.second.get<double>("ss_promotion_price");
@@ -541,7 +541,8 @@ public:
 
                 try 
                 {
-                    order_lines.put<int>("line_number", boost::lexical_cast<int>(sales_order_detail_id));
+                    //order_lines.put<int>("line_number", boost::lexical_cast<int>(sales_order_detail_id));
+                    order_lines.put<size_t>("line_number", sales_order_detail_id);
                 }
                 catch(boost::bad_lexical_cast& e) 
                 {
