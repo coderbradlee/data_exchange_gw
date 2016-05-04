@@ -37,7 +37,7 @@ void test()
 	v["bar"] = false;
 	std::cout << v << endl;
 	// and of course, these can be more complex
-	json::value z;
+	json_spirit::Value z;
 	z[4] = v;
 
 	std::cout << z << endl;
