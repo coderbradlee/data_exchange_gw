@@ -603,7 +603,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 {
                     note = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 } 
-               else if( name == "detail")
+                else if( name == "detail")
                 {
                     int sales_order_detail_id;
                     string item_master_id;
@@ -617,7 +617,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     double sub_shipping_cost;
                     double sub_discount;
                     string note;
-                    
+                    cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     detail_child = pt.get_array();
                     for(unsigned int j = 0; i < detail_child.size(); ++j )
                     {
