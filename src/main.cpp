@@ -23,24 +23,34 @@ void test()
 
     json_spirit::read( text, value );
 
-	json_spirit::Value v = 42;
-	v = "foo";
-	v = true;
-	v = 14.5;
-	std::cout << v << endl;
-	// you can also treat the json::value like an array
-	v[0] = "foo";
-	v[1] = true;
-	std::cout << v << endl;
-	// or a json object
-	v["foo"] = 42;
-	v["bar"] = false;
-	std::cout << v << endl;
-	// and of course, these can be more complex
-	json_spirit::Value z;
-	z[4] = v;
+	if (value.type() != obj_type)
+	{
+	    //return;
+	}
+	else
+	{
+	    int id = 0;
+	    std::string sales_order_id = "";
+	    const json_spirit::Object &obj = value.get_obj();
+	    for(unsigned int i = 0; i != obj.size(); ++i )
+	    {
+	        const json_spirit::Pair& pair = obj[i];
 
-	std::cout << z << endl;
+	        const string& name  = pair.name_;
+	        const json_spirit::Value&  vvalue = pair.value_;
+
+	        if( name == "sales_order_id" && vvalue.type() == int_type)
+	        {
+	            id = vvalue.get_int();
+	            cout<<id<<endl;
+	        }
+	        else if( name == "sales_order_id" && vvalue.type() == str_type)
+	        {
+	            sales_order_id = vvalue.get_str();
+	            cout<<sales_order_id<<endl;
+	        }
+	    }
+	}
 
 }
 int main()
