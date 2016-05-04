@@ -23,6 +23,24 @@ void test()
 
     json_spirit::read( text, value );
 
+	json::value v = 42;
+	v = "foo";
+	v = true;
+	v = 14.5;
+	std::cout << v << endl;
+	// you can also treat the json::value like an array
+	v[0] = "foo";
+	v[1] = true;
+	std::cout << v << endl;
+	// or a json object
+	v["foo"] = 42;
+	v["bar"] = false;
+	std::cout << v << endl;
+	// and of course, these can be more complex
+	json::value z;
+	z[4] = v;
+
+	std::cout << z << endl;
 
 }
 int main()
