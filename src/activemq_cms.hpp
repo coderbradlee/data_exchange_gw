@@ -602,20 +602,21 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 {
                     note = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 } 
-             //   else if( name == "detail")
-            //     {
-            //         int sales_order_detail_id;
-            //         string item_master_id;
-            //         double ss_guidance_price;
-            //         double ss_promotion_price;
-            //         double unit_price;
-            //         string uom_id;
-            //         double quantity;
-            //         double sub_total;
-            //         double sub_tax;
-            //         double sub_shipping_cost;
-            //         double sub_discount;
-            //         string note;
+               else if( name == "detail")
+                {
+                    int sales_order_detail_id;
+                    string item_master_id;
+                    double ss_guidance_price;
+                    double ss_promotion_price;
+                    double unit_price;
+                    string uom_id;
+                    double quantity;
+                    double sub_total;
+                    double sub_tax;
+                    double sub_shipping_cost;
+                    double sub_discount;
+                    string note;
+                    cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //         detail_child = pt.get_obj();
             //         for(unsigned int i = 0; i != detail_child.size(); ++i )
             //         {
@@ -689,7 +690,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 
             //     order_lines.push_back( Pair("product_taxes",product_taxes));
                 
-            // }//else if
+            }//else if
         }//for
         //     ret_json_all.push_back( Pair("orderbot_account_id", 1));
         //     ret_json_all.push_back( Pair("order_date",order_date));
