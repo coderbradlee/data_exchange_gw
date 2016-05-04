@@ -458,9 +458,10 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         else
         {
             cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-            // const json_spirit::Object &obj = value.get_obj();
-            // for(unsigned int i = 0; i < obj.size(); ++i )
-            // {
+            const json_spirit::Object &obj = value.get_obj();
+            for(unsigned int i = 0; i < obj.size(); ++i )
+            {
+                cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //     const json_spirit::Pair& pair = obj[i];
 
             //     const string& name  = pair.name_;
@@ -690,7 +691,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //     order_lines.push_back( Pair("product_taxes",product_taxes));
                 
             // }//else if
-        // }//for
+        }//for
         //     ret_json_all.push_back( Pair("orderbot_account_id", 1));
         //     ret_json_all.push_back( Pair("order_date",order_date));
         //     ret_json_all.push_back( Pair("orderbot_account_id",Value()));
