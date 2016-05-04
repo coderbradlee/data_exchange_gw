@@ -55,5 +55,10 @@ using namespace boost::asio;
 using namespace std;
 using namespace boost::property_tree;
 using namespace boost::posix_time;
+#include <limits.h>
+#include <sstream>
+#include <boost/assign/list_of.hpp>
+#include <boost/timer.hpp>
+#include <boost/lexical_cast.hpp>
 #endif
 
