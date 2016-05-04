@@ -470,138 +470,138 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 {
                     sales_order_id = pt.get_str();
                 }
-                else if( name == "so_no")
-                {
-                    so_no = pt.get_str();
-                }
-                else if( name == "po_no")
-                {
-                    po_no = pt.get_str();
-                }
-                else if( name == "status")
-                {
-                    status = pt.get_int();
-                }
-                else if( name == "order_date")
-                {
-                    order_date = pt.get_str();
-                }
-                else if( name == "company_id")
-                {
-                    company_id = pt.get_str();
-                }
-                else if( name == "sales_id")
-                {
-                    sales_id = pt.get_str();
-                }
-                else if( name == "currency_id")
-                {
-                    currency_id = pt.get_str();
-                }
-                else if( name == "ss_currency_daily_exchange_rate")
-                {
-                    ss_currency_daily_exchange_rate = pt.get_real();
-                }
-                else if( name == "tax_schedule_id")
-                {
-                    tax_schedule_id = pt.get_str();
-                }
-                else if( name == "ss_tax_rate")
-                {
-                    ss_tax_rate = pt.get_real();
-                }
-                else if( name == "customer_master_id")
-                {
-                    customer_master_id = pt.get_str();
-                }
-                else if( name == "customer_contact_id")
-                {
-                    customer_contact_id = pt.get_str();
-                }
-                else if( name == "customer_invoice_address_id")
-                {
-                    customer_invoice_address_id = pt.get_str();
-                }
-                else if( name == "ship_to_customer_name")
-                {
-                    ship_to_customer_name = pt.get_str();
-                }
-                else if( name == "ship_to_address")
-                {
-                    ship_to_address = pt.get_str();
-                }
-                else if( name == "ship_to_state")
-                {
-                    ship_to_state = pt.get_str();
-                }
-                else if( name == "ship_to_city")
-                {
-                    ship_to_city = pt.get_str();
-                }
-                else if( name == "ship_to_zip_code")
-                {
-                    ship_to_zip_code = pt.get_str();
-                }
-                else if( name == "ship_to_contact_name")
-                {
-                    ship_to_contact_name = pt.get_str();
-                }
-                else if( name == "ship_to_contact_phone_number")
-                {
-                    ship_to_contact_phone_number = pt.get_str();
-                }
-                else if( name == "ship_to_contact_email")
-                {
-                    ship_to_contact_email = pt.get_str();
-                }                
-                else if( name == "trade_term_id")
-                {
-                    trade_term_id = pt.get_str();
-                }  
-                else if( name == "ss_landed_cost_coefficient")
-                {
-                    ss_landed_cost_coefficient = pt.get_real();
-                }
-                else if( name == "dispatch_warehouse_id")
-                {
-                    dispatch_warehouse_id = pt.get_int();
-                }
-                else if( name == "requested_delivery_date")
-                {
-                    requested_delivery_date = pt.get_str();
-                }
-                else if( name == "promotion_code")
-                {
-                    promotion_code = pt.get_str();
-                }                
-                else if( name == "company_bank_account_id")
-                {
-                    company_bank_account_id = pt.get_str();
-                } 
-                else if( name == "shipping_cost_total")
-                {
-                    shipping_cost_total = pt.get_real();
-                }
-                else if( name == "saving_total")
-                {
-                    saving_total = pt.get_real();
-                }
-                else if( name == "tax_total")
-                {
-                    tax_total = pt.get_real();
-                }
-                else if( name == "sub_total")
-                {
-                    sub_total = pt.get_real();
-                }
-                else if( name == "grand_total")
-                {
-                    grand_total = pt.get_real();
-                }
-                else if( name == "note")
-                {
-                    note = pt.get_str();
-                } 
+                // else if( name == "so_no")
+                // {
+                //     so_no = pt.get_str();
+                // }
+                // else if( name == "po_no")
+                // {
+                //     po_no = pt.get_str();
+                // }
+                // else if( name == "status")
+                // {
+                //     status = pt.get_int();
+                // }
+                // else if( name == "order_date")
+                // {
+                //     order_date = pt.get_str();
+                // }
+                // else if( name == "company_id")
+                // {
+                //     company_id = pt.get_str();
+                // }
+                // else if( name == "sales_id")
+                // {
+                //     sales_id = pt.get_str();
+                // }
+                // else if( name == "currency_id")
+                // {
+                //     currency_id = pt.get_str();
+                // }
+                // else if( name == "ss_currency_daily_exchange_rate")
+                // {
+                //     ss_currency_daily_exchange_rate = pt.get_real();
+                // }
+                // else if( name == "tax_schedule_id")
+                // {
+                //     tax_schedule_id = pt.get_str();
+                // }
+                // else if( name == "ss_tax_rate")
+                // {
+                //     ss_tax_rate = pt.get_real();
+                // }
+                // else if( name == "customer_master_id")
+                // {
+                //     customer_master_id = pt.get_str();
+                // }
+                // else if( name == "customer_contact_id")
+                // {
+                //     customer_contact_id = pt.get_str();
+                // }
+                // else if( name == "customer_invoice_address_id")
+                // {
+                //     customer_invoice_address_id = pt.get_str();
+                // }
+                // else if( name == "ship_to_customer_name")
+                // {
+                //     ship_to_customer_name = pt.get_str();
+                // }
+                // else if( name == "ship_to_address")
+                // {
+                //     ship_to_address = pt.get_str();
+                // }
+                // else if( name == "ship_to_state")
+                // {
+                //     ship_to_state = pt.get_str();
+                // }
+                // else if( name == "ship_to_city")
+                // {
+                //     ship_to_city = pt.get_str();
+                // }
+                // else if( name == "ship_to_zip_code")
+                // {
+                //     ship_to_zip_code = pt.get_str();
+                // }
+                // else if( name == "ship_to_contact_name")
+                // {
+                //     ship_to_contact_name = pt.get_str();
+                // }
+                // else if( name == "ship_to_contact_phone_number")
+                // {
+                //     ship_to_contact_phone_number = pt.get_str();
+                // }
+                // else if( name == "ship_to_contact_email")
+                // {
+                //     ship_to_contact_email = pt.get_str();
+                // }                
+                // else if( name == "trade_term_id")
+                // {
+                //     trade_term_id = pt.get_str();
+                // }  
+                // else if( name == "ss_landed_cost_coefficient")
+                // {
+                //     ss_landed_cost_coefficient = pt.get_real();
+                // }
+                // else if( name == "dispatch_warehouse_id")
+                // {
+                //     dispatch_warehouse_id = pt.get_int();
+                // }
+                // else if( name == "requested_delivery_date")
+                // {
+                //     requested_delivery_date = pt.get_str();
+                // }
+                // else if( name == "promotion_code")
+                // {
+                //     promotion_code = pt.get_str();
+                // }                
+                // else if( name == "company_bank_account_id")
+                // {
+                //     company_bank_account_id = pt.get_str();
+                // } 
+                // else if( name == "shipping_cost_total")
+                // {
+                //     shipping_cost_total = pt.get_real();
+                // }
+                // else if( name == "saving_total")
+                // {
+                //     saving_total = pt.get_real();
+                // }
+                // else if( name == "tax_total")
+                // {
+                //     tax_total = pt.get_real();
+                // }
+                // else if( name == "sub_total")
+                // {
+                //     sub_total = pt.get_real();
+                // }
+                // else if( name == "grand_total")
+                // {
+                //     grand_total = pt.get_real();
+                // }
+                // else if( name == "note")
+                // {
+                //     note = pt.get_str();
+                // } 
              //   else if( name == "detail")
             //     {
             //         int sales_order_detail_id;
