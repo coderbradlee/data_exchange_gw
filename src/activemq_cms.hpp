@@ -413,7 +413,7 @@ public:
         json_spirit::read( text, value );
 
         string sales_order_id;
-        string so_no
+        string so_no;
         string po_no;
         int status;
         string order_date;
@@ -676,7 +676,7 @@ public:
                 order_lines.push_back( Pair("product_sku", "123"));
                 order_lines.push_back( Pair("custom_description", note));
                 order_lines.push_back( Pair("quantity", quantity));
-                order_lines.push_back( Pair(>("price", unit_price));
+                order_lines.push_back( Pair("price", unit_price));
                 order_lines.push_back( Pair("product_discount",sub_discount));
 
                 product_taxes.push_back( Pair("tax_name", "TAX"));
@@ -689,7 +689,7 @@ public:
         }//for
             ret_json_all.push_back( Pair("orderbot_account_id", 1));
             ret_json_all.push_back( Pair("order_date",order_date));
-            ret_json_all.push_back( Pair("orderbot_account_id",null));
+            ret_json_all.push_back( Pair("orderbot_account_id",Value()));
             ret_json_all.push_back( Pair("order_date",order_date));
             ret_json_all.push_back( Pair("ship_date",requested_delivery_date));
             ret_json_all.push_back( Pair("orderbot_customer_id","need get from orderbot"));//need get from orderbot
