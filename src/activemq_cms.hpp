@@ -460,29 +460,28 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             const json_spirit::Object &obj = value.get_obj();
             for(unsigned int i = 0; i < obj.size(); ++i )
-            {
-                
+            {                
                 const json_spirit::Pair& pair = obj[i];
                 const string& name  = pair.name_;
                 const json_spirit::Value&  pt = pair.value_;
-                cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                //cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 if( name == "sales_order_id")
                 {
                     sales_order_id = pt.get_str();
                     cout<<sales_order_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 }
-                // else if( name == "so_no")
-                // {
-                //     so_no = pt.get_str();
-                // }
-                // else if( name == "po_no")
-                // {
-                //     po_no = pt.get_str();
-                // }
-                // else if( name == "status")
-                // {
-                //     status = pt.get_int();
-                // }
+                else if( name == "so_no")
+                {
+                    so_no = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "po_no")
+                {
+                    po_no = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "status")
+                {
+                    status = pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
                 // else if( name == "order_date")
                 // {
                 //     order_date = pt.get_str();
