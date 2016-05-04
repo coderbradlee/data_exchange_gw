@@ -448,7 +448,8 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         double sub_total;
         double grand_total;
         string note;
-        json_spirit::Object ret_json_all,detail_child,order_lines,product_taxes;
+        json_spirit::Object ret_json_all,order_lines,product_taxes;
+        json_spirit::Array detail_child;
         if (value.type() != obj_type)
         {
             //return;
