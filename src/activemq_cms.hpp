@@ -463,14 +463,14 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             {
                 
                 const json_spirit::Pair& pair = obj[i];
-                cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 const string& name  = pair.name_;
                 const json_spirit::Value&  pt = pair.value_;
                 cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-            //     if( name == "sales_order_id")
-            //     {
-            //         sales_order_id = pt.get_str();
-            //     }
+                if( name == "sales_order_id")
+                {
+                    sales_order_id = pt.get_str();
+                    cout<<sales_order_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
                 // else if( name == "so_no")
                 // {
                 //     so_no = pt.get_str();
