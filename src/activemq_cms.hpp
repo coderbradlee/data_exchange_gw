@@ -482,30 +482,30 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 {
                     status = pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 }
-                // else if( name == "order_date")
-                // {
-                //     order_date = pt.get_str();
-                // }
-                // else if( name == "company_id")
-                // {
-                //     company_id = pt.get_str();
-                // }
-                // else if( name == "sales_id")
-                // {
-                //     sales_id = pt.get_str();
-                // }
-                // else if( name == "currency_id")
-                // {
-                //     currency_id = pt.get_str();
-                // }
-                // else if( name == "ss_currency_daily_exchange_rate")
-                // {
-                //     ss_currency_daily_exchange_rate = pt.get_real();
-                // }
-                // else if( name == "tax_schedule_id")
-                // {
-                //     tax_schedule_id = pt.get_str();
-                // }
+                else if( name == "order_date")
+                {
+                    order_date = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "company_id")
+                {
+                    company_id = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "sales_id")
+                {
+                    sales_id = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "currency_id")
+                {
+                    currency_id = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "ss_currency_daily_exchange_rate")
+                {
+                    ss_currency_daily_exchange_rate = pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
+                else if( name == "tax_schedule_id")
+                {
+                    tax_schedule_id = pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                }
                 // else if( name == "ss_tax_rate")
                 // {
                 //     ss_tax_rate = pt.get_real();
