@@ -411,49 +411,50 @@ public:
         string text="{    \"sales_order_id\": \"1\",    \"so_no\": \"2\",    \"po_no\": \"3\",    \"status\": 0,    \"order_date\": \"2016-05-03\",    \"company_id\": \"4\",    \"sales_id\": \"5\",    \"currency_id\": \"6\",    \"ss_currency_daily_exchange_rate\": 6.45,    \"tax_schedule_id\": \"7\",    \"ss_tax_rate\": 7.2,    \"customer_master_id\": \"8\",    \"customer_contact_id\": \"9\",    \"customer_invoice_address_id\": \"10\",    \"ship_to_customer_name\": \"11\",    \"ship_to_address\": \"12\",    \"ship_to_state\": \"NY\",    \"ship_to_city\": \"13\",    \"ship_to_zip_code\": \"10118\",    \"ship_to_contact_name\": \"14\",    \"ship_to_contact_phone_number\": \"+1 800-428-4322\",    \"ship_to_contact_email\": \"test@orderbot.com\",    \"trade_term_id\": \"17\",    \"ss_landed_cost_coefficient\": 3.3,    \"dispatch_warehouse_id\": 1,    \"requested_delivery_date\": \"2016-05-03\",    \"promotion_code\": \"\",    \"company_bank_account_id\": \"\",    \"shipping_cost_total\": 25.48,    \"saving_total\": 3.56,    \"tax_total\": 22.51,    \"sub_total\": 180.37,    \"grand_total\": 218.67,    \"note\": \"note\",    \"detail\": [        {            \"sales_order_detail_id\": 44,            \"item_master_id\": \"\",            \"ss_guidance_price\": 5.46,            \"ss_promotion_price\": 5.41,            \"unit_price\": 5.43,            \"uom_id\": \"\",            \"quantity\": 12,            \"sub_total\": 63.67,            \"sub_tax\": 4.33,            \"sub_shipping_cost\": 5.68,            \"sub_discount\": 0,            \"note\": \"detail.note\"        }    ]}";
         using namespace json_spirit;
         json_spirit::Value value;
-cout<<text<<":"<<__FILE__<<":"<<__LINE__<<endl;
+//cout<<text<<":"<<__FILE__<<":"<<__LINE__<<endl;
         json_spirit::read_or_throw( text, value );
 cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        // string sales_order_id;
-        // string so_no;
-        // string po_no;
-        // int status;
-        // string order_date;
-        // string company_id;
-        // string sales_id;
-        // string currency_id;
-        // double ss_currency_daily_exchange_rate;
-        // string tax_schedule_id;
-        // double ss_tax_rate;
-        // string customer_master_id;
-        // string customer_contact_id;
-        // string customer_invoice_address_id;
-        // string ship_to_customer_name;
-        // string ship_to_address;
-        // string ship_to_state;
-        // string ship_to_city;
-        // string ship_to_zip_code;
-        // string ship_to_contact_name;
-        // string ship_to_contact_phone_number;
-        // string ship_to_contact_email;
-        // string trade_term_id;
-        // double ss_landed_cost_coefficient;
-        // int dispatch_warehouse_id;
-        // string requested_delivery_date;
-        // string promotion_code;
-        // string company_bank_account_id;
-        // double shipping_cost_total;
-        // double saving_total;
-        // double tax_total;
-        // double sub_total;
-        // double grand_total;
-        // string note;
-        // json_spirit::Object ret_json_all,detail_child,order_lines,product_taxes;
-        // if (value.type() != obj_type)
-        // {
-        //     //return;
-        //     //m_ss.str("");
-        // }
+        string sales_order_id;
+        string so_no;
+        string po_no;
+        int status;
+        string order_date;
+        string company_id;
+        string sales_id;
+        string currency_id;
+        double ss_currency_daily_exchange_rate;
+        string tax_schedule_id;
+        double ss_tax_rate;
+        string customer_master_id;
+        string customer_contact_id;
+        string customer_invoice_address_id;
+        string ship_to_customer_name;
+        string ship_to_address;
+        string ship_to_state;
+        string ship_to_city;
+        string ship_to_zip_code;
+        string ship_to_contact_name;
+        string ship_to_contact_phone_number;
+        string ship_to_contact_email;
+        string trade_term_id;
+        double ss_landed_cost_coefficient;
+        int dispatch_warehouse_id;
+        string requested_delivery_date;
+        string promotion_code;
+        string company_bank_account_id;
+        double shipping_cost_total;
+        double saving_total;
+        double tax_total;
+        double sub_total;
+        double grand_total;
+        string note;
+        json_spirit::Object ret_json_all,detail_child,order_lines,product_taxes;
+        if (value.type() != obj_type)
+        {
+            //return;
+            //m_ss.str("");
+            cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        }
         // else
         // {
         //     const json_spirit::Object &obj = value.get_obj();
