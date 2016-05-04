@@ -406,8 +406,8 @@ public:
 	void parser_json_write_ss(const string& texts)
     {
         string text="{    \"sales_order_id\": \"1\",    \"so_no\": \"2\",    \"po_no\": \"3\",    \"status\": 0,    \"order_date\": \"2016-05-03\",    \"company_id\": \"4\",    \"sales_id\": \"5\",    \"currency_id\": \"6\",    \"ss_currency_daily_exchange_rate\": 6.45,    \"tax_schedule_id\": \"7\",    \"ss_tax_rate\": 7.2,    \"customer_master_id\": \"8\",    \"customer_contact_id\": \"9\",    \"customer_invoice_address_id\": \"10\",    \"ship_to_customer_name\": \"11\",    \"ship_to_address\": \"12\",    \"ship_to_state\": \"NY\",    \"ship_to_city\": \"13\",    \"ship_to_zip_code\": \"10118\",    \"ship_to_contact_name\": \"14\",    \"ship_to_contact_phone_number\": \"+1 800-428-4322\",    \"ship_to_contact_email\": \"test@orderbot.com\",    \"trade_term_id\": \"17\",    \"ss_landed_cost_coefficient\": 3.3,    \"dispatch_warehouse_id\": \"1\",    \"requested_delivery_date\": \"2016-05-03\",    \"promotion_code\": \"\",    \"company_bank_account_id\": \"\",    \"shipping_cost_total\": 25.48,    \"saving_total\": 3.56,    \"tax_total\": 22.51,    \"sub_total\": 180.37,    \"grand_total\": 218.67,    \"note\": \"note\",    \"detail\": [        {            \"sales_order_detail_id\": 44,            \"item_master_id\": \"\",            \"ss_guidance_price\": 5.46,            \"ss_promotion_price\": 5.41,            \"unit_price\": 5.43,            \"uom_id\": \"\",            \"quantity\": 12,            \"sub_total\": 63.67,            \"sub_tax\": 4.33,            \"sub_shipping_cost\": 5.68,            \"sub_discount\": 0,            \"note\": \"detail.note\"        }    ]}";
-            ptree pt,ret_json_all;
-            ptree return_json;
+            basic_ptree<std::string, std::string> pt,ret_json_all;
+            basic_ptree<std::string, std::string> return_json;
             std::istringstream is(text);
             read_json(is, pt);
 
@@ -484,7 +484,7 @@ public:
             ret_json_all.put<double>("order_discount", 0);
             ret_json_all.put<double>("order_total", grand_total);
 
-            ptree shipping_tax;
+            basic_ptree<std::string, std::string> shipping_tax;
             shipping_tax.put<std::string>("tax_name","TAX");
             shipping_tax.put<double>("tax_rate",0.05);
             shipping_tax.put<double>("amount",0.15);
@@ -492,7 +492,7 @@ public:
             //ret_json_all.push_back(std::make_pair("shipping_tax", shipping_tax));
 
 
-            ptree shipping_address;
+            basic_ptree<std::string, std::string> shipping_address;
             shipping_address.put<std::string>("store_name", "Test Store");
             shipping_address.put<std::string>("first_name", ship_to_contact_name);
             shipping_address.put<std::string>("last_name", "x");
@@ -506,7 +506,7 @@ public:
             shipping_address.put<std::string>("email",ship_to_contact_email);
             ret_json_all.push_back(std::make_pair("shipping_address", shipping_address));
 
-            ptree billing_address;
+            basic_ptree<std::string, std::string> billing_address;
             billing_address.put<std::string>("account_name", "Test Store");
             billing_address.put<std::string>("first_name", ship_to_contact_name);
             billing_address.put<std::string>("last_name", "x");
@@ -521,7 +521,7 @@ public:
             ret_json_all.push_back(std::make_pair("billing_address", billing_address));
 
 
-            ptree detail_child = pt.get_child("detail");
+            basic_ptree<std::string, std::string> detail_child = pt.get_child("detail");
             for(auto& sub:detail_child)
             {
                 int sales_order_detail_id=sub.second.get<int>("sales_order_detail_id");
@@ -537,7 +537,7 @@ public:
                 double sub_discount=sub.second.get<double>("sub_discount");
                 string note=sub.second.get<string>("note");
 
-                ptree order_lines;
+                basic_ptree<std::string, std::string> order_lines;
 
                 try 
                 {
@@ -558,15 +558,15 @@ public:
                 order_lines.put<double>("quantity", quantity);
                 order_lines.put<double>("price", unit_price);
                 order_lines.put<double>("product_discount",sub_discount);
-                ptree product_taxes;
+                basic_ptree<std::string, std::string> product_taxes;
                 product_taxes.put<std::string>("tax_name", "TAX");
                 product_taxes.put<double>("tax_rate",sub_tax);
                 product_taxes.put<double>("amount", quantity);
 
-                ptree product_taxes_array;
+                basic_ptree<std::string, std::string> product_taxes_array;
                 product_taxes_array.push_back(std::make_pair("", product_taxes));
                 order_lines.add_child("product_taxes", product_taxes_array);
-                ptree order_lines_array;
+                basic_ptree<std::string, std::string> order_lines_array;
                 order_lines_array.push_back(std::make_pair("", order_lines));
                 //ret_json_all.push_back(std::make_pair("order_lines", order_lines));
 
