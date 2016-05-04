@@ -627,58 +627,60 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                             const json_spirit::Pair& detail_child_obj_pair = detail_child_obj[x];
                             const string& detail_child_obj_name  = detail_child_obj_pair.name_;
                             const json_spirit::Value&  detail_child_obj_pt = detail_child_obj_pair.value_;
-                            //cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                            cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                            
-                            if( detail_child_obj_name == "sales_order_detail_id")
-                            {
-                                sales_order_detail_id = detail_child_obj_pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-                            }
-            //             else if( detail_child_name == "sales_order_detail_id")
-            //             {
-            //                 item_master_id = detail_child_pt.get_str();
-            //             }
-            //             else if( detail_child_name == "ss_guidance_price")
-            //             {
-            //                 ss_guidance_price = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "ss_promotion_price")
-            //             {
-            //                 ss_promotion_price = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "unit_price")
-            //             {
-            //                 unit_price = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "ss_guidance_price")
-            //             {
-            //                 ss_guidance_price = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "quantity")
-            //             {
-            //                 quantity = detail_child_pt.get_real();
-            //             }else if( detail_child_name == "sub_total")
-            //             {
-            //                 sub_total = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "sub_tax")
-            //             {
-            //                 sub_tax = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "sub_shipping_cost")
-            //             {
-            //                 sub_shipping_cost = detail_child_pt.get_real();
-            //             }else if( detail_child_name == "sub_discount")
-            //             {
-            //                 sub_discount = detail_child_pt.get_real();
-            //             }
-            //             else if( detail_child_name == "uom_id")
-            //             {
-            //                 uom_id = detail_child_pt.get_str();
-            //             }
-            //             else if( detail_child_name == "note")
-            //             {
-            //                 note = detail_child_pt.get_str();
-            //             }
+                        if( detail_child_obj_name == "sales_order_detail_id")
+                        {
+                            sales_order_detail_id = detail_child_obj_pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "sales_order_detail_id")
+                        {
+                            item_master_id = detail_child_obj_pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "ss_guidance_price")
+                        {
+                            ss_guidance_price = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "ss_promotion_price")
+                        {
+                            ss_promotion_price = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "unit_price")
+                        {
+                            unit_price = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "ss_guidance_price")
+                        {
+                            ss_guidance_price = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "quantity")
+                        {
+                            quantity = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "sub_total")
+                        {
+                            sub_total = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "sub_tax")
+                        {
+                            sub_tax = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "sub_shipping_cost")
+                        {
+                            sub_shipping_cost = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "sub_discount")
+                        {
+                            sub_discount = detail_child_obj_pt.get_real();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "uom_id")
+                        {
+                            uom_id = detail_child_obj_pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
+                        else if( detail_child_obj_name == "note")
+                        {
+                            note = detail_child_obj_pt.get_str();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
              }//for
             }//for
             //     order_lines.push_back( Pair("line_number", sales_order_detail_id));
