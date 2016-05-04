@@ -43,23 +43,22 @@ void test()
 	        if( name == "sales_order_id" && vvalue.type() == int_type)
 	        {
 	            id = vvalue.get_int();
-	            cout<<id<<endl;
+	            cout<<__FILE__<<":"<<__LINE__<<":"<<id<<endl;
 	        }
 	        else if( name == "sales_order_id" && vvalue.type() == str_type)
 	        {
 	            sales_order_id = vvalue.get_str();
-	            cout<<sales_order_id<<endl;
+	            cout<<__FILE__<<":"<<__LINE__<<":"<<sales_order_id<<endl;
 	        }
 	    }
 	}
 
 
-
-	// json_spirit::Object robj;
-	// robj.push_back( Pair("id", id));
-	// robj.push_back( Pair("username", username));
-	// std::string output = json_spirit::write_formatted(robj);
-
+	json_spirit::Object robj;
+	robj.push_back( Pair("id", 1));
+	robj.push_back( Pair("username", "test"));
+	std::string output = json_spirit::write_formatted(robj);
+	cout<<__FILE__<<":"<<__LINE__<<":"<<output<<endl;
 }
 int main()
 {
