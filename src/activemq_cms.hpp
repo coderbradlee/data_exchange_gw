@@ -690,89 +690,89 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //     order_lines.push_back( Pair("product_taxes",product_taxes));
                 
             // }//else if
-        }//for
-            ret_json_all.push_back( Pair("orderbot_account_id", 1));
-            ret_json_all.push_back( Pair("order_date",order_date));
-            ret_json_all.push_back( Pair("orderbot_account_id",Value()));
-            ret_json_all.push_back( Pair("order_date",order_date));
-            ret_json_all.push_back( Pair("ship_date",requested_delivery_date));
-            ret_json_all.push_back( Pair("orderbot_customer_id","need get from orderbot"));//need get from orderbot
-            ret_json_all.push_back( Pair("reference_customer_id",customer_master_id));
-            ret_json_all.push_back( Pair("reference_order_id",sales_order_id));
-            ret_json_all.push_back( Pair("customer_po", sales_order_id));
+        // }//for
+        //     ret_json_all.push_back( Pair("orderbot_account_id", 1));
+        //     ret_json_all.push_back( Pair("order_date",order_date));
+        //     ret_json_all.push_back( Pair("orderbot_account_id",Value()));
+        //     ret_json_all.push_back( Pair("order_date",order_date));
+        //     ret_json_all.push_back( Pair("ship_date",requested_delivery_date));
+        //     ret_json_all.push_back( Pair("orderbot_customer_id","need get from orderbot"));//need get from orderbot
+        //     ret_json_all.push_back( Pair("reference_customer_id",customer_master_id));
+        //     ret_json_all.push_back( Pair("reference_order_id",sales_order_id));
+        //     ret_json_all.push_back( Pair("customer_po", sales_order_id));
             
-            //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
-            if(status==0||status==1)
-            {
-               ret_json_all.push_back( Pair("order_status", "unshipped"));
-            }
-            else if(status==2)
-            {
-                ret_json_all.push_back( Pair("order_status", "do_not_ship"));
-            }
-            else
-            {
-                ret_json_all.push_back( Pair("order_status", "unconfirmed"));
-            }  
-            ret_json_all.push_back( Pair("order_notes", note));
-            ret_json_all.push_back( Pair("internal_notes", "test internal"));
-            ret_json_all.push_back( Pair("bill_third_party", false));
-            ret_json_all.push_back( Pair("distribution_center_id", dispatch_warehouse_id));//need get from orderbot
-            ret_json_all.push_back( Pair("account_group_id", "null"));//need get from orderbot
-            ret_json_all.push_back( Pair("order_guide_id", "null"));//need get from orderbot
-            ret_json_all.push_back( Pair("insure_packages", false));//not sure
-            ret_json_all.push_back( Pair("shipping_code", "A1"));//need get from orderbot
-            ret_json_all.push_back( Pair("email_confirmation_address", "test@orderbot.com"));
-            ret_json_all.push_back( Pair("subtotal", sub_total));
-            ret_json_all.push_back( Pair("shipping", shipping_cost_total));
-            ret_json_all.push_back( Pair("order_discount", 0));
-            ret_json_all.push_back( Pair("order_total", grand_total));
+        //     //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
+        //     if(status==0||status==1)
+        //     {
+        //        ret_json_all.push_back( Pair("order_status", "unshipped"));
+        //     }
+        //     else if(status==2)
+        //     {
+        //         ret_json_all.push_back( Pair("order_status", "do_not_ship"));
+        //     }
+        //     else
+        //     {
+        //         ret_json_all.push_back( Pair("order_status", "unconfirmed"));
+        //     }  
+        //     ret_json_all.push_back( Pair("order_notes", note));
+        //     ret_json_all.push_back( Pair("internal_notes", "test internal"));
+        //     ret_json_all.push_back( Pair("bill_third_party", false));
+        //     ret_json_all.push_back( Pair("distribution_center_id", dispatch_warehouse_id));//need get from orderbot
+        //     ret_json_all.push_back( Pair("account_group_id", "null"));//need get from orderbot
+        //     ret_json_all.push_back( Pair("order_guide_id", "null"));//need get from orderbot
+        //     ret_json_all.push_back( Pair("insure_packages", false));//not sure
+        //     ret_json_all.push_back( Pair("shipping_code", "A1"));//need get from orderbot
+        //     ret_json_all.push_back( Pair("email_confirmation_address", "test@orderbot.com"));
+        //     ret_json_all.push_back( Pair("subtotal", sub_total));
+        //     ret_json_all.push_back( Pair("shipping", shipping_cost_total));
+        //     ret_json_all.push_back( Pair("order_discount", 0));
+        //     ret_json_all.push_back( Pair("order_total", grand_total));
 
-            json_spirit::Object shipping_tax;
-            shipping_tax.push_back( Pair("tax_name","TAX"));
-            shipping_tax.push_back( Pair("tax_rate",0.05));
-            shipping_tax.push_back( Pair("amount",0.15));
+        //     json_spirit::Object shipping_tax;
+        //     shipping_tax.push_back( Pair("tax_name","TAX"));
+        //     shipping_tax.push_back( Pair("tax_rate",0.05));
+        //     shipping_tax.push_back( Pair("amount",0.15));
               
-            //ret_json_all.push_back(std::make_pair("shipping_tax", shipping_tax));
+        //     //ret_json_all.push_back(std::make_pair("shipping_tax", shipping_tax));
 
-            json_spirit::Object shipping_address;
-            shipping_address.push_back( Pair("tax_name","TAX"));
+        //     json_spirit::Object shipping_address;
+        //     shipping_address.push_back( Pair("tax_name","TAX"));
             
-            shipping_address.push_back( Pair("store_name", "Test Store"));
-            shipping_address.push_back( Pair("first_name", ship_to_contact_name));
-            shipping_address.push_back( Pair("last_name", "x"));
-            shipping_address.push_back( Pair("address1", ship_to_address));
-            shipping_address.push_back( Pair("address2", ""));
-            shipping_address.push_back( Pair("city", ship_to_city));
-            shipping_address.push_back( Pair("state", ship_to_state));
-            shipping_address.push_back( Pair("postal_code",ship_to_zip_code));
-            shipping_address.push_back( Pair("country", "US"));
-            shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number));
-            shipping_address.push_back( Pair("email",ship_to_contact_email));
+        //     shipping_address.push_back( Pair("store_name", "Test Store"));
+        //     shipping_address.push_back( Pair("first_name", ship_to_contact_name));
+        //     shipping_address.push_back( Pair("last_name", "x"));
+        //     shipping_address.push_back( Pair("address1", ship_to_address));
+        //     shipping_address.push_back( Pair("address2", ""));
+        //     shipping_address.push_back( Pair("city", ship_to_city));
+        //     shipping_address.push_back( Pair("state", ship_to_state));
+        //     shipping_address.push_back( Pair("postal_code",ship_to_zip_code));
+        //     shipping_address.push_back( Pair("country", "US"));
+        //     shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number));
+        //     shipping_address.push_back( Pair("email",ship_to_contact_email));
 
-            ret_json_all.push_back(Pair("shipping_address", shipping_address));
+        //     ret_json_all.push_back(Pair("shipping_address", shipping_address));
 
-            json_spirit::Object billing_address;
-            billing_address.push_back( Pair("tax_name","TAX"));
+        //     json_spirit::Object billing_address;
+        //     billing_address.push_back( Pair("tax_name","TAX"));
             
-            billing_address.push_back( Pair("store_name", "Test Store"));
-            billing_address.push_back( Pair("first_name", ship_to_contact_name));
-            billing_address.push_back( Pair("last_name", "x"));
-            billing_address.push_back( Pair("address1", ship_to_address));
-            billing_address.push_back( Pair("address2", ""));
-            billing_address.push_back( Pair("city", ship_to_city));
-            billing_address.push_back( Pair("state", ship_to_state));
-            billing_address.push_back( Pair("postal_code",ship_to_zip_code));
-            billing_address.push_back( Pair("country", "US"));
-            billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number));
-            billing_address.push_back( Pair("email",ship_to_contact_email));
+        //     billing_address.push_back( Pair("store_name", "Test Store"));
+        //     billing_address.push_back( Pair("first_name", ship_to_contact_name));
+        //     billing_address.push_back( Pair("last_name", "x"));
+        //     billing_address.push_back( Pair("address1", ship_to_address));
+        //     billing_address.push_back( Pair("address2", ""));
+        //     billing_address.push_back( Pair("city", ship_to_city));
+        //     billing_address.push_back( Pair("state", ship_to_state));
+        //     billing_address.push_back( Pair("postal_code",ship_to_zip_code));
+        //     billing_address.push_back( Pair("country", "US"));
+        //     billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number));
+        //     billing_address.push_back( Pair("email",ship_to_contact_email));
             
-            ret_json_all.push_back(Pair("shipping_address", billing_address));
-            //ret_json_all.push_back(Pair("order_lines", order_lines));
+        //     ret_json_all.push_back(Pair("shipping_address", billing_address));
+        //     //ret_json_all.push_back(Pair("order_lines", order_lines));
             
         }//else
-        cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        m_ss=write(ret_json_all);
+        // cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        // m_ss=write(ret_json_all);
     }
     catch(json_spirit::Error_position& e)
     {
