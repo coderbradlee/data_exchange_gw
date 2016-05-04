@@ -617,18 +617,21 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     double sub_discount;
                     string note;
                     
-                    detail_child = pt.get_obj();
+                    detail_child = pt.get_array();
                     for(unsigned int j = 0; i < detail_child.size(); ++j )
                     {
-                        const json_spirit::Pair& detail_child_pair = detail_child[j];
-
-                        const string& detail_child_name  = detail_child_pair.name_;
-                        const json_spirit::Value&  detail_child_pt = detail_child_pair.value_;
-
-                        if( detail_child_name == "sales_order_detail_id")
-                        {
-                            sales_order_detail_id = detail_child_pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-                        }
+                        const json_spirit::Object &detail_child_obj = detail_child[j].get_obj();
+                        for(unsigned int x = 0; x < detail_child_obj.size(); ++x )
+                        {                
+                            const json_spirit::Pair& detail_child_obj_pair = detail_child_obj[x];
+                            const string& detail_child_obj_name  = detail_child_obj_pair.name_;
+                            const json_spirit::Value&  detail_child_obj_pt = detail_child_obj_pair.value_;
+                            //cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                           
+                            if( detail_child_obj_name == "sales_order_detail_id")
+                            {
+                                sales_order_detail_id = detail_child_obj_pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                            }
             //             else if( detail_child_name == "sales_order_detail_id")
             //             {
             //                 item_master_id = detail_child_pt.get_str();
@@ -676,7 +679,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //                 note = detail_child_pt.get_str();
             //             }
              }//for
-
+            }//for
             //     order_lines.push_back( Pair("line_number", sales_order_detail_id));
             //     order_lines.push_back( Pair("product_sku", "123"));
             //     order_lines.push_back( Pair("custom_description", note));
