@@ -412,7 +412,7 @@ public:
         using namespace json_spirit;
         json_spirit::Value value;
 
-        json_spirit::read( text, value );
+        json_spirit::read_or_throw( text, value );
 
         string sales_order_id;
         string so_no;
