@@ -616,19 +616,19 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     double sub_shipping_cost;
                     double sub_discount;
                     string note;
-                    cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-            //         detail_child = pt.get_obj();
-            //         for(unsigned int i = 0; i != detail_child.size(); ++i )
-            //         {
-            //             const json_spirit::Pair& detail_child_pair = detail_child[i];
+                    
+                    detail_child = pt.get_obj();
+                    for(unsigned int j = 0; i < detail_child.size(); ++j )
+                    {
+                        const json_spirit::Pair& detail_child_pair = detail_child[j];
 
-            //             const string& detail_child_name  = detail_child_pair.name_;
-            //             const json_spirit::Value&  detail_child_pt = detail_child_pair.value_;
+                        const string& detail_child_name  = detail_child_pair.name_;
+                        const json_spirit::Value&  detail_child_pt = detail_child_pair.value_;
 
-            //             if( detail_child_name == "sales_order_detail_id")
-            //             {
-            //                 sales_order_detail_id = detail_child_pt.get_int();
-            //             }
+                        if( detail_child_name == "sales_order_detail_id")
+                        {
+                            sales_order_detail_id = detail_child_pt.get_int();cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                        }
             //             else if( detail_child_name == "sales_order_detail_id")
             //             {
             //                 item_master_id = detail_child_pt.get_str();
@@ -675,7 +675,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //             {
             //                 note = detail_child_pt.get_str();
             //             }
-            //     }//for
+             }//for
 
             //     order_lines.push_back( Pair("line_number", sales_order_detail_id));
             //     order_lines.push_back( Pair("product_sku", "123"));
