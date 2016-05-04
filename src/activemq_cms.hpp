@@ -415,7 +415,7 @@ public:
 
             string so_no=pt.get<string>("so_no");
             string po_no=pt.get<string>("po_no");
-            size_t status=pt.get<size_t>("status");
+            int status=pt.get<int>("status");
             string order_date=pt.get<string>("order_date");
             string company_id=pt.get<string>("company_id");
             string sales_id=pt.get<string>("sales_id");
@@ -436,7 +436,7 @@ public:
             string ship_to_contact_email=pt.get<string>("ship_to_contact_email");
             string trade_term_id=pt.get<string>("trade_term_id");
             double ss_landed_cost_coefficient=pt.get<double>("ss_landed_cost_coefficient");
-            size_t dispatch_warehouse_id=pt.get<size_t>("dispatch_warehouse_id");
+            int dispatch_warehouse_id=pt.get<int>("dispatch_warehouse_id");
             string requested_delivery_date=pt.get<string>("requested_delivery_date");
             string promotion_code=pt.get<string>("promotion_code");
             string company_bank_account_id=pt.get<string>("company_bank_account_id");
@@ -473,7 +473,7 @@ public:
             ret_json_all.put<std::string>("order_notes", note);
             ret_json_all.put<std::string>("internal_notes", "test internal");
             ret_json_all.put<bool>("bill_third_party", false);
-            ret_json_all.put<size_t>("distribution_center_id", dispatch_warehouse_id);//need get from orderbot
+            ret_json_all.put<int>("distribution_center_id", dispatch_warehouse_id);//need get from orderbot
             ret_json_all.put<std::string>("account_group_id", "null");//need get from orderbot
             ret_json_all.put<std::string>("order_guide_id", "null");//need get from orderbot
             ret_json_all.put<bool>("insure_packages", false);//not sure
@@ -524,7 +524,7 @@ public:
             ptree detail_child = pt.get_child("detail");
             for(auto& sub:detail_child)
             {
-                size_t sales_order_detail_id=sub.second.get<size_t>("sales_order_detail_id");
+                int sales_order_detail_id=sub.second.get<int>("sales_order_detail_id");
                 string item_master_id=sub.second.get<string>("item_master_id");
                 double ss_guidance_price=sub.second.get<double>("ss_guidance_price");
                 double ss_promotion_price=sub.second.get<double>("ss_promotion_price");
@@ -542,7 +542,7 @@ public:
                 try 
                 {
                     //order_lines.put<int>("line_number", boost::lexical_cast<int>(sales_order_detail_id));
-                    order_lines.put<size_t>("line_number", sales_order_detail_id);
+                    order_lines.put<int>("line_number", sales_order_detail_id);
                 }
                 catch(boost::bad_lexical_cast& e) 
                 {
