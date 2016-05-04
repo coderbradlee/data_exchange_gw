@@ -23,7 +23,7 @@ void test()
 
     json_spirit::read( text, value );
 
-	json::value v = 42;
+	json_spirit::Value v = 42;
 	v = "foo";
 	v = true;
 	v = 14.5;
