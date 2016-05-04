@@ -601,7 +601,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 {
                     note = pt.get_str();
                 } 
-                else if( name == "detail")
+             //   else if( name == "detail")
             //     {
             //         int sales_order_detail_id;
             //         string item_master_id;
