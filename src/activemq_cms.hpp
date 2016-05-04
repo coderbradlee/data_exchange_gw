@@ -580,7 +580,7 @@ public:
 
                 // ret_json_all_array_out.add_child("", ret_json_all_array);
                 // write_json(m_ss, ret_json_all_array_out,false);
-                ret_json_all_array.put_child(ptree::path_type("target.path.to.array"),ret_json_all)
+                ret_json_all_array.put_child(ptree::path_type("target.path.to.array"),ret_json_all);
                 write_json(m_ss, ret_json_all_array,false);
     }
     void decode_request_orderbot(const string& texts)
