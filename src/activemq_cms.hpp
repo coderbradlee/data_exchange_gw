@@ -496,7 +496,7 @@ public:
                 }
                 else if( name == "ss_currency_daily_exchange_rate")
                 {
-                    ss_currency_daily_exchange_rate = pt.get_double();
+                    ss_currency_daily_exchange_rate = pt.get_real();
                 }
                 else if( name == "tax_schedule_id")
                 {
@@ -504,7 +504,7 @@ public:
                 }
                 else if( name == "ss_tax_rate")
                 {
-                    ss_tax_rate = pt.get_double();
+                    ss_tax_rate = pt.get_real();
                 }
                 else if( name == "customer_master_id")
                 {
@@ -556,7 +556,7 @@ public:
                 }  
                 else if( name == "ss_landed_cost_coefficient")
                 {
-                    ss_landed_cost_coefficient = pt.get_double();
+                    ss_landed_cost_coefficient = pt.get_real();
                 }
                 else if( name == "dispatch_warehouse_id")
                 {
@@ -576,23 +576,23 @@ public:
                 } 
                 else if( name == "shipping_cost_total")
                 {
-                    shipping_cost_total = pt.get_double();
+                    shipping_cost_total = pt.get_real();
                 }
                 else if( name == "saving_total")
                 {
-                    saving_total = pt.get_double();
+                    saving_total = pt.get_real();
                 }
                 else if( name == "tax_total")
                 {
-                    tax_total = pt.get_double();
+                    tax_total = pt.get_real();
                 }
                 else if( name == "sub_total")
                 {
-                    sub_total = pt.get_double();
+                    sub_total = pt.get_real();
                 }
                 else if( name == "grand_total")
                 {
-                    grand_total = pt.get_double();
+                    grand_total = pt.get_real();
                 }
                 else if( name == "note")
                 {
@@ -630,37 +630,37 @@ public:
                         }
                         else if( detail_child_name == "ss_guidance_price")
                         {
-                            ss_guidance_price = detail_child_pt.get_double();
+                            ss_guidance_price = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "ss_promotion_price")
                         {
-                            ss_promotion_price = detail_child_pt.get_double();
+                            ss_promotion_price = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "unit_price")
                         {
-                            unit_price = detail_child_pt.get_double();
+                            unit_price = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "ss_guidance_price")
                         {
-                            ss_guidance_price = detail_child_pt.get_double();
+                            ss_guidance_price = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "quantity")
                         {
-                            quantity = detail_child_pt.get_double();
+                            quantity = detail_child_pt.get_real();
                         }else if( detail_child_name == "sub_total")
                         {
-                            sub_total = detail_child_pt.get_double();
+                            sub_total = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "sub_tax")
                         {
-                            sub_tax = detail_child_pt.get_double();
+                            sub_tax = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "sub_shipping_cost")
                         {
-                            sub_shipping_cost = detail_child_pt.get_double();
+                            sub_shipping_cost = detail_child_pt.get_real();
                         }else if( detail_child_name == "sub_discount")
                         {
-                            sub_discount = detail_child_pt.get_double();
+                            sub_discount = detail_child_pt.get_real();
                         }
                         else if( detail_child_name == "uom_id")
                         {
