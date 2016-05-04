@@ -458,18 +458,18 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         else
         {
             cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-            const json_spirit::Object &obj = value.get_obj();
-            for(unsigned int i = 0; i < obj.size(); ++i )
-            {
-                const json_spirit::Pair& pair = obj[i];
+            // const json_spirit::Object &obj = value.get_obj();
+            // for(unsigned int i = 0; i < obj.size(); ++i )
+            // {
+            //     const json_spirit::Pair& pair = obj[i];
 
-                const string& name  = pair.name_;
-                const json_spirit::Value&  pt = pair.value_;
+            //     const string& name  = pair.name_;
+            //     const json_spirit::Value&  pt = pair.value_;
 
-                if( name == "sales_order_id")
-                {
-                    sales_order_id = pt.get_str();
-                }
+            //     if( name == "sales_order_id")
+            //     {
+            //         sales_order_id = pt.get_str();
+            //     }
                 // else if( name == "so_no")
                 // {
                 //     so_no = pt.get_str();
