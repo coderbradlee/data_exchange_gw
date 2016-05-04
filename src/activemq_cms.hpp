@@ -767,7 +767,8 @@ public:
             ret_json_all.push_back(Pair("order_lines", order_lines));
             
         }//else
-         m_ss=write(ret_json_all);
+        cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        m_ss=write(ret_json_all);
     }
     void decode_request_orderbot(const string& texts)
     {
