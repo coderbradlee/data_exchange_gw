@@ -523,9 +523,9 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_address.push_back( Pair("city", ship_to_city.get_str()));
     shipping_address.push_back( Pair("state", ship_to_state.get_str()));
     shipping_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
-    shipping_address.push_back( Pair("country", "US"));
-    // shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
-    // shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
+    //shipping_address.push_back( Pair("country", "US"));
+    shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
+    shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
 
     //ret_json_all.push_back( Pair("shipping_address", shipping_address));
 
