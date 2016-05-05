@@ -485,7 +485,7 @@ public:
         const auto& sub_shipping_cost= get_object_item(detail_holder, "sub_shipping_cost");  
         const auto& sub_discount= get_object_item(detail_holder, "sub_discount");       
         const auto& note= get_object_item(detail_holder, "note");    
-        cout<<note<<":"<<__FILE__<<":"<<__LINE__<<endl;         
+        cout<<note.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;         
     }//for
             //     order_lines.push_back( Pair("line_number", sales_order_detail_id));
             //     order_lines.push_back( Pair("product_sku", "123"));
