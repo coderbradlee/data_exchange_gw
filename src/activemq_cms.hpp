@@ -469,7 +469,7 @@ public:
     const auto& grand_total= get_object_item(doc, "grand_total");                   
     const auto& note= get_object_item(doc, "note");                          
     const auto& detail = get_object_item(doc, "detail");
-
+cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     ret_json_all.push_back( Pair("orderbot_account_id", 1));
     ret_json_all.push_back( Pair("order_date",order_date.get_str()));
     ret_json_all.push_back( Pair("orderbot_account_id",Value()));
@@ -479,7 +479,7 @@ public:
     ret_json_all.push_back( Pair("reference_customer_id",customer_master_id.get_str()));
     ret_json_all.push_back( Pair("reference_order_id",sales_order_id.get_str()));
     ret_json_all.push_back( Pair("customer_po", sales_order_id.get_str()));
-    
+cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
     if(status.get_int()==0||status.get_int()==1)
     {
