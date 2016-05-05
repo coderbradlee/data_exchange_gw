@@ -529,7 +529,7 @@ public:
     shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
     shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
 
-    ret_json_all.push_back(Pair("shipping_address", shipping_address.get_obj()));
+    ret_json_all.push_back(Pair("shipping_address", shipping_address));
 
     json_spirit::Object billing_address;
     billing_address.push_back( Pair("tax_name","TAX"));
@@ -546,7 +546,7 @@ public:
     billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
     billing_address.push_back( Pair("email",ship_to_contact_email.get_str()));
     
-    ret_json_all.push_back(Pair("shipping_address", billing_address.get_obj()));
+    ret_json_all.push_back(Pair("shipping_address", billing_address));
             
     for( int i = 0; i < detail.get_array().size(); i++)
     {
@@ -580,9 +580,9 @@ public:
         product_taxes.push_back( Pair("tax_rate",sub_tax.get_real()));
         product_taxes.push_back( Pair("amount", quantity.get_int()));
         
-        order_lines.push_back( Pair("product_taxes",product_taxes.get_obj()));
+        order_lines.push_back( Pair("product_taxes",product_taxes));
 
-        ret_json_all.push_back(Pair("order_lines", order_lines.get_obj()));
+        ret_json_all.push_back(Pair("order_lines", order_lines));
 
     }
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
