@@ -638,12 +638,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			cout<<__FILE__<<":"<<__LINE__<<endl;   
 
     	}
-    	catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-		}
+    	
 		catch (CMSException& e) 
         {
             BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
@@ -654,11 +649,28 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-		}
+		
+        catch( const runtime_error& e )
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+            boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        }
+        catch(json_spirit::Error_position& e)
+        {
+            cout<<e.reason_<<":"<<__FILE__<<":"<<__LINE__<<endl;
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.reason_;
+            boost_log->get_initsink()->flush();//cout<<e.what()<<endl;
+        }
+        catch(std::exception& e)
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+            boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        }
+        catch(...)
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":unknown error";
+            boost_log->get_initsink()->flush();cout<<"unknown error:"<<__FILE__<<":"<<__LINE__<<endl;
+        }
     }
     void send_message_to_activemq()
 	{
