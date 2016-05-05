@@ -589,6 +589,11 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         m_ss=write(ret_json_all);
     }
+    catch( const runtime_error& e )
+    {
+        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+    }
     catch(json_spirit::Error_position& e)
     {
         cout<<e.reason_<<":"<<__FILE__<<":"<<__LINE__<<endl;
@@ -599,6 +604,11 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     {
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
         boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+    }
+    catch(...)
+    {
+        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":unknown error";
+        boost_log->get_initsink()->flush();cout<<"unknown error:"<<__FILE__<<":"<<__LINE__<<endl;
     }
     }
     void decode_request_orderbot(const string& texts)
