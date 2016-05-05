@@ -481,11 +481,11 @@ public:
     ret_json_all.push_back( Pair("customer_po", sales_order_id.get_str()));
     
     //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
-    if(status==0||status==1)
+    if(status.get_int()==0||status.get_int()==1)
     {
        ret_json_all.push_back( Pair("order_status", "unshipped"));
     }
-    else if(status==2)
+    else if(status.get_int()==2)
     {
         ret_json_all.push_back( Pair("order_status", "do_not_ship"));
     }
@@ -506,7 +506,7 @@ public:
     ret_json_all.push_back( Pair("shipping", shipping_cost_total.get_real()));
     ret_json_all.push_back( Pair("order_discount", 0));
     ret_json_all.push_back( Pair("order_total", grand_total.get_real()));
-
+cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     json_spirit::Object shipping_tax;
     shipping_tax.push_back( Pair("tax_name","TAX"));
     shipping_tax.push_back( Pair("tax_rate",0.05));
