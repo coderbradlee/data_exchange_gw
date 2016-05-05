@@ -512,7 +512,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_tax.push_back( Pair("tax_rate",0.05));
     shipping_tax.push_back( Pair("amount",0.15));
     shipping_tax_array.push_back(shipping_tax);
-    //ret_json_all.push_back( Pair("shipping_tax", shipping_tax));
+    ret_json_all.push_back( Pair("shipping_tax", shipping_tax));
 
     json_spirit::Object shipping_address;
     shipping_address.push_back( Pair("tax_name","TAX"));   
