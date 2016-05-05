@@ -404,6 +404,25 @@ public:
     virtual void transportResumed() {
         std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
+    json_spirit::mValue read_document(std::istream& is) 
+    {
+        json_spirit::mValue result;
+        auto ok = json_spirit::read(is, result);
+        if (!ok) {
+            throw std::runtime_error { "invalid json" };
+        }
+        return result;
+    }
+
+    const json_spirit::mValue& get_object_item(const json_spirit::mValue& element, const std::string& name)
+    {
+        return element.get_obj().at(name);
+    }
+
+    const json_spirit::mValue& get_array_item(const json_spirit::mValue& element, size_t index)
+    {
+        return element.get_array().at(index);
+    }
 	void parser_json_write_ss(const string& texts)
     {
         try
