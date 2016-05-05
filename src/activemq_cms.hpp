@@ -431,7 +431,7 @@ public:
         using namespace json_spirit;
         istringstream conf(text);
 
-    json_spirit::mObject ret_json_all;
+    json_spirit::Object ret_json_all;
     auto doc = read_document(conf);
 
     const auto& sales_order_id = get_object_item(doc, "sales_order_id");
@@ -507,14 +507,14 @@ public:
     ret_json_all.push_back( Pair("order_discount", 0));
     ret_json_all.push_back( Pair("order_total", grand_total.get_real()));
 
-    json_spirit::mObject shipping_tax;
+    json_spirit::Object shipping_tax;
     shipping_tax.push_back( Pair("tax_name","TAX"));
     shipping_tax.push_back( Pair("tax_rate",0.05));
     shipping_tax.push_back( Pair("amount",0.15));
       
     //ret_json_all.push_back(std::make_pair("shipping_tax", shipping_tax));
 
-    json_spirit::mObject shipping_address;
+    json_spirit::Object shipping_address;
     shipping_address.push_back( Pair("tax_name","TAX"));
     
     shipping_address.push_back( Pair("store_name", "Test Store"));
@@ -531,7 +531,7 @@ public:
 
     ret_json_all.push_back(Pair("shipping_address", shipping_address.get_obj()));
 
-    json_spirit::mObject billing_address;
+    json_spirit::Object billing_address;
     billing_address.push_back( Pair("tax_name","TAX"));
     
     billing_address.push_back( Pair("store_name", "Test Store"));
@@ -567,7 +567,7 @@ public:
         const auto& note= get_object_item(detail_holder, "note");    
         cout<<note.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;   
 
-        json_spirit::mObject order_lines;
+        json_spirit::Object order_lines;
         order_lines.push_back( Pair("line_number", sales_order_detail_id.get_str()));
         order_lines.push_back( Pair("product_sku", "123"));
         order_lines.push_back( Pair("custom_description", note.get_str()));
@@ -575,7 +575,7 @@ public:
         order_lines.push_back( Pair("price", unit_price.get_real()));
         order_lines.push_back( Pair("product_discount",sub_discount.get_real()));
 
-        json_spirit::mObject product_taxes;
+        json_spirit::Object product_taxes;
         product_taxes.push_back( Pair("tax_name", "TAX"));
         product_taxes.push_back( Pair("tax_rate",sub_tax.get_real()));
         product_taxes.push_back( Pair("amount", quantity.get_int()));
