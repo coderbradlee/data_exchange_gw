@@ -469,9 +469,10 @@ public:
     const auto& note= get_object_item(doc, "note");                          
     const auto& detail = get_object_item(doc, "detail");
 
-    //for()
+    for( int i = 0; i < detail.get_array().size(); i++)
     {
-        const auto& detail_holder = get_array_item(detail, 0);
+        cout<<i<<":"<<__FILE__<<":"<<__LINE__<<endl;
+        const auto& detail_holder = get_array_item(detail, i);
         
         const auto& sales_order_detail_id= get_object_item(detail_holder, "sales_order_detail_id"); 
         const auto& item_master_id= get_object_item(detail_holder, "item_master_id");     
