@@ -469,7 +469,7 @@ public:
     const string& note= get_object_item(doc, "note");                          
     const auto& detail = get_object_item(doc, "detail");
 
-    for()
+    //for()
     {
         const auto& detail_holder = get_array_item(detail, 0);
         
