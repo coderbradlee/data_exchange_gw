@@ -455,6 +455,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
             //return;
             //m_ss.str("");
             cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+            throw std::runtime_error { "invalid json" };
         }
         else
         {
@@ -621,6 +622,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     detail_child = pt.get_array();
                     for(unsigned int j = 0; i < detail_child.size(); ++j )
                     {
+                        cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
                         const json_spirit::Object &detail_child_obj = detail_child[j].get_obj();
                         for(unsigned int x = 0; x < detail_child_obj.size(); ++x )
                         {                
