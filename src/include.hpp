@@ -66,5 +66,6 @@ using namespace boost::posix_time;
 #include "json_spirit/json_spirit_reader_template.h"
 #include "json_spirit/json_spirit_writer_template.h"
 #define JSON_SPIRIT_VALUE_ENABLED
+#define BOOST_SPIRIT_THREADSAFE 
 #endif
 
