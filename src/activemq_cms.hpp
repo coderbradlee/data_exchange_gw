@@ -507,10 +507,11 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     ret_json_all.push_back( Pair("order_total", grand_total.get_real()));
 cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     json_spirit::Object shipping_tax;
+    json_spirit::Array shipping_tax_array;
     shipping_tax.push_back( Pair("tax_name","TAX"));
     shipping_tax.push_back( Pair("tax_rate",0.05));
     shipping_tax.push_back( Pair("amount",0.15));
-      
+    shipping_tax_array.push_back(shipping_tax);
     //ret_json_all.push_back( Pair("shipping_tax", shipping_tax));
 
     json_spirit::Object shipping_address;
@@ -522,7 +523,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_address.push_back( Pair("address2", "x"));
     shipping_address.push_back( Pair("city", ship_to_city.get_str()));
     cout<<ship_to_state.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    
+
     //shipping_address.push_back( Pair("state", ship_to_state.get_str()));
     // shipping_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
     // shipping_address.push_back( Pair("country", "US"));
