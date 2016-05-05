@@ -527,7 +527,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
     shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
 
-    ret_json_all.push_back(Pair("shipping_address", shipping_address));
+    ret_json_all.push_back( Pair("shipping_address", shipping_address));
 
     // json_spirit::Object billing_address;
     // billing_address.push_back( Pair("tax_name","TAX"));
