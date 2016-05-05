@@ -495,8 +495,8 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     ret_json_all.push_back( Pair("internal_notes", "test internal"));
     ret_json_all.push_back( Pair("bill_third_party", false));
     ret_json_all.push_back( Pair("distribution_center_id", dispatch_warehouse_id.get_int()));//need get from orderbot
-    ret_json_all.push_back( Pair("account_group_id", "null"));//need get from orderbot
-    ret_json_all.push_back( Pair("order_guide_id", "null"));//need get from orderbot
+    ret_json_all.push_back( Pair("account_group_id", Value()));//need get from orderbot
+    ret_json_all.push_back( Pair("order_guide_id", Value()));//need get from orderbot
     ret_json_all.push_back( Pair("insure_packages", false));//not sure
     ret_json_all.push_back( Pair("shipping_code", "A1"));//need get from orderbot
     ret_json_all.push_back( Pair("email_confirmation_address", "test@orderbot.com"));
@@ -510,41 +510,41 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_tax.push_back( Pair("tax_rate",0.05));
     shipping_tax.push_back( Pair("amount",0.15));
       
-    ret_json_all.push_back(Pair("shipping_tax", shipping_tax));
+    ret_json_all.push_back( Pair("shipping_tax", shipping_tax));
 
-    json_spirit::Object shipping_address;
-    shipping_address.push_back( Pair("tax_name","TAX"));
+    // json_spirit::Object shipping_address;
+    // shipping_address.push_back( Pair("tax_name","TAX"));
     
-    shipping_address.push_back( Pair("store_name", "Test Store"));
-    shipping_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    shipping_address.push_back( Pair("last_name", "x"));
-    shipping_address.push_back( Pair("address1", ship_to_address.get_str()));
-    shipping_address.push_back( Pair("address2", ""));
-    shipping_address.push_back( Pair("city", ship_to_city.get_str()));
-    shipping_address.push_back( Pair("state", ship_to_state.get_str()));
-    shipping_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
-    shipping_address.push_back( Pair("country", "US"));
-    shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
-    shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
+    // shipping_address.push_back( Pair("store_name", "Test Store"));
+    // shipping_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
+    // shipping_address.push_back( Pair("last_name", "x"));
+    // shipping_address.push_back( Pair("address1", ship_to_address.get_str()));
+    // shipping_address.push_back( Pair("address2", ""));
+    // shipping_address.push_back( Pair("city", ship_to_city.get_str()));
+    // shipping_address.push_back( Pair("state", ship_to_state.get_str()));
+    // shipping_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
+    // shipping_address.push_back( Pair("country", "US"));
+    // shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
+    // shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
 
-    ret_json_all.push_back(Pair("shipping_address", shipping_address));
+    // ret_json_all.push_back(Pair("shipping_address", shipping_address));
 
-    json_spirit::Object billing_address;
-    billing_address.push_back( Pair("tax_name","TAX"));
+    // json_spirit::Object billing_address;
+    // billing_address.push_back( Pair("tax_name","TAX"));
     
-    billing_address.push_back( Pair("store_name", "Test Store"));
-    billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    billing_address.push_back( Pair("last_name", "x"));
-    billing_address.push_back( Pair("address1", ship_to_address.get_str()));
-    billing_address.push_back( Pair("address2", ""));
-    billing_address.push_back( Pair("city", ship_to_city.get_str()));
-    billing_address.push_back( Pair("state", ship_to_state.get_str()));
-    billing_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
-    billing_address.push_back( Pair("country", "US"));
-    billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
-    billing_address.push_back( Pair("email",ship_to_contact_email.get_str()));
+    // billing_address.push_back( Pair("store_name", "Test Store"));
+    // billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
+    // billing_address.push_back( Pair("last_name", "x"));
+    // billing_address.push_back( Pair("address1", ship_to_address.get_str()));
+    // billing_address.push_back( Pair("address2", ""));
+    // billing_address.push_back( Pair("city", ship_to_city.get_str()));
+    // billing_address.push_back( Pair("state", ship_to_state.get_str()));
+    // billing_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
+    // billing_address.push_back( Pair("country", "US"));
+    // billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
+    // billing_address.push_back( Pair("email",ship_to_contact_email.get_str()));
     
-    ret_json_all.push_back(Pair("shipping_address", billing_address));
+    // ret_json_all.push_back(Pair("shipping_address", billing_address));
             
 //     for( int i = 0; i < detail.get_array().size(); i++)
 //     {
