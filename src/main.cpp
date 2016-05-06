@@ -34,7 +34,7 @@ int main()
 	try
 	{
 		{
-			test();
+			//test();
 			// credit_ontime test;
 			// test.start_update();
 		}
