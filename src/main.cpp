@@ -8,17 +8,34 @@
 void test()
 {
 	using json = nlohmann::json;
-	// create JSON values
-    json j_object = { {"two", 2},{"one", 1}};
-    json j_array = {1, 2, 4, 8, 16};
+	 json j =
+    {
+        {"pi", 3.141},
+        {"happy", true},
+        {"name", "Niels"},
+        {"nothing", nullptr},
+        {
+            "answer", {
+                {"everything", 42}
+            }
+        },
+        {"list", {1, 0, 2}},
+        {
+            "object", {
+                {"currency", "USD"},
+                {"value", 42.99}
+            }
+        }
+    };
 
-    // serialize without indentation
-    std::cout << j_object << "\n\n";
-    std::cout << j_array << "\n\n";
+    // add new values
+    j["new"]["key"]["value"] = {"another", "list"};
 
-    // serialize with indentation
-    std::cout << std::setw(4) << j_object << "\n\n";
-    std::cout << std::setw(2) << j_array << "\n\n";
+    // count elements
+    j["size"] = j.size();
+
+    // pretty print with indent of 4 spaces
+    std::cout << std::setw(4) << j << '\n';
 }
 int main()
 {
