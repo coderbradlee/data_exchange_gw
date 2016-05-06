@@ -179,7 +179,7 @@ Format](http://rfc7159.net/rfc7159)
 
 
 template <
-    template<typename U, typename V, typename... Args> class ObjectType = nlohmann::fifo_map,
+    template<typename U, typename V, typename... Args> class ObjectType = std::map,
     template<typename U, typename... Args> class ArrayType = std::vector,
     class StringType = std::string,
     class BooleanType = bool,
