@@ -566,9 +566,9 @@ public:
 
         }
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        // m_ss=write(ret_json_all);
+        
         m_ss=ret_json_all.dump();
-        cout<<ret_json_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
+
     }
     // catch(const json_spirit::Value::PathError& e)
     // {
