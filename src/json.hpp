@@ -197,7 +197,7 @@ typedef std::map< std::string, std::vector<std::string>, map_no_compare > my_map
 
 
 template <
-    template<typename U, typename V, typename... Args> class ObjectType = std::map,
+    template<typename U, typename V, typename... Args> class ObjectType = my_map,
     template<typename U, typename... Args> class ArrayType = std::vector,
     class StringType = std::string,
     class BooleanType = bool,

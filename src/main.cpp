@@ -35,7 +35,7 @@ void test()
     j["size"] = j.size();
 
     // pretty print with indent of 4 spaces
-    std::cout << std::setw(4) << j << '\n';
+    std::cout << j << '\n';
 }
 int main()
 {
