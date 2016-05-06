@@ -539,8 +539,8 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     
     billing_address.push_back( Pair("store_name", "Test Store"));
     billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    billing_address.push_back( Pair("last_name", "x"));
-    billing_address.push_back( Pair("address1", ship_to_address.get_str()));
+    // billing_address.push_back( Pair("last_name", "x"));
+    // billing_address.push_back( Pair("address1", ship_to_address.get_str()));
     // billing_address.push_back( Pair("address2", ""));
     // billing_address.push_back( Pair("city", ship_to_city.get_str()));
     // billing_address.push_back( Pair("state", ship_to_state.get_str()));
