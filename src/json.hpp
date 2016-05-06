@@ -52,6 +52,7 @@ SOFTWARE.
 #include <type_traits>
 #include <utility>
 #include <vector>
+#include "fifo_map.hpp"
 
 // disable float-equal warnings on GCC/clang
 #if defined(__clang__) || defined(__GNUC__) || defined(__GNUG__)
@@ -176,7 +177,6 @@ Format](http://rfc7159.net/rfc7159)
 */
 //remove the order of json
 
-#include "fifo_map.hpp"
 
 template <
     template<typename U, typename V, typename... Args> class ObjectType = nlohmann::fifo_map,
