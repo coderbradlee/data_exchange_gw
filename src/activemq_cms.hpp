@@ -528,42 +528,41 @@ public:
     
     ret_json_all["billing_address"]= billing_address;
             
-            for (auto& element : detail) 
-            {
-                std::cout << element["sales_order_detail_id"] << endl;
+    for (auto& element : detail) 
+    {
+        std::cout << element["sales_order_detail_id"] << endl;
+        const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
+        const auto& item_master_id=element["item_master_id"];     
+        const auto& ss_guidance_price=element["ss_guidance_price"];  
+        const auto& ss_promotion_price=element["ss_promotion_price"]; 
+        const auto& unit_price=element["unit_price"];         
+        const auto& uom_id=element["uom_id"];             
+        const auto& quantity=element["quantity"];           
+        const auto& sub_total=element["sub_total"];          
+        const auto& sub_tax=element["sub_tax"];            
+        const auto& sub_shipping_cost=element["sub_shipping_cost"];  
+        const auto& sub_discount=element["sub_discount"];       
+        const auto& note=element["note"];    
+       
 
-//         const auto& detail_holder = get_array_item(detail, i);
+        json order_lines;
+        order_lines["line_number"]= sales_order_detail_id;
+        order_lines["product_sku"]= "123";
+        order_lines["custom_description"]= note;
+        order_lines["quantity"]= quantity;
+        order_lines["price"]= unit_price;
+        order_lines["product_discount"]=sub_discount;
+
+        json product_taxes;
+        product_taxes["tax_name"]= "TAX";
+        product_taxes["tax_rate"]=sub_tax;
+        product_taxes["amount"]= quantity;
         
-//         const auto& sales_order_detail_id= get_object_item(detail_holder, "sales_order_detail_id"); 
-//         const auto& item_master_id= get_object_item(detail_holder, "item_master_id");     
-//         const auto& ss_guidance_price= get_object_item(detail_holder, "ss_guidance_price");  
-//         const auto& ss_promotion_price= get_object_item(detail_holder, "ss_promotion_price"); 
-//         const auto& unit_price= get_object_item(detail_holder, "unit_price");         
-//         const auto& uom_id= get_object_item(detail_holder, "uom_id");             
-//         const auto& quantity= get_object_item(detail_holder, "quantity");           
-//         const auto& sub_total= get_object_item(detail_holder, "sub_total");          
-//         const auto& sub_tax= get_object_item(detail_holder, "sub_tax");            
-//         const auto& sub_shipping_cost= get_object_item(detail_holder, "sub_shipping_cost");  
-//         const auto& sub_discount= get_object_item(detail_holder, "sub_discount");       
-//         const auto& note= get_object_item(detail_holder, "note");    
-//         cout<<note.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;   
+        order_lines["product_taxes"]=product_taxes;
 
-//         json_spirit::Object order_lines;
-//         order_lines.push_back( Pair("line_number", sales_order_detail_id.get_str()));
-//         order_lines.push_back( Pair("product_sku", "123"));
-//         order_lines.push_back( Pair("custom_description", note.get_str()));
-//         order_lines.push_back( Pair("quantity", quantity.get_int()));
-//         order_lines.push_back( Pair("price", unit_price.get_real()));
-//         order_lines.push_back( Pair("product_discount",sub_discount.get_real()));
+        ret_json_all["order_lines"]= order_lines;
 
-//         json_spirit::Object product_taxes;
-//         product_taxes.push_back( Pair("tax_name", "TAX"));
-//         product_taxes.push_back( Pair("tax_rate",sub_tax.get_real()));
-//         product_taxes.push_back( Pair("amount", quantity.get_int()));
-        
-//         order_lines.push_back( Pair("product_taxes",product_taxes));
 
-//         ret_json_all.push_back(Pair("order_lines", order_lines));
 
         }
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
