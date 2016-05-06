@@ -479,16 +479,17 @@ public:
      ret_json_all["bill_third_party"]= false;
      //ret_json_all["distribution_center_id"]= 3;
      cout<<dispatch_warehouse_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
-     //ret_json_all["distribution_center_id"]= dispatch_warehouse_id;//need get from orderbot
+     int temp=dispatch_warehouse_id;
+     ret_json_all["distribution_center_id"]= temp;//need get from orderbot
      ret_json_all["account_group_id"]= nullptr;//need get from orderbot
      ret_json_all["order_guide_id"]= nullptr;//need get from orderbot
      ret_json_all["insure_packages"]= false;//not sure
      ret_json_all["shipping_code"]= "A1";//need get from orderbot
      ret_json_all["email_confirmation_address"]= "test@orderbot.com";
-     ret_json_all["subtotal"]= sub_total;
-     ret_json_all["shipping"]= shipping_cost_total;
-     ret_json_all["order_discount"]= 0;
-     ret_json_all["order_total"]= grand_total;
+     // ret_json_all["subtotal"]= sub_total;
+     // ret_json_all["shipping"]= shipping_cost_total;
+     // ret_json_all["order_discount"]= 0;
+     // ret_json_all["order_total"]= grand_total;
  
     // nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
     // shipping_tax["tax_name"]="TAX";
