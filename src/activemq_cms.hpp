@@ -462,106 +462,106 @@ public:
      ret_json_all["customer_po"]= sales_order_id ;
 
      //"0"]= "OrderByCustomer"]= "1"]= "OrderBysales"]="2"]="Canceled"]="3"]="UnConfirmed"); 
-     if(status==0||status==1)
-     {
-        ret_json_all["order_status"]= "unshipped";
-     }
-     else if(status==2)
-     {
-         ret_json_all["order_status"]= "do_not_ship";
-     }
-     else
-     {
-         ret_json_all["order_status"]= "unconfirmed";
-     }  
-     ret_json_all["order_notes"]= note ;
-     ret_json_all["internal_notes"]= "test internal";
-     ret_json_all["bill_third_party"]= false;
-     ret_json_all["distribution_center_id"]= dispatch_warehouse_id;//need get from orderbot
-     ret_json_all["account_group_id"]= nullptr;//need get from orderbot
-     ret_json_all["order_guide_id"]= nullptr;//need get from orderbot
-     ret_json_all["insure_packages"]= false;//not sure
-     ret_json_all["shipping_code"]= "A1";//need get from orderbot
-     ret_json_all["email_confirmation_address"]= "test@orderbot.com";
-     ret_json_all["subtotal"]= sub_total;
-     ret_json_all["shipping"]= shipping_cost_total;
-     ret_json_all["order_discount"]= 0;
-     ret_json_all["order_total"]= grand_total;
+    //  if(status==0||status==1)
+    //  {
+    //     ret_json_all["order_status"]= "unshipped";
+    //  }
+    //  else if(status==2)
+    //  {
+    //      ret_json_all["order_status"]= "do_not_ship";
+    //  }
+    //  else
+    //  {
+    //      ret_json_all["order_status"]= "unconfirmed";
+    //  }  
+    //  ret_json_all["order_notes"]= note ;
+    //  ret_json_all["internal_notes"]= "test internal";
+    //  ret_json_all["bill_third_party"]= false;
+    //  ret_json_all["distribution_center_id"]= dispatch_warehouse_id;//need get from orderbot
+    //  ret_json_all["account_group_id"]= nullptr;//need get from orderbot
+    //  ret_json_all["order_guide_id"]= nullptr;//need get from orderbot
+    //  ret_json_all["insure_packages"]= false;//not sure
+    //  ret_json_all["shipping_code"]= "A1";//need get from orderbot
+    //  ret_json_all["email_confirmation_address"]= "test@orderbot.com";
+    //  ret_json_all["subtotal"]= sub_total;
+    //  ret_json_all["shipping"]= shipping_cost_total;
+    //  ret_json_all["order_discount"]= 0;
+    //  ret_json_all["order_total"]= grand_total;
  
-    nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
-    shipping_tax["tax_name"]="TAX";
-    shipping_tax["tax_rate"]=0.05;
-    shipping_tax["amount"]=0.15;
-    shipping_tax_array = nlohmann_fifo_map::json::array({shipping_tax});
-    ret_json_all["shipping_tax"]= shipping_tax_array;
+    // nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
+    // shipping_tax["tax_name"]="TAX";
+    // shipping_tax["tax_rate"]=0.05;
+    // shipping_tax["amount"]=0.15;
+    // shipping_tax_array = nlohmann_fifo_map::json::array({shipping_tax});
+    // ret_json_all["shipping_tax"]= shipping_tax_array;
 
-    nlohmann_fifo_map::json shipping_address;
-    shipping_address["tax_name"]="TAX";   
-    shipping_address["store_name"]= "Test Store";
-    shipping_address["first_name"]= ship_to_contact_name ;
-    shipping_address["last_name"]= "x";
-    shipping_address["address1"]= ship_to_address ;
-    shipping_address["address2"]= "x";
-    shipping_address["city"]= ship_to_city ;
+    // nlohmann_fifo_map::json shipping_address;
+    // shipping_address["tax_name"]="TAX";   
+    // shipping_address["store_name"]= "Test Store";
+    // shipping_address["first_name"]= ship_to_contact_name ;
+    // shipping_address["last_name"]= "x";
+    // shipping_address["address1"]= ship_to_address ;
+    // shipping_address["address2"]= "x";
+    // shipping_address["city"]= ship_to_city ;
     
-    shipping_address["state"]= ship_to_state ;
-    shipping_address["postal_code"]=ship_to_zip_code ;
-    shipping_address["country"]= "US";
-    shipping_address["phone_number"]= ship_to_contact_phone_number ;
-    shipping_address["email"]=ship_to_contact_email ;
+    // shipping_address["state"]= ship_to_state ;
+    // shipping_address["postal_code"]=ship_to_zip_code ;
+    // shipping_address["country"]= "US";
+    // shipping_address["phone_number"]= ship_to_contact_phone_number ;
+    // shipping_address["email"]=ship_to_contact_email ;
 
-    ret_json_all["shipping_address"]= shipping_address;
+    // ret_json_all["shipping_address"]= shipping_address;
 
-    nlohmann_fifo_map::json billing_address;
-    billing_address["tax_name"]="TAX";
+    // nlohmann_fifo_map::json billing_address;
+    // billing_address["tax_name"]="TAX";
     
-    billing_address["store_name"]= "Test Store";
-    billing_address["first_name"]= ship_to_contact_name ;
-    billing_address["last_name"]= "x";
-    billing_address["address1"]= ship_to_address ;
-    billing_address["address2"]= "";
-    billing_address["city"]= ship_to_city ;
-    billing_address["state"]= ship_to_state ;
-    billing_address["postal_code"]=ship_to_zip_code ;
-    billing_address["country"]= "US";
-    billing_address["phone_number"]= ship_to_contact_phone_number ;
-    billing_address["email"]=ship_to_contact_email ;
+    // billing_address["store_name"]= "Test Store";
+    // billing_address["first_name"]= ship_to_contact_name ;
+    // billing_address["last_name"]= "x";
+    // billing_address["address1"]= ship_to_address ;
+    // billing_address["address2"]= "";
+    // billing_address["city"]= ship_to_city ;
+    // billing_address["state"]= ship_to_state ;
+    // billing_address["postal_code"]=ship_to_zip_code ;
+    // billing_address["country"]= "US";
+    // billing_address["phone_number"]= ship_to_contact_phone_number ;
+    // billing_address["email"]=ship_to_contact_email ;
     
-    ret_json_all["billing_address"]= billing_address;
+    // ret_json_all["billing_address"]= billing_address;
             
-    for (auto& element : detail) 
-    {
-        std::cout << element["sales_order_detail_id"] << endl;
-        const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
-        const auto& item_master_id=element["item_master_id"];     
-        const auto& ss_guidance_price=element["ss_guidance_price"];  
-        const auto& ss_promotion_price=element["ss_promotion_price"]; 
-        const auto& unit_price=element["unit_price"];         
-        const auto& uom_id=element["uom_id"];             
-        const auto& quantity=element["quantity"];           
-        const auto& sub_total=element["sub_total"];          
-        const auto& sub_tax=element["sub_tax"];            
-        const auto& sub_shipping_cost=element["sub_shipping_cost"];  
-        const auto& sub_discount=element["sub_discount"];       
-        const auto& note=element["note"];    
+    // for (auto& element : detail) 
+    // {
+    //     std::cout << element["sales_order_detail_id"] << endl;
+    //     const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
+    //     const auto& item_master_id=element["item_master_id"];     
+    //     const auto& ss_guidance_price=element["ss_guidance_price"];  
+    //     const auto& ss_promotion_price=element["ss_promotion_price"]; 
+    //     const auto& unit_price=element["unit_price"];         
+    //     const auto& uom_id=element["uom_id"];             
+    //     const auto& quantity=element["quantity"];           
+    //     const auto& sub_total=element["sub_total"];          
+    //     const auto& sub_tax=element["sub_tax"];            
+    //     const auto& sub_shipping_cost=element["sub_shipping_cost"];  
+    //     const auto& sub_discount=element["sub_discount"];       
+    //     const auto& note=element["note"];    
        
 
-        nlohmann_fifo_map::json order_lines;
-        order_lines["line_number"]= sales_order_detail_id;
-        order_lines["product_sku"]= "123";
-        order_lines["custom_description"]= note;
-        order_lines["quantity"]= quantity;
-        order_lines["price"]= unit_price;
-        order_lines["product_discount"]=sub_discount;
+    //     nlohmann_fifo_map::json order_lines;
+    //     order_lines["line_number"]= sales_order_detail_id;
+    //     order_lines["product_sku"]= "123";
+    //     order_lines["custom_description"]= note;
+    //     order_lines["quantity"]= quantity;
+    //     order_lines["price"]= unit_price;
+    //     order_lines["product_discount"]=sub_discount;
 
-        nlohmann_fifo_map::json product_taxes;
-        product_taxes["tax_name"]= "TAX";
-        product_taxes["tax_rate"]=sub_tax;
-        product_taxes["amount"]= quantity;
+    //     nlohmann_fifo_map::json product_taxes;
+    //     product_taxes["tax_name"]= "TAX";
+    //     product_taxes["tax_rate"]=sub_tax;
+    //     product_taxes["amount"]= quantity;
         
-        order_lines["product_taxes"]=product_taxes;
-        ret_json_all["order_lines"]= order_lines;
-        }
+    //     order_lines["product_taxes"]=product_taxes;
+    //     ret_json_all["order_lines"]= order_lines;
+    //     }
         
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         
