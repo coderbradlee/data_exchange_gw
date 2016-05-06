@@ -7,24 +7,7 @@
 #include "boost_signalset.hpp"
 void test()
 {
-	boost::timer::cpu_timer pass;
-	pass.start();
-	using namespace json_spirit;
-	Object obj;
-    for( int i = 0; i < 100000; ++i )
-    {
-       obj.push_back( Pair( "\x01test\x7F", "test"  ) );
-    }
-
-    const string s = write( obj );
-
-    Value value;
-
-    read( s, value );
-
-    std::cout << "now time elapsed:" << pass.format(6) << std::endl;
-
-    cout << "obj size " << value.get_obj().size()<<endl;
+	
 }
 int main()
 {

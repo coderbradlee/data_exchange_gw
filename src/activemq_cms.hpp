@@ -431,95 +431,95 @@ public:
             static std::mutex mtx;
             std::lock_guard<std::mutex> lock(mtx);
         string text="{    \"sales_order_id\": \"1\",    \"so_no\": \"2\",    \"po_no\": \"3\",    \"status\": 0,    \"order_date\": \"2016-05-03\",    \"company_id\": \"4\",    \"sales_id\": \"5\",    \"currency_id\": \"6\",    \"ss_currency_daily_exchange_rate\": 6.45,    \"tax_schedule_id\": \"7\",    \"ss_tax_rate\": 7.2,    \"customer_master_id\": \"8\",    \"customer_contact_id\": \"9\",    \"customer_invoice_address_id\": \"10\",    \"ship_to_customer_name\": \"11\",    \"ship_to_address\": \"12\",    \"ship_to_state\": \"NY\",    \"ship_to_city\": \"13\",    \"ship_to_zip_code\": \"10118\",    \"ship_to_contact_name\": \"14\",    \"ship_to_contact_phone_number\": \"+1 800-428-4322\",    \"ship_to_contact_email\": \"test@orderbot.com\",    \"trade_term_id\": \"17\",    \"ss_landed_cost_coefficient\": 3.3,    \"dispatch_warehouse_id\": 1,    \"requested_delivery_date\": \"2016-05-03\",    \"promotion_code\": \"\",    \"company_bank_account_id\": \"\",    \"shipping_cost_total\": 25.48,    \"saving_total\": 3.56,    \"tax_total\": 22.51,    \"sub_total\": 180.37,    \"grand_total\": 218.67,    \"note\": \"note\",    \"detail\": [        {            \"sales_order_detail_id\": 44,            \"item_master_id\": \"\",            \"ss_guidance_price\": 5.46,            \"ss_promotion_price\": 5.41,            \"unit_price\": 5.43,            \"uom_id\": \"\",            \"quantity\": 12,            \"sub_total\": 63.67,            \"sub_tax\": 4.33,            \"sub_shipping_cost\": 5.68,            \"sub_discount\": 0,            \"note\": \"detail.note\"        }    ]}";
-        using namespace json_spirit;
-        istringstream conf(text);
+//         using namespace json_spirit;
+//         istringstream conf(text);
 
-    json_spirit::Object ret_json_all;
-    auto doc = read_document(conf);
+//     json_spirit::Object ret_json_all;
+//     auto doc = read_document(conf);
 
-    const auto& sales_order_id = get_object_item(doc, "sales_order_id");
-    const auto& so_no = get_object_item(doc, "so_no");
-    const auto& po_no = get_object_item(doc, "po_no");
-    const auto& status = get_object_item(doc, "status");
-    const auto& order_date = get_object_item(doc, "order_date");
-    const auto& company_id = get_object_item(doc, "company_id");
-    const auto& sales_id = get_object_item(doc, "sales_id");
-    const auto& currency_id = get_object_item(doc, "currency_id");
-    const auto& tax_schedule_id = get_object_item(doc, "tax_schedule_id");
-    const auto& ss_currency_daily_exchange_rate = get_object_item(doc, "ss_currency_daily_exchange_rate");
-    const auto& ss_tax_rate= get_object_item(doc, "ss_tax_rate");                   
-    const auto& customer_master_id= get_object_item(doc, "customer_master_id");            
-    const auto& customer_contact_id= get_object_item(doc, "customer_contact_id");           
-    const auto& customer_invoice_address_id= get_object_item(doc, "customer_invoice_address_id");   
-    const auto& ship_to_customer_name= get_object_item(doc, "ship_to_customer_name");         
-    const auto& ship_to_address= get_object_item(doc, "ship_to_address");               
-    const auto& ship_to_state= get_object_item(doc, "ship_to_state");                 
-    const auto& ship_to_city= get_object_item(doc, "ship_to_city");                  
-    const auto& ship_to_zip_code= get_object_item(doc, "ship_to_zip_code");              
-    const auto& ship_to_contact_name= get_object_item(doc, "ship_to_contact_name");          
-    const auto& ship_to_contact_phone_number= get_object_item(doc, "ship_to_contact_phone_number");  
-    const auto& ship_to_contact_email= get_object_item(doc, "ship_to_contact_email");         
-    const auto& trade_term_id= get_object_item(doc, "trade_term_id");                 
-    const auto& ss_landed_cost_coefficient= get_object_item(doc, "ss_landed_cost_coefficient");    
-    const auto& dispatch_warehouse_id= get_object_item(doc, "dispatch_warehouse_id");         
-    const auto& requested_delivery_date= get_object_item(doc, "requested_delivery_date");       
-    const auto& promotion_code= get_object_item(doc, "promotion_code");                
-    const auto& company_bank_account_id= get_object_item(doc, "company_bank_account_id");       
-    const auto& shipping_cost_total= get_object_item(doc, "shipping_cost_total");           
-    const auto& saving_total= get_object_item(doc, "saving_total");                  
-    const auto& tax_total= get_object_item(doc, "tax_total");                     
-    const auto& sub_total= get_object_item(doc, "sub_total");                     
-    const auto& grand_total= get_object_item(doc, "grand_total");                   
-    const auto& note= get_object_item(doc, "note");                          
-    const auto& detail = get_object_item(doc, "detail");
-cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    ret_json_all.push_back( Pair("orderbot_account_id", Value()));
-    ret_json_all.push_back( Pair("order_date",order_date.get_str()));
-    ret_json_all.push_back( Pair("ship_date",requested_delivery_date.get_str()));
-    ret_json_all.push_back( Pair("orderbot_customer_id","need get from orderbot"));//need get from orderbot
-    ret_json_all.push_back( Pair("reference_customer_id",customer_master_id.get_str()));
-    ret_json_all.push_back( Pair("reference_order_id",sales_order_id.get_str()));
-    ret_json_all.push_back( Pair("customer_po", sales_order_id.get_str()));
-cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
-    if(status.get_int()==0||status.get_int()==1)
-    {
-       ret_json_all.push_back( Pair("order_status", "unshipped"));
-    }
-    else if(status.get_int()==2)
-    {
-        ret_json_all.push_back( Pair("order_status", "do_not_ship"));
-    }
-    else
-    {
-        ret_json_all.push_back( Pair("order_status", "unconfirmed"));
-    }  
-    ret_json_all.push_back( Pair("order_notes", note.get_str()));
-    ret_json_all.push_back( Pair("internal_notes", "test internal"));
-    ret_json_all.push_back( Pair("bill_third_party", false));
-    ret_json_all.push_back( Pair("distribution_center_id", dispatch_warehouse_id.get_int()));//need get from orderbot
-    ret_json_all.push_back( Pair("account_group_id", Value()));//need get from orderbot
-    ret_json_all.push_back( Pair("order_guide_id", Value()));//need get from orderbot
-    ret_json_all.push_back( Pair("insure_packages", false));//not sure
-    ret_json_all.push_back( Pair("shipping_code", "A1"));//need get from orderbot
-    ret_json_all.push_back( Pair("email_confirmation_address", "test@orderbot.com"));
-    ret_json_all.push_back( Pair("subtotal", sub_total.get_real()));
-    ret_json_all.push_back( Pair("shipping", shipping_cost_total.get_real()));
-    ret_json_all.push_back( Pair("order_discount", 0));
-    ret_json_all.push_back( Pair("order_total", grand_total.get_real()));
-cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    json_spirit::Object shipping_tax;
-    json_spirit::Array shipping_tax_array;
-    shipping_tax.push_back( Pair("tax_name","TAX"));
-    shipping_tax.push_back( Pair("tax_rate",0.05));
-    shipping_tax.push_back( Pair("amount",0.15));
-    shipping_tax_array.push_back(shipping_tax);
-    ret_json_all.push_back( Pair("shipping_tax", shipping_tax_array));
+//     const auto& sales_order_id = get_object_item(doc, "sales_order_id");
+//     const auto& so_no = get_object_item(doc, "so_no");
+//     const auto& po_no = get_object_item(doc, "po_no");
+//     const auto& status = get_object_item(doc, "status");
+//     const auto& order_date = get_object_item(doc, "order_date");
+//     const auto& company_id = get_object_item(doc, "company_id");
+//     const auto& sales_id = get_object_item(doc, "sales_id");
+//     const auto& currency_id = get_object_item(doc, "currency_id");
+//     const auto& tax_schedule_id = get_object_item(doc, "tax_schedule_id");
+//     const auto& ss_currency_daily_exchange_rate = get_object_item(doc, "ss_currency_daily_exchange_rate");
+//     const auto& ss_tax_rate= get_object_item(doc, "ss_tax_rate");                   
+//     const auto& customer_master_id= get_object_item(doc, "customer_master_id");            
+//     const auto& customer_contact_id= get_object_item(doc, "customer_contact_id");           
+//     const auto& customer_invoice_address_id= get_object_item(doc, "customer_invoice_address_id");   
+//     const auto& ship_to_customer_name= get_object_item(doc, "ship_to_customer_name");         
+//     const auto& ship_to_address= get_object_item(doc, "ship_to_address");               
+//     const auto& ship_to_state= get_object_item(doc, "ship_to_state");                 
+//     const auto& ship_to_city= get_object_item(doc, "ship_to_city");                  
+//     const auto& ship_to_zip_code= get_object_item(doc, "ship_to_zip_code");              
+//     const auto& ship_to_contact_name= get_object_item(doc, "ship_to_contact_name");          
+//     const auto& ship_to_contact_phone_number= get_object_item(doc, "ship_to_contact_phone_number");  
+//     const auto& ship_to_contact_email= get_object_item(doc, "ship_to_contact_email");         
+//     const auto& trade_term_id= get_object_item(doc, "trade_term_id");                 
+//     const auto& ss_landed_cost_coefficient= get_object_item(doc, "ss_landed_cost_coefficient");    
+//     const auto& dispatch_warehouse_id= get_object_item(doc, "dispatch_warehouse_id");         
+//     const auto& requested_delivery_date= get_object_item(doc, "requested_delivery_date");       
+//     const auto& promotion_code= get_object_item(doc, "promotion_code");                
+//     const auto& company_bank_account_id= get_object_item(doc, "company_bank_account_id");       
+//     const auto& shipping_cost_total= get_object_item(doc, "shipping_cost_total");           
+//     const auto& saving_total= get_object_item(doc, "saving_total");                  
+//     const auto& tax_total= get_object_item(doc, "tax_total");                     
+//     const auto& sub_total= get_object_item(doc, "sub_total");                     
+//     const auto& grand_total= get_object_item(doc, "grand_total");                   
+//     const auto& note= get_object_item(doc, "note");                          
+//     const auto& detail = get_object_item(doc, "detail");
+// cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+//     ret_json_all.push_back( Pair("orderbot_account_id", Value()));
+//     ret_json_all.push_back( Pair("order_date",order_date.get_str()));
+//     ret_json_all.push_back( Pair("ship_date",requested_delivery_date.get_str()));
+//     ret_json_all.push_back( Pair("orderbot_customer_id","need get from orderbot"));//need get from orderbot
+//     ret_json_all.push_back( Pair("reference_customer_id",customer_master_id.get_str()));
+//     ret_json_all.push_back( Pair("reference_order_id",sales_order_id.get_str()));
+//     ret_json_all.push_back( Pair("customer_po", sales_order_id.get_str()));
+// cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+//     //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
+//     if(status.get_int()==0||status.get_int()==1)
+//     {
+//        ret_json_all.push_back( Pair("order_status", "unshipped"));
+//     }
+//     else if(status.get_int()==2)
+//     {
+//         ret_json_all.push_back( Pair("order_status", "do_not_ship"));
+//     }
+//     else
+//     {
+//         ret_json_all.push_back( Pair("order_status", "unconfirmed"));
+//     }  
+//     ret_json_all.push_back( Pair("order_notes", note.get_str()));
+//     ret_json_all.push_back( Pair("internal_notes", "test internal"));
+//     ret_json_all.push_back( Pair("bill_third_party", false));
+//     ret_json_all.push_back( Pair("distribution_center_id", dispatch_warehouse_id.get_int()));//need get from orderbot
+//     ret_json_all.push_back( Pair("account_group_id", Value()));//need get from orderbot
+//     ret_json_all.push_back( Pair("order_guide_id", Value()));//need get from orderbot
+//     ret_json_all.push_back( Pair("insure_packages", false));//not sure
+//     ret_json_all.push_back( Pair("shipping_code", "A1"));//need get from orderbot
+//     ret_json_all.push_back( Pair("email_confirmation_address", "test@orderbot.com"));
+//     ret_json_all.push_back( Pair("subtotal", sub_total.get_real()));
+//     ret_json_all.push_back( Pair("shipping", shipping_cost_total.get_real()));
+//     ret_json_all.push_back( Pair("order_discount", 0));
+//     ret_json_all.push_back( Pair("order_total", grand_total.get_real()));
+// cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+//     json_spirit::Object shipping_tax;
+//     json_spirit::Array shipping_tax_array;
+//     shipping_tax.push_back( Pair("tax_name","TAX"));
+//     shipping_tax.push_back( Pair("tax_rate",0.05));
+//     shipping_tax.push_back( Pair("amount",0.15));
+//     shipping_tax_array.push_back(shipping_tax);
+//     ret_json_all.push_back( Pair("shipping_tax", shipping_tax_array));
 
-    json_spirit::Object shipping_address;
-    shipping_address.push_back( Pair("tax_name","TAX"));   
-    shipping_address.push_back( Pair("store_name", "Test Store"));
-    shipping_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
+//     json_spirit::Object shipping_address;
+//     shipping_address.push_back( Pair("tax_name","TAX"));   
+//     shipping_address.push_back( Pair("store_name", "Test Store"));
+//     shipping_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
     // shipping_address.push_back( Pair("last_name", "x"));
     // shipping_address.push_back( Pair("address1", ship_to_address.get_str()));
     //shipping_address.push_back( Pair("address2", "x"));
@@ -532,12 +532,12 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     // shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
     // shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
 
-    ret_json_all.push_back( Pair("shipping_address", shipping_address));
+    // ret_json_all.push_back( Pair("shipping_address", shipping_address));
 
-    json_spirit::Object billing_address;
-    billing_address.push_back( Pair("tax_name","TAX"));
+    // json_spirit::Object billing_address;
+    // billing_address.push_back( Pair("tax_name","TAX"));
     
-    billing_address.push_back( Pair("store_name", "Test Store"));
+    // billing_address.push_back( Pair("store_name", "Test Store"));
     // billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
     // billing_address.push_back( Pair("last_name", "x"));
     // billing_address.push_back( Pair("address1", ship_to_address.get_str()));
@@ -589,7 +589,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
 //     }
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        m_ss=write(ret_json_all);
+        // m_ss=write(ret_json_all);
     }
     // catch(const json_spirit::Value::PathError& e)
     // {
