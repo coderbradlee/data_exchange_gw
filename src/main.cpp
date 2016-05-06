@@ -13,7 +13,7 @@ void test()
 	Object obj;
     for( int i = 0; i < 100000; ++i )
     {
-       obj.push_back( Pair( "\x01test\x7F", i  ) );
+       obj.push_back( Pair( "\x01test\x7F", "test"  ) );
     }
 
     const string s = write( obj );
@@ -24,7 +24,7 @@ void test()
 
     std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 
-    cout << "obj size " << value.get_obj().size();
+    cout << "obj size " << value.get_obj().size()<<endl;
 }
 int main()
 {
@@ -34,7 +34,7 @@ int main()
 	try
 	{
 		{
-			test();
+			//test();
 			// credit_ontime test;
 			// test.start_update();
 		}
