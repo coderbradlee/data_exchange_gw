@@ -486,17 +486,20 @@ public:
      ret_json_all["insure_packages"]= false;//not sure
      ret_json_all["shipping_code"]= "A1";//need get from orderbot
      ret_json_all["email_confirmation_address"]= "test@orderbot.com";
-     // ret_json_all["subtotal"]= sub_total;
-     // ret_json_all["shipping"]= shipping_cost_total;
-     // ret_json_all["order_discount"]= 0;
-     // ret_json_all["order_total"]= grand_total;
+     double temp_sub_total=sub_total;
+     double temp_shipping_cost_total=shipping_cost_total;
+     double temp_grand_total=grand_total;
+     ret_json_all["subtotal"]= temp_sub_total;
+     ret_json_all["shipping"]= shipping_cost_total;
+     ret_json_all["order_discount"]= 0;
+     ret_json_all["order_total"]= grand_total;
  
-    // nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
-    // shipping_tax["tax_name"]="TAX";
-    // shipping_tax["tax_rate"]=0.05;
-    // shipping_tax["amount"]=0.15;
-    // shipping_tax_array = nlohmann_fifo_map::json::array({shipping_tax});
-    // ret_json_all["shipping_tax"]= shipping_tax_array;
+    nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
+    shipping_tax["tax_name"]="TAX";
+    shipping_tax["tax_rate"]=0.05;
+    shipping_tax["amount"]=0.15;
+    shipping_tax_array = nlohmann_fifo_map::json::array({shipping_tax});
+    ret_json_all["shipping_tax"]= shipping_tax_array;
 
     // nlohmann_fifo_map::json shipping_address;
     // shipping_address["tax_name"]="TAX";   
