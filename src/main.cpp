@@ -13,7 +13,7 @@ void test()
 	Object obj;
     for( int i = 0; i < 100000; ++i )
     {
-       obj.push_back( Pair( "\x01test\x7F", lexical_cast< string >( i ) ) );
+       obj.push_back( Pair( "\x01test\x7F", i  ) );
     }
 
     const string s = write( obj );
