@@ -179,7 +179,7 @@ Format](http://rfc7159.net/rfc7159)
 
 
 template <
-    template<typename U, typename V, typename... Args> class ObjectType = fifo_map,
+    template<typename U, typename V, typename... Args> class ObjectType = nlohmann::fifo_map,
     template<typename U, typename... Args> class ArrayType = std::vector,
     class StringType = std::string,
     class BooleanType = bool,
@@ -347,7 +347,7 @@ class basic_json
     using object_t = ObjectType<StringType,
           basic_json,
           //std::less<StringType>,
-          fifo_map_compare<StringType>,
+          nlohmann::fifo_map_compare<StringType>,
           AllocatorType<std::pair<const StringType,
           basic_json>>>;
 
