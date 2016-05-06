@@ -526,11 +526,12 @@ public:
     billing_address["phone_number"]= ship_to_contact_phone_number ;
     billing_address["email"]=ship_to_contact_email ;
     
-    ret_json_all["shipping_address"]= billing_address;
+    ret_json_all["billing_address"]= billing_address;
             
-//     for( int i = 0; i < detail.get_array().size(); i++)
-//     {
-//         cout<<i<<":"<<__FILE__<<":"<<__LINE__<<endl;
+            for (auto& element : j) 
+            {
+                std::cout << element["sales_order_detail_id"] << endl;
+
 //         const auto& detail_holder = get_array_item(detail, i);
         
 //         const auto& sales_order_detail_id= get_object_item(detail_holder, "sales_order_detail_id"); 
@@ -564,7 +565,7 @@ public:
 
 //         ret_json_all.push_back(Pair("order_lines", order_lines));
 
-//     }
+        }
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         // m_ss=write(ret_json_all);
         m_ss=ret_json_all.dump();
