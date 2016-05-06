@@ -486,50 +486,47 @@ public:
      ret_json_all["shipping"]= shipping_cost_total;
      ret_json_all["order_discount"]= 0;
      ret_json_all["order_total"]= grand_total;
-// 
-// cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-//     json_spirit::Object shipping_tax;
-//     json_spirit::Array shipping_tax_array;
-//     shipping_tax.push_back( Pair("tax_name","TAX"));
-//     shipping_tax.push_back( Pair("tax_rate",0.05));
-//     shipping_tax.push_back( Pair("amount",0.15));
-//     shipping_tax_array.push_back(shipping_tax);
-//     ret_json_all.push_back( Pair("shipping_tax", shipping_tax_array));
+ 
+    json shipping_tax,shipping_tax_array;
+    shipping_tax["tax_name"]="TAX";
+    shipping_tax["tax_rate"]=0.05;
+    shipping_tax["amount"]=0.15;
+    shipping_tax_array = json::array({shipping_tax});
+    ret_json_all["shipping_tax"]= shipping_tax_array;
 
-//     json_spirit::Object shipping_address;
-//     shipping_address.push_back( Pair("tax_name","TAX"));   
-//     shipping_address.push_back( Pair("store_name", "Test Store"));
-//     shipping_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    // shipping_address.push_back( Pair("last_name", "x"));
-    // shipping_address.push_back( Pair("address1", ship_to_address.get_str()));
-    //shipping_address.push_back( Pair("address2", "x"));
-    //shipping_address.push_back( Pair("city", ship_to_city.get_str()));
-    //cout<<ship_to_state.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-
-    //shipping_address.push_back( Pair("state", ship_to_state.get_str()));
-    // shipping_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
-    // shipping_address.push_back( Pair("country", "US"));
-    // shipping_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
-    // shipping_address.push_back( Pair("email",ship_to_contact_email.get_str()));
-
-    // ret_json_all.push_back( Pair("shipping_address", shipping_address));
-
-    // json_spirit::Object billing_address;
-    // billing_address.push_back( Pair("tax_name","TAX"));
+    json shipping_address;
+    shipping_address["tax_name"]="TAX";   
+    shipping_address["store_name"]= "Test Store";
+    shipping_address["first_name"]= ship_to_contact_name ;
+    shipping_address["last_name"]= "x";
+    shipping_address["address1"]= ship_to_address ;
+    shipping_address["address2"]= "x";
+    shipping_address["city"]= ship_to_city ;
     
-    // billing_address.push_back( Pair("store_name", "Test Store"));
-    // billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    // billing_address.push_back( Pair("last_name", "x"));
-    // billing_address.push_back( Pair("address1", ship_to_address.get_str()));
-    // billing_address.push_back( Pair("address2", ""));
-    // billing_address.push_back( Pair("city", ship_to_city.get_str()));
-    // billing_address.push_back( Pair("state", ship_to_state.get_str()));
-    // billing_address.push_back( Pair("postal_code",ship_to_zip_code.get_str()));
-    // billing_address.push_back( Pair("country", "US"));
-    // billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
-    // billing_address.push_back( Pair("email",ship_to_contact_email.get_str()));
+    shipping_address["state"]= ship_to_state ;
+    shipping_address["postal_code"]=ship_to_zip_code ;
+    shipping_address["country"]= "US";
+    shipping_address["phone_number"]= ship_to_contact_phone_number ;
+    shipping_address["email"]=ship_to_contact_email ;
+
+    ret_json_all["shipping_address"]= shipping_address;
+
+    json billing_address;
+    billing_address["tax_name"]="TAX";
     
-    // ret_json_all.push_back(Pair("shipping_address", billing_address));
+    billing_address["store_name"]= "Test Store";
+    billing_address["first_name"]= ship_to_contact_name ;
+    billing_address["last_name"]= "x";
+    billing_address["address1"]= ship_to_address ;
+    billing_address["address2"]= "";
+    billing_address["city"]= ship_to_city ;
+    billing_address["state"]= ship_to_state ;
+    billing_address["postal_code"]=ship_to_zip_code ;
+    billing_address["country"]= "US";
+    billing_address["phone_number"]= ship_to_contact_phone_number ;
+    billing_address["email"]=ship_to_contact_email ;
+    
+    ret_json_all["shipping_address"]= billing_address;
             
 //     for( int i = 0; i < detail.get_array().size(); i++)
 //     {
