@@ -26,8 +26,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE  OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#ifndef NLOHMANN_JSON_HPP
-#define NLOHMANN_JSON_HPP
+#ifndef NLOHMANN_JSON_FIFO_MAP_HPP
+#define NLOHMANN_JSON_FIFO_MAP_HPP
 
 #include <algorithm>
 #include <array>
@@ -65,7 +65,7 @@ SOFTWARE.
 @see https://github.com/nlohmann
 @since version 1.0.0
 */
-namespace nlohmann
+namespace nlohmann_fifo_map
 {
 
 
@@ -9529,10 +9529,10 @@ namespace std
 @since version 1.0.0
 */
 template <>
-inline void swap(nlohmann::json& j1,
-                 nlohmann::json& j2) noexcept(
-                     is_nothrow_move_constructible<nlohmann::json>::value and
-                     is_nothrow_move_assignable<nlohmann::json>::value
+inline void swap(nlohmann_fifo_map::json& j1,
+                 nlohmann_fifo_map::json& j2) noexcept(
+                     is_nothrow_move_constructible<nlohmann_fifo_map::json>::value and
+                     is_nothrow_move_assignable<nlohmann_fifo_map::json>::value
                  )
 {
     j1.swap(j2);
@@ -9540,17 +9540,17 @@ inline void swap(nlohmann::json& j1,
 
 /// hash value for JSON objects
 template <>
-struct hash<nlohmann::json>
+struct hash<nlohmann_fifo_map::json>
 {
     /*!
     @brief return a hash value for a JSON object
 
     @since version 1.0.0
     */
-    std::size_t operator()(const nlohmann::json& j) const
+    std::size_t operator()(const nlohmann_fifo_map::json& j) const
     {
         // a naive hashing via the string representation
-        const auto& h = hash<nlohmann::json::string_t>();
+        const auto& h = hash<nlohmann_fifo_map::json::string_t>();
         return h(j.dump());
     }
 };
@@ -9568,9 +9568,9 @@ if no parse error occurred.
 
 @since version 1.0.0
 */
-inline nlohmann::json operator "" _json(const char* s, std::size_t)
+inline nlohmann_fifo_map::json operator "" _json(const char* s, std::size_t)
 {
-    return nlohmann::json::parse(reinterpret_cast<const nlohmann::json::string_t::value_type*>(s));
+    return nlohmann_fifo_map::json::parse(reinterpret_cast<const nlohmann_fifo_map::json::string_t::value_type*>(s));
 }
 
 /*!
@@ -9578,9 +9578,9 @@ inline nlohmann::json operator "" _json(const char* s, std::size_t)
 
 @since version 2.0.0
 */
-inline nlohmann::json::json_pointer operator "" _json_pointer(const char* s, std::size_t)
+inline nlohmann_fifo_map::json::json_pointer operator "" _json_pointer(const char* s, std::size_t)
 {
-    return nlohmann::json::json_pointer(s);
+    return nlohmann_fifo_map::json::json_pointer(s);
 }
 
 // restore GCC/clang diagnostic settings

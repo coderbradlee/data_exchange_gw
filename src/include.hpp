@@ -67,6 +67,7 @@ using namespace boost::posix_time;
 // #include "json_spirit/json_spirit_writer_template.h"
 // #define JSON_SPIRIT_VALUE_ENABLED
 #define BOOST_SPIRIT_THREADSAFE 
-#include "json.hpp"
+#include "json_map.hpp"
+#include "json_fifo_map.hpp"
 #endif
 
