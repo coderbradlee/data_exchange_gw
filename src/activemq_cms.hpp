@@ -490,9 +490,9 @@ public:
      double temp_shipping_cost_total=shipping_cost_total;
      double temp_grand_total=grand_total;
      ret_json_all["subtotal"]= temp_sub_total;
-     ret_json_all["shipping"]= shipping_cost_total;
+     ret_json_all["shipping"]= temp_shipping_cost_total;
      ret_json_all["order_discount"]= 0;
-     ret_json_all["order_total"]= grand_total;
+     ret_json_all["order_total"]= temp_grand_total;
  
     nlohmann_fifo_map::json shipping_tax,shipping_tax_array;
     shipping_tax["tax_name"]="TAX";
