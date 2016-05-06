@@ -175,29 +175,11 @@ Format](http://rfc7159.net/rfc7159)
 @nosubgrouping
 */
 //remove the order of json
-struct map_no_compare : std::binary_function<std::string, std::string, bool>
-  {
-    // case-independent (ci) compare_less binary function
-    struct no_compare : public std::binary_function<unsigned char,unsigned char,bool> 
-    {
-      bool operator() (const unsigned char& c1, const unsigned char& c2) const 
-      {
-          //return tolower (c1) < tolower (c2); 
-          return true;
-      }
-    };
-    bool operator() (const std::string & s1, const std::string & s2) const {
-      return std::lexicographical_compare 
-        (s1.begin (), s1.end (),   // source range
-        s2.begin (), s2.end (),   // dest range
-        no_compare ());  // comparison
-    }
-  };
-typedef std::map< std::string, std::vector<std::string>, map_no_compare > my_map;
 
+#include "fifo_map.hpp"
 
 template <
-    template<typename U, typename V, typename... Args> class ObjectType = my_map,
+    template<typename U, typename V, typename... Args> class ObjectType = nlohmann::fifo_map,
     template<typename U, typename... Args> class ArrayType = std::vector,
     class StringType = std::string,
     class BooleanType = bool,
