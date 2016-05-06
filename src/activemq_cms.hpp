@@ -523,7 +523,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     shipping_address.push_back( Pair("last_name", "x"));
     shipping_address.push_back( Pair("address1", ship_to_address.get_str()));
     shipping_address.push_back( Pair("address2", "x"));
-    shipping_address.push_back( Pair("city", ship_to_city.get_str()));
+    //shipping_address.push_back( Pair("city", ship_to_city.get_str()));
     cout<<ship_to_state.get_str()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
     //shipping_address.push_back( Pair("state", ship_to_state.get_str()));
