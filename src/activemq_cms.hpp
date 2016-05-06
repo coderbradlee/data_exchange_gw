@@ -528,7 +528,7 @@ public:
     
     ret_json_all["billing_address"]= billing_address;
             
-            for (auto& element : j) 
+            for (auto& element : detail) 
             {
                 std::cout << element["sales_order_detail_id"] << endl;
 
