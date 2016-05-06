@@ -534,8 +534,8 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
     ret_json_all.push_back( Pair("shipping_address", shipping_address));
 
-    // json_spirit::Object billing_address;
-    // billing_address.push_back( Pair("tax_name","TAX"));
+    json_spirit::Object billing_address;
+    billing_address.push_back( Pair("tax_name","TAX"));
     
     // billing_address.push_back( Pair("store_name", "Test Store"));
     // billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
