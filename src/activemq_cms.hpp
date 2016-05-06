@@ -461,7 +461,7 @@ public:
      ret_json_all["reference_order_id"]=sales_order_id ;
      ret_json_all["customer_po"]= sales_order_id ;
 
-     "0"]= "OrderByCustomer"]= "1"]= "OrderBysales"]="2"]="Canceled"]="3"]="UnConfirmed"); 
+     //"0", "OrderByCustomer", "1", "OrderBysales","2","Canceled","3","UnConfirmed"); 
      if(status==0||status==1)
      {
         ret_json_all["order_status"]= "unshipped";
