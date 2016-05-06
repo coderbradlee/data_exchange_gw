@@ -9568,7 +9568,7 @@ if no parse error occurred.
 
 @since version 1.0.0
 */
-inline nlohmann_fifo_map::json operator "" _json(const char* s, std::size_t)
+inline nlohmann_fifo_map::json operator "" _json(const char* s, std::size_t,bool)
 {
     return nlohmann_fifo_map::json::parse(reinterpret_cast<const nlohmann_fifo_map::json::string_t::value_type*>(s));
 }
@@ -9578,7 +9578,7 @@ inline nlohmann_fifo_map::json operator "" _json(const char* s, std::size_t)
 
 @since version 2.0.0
 */
-inline nlohmann_fifo_map::json::json_pointer operator "" _json_pointer(const char* s, std::size_t)
+inline nlohmann_fifo_map::json::json_pointer operator "" _json_pointer(const char* s, std::size_t,bool)
 {
     return nlohmann_fifo_map::json::json_pointer(s);
 }
