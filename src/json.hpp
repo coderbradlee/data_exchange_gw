@@ -346,7 +346,8 @@ class basic_json
     */
     using object_t = ObjectType<StringType,
           basic_json,
-          std::less<StringType>,
+          //std::less<StringType>,
+          fifo_map_compare<StringType>,
           AllocatorType<std::pair<const StringType,
           basic_json>>>;
 
