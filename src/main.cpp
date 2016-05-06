@@ -7,7 +7,7 @@
 #include "boost_signalset.hpp"
 void test()
 {
-	using json = nlohmann::json;
+	using json = nlohmann_fifo_map::json;
 	 json j =
     {
         {"pi", 3.141},
