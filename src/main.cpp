@@ -9,7 +9,7 @@ void test()
 {
 	using json = nlohmann::json;
 	// create JSON values
-    json j_object = {{"one", 1}, {"two", 2}};
+    json j_object = { {"two", 2},{"one", 1}};
     json j_array = {1, 2, 4, 8, 16};
 
     // serialize without indentation
