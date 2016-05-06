@@ -591,11 +591,11 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         m_ss=write(ret_json_all);
     }
-    catch(const json_spirit::Value::PathError& e)
-    {
-        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
-        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    }
+    // catch(const json_spirit::Value::PathError& e)
+    // {
+    //     BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+    //     boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+    // }
     catch( const runtime_error& e )
     {
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
