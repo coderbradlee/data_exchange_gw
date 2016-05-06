@@ -528,59 +528,50 @@ public:
     
     ret_json_all["billing_address"]= billing_address;
             
-    for (auto& element : detail) 
-    {
-        std::cout << element["sales_order_detail_id"] << endl;
-        const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
-        const auto& item_master_id=element["item_master_id"];     
-        const auto& ss_guidance_price=element["ss_guidance_price"];  
-        const auto& ss_promotion_price=element["ss_promotion_price"]; 
-        const auto& unit_price=element["unit_price"];         
-        const auto& uom_id=element["uom_id"];             
-        const auto& quantity=element["quantity"];           
-        const auto& sub_total=element["sub_total"];          
-        const auto& sub_tax=element["sub_tax"];            
-        const auto& sub_shipping_cost=element["sub_shipping_cost"];  
-        const auto& sub_discount=element["sub_discount"];       
-        const auto& note=element["note"];    
+    // for (auto& element : detail) 
+    // {
+    //     std::cout << element["sales_order_detail_id"] << endl;
+    //     const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
+    //     const auto& item_master_id=element["item_master_id"];     
+    //     const auto& ss_guidance_price=element["ss_guidance_price"];  
+    //     const auto& ss_promotion_price=element["ss_promotion_price"]; 
+    //     const auto& unit_price=element["unit_price"];         
+    //     const auto& uom_id=element["uom_id"];             
+    //     const auto& quantity=element["quantity"];           
+    //     const auto& sub_total=element["sub_total"];          
+    //     const auto& sub_tax=element["sub_tax"];            
+    //     const auto& sub_shipping_cost=element["sub_shipping_cost"];  
+    //     const auto& sub_discount=element["sub_discount"];       
+    //     const auto& note=element["note"];    
        
 
-        json order_lines;
-        order_lines["line_number"]= sales_order_detail_id;
-        order_lines["product_sku"]= "123";
-        order_lines["custom_description"]= note;
-        order_lines["quantity"]= quantity;
-        order_lines["price"]= unit_price;
-        order_lines["product_discount"]=sub_discount;
+    //     json order_lines;
+    //     order_lines["line_number"]= sales_order_detail_id;
+    //     order_lines["product_sku"]= "123";
+    //     order_lines["custom_description"]= note;
+    //     order_lines["quantity"]= quantity;
+    //     order_lines["price"]= unit_price;
+    //     order_lines["product_discount"]=sub_discount;
 
-        json product_taxes;
-        product_taxes["tax_name"]= "TAX";
-        product_taxes["tax_rate"]=sub_tax;
-        product_taxes["amount"]= quantity;
+    //     json product_taxes;
+    //     product_taxes["tax_name"]= "TAX";
+    //     product_taxes["tax_rate"]=sub_tax;
+    //     product_taxes["amount"]= quantity;
         
-        order_lines["product_taxes"]=product_taxes;
-
-        ret_json_all["order_lines"]= order_lines;
-
-
-
-        }
+    //     order_lines["product_taxes"]=product_taxes;
+    //     ret_json_all["order_lines"]= order_lines;
+    //     }
+        
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         
         m_ss=ret_json_all.dump();
 
     }
-    // catch(const json_spirit::Value::PathError& e)
-    // {
-    //     BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
-    //     boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    // }
     catch( const runtime_error& e )
     {
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
         boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    }
-    
+    }   
     catch(std::exception& e)
     {
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
