@@ -404,33 +404,20 @@ public:
     virtual void transportResumed() {
         std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
-    json_spirit::mValue read_document(std::istream& is) 
-    {
-        json_spirit::mValue result;
-        auto ok = json_spirit::read(is, result);
-        if (!ok) 
-        {
-            throw std::runtime_error { "invalid json" };
-        }
-        return result;
-    }
-
-    const json_spirit::mValue& get_object_item(const json_spirit::mValue& element, const std::string& name)
-    {
-        return element.get_obj().at(name);
-    }
-
-    const json_spirit::mValue& get_array_item(const json_spirit::mValue& element, size_t index)
-    {
-        return element.get_array().at(index);
-    }
+    
 	void parser_json_write_ss(const string& texts)
     {
+        using json = nlohmann::json;
         try
         {
             static std::mutex mtx;
             std::lock_guard<std::mutex> lock(mtx);
         string text="{    \"sales_order_id\": \"1\",    \"so_no\": \"2\",    \"po_no\": \"3\",    \"status\": 0,    \"order_date\": \"2016-05-03\",    \"company_id\": \"4\",    \"sales_id\": \"5\",    \"currency_id\": \"6\",    \"ss_currency_daily_exchange_rate\": 6.45,    \"tax_schedule_id\": \"7\",    \"ss_tax_rate\": 7.2,    \"customer_master_id\": \"8\",    \"customer_contact_id\": \"9\",    \"customer_invoice_address_id\": \"10\",    \"ship_to_customer_name\": \"11\",    \"ship_to_address\": \"12\",    \"ship_to_state\": \"NY\",    \"ship_to_city\": \"13\",    \"ship_to_zip_code\": \"10118\",    \"ship_to_contact_name\": \"14\",    \"ship_to_contact_phone_number\": \"+1 800-428-4322\",    \"ship_to_contact_email\": \"test@orderbot.com\",    \"trade_term_id\": \"17\",    \"ss_landed_cost_coefficient\": 3.3,    \"dispatch_warehouse_id\": 1,    \"requested_delivery_date\": \"2016-05-03\",    \"promotion_code\": \"\",    \"company_bank_account_id\": \"\",    \"shipping_cost_total\": 25.48,    \"saving_total\": 3.56,    \"tax_total\": 22.51,    \"sub_total\": 180.37,    \"grand_total\": 218.67,    \"note\": \"note\",    \"detail\": [        {            \"sales_order_detail_id\": 44,            \"item_master_id\": \"\",            \"ss_guidance_price\": 5.46,            \"ss_promotion_price\": 5.41,            \"unit_price\": 5.43,            \"uom_id\": \"\",            \"quantity\": 12,            \"sub_total\": 63.67,            \"sub_tax\": 4.33,            \"sub_shipping_cost\": 5.68,            \"sub_discount\": 0,            \"note\": \"detail.note\"        }    ]}";
+            auto j3 = json::parse(text);
+
+
+
+
 //         using namespace json_spirit;
 //         istringstream conf(text);
 
@@ -601,12 +588,7 @@ public:
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
         boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
     }
-    catch(json_spirit::Error_position& e)
-    {
-        cout<<e.reason_<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.reason_;
-        boost_log->get_initsink()->flush();//cout<<e.what()<<endl;
-    }
+    
     catch(std::exception& e)
     {
         BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
@@ -660,12 +642,7 @@ public:
             BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
             boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
         }
-        catch(json_spirit::Error_position& e)
-        {
-            cout<<e.reason_<<":"<<__FILE__<<":"<<__LINE__<<endl;
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.reason_;
-            boost_log->get_initsink()->flush();//cout<<e.what()<<endl;
-        }
+
         catch(std::exception& e)
         {
             BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
