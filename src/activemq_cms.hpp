@@ -537,10 +537,10 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     json_spirit::Object billing_address;
     billing_address.push_back( Pair("tax_name","TAX"));
     
-    // billing_address.push_back( Pair("store_name", "Test Store"));
-    // billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
-    // billing_address.push_back( Pair("last_name", "x"));
-    // billing_address.push_back( Pair("address1", ship_to_address.get_str()));
+    billing_address.push_back( Pair("store_name", "Test Store"));
+    billing_address.push_back( Pair("first_name", ship_to_contact_name.get_str()));
+    billing_address.push_back( Pair("last_name", "x"));
+    billing_address.push_back( Pair("address1", ship_to_address.get_str()));
     // billing_address.push_back( Pair("address2", ""));
     // billing_address.push_back( Pair("city", ship_to_city.get_str()));
     // billing_address.push_back( Pair("state", ship_to_state.get_str()));
@@ -549,7 +549,7 @@ cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
     // billing_address.push_back( Pair("phone_number", ship_to_contact_phone_number.get_str()));
     // billing_address.push_back( Pair("email",ship_to_contact_email.get_str()));
     
-       // ret_json_all.push_back(Pair("shipping_address", billing_address));
+    // ret_json_all.push_back(Pair("shipping_address", billing_address));
             
 //     for( int i = 0; i < detail.get_array().size(); i++)
 //     {
