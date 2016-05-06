@@ -452,40 +452,40 @@ public:
     json ret_json_all;
 
 
-     ret_json_all["orderbot_account_id"]= nullptr;
-     ret_json_all["order_date"]=order_date ;
-     ret_json_all["ship_date"]=requested_delivery_date ;
-     ret_json_all["orderbot_customer_id"]="need get from orderbot";//need get from orderbot
-     ret_json_all["reference_customer_id"]=customer_master_id ;
-     ret_json_all["reference_order_id"]=sales_order_id ;
-     ret_json_all["customer_po"]= sales_order_id ;
+     // ret_json_all["orderbot_account_id"]= nullptr;
+     // ret_json_all["order_date"]=order_date ;
+     // ret_json_all["ship_date"]=requested_delivery_date ;
+     // ret_json_all["orderbot_customer_id"]="need get from orderbot";//need get from orderbot
+     // ret_json_all["reference_customer_id"]=customer_master_id ;
+     // ret_json_all["reference_order_id"]=sales_order_id ;
+     // ret_json_all["customer_po"]= sales_order_id ;
 
-     //"0"]= "OrderByCustomer"]= "1"]= "OrderBysales"]="2"]="Canceled"]="3"]="UnConfirmed"); 
-     if(status==0||status==1)
-     {
-        ret_json_all["order_status"]= "unshipped";
-     }
-     else if(status==2)
-     {
-         ret_json_all["order_status"]= "do_not_ship";
-     }
-     else
-     {
-         ret_json_all["order_status"]= "unconfirmed";
-     }  
-     ret_json_all["order_notes"]= note ;
-     ret_json_all["internal_notes"]= "test internal";
-     ret_json_all["bill_third_party"]= false;
-     ret_json_all["distribution_center_id"]= dispatch_warehouse_id;//need get from orderbot
-     ret_json_all["account_group_id"]= nullptr;//need get from orderbot
-     ret_json_all["order_guide_id"]= nullptr;//need get from orderbot
-     ret_json_all["insure_packages"]= false;//not sure
-     ret_json_all["shipping_code"]= "A1";//need get from orderbot
-     ret_json_all["email_confirmation_address"]= "test@orderbot.com";
-     ret_json_all["subtotal"]= sub_total;
-     ret_json_all["shipping"]= shipping_cost_total;
-     ret_json_all["order_discount"]= 0;
-     ret_json_all["order_total"]= grand_total;
+     // //"0"]= "OrderByCustomer"]= "1"]= "OrderBysales"]="2"]="Canceled"]="3"]="UnConfirmed"); 
+     // if(status==0||status==1)
+     // {
+     //    ret_json_all["order_status"]= "unshipped";
+     // }
+     // else if(status==2)
+     // {
+     //     ret_json_all["order_status"]= "do_not_ship";
+     // }
+     // else
+     // {
+     //     ret_json_all["order_status"]= "unconfirmed";
+     // }  
+     // ret_json_all["order_notes"]= note ;
+     // ret_json_all["internal_notes"]= "test internal";
+     // ret_json_all["bill_third_party"]= false;
+     // ret_json_all["distribution_center_id"]= dispatch_warehouse_id;//need get from orderbot
+     // ret_json_all["account_group_id"]= nullptr;//need get from orderbot
+     // ret_json_all["order_guide_id"]= nullptr;//need get from orderbot
+     // ret_json_all["insure_packages"]= false;//not sure
+     // ret_json_all["shipping_code"]= "A1";//need get from orderbot
+     // ret_json_all["email_confirmation_address"]= "test@orderbot.com";
+     // ret_json_all["subtotal"]= sub_total;
+     // ret_json_all["shipping"]= shipping_cost_total;
+     // ret_json_all["order_discount"]= 0;
+     // ret_json_all["order_total"]= grand_total;
  
     // json shipping_tax,shipping_tax_array;
     // shipping_tax["tax_name"]="TAX";
