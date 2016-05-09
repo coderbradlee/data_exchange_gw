@@ -105,12 +105,12 @@ namespace brad
 	{
 		return ~(l<r||l==r);
 	}
-	int get_random_int(int a, int b) 
+	int get_random_int(int head, int tail) 
 	{  
 	    static std::default_random_engine e{std::random_device{}()}; 
 	    static std::uniform_int_distribution<int> u;  
 	  
-	    return u(e, decltype(u)::param_type(a, b));  
+	    return u(e, decltype(u)::param_type(head, tail));  
 	}
 	 class comp
 	 {
