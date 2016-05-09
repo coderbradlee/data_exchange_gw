@@ -104,7 +104,7 @@ namespace brad
 		int i=0;
 		for(auto& date:v)
 		{
-			m.insert(std::pair(date,i++));
+			m.emplace(std::make_pair(date,i++));
 		}
 		v.clear();
 		for(auto& date:m)
