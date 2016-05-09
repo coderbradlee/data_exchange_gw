@@ -567,10 +567,10 @@ public:
 
         nlohmann_fifo_map::json product_taxes;
         double temp_sub_tax=sub_tax;
-        double temp_quantity=quantity;
+        double temp_product_taxes_quantity=quantity;
         product_taxes["tax_name"]= "TAX";
-        product_taxes["tax_rate"]=sub_tax;
-        product_taxes["amount"]= quantity;
+        product_taxes["tax_rate"]=temp_sub_tax;
+        product_taxes["amount"]= temp_product_taxes_quantity;
         
         order_lines["product_taxes"]=product_taxes;
         ret_json_all["order_lines"]= order_lines;
