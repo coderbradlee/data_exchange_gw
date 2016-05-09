@@ -103,7 +103,7 @@ namespace brad
 		std::map<Date> m;
 		for(auto& date:v)
 		{
-			m.push_back(date);
+			m.insert(date);
 		}
 		v.clear();
 		for(auto& date:m)
