@@ -131,7 +131,8 @@ namespace brad
 	}
 	void Sort(std::vector<Date>& v)
 	{
-		std::map<Date,int,comp> m;
+		//std::map<Date,int,comp> m;
+		std::map<Date,int> m;
 		int i=0;
 		for(auto& date:v)
 		{
