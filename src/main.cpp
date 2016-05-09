@@ -77,7 +77,7 @@ namespace brad
 		}
 		else if(l.get_year()<r.get_year())
 		{
-			return ture;
+			return true;
 		}
 		else if(l.get_month()>r.get_month())
 		{
