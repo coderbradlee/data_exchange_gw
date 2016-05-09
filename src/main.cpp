@@ -94,7 +94,7 @@ namespace brad
 		std::vector<Date> v;
 		for(int i=0;i<10;++i)
 		{
-			v.push_back(Date(get_random_int(1900,2099),get_random_int(1,12),get_random_int(0,31)));
+			v.push_back(Date(get_random_int(1900,2099),get_random_int(1,12),get_random_int(1,31)));
 		}
 		return v;
 	}
@@ -107,6 +107,7 @@ namespace brad
 			m.emplace(std::make_pair(date,i++));
 		}
 		v.clear();
+
 		for(auto& date:m)
 		{
 			v.push_back(date.first);
@@ -126,6 +127,7 @@ int main()
 			{
 				d.print();
 			}
+			cout<<"--------------------"<<endl;
 			brad::Sort(v);
 			for(auto& d:v)
 			{
