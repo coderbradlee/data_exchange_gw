@@ -419,6 +419,7 @@ public:
                 cout<<ship_to_customer_name<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 if(customer_name==ship_to_customer_name)
                 {
+                    cout<<customer["customer_id"]<<":"<<__FILE__<<":"<<__LINE__<<endl;
                     return customer["customer_id"];
                 }
             }
