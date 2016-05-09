@@ -408,7 +408,7 @@ public:
     {
         //GET /admin/Customers.json/?active=true&sales_channel_name=wholesale
         boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-            order->request("GET", "/admin/Customers.json/?active=true&sales_channel_name=wholesale", "","");
+            order->request("GET", "/admin/Customers.json/", "active=true&sales_channel_name=wholesale","");
             cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
             const auto& j = nlohmann_map::json::parse(*(order->m_data));
 
