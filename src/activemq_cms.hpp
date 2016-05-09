@@ -415,7 +415,8 @@ public:
             for (auto& customer : j) 
             {
                 const auto& customer_name=customer["customer_name"]; 
-                if(customer_name!=""&&customer_name==ship_to_customer_name)
+                cout<<customer_name<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                if(customer_name==ship_to_customer_name)
                 {
                     return customer["customer_id"];
                 }
