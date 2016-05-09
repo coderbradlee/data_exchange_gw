@@ -109,7 +109,7 @@ int main()
 	{
 		{
 			std::vector<Date> v=brad::CreatePoints();
-			for(const auto& d:v)
+			for(auto& d:v)
 			{
 				d.print();
 			}
