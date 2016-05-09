@@ -535,39 +535,46 @@ public:
     
     ret_json_all["billing_address"]= billing_address;
             
-    // for (auto& element : detail) 
-    // {
-    //     std::cout << element["sales_order_detail_id"] << endl;
-    //     const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
-    //     const auto& item_master_id=element["item_master_id"];     
-    //     const auto& ss_guidance_price=element["ss_guidance_price"];  
-    //     const auto& ss_promotion_price=element["ss_promotion_price"]; 
-    //     const auto& unit_price=element["unit_price"];         
-    //     const auto& uom_id=element["uom_id"];             
-    //     const auto& quantity=element["quantity"];           
-    //     const auto& sub_total=element["sub_total"];          
-    //     const auto& sub_tax=element["sub_tax"];            
-    //     const auto& sub_shipping_cost=element["sub_shipping_cost"];  
-    //     const auto& sub_discount=element["sub_discount"];       
-    //     const auto& note=element["note"];    
+    for (auto& element : detail) 
+    {
+        std::cout << element["sales_order_detail_id"] << endl;
+        const auto& sales_order_detail_id=element["sales_order_detail_id"]; 
+        const auto& item_master_id=element["item_master_id"];     
+        const auto& ss_guidance_price=element["ss_guidance_price"];  
+        const auto& ss_promotion_price=element["ss_promotion_price"]; 
+        const auto& unit_price=element["unit_price"];         
+        const auto& uom_id=element["uom_id"];             
+        const auto& quantity=element["quantity"];           
+        const auto& sub_total=element["sub_total"];          
+        const auto& sub_tax=element["sub_tax"];            
+        const auto& sub_shipping_cost=element["sub_shipping_cost"];  
+        const auto& sub_discount=element["sub_discount"];       
+        const auto& note=element["note"];    
        
 
-    //     nlohmann_fifo_map::json order_lines;
-    //     order_lines["line_number"]= sales_order_detail_id;
-    //     order_lines["product_sku"]= "123";
-    //     order_lines["custom_description"]= note;
-    //     order_lines["quantity"]= quantity;
-    //     order_lines["price"]= unit_price;
-    //     order_lines["product_discount"]=sub_discount;
+        nlohmann_fifo_map::json order_lines;
+        double temp_sales_order_detail_id=sales_order_detail_id;
+        double temp_quantity=quantity;
+        double temp_unit_price=unit_price;
+        double temp_sub_discount=sub_discount;
 
-    //     nlohmann_fifo_map::json product_taxes;
-    //     product_taxes["tax_name"]= "TAX";
-    //     product_taxes["tax_rate"]=sub_tax;
-    //     product_taxes["amount"]= quantity;
+        order_lines["line_number"]= temp_sales_order_detail_id;
+        order_lines["product_sku"]= "123";
+        order_lines["custom_description"]= note;
+        order_lines["quantity"]= temp_quantity;
+        order_lines["price"]= temp_unit_price;
+        order_lines["product_discount"]=temp_sub_discount;
+
+        nlohmann_fifo_map::json product_taxes;
+        double temp_sub_tax=sub_tax;
+        double temp_quantity=quantity;
+        product_taxes["tax_name"]= "TAX";
+        product_taxes["tax_rate"]=sub_tax;
+        product_taxes["amount"]= quantity;
         
-    //     order_lines["product_taxes"]=product_taxes;
-    //     ret_json_all["order_lines"]= order_lines;
-    //     }
+        order_lines["product_taxes"]=product_taxes;
+        ret_json_all["order_lines"]= order_lines;
+        }
         
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
         
