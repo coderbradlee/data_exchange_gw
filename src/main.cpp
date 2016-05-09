@@ -95,7 +95,7 @@ namespace brad
 		}
 		return v;
 	}
-	void Sort(const std::vector<Date>& v)
+	void Sort(std::vector<Date>& v)
 	{
 
 	} 
@@ -108,7 +108,7 @@ int main()
 	try
 	{
 		{
-			std::vector<Date> v=brad::CreatePoints();
+			std::vector<brad::Date> v=brad::CreatePoints();
 			for(auto& d:v)
 			{
 				d.print();
