@@ -573,10 +573,20 @@ public:
         product_taxes["amount"]= temp_product_taxes_quantity;
         
         nlohmann_fifo_map::json product_taxes_array = nlohmann_fifo_map::json::array({product_taxes});
-
         order_lines["product_taxes"]=product_taxes_array;
+
+        nlohmann_fifo_map::json payments,payments_array;
+        payments_array = nlohmann_fifo_map::json::array({payments});
+        ret_json_all["payments"]= payments_array;
+
         nlohmann_fifo_map::json order_lines_array = nlohmann_fifo_map::json::array({order_lines});
         ret_json_all["order_lines"]= order_lines_array;
+
+        nlohmann_fifo_map::json other_charges,other_charges_array;
+        other_charges_array = nlohmann_fifo_map::json::array({other_charges});
+        ret_json_all["other_charges"]= other_charges_array;
+
+
         }
         
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
