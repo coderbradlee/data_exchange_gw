@@ -37,6 +37,67 @@ void test()
     // pretty print with indent of 4 spaces
     std::cout << j << '\n';
 }
+
+class Date
+{
+	public:
+	Date(int year,int month,int day):m_year(year),m_month(month),m_day(day)
+	{
+	
+	}
+	int get_year()
+	{
+		return m_year;
+	}
+	int get_month()
+	{
+		return m_month;
+	}
+	int get_day()
+	{
+		return m_day;
+	}
+	void print()
+	{
+		cout<<m_year<<"-"<<m_month<<"-"<<m_day<<endl;
+	}
+	private:
+	int m_year;
+	int m_month;
+	int m_day;	
+};
+inline bool operator<(const Date& l,const Date& r)
+{
+	return l.get_year()<r.get_year()||l.get_month()<r.get_month()||l.get_day()<r.get_day();
+}
+inline bool operator==(const Date& l,const Date& r)
+{
+	return l.get_year()==r.get_year()&&l.get_month()==r.get_month()&&l.get_day()==r.get_day()
+}
+inline bool operator>(const Date& l,const Date& r)
+{
+	return ~(l<r||l==r);
+}
+int get_random_int(int a, int b) 
+{  
+    static std::default_random_engine e{std::random_device{}()}; 
+    static std::uniform_int_distribution<int> u;  
+  
+    return u(e, decltype(u)::param_type(a, b));  
+} 
+std::vector<Date> CreatePoints()
+{
+	std::vector<Date> v;
+	for(int i=0;i<10;++i)
+	{
+		v.push_back(Date(get_random_int(1900,9999),get_random_int(1,12),get_random_int(0,31)));
+	}
+	return v;
+}
+void Sort(const std::vector<Date>& v)
+{
+
+} 
 int main()
 {
 	for(int i=1;i<64;++i)
@@ -44,6 +105,18 @@ int main()
 	//std::raise(SIGINT);
 	try
 	{
+		{
+			std::vector<Date> v=CreatePoints();
+			for(const auto& d:v)
+			{
+				d.print();
+			}
+			Sort(v);
+			for(const auto& d:v)
+			{
+				d.print();
+			}
+		}
 		{
 			//test();
 			// credit_ontime test;

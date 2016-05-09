@@ -69,5 +69,7 @@ using namespace boost::posix_time;
 #define BOOST_SPIRIT_THREADSAFE 
 #include "json_map.hpp"
 #include "json_fifo_map.hpp"
+#include <boost/random.hpp>
+#include <boost/nondet_random.hpp>
 #endif
 
