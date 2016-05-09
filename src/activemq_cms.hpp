@@ -404,7 +404,13 @@ public:
     virtual void transportResumed() {
         std::cout << "The Connection's Transport has been Restored." << std::endl;
     }
-    
+    void get_customer_from_orderbot()
+    {
+        //GET /admin/Customers.json/?active=true&sales_channel_name=wholesale
+        boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+            order->request("GET", "/admin/Customers.json/?active=true&sales_channel_name=wholesale", "","");
+            cout<<*(order->data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+    }
 	void parser_json_write_ss(const string& texts)
     {
         try
