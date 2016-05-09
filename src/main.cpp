@@ -60,7 +60,7 @@ namespace brad
 		}
 		void print() const
 		{
-			cout<<m_year<<"-"<<setw(2)<<m_month<<"-"<<m_day<<endl;
+			cout<<m_year<<"-"<<setw(2)<< setfill ('0')<<m_month<<setw(2)<< setfill ('0')<<"-"<<m_day<<endl;
 		}
 		private:
 		int m_year;
