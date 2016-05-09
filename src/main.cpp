@@ -94,13 +94,22 @@ namespace brad
 		std::vector<Date> v;
 		for(int i=0;i<10;++i)
 		{
-			v.push_back(Date(get_random_int(1900,9999),get_random_int(1,12),get_random_int(0,31)));
+			v.push_back(Date(get_random_int(1900,2099),get_random_int(1,12),get_random_int(0,31)));
 		}
 		return v;
 	}
 	void Sort(std::vector<Date>& v)
 	{
-
+		std::map<Date> m;
+		for(auto& date:v)
+		{
+			m.push_back(date);
+		}
+		v.clear();
+		for(auto& date:m)
+		{
+			v.push_back(date);
+		}
 	} 
 }
 int main()
