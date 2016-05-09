@@ -416,6 +416,7 @@ public:
             {
                 const auto& customer_name=customer["customer_name"]; 
                 cout<<customer_name<<":"<<__FILE__<<":"<<__LINE__<<endl;
+                cout<<ship_to_customer_name<<":"<<__FILE__<<":"<<__LINE__<<endl;
                 if(customer_name==ship_to_customer_name)
                 {
                     return customer["customer_id"];
