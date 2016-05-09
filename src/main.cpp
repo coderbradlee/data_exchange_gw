@@ -88,7 +88,15 @@ namespace brad
 	    static std::uniform_int_distribution<int> u;  
 	  
 	    return u(e, decltype(u)::param_type(a, b));  
-	} 
+	}
+	 class comp
+	 {
+	 public:
+	     bool operator() (const Date &a , const Date  &b) const
+	     {
+	         return a<b;
+	     }
+	}; 
 	std::vector<Date> CreatePoints()
 	{
 		std::vector<Date> v;
@@ -100,7 +108,7 @@ namespace brad
 	}
 	void Sort(std::vector<Date>& v)
 	{
-		std::map<Date,int> m;
+		std::map<Date,int,comp> m;
 		int i=0;
 		for(auto& date:v)
 		{
