@@ -501,39 +501,39 @@ public:
     shipping_tax_array = nlohmann_fifo_map::json::array({shipping_tax});
     ret_json_all["shipping_tax"]= shipping_tax_array;
 
-    // nlohmann_fifo_map::json shipping_address;
-    // shipping_address["tax_name"]="TAX";   
-    // shipping_address["store_name"]= "Test Store";
-    // shipping_address["first_name"]= ship_to_contact_name ;
-    // shipping_address["last_name"]= "x";
-    // shipping_address["address1"]= ship_to_address ;
-    // shipping_address["address2"]= "x";
-    // shipping_address["city"]= ship_to_city ;
+    nlohmann_fifo_map::json shipping_address;
+    shipping_address["tax_name"]="TAX";   
+    shipping_address["store_name"]= "Test Store";
+    shipping_address["first_name"]= ship_to_contact_name ;
+    shipping_address["last_name"]= "x";
+    shipping_address["address1"]= ship_to_address ;
+    shipping_address["address2"]= "x";
+    shipping_address["city"]= ship_to_city ;
     
-    // shipping_address["state"]= ship_to_state ;
-    // shipping_address["postal_code"]=ship_to_zip_code ;
-    // shipping_address["country"]= "US";
-    // shipping_address["phone_number"]= ship_to_contact_phone_number ;
-    // shipping_address["email"]=ship_to_contact_email ;
+    shipping_address["state"]= ship_to_state ;
+    shipping_address["postal_code"]=ship_to_zip_code ;
+    shipping_address["country"]= "US";
+    shipping_address["phone_number"]= ship_to_contact_phone_number ;
+    shipping_address["email"]=ship_to_contact_email ;
 
-    // ret_json_all["shipping_address"]= shipping_address;
+    ret_json_all["shipping_address"]= shipping_address;
 
-    // nlohmann_fifo_map::json billing_address;
-    // billing_address["tax_name"]="TAX";
+    nlohmann_fifo_map::json billing_address;
+    billing_address["tax_name"]="TAX";
     
-    // billing_address["store_name"]= "Test Store";
-    // billing_address["first_name"]= ship_to_contact_name ;
-    // billing_address["last_name"]= "x";
-    // billing_address["address1"]= ship_to_address ;
-    // billing_address["address2"]= "";
-    // billing_address["city"]= ship_to_city ;
-    // billing_address["state"]= ship_to_state ;
-    // billing_address["postal_code"]=ship_to_zip_code ;
-    // billing_address["country"]= "US";
-    // billing_address["phone_number"]= ship_to_contact_phone_number ;
-    // billing_address["email"]=ship_to_contact_email ;
+    billing_address["store_name"]= "Test Store";
+    billing_address["first_name"]= ship_to_contact_name ;
+    billing_address["last_name"]= "x";
+    billing_address["address1"]= ship_to_address ;
+    billing_address["address2"]= "";
+    billing_address["city"]= ship_to_city ;
+    billing_address["state"]= ship_to_state ;
+    billing_address["postal_code"]=ship_to_zip_code ;
+    billing_address["country"]= "US";
+    billing_address["phone_number"]= ship_to_contact_phone_number ;
+    billing_address["email"]=ship_to_contact_email ;
     
-    // ret_json_all["billing_address"]= billing_address;
+    ret_json_all["billing_address"]= billing_address;
             
     // for (auto& element : detail) 
     // {
