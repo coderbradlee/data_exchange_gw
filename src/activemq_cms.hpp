@@ -502,7 +502,7 @@ public:
     ret_json_all["shipping_tax"]= shipping_tax_array;
 
     nlohmann_fifo_map::json shipping_address;
-    shipping_address["tax_name"]="TAX";   
+    //shipping_address["tax_name"]="TAX";   
     shipping_address["store_name"]= "Test Store";
     shipping_address["first_name"]= ship_to_contact_name ;
     shipping_address["last_name"]= "x";
@@ -519,7 +519,7 @@ public:
     ret_json_all["shipping_address"]= shipping_address;
 
     nlohmann_fifo_map::json billing_address;
-    billing_address["tax_name"]="TAX";
+    //billing_address["tax_name"]="TAX";
     
     billing_address["store_name"]= "Test Store";
     billing_address["first_name"]= ship_to_contact_name ;
@@ -572,8 +572,11 @@ public:
         product_taxes["tax_rate"]=temp_sub_tax;
         product_taxes["amount"]= temp_product_taxes_quantity;
         
-        order_lines["product_taxes"]=product_taxes;
-        ret_json_all["order_lines"]= order_lines;
+        nlohmann_fifo_map::json product_taxes_array = nlohmann_fifo_map::json::array({product_taxes});
+
+        order_lines["product_taxes"]=product_taxes_array;
+        nlohmann_fifo_map::json order_lines_array = nlohmann_fifo_map::json::array({order_lines});
+        ret_json_all["order_lines"]= order_lines_array;
         }
         
         cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
