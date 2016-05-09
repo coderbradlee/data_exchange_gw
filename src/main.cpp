@@ -46,19 +46,19 @@ namespace brad
 		{
 		
 		}
-		int get_year()
+		int get_year() const
 		{
 			return m_year;
 		}
-		int get_month()
+		int get_month() const
 		{
 			return m_month;
 		}
-		int get_day()
+		int get_day() const
 		{
 			return m_day;
 		}
-		void print()
+		void print() const
 		{
 			cout<<m_year<<"-"<<m_month<<"-"<<m_day<<endl;
 		}
@@ -67,9 +67,12 @@ namespace brad
 		int m_month;
 		int m_day;	
 	};
+
 	inline bool operator<(const Date& l,const Date& r)
 	{
-		return (l.get_year()<r.get_year())||(l.get_month()<r.get_month())||(l.get_day()<r.get_day());
+		return 	(l.get_year()<r.get_year())||
+				(l.get_month()<r.get_month())||
+				(l.get_day()<r.get_day());
 	}
 	inline bool operator==(const Date& l,const Date& r)
 	{
