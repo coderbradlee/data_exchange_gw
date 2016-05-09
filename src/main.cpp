@@ -70,9 +70,32 @@ namespace brad
 
 	inline bool operator<(const Date& l,const Date& r)
 	{
-		return 	(l.get_year()<r.get_year())||
-				(l.get_month()<r.get_month())||
-				(l.get_day()<r.get_day());
+		//return 	(l.get_year()<r.get_year())||(l.get_month()<r.get_month())||(l.get_day()<r.get_day());
+		if(l.get_year()>r.get_year())
+		{
+			return false;
+		}
+		else if(l.get_year()<r.get_year())
+		{
+			return ture;
+		}
+		else if(l.get_month()>r.get_month())
+		{
+			return false;
+		}
+		else if(l.get_month()<r.get_month())
+		{
+			return true;
+		}
+		else if(l.get_day()>=r.get_day())
+		{
+			return false;
+		}
+		else
+		{	
+			return true;
+		}
+
 	}
 	inline bool operator==(const Date& l,const Date& r)
 	{
