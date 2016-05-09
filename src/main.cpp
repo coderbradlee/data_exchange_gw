@@ -100,15 +100,15 @@ namespace brad
 	}
 	void Sort(std::vector<Date>& v)
 	{
-		std::map<Date> m;
+		std::map<Date,int> m;
 		for(auto& date:v)
 		{
-			m.insert(date);
+			m.insert(date,1);
 		}
 		v.clear();
 		for(auto& date:m)
 		{
-			v.push_back(date);
+			v.push_back(date.first);
 		}
 	} 
 }
