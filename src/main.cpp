@@ -69,11 +69,11 @@ namespace brad
 	};
 	inline bool operator<(const Date& l,const Date& r)
 	{
-		return l.get_year()<r.get_year()||l.get_month()<r.get_month()||l.get_day()<r.get_day();
+		return (l.get_year()<r.get_year())||(l.get_month()<r.get_month())||(l.get_day()<r.get_day());
 	}
 	inline bool operator==(const Date& l,const Date& r)
 	{
-		return l.get_year()==r.get_year()&&l.get_month()==r.get_month()&&l.get_day()==r.get_day()
+		return (l.get_year()==r.get_year())&&(l.get_month()==r.get_month())&&(l.get_day()==r.get_day());
 	}
 	inline bool operator>(const Date& l,const Date& r)
 	{
