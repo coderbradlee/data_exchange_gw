@@ -48,6 +48,10 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_write_product_interval = boost::lexical_cast<size_t>(m_pt.get<std::string>("activemq.write_product_interval"));	
 			m_activemq_read_order_queue= m_pt.get<std::string>("activemq.read_order_queue");	
 			m_activemq_write_order_queue= m_pt.get<std::string>("activemq.write_order_queue");	
+			m_exchange_rate_url=m_pt.get<std::string>("exchange_rate.url");
+			m_exchange_rate_request_interval=m_pt.get<std::string>("exchange_rate.request_interval");
+			m_exchange_rate_key=m_pt.get<std::string>("exchange_rate.key");
+			m_exchange_rate_write_rate_queue=m_pt.get<std::string>("exchange_rate.write_rate_queue");
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -71,7 +75,11 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_activemq_write_product_queue;	
 		size_t m_write_product_interval;
 		string m_activemq_read_order_queue;	
-		string m_activemq_write_order_queue;			
+		string m_activemq_write_order_queue;	
+		string m_exchange_rate_url;	
+		string m_exchange_rate_request_interval;	
+		string m_exchange_rate_key;
+		string m_exchange_rate_write_rate_queue;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
 };
