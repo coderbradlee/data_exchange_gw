@@ -188,6 +188,185 @@ void test_bit_set()
 	cout << three << endl;
 }
 
+void test()
+{
+	using json = nlohmann_fifo_map::json;
+	 json j =
+    {
+        {"pi", 3.141},
+        {"happy", true},
+        {"name", "Niels"},
+        {"nothing", nullptr},
+        {
+            "answer", {
+                {"everything", 42}
+            }
+        },
+        {"list", {1, 0, 2}},
+        {
+            "object", {
+                {"currency", "USD"},
+                {"value", 42.99}
+            }
+        }
+    };
 
+    // add new values
+    j["new"]["key"]["value"] = {"another", "list"};
+
+    // count elements
+    j["size"] = j.size();
+
+    // pretty print with indent of 4 spaces
+    std::cout << j << '\n';
+}
+namespace brad
+{ 
+	//geekband homework1
+	class Date
+	{
+		public:
+		Date(int year,int month,int day):m_year(year),m_month(month),m_day(day)
+		{
+		
+		}
+		int get_year() const
+		{
+			return m_year;
+		}
+		int get_month() const
+		{
+			return m_month;
+		}
+		int get_day() const
+		{
+			return m_day;
+		}
+		void print() const
+		{
+			cout<<m_year<<"-"<<setw(2)<< setfill ('0')<<m_month<<"-"<<setw(2)<< setfill ('0')<<m_day<<endl;
+		}
+		private:
+		int m_year;
+		int m_month;
+		int m_day;	
+	};
+
+	inline bool operator<(const Date& l,const Date& r)
+	{
+		//return 	(l.get_year()<r.get_year())||(l.get_month()<r.get_month())||(l.get_day()<r.get_day());
+		if(l.get_year()>r.get_year())
+		{
+			return false;
+		}
+		else if(l.get_year()<r.get_year())
+		{
+			return true;
+		}
+		else if(l.get_month()>r.get_month())
+		{
+			return false;
+		}
+		else if(l.get_month()<r.get_month())
+		{
+			return true;
+		}
+		else if(l.get_day()>=r.get_day())
+		{
+			return false;
+		}
+		else
+		{	
+			return true;
+		}
+
+	}
+	inline bool operator==(const Date& l,const Date& r)
+	{
+		return (l.get_year()==r.get_year())&&(l.get_month()==r.get_month())&&(l.get_day()==r.get_day());
+	}
+	inline bool operator>(const Date& l,const Date& r)
+	{
+		return ~(l<r||l==r);
+	}
+	int get_random_int(int head, int tail) 
+	{  
+	    static std::default_random_engine e{std::random_device{}()}; 
+	    static std::uniform_int_distribution<int> u;  
+	  
+	    return u(e, decltype(u)::param_type(head, tail));  
+	}
+	 class comp
+	 {
+	 public:
+	     bool operator() (const Date &a , const Date  &b) const
+	     {
+	         return a<b;
+	     }
+	}; 
+	std::vector<Date> CreatePoints()
+	{
+		std::vector<Date> v;
+		for(int i=0;i<10;++i)
+		{
+			v.push_back(Date(get_random_int(1900,2099),get_random_int(1,12),get_random_int(1,31)));
+		}
+		return v;
+	}
+	void Sort(std::vector<Date>& v)
+	{
+		//std::map<Date,int,comp> m;
+		std::map<Date,int> m;
+		int i=0;
+		for(auto& date:v)
+		{
+			m.emplace(std::make_pair(date,i++));
+		}
+		v.clear();
+
+		for(auto& date:m)
+		{
+			v.push_back(date.first);
+		}
+	} 
+	void test
+	{
+		std::vector<brad::Date> v=brad::CreatePoints();
+			for(auto& d:v)
+			{
+				d.print();
+			}
+			cout<<"--------------------"<<endl;
+			brad::Sort(v);
+			for(auto& d:v)
+			{
+				d.print();
+			}
+
+	}
+}
+namespace effective_c++
+{
+	template<typename T>
+	class reference_class
+	{
+	public:
+		reference_class(const std::string& name,const T& value):m_name(name),m_value(value){}
+		void print()
+		{
+			cout<<m_name<<":"<<m_value<<endl;
+		}
+	private:
+		std::string& m_name;
+		const T m_value;
+	};
+	void test()
+	{
+		reference_class<int> p("p",1);
+		reference_class<int> s("s",1);
+		p=s;
+		p.print();
+	}
+}
 #endif	/* PAYPAL_HPP */
 
