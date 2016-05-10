@@ -356,6 +356,11 @@ namespace effective_cplusplus
 		{
 			cout<<m_name<<":"<<m_value<<endl;
 		}
+		reference_class& operator=(const reference_class& r)
+		{
+			m_name=r.m_name;
+			m_value=r.m_value;
+		}
 	private:
 		std::string& m_name;
 		const T m_value;
