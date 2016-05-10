@@ -181,7 +181,7 @@ public:
 	{
 		
 	}
-	void get_product_all()
+	void get_exchange_rate()
 	{
 		try
 		{
@@ -258,7 +258,7 @@ public:
 	{
 		try
 		{
-			get_product_all();
+			get_exchange_rate();
 			//cout<<__FILE__<<":"<<__LINE__<<endl;
 
 			ptree pt,ret_json_all;
