@@ -210,9 +210,9 @@ public:
 		try
 		{
 			boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-			order->request("GET", "/USD/GBP", "k="+get_config->m_exchange_rate_key, "");
+			rate->request("GET", "/USD/GBP", "k="+get_config->m_exchange_rate_key, "");
 
-			m_product_all=order->m_data;
+			m_product_all=rate->m_data;
 			//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 		catch(json_parser_error& e) 
