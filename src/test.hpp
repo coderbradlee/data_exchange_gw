@@ -366,7 +366,7 @@ namespace effective_cplusplus
 		std::string ss="s";
 		reference_class<int> p(ps,1);
 		reference_class<int> s(ss,2);
-		//p=s;
+		p=s;
 		p.print();
 	}
 }
