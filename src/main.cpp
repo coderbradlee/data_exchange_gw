@@ -14,7 +14,7 @@ int main()
 	try
 	{
 		{
-			effective_c++::test();
+			effective_cplusplus::test();
 		}
 		{
 			//test();
