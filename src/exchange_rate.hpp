@@ -42,7 +42,7 @@ public:
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"request:"<<method<<":"<<path<<":"<<param<<":"<<content;
 		boost_log->get_initsink()->flush();
 		/////////////////////////////////////////////////////
-		
+		//t_currency_exchange_rate 
 		curl(path, method, param, content);
 	}
 	boost::shared_ptr<string> get_data()
@@ -128,6 +128,7 @@ protected:
 	void set_url(const std::string& url) const
 	{
 		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
+		cout<<url<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 	bool on_request()
 	{
@@ -153,8 +154,7 @@ protected:
 	void process_content()
 	{
 
-		cout<<m_data<<endl;
-		
+		cout<<m_data<<":"<<__FILE__<<":"<<__LINE__<<endl;		
 	}
 	
 	
@@ -189,7 +189,7 @@ public:
 			rate->request("GET", "/USD/GBP", "k="+get_config->m_exchange_rate_key, "");
 
 			m_product_all=rate->m_data;
-			//cout<<*(order->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 		catch(json_parser_error& e) 
 		{
@@ -266,9 +266,9 @@ public:
 			if(m_product_all==nullptr||(*m_product_all).length()==0)
 			{
 				//*
-				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)product:get nothing from exchange_rate";
+				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:):get nothing from exchange_rate";
 				boost_log->get_initsink()->flush();
-				cout<<"product:get nothing from exchange_rate"<<endl;
+				cout<<":get nothing from exchange_rate"<<endl;
 				*m_product_all="";
 			}
 			else
