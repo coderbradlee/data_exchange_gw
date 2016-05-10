@@ -362,8 +362,10 @@ namespace effective_cplusplus
 	};
 	void test()
 	{
-		reference_class<int> p("p",1);
-		reference_class<int> s("s",1);
+		std::string ps="p";
+		std::string ss="s";
+		reference_class<int> p(ps,1);
+		reference_class<int> s(ss,2);
 		//p=s;
 		p.print();
 	}
