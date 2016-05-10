@@ -6,6 +6,8 @@
 #include <iostream>
 #include <map>
 #include <bitset>
+namespace x
+{
 void rotate(std::vector<std::vector<string>>& vec)
 {
 	for (int layer = 0; layer < 6 / 2; ++layer)
@@ -220,6 +222,7 @@ void test()
     // pretty print with indent of 4 spaces
     std::cout << j << '\n';
 }
+}
 namespace brad
 { 
 	//geekband homework1
@@ -329,7 +332,7 @@ namespace brad
 			v.push_back(date.first);
 		}
 	} 
-	void test
+	void test()
 	{
 		std::vector<brad::Date> v=brad::CreatePoints();
 			for(auto& d:v)
