@@ -345,7 +345,7 @@ namespace brad
 
 	}
 }
-namespace effective_c++
+namespace effective_cplusplus
 {
 	template<typename T>
 	class reference_class
