@@ -8,6 +8,7 @@
 #include "activemq_cms.hpp"
 #include "activemq_order.hpp"
 #include "activemq_product_inventory.hpp"
+#include "exchange_rate.hpp"
 class activemq_producer_consumer
 {
 public:
