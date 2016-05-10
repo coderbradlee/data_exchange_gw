@@ -7,10 +7,10 @@
 class exchange_rate
 {
 public:
-	exchange_rate(const std::string& url) : m_url(url), m_data_parse_callback(nullptr),m_request_status(0),m_data(nullptr)
+	exchange_rate(const std::string& url) : m_url(url),m_request_status(0),m_data(nullptr)
 	{
 		//register callback
-		register_callback();
+		//register_callback();
 		curl_global_init(CURL_GLOBAL_ALL);
 		m_curl = curl_easy_init();
 		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
