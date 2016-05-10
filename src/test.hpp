@@ -351,7 +351,7 @@ namespace effective_cplusplus
 	class reference_class
 	{
 	public:
-		reference_class(const std::string& name,const T& value):m_name(name),m_value(value){}
+		reference_class(std::string& name,const T& value):m_name(name),m_value(value){}
 		void print()
 		{
 			cout<<m_name<<":"<<m_value<<endl;
