@@ -42,31 +42,7 @@ public:
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"request:"<<method<<":"<<path<<":"<<param<<":"<<content;
 		boost_log->get_initsink()->flush();
 		/////////////////////////////////////////////////////
-		//find data parser callback
-		for (auto& res : m_opt_resource)
-		{
-			if (method == res.first)
-			{
-				for (auto& res_path : res.second)
-				{
-					std::smatch sm_res;
-					string temp = path + "?" + param;
-					//cout<<temp<<endl;
-					// cout<<res.first<<endl;
-
-					//cout<<res_path.first<<endl;
-					//cout<<res_path.second<<endl;
-					if (std::regex_match(temp, sm_res, res_path.first))
-					{
-						path_match = std::move(sm_res);
-						// write_response(socket, request, res_path.second);
-						//cout<<__LINE__<<endl;
-						m_data_parse_callback = res_path.second;
-						// return;
-					}
-				}
-			}
-		}
+		
 		curl(path, method, param, content);
 	}
 	boost::shared_ptr<string> get_data()
