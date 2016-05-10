@@ -364,7 +364,7 @@ namespace effective_cplusplus
 	{
 		reference_class<int> p("p",1);
 		reference_class<int> s("s",1);
-		p=s;
+		//p=s;
 		p.print();
 	}
 }
