@@ -190,7 +190,7 @@ void test_bit_set()
 	cout << three << endl;
 }
 
-void test()
+void test_nlohmann_fifo_map()
 {
 	using json = nlohmann_fifo_map::json;
 	 json j =
