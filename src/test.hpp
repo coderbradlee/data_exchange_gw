@@ -373,6 +373,7 @@ namespace effective_cplusplus
 		reference_class<int> s(ss,2);
 		reference_class<string> twostring(ss,"2");
 		twostring.print();
+		p=twostring;
 		p=s;
 		p.print();
 	}
