@@ -154,7 +154,7 @@ protected:
 	void process_content()
 	{
 
-		cout<<m_data<<":"<<__FILE__<<":"<<__LINE__<<endl;		
+		cout<<*m_data<<":"<<__FILE__<<":"<<__LINE__<<endl;		
 	}
 	
 	
