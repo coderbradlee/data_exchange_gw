@@ -14,7 +14,7 @@ int main()
 	try
 	{
 		{
-			effective_cplusplus::test();
+			//effective_cplusplus::test();
 		}
 		{
 			//test();

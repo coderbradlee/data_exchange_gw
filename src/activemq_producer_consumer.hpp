@@ -20,14 +20,15 @@ public:
 
 			boost::shared_ptr<product_inventory> producer(new product_inventory);
 	        boost::shared_ptr<order_activemq> consumer(new order_activemq);
-
+	        boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time(new exchange_rate_on_time);
 		    // ///////////Start the consumer thread.
 		    thread consumerThread([&consumer](){consumer->start();});
 
 		    thread producerThread([&producer](){producer->start();});
-
+			thread producer_exchange_rate_on_time_Thread([&producer_exchange_rate_on_time](){producer_exchange_rate_on_time->start();});
 		    producerThread.join();
 		    consumerThread.join();
+			producer_exchange_rate_on_time_Thread.join();
 			activemq::library::ActiveMQCPP::shutdownLibrary();
 		}
 		catch(json_parser_error& e) 
