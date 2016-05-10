@@ -363,7 +363,7 @@ namespace effective_cplusplus
 		}
 	private:
 		std::string& m_name;
-		const T m_value;
+		T m_value;
 	};
 	void test()
 	{
