@@ -226,7 +226,7 @@ public:
 			}
 			for (const auto& item : t_currency_tuple_vector)
 			{
-				if(std::get<0>(item)=="USD")
+				if(*(std::get<0>(item))=="USD")
 				{
 					m_usd_info.code="USD";
 					m_usd_info.currency_id=*(std::get<1>(item));
