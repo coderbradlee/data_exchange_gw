@@ -154,7 +154,7 @@ protected:
 	void process_content()
 	{
 
-		cout<<*m_data<<":"<<__FILE__<<":"<<__LINE__<<endl;		
+		//cout<<*m_data<<":"<<__FILE__<<":"<<__LINE__<<endl;		
 	}
 	
 	
@@ -344,7 +344,16 @@ public:
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/"+item.code+"/USD", "k="+get_config->m_exchange_rate_key, "");
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				//item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+				try
+				{
+					item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+				}
+				catch(std::exception& e)
+				{
+					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+					item.to_usd_exchange_rate=0;
+				}
 				
 			}
 			for(auto& item :m_exchage_rate_data_array)
@@ -352,8 +361,17 @@ public:
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/USD/"+item.code, "k="+get_config->m_exchange_rate_key, "");
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				//item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
 				
+				try
+				{
+					item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+				}
+				catch(std::exception& e)
+				{
+					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+					item.from_usd_exchange_rate=0;
+				}
 			}
 			update_exchange_rate_to_mysql();
 		}
