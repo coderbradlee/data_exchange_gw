@@ -227,7 +227,7 @@ public:
 			for (const auto& item : t_currency_tuple_vector)
 			{
 				cout<<item<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				cout<<*(std::get<0>(item))
+				cout<<*(std::get<0>(item))<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				if(*(std::get<0>(item))=="USD")
 				{
 					m_usd_info.code="USD";
