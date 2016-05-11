@@ -195,7 +195,9 @@ class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_
 public:
 	exchange_rate_on_time():m_d_t(m_io_s),m_product_all(nullptr)
 	{
+		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
 		
+		//m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
 	}
 	~exchange_rate_on_time()
 	{
@@ -564,6 +566,7 @@ private:
 	deadline_timer m_d_t;
 	std::vector<exchage_rate_data> m_exchage_rate_data_array;
 	exchage_rate_data m_usd_info;
+	
 };
 #endif
 
