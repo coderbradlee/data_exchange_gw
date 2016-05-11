@@ -277,7 +277,7 @@ public:
 				}
 				catch (const MySqlException& e)
 				{
-					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << update_sql << "(2)" << update_sql2 << "(exception:)" << e.what();
+					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << get_exchange_rate_id << "(2)" << get_exchange_rate_id2 << "(exception:)" << e.what();
 					boost_log->get_initsink()->flush();
 				}
 				m_exchage_rate_data_array.push_back(temp);
