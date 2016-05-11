@@ -185,8 +185,10 @@ public:
 	{
 		try
 		{
+			//http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.xchange where pair in ("USDEUR", "USDJPY", "USDBGN", "USDCZK", "USDDKK", "USDGBP", "USDHUF", "USDLTL", "USDLVL", "USDPLN", "USDRON", "USDSEK", "USDCHF", "USDNOK", "USDHRK", "USDRUB", "USDTRY", "USDAUD", "USDBRL", "USDCAD", "USDCNY", "USDHKD", "USDIDR", "USDILS", "USDINR", "USDKRW", "USDMXN", "USDMYR", "USDNZD", "USDPHP", "USDSGD", "USDTHB", "USDZAR", "USDISK")&env=store://datatables.org/alltableswithkeys
+			//
 			boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-			rate->request("GET", "/USD/GBP", "k="+get_config->m_exchange_rate_key, "");
+			rate->request("GET", "/CAD/USD", "k="+get_config->m_exchange_rate_key, "");
 
 			m_product_all=rate->m_data;
 			cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
