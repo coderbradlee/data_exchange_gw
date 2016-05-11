@@ -217,6 +217,7 @@ public:
 			boost_log->get_initsink()->flush();
 			/********************************/
 			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			/********************************/
 			if(t_currency_tuple_vector.empty())
 			{
