@@ -229,7 +229,7 @@ public:
 				if(std::get<0>(item)=="USD")
 				{
 					m_usd_info.code="USD";
-					m_usd_info.currency_id=std::get<1>(item);
+					m_usd_info.currency_id=*(std::get<1>(item));
 					cout<<m_usd_info.code<<":"<<m_usd_info.currency_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				}
 				
@@ -243,11 +243,11 @@ public:
 				// string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
 				// string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
 				exchage_rate_data temp;
-				temp.code=std::get<0>(item);
-				temp.currency_id=std::get<1>(item);
+				temp.code=*(std::get<0>(item));
+				temp.currency_id=*(std::get<1>(item));
 				if(temp.code=="USD")
 					continue;
-				cout << std::get<0>(item)<<":"<<std::get<1>(item)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				cout << *(std::get<0>(item))<<":"<<*(std::get<1>(item))<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
 				string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+temp.currency_id+"\' and target_currency_id=\'"+m_usd_info.currency_id+"\'";
 				cout << get_exchange_rate_id << endl;
@@ -261,7 +261,7 @@ public:
 						vector<c> exchange_rate_ids;
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
 						for(const auto& i : exchange_rate_ids)
-						temp.to_usd_exchange_rate_id=std::get<0>(i);
+						temp.to_usd_exchange_rate_id=*(std::get<0>(i));
 						exchange_rate_ids.clear();
 					}
 					{
@@ -270,7 +270,7 @@ public:
 						vector<c> exchange_rate_ids;
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id2.c_str());
 						for(const auto& i : exchange_rate_ids)
-						temp.from_usd_exchange_rate_id=std::get<0>(i);
+						temp.from_usd_exchange_rate_id=*(std::get<0>(i));
 						exchange_rate_ids.clear();
 					}
 
