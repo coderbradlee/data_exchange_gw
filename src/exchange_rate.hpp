@@ -229,8 +229,8 @@ public:
 			}
 			for (const auto& item : t_currency_tuple_vector)
 			{
-				cout<<item<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				cout<<*(std::get<0>(item))<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//cout<<item<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//cout<<*(std::get<0>(item))<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				if(*(std::get<0>(item))=="USD")
 				{
 					m_usd_info.code="USD";
@@ -255,9 +255,9 @@ public:
 				cout << *(std::get<0>(item))<<":"<<*(std::get<1>(item))<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
 				string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+temp.currency_id+"\' and target_currency_id=\'"+m_usd_info.currency_id+"\'";
-				cout << get_exchange_rate_id << endl;
+				//cout << get_exchange_rate_id << endl;
 				string get_exchange_rate_id2 = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+m_usd_info.currency_id+"\' and target_currency_id=\'"+temp.currency_id+"\'";
-				cout << get_exchange_rate_id2 << endl;
+				//cout << get_exchange_rate_id2 << endl;
 				try
 				{
 					{
@@ -343,17 +343,17 @@ public:
 			{
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/"+item.code+"/USD", "k="+get_config->m_exchange_rate_key, "");
-
-				item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+				
 			}
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/USD/"+item.code, "k="+get_config->m_exchange_rate_key, "");
-
-				item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+				
 			}
 			update_exchange_rate_to_mysql();
 		}
@@ -566,7 +566,7 @@ private:
 	deadline_timer m_d_t;
 	std::vector<exchage_rate_data> m_exchage_rate_data_array;
 	exchage_rate_data m_usd_info;
-	
+
 };
 #endif
 
