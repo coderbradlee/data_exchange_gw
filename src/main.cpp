@@ -14,6 +14,11 @@ int main()
 	try
 	{
 		{
+			boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time(new exchange_rate_on_time);
+			thread producer_exchange_rate_on_time_Thread([&producer_exchange_rate_on_time](){producer_exchange_rate_on_time->start();});
+			producer_exchange_rate_on_time_Thread.join();
+		}
+		{
 			//effective_cplusplus::test();
 		}
 		{
@@ -22,9 +27,9 @@ int main()
 			// test.start_update();
 		}
 		{	
-			boost::shared_ptr<activemq_producer_consumer> producer_consumer(new activemq_producer_consumer);
-			thread producer_consumer_thread([&producer_consumer](){producer_consumer->start();});
-			producer_consumer_thread.join();
+			// boost::shared_ptr<activemq_producer_consumer> producer_consumer(new activemq_producer_consumer);
+			// thread producer_consumer_thread([&producer_consumer](){producer_consumer->start();});
+			// producer_consumer_thread.join();
 		}
 		{
 			//orderbot server
