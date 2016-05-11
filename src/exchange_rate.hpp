@@ -339,7 +339,7 @@ public:
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/"+item.code+"/USD", "k="+get_config->m_exchange_rate_key, "");
 
-				item.to_usd_exchange_rate=lexical_cast<double>(*(rate->m_data));
+				item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			}
 			for(auto& item :m_exchage_rate_data_array)
@@ -347,7 +347,7 @@ public:
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/USD/"+item.code, "k="+get_config->m_exchange_rate_key, "");
 
-				item.from_usd_exchange_rate=lexical_cast<double>(*(rate->m_data));
+				item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			}
 			update_exchange_rate_to_mysql();
