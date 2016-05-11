@@ -1,4 +1,42 @@
-﻿
+﻿2016.05.11
+增加分支exchange_rate，处理税率
+select code,currency_id from t_currency
+{//CAD 加元与美元的汇率
+select code from t_currency where currency_id='J4YVQ3URS8G4NI6ALIBL'
+select code from t_currency where currency_id='J4YVQ3USQNO3U430EKE1'
+select currency_id from t_currency where code='CAD'
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3USQNO3U430EKE1' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
+select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW'
+insert into t_currency_daily_exchange_rate values(rand_string(20),'TFTBLZNSNBNAZAZGC2RW','2016','05','11',0.772558,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=0.772558,exchange_date='2016-05-11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW'
+
+
+select currency_exchange_rate_id from t_currency_exchange_rate where target_currency_id='J4YVQ3USQNO3U430EKE1' and source_currency_id='J4YVQ3UR37WOQ6GEDGRF'
+select * from t_currency_daily_exchange_rate where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
+
+insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=1.294972,exchange_date='2016-05-11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
+}
+desc t_currency_daily_exchange_rate
+
+{//EUR  欧元与美元之间的
+select currency_id from t_currency where code='EUR'  //J4YVQ3URS8G4NI6ALIBL
+select currency_id from t_currency where code='USD' //J4YVQ3UR37WOQ6GEDGRF
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URS8G4NI6ALIBL' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF' //VKLPBDCVQKVTPV81XSX8
+select * from t_currency_daily_exchange_rate where exchange_rate_id='VKLPBDCVQKVTPV81XSX8'
+insert into t_currency_daily_exchange_rate values(rand_string(20),'VKLPBDCVQKVTPV81XSX8','2016','05','11',1.138309,'2016-05-11','2016-05-11 14:51:05','','2016-05-11 14:51:05','','','',0,1);
+
+
+
+select currency_exchange_rate_id from t_currency_exchange_rate where target_currency_id='J4YVQ3URS8G4NI6ALIBL' and source_currency_id='J4YVQ3UR37WOQ6GEDGRF' //KMDVB1CJUB1RXIR9JVWF
+select * from t_currency_daily_exchange_rate where exchange_rate_id='KMDVB1CJUB1RXIR9JVWF' order by createAt DESC
+
+insert into t_currency_daily_exchange_rate values(rand_string(20),'KMDVB1CJUB1RXIR9JVWF','2016','05','11',0.878496,'2016-05-11','2016-05-11 14:51:05','','2016-05-11 14:51:05','','','',0,1);
+
+}
+
+
+
 
 {    "sales_order_id": "1",    "so_no": "2",    "po_no": "3",    "status": 0,    "order_date": "2016-05-03",    "company_id": "4",    "sales_id": "5",    "currency_id": "6",    "ss_currency_daily_exchange_rate": 6.45,    "tax_schedule_id": "7",    "ss_tax_rate": 7.2,    "customer_master_id": "8",    "customer_contact_id": "9",    "customer_invoice_address_id": "10",    "ship_to_customer_name": "11",    "ship_to_address": "12",    "ship_to_state": "NY",    "ship_to_city": "13",    "ship_to_zip_code": "10118",    "ship_to_contact_name": "14",    "ship_to_contact_phone_number": "+1 800-428-4322",    "ship_to_contact_email": "test@orderbot.com",    "trade_term_id": "17",    "ss_landed_cost_coefficient": 3.3,    "dispatch_warehouse_id": "1",    "requested_delivery_date": "2016-05-03",    "promotion_code": "",    "company_bank_account_id": "",    "shipping_cost_total": 25.48,    "saving_total": 3.56,    "tax_total": 22.51,    "sub_total": 180.37,    "grand_total": 218.67,    "note": "note",    "detail": [        {            "sales_order_detail_id": 44,            "item_master_id": "",            "ss_guidance_price": 5.46,            "ss_promotion_price": 5.41,            "unit_price": 5.43,            "uom_id": "",            "quantity": 12,            "sub_total": 63.67,            "sub_tax": 4.33,            "sub_shipping_cost": 5.68,            "sub_discount": 0,            "note": "detail.note"        }    ]}
 

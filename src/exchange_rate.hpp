@@ -170,6 +170,26 @@ protected:
 };
 CURLSH* exchange_rate::share_handle = NULL;
 
+class exchage_rate_data
+{
+public:
+	string code;//CAD
+	double to_usd_exchange_rate;//0.772558
+	double from_usd_exchange_rate;//0.772558
+	string currency_id;//J4YVQ3USQNO3U430EKE1
+	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+	void print()
+	{	cout<<"{";
+		cout<<code<<":";
+		cout<<to_usd_exchange_rate<<":";//0.772558
+		cout<<from_usd_exchange_rate<<":";//0.772558
+		cout<<currency_id<<":";//J4YVQ3USQNO3U430EKE1
+		cout<<to_usd_exchange_rate_id<<":";//TFTBLZNSNBNAZAZGC2RW
+		cout<<from_usd_exchange_rate_id<<"}";//TFTBLZNSNBNAZAZGC2RW
+		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+	}
+};
 class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>
 {
 public:
@@ -181,17 +201,156 @@ public:
 	{
 		
 	}
+	void get_info_from_myql()
+	{
+		try
+		{
+		typedef tuple<unique_ptr<string>, unique_ptr<string>> t_currency_tuple;
+		//select code,currency_id from t_currency
+			//typedef tuple<string,double> credit_tuple;
+			std::vector<t_currency_tuple> t_currency_tuple_vector;
+			string query_sql = "select code,currency_id from t_currency";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			/********************************/
+			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			/********************************/
+			if(t_currency_tuple_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+			}
+			for (const auto& item : t_currency_tuple_vector)
+			{
+				if(std::get<0>(item)=="USD")
+				{
+					m_usd_info.code="USD";
+					m_usd_info.currency_id=std::get<1>(item);
+					cout<<m_usd_info.code<<":"<<m_usd_info.currency_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				}
+				
+			}
+			for (const auto& item : t_currency_tuple_vector)
+			{
+				// string code;//CAD
+				// double to_usd_exchange_rate;//0.772558
+				// double from_usd_exchange_rate;//0.772558
+				// string currency_id;//J4YVQ3USQNO3U430EKE1
+				// string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+				// string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+				exchage_rate_data temp;
+				temp.code=std::get<0>(item);
+				temp.currency_id=std::get<1>(item);
+				if(temp.code=="USD")
+					continue;
+				cout << std::get<0>(item)<<":"<<std::get<1>(item)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+
+				string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+temp.currency_id+"\' and target_currency_id=\'"+m_usd_info.currency_id+"\'";
+				cout << get_exchange_rate_id << endl;
+				string get_exchange_rate_id2 = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+m_usd_info.currency_id+"\' and target_currency_id=\'"+temp.currency_id+"\'";
+				cout << get_exchange_rate_id2 << endl;
+				try
+				{
+					{
+						typedef tuple<unique_ptr<string>> c;
+			
+						vector<c> exchange_rate_ids;
+						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
+						for(const auto& i : exchange_rate_ids)
+						temp.to_usd_exchange_rate_id=std::get<0>(i);
+						c.clear();
+					}
+					{
+						typedef tuple<unique_ptr<string>> c;
+			
+						vector<c> exchange_rate_ids;
+						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id2.c_str());
+						for(const auto& i : exchange_rate_ids)
+						temp.from_usd_exchange_rate_id=std::get<0>(i);
+						c.clear();
+					}
+
+				}
+				catch (const MySqlException& e)
+				{
+					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << update_sql << "(2)" << update_sql2 << "(exception:)" << e.what();
+					boost_log->get_initsink()->flush();
+				}
+				m_exchage_rate_data_array.push_back(temp);
+			}	
+			t_currency_tuple_vector.clear();
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+	}
+	void update_exchange_rate_to_mysql()
+	{
+		try
+		{
+			for(auto& item :m_exchage_rate_data_array)
+			{
+				
+				item.print();
+			}
+		}	
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+	}
 	void get_exchange_rate()
 	{
 		try
 		{
 			//http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.xchange where pair in ("USDEUR", "USDJPY", "USDBGN", "USDCZK", "USDDKK", "USDGBP", "USDHUF", "USDLTL", "USDLVL", "USDPLN", "USDRON", "USDSEK", "USDCHF", "USDNOK", "USDHRK", "USDRUB", "USDTRY", "USDAUD", "USDBRL", "USDCAD", "USDCNY", "USDHKD", "USDIDR", "USDILS", "USDINR", "USDKRW", "USDMXN", "USDMYR", "USDNZD", "USDPHP", "USDSGD", "USDTHB", "USDZAR", "USDISK")&env=store://datatables.org/alltableswithkeys
-			//
-			boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-			rate->request("GET", "/CAD/USD", "k="+get_config->m_exchange_rate_key, "");
+			//KRW TRY USD HKD SKW INR SGD GBP TWD JPY BGN CNY EUR SEK TRL ZAR THB MXP HRK ROL CAD RUR PHP IDR BRL AUD PLZ MXN NZD
 
-			m_product_all=rate->m_data;
-			cout<<*m_product_all<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			get_info_from_myql();
+			for(auto& item :m_exchage_rate_data_array)
+			{
+				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
+				rate->request("GET", "/"+item.code+"/USD", "k="+get_config->m_exchange_rate_key, "");
+
+				item.to_usd_exchange_rate=*(rate->m_data);
+				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			}
+			for(auto& item :m_exchage_rate_data_array)
+			{
+				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
+				rate->request("GET", "/USD/"+item.code, "k="+get_config->m_exchange_rate_key, "");
+
+				item.from_usd_exchange_rate=*(rate->m_data);
+				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			}
+			update_exchange_rate_to_mysql();
 		}
 		catch(json_parser_error& e) 
 		{
@@ -400,6 +559,8 @@ private:
 	std::stringstream m_ss;
 	boost::asio::io_service m_io_s;  
 	deadline_timer m_d_t;
+	std::vector<exchage_rate_data> m_exchage_rate_data_array;
+	exchage_rate_data m_usd_info;
 };
 #endif
 
