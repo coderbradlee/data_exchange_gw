@@ -262,7 +262,7 @@ public:
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
 						for(const auto& i : exchange_rate_ids)
 						temp.to_usd_exchange_rate_id=std::get<0>(i);
-						c.clear();
+						exchange_rate_ids.clear();
 					}
 					{
 						typedef tuple<unique_ptr<string>> c;
@@ -271,7 +271,7 @@ public:
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id2.c_str());
 						for(const auto& i : exchange_rate_ids)
 						temp.from_usd_exchange_rate_id=std::get<0>(i);
-						c.clear();
+						exchange_rate_ids.clear();
 					}
 
 				}
