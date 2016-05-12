@@ -348,7 +348,7 @@ public:
 			else
 			{
 				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+boost::lexical_cast<string>(item.to_usd_exchange_rate)+"\'";
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+boost::lexical_cast<string>(item.to_usd_exchange_rate)+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
 				cout << update_sql << endl;
 			}
 			{
