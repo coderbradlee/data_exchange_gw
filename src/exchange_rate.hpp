@@ -339,14 +339,14 @@ public:
 			{
 				//insert
 				
-					string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
+					string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',"+p4+",\'exchange_gw\',\'\',\'\',0,1)";
 					cout << insert_sql << endl;
 				
 			}
 			else
 			{
 				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+"updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
 				cout << update_sql << endl;
 			}
 	}
@@ -384,14 +384,14 @@ public:
 			{
 				//insert
 				
-				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
+				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',"+p4+",\'exchange_gw\',\'\',\'\',0,1)";
 				cout << insert_sql << endl;
 				
 			}
 			else
 			{
 				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\'";
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+"updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\'";
 				cout << update_sql << endl;
 			}
 	}
