@@ -430,8 +430,10 @@ public:
 			{
 				
     			const auto& from_usd_exchange_rate = j["quotes"]["USD"+item.code];
-    			item.from_usd_exchange_rate=from_usd_exchange_rate;
-				item.to_usd_exchange_rate=1/item.from_usd_exchange_rate;
+    			double temp_from_usd_exchange_rate=from_usd_exchange_rate;
+    			double temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
+    			item.from_usd_exchange_rate=boost::lexical_cast<string>(temp_from_usd_exchange_rate);
+				item.to_usd_exchange_rate=boost::lexical_cast<string>(temp_to_usd_exchange_rate);
 				
 			}
 			
