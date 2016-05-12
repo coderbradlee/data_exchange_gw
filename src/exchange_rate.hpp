@@ -404,7 +404,7 @@ public:
 		//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
 				rate->request("GET", "/api/live", "access_key="+get_config->m_exchange_rate_key, "");
-				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				return *(rate->m_data);
 	}
 	void get_exchange_rate()
@@ -425,9 +425,10 @@ public:
 			}
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 			string exchange_rate=get_exchange_rate_api_data();
+			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			const auto& quotes = j["quotes"];
-			
+			cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				string usditem="USD"+item.code;
