@@ -339,7 +339,7 @@ public:
  			boost::gregorian::date today=now.date();
  			string year=boost::lexical_cast<string>(today.year());
 
- 			date::ymd_type ymd=today.year_month_day();
+ 			boost::gregorian::date::ymd_type ymd=today.year_month_day();
  			cout<<ymd.month<<":"<<__FILE__<<":"<<__LINE__<<endl;
  			string month=boost::lexical_cast<string>(ymd.month;
  				
