@@ -283,7 +283,7 @@ public:
 				catch (const MySqlException& e)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << get_exchange_rate_id << "(2)" << get_exchange_rate_id2 << "(exception:)" << e.what();
-					boost_log->get_initsink()->flush();
+					boost_log->get_initsink()->flush();m_conn=nullptr;
 				}
 				m_exchage_rate_data_array.push_back(temp);
 			}	
@@ -297,7 +297,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -361,7 +361,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -424,7 +424,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -453,7 +453,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -481,7 +481,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -545,7 +545,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -576,7 +576,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -586,8 +586,12 @@ public:
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
-        //if(!error)  
+        if(!error)  
         {  
+        	if(m_conn==nullptr)
+        	{
+        		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
+        	}
         	start_update();
         	//cout<<"handle wait"<<endl;
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_exchange_rate_request_interval));  
@@ -614,7 +618,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
@@ -665,6 +669,7 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
