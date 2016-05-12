@@ -426,10 +426,12 @@ public:
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 			string exchange_rate=get_exchange_rate_api_data();
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
+			const auto& quotes = j["quotes"];
+			
 			for(auto& item :m_exchage_rate_data_array)
 			{
-				
-    			const auto& from_usd_exchange_rate = j["quotes"]["USD"+item.code];
+				strint usditem="USD"+item.code;
+    			const auto& from_usd_exchange_rate=quotes[usditem];
     			double temp_from_usd_exchange_rate=from_usd_exchange_rate;
     			double temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
     			item.from_usd_exchange_rate=boost::lexical_cast<string>(temp_from_usd_exchange_rate);
