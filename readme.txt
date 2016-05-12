@@ -8,6 +8,11 @@ select currency_id from t_currency where code='CAD'
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3USQNO3U430EKE1' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
 select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW'
 insert into t_currency_daily_exchange_rate values(rand_string(20),'TFTBLZNSNBNAZAZGC2RW','2016','05','11',0.772558,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+
+insert into t_currency_daily_exchange_rate values(rand_string(20),'TFTBLZNSNBNAZAZGC2RW','2016','05','12',0.777849913,'2016-05-12','2016-05-12 15:04:00','exchange_gw','2016-05-12 15:04:00','exchange_gw','','',0,1)
+
+update t_currency_daily_exchange_rate set year='2016',month='05',day='12',exchange_ratio=0.777849913,exchange_date='2016-05-12',updateAt='2016-05-12 15:13:40',updateBy='exchange_gw' where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW' and createBy='exchange_gw'
+
 update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=0.772558,exchange_date='2016-05-11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW'
 
 
@@ -15,8 +20,17 @@ select currency_exchange_rate_id from t_currency_exchange_rate where target_curr
 select * from t_currency_daily_exchange_rate where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
 
 insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+
+insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','12',1.28559506,'2016-05-12','2016-05-12 15:13:40','exchange_gw','2016-05-12 15:13:40','exchange_gw','','',0,1)
+
+
+
 update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=1.294972,exchange_date='2016-05-11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
 }
+
+update t_currency_daily_exchange_rate set year='2016',month='05',day='12',exchange_ratio=1.28559506,exchange_date='2016-05-12',updateAt='2016-05-12 15:20:12',updateBy='exchange_gw' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ' and createBy='exchange_gw'
+
+
 desc t_currency_daily_exchange_rate
 
 {//EUR  欧元与美元之间的
