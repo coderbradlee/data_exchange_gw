@@ -425,13 +425,14 @@ public:
 			}
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 			string exchange_rate=get_exchange_rate_api_data();
-			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			//cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			const auto& quotes = j["quotes"];
-			cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			//cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				string usditem="USD"+item.code;
+				cout<<usditem<<":"<<__FILE__<<":"<<__LINE__<<endl;
     			const auto& from_usd_exchange_rate=quotes[usditem];
     			float temp_from_usd_exchange_rate=from_usd_exchange_rate;
     			float temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
