@@ -336,11 +336,12 @@ public:
  			//ptime p4 = second_clock::local_time();
  			ptime now = second_clock::local_time();
 
- 			time_duration today=now.time_of_day();
+ 			boost::gregorian::date today=now.date();
  			string year=boost::lexical_cast<string>(today.year());
+ 			cout<<today.month()<<":"<<__FILE__<<":"<<__LINE__<<endl;
  			string month=boost::lexical_cast<string>(today.month());
  			string day=boost::lexical_cast<string>(today.day());
- 			
+
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
