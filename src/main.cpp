@@ -17,6 +17,7 @@ int main()
 			boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time(new exchange_rate_on_time);
 			thread producer_exchange_rate_on_time_Thread([&producer_exchange_rate_on_time](){producer_exchange_rate_on_time->start();});
 			producer_exchange_rate_on_time_Thread.join();
+			
 		}
 		{
 			//effective_cplusplus::test();
