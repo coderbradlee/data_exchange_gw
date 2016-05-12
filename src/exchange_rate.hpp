@@ -305,12 +305,9 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	}
-	void update_exchange_rate_to_mysql(const exchage_rate_data& item)
+	void update_to_usd_exchange_rate(const exchage_rate_data& item)
 	{
-		try
-		{
-		
-			typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
+		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
 			string query_sql = "select exchange_rate_id from "+get_config->m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
@@ -323,17 +320,12 @@ public:
 			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
 			/********************************/
 			// insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
-			//insert into t_currency_daily_exchange_rate values(rand_string(20),'','2016','May','12',0.055629999999999999,'2016-05-12','2016-05-12 10:32:25','','exchange_gw','','','',0,1)
+			//insert into t_currency_daily_exchange_rate values(rand_string(20),'','2016','05','12',0.682749927,'2016-05-12','2016-05-12 14:28:56','','exchange_gw','','','',0,1)
 // update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=1.294972,exchange_date='2016-05-
 
 // 11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
 // }
-			//boost::gregorian::date today = boost::gregorian::day_clock::local_day();
- 
- 			//string year=boost::lexical_cast<string>(today.year());
- 			//string month=boost::lexical_cast<string>(today.month());
- 			//string day=boost::lexical_cast<string>(today.day());
- 			//ptime p4 = second_clock::local_time();
+			
  			ptime now = second_clock::local_time();
  			std::vector<std::string> ymd;
  			string today=to_iso_extended_string(now.date());
@@ -346,8 +338,10 @@ public:
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				//insert
-				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
-				cout << insert_sql << endl;
+				
+					string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
+					cout << insert_sql << endl;
+				
 			}
 			else
 			{
@@ -355,9 +349,69 @@ public:
 				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
 				cout << update_sql << endl;
 			}
-			{
+	}
+	void update_from_usd_exchange_rate(const exchage_rate_data& item)
+	{
+		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
+		
+			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
+			string query_sql = "select exchange_rate_id from "+get_config->m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
 
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			/********************************/
+			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			/********************************/
+			// insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+			//insert into t_currency_daily_exchange_rate values(rand_string(20),'','2016','05','12',0.682749927,'2016-05-12','2016-05-12 14:28:56','','exchange_gw','','','',0,1)
+// update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=1.294972,exchange_date='2016-05-
+
+// 11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
+// }
+			
+ 			ptime now = second_clock::local_time();
+ 			std::vector<std::string> ymd;
+ 			string today=to_iso_extended_string(now.date());
+			boost::split(ymd,today , boost::is_any_of("-"));
+ 			//string [] ymd=to_iso_extended_string(now.date()).split('-');
+ 			string year=ymd[0];
+ 			string month=ymd[1];
+ 			string day=ymd[2];
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+			if(t_currency_daily_exchange_rate_tuple_vector.empty())
+			{
+				//insert
+				
+				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
+				cout << insert_sql << endl;
+				
 			}
+			else
+			{
+				//update
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\'";
+				cout << update_sql << endl;
+			}
+	}
+	void update_exchange_rate_to_mysql(const exchage_rate_data& item)
+	{
+		try
+		{
+		
+			if (item.to_usd_exchange_rate_id!="")
+			{
+				update_to_usd_exchange_rate(item);
+			}
+			
+		
+			if (item.from_usd_exchange_rate_id!="")
+			{
+				update_from_usd_exchange_rate(item);
+			}
+
+			
 		}
 		catch (const MySqlException& e)
 		{
@@ -507,17 +561,17 @@ public:
 			get_exchange_rate();
 			//cout<<__FILE__<<":"<<__LINE__<<endl;
 
-			ptree pt,ret_json_all;
-			ptree return_json;
-			if(m_product_all==nullptr||(*m_product_all).length()==0)
-			{
-				//*
-				BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:):get nothing from exchange_rate";
-				boost_log->get_initsink()->flush();
-				cout<<":get nothing from exchange_rate"<<endl;
-				*m_product_all="";
-			}
-			else
+			// ptree pt,ret_json_all;
+			// ptree return_json;
+			// if(m_product_all==nullptr||(*m_product_all).length()==0)
+			// {
+			// 	//*
+			// 	BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:):get nothing from exchange_rate";
+			// 	boost_log->get_initsink()->flush();
+			// 	cout<<":get nothing from exchange_rate"<<endl;
+			// 	*m_product_all="";
+			// }
+			// else
 			{
 				// std::istringstream is(*m_product_all);
 				// read_json(is, pt);
@@ -562,7 +616,7 @@ public:
 				// {
 				// 	m_ss<<""<<endl;
 				// }
-				send_message_to_activemq();
+				//send_message_to_activemq();
 			}
 		}
 		catch(json_parser_error& e) 
