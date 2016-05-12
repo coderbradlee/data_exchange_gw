@@ -322,22 +322,25 @@ public:
 			/********************************/
 			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
 			/********************************/
-			// insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-
-
-// 05-11 14:51:05','','','','','',0,1);
+			// insert into t_currency_daily_exchange_rate values(rand_string(20),'GTTZFO3XQ7AJSJLI7GRJ','2016','05','11',1.294972,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
+			//insert into t_currency_daily_exchange_rate values(rand_string(20),'','2016','May','12',0.055629999999999999,'2016-05-12','2016-05-12 10:32:25','','exchange_gw','','','',0,1)
 // update t_currency_daily_exchange_rate set year='2016',month='05',day='11',exchange_ratio=1.294972,exchange_date='2016-05-
 
 // 11',updateAt='2016-05-11 18:51:05' where exchange_rate_id='GTTZFO3XQ7AJSJLI7GRJ'
 // }
-			boost::gregorian::date today = boost::gregorian::day_clock::local_day();
- // 3:  std::cout << today.year() << std::endl; //打印年
- // 4:  std::cout << today.month() << std::endl; //打印月
- // 5:  std::cout << today.day() << std::endl; //打印日
+			//boost::gregorian::date today = boost::gregorian::day_clock::local_day();
+ 
+ 			//string year=boost::lexical_cast<string>(today.year());
+ 			//string month=boost::lexical_cast<string>(today.month());
+ 			//string day=boost::lexical_cast<string>(today.day());
+ 			//ptime p4 = second_clock::local_time();
+ 			ptime now = second_clock::local_time();
+
+ 			time_duration today=now.time_of_day();
  			string year=boost::lexical_cast<string>(today.year());
  			string month=boost::lexical_cast<string>(today.month());
  			string day=boost::lexical_cast<string>(today.day());
- 			//ptime p4 = second_clock::local_time();
- 			ptime now = second_clock::local_time();
+ 			
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
