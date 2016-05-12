@@ -335,16 +335,12 @@ public:
  			//string day=boost::lexical_cast<string>(today.day());
  			//ptime p4 = second_clock::local_time();
  			ptime now = second_clock::local_time();
-
- 			boost::gregorian::date today=now.date();
- 			string year=boost::lexical_cast<string>(today.year());
-
- 			// boost::gregorian::date::ymd_type ymd=today.year_month_day();
- 			// cout<<ymd.month<<":"<<__FILE__<<":"<<__LINE__<<endl;
- 			// string month=boost::lexical_cast<string>(ymd.month);
- 			boost::gregorian::greg_month m=today.month();
- 			string month=boost::lexical_cast<string>(m);
- 			string day=boost::lexical_cast<string>(today.day());
+ 			std::vector<std::string> ymd;
+			boost::split(strs, to_iso_extended_string(now.date()), boost::is_any_of("-"));
+ 			//string [] ymd=to_iso_extended_string(now.date()).split('-');
+ 			string year=ymd[0];
+ 			string month=ymd[1];
+ 			string day=ymd[2];
 
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
