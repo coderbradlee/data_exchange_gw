@@ -339,7 +339,7 @@ public:
  			//ptime p4 = second_clock::local_time();
  			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-			if(t_currency_tuple_vector.empty())
+			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				//insert
 				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year"\',"+"\'"+month+"\',\'"+day+"\',"+boost::lexical_cast<string>(item.to_usd_exchange_rate)+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\','','exchange_gw','','','',0,1)";
