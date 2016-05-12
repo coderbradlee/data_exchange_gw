@@ -432,8 +432,8 @@ public:
 			{
 				strint usditem="USD"+item.code;
     			const auto& from_usd_exchange_rate=quotes[usditem];
-    			double temp_from_usd_exchange_rate=from_usd_exchange_rate;
-    			double temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
+    			float temp_from_usd_exchange_rate=from_usd_exchange_rate;
+    			float temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
     			item.from_usd_exchange_rate=boost::lexical_cast<string>(temp_from_usd_exchange_rate);
 				item.to_usd_exchange_rate=boost::lexical_cast<string>(temp_to_usd_exchange_rate);
 				
