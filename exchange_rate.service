@@ -1,0 +1,14 @@
+[Unit]
+Description=update exchange rate
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+Type=simple
+ExecStart=/root/data_exchange_gw/data_exchange_gw
+WorkingDirectory=/root/data_exchange_gw
+PrivateTmp=true
+Restart=on-failure
+RestartSec=30
+User=root
+[Install]
+WantedBy=multi-user.target
