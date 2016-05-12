@@ -174,8 +174,8 @@ class exchage_rate_data
 {
 public:
 	string code;//CAD
-	double to_usd_exchange_rate;//0.772558
-	double from_usd_exchange_rate;//0.772558
+	string to_usd_exchange_rate;//0.772558
+	string from_usd_exchange_rate;//0.772558
 	string currency_id;//J4YVQ3USQNO3U430EKE1
 	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
 	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
@@ -350,13 +350,13 @@ public:
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				//insert
-				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+boost::lexical_cast<string>(item.to_usd_exchange_rate)+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
+				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'\',\'exchange_gw\',\'\',\'\',\'\',0,1)";
 				cout << insert_sql << endl;
 			}
 			else
 			{
 				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+boost::lexical_cast<string>(item.to_usd_exchange_rate)+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\'";
 				cout << update_sql << endl;
 			}
 			{
@@ -410,6 +410,14 @@ public:
 			//KRW TRY USD HKD SKW INR SGD GBP TWD JPY BGN CNY EUR SEK TRL ZAR THB MXP HRK ROL CAD RUR PHP IDR BRL AUD PLZ MXN NZD
 
 			get_info_from_myql();
+			//SKW TRL RUR PLZ
+			for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
+			{
+				if(item->code=="SKW"||item->code=="TRL"||item->code=="RUR"||item->code=="PLZ"||)
+				{
+					m_exchage_rate_data_array.erase(item);
+				}
+			}
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
@@ -417,13 +425,13 @@ public:
 				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				try
 				{
-					item.to_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+					item.to_usd_exchange_rate=*(rate->m_data);
 				}
 				catch(std::exception& e)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					item.to_usd_exchange_rate=0;
+					item.to_usd_exchange_rate="0";
 				}
 				
 			}
@@ -435,13 +443,13 @@ public:
 				
 				try
 				{
-					item.from_usd_exchange_rate=boost::lexical_cast<double>(*(rate->m_data));
+					item.from_usd_exchange_rate=*(rate->m_data);
 				}
 				catch(std::exception& e)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					item.from_usd_exchange_rate=0;
+					item.from_usd_exchange_rate="0";
 				}
 			}
 			update_exchange_rate_to_mysql();
