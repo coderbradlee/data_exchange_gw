@@ -586,11 +586,11 @@ public:
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
-        if(!error)  
+        //if(!error)  
         {  
         	start_update();
         	//cout<<"handle wait"<<endl;
-            m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_write_product_interval));  
+            m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_exchange_rate_request_interval));  
             m_d_t.async_wait(boost::bind(&exchange_rate_on_time::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
     	}   
 	}  
@@ -599,65 +599,6 @@ public:
 		try
 		{
 			get_exchange_rate();
-			//cout<<__FILE__<<":"<<__LINE__<<endl;
-
-			// ptree pt,ret_json_all;
-			// ptree return_json;
-			// if(m_product_all==nullptr||(*m_product_all).length()==0)
-			// {
-			// 	//*
-			// 	BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:):get nothing from exchange_rate";
-			// 	boost_log->get_initsink()->flush();
-			// 	cout<<":get nothing from exchange_rate"<<endl;
-			// 	*m_product_all="";
-			// }
-			// else
-			{
-				// std::istringstream is(*m_product_all);
-				// read_json(is, pt);
-				// for(auto& sub:pt)
-				// {
-				// 	ptree ret_json;
-		  //  			string product_category_id=sub.second.get<string>("product_category_id");
-				// 	int product_id=sub.second.get<int>("product_id");
-				// 	string product_name=sub.second.get<string>("product_name");
-				// 	string sku=sub.second.get<string>("sku");
-
-				// 	//cout<<product_id<<":"<<product_name<<":"<<sku<<endl;
-				// 	ret_json.put<std::string>("product_code",get_product_id(product_name));
-				// 	ret_json.put<std::string>("product_name",product_name);
-
-				// 	ptree child = sub.second.get_child("inventory_quantities");
-				// 	ret_json.add_child("inventory_quantities", child);
-					
-
-				// 	// if(!child.empty())
-				// 	// {
-				// 	// 	for(auto& subchild:child)
-				// 	// 	{
-						
-				// 	// 		double distribution_center_id=subchild.second.get<double>("distribution_center_id");
-				// 	// 		string distribution_center_name=subchild.second.get<string>("distribution_center_name");
-				// 	// 		double inventory_quantity=subchild.second.get<double>("inventory_quantity");
-				// 	// 		cout<<distribution_center_name<<":"<<inventory_quantity<<endl;
-							
-				// 	// 	}
-				// 	// }
-
-				// 	ret_json_all.push_back(std::make_pair("", ret_json));
-
-				//}
-				// return_json.push_back(std::make_pair("product", ret_json_all));
-				// if(!return_json.empty())
-				// {
-				// 	write_json(m_ss, return_json);
-				// }
-				// else
-				// {
-				// 	m_ss<<""<<endl;
-				// }
-				//send_message_to_activemq();
-			}
 		}
 		catch(json_parser_error& e) 
 		{
