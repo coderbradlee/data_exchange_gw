@@ -430,7 +430,7 @@ public:
 			
 			for(auto& item :m_exchage_rate_data_array)
 			{
-				strint usditem="USD"+item.code;
+				string usditem="USD"+item.code;
     			const auto& from_usd_exchange_rate=quotes[usditem];
     			float temp_from_usd_exchange_rate=from_usd_exchange_rate;
     			float temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
