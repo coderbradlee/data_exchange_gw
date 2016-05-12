@@ -336,7 +336,7 @@ public:
  			//ptime p4 = second_clock::local_time();
  			ptime now = second_clock::local_time();
  			std::vector<std::string> ymd;
-			boost::split(strs, to_iso_extended_string(now.date()), boost::is_any_of("-"));
+			boost::split(ymd, to_iso_extended_string(now.date()), boost::is_any_of("-"));
  			//string [] ymd=to_iso_extended_string(now.date()).split('-');
  			string year=ymd[0];
  			string month=ymd[1];
