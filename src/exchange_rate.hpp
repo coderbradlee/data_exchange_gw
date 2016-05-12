@@ -413,7 +413,7 @@ public:
 			//SKW TRL RUR PLZ
 			for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
 			{
-				if(item->code=="SKW"||item->code=="TRL"||item->code=="RUR"||item->code=="PLZ"||)
+				if(item->code=="SKW"||item->code=="TRL"||item->code=="RUR"||item->code=="PLZ")
 				{
 					m_exchage_rate_data_array.erase(item);
 				}
