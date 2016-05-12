@@ -345,7 +345,7 @@ public:
 					cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
 				
-				BOOST_LOG_SEV(slg, severity_level::error) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();
 			}
 			else
@@ -354,7 +354,7 @@ public:
 				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+",updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
 				cout << update_sql << endl;
 				m_conn->runCommand(update_sql.c_str());
-				BOOST_LOG_SEV(slg, severity_level::error) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();
 			}
 		}
@@ -408,7 +408,7 @@ public:
 				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
 				cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
-				BOOST_LOG_SEV(slg, severity_level::error) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();
 			}
 			else
@@ -417,7 +417,7 @@ public:
 				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+",updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
 				cout << update_sql << endl;
 				m_conn->runCommand(update_sql.c_str());
-				BOOST_LOG_SEV(slg, severity_level::error) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();
 			}
 		}
@@ -519,7 +519,10 @@ public:
 			//cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			const auto& quotes = j["quotes"];
-			//cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<quotes<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				string usditem="USD"+item.code;
