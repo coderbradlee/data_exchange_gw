@@ -333,7 +333,9 @@ public:
  // 3:  std::cout << today.year() << std::endl; //打印年
  // 4:  std::cout << today.month() << std::endl; //打印月
  // 5:  std::cout << today.day() << std::endl; //打印日
- 			ptime p4 = second_clock::local_time();
+ 			//ptime p4 = second_clock::local_time();
+ 			ptime now = second_clock::local_time();
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_tuple_vector.empty())
 			{
 				//insert
