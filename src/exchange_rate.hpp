@@ -494,7 +494,7 @@ public:
 				item.to_usd_exchange_rate=boost::lexical_cast<string>(temp_to_usd_exchange_rate);
 				
 			}
-			
+			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			update_exchange_rate_to_mysql();
 		}
 		catch (CMSException& e) 
