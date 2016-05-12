@@ -398,6 +398,15 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	}
+	
+	string get_exchange_rate_api_data()
+	{
+		//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
+		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
+				rate->request("GET", "/api/live", "access_key="+get_config->m_exchange_rate_key, "");
+				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				return *(rate->m_data);
+	}
 	void get_exchange_rate()
 	{
 		try
@@ -414,47 +423,19 @@ public:
 					m_exchage_rate_data_array.erase(item);
 				}
 			}
+			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
+			string exchange_rate=get_exchange_rate_api_data();
+			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			for(auto& item :m_exchage_rate_data_array)
 			{
-				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-				rate->request("GET", "/"+item.code+"/USD", "k="+get_config->m_exchange_rate_key, "");
-				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				try
-				{
-					item.to_usd_exchange_rate=*(rate->m_data);
-				}
-				catch(std::exception& e)
-				{
-					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					item.to_usd_exchange_rate="0";
-				}
+				
+    			const auto& from_usd_exchange_rate = j["quotes"]["USD"+item.code];
+    			item.from_usd_exchange_rate=from_usd_exchange_rate;
+				item.to_usd_exchange_rate=1/item.from_usd_exchange_rate;
 				
 			}
-			for(auto& item :m_exchage_rate_data_array)
-			{
-				boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-				rate->request("GET", "/USD/"+item.code, "k="+get_config->m_exchange_rate_key, "");
-				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				
-				try
-				{
-					item.from_usd_exchange_rate=*(rate->m_data);
-				}
-				catch(std::exception& e)
-				{
-					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-					boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					item.from_usd_exchange_rate="0";
-				}
-			}
+			
 			update_exchange_rate_to_mysql();
-		}
-		catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
 		}
 		catch (CMSException& e) 
         {
