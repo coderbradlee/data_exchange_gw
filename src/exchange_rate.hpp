@@ -309,7 +309,7 @@ public:
 	{
 		try
 		{
-		{
+		
 			typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
