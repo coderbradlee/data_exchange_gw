@@ -341,8 +341,8 @@ public:
 
  			boost::gregorian::date::ymd_type ymd=today.year_month_day();
  			cout<<ymd.month<<":"<<__FILE__<<":"<<__LINE__<<endl;
- 			string month=boost::lexical_cast<string>(ymd.month;
- 				
+ 			string month=boost::lexical_cast<string>(ymd.month);
+
  			string day=boost::lexical_cast<string>(today.day());
 
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
