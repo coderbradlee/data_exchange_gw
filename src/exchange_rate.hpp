@@ -333,19 +333,22 @@ public:
  // 3:  std::cout << today.year() << std::endl; //打印年
  // 4:  std::cout << today.month() << std::endl; //打印月
  // 5:  std::cout << today.day() << std::endl; //打印日
+ 			string year=boost::lexical_cast<string>(today.year());
+ 			string month=boost::lexical_cast<string>(today.month());
+ 			string day=boost::lexical_cast<string>(today.day());
  			//ptime p4 = second_clock::local_time();
  			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_tuple_vector.empty())
 			{
 				//insert
-				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+today.year()"\',"+"\'"+today.month()+"\',\'"+today.day()+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(today)+"\',\'"+p4+"\','','exchange_gw','','','',0,1)";
+				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year"\',"+"\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\','','exchange_gw','','','',0,1)";
 				cout << insert_sql << endl;
 			}
 			else
 			{
 				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+today.year()+"\',month=\'"+today.month()+"\',day=\'"+today.day()+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(today)+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate+"\'";
+				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\' where exchange_rate_id=\'"+item.to_usd_exchange_rate+"\'";
 				cout << update_sql << endl;
 			}
 			{
