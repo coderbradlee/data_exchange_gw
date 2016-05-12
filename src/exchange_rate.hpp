@@ -342,7 +342,6 @@ public:
  			string year=ymd[0];
  			string month=ymd[1];
  			string day=ymd[2];
-
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
