@@ -190,12 +190,23 @@ public:
 		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 };
-class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>
+class mysql_database
 {
 public:
-	exchange_rate_on_time():m_d_t(m_io_s),m_product_all(nullptr)
+	string m_mysql_ip;
+	unsigned short m_mysql_port;
+	string m_mysql_username;
+	string m_mysql_password;
+	string m_mysql_database;
+
+};
+class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>
+{
+	mysql_database m_mysql_database;
+public:
+	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
 	{
-		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
+		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
 		
 		//m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
 	}
@@ -211,7 +222,7 @@ public:
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_currency_tuple> t_currency_tuple_vector;
-			string query_sql = "select code,currency_id from "+get_config->m_mysql_database + ".t_currency";
+			string query_sql = "select code,currency_id from "+m_mysql_database.m_mysql_database + ".t_currency";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
 
@@ -312,7 +323,7 @@ public:
 		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
-			string query_sql = "select exchange_rate_id from "+get_config->m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
+			string query_sql = "select exchange_rate_id from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
 
@@ -376,7 +387,7 @@ public:
 		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
-			string query_sql = "select exchange_rate_id from "+get_config->m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
+			string query_sql = "select exchange_rate_id from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
 
@@ -590,7 +601,7 @@ public:
         {  
         	if(m_conn==nullptr)
         	{
-        		m_conn=boost::shared_ptr<MySql>(new MySql(get_config->m_mysql_ip.c_str(), get_config->m_mysql_username.c_str(), get_config->m_mysql_password.c_str(), get_config->m_mysql_database.c_str(), get_config->m_mysql_port));
+        		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
         	}
         	start_update();
         	//cout<<"handle wait"<<endl;
@@ -676,7 +687,7 @@ public:
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
-	}
+	} 
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
@@ -688,5 +699,41 @@ private:
 	exchage_rate_data m_usd_info;
 
 };
+void start_exchange_rate_thread()
+{
+		mysql_database mysql_os;
+		mysql_os.m_mysql_ip=get_config->m_mysql_ip;
+		mysql_os.m_mysql_port=get_config->m_mysql_port;
+		mysql_os.m_mysql_username=get_config->m_mysql_username;
+		mysql_os.m_mysql_password=get_config->m_mysql_password;
+		mysql_os.m_mysql_database=get_config->m_mysql_database;
+
+		mysql_database mysql_js;
+		mysql_js.m_mysql_ip=get_config->m_mysql_js_ip;
+		mysql_js.m_mysql_port=get_config->m_mysql_js_port;
+		mysql_js.m_mysql_username=get_config->m_mysql_js_username;
+		mysql_js.m_mysql_password=get_config->m_mysql_js_password;
+		mysql_js.m_mysql_database=get_config->m_mysql_js_database;
+
+		mysql_database mysql_eu;
+		mysql_eu.m_mysql_ip=get_config->m_mysql_eu_ip;
+		mysql_eu.m_mysql_port=get_config->m_mysql_eu_port;
+		mysql_eu.m_mysql_username=get_config->m_mysql_eu_username;
+		mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
+		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
+
+
+
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_os));
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_js(new exchange_rate_on_time(mysql_js));
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_eu(new exchange_rate_on_time(mysql_eu));
+
+		thread producer_exchange_rate_on_time_os_Thread([&producer_exchange_rate_on_time_os](){producer_exchange_rate_on_time_os->start();});
+		thread producer_exchange_rate_on_time_js_Thread([&producer_exchange_rate_on_time_js](){producer_exchange_rate_on_time_js->start();});
+		thread producer_exchange_rate_on_time_eu_Thread([&producer_exchange_rate_on_time_eu](){producer_exchange_rate_on_time_eu->start();});
+		producer_exchange_rate_on_time_os_Thread.join();
+		producer_exchange_rate_on_time_js_Thread.join();
+		producer_exchange_rate_on_time_eu_Thread.join();
+}
 #endif
 
