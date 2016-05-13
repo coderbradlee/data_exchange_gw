@@ -525,14 +525,16 @@ public:
 					m_exchage_rate_data_array.erase(item);
 				}
 			}
+
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 			string exchange_rate=get_exchange_rate_api_data();
-			//cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
+			
 			if (j.find("quotes") == j.end()) 
 			{
-				exchange_rate=get_exchange_rate_api_data();
-				cout<<"get_exchange_rate_api_data again:"<<__FILE__<<":"<<__LINE__<<endl;
+				cout<<"get json error from apilayer:"<<__FILE__<<":"<<__LINE__<<endl;
+				return;
 			}
 			const auto& quotes = j["quotes"];
 			cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
