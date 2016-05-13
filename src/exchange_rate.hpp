@@ -536,15 +536,11 @@ public:
 
 			for(auto& item :m_exchage_rate_data_array)
 			{
+				string usditem="USD"+item.code;
+				cout<<usditem<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				try
 				{
-					string usditem="USD"+item.code;
-					cout<<usditem<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	    			const auto& from_usd_exchange_rate=quotes[usditem];
-	    			float temp_from_usd_exchange_rate=from_usd_exchange_rate;
-	    			float temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
-	    			item.from_usd_exchange_rate=boost::lexical_cast<string>(temp_from_usd_exchange_rate);
-					item.to_usd_exchange_rate=boost::lexical_cast<string>(temp_to_usd_exchange_rate);
 				}
 				catch(std::exception& e)
 				{
@@ -556,6 +552,10 @@ public:
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << "unknown error"<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<"unknown error"<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				}
+				float temp_from_usd_exchange_rate=from_usd_exchange_rate;
+    			float temp_to_usd_exchange_rate=1/temp_from_usd_exchange_rate;
+    			item.from_usd_exchange_rate=boost::lexical_cast<string>(temp_from_usd_exchange_rate);
+				item.to_usd_exchange_rate=boost::lexical_cast<string>(temp_to_usd_exchange_rate);
 			}
 			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			update_exchange_rate_to_mysql();
