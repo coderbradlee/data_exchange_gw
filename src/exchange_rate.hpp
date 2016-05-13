@@ -551,6 +551,11 @@ public:
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				}
+				catch(...)
+				{
+					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << "unknown error"<<":"<<__FILE__<<":"<<__LINE__;
+					boost_log->get_initsink()->flush();cout<<item.code<<"unknown error"<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				}
 			}
 			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			update_exchange_rate_to_mysql();
