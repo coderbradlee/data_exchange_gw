@@ -529,7 +529,7 @@ public:
 			string exchange_rate=get_exchange_rate_api_data();
 			//cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
-			if (j.find("quotes") == quotes.end()) 
+			if (j.find("quotes") == j.end()) 
 			{
 				exchange_rate=get_exchange_rate_api_data();
 				cout<<"get_exchange_rate_api_data again:"<<__FILE__<<":"<<__LINE__<<endl;
