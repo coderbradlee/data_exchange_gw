@@ -14,7 +14,7 @@ int main()
 	try
 	{
 		{
-			start_exchange_rate_thread();
+			//start_exchange_rate_thread();
 		}
 		{
 			//effective_cplusplus::test();
