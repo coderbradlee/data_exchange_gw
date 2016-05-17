@@ -717,11 +717,76 @@ namespace design_model
 			// delete sub;
 		}
 	}
+	namespace composite
+	{
+		class component
+		{
+		public:
+
+			component(){}
+			virtual ~component(){}
+			virtual void operation()=0;
+			virtual void add(const component&){}
+			virtual void remove(const component&){}
+			virtual component* get_child(int)
+			{
+				return 0;
+			}
+		};
+		class composite:public component
+		{
+		public:
+			composite(){}
+			~composite(){}
+			void operation()
+			{
+				for(auto& m:m_component_vector)
+				{
+					m.operation();
+				}
+			}
+			void add(component* com)
+			{
+				m_component_vector.push_back(com);
+			}
+			void remove(component* com)
+			{
+				m_component_vector.erase(&com);
+			}
+			component* get_child(int index)
+			{
+				return m_component_vector[index];
+			}
+		private:
+			std::vector<component*> m_component_vector;
+		};
+		class leaf:public component
+		{
+		public:
+			leaf(){}
+			~leaf(){}
+			void operation()
+			{
+				cout<<"leaf operation"<<endl;
+			}
+		};
+		void test()
+		{
+			leaf* l=new leaf();
+			l->operation();
+			composite* com=new composite();
+			com->add(l);
+			com->operation();
+			component* ll=com->get_child(0);
+			ll->operation();
+		}
+	}
 	void test()
 	{
 		//design_model::proto_type_model::test();
 		//adapter::test();
-		observer_space::test();
+		//observer_space::test();
+		composite::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
