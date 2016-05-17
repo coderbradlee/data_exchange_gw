@@ -810,7 +810,7 @@ namespace design_model
 			static std::vector<image*> m_proto_type;
 			static int m_next_slot; 
 		};
-		image* image::m_proto_type;
+		std::vector<image*> image::m_proto_type;
 		int image::m_next_slot=0;
 		class land_image:public image
 		{
