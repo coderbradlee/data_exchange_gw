@@ -568,7 +568,7 @@ namespace design_model
 			delete adt2;
 		}
 	}
-	namespace observer
+	namespace observer_space
 	{
 		class observer;
 		class subject
@@ -715,7 +715,7 @@ namespace design_model
 	{
 		//design_model::proto_type_model::test();
 		//adapter::test();
-		observer::test();
+		observer_space::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
