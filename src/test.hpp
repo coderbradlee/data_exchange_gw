@@ -589,7 +589,7 @@ namespace design_model
 			}
 			virtual void notify()
 			{
-				for(auto& m:m_observers)
+				for(auto& m:*m_observers)
 				{
 					m->update(this);
 				}
