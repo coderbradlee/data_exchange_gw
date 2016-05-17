@@ -598,7 +598,7 @@ namespace design_model
 		private:
 			std::list<observer*>* m_observers;
 		};
-		
+
 		class concrete_subject:public subject
 		{
 		public:
@@ -691,7 +691,7 @@ namespace design_model
 		private:
 			subject* m_sub;
 		};
-		subject::notify()
+		void subject::notify()
 		{
 			for(auto& m:*m_observers)
 				{
