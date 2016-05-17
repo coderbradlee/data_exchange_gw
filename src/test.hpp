@@ -807,7 +807,7 @@ namespace design_model
 				m_proto_type[m_next_slot++]=image;
 			}
 		private:
-			static std::vector<image*> m_proto_type;
+			static std::vector<image*> m_proto_type(8, nullptr);;
 			static int m_next_slot; 
 		};
 		std::vector<image*> image::m_proto_type;
