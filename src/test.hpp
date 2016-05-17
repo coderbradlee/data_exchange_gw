@@ -709,9 +709,9 @@ namespace design_model
 			sub->set_state("new");
 			sub->notify();
 			
-			delete o1;
-			delete o2;
-			delete sub;
+			// delete o1;
+			// delete o2;
+			// delete sub;
 		}
 	}
 	void test()
