@@ -458,7 +458,7 @@ namespace design_model
 			}
 			virtual ~target()
 			{
-				cout<<"target destructor"<<endl
+				cout<<"target destructor"<<endl;
 			}
 			virtual void request()
 			{
@@ -511,7 +511,7 @@ namespace design_model
 			}
 			virtual ~target()
 			{
-				cout<<"target destructor"<<endl
+				cout<<"target destructor"<<endl;
 			}
 			virtual void request()
 			{
