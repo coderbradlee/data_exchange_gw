@@ -838,9 +838,10 @@ namespace design_model
 				add_proto_type(this);
 			}
 			int m_id;
-			static int m_count=1;
+			static int m_count;
 		};
 		land_image land_image::m_land_image;
+		int land_image::m_count=1;
 		class spot_image:public image
 		{
 		public:
@@ -868,9 +869,10 @@ namespace design_model
 			}
 			static spot_image m_spot_image;
 			int m_id;
-			static int m_count=1;
+			static int m_count;
 		};
 		spot_image spot_image::m_spot_image;
+		int spot_image::m_count=1;
 		void test()
 		{
 			const int NUM=8;
