@@ -558,12 +558,12 @@ namespace design_model
 		void test()
 		{
 			//way1::adaptee* ade=new adaptee;
-			way1::target* adt=new way1::adapter();
-			adt->request();
+			way1::target* adt1=new way1::adapter();
+			adt1->request();
 			cout<<"================================="<<endl;
 			way2::adaptee* ade=new way2::adaptee;
-			way2::target* adt=new way2::adapter(ade);
-			adt->request();
+			way2::target* adt2=new way2::adapter(ade);
+			adt2->request();
 		}
 	}
 	void test()
