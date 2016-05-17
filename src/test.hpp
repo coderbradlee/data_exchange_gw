@@ -700,15 +700,17 @@ namespace design_model
 		}
 		void test()
 		{
-			concrete_subject sub();
-			observer o1(&sub);
-			observer o2(&sub);
-			sub.set_state("old");
-			sub.notify();
-			sub.set_state("new");
-			sub.notify();
-			delete
-
+			concrete_subject* sub=new concrete_subject();
+			observer* o1=new concrete_observer1(sub);
+			observer* o2=new concrete_observer2(sub);
+			sub->set_state("old");
+			sub->notify();
+			sub->set_state("new");
+			sub->notify();
+			
+			delete o1;
+			delete o2;
+			delete sub;
 		}
 	}
 	void test()
