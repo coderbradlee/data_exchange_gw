@@ -880,7 +880,7 @@ namespace design_model
 			const int NUM=8;
 			image_type input[NUM]=
 			{LSAT,LSAT,LSAT,SPOT,LSAT,SPOT,SPOT,LSAT};
-			std::vector<image*> images;
+			std::vector<image*> images(NUM, nullptr);
 			for(int i=0;i<NUM;++i)
 			{
 				images[i]=image::find_clone(input[i]);
