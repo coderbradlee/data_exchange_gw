@@ -570,7 +570,59 @@ namespace design_model
 	}
 	namespace observer
 	{
-		class subject;
+		class observer;
+		class subject
+		{
+		public:
+			virtual ~subject()
+			{
+				delete m_observers;
+			}
+			virtual void attach(observer* obv)
+			{
+				m_observers->push_back(obv);
+			}
+			virtual void detach(observer* obv)
+			{
+				if(obv!=nullptr)
+					m_observers->remove(obv);
+			}
+			virtual void notify()
+			{
+				for(auto& m:m_observers)
+				{
+					m->update(this);
+				}
+			}
+			virtual void set_state(const string& state)=0;
+			virtual string get_state()=0;
+		protected:
+			subject()
+			{
+				m_observers=new std::list<observer*>;
+			}
+		private:
+			std::list<observer*>* m_observers;
+		};
+		class concrete_subject:public subject
+		{
+		public:
+			concrete_subject()
+			{
+				m_state=nullptr;
+			}
+			~concrete_subject();
+			string get_state()
+			{
+				return m_state;
+			}
+			void set_state(const string& state)
+			{
+				m_state=state;
+			}
+		private:
+			string m_state;
+		};
 		class observer
 		{
 		public:
@@ -644,58 +696,7 @@ namespace design_model
 		private:
 			subject* m_sub;
 		};
-		class subject
-		{
-		public:
-			virtual ~subject()
-			{
-				delete m_observers;
-			}
-			virtual void attach(observer* obv)
-			{
-				m_observers->push_back(obv);
-			}
-			virtual void detach(observer* obv)
-			{
-				if(obv!=nullptr)
-					m_observers->remove(obv);
-			}
-			virtual void notify()
-			{
-				for(auto& m:m_observers)
-				{
-					m->update(this);
-				}
-			}
-			virtual void set_state(const string& state)=0;
-			virtual string get_state()=0;
-		protected:
-			subject()
-			{
-				m_observers=new std::list<observer*>;
-			}
-		private:
-			std::list<observer*>* m_observers;
-		};
-		class concrete_subject:public subject
-		{
-		public:
-			concrete_subject()
-			{
-				m_state=nullptr;
-			}
-			~concrete_subject();
-			string get_state()
-			{
-				return m_state;
-			}
-			void set_state(const string& state)
-			{
-				m_state=state;
-			}
-		private:
-			string m_state;
-		};
+		
 		void test()
 		{
 			concrete_subject* sub=new concrete_subject();
