@@ -587,13 +587,7 @@ namespace design_model
 				if(obv!=nullptr)
 					m_observers->remove(obv);
 			}
-			virtual void notify()
-			{
-				for(auto& m:*m_observers)
-				{
-					m->update(this);
-				}
-			}
+			virtual void notify();
 			virtual void set_state(const string& state)=0;
 			virtual string get_state()=0;
 		protected:
@@ -604,6 +598,7 @@ namespace design_model
 		private:
 			std::list<observer*>* m_observers;
 		};
+		
 		class concrete_subject:public subject
 		{
 		public:
@@ -696,7 +691,13 @@ namespace design_model
 		private:
 			subject* m_sub;
 		};
-		
+		subject::notify()
+		{
+			for(auto& m:*m_observers)
+				{
+					m->update(this);
+				}
+		}
 		void test()
 		{
 			concrete_subject* sub=new concrete_subject();
