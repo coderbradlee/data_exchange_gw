@@ -807,10 +807,10 @@ namespace design_model
 				m_proto_type[m_next_slot++]=image;
 			}
 		private:
-			static image* m_proto_type;
+			static std::vector<image*> m_proto_type;
 			static int m_next_slot; 
 		};
-		image* image::m_proto_type;
+		std::vector<image*> image::m_proto_type;
 		int image::m_next_slot=0;
 		class land_image:public image
 		{
@@ -879,7 +879,7 @@ namespace design_model
 			const int NUM=8;
 			image_type input[NUM]=
 			{LSAT,LSAT,LSAT,SPOT,LSAT,SPOT,SPOT,LSAT};
-			image* images[NUM];
+			std::vector<image*> images;
 			for(int i=0;i<NUM;++i)
 			{
 				images[i]=image::find_clone(input[i]);
