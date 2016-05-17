@@ -560,10 +560,12 @@ namespace design_model
 			//way1::adaptee* ade=new adaptee;
 			way1::target* adt1=new way1::adapter();
 			adt1->request();
+			delete adt1;
 			cout<<"================================="<<endl;
 			way2::adaptee* ade=new way2::adaptee;
 			way2::target* adt2=new way2::adapter(ade);
 			adt2->request();
+			delete adt2;
 		}
 	}
 	void test()
