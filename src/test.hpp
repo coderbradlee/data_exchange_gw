@@ -570,7 +570,20 @@ namespace design_model
 	}
 	namespace observer_space
 	{
-		class observer;
+		class subject;
+		class observer
+		{
+		public:
+			virtual ~observer();
+			virtual void update(subject* sub)=0;
+			virtual void print_info()=0;
+		protected:
+			observer()
+			{
+				m_state=nullptr;
+			}
+			string m_state;
+		};
 		class subject
 		{
 		public:
@@ -587,7 +600,13 @@ namespace design_model
 				if(obv!=nullptr)
 					m_observers->remove(obv);
 			}
-			virtual void notify();
+			virtual void notify()
+			{
+				for(auto& m:*m_observers)
+				{
+					m->update(this);
+				}
+			}
 			virtual void set_state(const string& state)=0;
 			virtual string get_state()=0;
 		protected:
@@ -618,19 +637,7 @@ namespace design_model
 		private:
 			string m_state;
 		};
-		class observer
-		{
-		public:
-			virtual ~observer();
-			virtual void update(subject* sub)=0;
-			virtual void print_info()=0;
-		protected:
-			observer()
-			{
-				m_state=nullptr;
-			}
-			string m_state;
-		};
+		
 		class concrete_observer1:public observer
 		{
 		public:
@@ -691,13 +698,7 @@ namespace design_model
 		private:
 			subject* m_sub;
 		};
-		void subject::notify()
-		{
-			for(auto& m:*m_observers)
-				{
-					m->update(this);
-				}
-		}
+		
 		void test()
 		{
 			concrete_subject* sub=new concrete_subject();
