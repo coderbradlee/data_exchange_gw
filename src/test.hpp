@@ -781,12 +781,124 @@ namespace design_model
 			ll->operation();
 		}
 	}
+	namespace prototype
+	{
+		enum image_type
+		{
+			LSAT,SPOT
+		};
+		class image
+		{
+		public:
+			virtual void draw()=0;
+			static image* find_clone(image_type type)
+			{
+				for(auto& x:m_proto_type)
+				{
+					if(x->return_type()==type)
+						return x->clone();
+				}
+			}
+		protected:
+			virtual image_type return_type()=0;
+			virtual image* clone()=0;
+			static void add_proto_type(image* image)
+			{
+				m_proto_type[m_next_slot++]=image;
+			}
+		private:
+			static std::vector<image*> m_proto_type;
+			static int m_next_slot=0; 
+		};
+		image* image::m_proto_type;
+		class land_image:public image
+		{
+		public:
+			image_type return_type()
+			{
+				return LSAT;
+			}
+			void draw()
+			{
+				cout<<"land_image draw"<<m_id<<endl;
+			}
+			image* clone()
+			{
+				return new land_image(1);
+			}
+		protected:
+			land_image(int dummy)
+			{
+				m_id=m_count++;
+			}
+		private:
+			static land_image m_land_image;
+			land_image()
+			{
+				add_proto_type(this);
+			}
+			int m_id;
+			static int m_count=1;
+		};
+		land_image land_image::m_land_image;
+		class spot_image:public image
+		{
+		public:
+			image_type return_type()
+			{
+				return SPOT;
+			}
+			void draw()
+			{
+				cout<<"spot image draw"<<m_id<<endl;
+			}
+			image* clone()
+			{
+				return new spot_image(1);
+			}
+		protected:
+			spot_image(int dummy)
+			{
+				m_id=m_count++;
+			}
+		private:
+			spot_image()
+			{
+				add_proto_type(this);
+			}
+			static spot_image m_spot_image;
+			int m_id;
+			static int m_count=1;
+		};
+		spot_image spot_image::m_spot_image;
+		void test()
+		{
+			const int NUM=8;
+			image_type input[NUM]=
+			{LSAT,LSAT,LSAT,SPOT,LSAT,SPOT,SPOT,LSAT};
+			image* images[NUM];
+			for(int i=0;i<NUM;++i)
+			{
+				images[i]=image::find_clone(input[i]);
+			}
+			for(int i=0;i<NUM;++i)
+			{
+				images[i]->draw();
+			}
+			for(int i=0;i<NUM;++i)
+			{
+				delete images[i];
+			}
+
+		}
+	}
 	void test()
 	{
 		//design_model::proto_type_model::test();
 		//adapter::test();
 		//observer_space::test();
-		composite::test();
+		//composite::test();
+		prototype::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
