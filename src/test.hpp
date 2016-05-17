@@ -574,13 +574,16 @@ namespace design_model
 		class observer
 		{
 		public:
-			virtual ~observer(){}
+			virtual ~observer()
+			{
+				cout<<"~observer"<<endl;
+			}
 			virtual void update(subject* sub)=0;
 			virtual void print_info()=0;
 		protected:
 			observer()
 			{
-				m_state=nullptr;
+				//m_state=nullptr;
 			}
 			string m_state;
 		};
@@ -623,7 +626,7 @@ namespace design_model
 		public:
 			concrete_subject()
 			{
-				m_state=nullptr;
+				//m_state=nullptr;
 			}
 			~concrete_subject(){}
 			string get_state()
