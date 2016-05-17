@@ -14,7 +14,7 @@ int main()
 	try
 	{
 		{
-			design_model::proto_type_model::test();
+			design_model::test();
 
 		}
 		{

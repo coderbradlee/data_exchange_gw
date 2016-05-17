@@ -445,6 +445,132 @@ namespace design_model
 			delete p2;
 		}
 	}
+	namespace adapter
+	{
+		namespace way1
+		{
+		class target
+		{
+		public:
+			target()
+			{
+				cout<<"target constructor"<<endl;
+			}
+			virtual ~target()
+			{
+				cout<<"target destructor"<<endl
+			}
+			virtual void request()
+			{
+				cout<<"target request"<<endl;
+			}
+		};
+		class adaptee
+		{
+		public:
+			adaptee()
+			{
+				cout<<"adaptee constructor"<<endl;
+			}
+			~adaptee()
+			{
+				cout<<"adaptee destructor"<<endl;
+			}
+			void specific_request()
+			{
+				cout<<"adaptee specific request"<<endl;
+			}
+		};
+		class adapter:public target,private adaptee
+		{
+		public:
+			adapter()
+			{
+				cout<<"adapter constructor"<<endl;
+			}
+			~adapter()
+			{
+				
+				cout<<"adapter destructor"<<endl;
+			}
+			void request()
+			{
+				specific_request();
+				cout<<"adapter request"<<endl;
+			}
+		};
+	}
+	namespace way2
+	{
+		class target
+		{
+		public:
+			target()
+			{
+				cout<<"target constructor"<<endl;
+			}
+			virtual ~target()
+			{
+				cout<<"target destructor"<<endl
+			}
+			virtual void request()
+			{
+				cout<<"target request"<<endl;
+			}
+		};
+		class adaptee
+		{
+		public:
+			adaptee()
+			{
+				cout<<"adaptee constructor"<<endl;
+			}
+			~adaptee()
+			{
+				cout<<"adaptee destructor"<<endl;
+			}
+			void specific_request()
+			{
+				cout<<"adaptee specific request"<<endl;
+			}
+		};
+		class adapter:public target
+		{
+		public:
+			adapter(adaptee* ade):m_ade(ade)
+			{
+				cout<<"adapter constructor"<<endl;
+			}
+			~adapter()
+			{
+				
+				cout<<"adapter destructor"<<endl;
+			}
+			void request()
+			{
+				m_ade->specific_request();
+				cout<<"adapter request"<<endl;
+			}
+		private:
+			adaptee* m_ade;
+		};
+	}
+		void test()
+		{
+			//way1::adaptee* ade=new adaptee;
+			way1::target* adt=new adapter();
+			adt->request();
+			cout<<"================================="<<endl;
+			way2::adaptee* ade=new adaptee;
+			way2::target* adt=new adapter(ade);
+			adt->request();
+		}
+	}
+	void test()
+	{
+		//design_model::proto_type_model::test();
+		adapter::test();
+	}
 }
 #endif	/* PAYPAL_HPP */
 
