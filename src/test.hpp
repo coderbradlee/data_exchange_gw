@@ -574,7 +574,7 @@ namespace design_model
 		class observer
 		{
 		public:
-			virtual ~observer();
+			virtual ~observer(){}
 			virtual void update(subject* sub)=0;
 			virtual void print_info()=0;
 		protected:
