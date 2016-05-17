@@ -378,5 +378,73 @@ namespace effective_cplusplus
 		p.print();
 	}
 }
+namespace design_model
+{
+	namespace proto_type_model
+	{
+		class proto_type
+		{
+		protected:
+			proto_type()
+			{
+				cout<<"proto_type"<<endl;
+			}
+		public:
+			virtual proto_type* clone()const=0;
+			virtual ~proto_type()
+			{
+				cout<<"~proto_type"<<endl;
+			}
+		};
+		class concrete1:public proto_type
+		{
+		public:
+			concrete1()
+			{
+				cout<<"concrete1"<<endl;
+			}
+			~concrete1()
+			{
+				cout<<"~concrete1"<<endl;
+			}
+			concrete1(const concrete1&)
+			{
+				cout<<"concrete1 copy constructor"<<endl;
+			}
+			virtual concrete1* clone()const
+			{
+				return new concrete1(*this);
+			}
+		};
+		class concrete2:public proto_type
+		{
+		public:
+			concrete2()
+			{
+				cout<<"concrete2"<<endl;
+			}
+			~concrete2()
+			{
+				cout<<"~concrete2"<<endl;
+			}
+			concrete2(const concrete2&)
+			{
+				cout<<"concrete2 copy constructor"<<endl;
+			}
+			virtual concrete2* clone()const
+			{
+				return new concrete2(*this);
+			}
+		};
+		void test()
+		{
+			proto_type* p1=new concrete1();
+			proto_type* p2=p1->clone();
+			cout<<"-----------------------"<<endl;
+			delete p1;
+			delete p2;
+		}
+	}
+}
 #endif	/* PAYPAL_HPP */
 

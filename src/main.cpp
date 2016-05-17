@@ -14,6 +14,10 @@ int main()
 	try
 	{
 		{
+			design_model::proto_type_model::test();
+
+		}
+		{
 			//start_exchange_rate_thread();
 		}
 		{
