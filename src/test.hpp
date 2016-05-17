@@ -742,7 +742,7 @@ namespace design_model
 			{
 				for(auto& m:m_component_vector)
 				{
-					m.operation();
+					m->operation();
 				}
 			}
 			void add(component* com)
@@ -751,7 +751,7 @@ namespace design_model
 			}
 			void remove(component* com)
 			{
-				m_component_vector.erase(&com);
+				m_component_vector.erase(com);
 			}
 			component* get_child(int index)
 			{
