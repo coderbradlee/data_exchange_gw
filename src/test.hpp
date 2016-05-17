@@ -751,7 +751,7 @@ namespace design_model
 			}
 			void remove(component* com)
 			{
-				m_component_vector.erase(com);
+				//m_component_vector.erase(com);
 			}
 			component* get_child(int index)
 			{
