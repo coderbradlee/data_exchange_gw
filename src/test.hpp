@@ -625,7 +625,7 @@ namespace design_model
 			{
 				m_state=nullptr;
 			}
-			~concrete_subject();
+			~concrete_subject(){}
 			string get_state()
 			{
 				return m_state;
