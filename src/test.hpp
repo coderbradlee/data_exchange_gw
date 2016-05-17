@@ -568,10 +568,150 @@ namespace design_model
 			delete adt2;
 		}
 	}
+	namespace observer
+	{
+		class subject;
+		class observer
+		{
+		public:
+			virtual ~observer();
+			virtual void update(subject* sub)=0;
+			virtual void print_info()=0;
+		protected:
+			observer()
+			{
+				m_state=nullptr;
+			}
+			string m_state;
+		};
+		class concrete_observer1:public observer
+		{
+		public:
+			virtual subject* get_subject()
+			{
+				return m_sub;
+			}
+			concrete_observer1(subject* sub)
+			{
+				m_sub=sub;
+				m_sub->attach(this);
+			}
+			virtual ~concrete_observer1()
+			{
+				m_sub->detach(this);
+				if(m_sub!=nullptr)
+					delete m_sub;
+			}
+			void update(subject* sub)
+			{
+				m_state=sub->get_state();
+				print_info();
+			}
+			void print_info()
+			{
+				cout<<"concrete_observer1:"<<m_sub->get_state()<<endl;
+			}
+		private:
+			subject* m_sub;
+		};
+		class concrete_observer2:public observer
+		{
+		public:
+			virtual subject* get_subject()
+			{
+				return m_sub;
+			}
+			concrete_observer2(subject* sub)
+			{
+				m_sub=sub;
+				m_sub->attach(this);
+			}
+			virtual ~concrete_observer2()
+			{
+				m_sub->detach(this);
+				if(m_sub!=nullptr)
+					delete m_sub;
+			}
+			void update(subject* sub)
+			{
+				m_state=sub->get_state();
+				print_info();
+			}
+			void print_info()
+			{
+				cout<<"concrete_observer2:"<<m_sub->get_state()<<endl;
+			}
+		private:
+			subject* m_sub;
+		};
+		class subject
+		{
+		public:
+			virtual ~subject()
+			{
+				delete m_observers;
+			}
+			virtual void attach(observer* obv)
+			{
+				m_observers->push_back(obv);
+			}
+			virtual void detach(observer* obv)
+			{
+				if(obv!=nullptr)
+					m_observers->remove(obv);
+			}
+			virtual void notify()
+			{
+				for(auto& m:m_observers)
+				{
+					m->update(this);
+				}
+			}
+			virtual void set_state(const string& state)=0;
+			virtual string get_state()=0;
+		protected:
+			subject()
+			{
+				m_observers=new std::list<observer*>;
+			}
+		private:
+			std::list<observer*>* m_observers;
+		};
+		class concrete_subject:public subject
+		{
+		public:
+			concrete_subject()
+			{
+				m_state=nullptr;
+			}
+			~concrete_subject();
+			string get_state()
+			{
+				return m_state;
+			}
+			void set_state(const string& state)
+			{
+				m_state=state;
+			}
+		private:
+			string m_state;
+		};
+		void test()
+		{
+			concrete_subject* sub=new concrete_subject();
+			observer* o1=new concrete_observer1(sub);
+			observer* o2=new concrete_observer2(sub);
+			sub->set_state("old");
+			sub->notify();
+			sub->set_state("new");
+			sub->notify();
+		}
+	}
 	void test()
 	{
 		//design_model::proto_type_model::test();
-		adapter::test();
+		//adapter::test();
+		observer::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
