@@ -913,9 +913,9 @@ namespace design_model
 	    		{
 	    			close(fd);
 	    		}
-	    		int operator int() const
+	    		int operator int(const Holder& h) const
 	    		{
-	    			return m_fd;
+	    			return h.m_fd;
 	    		}
 	    		private:
 	    			int m_fd;
