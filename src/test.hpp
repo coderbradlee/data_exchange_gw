@@ -900,7 +900,7 @@ namespace design_model
 	{
 		#include <unistd.h>
 	    #include <fcntl.h>
-	    #include <syspes.h>
+	    #include <sys/types.h>
 	    #include <sys/stat.h>
 	    #include <string.h>
 	    #include <sys/errno.h>
