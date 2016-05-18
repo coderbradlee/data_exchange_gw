@@ -896,13 +896,70 @@ namespace design_model
 
 		}
 	}
+	namespace a_test
+	{
+		#include <unistd.h>
+	    #include <fcntl.h>
+	    #include <syspes.h>
+	    #include <sys/stat.h>
+	    #include <string.h>
+	    #include <sys/errno.h>
+	    #include <stdio.h>
+
+	    class Holder
+	    {
+	    	public:
+	    		Holder(int fd):m_fd(fd)
+	    		{
+	    			close(fd);
+	    		}
+	    		int operator int() const
+	    		{
+	    			return m_fd;
+	    		}
+	    		private:
+	    			int m_fd;
+	    };
+
+	    bool foo(Holder holder)
+	    {
+	        return write(holder, "abc", 3) >= 0;
+	    }
+
+
+		void test()
+		{
+			 int fd = open("/dev/null", O_RDWR | O_APPEND);
+	        if (fd < 0) {
+	            perror("open error");
+	            return 1;
+	        }
+
+	        {
+	            Holder holder(fd);
+	            for (int i = 0; i < 3; ++i)
+	                if (!foo(holder)) {
+	                    printf("error\n");
+	                    return 1;
+	                } else {
+	                    printf("success\n");
+	                }
+	        }
+
+	        if (!foo(fd)) {
+	            printf("success\n");
+	        }
+
+			}
+	}
 	void test()
 	{
 		//design_model::proto_type_model::test();
 		//adapter::test();
 		//observer_space::test();
 		//composite::test();
-		prototype::test();
+		//prototype::test();
+		a_test::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
