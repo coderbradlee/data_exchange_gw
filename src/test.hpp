@@ -982,6 +982,57 @@ namespace design_model
 			test_assignment.print();
     	}
     }
+    namespace test_override
+    {
+    	class base
+    	{
+    	private:
+    		int x;
+    	public:
+    		virtual void mf1()=0;
+    		virtual void mf1(int x)
+    		{
+    			cout<<"base::mf1"<<x<<endl;
+    		}
+    		virtual void mf2()
+    		{
+    			cout<<"base::mf2"<<endl;
+    		}
+    		void mf3()
+    		{
+    			cout<<"base::mf3"<<endl;
+    		}
+    		void mf3(double x)
+    		{
+    			cout<<"base::mf3"<<x<<endl;
+    		}
+    	};
+    	class derived:public base
+    	{
+    	public:
+    		virtual void mf1()
+    		{
+    			cout<<"derived::mf1"<<endl;
+    		}
+    		void mf3()
+    		{
+    			cout<<"derived::mf3"<<endl;
+    		}
+    		void mf4()
+    		{
+    			cout<<"derived::mf4"<<endl;
+    		}
+    	};
+    	void test()
+    	{
+    		derived d;
+    		d.mf1();
+    		d.mf1(2);
+    		d.mf2();
+    		d.mf3();
+    		d.mf3(3.1);
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -990,7 +1041,8 @@ namespace design_model
 		//composite::test();
 		//prototype::test();
 		//a_test::test();
-		test_reset_and_swap::test();
+		//test_reset_and_swap::test();
+		test_override::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
