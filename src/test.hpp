@@ -1007,32 +1007,33 @@ namespace design_model
     			cout<<"base::mf3"<<x<<endl;
     		}
     	};
-    	class derived:public base
+    	class derived:private base
     	{
     	public:
-    		using base::mf1;
-    		using base::mf3;
+    		// using base::mf1;
+    		// using base::mf3;
     		virtual void mf1()
     		{
     			cout<<"derived::mf1"<<endl;
+    			base::mf1();
     		}
-    		void mf3()
-    		{
-    			cout<<"derived::mf3"<<endl;
-    		}
-    		void mf4()
-    		{
-    			cout<<"derived::mf4"<<endl;
-    		}
+    		// void mf3()
+    		// {
+    		// 	cout<<"derived::mf3"<<endl;
+    		// }
+    		// void mf4()
+    		// {
+    		// 	cout<<"derived::mf4"<<endl;
+    		// }
     	};
     	void test()
     	{
     		derived d;
     		d.mf1();
-    		d.mf1(2);
-    		d.mf2();
-    		d.mf3();
-    		d.mf3(3.1);
+    		// d.mf1(2);
+    		// d.mf2();
+    		// d.mf3();
+    		//d.mf3(3.1);
     	}
     }
 	void test()
