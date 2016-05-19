@@ -899,7 +899,8 @@ namespace design_model
     namespace test_reset_and_swap
     {
     	class Shape
-		{                   
+		{  
+		public:                  
 		   int no;
 		};              
 		class Point
@@ -930,7 +931,7 @@ namespace design_model
 		   int height;
 		   std::shared_ptr<Point> leftUp;
 		public:
-		   Rectangle(int width, int height, int x, int y):width(width),height(height),leftUp(new Point(x,y))
+		   Rectangle(int width, int height, int x, int y):width(width),height(height),leftUp(new Point(x,y)),Shape.no(10)
 			{
 
 			}
