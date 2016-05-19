@@ -964,11 +964,12 @@ namespace design_model
     	{
     		Rectangle test(1,2,3,4);
 			Rectangle test_copy(test);
-			Rectangle test_assignment;
+			Rectangle test_assignment(5,6,7,8);
 			test_assignment=test_copy;
-			// test.print();
-			// test_copy.print();
-			// test_assignment.print();
+			cout<<"============================"<<endl;
+			test.print();
+			test_copy.print();
+			test_assignment.print();
     	}
     }
 	void test()
