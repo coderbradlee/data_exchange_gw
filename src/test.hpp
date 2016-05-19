@@ -896,62 +896,79 @@ namespace design_model
 
 		}
 	}
-	namespace a_test
-	{
-		#include <unistd.h>
-	    #include <fcntl.h>
-	    #include <sys/types.h>
-	    #include <sys/stat.h>
-	    #include <string.h>
-	    #include <sys/errno.h>
-	    #include <stdio.h>
-
-	    class Holder
-	    {
-	    	public:
-	    		Holder(int fd):m_fd(fd)
-	    		{
-	    			close(fd);
-	    		}
-	    		int operator int(const Holder& h) const
-	    		{
-	    			return h.m_fd;
-	    		}
-	    		private:
-	    			int m_fd;
-	    };
-
-	    bool foo(Holder holder)
-	    {
-	        return write(holder, "abc", 3) >= 0;
-	    }
-
-
-		void test()
+    namespace test_reset_and_swap
+    {
+    	class Shape
+		{                   
+		   int no;
+		};              
+		class Point
 		{
-			 int fd = open("/dev/null", O_RDWR | O_APPEND);
-	        if (fd < 0) {
-	            perror("open error");
-	            return 1;
-	        }
-
-	        {
-	            Holder holder(fd);
-	            for (int i = 0; i < 3; ++i)
-	                if (!foo(holder)) {
-	                    printf("error\n");
-	                    return 1;
-	                } else {
-	                    printf("success\n");
-	                }
-	        }
-
-	        if (!foo(fd)) {
-	            printf("success\n");
-	        }
+		   int x;
+		   int y;
+		public:
+		   int get_x()const
+		   {
+		      return x;
+		   }
+		   int get_y()const
+		   {
+		      return y;
+		   }
+		   Point(int x,int y):x(x),y(y)
+		   {
+		   		cout<<"point constructor"<<endl;
+		   }
+		   ~Point()
+		   {
+		   		cout<<"point destructor"<<endl;
+		   }
+		};              
+		class Rectangle: public Shape
+		{
+		   int width;
+		   int height;
+		   std::shared_ptr<Point> leftUp;
+		public:
+		   Rectangle(int width, int height, int x, int y):width(width),height(height),leftUp(new Point(x,y))
+			{
 
 			}
-	}
+		   Rectangle(const Rectangle& other)
+		   {
+		   	width=other.width;
+			height=other.height;
+			leftUp=std::shared_ptr<Point>((new Point(other.leftUp->get_x(),other.leftUp->get_y())));
+		   }
+		   Rectangle& operator=(const Rectangle& other)
+		   {
+				if(this==&other)
+					return *this;
+				width=other.width;
+				height=other.height;
+				cout<<"before reset"<<endl;
+				leftUp.reset(new Point(other.leftUp->get_x(),other.leftUp->get_y()));
+				cout<<"after reset"<<endl;
+				return *this;
+		   }
+		   ~Rectangle();         
+		   void print()
+		   {
+		   	cout<<width<<":"<<height<<":"<<leftUp->get_x()<<":"<<leftUp->get_y()<<":"<<endl;
+		   }
+
+		};
+
+    	void test()
+    	{
+    		Rectangle test(1,2,3,4);
+			Rectangle test_copy(test);
+			Rectangle test_assignment=test_copy;
+			// test.print();
+			// test_copy.print();
+			// test_assignment.print();
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -959,7 +976,8 @@ namespace design_model
 		//observer_space::test();
 		//composite::test();
 		//prototype::test();
-		a_test::test();
+		//a_test::test();
+		test_reset_and_swap::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
