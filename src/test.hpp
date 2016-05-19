@@ -921,7 +921,7 @@ namespace design_model
 		   }
 		   ~Point()
 		   {
-		   		cout<<"point destructor"<<endl;
+		   		cout<<x<<":"<<y<<":point destructor"<<endl;
 		   }
 		};              
 		class Rectangle: public Shape
