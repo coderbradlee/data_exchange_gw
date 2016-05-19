@@ -1048,7 +1048,7 @@ namespace design_model
 		test_override::test();
 		int m;
 		cin>>m;
-		if(cin.exceptions()==cin.goodbit)
+		if(cin.exceptions()!=cin.goodbit)
 		{
 			cout<<"adfafdf"<<endl;
 		}
