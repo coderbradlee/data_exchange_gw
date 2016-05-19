@@ -951,7 +951,8 @@ namespace design_model
 				cout<<"after reset"<<endl;
 				return *this;
 		   }
-		   ~Rectangle();         
+		   ~Rectangle()
+		   {}         
 		   void print()
 		   {
 		   	cout<<width<<":"<<height<<":"<<leftUp->get_x()<<":"<<leftUp->get_y()<<":"<<endl;
