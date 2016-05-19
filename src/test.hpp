@@ -900,7 +900,16 @@ namespace design_model
     {
     	class Shape
 		{  
-		public:                  
+		public: 
+			Shape():no(0)
+			{}
+			Shape(int n):no(n)
+			{} 
+			int get_no()const
+			{
+				return no;
+			}
+		private:                
 		   int no;
 		};              
 		class Point
@@ -931,7 +940,7 @@ namespace design_model
 		   int height;
 		   std::shared_ptr<Point> leftUp;
 		public:
-		   Rectangle(int width, int height, int x, int y):width(width),height(height),leftUp(new Point(x,y)),Shape.no(10)
+		   Rectangle(int width, int height, int x, int y):width(width),height(height),leftUp(new Point(x,y)),Shape(10)
 			{
 
 			}
@@ -956,7 +965,7 @@ namespace design_model
 		   {}         
 		   void print()
 		   {
-		   	cout<<width<<":"<<height<<":"<<leftUp->get_x()<<":"<<leftUp->get_y()<<":"<<endl;
+		   	cout<<width<<":"<<height<<":"<<leftUp->get_x()<<":"<<leftUp->get_y()<<":"<<get_no()<<endl;
 		   }
 
 		};
