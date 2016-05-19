@@ -1014,7 +1014,7 @@ namespace design_model
     		// using base::mf3;
     		virtual void mf1()
     		{
-    			cout<<"derived::mf1"<<endl;
+    			//cout<<"derived::mf1"<<endl;
     			base::mf1();
     		}
     		// void mf3()
