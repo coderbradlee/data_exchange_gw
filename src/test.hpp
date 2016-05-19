@@ -1030,7 +1030,7 @@ namespace design_model
     	{
     		derived d;
     		d.mf1();
-    		// d.mf1(2);
+    		d.mf1(2);
     		// d.mf2();
     		// d.mf3();
     		//d.mf3(3.1);
