@@ -1034,6 +1034,7 @@ namespace design_model
     	{
     		derived d;
     		d.mf1();
+    		d.mf2();
     		//d.mf1(2);
     		// d.mf2();
     		// d.mf3();
@@ -1041,6 +1042,7 @@ namespace design_model
     		base* b=new derived();
     		b->mf1();
     		b->base::mf1();
+    		b->mf2();
     	}
     }
 	void test()
