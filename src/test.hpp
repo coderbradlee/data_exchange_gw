@@ -1007,7 +1007,7 @@ namespace design_model
     			cout<<"base::mf3"<<x<<endl;
     		}
     	};
-    	class derived:private base
+    	class derived:public base
     	{
     	public:
     		// using base::mf1;
@@ -1049,12 +1049,12 @@ namespace design_model
 		//a_test::test();
 		//test_reset_and_swap::test();
 		test_override::test();
-		int m;
-		cin>>m;
-		if(cin.exceptions()!=cin.goodbit)
-		{
-			cout<<"adfafdf"<<endl;
-		}
+		// int m;
+		// cin>>m;
+		// if(cin.exceptions()!=cin.goodbit)
+		// {
+		// 	cout<<"adfafdf"<<endl;
+		// }
 	}
 }
 #endif	/* PAYPAL_HPP */
