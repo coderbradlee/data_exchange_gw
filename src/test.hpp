@@ -1007,7 +1007,7 @@ namespace design_model
     			cout<<"base::mf3"<<x<<endl;
     		}
     	};
-    	base::mf1()
+    	void base::mf1()
     	{
     		cout<<"base mf1 pure virtual"<<endl;
     	}
