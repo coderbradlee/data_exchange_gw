@@ -1007,6 +1007,10 @@ namespace design_model
     			cout<<"base::mf3"<<x<<endl;
     		}
     	};
+    	base::mf1()
+    	{
+    		cout<<"base mf1 pure virtual"<<endl;
+    	}
     	class derived:public base
     	{
     	public:
