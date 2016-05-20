@@ -1034,7 +1034,7 @@ namespace design_model
     		// d.mf2();
     		// d.mf3();
     		//d.mf3(3.1);
-    		base* b=new derived;
+    		base* b=new derived();
     		b->mf1();
     		b->base::mf1();
     	}
