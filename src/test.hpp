@@ -1160,9 +1160,9 @@ namespace design_model
     			red,green,blue
     		};
 
-    		shape();
+    		//shape();
     		virtual void draw(shape_color color=red)const=0;
-    		~shape();
+    		//~shape();
     		
     	};
     	class rectangle:public shape
