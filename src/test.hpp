@@ -1057,14 +1057,14 @@ namespace design_model
     			cout<<"base:virtual after"<<endl;
     		}
     	private:
-    		virtual void private_virtual_func()
+    		virtual void private_virtual_func()const
     		{
     			cout<<"base:private_virtual_func"<<endl;
     		}
     	};
     	class derived:public base
     	{
-    		void private_virtual_func()
+    		void private_virtual_func()const
     		{
     			cout<<"derived:private_virtual_func"<<endl;
     		}
