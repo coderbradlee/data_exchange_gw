@@ -1135,8 +1135,9 @@ namespace design_model
     		//derived d2(calc_func_object());
     		d2.health_value();
     		calc_class_member c;
-    		base::health_calc_func cf=std::bind(&calc_class_member::health,&c,std::placeholders::_1);
-    		derived d3(cf);
+    		// base::health_calc_func cf=std::bind(&calc_class_member::health,&c,std::placeholders::_1);
+    		// derived d3(cf);
+    		derived d3(std::bind(&calc_class_member::health,&c,std::placeholders::_1));
     		d3.health_value();
     	}
     }
