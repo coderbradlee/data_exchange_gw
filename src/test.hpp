@@ -1111,7 +1111,7 @@ namespace design_model
     	class calc_class_member
     	{
     	public:
-    		float health(const base&)const
+    		int health(const base&)const
     		{
     			cout<<"calc_class_member"<<endl;
     		}
