@@ -1103,6 +1103,10 @@ namespace design_model
     	}
     	struct  calc_func_object
     	{
+    		calc_func_object()
+    		{
+    			cout<<"calc_func_object"<<endl;
+    		}
     		int operator()(const base&)const
     		{
     			cout<<"calc_func_object"<<endl;
@@ -1120,7 +1124,9 @@ namespace design_model
     	{
     	public:
     		derived(health_calc_func hcf=default_health_calc):base(hcf)
-    		{}
+    		{
+    			cout<<"derived constructor"<<endl;
+    		}
     		
     	};
     	void test()
@@ -1128,19 +1134,19 @@ namespace design_model
     		// derived* d=new derived();
     		// d->test_nvi();
     		// delete d;
-    		derived d1(calc_func);
-    		d1.health_value();
+    		// derived d1(calc_func);
+    		// d1.health_value();
     		// calc_func_object cc;
     		// derived d2(cc);
     		// derived d2(calc_func_object());
     		// d2.health_value();
     		derived *d2=new derived(calc_func_object());
     		d2->health_value();
-    		calc_class_member c;
-    		// base::health_calc_func cf=std::bind(&calc_class_member::health,&c,std::placeholders::_1);
-    		// derived d3(cf);
-    		derived d3(std::bind(&calc_class_member::health,&c,std::placeholders::_1));
-    		d3.health_value();
+    		// calc_class_member c;
+    		// // base::health_calc_func cf=std::bind(&calc_class_member::health,&c,std::placeholders::_1);
+    		// // derived d3(cf);
+    		// derived d3(std::bind(&calc_class_member::health,&c,std::placeholders::_1));
+    		// d3.health_value();
     	}
     }
 	void test()
