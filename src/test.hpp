@@ -1071,8 +1071,9 @@ namespace design_model
     	};
     	void test()
     	{
-    		derived d;
-    		d.test_nvi();
+    		derived* d=new derived();
+    		d->test_nvi();
+    		delete d;
     	}
     }
 	void test()
