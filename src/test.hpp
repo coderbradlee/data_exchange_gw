@@ -1189,6 +1189,25 @@ namespace design_model
     		pr->draw();
     	}
     }
+    namespace test_class_size
+    {
+    	class base{};
+    	class derived:public base
+    	{
+    		int x;
+    	};
+    	class have
+    	{
+    		int x;
+    		base b;
+    	};
+    	void test()
+    	{
+    		cout<<sizeof(base)<<endl;
+    		cout<<sizeof(derived)<<endl;
+    		cout<<sizeof(have)<<endl;
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1199,14 +1218,15 @@ namespace design_model
 		//a_test::test();
 		//test_reset_and_swap::test();
 		//test_override::test();
-		non_virtual_interface2::test();
+		//non_virtual_interface2::test();
 		// int m;
 		// cin>>m;
 		// if(cin.exceptions()!=cin.goodbit)
 		// {
 		// 	cout<<"adfafdf"<<endl;
 		// }
-		test_default_param_derived::test();
+		//test_default_param_derived::test();
+		test_class_size::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
