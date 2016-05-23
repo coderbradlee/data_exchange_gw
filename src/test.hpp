@@ -1150,6 +1150,45 @@ namespace design_model
     		// d3.health_value();
     	}
     }
+    namespace test_default_param_derived
+    {
+    	class shape
+    	{
+    	public:
+    		enum shape_color
+    		{
+    			red,green,blue
+    		};
+
+    		shape();
+    		virtual void draw(shape_color color=red)const=0;
+    		~shape();
+    		
+    	};
+    	class rectangle:public shape
+    	{
+    		virtual void draw(shape_color color=green)const
+    		{
+    			cout<<"rectangle draw:"<<color<<endl;
+    		}
+    	};
+    	class circle:public shape
+    	{
+    	public:
+    		virtual void draw(shape_color color)const
+    		{
+    			cout<<"circle draw:"<<color<<endl;
+    		}
+    	};
+    	void test()
+    	{
+    		shape* ps;
+    		shape* pc=new circle();
+    		shape* pr=new rectangle();
+    		pc->draw(shape::red);
+    		pr->draw();
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1167,6 +1206,7 @@ namespace design_model
 		// {
 		// 	cout<<"adfafdf"<<endl;
 		// }
+		test_default_param_derived::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
