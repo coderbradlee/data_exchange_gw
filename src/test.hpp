@@ -1111,7 +1111,7 @@ namespace design_model
     	class calc_class_member
     	{
     	public:
-    		int health(const base&)const
+    		short health(const base&)const
     		{
     			cout<<"calc_class_member"<<endl;
     		}
