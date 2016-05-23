@@ -1045,6 +1045,36 @@ namespace design_model
     		b->mf2();
     	}
     }
+    namespace non_virtual_interface
+    {
+    	class base
+    	{
+    	public:
+    		void test_nvi()const
+    		{
+    			cout<<"base:virtual before"<<endl;
+    			private_virtual_func();
+    			cout<<"base:virtual after"<<endl;
+    		}
+    	private:
+    		virtual void private_virtual_func()
+    		{
+    			cout<<"base:private_virtual_func"<<endl;
+    		}
+    	};
+    	class derived:public base
+    	{
+    		void private_virtual_func()
+    		{
+    			cout<<"derived:private_virtual_func"<<endl;
+    		}
+    	};
+    	void test()
+    	{
+    		derived d;
+    		d.test_nvi();
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1054,7 +1084,8 @@ namespace design_model
 		//prototype::test();
 		//a_test::test();
 		//test_reset_and_swap::test();
-		test_override::test();
+		//test_override::test();
+		non_virtual_interface::test();
 		// int m;
 		// cin>>m;
 		// if(cin.exceptions()!=cin.goodbit)
