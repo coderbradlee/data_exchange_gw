@@ -1078,6 +1078,65 @@ namespace design_model
     		d.test_nvi();
     	}
     }
+    namespace non_virtual_interface2
+    {
+    	class base;
+    	int default_health_calc(const base& gc)
+    	{}
+    	class base
+    	{
+    	public:
+    		typedef std::function<int (const base&)> health_calc_func;
+    		explicit base(health_calc_func hcf=default_health_calc):m_health_func(hcf){}
+    		int health_value()const
+    		{
+    			return m_health_func(*this);
+    		}
+    	private:
+    		
+    		health_calc_func m_health_func;
+    	};
+    	
+    	short calc_func(const base&)
+    	{
+    		cout<<"calc_func"<<endl;
+    	}
+    	struct  calc_func_object
+    	{
+    		int operator()(const base&)const
+    		{
+    			cout<<"calc_func_object"<<endl;
+    		}
+    	};
+    	class calc_class_member
+    	{
+    	public:
+    		float health(const base&)const
+    		{
+    			cout<<"calc_class_member"<<endl;
+    		}
+    	};
+    	class derived:public base
+    	{
+    	public:
+    		derived(health_calc_func hcf=default_health_calc):base(hcf)
+    		{}
+    		
+    	};
+    	void test()
+    	{
+    		// derived* d=new derived();
+    		// d->test_nvi();
+    		// delete d;
+    		derived d1(calc_func);
+    		d1.health_value();
+    		derived d2(calc_func_object());
+    		d2.health_value();
+    		calc_class_member c;
+    		derived d3(std::bind(&calc_class_member::health,c,_1));
+    		d3.health_value();
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1088,7 +1147,7 @@ namespace design_model
 		//a_test::test();
 		//test_reset_and_swap::test();
 		//test_override::test();
-		non_virtual_interface::test();
+		non_virtual_interface2::test();
 		// int m;
 		// cin>>m;
 		// if(cin.exceptions()!=cin.goodbit)
