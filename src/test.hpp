@@ -1105,7 +1105,7 @@ namespace design_model
     	{
     		calc_func_object()
     		{
-    			cout<<"calc_func_object"<<endl;
+    			cout<<"calc_func_object constructor"<<endl;
     		}
     		int operator()(const base&)const
     		{
