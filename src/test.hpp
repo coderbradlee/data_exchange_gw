@@ -1103,7 +1103,7 @@ namespace design_model
     	}
     	struct  calc_func_object
     	{
-    		int operator()(const base&)
+    		int operator()(const base&)const
     		{
     			cout<<"calc_func_object"<<endl;
     		}
