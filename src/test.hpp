@@ -1213,12 +1213,12 @@ namespace design_model
     	class fraction
     	{
     		public:
-    			explicit fraction(int num,int den=1):m_numerator(num),m_denominator(den)
+    			fraction(int num,int den=1):m_numerator(num),m_denominator(den)
     			{}
-    			operator double()const
-    			{
-    				return double(m_numerator)/double(m_denominator);
-    			}
+    			// operator double()const
+    			// {
+    			// 	return double(m_numerator)/double(m_denominator);
+    			// }
     			fraction operator+(const fraction& f)const
     			{
     				return fraction(m_numerator+f.m_numerator,m_denominator+f.m_denominator);
