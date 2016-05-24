@@ -1208,6 +1208,28 @@ namespace design_model
     		cout<<sizeof(have)<<endl;
     	}
     }
+    namespace conversion_function
+    {
+    	class fraction
+    	{
+    		public:
+    			fraction(int num,int den=1):m_numerator(num),m_denominator(den)
+    			{}
+    			operator double()const
+    			{
+    				return double(m_numerator/m_denominator);
+    			}
+
+    		private:
+    			int m_numerator,m_denominator;
+    	};
+    	void test()
+    	{
+    		fraction f(3,5);
+    		double d=4+f;
+    		cout<<d<<endl;
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1226,7 +1248,8 @@ namespace design_model
 		// 	cout<<"adfafdf"<<endl;
 		// }
 		//test_default_param_derived::test();
-		test_class_size::test();
+		//test_class_size::test();
+		conversion_function::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
