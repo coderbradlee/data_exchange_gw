@@ -1219,7 +1219,10 @@ namespace design_model
     			{
     				return double(m_numerator)/double(m_denominator);
     			}
-
+    			fraction operator+(const fraction& f)const
+    			{
+    				return fraction(m_numerator+f.m_numerator,m_denominator+f.m_denominator);
+    			}
     		private:
     			int m_numerator,m_denominator;
     	};
@@ -1228,6 +1231,7 @@ namespace design_model
     		fraction f(3,5);
     		double d=4+f;
     		cout<<d<<endl;
+    		fraction d2=f+4;
     	}
     }
 	void test()
