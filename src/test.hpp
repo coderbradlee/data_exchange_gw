@@ -1234,6 +1234,32 @@ namespace design_model
     		fraction d2=f+4;
     	}
     }
+    namespace test_default_keyword
+    {
+    	class base
+    	{
+    	public:
+    		base(int x=0){}
+    	};
+    	class derived:public base
+    	{
+    	public:
+    		derived()=default;
+    		derived(int y){}
+    	};
+    	class widget
+    	{
+    	public:
+    		widget():d(new derived())
+    		{}
+    	private:
+    		derived* d;
+    	};
+    	void test()
+    	{
+    		widget w;
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1253,7 +1279,8 @@ namespace design_model
 		// }
 		//test_default_param_derived::test();
 		//test_class_size::test();
-		conversion_function::test();
+		//conversion_function::test();
+		test_default_keyword::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
