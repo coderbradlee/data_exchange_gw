@@ -1239,6 +1239,7 @@ namespace design_model
     	class base
     	{
     	public:
+    		base()=default;
     		base(int x=0){}
     	};
     	class derived:public base
