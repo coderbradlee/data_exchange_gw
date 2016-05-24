@@ -1217,7 +1217,7 @@ namespace design_model
     			{}
     			operator double()const
     			{
-    				return (double)(m_numerator/m_denominator);
+    				return double(m_numerator)/double(m_denominator);
     			}
 
     		private:
