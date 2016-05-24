@@ -1229,8 +1229,8 @@ namespace design_model
     	void test()
     	{
     		fraction f(3,5);
-    		double d=4+f;
-    		cout<<d<<endl;
+    		// double d=4+f;
+    		// cout<<d<<endl;
     		fraction d2=f+4;
     	}
     }
