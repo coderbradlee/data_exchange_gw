@@ -1296,7 +1296,8 @@ namespace design_model
     	void test()
     	{
     		base b(2);
-    		base c+=b+3;
+    		base c;
+    		c+=b+3;
     		base d=4+c;
     		b.print();
     		c.print();
