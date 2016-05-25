@@ -1260,6 +1260,49 @@ namespace design_model
     		widget w;
     	}
     }
+    namespace test_operator_plus
+    {
+    	class base
+    	{
+    	public:
+    		base(int num=0):m_num(num),m_pointer(&m_num){}
+    		base& operator+=(const base& r)
+    		{
+    			m_num+=r.m_num;
+    			return *this;
+    		}
+    		// friend const base operator+(const base&,int num)const;
+    		// friend const base operator+(int num,const base&)const;
+    		void print()
+    		{
+    			cout<<m_num<<":"<<*m_pointer<<endl;
+    		}
+    	private:
+    		int m_num;
+    		int* m_pointer;
+    	};
+    	const base operator+(const base& b,int num)const
+    	{
+    		return base(b)+=num;
+    	}
+    	const base operator+(int num,const base& b)const
+    	{
+    		return base(num)+=b;
+    	}
+    	const base operator+(const base& l,const base& r)
+    	{
+    		return base(l)+=r;
+    	}
+    	void test()
+    	{
+    		base b(2);
+    		base c+=b+3;
+    		base d=4+c;
+    		b.print();
+    		c.print();
+    		d.print();
+    	}
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1270,7 +1313,7 @@ namespace design_model
 		//a_test::test();
 		//test_reset_and_swap::test();
 		//test_override::test();
-		non_virtual_interface2::test();
+		//non_virtual_interface2::test();
 		// int m;
 		// cin>>m;
 		// if(cin.exceptions()!=cin.goodbit)
@@ -1281,6 +1324,7 @@ namespace design_model
 		//test_class_size::test();
 		//conversion_function::test();
 		//test_default_keyword::test();
+		test_operator_plus::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
