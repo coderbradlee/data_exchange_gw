@@ -1281,11 +1281,11 @@ namespace design_model
     		int m_num;
     		int* m_pointer;
     	};
-    	const base operator+(const base& b,int num)const
+    	const base operator+(const base& b,int num)
     	{
     		return base(b)+=num;
     	}
-    	const base operator+(int num,const base& b)const
+    	const base operator+(int num,const base& b)
     	{
     		return base(num)+=b;
     	}
