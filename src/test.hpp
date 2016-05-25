@@ -1270,7 +1270,7 @@ namespace design_model
 		//a_test::test();
 		//test_reset_and_swap::test();
 		//test_override::test();
-		//non_virtual_interface2::test();
+		non_virtual_interface2::test();
 		// int m;
 		// cin>>m;
 		// if(cin.exceptions()!=cin.goodbit)
@@ -1280,7 +1280,7 @@ namespace design_model
 		//test_default_param_derived::test();
 		//test_class_size::test();
 		//conversion_function::test();
-		test_default_keyword::test();
+		//test_default_keyword::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
