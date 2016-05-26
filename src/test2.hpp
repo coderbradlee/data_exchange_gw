@@ -159,7 +159,8 @@ namespace x2
     	}
     	void test()
     	{
-    		test_private_destructor d;
+    		//test_private_destructor d;
+    		test_private_destructor* d=new test_private_destructor();
     	}
     }
 	void test()
