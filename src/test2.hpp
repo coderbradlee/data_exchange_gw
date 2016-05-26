@@ -266,7 +266,7 @@ namespace x2
     		typedef const void* raw_address;
     		static std::list<raw_address> m_addresses;
     	};
-    	std::list<raw_address> heap_tracked::m_addresses;
+    	std::list<const void*> heap_tracked::m_addresses;
     	class asset2:public heap_tracked
     	{
     	public:
