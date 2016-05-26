@@ -92,7 +92,8 @@ namespace x2
 		public:
 			void invert()
 			{
-				this->invert(n);
+				//this->invert(n);
+				invert(n);
 			}
 		};
 		void test()
