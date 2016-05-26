@@ -148,10 +148,25 @@ namespace x2
     	}
 
     }
+    namespace private_destructor
+    {
+    	class test_private_destructor
+    	{
+    	public:
+    	private:
+    		~test_private_destructor()
+    		{}
+    	}
+    	void test()
+    	{
+    		test_private_destructor d;
+    	}
+    }
 	void test()
 	{
-		test_count_object::test();
+		//test_count_object::test();
 		//test_template::test();
+		private_destructor::test();
 	}
 }
 }
