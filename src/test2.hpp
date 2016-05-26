@@ -168,6 +168,10 @@ namespace x2
     	class base
     	{
     	public:
+    		void destroy()
+    		{
+    			delete this;
+    		}
     	protected:
     		virtual ~base()
     		{
@@ -185,7 +189,7 @@ namespace x2
     		{}
     		~asset()
     		{
-    			delete m_value;
+    			m_value->destroy();
     		}
     	private:
     		base* m_value;
