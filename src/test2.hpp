@@ -88,7 +88,7 @@ namespace x2
 		class derived:private base<T>
 		{
 		private:
-			using base<T>::invert;
+			//using base<T>::invert;
 		public:
 			void invert()
 			{
