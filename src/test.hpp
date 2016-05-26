@@ -1326,6 +1326,7 @@ namespace design_model
 		//conversion_function::test();
 		//test_default_keyword::test();
 		test_operator_plus::test();
+		cout<<__cplusplus<<endl;
 	}
 }
 #endif	/* PAYPAL_HPP */
