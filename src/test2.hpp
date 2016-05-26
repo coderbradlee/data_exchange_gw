@@ -236,7 +236,7 @@ namespace x2
     		protected:
     			string m_msg;
     		};
-    		virtual ~heap_tracked()=0;
+    		virtual ~heap_tracked(){};
     		static void* operator new(size_t size)
     		{
     			void* ptr=::operator new(size);
