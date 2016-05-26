@@ -182,6 +182,7 @@ namespace x2
     	{
     		derived d;
     		derived* dn=new derived();
+    		delete dn;
     	}
     }
 	void test()
