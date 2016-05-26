@@ -223,7 +223,7 @@ namespace x2
     	};
     	void test()
     	{
-    		derived d;
+    		//derived d;
     		derived* dn=new derived();
     		delete dn;
     	}
