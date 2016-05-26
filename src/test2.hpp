@@ -181,7 +181,7 @@ namespace x2
     	void test()
     	{
     		derived d;
-    		//derived* d=new derived();
+    		derived* d=new derived();
     	}
     }
 	void test()
