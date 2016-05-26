@@ -89,6 +89,7 @@ namespace x2
     			if( m_num_objects>max_objects)
     			{
     				throw too_many_objects();
+    				throw;
     			}	
     			++m_num_objects;		
     		}
