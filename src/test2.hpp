@@ -79,10 +79,17 @@ namespace x2
 		class base
 		{
 		protected:
+			base(size_t n,T* p):m_size(n),m_p(p)
+			{
+
+			}
 			void invert(size_t m)
 			{
 				cout<<"base invert"<<endl;
 			}
+		private:
+			size_t m_num;
+			T* m_p;
 		};
 		template<typename T,size_t n>
 		class derived:private base<T>
@@ -90,11 +97,17 @@ namespace x2
 		private:
 			//using base<T>::invert;
 		public:
+			derived():base<T>(n,data)
+			{
+				
+			}
 			void invert()
 			{
 				//this->invert(n);
 				invert(n);
 			}
+		private:
+			T data[n*n];
 		};
 		void test()
 		{
