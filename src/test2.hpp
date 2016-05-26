@@ -280,7 +280,7 @@ namespace x2
     		delete dn;
     		asset2 a;
     		cout<<a.is_on_heap()<<endl;
-    		asset2 b=new asset2();
+    		asset2* b=new asset2();
     		cout<<b->is_on_heap()<<endl;
     	}
     }
