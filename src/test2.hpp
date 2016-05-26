@@ -105,7 +105,7 @@ namespace x2
 			{
 				//this->invert(n);
 				invert(n);
-				cout<<m_p<<endl;
+				cout<<typeid(m_p).name()<<endl;
 			}
 		private:
 			//T data[n*n];
