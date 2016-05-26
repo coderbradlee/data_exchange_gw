@@ -236,7 +236,10 @@ namespace x2
     		protected:
     			string m_msg;
     		};
-    		virtual ~heap_tracked(){};
+    		virtual ~heap_tracked()
+    		{
+    			cout<<"~heap_tracked"<<endl;
+    		}
     		static void* operator new(size_t size)
     		{
     			void* ptr=::operator new(size);
@@ -271,7 +274,9 @@ namespace x2
     	{
     	public:
     		~asset2()
-    		{}
+    		{
+    			cout<<"~asset2"<<endl;
+    		}
     	private:
 
     	};
