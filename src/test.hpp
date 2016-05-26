@@ -1325,12 +1325,25 @@ namespace design_model
 		//test_class_size::test();
 		//conversion_function::test();
 		//test_default_keyword::test();
-		test_operator_plus::test();
-		cout<<__cplusplus<<endl;
-		for(int i:{1,2,3,4})
-		{
-			cout<<i<<endl;
-		}
+		//test_operator_plus::test();
+		// cout<<__cplusplus<<endl;
+		// for(int i:{1,2,3,4})
+		// {
+		// 	cout<<i<<endl;
+		// }
+		double x=0;
+		double* p=&x;
+		double& r=x;
+		cout<<sizeof(x)<<endl;
+		cout<<sizeof(*p)<<endl;
+		cout<<sizeof(p)<<endl;
+		cout<<sizeof(r)<<endl;
+		cout<<p<<endl;
+		cout<<*p<<endl;
+		cout<<x<<endl;
+		cout<<r<<endl;
+		cout<<&r<<endl;
+		cout<<&x<<endl;
 	}
 }
 #endif	/* PAYPAL_HPP */
