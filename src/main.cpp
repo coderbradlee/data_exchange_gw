@@ -49,7 +49,7 @@ int main()
 			// order->request("GET", "/admin/products.json/", "class_type=sales&category_name=Rings", "");
 
 			// cout<<order->get_data().length()<<":"<<order->get_data()<<endl;
-			std::cout << "now time elapsed:" << pass.format(6) << std::endl;
+			//std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 		}
 		{
 			boost::timer::cpu_timer pass;
@@ -62,7 +62,7 @@ int main()
 			//am->request("GET", "/api/message/TEST", "type=queue&clientId=consumerA", "");
 			//cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
 			//this_thread::sleep_for(chrono::seconds(10));
-			std::cout << "now time elapsed:" << pass.format(6) << std::endl;
+			//std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 		}
 
 	}
