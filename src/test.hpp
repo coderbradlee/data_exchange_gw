@@ -1304,6 +1304,67 @@ namespace design_model
     		d.print();
     	}
     }
+    namespace test_count_object
+    {
+    	template<typename being_counted>
+    	class counted
+    	{
+    	public:
+    		class too_many_objects(){}
+    		static int object_count()
+    		{
+    			return m_num_objects;
+    		}
+    	protected:
+    		counted()
+    		{
+    			init();
+    		}
+    		counted(const counted&)
+    		{
+    			init();
+    		}
+    		virtual ~counted()
+    		{
+    			--m_num_objects;
+    		}
+    	private:
+    		static int m_num_objects;
+    		static const size_t max_objects=10;
+    		void init()
+    		{
+    			if( m_num_objects>max_objects)
+    				throw too_many_objects();
+    			++m_num_objects;
+    		}
+    	};
+    	class printer:private counted<printer>
+    	{
+    	public:
+    		static printer* make_printer()
+    		{
+
+    		}
+    		static printer* make_printer(const printer& r)
+    		{
+
+    		}
+    		virtual ~printer()
+    		{
+
+    		}
+    	private:
+    		printer()
+    		{}
+    		printer(const printer& r)
+    		{}
+    	};
+    	void test()
+    	{
+    		
+    	}
+
+    }
 	void test()
 	{
 		//design_model::proto_type_model::test();
@@ -1331,19 +1392,20 @@ namespace design_model
 		// {
 		// 	cout<<i<<endl;
 		// }
-		double x=0;
-		double* p=&x;
-		double& r=x;
-		cout<<sizeof(x)<<endl;
-		cout<<sizeof(*p)<<endl;
-		cout<<sizeof(p)<<endl;
-		cout<<sizeof(r)<<endl;
-		cout<<p<<endl;
-		cout<<*p<<endl;
-		cout<<x<<endl;
-		cout<<r<<endl;
-		cout<<&r<<endl;
-		cout<<&x<<endl;
+		// double x=0;
+		// double* p=&x;
+		// double& r=x;
+		// cout<<sizeof(x)<<endl;
+		// cout<<sizeof(*p)<<endl;
+		// cout<<sizeof(p)<<endl;
+		// cout<<sizeof(r)<<endl;
+		// cout<<p<<endl;
+		// cout<<*p<<endl;
+		// cout<<x<<endl;
+		// cout<<r<<endl;
+		// cout<<&r<<endl;
+		// cout<<&x<<endl;
+		test_count_object::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
