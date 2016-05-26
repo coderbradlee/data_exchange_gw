@@ -61,7 +61,7 @@ int main()
 			//cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
 			//am->request("GET", "/api/message/TEST", "type=queue&clientId=consumerA", "");
 			//cout<<am->get_data().length()<<":"<<am->get_data()<<endl;
-			//this_thread::sleep_for(chrono::seconds(10));
+			this_thread::sleep_for(chrono::seconds(10));
 			//std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 		}
 
