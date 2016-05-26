@@ -178,6 +178,18 @@ namespace x2
     	{
     	public:
     	};
+    	class asset
+    	{
+    	public:
+    		asset():m_value(new base())
+    		{}
+    		~asset()
+    		{
+    			delete m_value;
+    		}
+    	private:
+    		base* m_value;
+    	};
     	void test()
     	{
     		derived d;

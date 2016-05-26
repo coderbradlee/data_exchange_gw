@@ -73,7 +73,7 @@ int main()
 	}
 	catch (...)
 	{
-
+		cout << "unknown error" << endl;
 	}
 	return 0;
 }
