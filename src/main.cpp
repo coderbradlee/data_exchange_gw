@@ -41,8 +41,8 @@ int main()
 		
 		
 		{
-			boost::timer::cpu_timer pass;
-			pass.start();
+			// boost::timer::cpu_timer pass;
+			// pass.start();
 
 			//orderbot 接口
 			//boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
@@ -52,8 +52,8 @@ int main()
 			//std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 		}
 		{
-			boost::timer::cpu_timer pass;
-			pass.start();
+			// boost::timer::cpu_timer pass;
+			// pass.start();
 
 			//orderbot 接口
 			//boost::shared_ptr<activemq_rest> am = boost::shared_ptr<activemq_rest>(new activemq_rest(get_config->m_activemq_username, get_config->m_activemq_password, get_config->m_activemq_url));
