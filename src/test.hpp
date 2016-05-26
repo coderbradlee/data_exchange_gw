@@ -1369,31 +1369,31 @@ namespace design_model
     }
     namespace test_template
     {
-    	template<typename T>
-    		class base
-    		{
-    		protected:
-    			void invert(size_t m)
-    			{
-    				cout<<"base invert"<<endl;
-    			}
-    		};
-    		template<typename T,size_t n>
-    		class derived:private base<T>
-    		{
-    		private:
-    			using base<T>::invert;
-    		public:
-    			void invert()
-    			{
-    				this->invert(n);
-    			}
-    		};
-    		void test()
-    		{
-    			derived<int,4> d;
-    			d.invert();
-    		}
+		template<typename T>
+		class base
+		{
+		protected:
+			void invert(size_t m)
+			{
+				cout<<"base invert"<<endl;
+			}
+		};
+		template<typename T,size_t n>
+		class derived:private base<T>
+		{
+		private:
+			using base<T>::invert;
+		public:
+			void invert()
+			{
+				this->invert(n);
+			}
+		};
+		void test()
+		{
+			derived<int,4> d;
+			d.invert();
+		}
     }
 	void test()
 	{
@@ -1436,7 +1436,7 @@ namespace design_model
 		// cout<<&r<<endl;
 		// cout<<&x<<endl;
 		//test_count_object::test();
-		test_template::test();
+		//test_template::test();
 	}
 }
 #endif	/* PAYPAL_HPP */

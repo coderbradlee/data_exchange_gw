@@ -6,6 +6,7 @@
 #include "activemq_producer_consumer.hpp"
 #include "boost_signalset.hpp"
 #include "test.hpp"
+#include "test2.hpp"
 int main()
 {
 	for(int i=1;i<64;++i)
@@ -14,7 +15,7 @@ int main()
 	try
 	{
 		{
-			design_model::test();
+			x2::design_model::test();
 
 		}
 		{
