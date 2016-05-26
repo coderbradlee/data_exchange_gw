@@ -159,15 +159,37 @@ namespace x2
     	};
     	void test()
     	{
-    		//test_private_destructor d;
+    		//test_private_destructor d;//必须在堆上创建
     		test_private_destructor* d=new test_private_destructor();
+    	}
+    }
+    namespace protected_destructor_base
+    {
+    	class base
+    	{
+    	public:
+    	protected:
+    		virtual ~base()
+    		{
+    			cout<<"~base"<<endl;
+    		}
+    	};
+    	class derived:public base
+    	{
+    	public:
+    	};
+    	void test()
+    	{
+    		derived d;
+    		//derived* d=new derived();
     	}
     }
 	void test()
 	{
 		//test_count_object::test();
 		//test_template::test();
-		private_destructor::test();
+		//private_destructor::test();
+		protected_destructor_base::test();
 	}
 }
 }
