@@ -156,7 +156,7 @@ namespace x2
     	private:
     		~test_private_destructor()
     		{}
-    	}
+    	};
     	void test()
     	{
     		//test_private_destructor d;
