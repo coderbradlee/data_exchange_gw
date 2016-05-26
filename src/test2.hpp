@@ -185,7 +185,7 @@ namespace x2
     			virtual const char* what()const noexcept{return m_msg.c_str();}
     		protected:
     			string m_msg;
-    		}
+    		};
     		static void* operator new(size_t size)
     		{
     			on_the_heap=true;
