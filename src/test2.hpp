@@ -10,69 +10,7 @@ namespace x2
 {
 	namespace design_model
 	{
-	namespace test_count_object
-    {
-    	template<typename being_counted>
-    	class counted
-    	{
-    	public:
-    		class too_many_objects{};
-    		static int object_count()
-    		{
-    			return m_num_objects;
-    		}
-    	protected:
-    		counted()
-    		{
-    			init();
-    		}
-    		counted(const counted&)
-    		{
-    			init();
-    		}
-    		virtual ~counted()
-    		{
-    			--m_num_objects;
-    		}
-    	private:
-    		static int m_num_objects;
-    		static const size_t max_objects=10;
-    		void init()
-    		{
-    			if( m_num_objects>max_objects)
-    			{
-    				//throw too_many_objects();
-    			}	
-    			++m_num_objects;
-    		}
-    	};
-    	class printer:private counted<printer>
-    	{
-    	public:
-    		static printer* make_printer()
-    		{
-
-    		}
-    		static printer* make_printer(const printer& r)
-    		{
-
-    		}
-    		virtual ~printer()
-    		{
-
-    		}
-    	private:
-    		printer()
-    		{}
-    		printer(const printer& r)
-    		{}
-    	};
-    	void test()
-    	{
-
-    	}
-
-    }
+	
     namespace test_template
     {
 		template<typename T>
@@ -117,10 +55,79 @@ namespace x2
 			d.invert();
 		}
     }
+    namespace test_count_object
+    {
+    	template<typename being_counted>
+    	class counted
+    	{
+    	public:
+    		class too_many_objects{};
+    		static int object_count()
+    		{
+    			return m_num_objects;
+    		}
+    	protected:
+    		counted()
+    		{
+    			init();
+    		}
+    		counted(const counted&)
+    		{
+    			init();
+    		}
+    		virtual ~counted()
+    		{
+    			--m_num_objects;
+    			cout<<"~counted:"<<m_num_objects<<endl;
+    		}
+    	private:
+    		static int m_num_objects;
+    		static const size_t max_objects=3;
+    		void init()
+    		{
+    			if( m_num_objects>max_objects)
+    			{
+    				throw too_many_objects();
+    			}	
+    			++m_num_objects;
+    			cout<<"init:"<<m_num_objects<<endl;
+    		}
+    	};
+    	class printer:private counted<printer>
+    	{
+    	public:
+    		using counted<printer>::object_count;
+    		static printer* make_printer()
+    		{
+    			return new printer();
+    		}
+    		static printer* make_printer(const printer& r)
+    		{
+    			return new printer(r);
+    		}
+    		virtual ~printer()
+    		{
+
+    		}
+    	private:
+    		printer()
+    		{}
+    		printer(const printer& r)
+    		{}
+    	};
+    	void test()
+    	{
+    		printer *a=printer::make_printer();
+    		printer b=printer::make_printer(*a);
+    		printer *c=printer::make_printer();
+    		printer d=printer::make_printer(*c);
+    	}
+
+    }
 	void test()
 	{
-		//test_count_object::test();
-		test_template::test();
+		test_count_object::test();
+		//test_template::test();
 	}
 }
 }
