@@ -1334,7 +1334,9 @@ namespace design_model
     		void init()
     		{
     			if( m_num_objects>max_objects)
-    				throw too_many_objects();
+    			{
+    				//throw too_many_objects();
+    			}	
     			++m_num_objects;
     		}
     	};
@@ -1361,7 +1363,7 @@ namespace design_model
     	};
     	void test()
     	{
-    		
+
     	}
 
     }
@@ -1405,7 +1407,7 @@ namespace design_model
 		// cout<<r<<endl;
 		// cout<<&r<<endl;
 		// cout<<&x<<endl;
-		test_count_object::test();
+		//test_count_object::test();
 	}
 }
 #endif	/* PAYPAL_HPP */
