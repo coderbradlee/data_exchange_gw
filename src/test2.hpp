@@ -97,7 +97,7 @@ namespace x2
 		private:
 			using base<T>::invert;
 		public:
-			derived():base<T>(n,data)
+			derived():base<T>(n,nullptr),m_p(new T[n*n])
 			{
 
 			}
@@ -107,7 +107,8 @@ namespace x2
 				invert(n);
 			}
 		private:
-			T data[n*n];
+			//T data[n*n];
+			boost::scoped_array<T> m_p;
 		};
 		void test()
 		{
