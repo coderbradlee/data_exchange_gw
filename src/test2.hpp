@@ -168,6 +168,29 @@ namespace x2
     	class base
     	{
     	public:
+    		base()
+    		{
+    			if(!on_the_heap)
+    				throw heap_constraint_violation("heap_constraint_violation");
+    			on_the_heap=false;
+    		}
+    		class heap_constraint_violation:public exception
+    		{
+    			public:
+    			heap_constraint_violation(const char* msg):m_msg(msg)
+    			{
+
+    			}
+    			virtual ~heap_constraint_violation()noexcept{}
+    			virtual const char* what()const noexcept{return m_msg.c_str();}
+    		protected:
+    			string m_msg;
+    		}
+    		static void* operator new(size_t size)
+    		{
+    			on_the_heap=true;
+    			return ::operator new(size);
+    		}
     		void destroy()
     		{
     			delete this;
@@ -177,7 +200,11 @@ namespace x2
     		{
     			cout<<"~base"<<endl;
     		}
+    	private:
+    		static bool on_the_heap;
     	};
+    	bool base::on_the_heap=false;
+
     	class derived:public base
     	{
     	public:
