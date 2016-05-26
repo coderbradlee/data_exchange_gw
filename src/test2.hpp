@@ -115,7 +115,7 @@ namespace x2
     		printer(const printer& r)
     		{}
     	};
-    	//static const counted<printer>::size_t max_objects=3;
+    	static const counted<printer>::int max_objects=3;
     	void test()
     	{
     		printer *a=printer::make_printer();
