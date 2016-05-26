@@ -289,6 +289,7 @@ namespace x2
     		cout<<a.is_on_heap()<<endl;
     		asset2* b=new asset2();
     		cout<<b->is_on_heap()<<endl;
+    		delete b;
     	}
     }
 	void test()
