@@ -115,7 +115,8 @@ namespace x2
     		printer(const printer& r)
     		{}
     	};
-    	int counted<printer>::m_num_objects=0;
+    	template<typename being_counted>
+    	int counted<being_counted>::m_num_objects=0;
     	void test()
     	{
     		printer *a=printer::make_printer();
