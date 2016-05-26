@@ -82,7 +82,7 @@ namespace x2
     		}
     	private:
     		static int m_num_objects;
-    		static const size_t max_objects=3;
+    		static const size_t max_objects=2;
     		void init()
     		{
     			cout<<"init:"<<m_num_objects<<endl;
