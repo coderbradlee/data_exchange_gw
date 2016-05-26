@@ -1310,7 +1310,7 @@ namespace design_model
     	class counted
     	{
     	public:
-    		class too_many_objects(){};
+    		class too_many_objects{};
     		static int object_count()
     		{
     			return m_num_objects;
