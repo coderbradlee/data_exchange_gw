@@ -99,8 +99,8 @@ namespace x2
     			cout<<"init:"<<m_num_objects<<endl;
     			if( m_num_objects>max_objects)
     			{
-    				throw too_many_objects();
-    				throw;
+    				throw too_many_objects("too many printer");
+    				
     			}	
     			++m_num_objects;		
     		}
