@@ -88,7 +88,7 @@ namespace x2
 				cout<<"base invert"<<endl;
 			}
 		private:
-			size_t m_num;
+			size_t m_size;
 			T* m_p;
 		};
 		template<typename T,size_t n>
@@ -99,7 +99,7 @@ namespace x2
 		public:
 			derived():base<T>(n,data)
 			{
-				
+
 			}
 			void invert()
 			{
