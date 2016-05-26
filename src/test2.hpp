@@ -82,7 +82,7 @@ namespace x2
     		}
     	private:
     		static int m_num_objects;
-    		static const size_t max_objects=3;
+    		static const int max_objects=3;
     		void init()
     		{
     			if( m_num_objects>max_objects)
@@ -115,6 +115,7 @@ namespace x2
     		printer(const printer& r)
     		{}
     	};
+    	//static const counted<printer>::size_t max_objects=3;
     	void test()
     	{
     		printer *a=printer::make_printer();
