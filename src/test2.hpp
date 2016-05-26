@@ -118,9 +118,9 @@ namespace x2
     	void test()
     	{
     		printer *a=printer::make_printer();
-    		printer b=printer::make_printer(*a);
+    		printer *b=printer::make_printer(*a);
     		printer *c=printer::make_printer();
-    		printer d=printer::make_printer(*c);
+    		printer *d=printer::make_printer(*c);
     	}
 
     }
