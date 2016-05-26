@@ -270,6 +270,8 @@ namespace x2
     	class asset2:public heap_tracked
     	{
     	public:
+    		~asset2()
+    		{}
     	private:
 
     	};
