@@ -221,11 +221,67 @@ namespace x2
     	private:
     		base* m_value;
     	};
+    	class heap_tracked
+    	{
+    	public:
+    		class missing_address:public std::exception
+    		{
+    		public:
+    			missing_address(const char* msg):m_msg(msg)
+    			{
+
+    			}
+    			virtual ~missing_address()noexcept{}
+    			virtual const char* what()const noexcept{return m_msg.c_str();}
+    		protected:
+    			string m_msg;
+    		};
+    		virtual ~heap_tracked()=0;
+    		static void* operator new(size_t size)
+    		{
+    			void* ptr=::operator new(size);
+    			m_addresses.push_front(ptr);
+    			return ptr;
+    		}
+    		static void operator delete(void* ptr)
+    		{
+    			auto it=find(m_addresses.begin(),m_addresses.end(),ptr);
+    			if(it!=m_addresses.end())
+    			{
+    				m_addresses.erase(it);
+    				::operator delete(ptr);
+    			}
+    			else
+    			{
+    				throw missing_address("missing_address");
+    			}
+    		}
+    		bool is_on_heap()const
+    		{
+    			const void* raw=dynamic_cast<const void*>(this);
+    			auto it=find(m_addresses.begin(),m_addresses.end(),raw);
+    			return it!=m_addresses.end();
+    		}
+    	private:
+    		typedef const void* raw_address;
+    		static std::list<raw_address> m_addresses;
+    	};
+    	std::list<raw_address> heap_tracked::m_addresses;
+    	class asset2:public heap_tracked
+    	{
+    	public:
+    	private:
+
+    	};
     	void test()
     	{
     		//derived d;
     		derived* dn=new derived();
     		delete dn;
+    		asset2 a;
+    		cout<<a.is_on_heap()<<endl;
+    		asset2 b=new asset2();
+    		cout<<b->is_on_heap()<<endl;
     	}
     }
 	void test()
