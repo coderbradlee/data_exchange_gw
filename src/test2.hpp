@@ -85,12 +85,12 @@ namespace x2
     		static const size_t max_objects=3;
     		void init()
     		{
+    			cout<<"init:"<<m_num_objects<<endl;
     			if( m_num_objects>max_objects)
     			{
     				throw too_many_objects();
     			}	
-    			++m_num_objects;
-    			cout<<"init:"<<m_num_objects<<endl;
+    			++m_num_objects;		
     		}
     	};
     	class printer:private counted<printer>
@@ -119,8 +119,10 @@ namespace x2
     	int counted<being_counted>::m_num_objects=0;
     	void test()
     	{
-    		printer *a=printer::make_printer();
-    		printer *b=printer::make_printer(*a);
+    		{
+    			printer *a=printer::make_printer();
+    			printer *b=printer::make_printer(*a);
+    		}
     		printer *c=printer::make_printer();
     		printer *d=printer::make_printer(*c);
     	}
