@@ -1327,6 +1327,10 @@ namespace design_model
 		//test_default_keyword::test();
 		test_operator_plus::test();
 		cout<<__cplusplus<<endl;
+		for(int i:{1,2,3,4})
+		{
+			cout<<i<<endl;
+		}
 	}
 }
 #endif	/* PAYPAL_HPP */
