@@ -61,7 +61,18 @@ namespace x2
     	class counted
     	{
     	public:
-    		class too_many_objects{};
+    		class too_many_objects:public std::exception
+    		{
+    		public:
+    			too_many_objects(const char* msg):m_msg(msg)
+    			{
+
+    			}
+    			virtual ~too_many_objects()noexcept{}
+    			virtual const char* what()const noexcept{return m_msg.c_str();}
+    		protected:
+    			string m_msg;
+    		};
     		static int object_count()
     		{
     			return m_num_objects;
@@ -124,18 +135,23 @@ namespace x2
     	int counted<being_counted>::m_num_objects=0;
     	void test()
     	{
-    		{
-    			printer *a=printer::make_printer();
-    			printer *b=printer::make_printer(*a);
-    		}
+    		
+			printer *a=printer::make_printer();
+			printer *b=printer::make_printer(*a);
+			
+    		
     		printer *c=printer::make_printer();
     		printer *d=printer::make_printer(*c);
+    		delete a;
+			delete b;
+			delete c;
+			delete d;
     	}
 
     }
 	void test()
 	{
-		test_count_object::test();
+		test_count_odject::test();
 		//test_template::test();
 	}
 }
