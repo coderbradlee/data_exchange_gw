@@ -107,13 +107,17 @@ namespace x2
     		}
     		virtual ~printer()
     		{
-
+    			cout<<"printer destructor"<<endl;
     		}
     	private:
     		printer()
-    		{}
+    		{
+    			cout<<"printer constructor"<<endl;
+    		}
     		printer(const printer& r)
-    		{}
+    		{
+    			cout<<"printer copy constructor"<<endl;
+    		}
     	};
     	template<typename being_counted>
     	int counted<being_counted>::m_num_objects=0;
