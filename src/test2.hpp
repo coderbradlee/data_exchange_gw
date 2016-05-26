@@ -151,7 +151,7 @@ namespace x2
     }
 	void test()
 	{
-		test_count_odject::test();
+		test_count_object::test();
 		//test_template::test();
 	}
 }
