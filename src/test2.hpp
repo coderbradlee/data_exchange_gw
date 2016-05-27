@@ -331,8 +331,8 @@ namespace x2
     		typedef void(*fun)(void);
     		base b;
     		fun p_fun=nullptr;
-    		cout<<typeid(test_ptr).name()<<endl;
-    		cout<<sizeof(test_ptr)<<endl;
+    		cout<<typeid(fun).name()<<endl;
+    		cout<<sizeof(fun)<<endl;
 
     		auto test_ptr=&b;
     		cout<<typeid(test_ptr).name()<<endl;
