@@ -334,7 +334,7 @@ namespace x2
     		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
     		cout<<"base first function in v_table is:"<<(int*)*(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
-    		p_fun=(fun)(*(fun)(&b));
+    		p_fun=(fun)((int*)*(int*)(&b));
     		p_fun();//base::f
    //  		(fun)*((fun)(*(fun)(&b))+1);//base::g
    //  		(fun)*((fun)(*(fun)(&b))+2);//base::h
