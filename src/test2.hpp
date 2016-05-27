@@ -339,7 +339,7 @@ namespace x2
 
     		cout<<sizeof(test_ptr)<<endl;
 
-    		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
+    		cout<<"base vptr address is:"<<(int*)(&b)<<endl;
     		
     		// auto test_fun_ptr=(fun)(*(*((int*)(&b))));
     		// cout<<typeid(test_fun_ptr).name()<<endl;
