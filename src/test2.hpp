@@ -348,6 +348,7 @@ namespace x2
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
     		cout<<"base g address is:"<<p_member_fun<<endl;
+    		printf("base f address is:%p\n",&base::g); 
 			cout<<"-------------------------------"<<endl;
 			}
 			{
@@ -355,6 +356,7 @@ namespace x2
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
     		cout<<"base h address is:"<<p_member_fun<<endl;
+    		printf("base f address is:%p\n",&base::h); 
 			cout<<"-------------------------------"<<endl;
 			}
     		auto test_ptr=&b;
