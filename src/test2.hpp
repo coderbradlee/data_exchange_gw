@@ -353,7 +353,7 @@ namespace x2
     		cout<<"base first function in v_table is:"<<test_fun_ptr<<endl;
 			cout<<"-------------------------------"<<endl;
 			cout<<*((int*)&b)<<endl;
-			void(*member_fun)(void)=*base::f;
+			void(*member_fun)(void)=&base::f;
 			//member_fun(*((int*)&b));
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
