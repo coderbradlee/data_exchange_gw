@@ -352,7 +352,7 @@ namespace x2
     			p_fun=(fun)*((intptr_t*)*(intptr_t*)&d+i);
     			p_fun();//dase::f
     		}
-    		cout<<"derived end is:"<<*((intptr_t*)*(intptr_t*)&d+6)<<endl;
+    		cout<<"derived end is:"<<*((intptr_t*)*(intptr_t*)&d+5)<<endl;
     		
     		
     	}
