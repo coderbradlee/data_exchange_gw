@@ -363,7 +363,10 @@ namespace x2
     		}
     		cout<<"derived end is:"<<*((intptr_t*)*(intptr_t*)&d+5)<<endl;
     		
-    		
+    		cout<<"derived fun in v_table is:"<<(intptr_t*)*((intptr_t*)&d+1)+0<<endl;
+    			p_fun=(fun)*((intptr_t*)*((intptr_t*)&d+1)+0);
+    			p_fun();//dase::f
+    			cout<<"end is:"<<*((intptr_t*)*((intptr_t*)&d+1)+1)<<endl;
     	}
     }
 	void test()
