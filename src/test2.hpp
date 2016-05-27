@@ -339,11 +339,11 @@ namespace x2
 
     		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
     		
-    		auto test_fun_ptr=(fun)*(fun)(&b);
+    		auto test_fun_ptr=(fun)*(int*)(&b);
     		cout<<typeid(test_fun_ptr).name()<<endl;
 
     		cout<<sizeof(test_fun_ptr)<<endl;
-    		cout<<"base first function in v_table is:"<<(fun)(&b)<<endl;
+    		cout<<"base first function in v_table is:"<<(fun)*(int*)(&b)<<endl;
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
     		// p_fun=(fun)(((int*)*)(int*)(&b));
