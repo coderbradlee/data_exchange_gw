@@ -292,12 +292,72 @@ namespace x2
     		delete b;
     	}
     }
+    namespace test_v_ptr_v_table
+    {
+    	class base
+    	{
+    	public:
+    		virtual void f()
+    		{
+    			cout<<"base::f"<<endl;
+    		}
+    		virtual void g()
+    		{
+    			cout<<"base::g"<<endl;
+    		}
+    		virtual void h()
+    		{
+    			cout<<"base::h"<<endl;
+    		}
+    	};
+    	class derived:public base
+    	{
+    	public:
+    		virtual void f1()
+    		{
+    			cout<<"derived::f1"<<endl;
+    		}
+    		virtual void g1()
+    		{
+    			cout<<"derived::g1"<<endl;
+    		}
+    		virtual void h1()
+    		{
+    			cout<<"derived::h1"<<endl;
+    		}
+    	};
+    	void test()
+    	{
+    		typedef void(*fun)(void);
+    		base b;
+    		fun p_fun=nullptr;
+    		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
+    		cout<<"base first fun in v_table is:"<<(int*)*(int*)(&b)<<endl;
+    		p_fun=(fun)*((int*)*(int*)(&b))<<endl;
+    		p_fun();//base::f
+    		(fun)*((int*)*(int*)(&b)+1);//base::g
+    		(fun)*((int*)*(int*)(&b)+2);//base::h
+    		cout<<"------------------------------------"<<endl;
+    		derived d;
+			cout<<"derived v_table address is:"<<(int*)(&d)<<endl;
+    		cout<<"derived first fun in v_table is:"<<(int*)*(int*)(&d)<<endl;
+    		p_fun=(fun)*((int*)*(int*)(&d))<<endl;
+    		p_fun();//base::f
+    		(fun)*((int*)*(int*)(&d)+1);//dase::g
+    		(fun)*((int*)*(int*)(&d)+2);//base::h
+    		(fun)*((int*)*(int*)(&d)+3);//dase::g
+    		(fun)*((int*)*(int*)(&d)+4);//base::h
+    		(fun)*((int*)*(int*)(&d)+5);//dase::g
+    		
+    	}
+    }
 	void test()
 	{
 		//test_count_object::test();
 		//test_template::test();
 		//private_destructor::test();
-		protected_destructor_base::test();
+		//protected_destructor_base::test();
+		test_v_ptr_v_table::test();
 	}
 }
 }

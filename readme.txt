@@ -1,4 +1,20 @@
 ﻿2016.05.11
+
+
+GBP J4YVQ3URHVVUS1E9261D
+USD J4YVQ3UR37WOQ6GEDGRF
+
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URHVVUS1E9261D' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
+result：V1DRUIXRBQRJDIKTW7AS
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3UR37WOQ6GEDGRF' and target_currency_id='J4YVQ3URHVVUS1E9261D'
+result：H8OQKI8AMVMS7OYCA2AD
+
+GBP:USD
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='V1DRUIXRBQRJDIKTW7AS' and createby='exchange_gw'
+USD:GBP
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='H8OQKI8AMVMS7OYCA2AD' and createby='exchange_gw'
+
+
 增加分支exchange_rate，处理税率
 select code,currency_id from t_currency
 {//CAD 加元与美元的汇率
