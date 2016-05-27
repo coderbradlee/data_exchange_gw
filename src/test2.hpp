@@ -313,7 +313,7 @@ namespace x2
     	class derived:public base
     	{
     	public:
-    		virtual void f1()
+    		virtual void f()
     		{
     			cout<<"derived::f1"<<endl;
     		}
