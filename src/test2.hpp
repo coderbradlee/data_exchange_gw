@@ -339,6 +339,8 @@ namespace x2
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
     		cout<<"base f address is:"<<p_member_fun<<endl;
+    		cout<<"base f address is:"<<&base::f<<endl;
+    		printf("base f address is:%p\n",&base::f); 
 			cout<<"-------------------------------"<<endl;
     		}
     		{
