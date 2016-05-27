@@ -313,9 +313,9 @@ namespace x2
     	class base2
     	{
     	public:
-    		virtual void f()
+    		virtual void fff()
     		{
-    			cout<<"base2::f"<<endl;
+    			cout<<"base2::fff"<<endl;
     		}
     		
     	};
