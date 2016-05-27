@@ -331,10 +331,17 @@ namespace x2
     		typedef void(*fun)(void);
     		base b;
     		fun p_fun=nullptr;
+
+    		auto test_ptr=&b;
+    		cout<<typeid(test_ptr).name()<<endl;
+
+    		cout<<sizeof(test_ptr)<<endl;
+
+
     		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
-    		int* p_v_table=(int*)(&b);
-    		cout<<sizeof(fun)<<endl;
-    		cout<<"base first function in v_table is:"<<(fun)*p_v_table<<endl;
+    		//int* p_v_table=(int*)(&b);
+
+    		cout<<"base first function in v_table is:"<<(fun)(&b)<<endl;
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
     		// p_fun=(fun)(((int*)*)(int*)(&b));
