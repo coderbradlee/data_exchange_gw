@@ -375,7 +375,11 @@ namespace x2
 		//test_template::test();
 		//private_destructor::test();
 		//protected_destructor_base::test();
-		test_v_ptr_v_table::test();
+		//test_v_ptr_v_table::test();
+		cout<<sizeof(int)<<endl;
+		cout<<sizeof(intptr_t)<<endl;
+		cout<<sizeof(int*)<<endl;
+		cout<<sizeof(intptr_t*)<<endl;
 	}
 }
 }
