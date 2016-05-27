@@ -315,20 +315,20 @@ namespace x2
     	public:
     		virtual void f()
     		{
-    			cout<<"base::f"<<endl;
+    			cout<<"base2::f"<<endl;
     		}
     		
     	};
     	class derived:public base,public base2
     	{
     	public:
-    		virtual void f()
+    		virtual void ff()
     		{
-    			cout<<"derived::f1"<<endl;
+    			cout<<"derived::ff"<<endl;
     		}
-    		virtual void g1()
+    		virtual void g()
     		{
-    			cout<<"derived::g1"<<endl;
+    			cout<<"derived::g"<<endl;
     		}
     		virtual void h1()
     		{
