@@ -329,12 +329,12 @@ namespace x2
     	void test()
     	{
     		typedef void(*fun)(void);
-    		base b;
+    		base *b=new base();
     		fun p_fun=nullptr;
-    		cout<<"base v_table address is:"<<(intptr_t*)(&b)<<endl;
-    		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)&b<<endl;
-    		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)&b+1<<endl;
-    		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)&b+2<<endl;
+    		cout<<"base v_table address is:"<<(intptr_t*)(b)<<endl;
+    		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)b<<endl;
+    		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)b+1<<endl;
+    		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)b+2<<endl;
 
 			for(int i=0;i<3;++i)
     		{
