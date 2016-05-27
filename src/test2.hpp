@@ -331,9 +331,9 @@ namespace x2
     		typedef void(*fun)(void);
     		base b;
     		fun p_fun=nullptr;
-    		cout<<typeid(fun).name()<<endl;
-    		cout<<sizeof(fun)<<endl;
-    		cout<<"-------------------------------"<<endl;
+    		// cout<<typeid(fun).name()<<endl;
+    		// cout<<sizeof(fun)<<endl;
+    		// cout<<"-------------------------------"<<endl;
 			{
 			auto p_member_fun=&base::f;
     		cout<<typeid(p_member_fun).name()<<endl;
@@ -345,14 +345,14 @@ namespace x2
 			auto p_member_fun=&base::g;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base f address is:"<<p_member_fun<<endl;
+    		cout<<"base g address is:"<<p_member_fun<<endl;
 			cout<<"-------------------------------"<<endl;
 			}
 			{
 			auto p_member_fun=&base::h;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base f address is:"<<p_member_fun<<endl;
+    		cout<<"base h address is:"<<p_member_fun<<endl;
 			cout<<"-------------------------------"<<endl;
 			}
     		auto test_ptr=&b;
