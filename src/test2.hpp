@@ -310,7 +310,16 @@ namespace x2
     			cout<<"base::h"<<endl;
     		}
     	};
-    	class derived:public base
+    	class base2
+    	{
+    	public:
+    		virtual void f()
+    		{
+    			cout<<"base::f"<<endl;
+    		}
+    		
+    	};
+    	class derived:public base,public base2
     	{
     	public:
     		virtual void f()
