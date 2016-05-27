@@ -338,6 +338,7 @@ namespace x2
 			auto p_member_fun=&base::f;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
+    		cout<<"base f address is:"<<p_member_fun<<endl;
 			cout<<"-------------------------------"<<endl;
     		
     		auto test_ptr=&b;
@@ -351,7 +352,7 @@ namespace x2
     		cout<<sizeof(test_fun_ptr)<<endl;
     		cout<<"base first function in v_table is:"<<test_fun_ptr<<endl;
 			cout<<"-------------------------------"<<endl;
-			
+
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
     		// p_fun=(fun)(((int*)*)(int*)(&b));
