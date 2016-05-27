@@ -356,7 +356,7 @@ namespace x2
 			typedef void(base::*member_fun)(void);
 			member_fun base_f=&base::f;
 			(b.*base_f)();
-			(b.*(base_f+1)();
+			((b.*base_f)+1)();
 			//member_fun(*((int*)&b));
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
