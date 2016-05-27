@@ -331,72 +331,27 @@ namespace x2
     		typedef void(*fun)(void);
     		base b;
     		fun p_fun=nullptr;
-    		// cout<<typeid(fun).name()<<endl;
-    		// cout<<sizeof(fun)<<endl;
-    		// cout<<"-------------------------------"<<endl;
-			{
-			auto p_member_fun=&base::f;
-    		cout<<typeid(p_member_fun).name()<<endl;
-    		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base f address is:"<<p_member_fun<<endl;
-    		cout<<"base f address is:"<<&base::f<<endl;
-    		printf("base f address is:%p\n",&base::f); 
-			cout<<"-------------------------------"<<endl;
-    		}
-    		{
-			auto p_member_fun=&base::g;
-    		cout<<typeid(p_member_fun).name()<<endl;
-    		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base g address is:"<<p_member_fun<<endl;
-    		cout<<"base g address is:"<<&base::g<<endl;
-    		printf("base g address is:%p\n",&base::g); 
-			cout<<"-------------------------------"<<endl;
-			}
-			{
-			auto p_member_fun=&base::h;
-    		cout<<typeid(p_member_fun).name()<<endl;
-    		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base h address is:"<<p_member_fun<<endl;
-    		cout<<"base h address is:"<<&base::h<<endl;
-    		printf("base h address is:%p\n",&base::h); 
-			cout<<"-------------------------------"<<endl;
-			}
-    		auto test_ptr=&b;
-    		cout<<typeid(test_ptr).name()<<endl;
-    		cout<<sizeof(test_ptr)<<endl;
-    		cout<<"base vptr address is:"<<(int*)(&b)<<endl;
-    		cout<<"-------------------------------"<<endl;
     		
-    		auto test_fun_ptr=*(int*)(&b);
-    		cout<<typeid(test_fun_ptr).name()<<endl;
-    		cout<<sizeof(test_fun_ptr)<<endl;
-    		cout<<"base first function in v_table is:"<<test_fun_ptr<<endl;
-			cout<<"-------------------------------"<<endl;
-			
-			cout<<(intptr_t*)*(intptr_t*)&b+0<<endl;
+    		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)&b<<endl;
+    		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)&b+1<<endl;
+    		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)&b+2<<endl;
 
-			typedef void(base::*member_fun)(void);
-			member_fun base_f=&base::f;
-			(b.*base_f)();
-			//((b.*base_f)+1)();
-			//member_fun(*((int*)&b));
-    		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
-    		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
-    		// p_fun=(fun)(((int*)*)(int*)(&b));
-    		// p_fun();//base::f
-   //  		(fun)*((fun)(*(fun)(&b))+1);//base::g
-   //  		(fun)*((fun)(*(fun)(&b))+2);//base::h
-   //  		cout<<"------------------------------------"<<endl;
-   //  		derived d;
-			// cout<<"derived v_table address is:"<<(int*)(&d)<<endl;
-   //  		cout<<"derived first fun in v_table is:"<<(fun)(*(fun)(&d))<<endl;
-   //  		p_fun=(fun)(*(fun)(&d));
-   //  		p_fun();//base::f
-   //  		(fun)*((fun)(*(fun)(&d))+1);//dase::g
-   //  		(fun)*((fun)(*(fun)(&d))+2);//base::h
-   //  		(fun)*((fun)(*(fun)(&d))+3);//dase::g
-   //  		(fun)*((fun)(*(fun)(&d))+4);//base::h
-   //  		(fun)*((fun)(*(fun)(&d))+5);//dase::g
+    		p_fun = (fun)*((intptr_t*)*(intptr_t*)&b+0);
+    		
+    		p_fun();//base::f
+    		(fun)*((intptr_t*)*(intptr_t*)&b+1);//base::g
+    		(fun)*((intptr_t*)*(intptr_t*)&b+2);//base::h
+    		cout<<"------------------------------------"<<endl;
+    		derived d;
+			cout<<"derived v_table address is:"<<(intptr_t*)(&d)<<endl;
+    		cout<<"derived first fun in v_table is:"<<(intptr_t*)*(intptr_t*)&d<<endl;
+    		p_fun=(fun)*((intptr_t*)*(intptr_t*)&d+0);
+    		p_fun();//dase::f
+    		(fun)*((intptr_t*)*(intptr_t*)&d+1);//dase::g
+    		(fun)*((intptr_t*)*(intptr_t*)&d+2);//base::h
+    		(fun)*((intptr_t*)*(intptr_t*)&d+3);//dase::g
+    		(fun)*((intptr_t*)*(intptr_t*)&d+4);//base::h
+    		(fun)*((intptr_t*)*(intptr_t*)&d+5);//dase::g
     		
     	}
     }
