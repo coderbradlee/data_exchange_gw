@@ -333,7 +333,7 @@ namespace x2
     		fun p_fun=nullptr;
     		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
     		int* p_v_table=(int*)(&b);
-    		cout<<"base first function in v_table is:"<<p_v_table<<endl;
+    		cout<<"base first function in v_table is:"<<(int*)*p_v_table<<endl;
     		//cout<<"base first function in v_table is:"<<((int*)*)(int*)(&b)<<endl;
     		//cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
     		// p_fun=(fun)(((int*)*)(int*)(&b));
