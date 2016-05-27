@@ -338,7 +338,7 @@ namespace x2
 			auto p_member_fun=&base::f;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base f address is:"<<p_member_fun<<endl;
+    		cout<<"base f address is:"<<(int*)p_member_fun<<endl;
     		cout<<"base f address is:"<<&base::f<<endl;
     		printf("base f address is:%p\n",&base::f); 
 			cout<<"-------------------------------"<<endl;
@@ -347,7 +347,7 @@ namespace x2
 			auto p_member_fun=&base::g;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base g address is:"<<p_member_fun<<endl;
+    		cout<<"base g address is:"<<(int*)p_member_fun<<endl;
     		cout<<"base g address is:"<<&base::g<<endl;
     		printf("base g address is:%p\n",&base::g); 
 			cout<<"-------------------------------"<<endl;
@@ -356,7 +356,7 @@ namespace x2
 			auto p_member_fun=&base::h;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
-    		cout<<"base h address is:"<<p_member_fun<<endl;
+    		cout<<"base h address is:"<<(int*)p_member_fun<<endl;
     		cout<<"base h address is:"<<&base::h<<endl;
     		printf("base h address is:%p\n",&base::h); 
 			cout<<"-------------------------------"<<endl;
