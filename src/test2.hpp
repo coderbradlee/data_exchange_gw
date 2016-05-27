@@ -332,22 +332,23 @@ namespace x2
     		base b;
     		fun p_fun=nullptr;
     		cout<<"base v_table address is:"<<(int*)(&b)<<endl;
+    		//cout<<"base first fun in v_table is:"<<(int*)(*(int*)(&b))<<endl;
     		cout<<"base first fun in v_table is:"<<(fun)(*(fun)(&b))<<endl;
-    		p_fun=(fun)*((int*)*(int*)(&b))<<endl;
+    		p_fun=(fun)(*(fun)(&b))<<endl;
     		p_fun();//base::f
-    		(fun)*((int*)*(int*)(&b)+1);//base::g
-    		(fun)*((int*)*(int*)(&b)+2);//base::h
+    		(fun)*((fun)(*(fun)(&b))+1);//base::g
+    		(fun)*((fun)(*(fun)(&b))+2);//base::h
     		cout<<"------------------------------------"<<endl;
     		derived d;
 			cout<<"derived v_table address is:"<<(int*)(&d)<<endl;
-    		cout<<"derived first fun in v_table is:"<<(int*)*(int*)(&d)<<endl;
-    		p_fun=(fun)*((int*)*(int*)(&d))<<endl;
+    		cout<<"derived first fun in v_table is:"<<(fun)(*(fun)(&d))<<endl;
+    		p_fun=(fun)(*(fun)(&d))<<endl;
     		p_fun();//base::f
-    		(fun)*((int*)*(int*)(&d)+1);//dase::g
-    		(fun)*((int*)*(int*)(&d)+2);//base::h
-    		(fun)*((int*)*(int*)(&d)+3);//dase::g
-    		(fun)*((int*)*(int*)(&d)+4);//base::h
-    		(fun)*((int*)*(int*)(&d)+5);//dase::g
+    		(fun)*((fun)(*(fun)(&d))+1);//dase::g
+    		(fun)*((fun)(*(fun)(&d))+2);//base::h
+    		(fun)*((fun)(*(fun)(&d))+3);//dase::g
+    		(fun)*((fun)(*(fun)(&d))+4);//base::h
+    		(fun)*((fun)(*(fun)(&d))+5);//dase::g
     		
     	}
     }
