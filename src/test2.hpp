@@ -339,8 +339,8 @@ namespace x2
     		p_fun = (fun)*((intptr_t*)*(intptr_t*)&b+0);
     		
     		p_fun();//base::f
-    		(fun)*((intptr_t*)*(intptr_t*)&b+1);//base::g
-    		(fun)*((intptr_t*)*(intptr_t*)&b+2);//base::h
+    		(fun)*((intptr_t*)*(intptr_t*)&b+1)();//base::g
+    		(fun)*((intptr_t*)*(intptr_t*)&b+2)();//base::h
     		cout<<"------------------------------------"<<endl;
     		derived d;
 			cout<<"derived v_table address is:"<<(intptr_t*)(&d)<<endl;
