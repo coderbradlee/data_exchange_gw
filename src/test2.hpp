@@ -335,12 +335,13 @@ namespace x2
     		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)b<<endl;
     		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)b+1<<endl;
     		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)b+2<<endl;
-
+    		
 			for(int i=0;i<3;++i)
     		{
-	    		p_fun = (fun)*((intptr_t*)*(intptr_t*)&b+i);
+	    		p_fun = (fun)*((intptr_t*)*(intptr_t*)b+i);
 	    		p_fun();//base::f
     		}
+    		delete b;
     		cout<<"------------------------------------"<<endl;
     		derived d;
 			cout<<"derived v_table address is:"<<(intptr_t*)(&d)<<endl;
