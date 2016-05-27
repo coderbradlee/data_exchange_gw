@@ -334,13 +334,27 @@ namespace x2
     		cout<<typeid(fun).name()<<endl;
     		cout<<sizeof(fun)<<endl;
     		cout<<"-------------------------------"<<endl;
-
+			{
 			auto p_member_fun=&base::f;
     		cout<<typeid(p_member_fun).name()<<endl;
     		cout<<sizeof(p_member_fun)<<endl;
     		cout<<"base f address is:"<<p_member_fun<<endl;
 			cout<<"-------------------------------"<<endl;
-    		
+    		}
+    		{
+			auto p_member_fun=&base::g;
+    		cout<<typeid(p_member_fun).name()<<endl;
+    		cout<<sizeof(p_member_fun)<<endl;
+    		cout<<"base f address is:"<<p_member_fun<<endl;
+			cout<<"-------------------------------"<<endl;
+			}
+			{
+			auto p_member_fun=&base::h;
+    		cout<<typeid(p_member_fun).name()<<endl;
+    		cout<<sizeof(p_member_fun)<<endl;
+    		cout<<"base f address is:"<<p_member_fun<<endl;
+			cout<<"-------------------------------"<<endl;
+			}
     		auto test_ptr=&b;
     		cout<<typeid(test_ptr).name()<<endl;
     		cout<<sizeof(test_ptr)<<endl;
