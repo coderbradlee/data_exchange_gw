@@ -335,7 +335,7 @@ namespace x2
     		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)b<<endl;
     		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)b+1<<endl;
     		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)b+2<<endl;
-    		
+    		cout<<"base end is:"<<*((intptr_t*)*(intptr_t*)b+3)<<endl;
 			for(int i=0;i<3;++i)
     		{
 	    		p_fun = (fun)*((intptr_t*)*(intptr_t*)&(*b)+i);
@@ -346,13 +346,13 @@ namespace x2
     		derived d;
 			cout<<"derived v_table address is:"<<(intptr_t*)(&d)<<endl;
     		
-    		for(int i=0;i<6;++i)
+    		for(int i=0;i<5;++i)
     		{
     			cout<<"derived fun in v_table is:"<<(intptr_t*)*(intptr_t*)&d+i<<endl;
     			p_fun=(fun)*((intptr_t*)*(intptr_t*)&d+i);
     			p_fun();//dase::f
     		}
-    		
+    		cout<<"derived end is:"<<*((intptr_t*)*(intptr_t*)&d+6)<<endl;
     		
     		
     	}
