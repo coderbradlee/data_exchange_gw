@@ -422,6 +422,23 @@ namespace x2
     		print(1,"2",bitset<16>(377),4.3);
     	}
     }
+    namespace test_disable_new
+    {
+    	class test
+    	{
+    	private:
+    		static void* operater new(size_t)
+    		{}
+    		static void operator delete(void*)
+    		{}
+    	};
+    	void test()
+    	{
+    		test t;
+    		static test t2;
+    		test* p=new test();
+    	}
+    }
 	void test()
 	{
 		//test_count_object::test();
