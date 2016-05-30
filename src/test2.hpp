@@ -427,7 +427,7 @@ namespace x2
     	class test
     	{
     	private:
-    		static void* operater new(size_t);
+    		static void* operator new(size_t);
     		
     		static void operator delete(void*);
     		
