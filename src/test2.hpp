@@ -489,8 +489,8 @@ namespace x2
     		{
     			return *this;
     		}
-    		virtual ~base()=0
-    		{}
+    		virtual ~base()=0;
+    		//{}
     		void add_ref()
     		{
     			++m_ref_count;
@@ -515,7 +515,7 @@ namespace x2
     		int m_ref_count;
     		bool m_shareable;
     	};
-    	
+    	base::~base(){}
     	template<typename T>
     	class ptr
     	{
@@ -570,7 +570,7 @@ namespace x2
     	public:
     		string(const char* v):m_value(new string_data(v))
     		{}
-    		const char& operator[](int index)
+    		const char& operator[](int index)const
     		{
     			return m_value->data[index];
     		}
