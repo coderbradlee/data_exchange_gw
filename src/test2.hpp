@@ -594,10 +594,15 @@ namespace x2
     			return m_value->data[index];
 
     		}
-    		ostream operator<<(ostream& os)const
-    		{
-    			return os<<m_value->data<<endl;
-    		}
+    		// ostream operator<<(ostream& os)const
+    		// {
+    		// 	return os<<m_value->data<<endl;
+    		// }
+    		friend inline ostream & operator << (ostream & os, string &t1)
+    		{  
+		         cout << t1.m_value->data<< endl;  
+		         return os; 
+		    }
     	private:
     		struct  string_data:public base
     		{
