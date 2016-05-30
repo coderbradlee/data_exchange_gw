@@ -407,6 +407,21 @@ namespace x2
 		    call_by_ptr(obj, &C::bar);
 		}
     }
+    namespace test_variadic_template
+    {
+    	void print()
+    	{}
+    	template<typename T,typename... types>
+    	void print(const T& first,const types&... args)
+    	{
+    		cout<<first<<endl;
+    		print(args...);
+    	}
+    	void test()
+    	{
+    		print(1,"2",bitset<16>(377),4.3);
+    	}
+    }
 	void test()
 	{
 		//test_count_object::test();
@@ -418,7 +433,8 @@ namespace x2
 		// cout<<sizeof(intptr_t)<<endl;
 		// cout<<sizeof(int*)<<endl;
 		// cout<<sizeof(intptr_t*)<<endl;
-		pointer_to_member_func::test();
+		//pointer_to_member_func::test();
+		test_variadic_template::test();
 	}
 }
 }
