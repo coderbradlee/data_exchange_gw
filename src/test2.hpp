@@ -424,7 +424,7 @@ namespace x2
     }
     namespace test_disable_new
     {
-    	class test
+    	class test_class
     	{
     	private:
     		static void* operator new(size_t)
@@ -436,9 +436,9 @@ namespace x2
     	};
     	void test()
     	{
-    		test t;
-    		static test t2;
-    		test* p=new test();
+    		test_class t;
+    		static test_class t2;
+    		test_class* p=new test_class();
     	}
     }
 	void test()
