@@ -453,12 +453,12 @@ namespace x2
     		void* operator new(size_t s)
     		{
     			cout<<"derived operator new"<<endl;
-    			return operator new(s);
+    			return ::operator new(s);
     		}
     		void operator delete(void* v)
     		{
     			cout<<"derived operator delete"<<endl;
-    			operator delete(v);
+    			::operator delete(v);
     		}
     	};
     	void test()
