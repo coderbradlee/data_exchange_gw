@@ -450,13 +450,15 @@ namespace x2
     	class derived:public test_class
     	{
     	public:
-    		void* operator new(size_t)
+    		void* operator new(size_t s)
     		{
     			cout<<"derived operator new"<<endl;
+    			return new(s);
     		}
-    		void operator delete(void*)
+    		void operator delete(void* v)
     		{
     			cout<<"derived operator delete"<<endl;
+    			delete v;
     		}
     	};
     	void test()
