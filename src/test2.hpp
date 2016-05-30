@@ -489,7 +489,11 @@ namespace x2
 		// cout<<sizeof(intptr_t*)<<endl;
 		//pointer_to_member_func::test();
 		//test_variadic_template::test();
-		test_disable_new::test();
+		//test_disable_new::test();
+		std::shared_ptr<const int> p_c(new int(3));
+		std::shared_ptr<int> p(new int(5));
+		pc=p;
+		cout<<*pc<<endl;
 	}
 }
 }
