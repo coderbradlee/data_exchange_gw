@@ -476,6 +476,67 @@ namespace x2
     		delete p;
     	}
     }
+    namespace test_count_ref
+    {
+    	class base
+    	{
+    	public:
+    		base():m_ref_count(0),m_shareable(true)
+    		{}
+    		base(const base& r):m_ref_count(0),m_shareable(true)
+    		{}
+    		base& operator=(const base& r)
+    		{
+    			return *this;
+    		}
+    		virtual ~base()=0
+    		{}
+    		void add_ref()
+    		{
+    			++m_ref_count;
+    		}
+    		void remove_ref()
+    		{
+    			if(--m_ref_count==0) delete this;
+    		}
+    		void mark_unshareable()
+    		{
+    			m_shareable=false;
+    		}
+    		bool is_shareable()const
+    		{
+    			return m_shareable;
+    		}
+    		bool is_shared()const
+    		{
+    			return m_ref_count>1;
+    		}
+    	private:
+    		int m_ref_count;
+    		bool m_shareable;
+    	};
+    	class string
+    	{
+    	private:
+    		struct  string_data:public base
+    		{
+    			char *data;
+    			string_data(const char* v)
+    			{
+    				data=new char[strlen(v)+1];
+    				strcpy(data,v);
+    			}
+    			~string_data()
+    			{
+    				delete[] data;
+    			}
+    		};
+    	};
+    	void test()
+    	{
+
+    	}
+    }
 	void test()
 	{
 		//test_count_object::test();
@@ -490,10 +551,11 @@ namespace x2
 		//pointer_to_member_func::test();
 		//test_variadic_template::test();
 		//test_disable_new::test();
-		std::shared_ptr<const int> p_c(new int(3));
-		std::shared_ptr<int> p(new int(5));
-		p_c=p;
-		cout<<*p_c<<endl;
+		// std::shared_ptr<const int> p_c(new int(3));
+		// std::shared_ptr<int> p(new int(5));
+		// p_c=p;
+		// cout<<*p_c<<endl;
+		test_count_ref::test();
 	}
 }
 }
