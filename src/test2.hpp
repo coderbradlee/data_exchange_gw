@@ -492,7 +492,7 @@ namespace x2
 		//test_disable_new::test();
 		std::shared_ptr<const int> p_c(new int(3));
 		std::shared_ptr<int> p(new int(5));
-		pc=p;
+		p_c=p;
 		cout<<*pc<<endl;
 	}
 }
