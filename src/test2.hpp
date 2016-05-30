@@ -434,9 +434,9 @@ namespace x2
     	};
     	void test()
     	{
-    		test t;
-    		static test t2;
-    		test* p=new test();
+    		// test t;
+    		// static test t2;
+    		// test* p=new test();
     	}
     }
 	void test()
