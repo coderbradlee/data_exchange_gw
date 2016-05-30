@@ -573,26 +573,60 @@ namespace x2
     	class string
     	{
     	public:
+    		class proxy
+    		{
+    		proxy(string& str,int index):m_string(str),m_char_index(index)
+    		{
+
+    		}
+    		proxy& operator=(const proxy& r)
+    		{
+    			if(m_string.m_value->is_shared())
+    			{
+    				m_string.m_value=new string_data(m_string.m_value->data);
+    			}
+    			//m_string.m_value->mark_unshareable();
+    			m_string.m_value->data[m_char_index]=r.m_string.m_value->data[r.m_char_index];
+    			return *this;
+    		}
+    		proxy& operator=(char c)
+    		{
+				if(m_string.m_value->is_shared())
+    			{
+    				m_string.m_value=new string_data(m_string.m_value->data);
+    			}
+    			//m_string.m_value->mark_unshareable();
+    			m_string.m_value->data[m_char_index]=c;
+    			return *this;
+    		}
+    		operator char()const
+    		{
+    			return m_string.m_value->data[m_char_index];
+    		}
+    	private:
+    		string& m_string;
+    		int m_char_index;
+    		};
     		string(const char* v):m_value(new string_data(v))
     		{
     			cout<<"string constructor"<<endl;
     		}
-    		const char& operator[](int index)const
+    		const proxy operator[](int index)const
     		{
     			cout<<"string operator[]const"<<endl;
-    			return m_value->data[index];
-    			
+    			//return m_value->data[index];
+    			return proxy(const_cast<string&>(*this),index);
     		}
-    		char& operator[](int index)
+    		proxy operator[](int index)
     		{
     			cout<<"string operator[]"<<endl;
-    			if(m_value->is_shared())
-    			{
-    				m_value=new string_data(m_value->data);
-    			}
-    			m_value->mark_unshareable();
-    			return m_value->data[index];
-
+    			// if(m_value->is_shared())
+    			// {
+    			// 	m_value=new string_data(m_value->data);
+    			// }
+    			// m_value->mark_unshareable();
+    			// return m_value->data[index];
+    			return proxy(*this,index);
     		}
     		// ostream operator<<(ostream& os)const
     		// {
@@ -603,6 +637,7 @@ namespace x2
 		         cout << t1.m_value->data<< endl;  
 		         return os; 
 		    }
+		    friend class proxy;
     	private:
     		struct  string_data:public base
     		{
@@ -626,6 +661,7 @@ namespace x2
     			}
     		};
     		ptr<string_data> m_value;
+    		
     	};
     	void test()
     	{
