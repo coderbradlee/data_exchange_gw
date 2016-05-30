@@ -426,6 +426,15 @@ namespace x2
     {
     	class test_class
     	{
+    	public:
+    		test_class()
+    		{
+    			cout<<"test_class constructor"<<endl;
+    		}
+    		virtual ~test_class()
+    		{
+    			cout<<"test_class destructor"<<endl;
+    		}
     	private:
     		static void* operator new(size_t)
     		{}
@@ -434,11 +443,16 @@ namespace x2
     		{}
     		
     	};
+    	class derived:public test_class
+    	{
+
+    	}
     	void test()
     	{
     		test_class t;
     		static test_class t2;
     		//test_class* p=new test_class();
+    		derived *p=new derived();
     	}
     }
 	void test()
