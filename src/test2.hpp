@@ -438,7 +438,7 @@ namespace x2
     	{
     		test_class t;
     		static test_class t2;
-    		test_class* p=new test_class();
+    		//test_class* p=new test_class();
     	}
     }
 	void test()
