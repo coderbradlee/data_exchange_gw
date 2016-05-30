@@ -515,8 +515,74 @@ namespace x2
     		int m_ref_count;
     		bool m_shareable;
     	};
+    	
+    	template<typename T>
+    	class ptr
+    	{
+    	public:
+    		ptr(T* p=nullptr):m_pointee(p)
+    		{
+    			init();
+    		}
+    		ptr(const ptr& r):m_pointee(r.m_pointee)
+    		{
+    			init();
+    		}
+    		~ptr()
+    		{
+    			if(m_pointee)
+    				m_pointee->remove_ref();
+    		}
+    		ptr& operator=(const ptr& r)
+    		{
+    			if(m_pointee!=r.m_pointee)
+    			{
+    				if(m_pointee)
+    				{
+    					m_pointee->remove_ref();
+    				}
+    				m_pointee=r.m_pointee;
+    				init();
+    			}
+    			return *this;
+    		}
+    		T* operator->()const
+    		{
+    			return m_pointee;
+    		}
+    		T& operator*()const
+    		{
+    			return *m_pointee;
+    		}
+    	private:
+    		T* m_pointee;
+    		void init()
+    		{
+    			if(m_pointee==nullptr)
+    				return;
+    			if(m_pointee->is_shareable()==false)
+    				m_pointee=new T(*m_pointee);
+    			m_pointee->add_ref();
+    		}
+    	};
     	class string
     	{
+    	public:
+    		string(const char* v):m_value(new string_data(v))
+    		{}
+    		const char& operator[](int index)
+    		{
+    			return m_value->data[index];
+    		}
+    		char& operator[](int index)
+    		{
+    			if(m_value->is_shared())
+    			{
+    				m_value=new string_data(m_value->data);
+    			}
+    			m_value->mark_unshareable();
+    			return m_value->data[index];
+    		}
     	private:
     		struct  string_data:public base
     		{
@@ -526,11 +592,17 @@ namespace x2
     				data=new char[strlen(v)+1];
     				strcpy(data,v);
     			}
+    			string_data(const string_data& r)
+    			{
+    				data=new char[strlen(r.data)+1];
+    				strcpy(data,r.data);
+    			}
     			~string_data()
     			{
     				delete[] data;
     			}
     		};
+    		ptr<string_data> m_value;
     	};
     	void test()
     	{
