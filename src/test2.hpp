@@ -480,7 +480,8 @@ namespace x2
 		// cout<<sizeof(int*)<<endl;
 		// cout<<sizeof(intptr_t*)<<endl;
 		//pointer_to_member_func::test();
-		test_variadic_template::test();
+		//test_variadic_template::test();
+		test_disable_new::test();
 	}
 }
 }
