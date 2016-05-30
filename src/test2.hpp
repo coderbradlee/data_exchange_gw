@@ -631,7 +631,7 @@ namespace x2
     	{
     		string x("hello");
     		string y=x;
-    		string z;
+    		string z("wo");
     		z=y;
     		z[1]="l";
     		cout<<x<<endl;
