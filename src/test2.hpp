@@ -461,12 +461,18 @@ namespace x2
     			::operator delete(v);
     		}
     	};
+    	class asset
+    	{
+    		test_class t;
+    	};
     	void test()
     	{
     		//test_class t;
     		//static test_class t2;
     		//test_class* p=new test_class();
-    		derived *p=new derived();
+    		// derived *p=new derived();
+    		// delete p;
+    		asset *p=new asset();
     		delete p;
     	}
     }
