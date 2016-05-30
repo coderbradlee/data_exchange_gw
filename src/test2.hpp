@@ -427,10 +427,10 @@ namespace x2
     	class test
     	{
     	private:
-    		static void* operater new(size_t)
-    		{}
-    		static void operator delete(void*)
-    		{}
+    		static void* operater new(size_t);
+    		
+    		static void operator delete(void*);
+    		
     	};
     	void test()
     	{
