@@ -458,7 +458,7 @@ namespace x2
     		{
     			cout<<"derived operator delete"<<endl;
     		}
-    	}
+    	};
     	void test()
     	{
     		test_class t;
