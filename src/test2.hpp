@@ -630,10 +630,15 @@ namespace x2
     	void test()
     	{
     		string x("hello");
+    		cout<<"----------------------"<<endl;
     		string y=x;
+    		cout<<"----------------------"<<endl;
     		string z("wo");
+    		cout<<"----------------------"<<endl;
     		z=y;
+    		cout<<"----------------------"<<endl;
     		z[1]='l';
+    		cout<<"----------------------"<<endl;
     		cout<<x<<endl;
     		cout<<y<<endl;
     		cout<<z<<endl;
