@@ -493,7 +493,7 @@ namespace x2
 		std::shared_ptr<const int> p_c(new int(3));
 		std::shared_ptr<int> p(new int(5));
 		p_c=p;
-		cout<<*pc<<endl;
+		cout<<*p_c<<endl;
 	}
 }
 }
