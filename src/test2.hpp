@@ -437,15 +437,27 @@ namespace x2
     		}
     	private:
     		static void* operator new(size_t)
-    		{}
+    		{
+    			cout<<"base operator new"<<endl;
+    		}
     		
     		static void operator delete(void*)
-    		{}
+    		{
+    			cout<<"base operator delete"<<endl;
+    		}
     		
     	};
     	class derived:public test_class
     	{
-
+    	public:
+    		void* operator new(size_t)
+    		{
+    			cout<<"derived operator new"<<endl;
+    		}
+    		void operator delete(void*)
+    		{
+    			cout<<"derived operator delete"<<endl;
+    		}
     	}
     	void test()
     	{
@@ -453,6 +465,7 @@ namespace x2
     		static test_class t2;
     		//test_class* p=new test_class();
     		derived *p=new derived();
+    		delete p;
     	}
     }
 	void test()
