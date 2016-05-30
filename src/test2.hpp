@@ -494,21 +494,26 @@ namespace x2
     		void add_ref()
     		{
     			++m_ref_count;
+    			cout<<"add:"<<m_ref_count<<endl;
     		}
     		void remove_ref()
     		{
     			if(--m_ref_count==0) delete this;
+    			cout<<"remove:"<<m_ref_count<<endl;
     		}
     		void mark_unshareable()
     		{
     			m_shareable=false;
+    			cout<<"mark_unshareable"<<endl;
     		}
     		bool is_shareable()const
     		{
+    			cout<<"is_shareable"<<endl;
     			return m_shareable;
     		}
     		bool is_shared()const
     		{
+    			cout<<"is_shared"<<endl;
     			return m_ref_count>1;
     		}
     	private:
@@ -569,19 +574,25 @@ namespace x2
     	{
     	public:
     		string(const char* v):m_value(new string_data(v))
-    		{}
+    		{
+    			cout<<"string constructor"<<endl;
+    		}
     		const char& operator[](int index)const
     		{
+    			cout<<"string operator[]const"<<endl;
     			return m_value->data[index];
+    			
     		}
     		char& operator[](int index)
     		{
+    			cout<<"string operator[]"<<endl;
     			if(m_value->is_shared())
     			{
     				m_value=new string_data(m_value->data);
     			}
     			m_value->mark_unshareable();
     			return m_value->data[index];
+
     		}
     	private:
     		struct  string_data:public base
@@ -591,22 +602,32 @@ namespace x2
     			{
     				data=new char[strlen(v)+1];
     				strcpy(data,v);
+    				cout<<"string_data constructor"<<endl;
     			}
     			string_data(const string_data& r)
     			{
     				data=new char[strlen(r.data)+1];
     				strcpy(data,r.data);
+    				cout<<"string_data copy"<<endl;
     			}
     			~string_data()
     			{
     				delete[] data;
+    				cout<<"~string_data"<<endl;
     			}
     		};
     		ptr<string_data> m_value;
     	};
     	void test()
     	{
-
+    		string x("hello");
+    		string y=x;
+    		string z;
+    		z=y;
+    		z[1]="l";
+    		cout<<x<<endl;
+    		cout<<y<<endl;
+    		cout<<z<<endl;
     	}
     }
 	void test()
