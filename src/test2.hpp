@@ -467,7 +467,7 @@ namespace x2
 		{
 			char a;
 		};
-		class G:virtual public Aa
+		class G:public Aa
 		{
 			int f;
 			int c;
