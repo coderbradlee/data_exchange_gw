@@ -727,8 +727,9 @@ namespace x2
 		// p_c=p;
 		// cout<<*p_c<<endl;
 		//test_count_ref::test();
-		test_array_address::test();
-		test_v_ptr_v_table::test();
+		//test_array_address::test();
+		//test_v_ptr_v_table::test();
+		pointer_to_member_func::test();
 	}
 }
 }
