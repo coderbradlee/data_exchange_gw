@@ -340,11 +340,11 @@ namespace x2
     		typedef void(*fun)(void);
     		base *b=new base();
     		fun p_fun=nullptr;
-    		intptr_t (*p_v_table)[3];
-    		//intptr_t temp=(intptr_t*)*(intptr_t*)&(*b)
-    		p_v_table=*((intptr_t*)b);
-    		p_fun=(fun)((*p_v_table)[2]);
-    		p_fun();
+    		// intptr_t (*p_v_table)[3];
+    		// //intptr_t temp=(intptr_t*)*(intptr_t*)&(*b)
+    		// p_v_table=*((intptr_t*)b);
+    		// p_fun=(fun)((*p_v_table)[2]);
+    		// p_fun();
     		cout<<"---------------------"<<endl;
     		cout<<"base v_table address is:"<<(intptr_t*)(b)<<endl;
     		cout<<"base v_table address is:"<<b<<endl;
