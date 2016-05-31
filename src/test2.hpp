@@ -476,210 +476,210 @@ namespace x2
     		delete p;
     	}
     }
-    namespace test_count_ref
-    {
-    	class base
-    	{
-    	public:
-    		base():m_ref_count(0),m_shareable(true)
-    		{}
-    		base(const base& r):m_ref_count(0),m_shareable(true)
-    		{}
-    		base& operator=(const base& r)
-    		{
-    			return *this;
-    		}
-    		virtual ~base()=0;
-    		//{}
-    		void add_ref()
-    		{
-    			++m_ref_count;
-    			cout<<"add:"<<m_ref_count<<endl;
-    		}
-    		void remove_ref()
-    		{
-    			if(--m_ref_count==0) delete this;
-    			cout<<"remove:"<<m_ref_count<<endl;
-    		}
-    		void mark_unshareable()
-    		{
-    			m_shareable=false;
-    			cout<<"mark_unshareable"<<endl;
-    		}
-    		bool is_shareable()const
-    		{
-    			cout<<"is_shareable"<<endl;
-    			return m_shareable;
-    		}
-    		bool is_shared()const
-    		{
-    			cout<<"is_shared"<<endl;
-    			return m_ref_count>1;
-    		}
-    	private:
-    		int m_ref_count;
-    		bool m_shareable;
-    	};
-    	base::~base(){}
-    	template<typename T>
-    	class ptr
-    	{
-    	public:
-    		ptr(T* p=nullptr):m_pointee(p)
-    		{
-    			init();
-    		}
-    		ptr(const ptr& r):m_pointee(r.m_pointee)
-    		{
-    			init();
-    		}
-    		~ptr()
-    		{
-    			if(m_pointee)
-    				m_pointee->remove_ref();
-    		}
-    		ptr& operator=(const ptr& r)
-    		{
-    			if(m_pointee!=r.m_pointee)
-    			{
-    				if(m_pointee)
-    				{
-    					m_pointee->remove_ref();
-    				}
-    				m_pointee=r.m_pointee;
-    				init();
-    			}
-    			return *this;
-    		}
-    		T* operator->()const
-    		{
-    			return m_pointee;
-    		}
-    		T& operator*()const
-    		{
-    			return *m_pointee;
-    		}
-    	private:
-    		T* m_pointee;
-    		void init()
-    		{
-    			if(m_pointee==nullptr)
-    				return;
-    			if(m_pointee->is_shareable()==false)
-    				m_pointee=new T(*m_pointee);
-    			m_pointee->add_ref();
-    		}
-    	};
-    	class string
-    	{
-    	public:
-    		class proxy
-    		{
-    		proxy(string& str,int index):m_string(str),m_char_index(index)
-    		{
+    // namespace test_count_ref
+    // {
+    // 	class base
+    // 	{
+    // 	public:
+    // 		base():m_ref_count(0),m_shareable(true)
+    // 		{}
+    // 		base(const base& r):m_ref_count(0),m_shareable(true)
+    // 		{}
+    // 		base& operator=(const base& r)
+    // 		{
+    // 			return *this;
+    // 		}
+    // 		virtual ~base()=0;
+    // 		//{}
+    // 		void add_ref()
+    // 		{
+    // 			++m_ref_count;
+    // 			cout<<"add:"<<m_ref_count<<endl;
+    // 		}
+    // 		void remove_ref()
+    // 		{
+    // 			if(--m_ref_count==0) delete this;
+    // 			cout<<"remove:"<<m_ref_count<<endl;
+    // 		}
+    // 		void mark_unshareable()
+    // 		{
+    // 			m_shareable=false;
+    // 			cout<<"mark_unshareable"<<endl;
+    // 		}
+    // 		bool is_shareable()const
+    // 		{
+    // 			cout<<"is_shareable"<<endl;
+    // 			return m_shareable;
+    // 		}
+    // 		bool is_shared()const
+    // 		{
+    // 			cout<<"is_shared"<<endl;
+    // 			return m_ref_count>1;
+    // 		}
+    // 	private:
+    // 		int m_ref_count;
+    // 		bool m_shareable;
+    // 	};
+    // 	base::~base(){}
+    // 	template<typename T>
+    // 	class ptr
+    // 	{
+    // 	public:
+    // 		ptr(T* p=nullptr):m_pointee(p)
+    // 		{
+    // 			init();
+    // 		}
+    // 		ptr(const ptr& r):m_pointee(r.m_pointee)
+    // 		{
+    // 			init();
+    // 		}
+    // 		~ptr()
+    // 		{
+    // 			if(m_pointee)
+    // 				m_pointee->remove_ref();
+    // 		}
+    // 		ptr& operator=(const ptr& r)
+    // 		{
+    // 			if(m_pointee!=r.m_pointee)
+    // 			{
+    // 				if(m_pointee)
+    // 				{
+    // 					m_pointee->remove_ref();
+    // 				}
+    // 				m_pointee=r.m_pointee;
+    // 				init();
+    // 			}
+    // 			return *this;
+    // 		}
+    // 		T* operator->()const
+    // 		{
+    // 			return m_pointee;
+    // 		}
+    // 		T& operator*()const
+    // 		{
+    // 			return *m_pointee;
+    // 		}
+    // 	private:
+    // 		T* m_pointee;
+    // 		void init()
+    // 		{
+    // 			if(m_pointee==nullptr)
+    // 				return;
+    // 			if(m_pointee->is_shareable()==false)
+    // 				m_pointee=new T(*m_pointee);
+    // 			m_pointee->add_ref();
+    // 		}
+    // 	};
+    // 	class string
+    // 	{
+    // 	public:
+    // 		class proxy
+    // 		{
+    // 		proxy(string& str,int index):m_string(str),m_char_index(index)
+    // 		{
 
-    		}
-    		proxy& operator=(const proxy& r)
-    		{
-    			if(m_string.m_value->is_shared())
-    			{
-    				m_string.m_value=new string_data(m_string.m_value->data);
-    			}
-    			//m_string.m_value->mark_unshareable();
-    			m_string.m_value->data[m_char_index]=r.m_string.m_value->data[r.m_char_index];
-    			return *this;
-    		}
-    		proxy& operator=(char c)
-    		{
-				if(m_string.m_value->is_shared())
-    			{
-    				m_string.m_value=new string_data(m_string.m_value->data);
-    			}
-    			//m_string.m_value->mark_unshareable();
-    			m_string.m_value->data[m_char_index]=c;
-    			return *this;
-    		}
-    		operator char()const
-    		{
-    			return m_string.m_value->data[m_char_index];
-    		}
-    	private:
-    		string& m_string;
-    		int m_char_index;
-    		};
-    		string(const char* v):m_value(new string_data(v))
-    		{
-    			cout<<"string constructor"<<endl;
-    		}
-    		const proxy operator[](int index)const
-    		{
-    			cout<<"string operator[]const"<<endl;
-    			//return m_value->data[index];
-    			return proxy(const_cast<string&>(*this),index);
-    		}
-    		proxy operator[](int index)
-    		{
-    			cout<<"string operator[]"<<endl;
-    			// if(m_value->is_shared())
-    			// {
-    			// 	m_value=new string_data(m_value->data);
-    			// }
-    			// m_value->mark_unshareable();
-    			// return m_value->data[index];
-    			return proxy(*this,index);
-    		}
-    		// ostream operator<<(ostream& os)const
-    		// {
-    		// 	return os<<m_value->data<<endl;
-    		// }
-    		friend inline ostream & operator << (ostream & os, string &t1)
-    		{  
-		         cout << t1.m_value->data<< endl;  
-		         return os; 
-		    }
-		    friend class proxy;
-    	private:
-    		struct  string_data:public base
-    		{
-    			char *data;
-    			string_data(const char* v)
-    			{
-    				data=new char[strlen(v)+1];
-    				strcpy(data,v);
-    				cout<<"string_data constructor"<<endl;
-    			}
-    			string_data(const string_data& r)
-    			{
-    				data=new char[strlen(r.data)+1];
-    				strcpy(data,r.data);
-    				cout<<"string_data copy"<<endl;
-    			}
-    			~string_data()
-    			{
-    				delete[] data;
-    				cout<<"~string_data"<<endl;
-    			}
-    		};
-    		ptr<string_data> m_value;
+    // 		}
+    // 		proxy& operator=(const proxy& r)
+    // 		{
+    // 			if(m_string.m_value->is_shared())
+    // 			{
+    // 				m_string.m_value=new string_data(m_string.m_value->data);
+    // 			}
+    // 			//m_string.m_value->mark_unshareable();
+    // 			m_string.m_value->data[m_char_index]=r.m_string.m_value->data[r.m_char_index];
+    // 			return *this;
+    // 		}
+    // 		proxy& operator=(char c)
+    // 		{
+				// if(m_string.m_value->is_shared())
+    // 			{
+    // 				m_string.m_value=new string_data(m_string.m_value->data);
+    // 			}
+    // 			//m_string.m_value->mark_unshareable();
+    // 			m_string.m_value->data[m_char_index]=c;
+    // 			return *this;
+    // 		}
+    // 		operator char()const
+    // 		{
+    // 			return m_string.m_value->data[m_char_index];
+    // 		}
+    // 	private:
+    // 		string& m_string;
+    // 		int m_char_index;
+    // 		};
+    // 		string(const char* v):m_value(new string_data(v))
+    // 		{
+    // 			cout<<"string constructor"<<endl;
+    // 		}
+    // 		const proxy operator[](int index)const
+    // 		{
+    // 			cout<<"string operator[]const"<<endl;
+    // 			//return m_value->data[index];
+    // 			return proxy(const_cast<string&>(*this),index);
+    // 		}
+    // 		proxy operator[](int index)
+    // 		{
+    // 			cout<<"string operator[]"<<endl;
+    // 			// if(m_value->is_shared())
+    // 			// {
+    // 			// 	m_value=new string_data(m_value->data);
+    // 			// }
+    // 			// m_value->mark_unshareable();
+    // 			// return m_value->data[index];
+    // 			return proxy(*this,index);
+    // 		}
+    // 		// ostream operator<<(ostream& os)const
+    // 		// {
+    // 		// 	return os<<m_value->data<<endl;
+    // 		// }
+    // 		friend inline ostream & operator << (ostream & os, string &t1)
+    // 		{  
+		  //        cout << t1.m_value->data<< endl;  
+		  //        return os; 
+		  //   }
+		  //   friend class proxy;
+    // 	private:
+    // 		struct  string_data:public base
+    // 		{
+    // 			char *data;
+    // 			string_data(const char* v)
+    // 			{
+    // 				data=new char[strlen(v)+1];
+    // 				strcpy(data,v);
+    // 				cout<<"string_data constructor"<<endl;
+    // 			}
+    // 			string_data(const string_data& r)
+    // 			{
+    // 				data=new char[strlen(r.data)+1];
+    // 				strcpy(data,r.data);
+    // 				cout<<"string_data copy"<<endl;
+    // 			}
+    // 			~string_data()
+    // 			{
+    // 				delete[] data;
+    // 				cout<<"~string_data"<<endl;
+    // 			}
+    // 		};
+    // 		ptr<string_data> m_value;
     		
-    	};
-    	void test()
-    	{
-    		string x("hello");
-    		cout<<"----------------------"<<endl;
-    		string y=x;
-    		cout<<"----------------------"<<endl;
-    		string z("wo");
-    		cout<<"----------------------"<<endl;
-    		z=y;
-    		cout<<"----------------------"<<endl;
-    		z[1]='l';
-    		cout<<"----------------------"<<endl;
-    		cout<<x<<endl;
-    		cout<<y<<endl;
-    		cout<<z<<endl;
-    	}
-    }
+    // 	};
+    // 	void test()
+    // 	{
+    // 		string x("hello");
+    // 		cout<<"----------------------"<<endl;
+    // 		string y=x;
+    // 		cout<<"----------------------"<<endl;
+    // 		string z("wo");
+    // 		cout<<"----------------------"<<endl;
+    // 		z=y;
+    // 		cout<<"----------------------"<<endl;
+    // 		z[1]='l';
+    // 		cout<<"----------------------"<<endl;
+    // 		cout<<x<<endl;
+    // 		cout<<y<<endl;
+    // 		cout<<z<<endl;
+    // 	}
+    // }
     namespace test_array_address
     {
     	void test()
