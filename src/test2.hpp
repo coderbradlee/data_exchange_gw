@@ -690,6 +690,10 @@ namespace x2
     		cout<<&i<<endl;
     		cout<<&i[0]<<endl;
     		cout<<*(&i+1)<<endl;
+    		int (*pa)[10] = &i;
+    		cout<<pa<<endl;
+    		cout<<sizeof(i)<<endl;
+    		cout<<sizeof(pa)<<endl;
     	}
     }
 	void test()
