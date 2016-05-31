@@ -828,12 +828,12 @@ namespace x2
 		};  
 		void test()
 		{
-			cout<<"sizeof(A)="<<sizeof(A)<<endl;  
-		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  
-		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  
-		    cout<<"sizeof(D)="<<sizeof(D)<<endl;  
-		    cout<<"sizeof(E)="<<sizeof(E)<<endl;  
-		    cout<<"sizeof(F)="<<sizeof(F)<<endl; 
+			cout<<"sizeof(A)="<<sizeof(A)<<endl;  //1
+		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  //1
+		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  //1
+		    cout<<"sizeof(D)="<<sizeof(D)<<endl;  //8
+		    cout<<"sizeof(E)="<<sizeof(E)<<endl;  //8
+		    cout<<"sizeof(F)="<<sizeof(F)<<endl; //4
 		}
     }
     namespace test_class_size2
@@ -871,10 +871,51 @@ namespace x2
 		};  
 		void test()
 		{
-			cout<<"sizeof(A)="<<sizeof(A)<<endl;  
-		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  
-		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  
-		    cout<<"sizeof(D)="<<sizeof(D)<<endl; 
+			cout<<"sizeof(A)="<<sizeof(A)<<endl;  //16
+		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  //24
+		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  //24
+		    cout<<"sizeof(D)="<<sizeof(D)<<endl; //32
+		}
+    }
+    namespace test_class_size3
+    {
+    	struct A {  
+  
+		int a;  
+		  
+		virtual ~A(){}  
+		  
+		};  
+		  
+		struct B: public A{  
+		  
+		virtual ~B(){}  
+		  
+		virtual void myfunB(){}  
+		  
+		};  
+		  
+		struct C: public A{  
+		  
+		virtual ~C(){}  
+		  
+		virtual void myfunC(){}  
+		  
+		};  
+		  
+		struct D:public B,public C{  
+		  
+		virtual ~D(){}  
+		  
+		virtual void myfunD(){}  
+		  
+		};  
+		void test()
+		{
+			cout<<"sizeof(A)="<<sizeof(A)<<endl;  //16
+		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  //16
+		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  //16
+		    cout<<"sizeof(D)="<<sizeof(D)<<endl; //
 		}
     }
 	void test()
@@ -902,6 +943,7 @@ namespace x2
 		pointer_to_virtual_member_func::test();
 		test_class_size::test();
 		test_class_size2::test();
+		test_class_size3::test();
 	}
 }
 }
