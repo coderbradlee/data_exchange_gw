@@ -341,8 +341,10 @@ namespace x2
     		base *b=new base();
     		fun p_fun=nullptr;
     		cout<<"base v_table address is:"<<(intptr_t*)(b)<<endl;
+    		cout<<"base v_table address is:"<<b<<endl;
     		cout<<"base first function in v_table is:"<<(intptr_t*)*(intptr_t*)b<<endl;
     		cout<<"base second function in v_table is:"<<(intptr_t*)*(intptr_t*)b+1<<endl;
+    		cout<<"base second function in v_table is:"<<*(intptr_t*)b+1<<endl;
     		cout<<"base third function in v_table is:"<<(intptr_t*)*(intptr_t*)b+2<<endl;
     		cout<<"base end is:"<<*((intptr_t*)*(intptr_t*)b+3)<<endl;
 			for(int i=0;i<3;++i)
@@ -716,6 +718,7 @@ namespace x2
 		// cout<<*p_c<<endl;
 		//test_count_ref::test();
 		test_array_address::test();
+		test_v_ptr_v_table::test();
 	}
 }
 }
