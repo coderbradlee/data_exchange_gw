@@ -415,6 +415,44 @@ namespace x2
 		    call_by_ptr(obj, &C::bar);
 		}
     }
+    namespace pointer_to_virtual_member_func
+    {
+    	struct A 
+    	{
+		    virtual void foo() const {
+		        std::cout << "A's this:\t" << this << std::endl;
+		    }
+		    char pad0[32];
+		};
+		 
+		struct B 
+		{
+		    virtual void bar() const {
+		        std::cout << "B's this:\t" << this << std::endl;
+		    }
+		    char pad2[64];
+		};
+		 
+		struct C : A, B
+		{ };
+		 
+		void call_by_ptr(const C &obj, void (C::*mem_func)() const)
+		{
+		    void *data[2];
+		    std::memcpy(data, &mem_func, sizeof(mem_func));
+		    std::cout << "------------------------------\n"
+		        "Object ptr:\t" << &obj <<
+		        "\nFunction ptr:\t" << data[0] <<
+		        "\nPointer adj:\t" << data[1] << std::endl;
+		    (obj.*mem_func)();
+		}
+		void test()
+		{
+			C obj;
+		    call_by_ptr(obj, &C::foo);
+		    call_by_ptr(obj, &C::bar);
+		}
+    }
     namespace test_variadic_template
     {
     	void print()
@@ -730,6 +768,7 @@ namespace x2
 		//test_array_address::test();
 		//test_v_ptr_v_table::test();
 		pointer_to_member_func::test();
+		pointer_to_virtual_member_func::test();
 	}
 }
 }
