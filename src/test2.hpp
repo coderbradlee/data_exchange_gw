@@ -689,7 +689,7 @@ namespace x2
     		cout<<i+1<<endl;
     		cout<<&i<<endl;
     		cout<<&i[0]<<endl;
-    		cout<<&i+1<<endl;
+    		cout<<*(&i+1)<<endl;
     	}
     }
 	void test()
