@@ -836,6 +836,47 @@ namespace x2
 		    cout<<"sizeof(F)="<<sizeof(F)<<endl; 
 		}
     }
+    namespace test_class_size2
+    {
+    	class A {  
+  
+		int a;  
+		  
+		virtual ~A(){}  
+		  
+		};  
+		  
+		class B:virtual public A{  
+		  
+		virtual ~B(){}  
+		  
+		virtual void myfunB(){}  
+		  
+		};  
+		  
+		class C:virtual public A{  
+		  
+		virtual ~C(){}  
+		  
+		virtual void myfunC(){}  
+		  
+		};  
+		  
+		class D:public B,public C{  
+		  
+		virtual ~D(){}  
+		  
+		virtual void myfunD(){}  
+		  
+		};  
+		void test()
+		{
+			cout<<"sizeof(A)="<<sizeof(A)<<endl;  
+		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  
+		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  
+		    cout<<"sizeof(D)="<<sizeof(D)<<endl; 
+		}
+    }
 	void test()
 	{
 		//test_count_object::test();
@@ -860,6 +901,7 @@ namespace x2
 		pointer_to_member_func::test();
 		pointer_to_virtual_member_func::test();
 		test_class_size::test();
+		test_class_size2::test();
 	}
 }
 }
