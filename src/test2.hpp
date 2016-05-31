@@ -463,6 +463,18 @@ namespace x2
 		        "\nPointer adj:\t" << data[1] << std::endl;
 		    (obj.*mem_func)();
 		}
+		class A
+		{
+			char a;
+		};
+		class G:virtual public A
+		{
+			int f;
+			int c;
+			virtual void fun1();
+			virtual void fun2();
+			virtual void fun3();
+		};
 		void test()
 		{
 			C obj;
@@ -471,6 +483,8 @@ namespace x2
 		    cout<<sizeof(obj)<<endl;
 		    cout<<sizeof(Fruit)<<endl;
 			cout<<sizeof(Apple)<<endl;
+			cout<<sizeof(A)<<endl;
+			cout<<sizeof(G)<<endl;
 		}
     }
     namespace test_variadic_template
