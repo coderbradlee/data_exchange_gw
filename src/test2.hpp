@@ -341,7 +341,8 @@ namespace x2
     		base *b=new base();
     		fun p_fun=nullptr;
     		intptr_t (*p_v_table)[3];
-    		p_v_table=&((intptr_t*)*(intptr_t*)&(*b));
+    		//intptr_t temp=(intptr_t*)*(intptr_t*)&(*b)
+    		p_v_table=*((intptr_t*)b);
     		p_fun=(fun)((*p_v_table)[2]);
     		p_fun();
     		cout<<"---------------------"<<endl;
