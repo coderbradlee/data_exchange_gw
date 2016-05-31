@@ -340,8 +340,10 @@ namespace x2
     		typedef void(*fun)(void);
     		base *b=new base();
     		fun p_fun=nullptr;
-    		(*(((intptr_t*)b)[1]))();
-    		(((intptr_t*)b)[2])();
+    		p_fun=(*(((intptr_t*)b)[1]));
+    		p_fun();
+    		p_fun=(((intptr_t*)b)[2]);
+    		p_fun();
     		cout<<"---------------------"<<endl;
     		cout<<"base v_table address is:"<<(intptr_t*)(b)<<endl;
     		cout<<"base v_table address is:"<<b<<endl;
