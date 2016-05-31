@@ -898,7 +898,7 @@ namespace x2
 		//test_count_ref::test();
 		//test_array_address::test();
 		//test_v_ptr_v_table::test();
-		pointer_to_member_func::test();
+		//pointer_to_member_func::test();
 		pointer_to_virtual_member_func::test();
 		test_class_size::test();
 		test_class_size2::test();
