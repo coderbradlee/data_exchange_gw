@@ -680,6 +680,15 @@ namespace x2
     		cout<<z<<endl;
     	}
     }
+    namespace test_array_address
+    {
+    	void test()
+    	{
+    		int i[10]={1,2,3,4,5};
+    		cout<<i<<endl;
+
+    	}
+    }
 	void test()
 	{
 		//test_count_object::test();
@@ -698,7 +707,8 @@ namespace x2
 		// std::shared_ptr<int> p(new int(5));
 		// p_c=p;
 		// cout<<*p_c<<endl;
-		test_count_ref::test();
+		//test_count_ref::test();
+		test_array_address::test();
 	}
 }
 }
