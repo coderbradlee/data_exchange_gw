@@ -413,6 +413,7 @@ namespace x2
 			C obj;
 		    call_by_ptr(obj, &C::foo);
 		    call_by_ptr(obj, &C::bar);
+		    cout<<sizeof(obj)<<endl;
 		}
     }
     namespace pointer_to_virtual_member_func
@@ -451,6 +452,7 @@ namespace x2
 			C obj;
 		    call_by_ptr(obj, &C::foo);
 		    call_by_ptr(obj, &C::bar);
+		    cout<<sizeof(obj)<<endl;
 		}
     }
     namespace test_variadic_template
