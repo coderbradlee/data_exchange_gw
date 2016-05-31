@@ -264,10 +264,16 @@ namespace x3
             T* m_pointee;
             //template<class U> friend class test_auto_ptr::auto_ptr<U>;
         };
+        class b
+        {};
+        class d:public b 
+        {};     
         void test()
         {
             auto_ptr<int> p(new int(5));
             cout<<*p<<endl;
+            auto_ptr<b> pb(new d());
+            
         }
     }
 	void test()
