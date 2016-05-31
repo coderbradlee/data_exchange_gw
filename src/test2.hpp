@@ -436,7 +436,23 @@ namespace x2
 		 
 		struct C : A, B
 		{ };
-		 
+		 class Fruit
+		{
+		   int no;
+		   double weight;
+		   char key;
+		public:
+		   void print() {   }
+		   virtual void process(){   }
+		};
+		    
+		class Apple: public Fruit{
+		   int size;
+		   char type;
+		public:
+		   void save() {   }
+		   virtual void process(){   }
+		};
 		void call_by_ptr(const C &obj, void (C::*mem_func)() const)
 		{
 		    void *data[2];
@@ -453,6 +469,8 @@ namespace x2
 		    call_by_ptr(obj, &C::foo);
 		    call_by_ptr(obj, &C::bar);
 		    cout<<sizeof(obj)<<endl;
+		    cout<<sizeof(Fruit)<<endl;
+			cout<<sizeof(Apple)<<endl;
 		}
     }
     namespace test_variadic_template
