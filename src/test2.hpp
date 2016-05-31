@@ -444,6 +444,8 @@ namespace x2
 		public:
 		   void print() {   }
 		   virtual void process(){   }
+		   virtual void process1(){   }
+		   virtual void process2(){   }
 		};
 		    
 		class Apple: public Fruit{
@@ -452,6 +454,7 @@ namespace x2
 		public:
 		   void save() {   }
 		   virtual void process(){   }
+		   virtual void process1(){   }
 		};
 		void call_by_ptr(const C &obj, void (C::*mem_func)() const)
 		{
