@@ -686,7 +686,10 @@ namespace x2
     	{
     		int i[10]={1,2,3,4,5};
     		cout<<i<<endl;
-
+    		cout<<i+1<<endl;
+    		cout<<&i<<endl;
+    		cout<<&i[0]<<endl;
+    		cout<<&i+1<<endl;
     	}
     }
 	void test()
