@@ -260,9 +260,10 @@ namespace x3
                     delete m_pointee;
                 m_pointee=p;
             }
+            template<typename U> friend class test_auto_ptr::auto_ptr<U>;
         private:
             T* m_pointee;
-            template<typename U> friend class test_auto_ptr::auto_ptr<U>;
+            
         };
         class b
         {};
