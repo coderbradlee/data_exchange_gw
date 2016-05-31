@@ -435,7 +435,12 @@ namespace x2
 		};
 		 
 		struct C : A, B
-		{ };
+		{
+			virtual void bar()const
+			{}
+			virtual void tes()const
+			{}
+		 };
 		 class Fruit
 		{
 		   int no;
@@ -484,6 +489,7 @@ namespace x2
 		    call_by_ptr(obj, &C::foo);
 		    call_by_ptr(obj, &C::bar);
 		    cout<<sizeof(obj)<<endl;
+		    cout<<sizeof(C)<<endl;
 		    cout<<sizeof(Fruit)<<endl;
 			cout<<sizeof(Apple)<<endl;
 			cout<<sizeof(Aa)<<endl;
