@@ -7,6 +7,7 @@
 #include "boost_signalset.hpp"
 #include "test.hpp"
 #include "test2.hpp"
+#include "test3.hpp"
 int main()
 {
 	for(int i=1;i<64;++i)
@@ -15,7 +16,7 @@ int main()
 	try
 	{
 		{
-			x2::design_model::test();
+			x3::design_model::test();
 
 		}
 		{
