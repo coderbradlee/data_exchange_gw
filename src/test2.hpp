@@ -838,7 +838,7 @@ namespace x2
     }
     namespace test_class_size2
     {
-    	class A {  
+    	struct A {  
   
 		int a;  
 		  
@@ -846,7 +846,7 @@ namespace x2
 		  
 		};  
 		  
-		class B:virtual public A{  
+		struct B:virtual public A{  
 		  
 		virtual ~B(){}  
 		  
@@ -854,7 +854,7 @@ namespace x2
 		  
 		};  
 		  
-		class C:virtual public A{  
+		struct C:virtual public A{  
 		  
 		virtual ~C(){}  
 		  
@@ -862,7 +862,7 @@ namespace x2
 		  
 		};  
 		  
-		class D:public B,public C{  
+		struct D:public B,public C{  
 		  
 		virtual ~D(){}  
 		  
