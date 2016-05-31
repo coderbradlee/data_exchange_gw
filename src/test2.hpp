@@ -463,11 +463,11 @@ namespace x2
 		        "\nPointer adj:\t" << data[1] << std::endl;
 		    (obj.*mem_func)();
 		}
-		class A
+		class Aa
 		{
 			char a;
 		};
-		class G:virtual public A
+		class G:virtual public Aa
 		{
 			int f;
 			int c;
@@ -483,7 +483,7 @@ namespace x2
 		    cout<<sizeof(obj)<<endl;
 		    cout<<sizeof(Fruit)<<endl;
 			cout<<sizeof(Apple)<<endl;
-			cout<<sizeof(A)<<endl;
+			cout<<sizeof(Aa)<<endl;
 			cout<<sizeof(G)<<endl;
 		}
     }
