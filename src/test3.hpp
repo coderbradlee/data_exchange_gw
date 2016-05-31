@@ -219,6 +219,7 @@ namespace x3
         template<typename T>
         class auto_ptr
         {
+            template<typename U> friend class test_auto_ptr::auto_ptr<U>;
         public:
             explicit auto_ptr(T* p=nullptr):m_pointee(p)
             {}
@@ -260,7 +261,7 @@ namespace x3
                     delete m_pointee;
                 m_pointee=p;
             }
-            template<typename U> friend class test_auto_ptr::auto_ptr<U>;
+
         private:
             T* m_pointee;
             
