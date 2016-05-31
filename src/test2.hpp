@@ -355,7 +355,7 @@ namespace x2
     		cout<<"base end is:"<<*((intptr_t*)*(intptr_t*)b+3)<<endl;
 			for(int i=0;i<3;++i)
     		{
-	    		p_fun = (fun)*((intptr_t*)*(intptr_t*)&(*b)+i);
+	    		p_fun = (fun)*((intptr_t*)*(intptr_t*)b+i);
 	    		p_fun();//base::f
     		}
     		delete b;
