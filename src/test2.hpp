@@ -789,6 +789,53 @@ namespace x2
     		cout<<(*pa)[1]<<endl;
     	}
     }
+    namespace test_class_size
+    {
+    	class A
+    	{  
+		public:  
+		protected:  
+		private:  
+		};  
+		class B{  
+		public:  
+		protected:  
+		private:  
+		};  
+		class C:public A,public B{  
+		public:  
+		protected:  
+		private:  
+		};  
+		class D:virtual public A  
+		{  
+		public:  
+		protected:  
+		private:  
+		};  
+		  
+		class E:virtual public A,virtual public B{  
+		public:  
+		protected:  
+		private:  
+		};  
+		class F{  
+		public:  
+		    int a;  
+		    static int b;  
+		protected:  
+		private:  
+		};  
+		void test()
+		{
+			cout<<"sizeof(A)="<<sizeof(A)<<endl;  
+		    cout<<"sizeof(B)="<<sizeof(B)<<endl;  
+		    cout<<"sizeof(C)="<<sizeof(C)<<endl;  
+		    cout<<"sizeof(D)="<<sizeof(D)<<endl;  
+		    cout<<"sizeof(E)="<<sizeof(E)<<endl;  
+		    cout<<"sizeof(F)="<<sizeof(F)<<endl; 
+		}
+    }
 	void test()
 	{
 		//test_count_object::test();
@@ -812,6 +859,7 @@ namespace x2
 		//test_v_ptr_v_table::test();
 		pointer_to_member_func::test();
 		pointer_to_virtual_member_func::test();
+		test_class_size::test();
 	}
 }
 }
