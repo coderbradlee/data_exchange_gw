@@ -262,7 +262,7 @@ namespace x3
             }
         private:
             T* m_pointee;
-            template<class U> friend class auto_ptr<U>;
+            template<class U> friend class test_auto_ptr::auto_ptr<U>;
         };
         void test()
         {
