@@ -341,8 +341,8 @@ namespace x2
     		base *b=new base();
     		fun p_fun=nullptr;
     		
-    		p_fun=(fun)*((*(*((intptr_t*)b)))[2]);
-    		p_fun();
+    		// p_fun=(fun)*((*(*((intptr_t*)b)))[2]);
+    		// p_fun();
     		cout<<"---------------------"<<endl;
     		cout<<"base v_table address is:"<<(intptr_t*)(b)<<endl;
     		cout<<"base v_table address is:"<<b<<endl;
