@@ -283,7 +283,7 @@ namespace x3
         class  base
         {
         public:
-             base()m_id(0)
+             base():m_id(0)
              {
                 cout<<"base default constructor,this="<<this<<" id="<<m_id<<endl;
              }
