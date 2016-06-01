@@ -280,6 +280,7 @@ namespace x3
     }
     namespace test_operator_new_and_delete
     {
+        class bad{};
         class  base
         {
         public:
@@ -290,6 +291,7 @@ namespace x3
              base(int i):m_id(i)
              {
                 cout<<"base constructor,this="<<this<<" id="<<m_id<<endl;
+                throw bad();
              }
             ~ base()
             {
@@ -317,6 +319,37 @@ namespace x3
                 cout<<"operator delete[]:"<<size<<endl;
                 free(v);
             }
+            /////////////////////////
+            void* operator new(size_t size,void *start)
+            {
+                return start;
+            }
+            void* operator new(size_t size,long extra)
+            {
+                return malloc(size+extra);
+            }
+            void* operator new(size_t size,long extra,char init)
+            {
+                return malloc(size+extra);
+            }
+            // void* operator new(long extra,char init)
+            // {}
+            void operator delete(void*,size_t)
+            {
+                cout<<"operator delete(void*,size_t)"<<endl;
+            }
+            void operator delete(void*,void*)
+            {
+                cout<<"operator delete(void*,void*)"<<endl;
+            }
+            void operator delete(void*,long)
+            {
+                cout<<"operator delete(void*,long)"<<endl;
+            }
+            void operator delete(void*,long,char)
+            {
+                cout<<"operator delete(void*,long,char)"<<endl;
+            }
         private:
             int m_id;
             long m_data;
@@ -324,18 +357,27 @@ namespace x3
         };
         void test()
         {
-            cout<<"sizeof string="<<sizeof(string)<<endl;
-            cout<<"sizeof base="<<sizeof(base)<<endl;
+            // cout<<"sizeof string="<<sizeof(string)<<endl;
+            // cout<<"sizeof base="<<sizeof(base)<<endl;
             // base* p=new base(7);
             // delete p;
 
             // base* p_array=new base[5];
             // delete[] p_array;
 
-            base* p=::new base(7);
-            ::delete p;
-            base* p_array=::new base[5];
-            ::delete[] p_array;
+            // base* p=::new base(7);
+            // ::delete p;
+            // base* p_array=::new base[5];
+            // ::delete[] p_array;
+            base start;
+            base* p1=new base;
+            base* p2=new(&start)base;
+            base* p3=new(100)base;
+            base* p4=new(100,'a')base;
+            base* p5=new(100)base(1);
+            base* p6=new(100,'a')base(1);
+            base* p7=new(&start)base(1);
+            base* p8=newbase(1);
         }
     }
 	void test()
