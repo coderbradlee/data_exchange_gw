@@ -298,23 +298,23 @@ namespace x3
             void *operator new(size_t size)
             {
                 base* p=(base*)malloc(size);
-                cout<<size<<endl;
+                cout<<"operator new:"<<size<<endl;
                 return p;
             }
             void *operator new[](size_t size)
             {
                 base* p=(base*)malloc(size);
-                cout<<size<<endl;
+                cout<<"operator new[]:"<<size<<endl;
                 return p;
             }
             void operator delete(void* v,size_t size)
             {
-                cout<<size<<endl;
+                cout<<"operator delete:"<<size<<endl;
                 free(v);
             }
             void operator delete[](void* v,size_t size)
             {
-                cout<<size<<endl;
+                cout<<"operator delete[]:"<<size<<endl;
                 free(v);
             }
         private:
