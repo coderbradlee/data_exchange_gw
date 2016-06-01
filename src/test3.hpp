@@ -324,6 +324,7 @@ namespace x3
         };
         void test()
         {
+            cout<<"sizeof base="<<sizeof(string)<<endl;
             cout<<"sizeof base="<<sizeof(base)<<endl;
             base* p=new base(7);
             delete p;
