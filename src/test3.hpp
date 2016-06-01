@@ -334,10 +334,7 @@ namespace x3
             }
             // void* operator new(long extra,char init)
             // {}
-            void operator delete(void*,size_t)
-            {
-                cout<<"operator delete(void*,size_t)"<<endl;
-            }
+            
             void operator delete(void*,void*)
             {
                 cout<<"operator delete(void*,void*)"<<endl;
