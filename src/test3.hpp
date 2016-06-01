@@ -326,16 +326,16 @@ namespace x3
         {
             cout<<"sizeof string="<<sizeof(string)<<endl;
             cout<<"sizeof base="<<sizeof(base)<<endl;
-            base* p=new base(7);
-            delete p;
+            // base* p=new base(7);
+            // delete p;
 
-            base* p_array=new base[5];
-            delete[] p_array;
+            // base* p_array=new base[5];
+            // delete[] p_array;
 
-            // base* p=::new base(7);
-            // ::delete p;
-            // base* p_array=::new base[5];
-            // ::delete[] p_array;
+            base* p=::new base(7);
+            ::delete p;
+            base* p_array=::new base[5];
+            ::delete[] p_array;
         }
     }
 	void test()
