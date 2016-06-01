@@ -373,7 +373,7 @@ namespace x3
             base* p4=new(100,'a')base;
             //base* p5=new(100)base(1);
             //base* p6=new(100,'a')base(1);
-            base* p7=new(&start)base(1);
+            //base* p7=new(&start)base(1);
             base* p8=new base(1);
         }
     }
