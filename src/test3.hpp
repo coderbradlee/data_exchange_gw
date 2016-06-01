@@ -278,12 +278,71 @@ namespace x3
 
         }
     }
+    namespace test_operator_new_and_delete
+    {
+        class  base
+        {
+        public:
+             base()m_id(0)
+             {
+                cout<<"base default constructor,this="<<this<<" id="<<m_id<<endl;
+             }
+             base(int i):m_id(i)
+             {
+                cout<<"base constructor,this="<<this<<" id="<<m_id<<endl;
+             }
+            ~ base()
+            {
+                cout<<"base destructor,this="<<this<<" id="<<m_id<<endl;
+            }
+            void *operator new(size_t size)
+            {
+                base* p=(base*)malloc(size);
+                cout<<size<<endl;
+                return p;
+            }
+            void *operator new[](size_t size)
+            {
+                base* p=(base*)malloc(size);
+                cout<<size<<endl;
+                return p;
+            }
+            void operator delete(void* v,size_t size)
+            {
+                cout<<size<<endl;
+                free(v);
+            }
+            void operator delete[](void* v,size_t size)
+            {
+                cout<<size<<endl;
+                free(v);
+            }
+        private:
+            int m_id;
+            long m_data;
+            string m_str;
+        };
+        void test()
+        {
+            cout<<"sizeof base="<<sizeof(base)<<endl;
+            base* p=new base(7);
+            delete p;
+
+            base* p_array=new base[5];
+            delete[] p_array;
+
+            // base* p=::new base(7);
+            // ::delete p;
+            // base* p_array=::new base[5];
+            // ::delete[] p_array;
+        }
+    }
 	void test()
 	{
 		
 		//test_count_ref::test();
-        test_auto_ptr::test();
-		
+        //test_auto_ptr::test();
+		test_operator_new_and_delete::test();
 	}
 }
 }
