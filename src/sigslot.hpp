@@ -214,23 +214,23 @@ private:
     int bb;
 };
 
-int main(int argc, char * argv[])
-{
-    mp::signal<const char*> sig;
-    CCC a;
-    {
-        mp::scoped_connection conn = sig.connect(&CCC::fn1, &a);
-        auto conn2 = sig.connect(&CCC::fn, &a);
-        sig("step 1");
-        conn2.disconnect();
-        sig("step 2");
-        sig.connect(&CCC::fn, &a);
-        sig("step 3");
-        sig.disconnect(&CCC::fn, &a);
-        sig("step 4");
-    }
-    sig("step 5");
+// int main(int argc, char * argv[])
+// {
+//     mp::signal<const char*> sig;
+//     CCC a;
+//     {
+//         mp::scoped_connection conn = sig.connect(&CCC::fn1, &a);
+//         auto conn2 = sig.connect(&CCC::fn, &a);
+//         sig("step 1");
+//         conn2.disconnect();
+//         sig("step 2");
+//         sig.connect(&CCC::fn, &a);
+//         sig("step 3");
+//         sig.disconnect(&CCC::fn, &a);
+//         sig("step 4");
+//     }
+//     sig("step 5");
 
-	return 0;
+// 	return 0;
 
-}
+// }
