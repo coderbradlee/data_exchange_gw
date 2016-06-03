@@ -1,4 +1,24 @@
-﻿2016.05.11
+﻿2016.06.02
+
+select code,currency_id from apollo_eu.t_currency
+MXN N1YZ08Y9W8GQ2T4NCXEV
+USD J4YVQ3UR37WOQ6GEDGRF
+
+select currency_exchange_rate_id from apollo_eu.t_currency_exchange_rate where source_currency_id='N1YZ08Y9W8GQ2T4NCXEV' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
+result：9CPGYREQHXO0QVEFLR5I
+select currency_exchange_rate_id from apollo_eu.t_currency_exchange_rate where source_currency_id='J4YVQ3UR37WOQ6GEDGRF' and target_currency_id='N1YZ08Y9W8GQ2T4NCXEV'
+result：9QV6SSDLF7RH1PW5QJCF
+
+MXN:USD
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='9CPGYREQHXO0QVEFLR5I' and createby='exchange_gw'
+USD:MXN
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='9QV6SSDLF7RH1PW5QJCF' and createby='exchange_gw'
+
+
+
+
+2016.05.11
+
 
 
 GBP J4YVQ3URHVVUS1E9261D

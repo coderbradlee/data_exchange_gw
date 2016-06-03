@@ -382,7 +382,7 @@ namespace x3
 		
 		//test_count_ref::test();
         //test_auto_ptr::test();
-		test_operator_new_and_delete::test();
+		//test_operator_new_and_delete::test();
 	}
 }
 }

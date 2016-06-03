@@ -1,7 +1,7 @@
 #ifndef BOOST_SIGNALSET_HPP
 #define	BOOST_SIGNALSET_HPP
 #include "include.hpp"
-
+#include "sigslot.hpp"
 //boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
 //signals.add(SIGUSR1); // 也可以直接用add函数添加信号
 // boost::asio::signal_set signal_set_all(SIGTERM);
@@ -24,6 +24,23 @@ void sig_handler (int signal_number)
 	exit(signal_number);  
 }
 
-
+void register_signal()
+{
+	mp::signal<const char*> sig;
+    CCC a;
+    {
+        mp::scoped_connection conn = sig.connect(&CCC::fn1, &a);
+        auto conn2 = sig.connect(&CCC::fn, &a);
+        sig("step 1");
+        conn2.disconnect();
+        sig("step 2");
+        sig.connect(&CCC::fn, &a);
+        sig("step 3");
+        sig.disconnect(&CCC::fn, &a);
+        sig("step 4");
+    }
+    sig("step 5");
+ //    for(int i=1;i<64;++i)
+	// std::signal(i, sig_handler);  
 #endif	/* BOOST_SIGNALSET_HPP */
 

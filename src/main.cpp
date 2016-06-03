@@ -8,13 +8,15 @@
 #include "test.hpp"
 #include "test2.hpp"
 #include "test3.hpp"
+
 int main()
 {
-	for(int i=1;i<64;++i)
-	std::signal(i, sig_handler);  
-	//std::raise(SIGINT);
 	try
 	{
+		register_signal();
+		
+
+
 		{
 			x3::design_model::test();
 
