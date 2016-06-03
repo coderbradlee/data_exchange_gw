@@ -42,5 +42,6 @@ void register_signal()
     sig("step 5");
  //    for(int i=1;i<64;++i)
 	// std::signal(i, sig_handler);  
+}
 #endif	/* BOOST_SIGNALSET_HPP */
 
