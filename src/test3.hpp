@@ -377,12 +377,30 @@ namespace x3
             base* p8=new base(1);
         }
     }
+    void test_function_pointer
+    {
+        float func(int, int); 
+        float func(int a, int b){     return (float)(a + b); 
+        void test()
+        {     
+            float (*pf)(int, int);     
+            pf = func;    
+             printf("%fn", pf(1, 2));     
+             printf("%.16Xn", (uint64_t)(pf));     
+             printf("%.16Xn", (uint64_t)(func));     
+             printf("%.16Xn", (uint64_t)(&func));     
+             printf("%.16Xn", (uint64_t)(&pf));
+             
+        }
+
+    }
 	void test()
 	{
 		
 		//test_count_ref::test();
         //test_auto_ptr::test();
 		//test_operator_new_and_delete::test();
+        test_function_pointer::test();
 	}
 }
 }
