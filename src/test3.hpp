@@ -411,6 +411,149 @@ namespace x3
         }
         
     }
+    namespace test_object_reference_counting
+    {
+        class rc_object
+        {
+        public:
+            rc_object():m_ref_count(0),m_shareable(true)
+            {
+
+            }
+            rc_object(const rc_object& r):m_ref_count(0),m_shareable(true)
+            {
+
+            }
+            rc_object& operator=(const rc_object& r)
+            {
+                return *this;
+            }
+            virtual ~rc_object()=0;
+            void add_ref()
+            {
+                ++m_ref_count;
+            }
+            void remove_ref()
+            {
+                if(--m_ref_count==0) delete this;
+            }
+            void set_unshareable()
+            {
+                m_shareable=false;
+            }
+            bool get_shareable()const
+            {
+                return m_shareable;
+            }
+            bool is_shared()const
+            {
+                return m_ref_count>1;
+            }
+        private:
+            int m_ref_count;
+            bool m_shareable;
+        };
+        template<typename T>
+        class rc_pointer
+        {
+        public:
+            rc_pointer(T* rc_pointer=nullptr):m_pointee(rc_pointer)
+            {
+                init();
+            }
+            rc_pointer(const rc_pointer& r):m_pointee(r.m_pointee)
+            {
+                init();
+            }
+            ~rc_pointer()
+            {
+                if(m_pointee)
+                    m_pointee->remove_ref();
+            }
+            rc_pointer& operator=(const rc_pointer& r)
+            {
+                if(m_pointee!=r.m_pointee)
+                {
+                    if(m_pointee)
+                    {
+                        m_pointee->remove_ref();
+                    }
+                    m_pointee=r.m_pointee;
+                    init();
+                }
+                return *this;
+            }
+            T* operator->()const
+            {
+                return m_pointee;
+            }
+            T& operator*()const
+            {
+                return *m_pointee;
+            }
+        private:
+            T* m_pointee;
+            void init()
+            {
+                if(m_pointee==nullptr)
+                    return;
+                if(m_pointee->get_shareable()==false)
+                    m_pointee=new T(*m_pointee);
+                m_pointee->add_ref();
+            }
+        };
+        class string
+        {
+        public:
+            string(const char* value=""):m_value(new string_data(value))
+            {
+
+            }
+            const char& operator[](int index)const
+            {
+                return m_value->data[index];
+            }
+            char& operator[](int index)
+            {
+                if(m_value->is_shared())
+                {
+                    m_value=new string_data(m_value->m_data);
+                }
+                m_value->set_unshareable();
+                return m_value->m_data[index]
+            }
+        private:
+            struct  string_data:public rc_object
+            {
+                char* m_data;
+                string_data(const char* data)
+                {
+                    init(data);
+                }
+                string_data(const string_data& r)
+                {
+                    init(r.m_data);
+                }
+                void init(const char* data)
+                {
+                    m_data=new char[strlen(data)+1];
+                    strcpy(m_data,data);
+                }
+                ~string_data()
+                {
+                    delete[] m_data;
+                }
+            };
+            rc_pointer<string_data> m_value;
+        };
+        void test()
+        {
+            string t="xx";
+            string pt=t;
+            cout<<t<<endl;
+            cout<<pt<<endl;
+        }
+    }
 	void test()
 	{
 		
@@ -418,7 +561,8 @@ namespace x3
         //test_auto_ptr::test();
 		//test_operator_new_and_delete::test();
         //test_function_pointer::test();
-        test_string_reference_counting::test();
+        //test_string_reference_counting::test();
+        test_object_reference_counting::test();
 	}
 }
 }
