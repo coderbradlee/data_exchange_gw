@@ -428,7 +428,7 @@ namespace x3
             {
                 return *this;
             }
-            virtual ~rc_object()=0;
+            virtual ~rc_object(){}
             void add_ref()
             {
                 ++m_ref_count;
