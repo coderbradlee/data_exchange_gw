@@ -565,6 +565,7 @@ namespace x3
             string pt=t;
             t.print();
             pt.print();
+            cout<<"-----------------"<<endl;
         }
     }
 	void test()
