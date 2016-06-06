@@ -527,7 +527,7 @@ namespace x3
         public:
             string(const char* value=""):m_value(new string_data(value))
             {
-                cout<<"string::string():"<<this<<":"<<endl;
+                cout<<"string::string():"<<this<<":"<<value<<endl;
             }
             const char& operator[](int index)const
             {
