@@ -377,7 +377,7 @@ namespace x3
             base* p8=new base(1);
         }
     }
-    void test_function_pointer
+    namespace test_function_pointer
     {
         float func(int, int); 
         float func(int a, int b){     return (float)(a + b); 
