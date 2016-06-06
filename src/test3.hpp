@@ -522,6 +522,11 @@ namespace x3
                 m_value->set_unshareable();
                 return m_value->m_data[index]
             }
+            void print()
+            {
+                cout<<m_value->m_data<<endl;
+
+            }
         private:
             struct  string_data:public rc_object
             {
@@ -550,8 +555,8 @@ namespace x3
         {
             string t="xx";
             string pt=t;
-            cout<<t<<endl;
-            cout<<pt<<endl;
+            t.print();
+            pt.print();
         }
     }
 	void test()
