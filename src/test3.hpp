@@ -403,9 +403,11 @@ namespace x3
         void test()
         {
             string test1="12345";
+            string test2=test1;
             char* p=&test1[3];
             *p='5';
             cout<<test1<<endl;
+            cout<<test2<<endl;
         }
         
     }
