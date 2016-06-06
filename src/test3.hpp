@@ -428,7 +428,11 @@ namespace x3
             {
                 return *this;
             }
-            virtual ~rc_object(){}
+            virtual ~rc_object()
+            {
+                cout<<m_ref_count<<endl;
+                cout<<m_shareable<<endl;
+            }
             void add_ref()
             {
                 ++m_ref_count;
