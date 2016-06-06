@@ -580,12 +580,12 @@ namespace x3
         {
             string t="xx";
             string pt=t;
-            t.print();
+            //t.print();
             cout<<"-----------------"<<endl;
-            pt.print();
+            //pt.print();
             cout<<"-----------------"<<endl;
             pt[1]='y';
-            pt.print();
+            //pt.print();
             cout<<"-----------------"<<endl;
         }
     }
