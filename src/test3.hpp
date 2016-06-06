@@ -440,14 +440,20 @@ namespace x3
             void add_ref()
             {
                 ++m_ref_count;
+                cout<<"5:"<<m_ref_count<<endl;
+                cout<<"5:"<<m_shareable<<endl;
             }
             void remove_ref()
             {
                 if(--m_ref_count==0) delete this;
+                cout<<"6:"<<m_ref_count<<endl;
+                cout<<"6:"<<m_shareable<<endl;
             }
             void set_unshareable()
             {
                 m_shareable=false;
+                cout<<"7:"<<m_ref_count<<endl;
+                cout<<"7:"<<m_shareable<<endl;
             }
             bool get_shareable()const
             {
@@ -564,6 +570,10 @@ namespace x3
             string t="xx";
             string pt=t;
             t.print();
+            cout<<"-----------------"<<endl;
+            pt.print();
+            cout<<"-----------------"<<endl;
+            pt[1]='y';
             pt.print();
             cout<<"-----------------"<<endl;
         }
