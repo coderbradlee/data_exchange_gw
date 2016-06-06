@@ -579,7 +579,7 @@ namespace x3
         void test()
         {
             string t="xx";
-            cout<<"-----------------------"<<endl;
+            cout<<"#############################"<<endl;
             string pt=t;
             //t.print();
             cout<<"-----------------"<<endl;
