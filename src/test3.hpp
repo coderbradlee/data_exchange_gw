@@ -388,11 +388,12 @@ namespace x3
         {     
             float (*pf)(int, int);     
             pf = func;    
-             printf("%fn", pf(1, 2));     
-             printf("%.16Xn", (uint64_t)(pf));     
-             printf("%.16Xn", (uint64_t)(func));     
-             printf("%.16Xn", (uint64_t)(&func));     
-             printf("%.16Xn", (uint64_t)(&pf));
+             printf("%fn", pf(1, 2));   
+             cout<<endl;  
+             printf("%.16Xn", (uint64_t)(pf));   cout<<endl;   
+             printf("%.16Xn", (uint64_t)(func));  cout<<endl;    
+             printf("%.16Xn", (uint64_t)(&func)); cout<<endl;     
+             printf("%.16Xn", (uint64_t)(&pf));cout<<endl; 
              
         }
 
