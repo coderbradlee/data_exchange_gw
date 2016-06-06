@@ -579,12 +579,13 @@ namespace x3
         void test()
         {
             string t="xx";
-            string pt=t;
+            //string pt=t;
             //t.print();
             cout<<"-----------------"<<endl;
             //pt.print();
-            cout<<"-----------------"<<endl;
-            pt[1]='y';
+            //cout<<"-----------------"<<endl;
+            //pt[1]='y';
+            t[1]='y';
             //pt.print();
             cout<<"-----------------"<<endl;
         }
