@@ -434,8 +434,8 @@ namespace x3
             }
             virtual ~rc_object()
             {
-                cout<<"4:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"4:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::~rc_object():"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::~rc_object():"<<this<<":"<<m_shareable<<endl;
             }
             void add_ref()
             {
@@ -579,13 +579,13 @@ namespace x3
         void test()
         {
             string t="xx";
-            //string pt=t;
+            string pt=t;
             //t.print();
             cout<<"-----------------"<<endl;
             //pt.print();
             //cout<<"-----------------"<<endl;
-            //pt[1]='y';
-            t[1]='y';
+            pt[1]='y';
+            //t[1]='y';
             //pt.print();
             cout<<"-----------------"<<endl;
         }
