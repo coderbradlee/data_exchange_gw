@@ -398,13 +398,25 @@ namespace x3
         }
 
     }
+    namespace test_string_reference_counting
+    {
+        void test()
+        {
+            string test1="12345";
+            char* p=&test1[3];
+            *p='5';
+            cout<<test1<<endl;
+        }
+        
+    }
 	void test()
 	{
 		
 		//test_count_ref::test();
         //test_auto_ptr::test();
 		//test_operator_new_and_delete::test();
-        test_function_pointer::test();
+        //test_function_pointer::test();
+        test_string_reference_counting::test();
 	}
 }
 }
