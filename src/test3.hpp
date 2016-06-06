@@ -418,13 +418,13 @@ namespace x3
         public:
             rc_object():m_ref_count(0),m_shareable(true)
             {
-                cout<<"1:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"1:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::rc_object():"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::rc_object():"<<this<<":"<<m_shareable<<endl;
             }
             rc_object(const rc_object& r):m_ref_count(0),m_shareable(true)
             {
-                cout<<"2:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"2:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::rc_object(const rc_object& r):"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::rc_object(const rc_object& r):"<<this<<":"<<m_shareable<<endl;
             }
             rc_object& operator=(const rc_object& r)
             {
@@ -440,20 +440,20 @@ namespace x3
             void add_ref()
             {
                 ++m_ref_count;
-                cout<<"5:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"5:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::add_ref():"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::add_ref():"<<this<<":"<<m_shareable<<endl;
             }
             void remove_ref()
             {
                 if(--m_ref_count==0) delete this;
-                cout<<"6:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"6:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::remove_ref():"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::remove_ref():"<<this<<":"<<m_shareable<<endl;
             }
             void set_unshareable()
             {
                 m_shareable=false;
-                cout<<"7:"<<this<<":"<<m_ref_count<<endl;
-                cout<<"7:"<<this<<":"<<m_shareable<<endl;
+                cout<<"rc_object::set_unshareable():"<<this<<":"<<m_ref_count<<endl;
+                cout<<"rc_object::set_unshareable():"<<this<<":"<<m_shareable<<endl;
             }
             bool get_shareable()const
             {
@@ -473,19 +473,24 @@ namespace x3
         public:
             rc_pointer(T* rc_pointer=nullptr):m_pointee(rc_pointer)
             {
+                cout<<"rc_pointer::rc_pointer():"<<this<<":"<<endl;
                 init();
             }
             rc_pointer(const rc_pointer& r):m_pointee(r.m_pointee)
             {
+                cout<<"rc_pointer::rc_pointer(const rc_pointer& r):"<<this<<":"<<endl;
                 init();
             }
             ~rc_pointer()
             {
+
+                cout<<"rc_pointer::~rc_pointer():"<<this<<":"<<endl;
                 if(m_pointee)
                     m_pointee->remove_ref();
             }
             rc_pointer& operator=(const rc_pointer& r)
             {
+                cout<<"rc_pointer::operator=:"<<this<<":"<<endl;
                 if(m_pointee!=r.m_pointee)
                 {
                     if(m_pointee)
@@ -509,6 +514,7 @@ namespace x3
             T* m_pointee;
             void init()
             {
+                cout<<"rc_pointer::init():"<<this<<":"<<endl;
                 if(m_pointee==nullptr)
                     return;
                 if(m_pointee->get_shareable()==false)
@@ -521,7 +527,7 @@ namespace x3
         public:
             string(const char* value=""):m_value(new string_data(value))
             {
-
+                cout<<"string::string():"<<this<<":"<<endl;
             }
             const char& operator[](int index)const
             {
@@ -529,6 +535,7 @@ namespace x3
             }
             char& operator[](int index)
             {
+                cout<<"string::operator[]:"<<this<<":"<<endl;
                 if(m_value->is_shared())
                 {
                     m_value=new string_data(m_value->m_data);
@@ -547,19 +554,23 @@ namespace x3
                 char* m_data;
                 string_data(const char* data)
                 {
+                    cout<<"string_data::string_data():"<<this<<":"<<endl;
                     init(data);
                 }
                 string_data(const string_data& r)
                 {
+                    cout<<"string_data::string_data(const string_data& r):"<<this<<":"<<endl;
                     init(r.m_data);
                 }
                 void init(const char* data)
                 {
+                    cout<<"string_data::init():"<<this<<":"<<endl;
                     m_data=new char[strlen(data)+1];
                     strcpy(m_data,data);
                 }
                 ~string_data()
                 {
+                    cout<<"string_data::~string_data():"<<this<<":"<<endl;
                     delete[] m_data;
                 }
             };
