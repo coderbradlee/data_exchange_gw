@@ -418,20 +418,24 @@ namespace x3
         public:
             rc_object():m_ref_count(0),m_shareable(true)
             {
-
+                cout<<"1:"<<m_ref_count<<endl;
+                cout<<"1:"<<m_shareable<<endl;
             }
             rc_object(const rc_object& r):m_ref_count(0),m_shareable(true)
             {
-
+                cout<<"2:"<<m_ref_count<<endl;
+                cout<<"2:"<<m_shareable<<endl;
             }
             rc_object& operator=(const rc_object& r)
             {
+                cout<<"3:"<<m_ref_count<<endl;
+                cout<<"3:"<<m_shareable<<endl;
                 return *this;
             }
             virtual ~rc_object()
             {
-                cout<<m_ref_count<<endl;
-                cout<<m_shareable<<endl;
+                cout<<"4:"<<m_ref_count<<endl;
+                cout<<"4:"<<m_shareable<<endl;
             }
             void add_ref()
             {
