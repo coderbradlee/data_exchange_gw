@@ -380,7 +380,10 @@ namespace x3
     namespace test_function_pointer
     {
         float func(int, int); 
-        float func(int a, int b){     return (float)(a + b); 
+        float func(int a, int b)
+        {     
+            return (float)(a + b); 
+        }
         void test()
         {     
             float (*pf)(int, int);     
