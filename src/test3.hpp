@@ -511,7 +511,7 @@ namespace x3
             }
             const char& operator[](int index)const
             {
-                return m_value->data[index];
+                return m_value->m_data[index];
             }
             char& operator[](int index)
             {
@@ -520,7 +520,7 @@ namespace x3
                     m_value=new string_data(m_value->m_data);
                 }
                 m_value->set_unshareable();
-                return m_value->m_data[index]
+                return m_value->m_data[index];
             }
             void print()
             {
