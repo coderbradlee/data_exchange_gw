@@ -642,8 +642,9 @@ namespace x3
     namespace test_twofold_virtual
     {
         class space_ship;
-        class space_station;
-        class asteroid;
+        class space_station
+        {};
+        class asteroid{};
         class game_object
         {
         public:
