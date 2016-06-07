@@ -662,7 +662,7 @@ namespace x3
                 cout<<"space_ship virtual void collide(game_object& other)"<<endl;
                 //other.collide(*this);
                 hit_func h=lookup(other);
-                if(hit_func)
+                if(hit_func!=nullptr)
                 {
                     (this->*hit_func)(other);
                 }
