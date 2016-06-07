@@ -704,7 +704,9 @@ namespace x3
         };
         void test()
         {
-
+            space_ship s;
+            space_station ss;
+            s.collide(ss);
         }
     }
 	void test()
