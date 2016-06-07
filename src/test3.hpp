@@ -651,9 +651,21 @@ namespace x3
         };
        
         class space_station:public game_object
-        {};
+        {
+        public:
+            void collide(game_object& other)
+            {
+
+            }
+        };
         class asteroid:public game_object
-        {};
+        {
+        public:
+            void collide(game_object& other)
+            {
+
+            }
+        };
         
         class space_ship:public game_object
         {
