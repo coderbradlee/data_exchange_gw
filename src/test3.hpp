@@ -719,7 +719,7 @@ namespace x3
                 cout<<realname_ful<<endl;
                 std::vector<std::string> ymd;
                 boost::split(ymd,realname_ful , boost::is_any_of("::"));
-                string realname=ymd[ymd.length-1];
+                string realname=ymd[ymd.size()-1];
                 cout<<realname<<endl;
                 for(auto& c:(*collision_map))
                 {                    
