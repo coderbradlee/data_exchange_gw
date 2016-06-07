@@ -703,6 +703,10 @@ namespace x3
                 (*h)["space_ship"]=&space_ship::space_ship_collides;
                 (*h)["space_station"]=&space_ship::space_station_collides;
                 (*h)["asteroid"]=&space_ship::asteroid_collides;
+                for(auto& c:(*h))
+                {
+                    cout<<c.first<<":"<<c.second<<endl;
+                }
             }
             
             
