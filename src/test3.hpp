@@ -717,7 +717,7 @@ namespace x3
                 const std::type_info  &ti = typeid(what);
                 string realname_ful = abi::__cxa_demangle(ti.name(), 0, 0, &status);
                 cout<<realname_ful<<endl;
-                string [] ymd;
+                std::vector<std::string> ymd;
                 boost::split(ymd,realname_ful , boost::is_any_of("::"));
                 string realname=ymd[ymd.length-1];
                 cout<<realname<<endl;
