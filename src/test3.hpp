@@ -639,6 +639,73 @@ namespace x3
             cout<<"-----------------"<<endl;
         }
     }
+    namespace test_twofold_virtual
+    {
+        class space_ship;
+        class space_station;
+        class asteroid;
+        class game_object
+        {
+        public:
+            virtual void collide(game_object& other)=0;
+            virtual void collides(space_ship& other)=0;
+            virtual void collides(space_station& other)=0;
+            virtual void collides(asteroid& other)=0;
+        };
+        class space_ship:public game_object
+        {
+        public:
+            virtual void collide(game_object& other)
+            {
+                cout<<"space_ship virtual void collide(game_object& other)"<<endl;
+                //other.collide(*this);
+                hit_func h=lookup(other);
+                if(hit_func)
+                {
+                    (this->*hit_func)(other);
+                }
+            }
+            virtual void space_ship_collides(game_object& other)
+            {
+                cout<<"space_ship virtual void collides(space_ship& other)"<<endl;
+                space_ship& o=dynamic_cast<space_ship&>(other);
+                
+            }
+            virtual void space_station_collides(game_object& other)
+            {
+                cout<<"space_ship virtual void collides(space_station& other)"<<endl;
+            }
+            virtual void asteroid_collides(game_object& other)
+            {
+                cout<<"space_ship virtual void collides(asteroid& other)"<<endl;
+            }
+            hit_func_map *init_map()
+            {
+                hit_func_map* h=new hit_func_map;
+                (*h)["space_ship"]=&space_ship_collides;
+                (*h)["space_station"]=&space_station_collides;
+                (*h)["asteroid"]=&asteroid_collides;
+            }
+            typedef void(space_ship::*hit_func)(game_object&);
+            std::map<string,hit_func> hit_func_map;
+            static hit_func lookup(const game_object& what)
+            {
+                std::shared_ptr<hit_func_map> collision_map(init_map());
+               
+                for(auto& c:(*collision_map))
+                {
+                    if(c.first==typeid(what).name())
+                    {
+                        return c.second;
+                    }
+                }
+            }
+        };
+        void test()
+        {
+
+        }
+    }
 	void test()
 	{
 		
@@ -647,7 +714,8 @@ namespace x3
 		//test_operator_new_and_delete::test();
         //test_function_pointer::test();
         //test_string_reference_counting::test();
-        test_object_reference_counting::test();
+        //test_object_reference_counting::test();
+        test_twofold_virtual::test();
 	}
 }
 }
