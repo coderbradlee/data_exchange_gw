@@ -641,10 +641,6 @@ namespace x3
     }
     namespace test_twofold_virtual
     {
-        class space_ship;
-        class space_station:public game_object
-        {};
-        class asteroid:public game_object{};
         class game_object
         {
         public:
@@ -653,6 +649,12 @@ namespace x3
             // virtual void collides(space_station& other)=0;
             // virtual void collides(asteroid& other)=0;
         };
+       
+        class space_station:public game_object
+        {};
+        class asteroid:public game_object
+        {};
+        
         class space_ship:public game_object
         {
             typedef void(space_ship::*hit_func)(game_object&);
