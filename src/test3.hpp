@@ -664,7 +664,7 @@ namespace x3
                 hit_func h=lookup(other);
                 if(h)
                 {
-                    (this->*hit_func)(other);
+                    (this->*h)(other);
                 }
             }
             virtual void space_ship_collides(game_object& other)
