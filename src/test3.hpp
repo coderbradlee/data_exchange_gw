@@ -703,10 +703,10 @@ namespace x3
                 (*h)["space_ship"]=&space_ship::space_ship_collides;
                 (*h)["space_station"]=&space_ship::space_station_collides;
                 (*h)["asteroid"]=&space_ship::asteroid_collides;
-                for(auto& c:(*h))
-                {
-                    cout<<c.first<<":"<<c.second<<endl;
-                }
+                // for(auto& c:(*h))
+                // {
+                //     cout<<c.first<<":"<<c.second<<endl;
+                // }
             }
             
             
@@ -716,11 +716,11 @@ namespace x3
                 int status;
                 const std::type_info  &ti = typeid(what);
                 string realname_ful = abi::__cxa_demangle(ti.name(), 0, 0, &status);
-                cout<<realname_ful<<endl;
+                //cout<<realname_ful<<endl;
                 std::vector<std::string> ymd;
                 boost::split(ymd,realname_ful , boost::is_any_of("::"));
                 string realname=ymd[ymd.size()-1];
-                cout<<realname<<endl;
+                //cout<<realname<<endl;
                 for(auto& c:(*collision_map))
                 {                    
                     if(c.first==realname)
