@@ -540,7 +540,7 @@ namespace x3
                     }
                        
                         m_string.m_value->m_data[m_char_index] =
-                        rhs.m_string.m_value->m_data[rhs.m_char_index];
+                        r.m_string.m_value->m_data[rhs.m_char_index];
                         return *this;
                 }
                 char_proxy& operator=(char c)
@@ -569,13 +569,13 @@ namespace x3
             {
                 cout<<"string::string():"<<this<<":"<<value<<endl;
             }
-            const char_proxy& operator[](int index)const
+            const char_proxy operator[](int index)const
             {
                 cout<<"string::operator[]()const:"<<this<<":"<<endl;
                 //return m_value->m_data[index];
                 return char_proxy(const_cast<string&>(*this),index);
             }
-            char_proxy& operator[](int index)
+            char_proxy operator[](int index)
             {
                 cout<<"string::operator[]():"<<this<<":"<<endl;
                 // cout<<"string::operator[]:"<<this<<":"<<endl;
