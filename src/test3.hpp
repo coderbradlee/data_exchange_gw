@@ -524,34 +524,6 @@ namespace x3
         };
         class string
         {
-        public:
-            string(const char* value=""):m_value(new string_data(value))
-            {
-                cout<<"string::string():"<<this<<":"<<value<<endl;
-            }
-            const char_proxy& operator[](int index)const
-            {
-                cout<<"string::operator[]()const:"<<this<<":"<<endl;
-                //return m_value->m_data[index];
-                return char_proxy(const_cast<string&>(*this),index);
-            }
-            char_proxy& operator[](int index)
-            {
-                cout<<"string::operator[]():"<<this<<":"<<endl;
-                // cout<<"string::operator[]:"<<this<<":"<<endl;
-                // if(m_value->is_shared())
-                // {
-                //     m_value=new string_data(m_value->m_data);
-                // }
-                // m_value->set_unshareable();
-                // return m_value->m_data[index];
-                return char_proxy(*this,index);
-            }
-            void print()
-            {
-                cout<<m_value->m_data<<endl;
-
-            }
             class char_proxy
             {
             public:
@@ -591,6 +563,36 @@ namespace x3
                 string& m_string;
                 int m_char_index;
             };
+        public:
+
+            string(const char* value=""):m_value(new string_data(value))
+            {
+                cout<<"string::string():"<<this<<":"<<value<<endl;
+            }
+            const char_proxy& operator[](int index)const
+            {
+                cout<<"string::operator[]()const:"<<this<<":"<<endl;
+                //return m_value->m_data[index];
+                return char_proxy(const_cast<string&>(*this),index);
+            }
+            char_proxy& operator[](int index)
+            {
+                cout<<"string::operator[]():"<<this<<":"<<endl;
+                // cout<<"string::operator[]:"<<this<<":"<<endl;
+                // if(m_value->is_shared())
+                // {
+                //     m_value=new string_data(m_value->m_data);
+                // }
+                // m_value->set_unshareable();
+                // return m_value->m_data[index];
+                return char_proxy(*this,index);
+            }
+            void print()
+            {
+                cout<<m_value->m_data<<endl;
+
+            }
+            
             friend class char_proxy;
         private:
             struct  string_data:public rc_object
