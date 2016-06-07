@@ -648,9 +648,9 @@ namespace x3
         {
         public:
             virtual void collide(game_object& other)=0;
-            virtual void collides(space_ship& other)=0;
-            virtual void collides(space_station& other)=0;
-            virtual void collides(asteroid& other)=0;
+            // virtual void collides(space_ship& other)=0;
+            // virtual void collides(space_station& other)=0;
+            // virtual void collides(asteroid& other)=0;
         };
         class space_ship:public game_object
         {
