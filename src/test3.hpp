@@ -709,7 +709,8 @@ namespace x3
         {
             space_ship s;
             space_station ss;
-            s.collide(ss);
+            game_object& sss=ss;
+            s.collide(sss);
         }
     }
 	void test()
