@@ -679,6 +679,7 @@ namespace x3
             {
                 cout<<"space_ship virtual void collides(asteroid& other)"<<endl;
             }
+            typedef std::map<string,hit_func> hit_func_map;
             hit_func_map *init_map()
             {
                 hit_func_map* h=new hit_func_map;
@@ -687,7 +688,7 @@ namespace x3
                 (*h)["asteroid"]=&asteroid_collides;
             }
             typedef void(space_ship::*hit_func)(game_object&);
-            typedef std::map<string,hit_func> hit_func_map;
+            
             static hit_func lookup(const game_object& what)
             {
                 std::shared_ptr<hit_func_map> collision_map(init_map());
