@@ -715,7 +715,11 @@ namespace x3
                 std::shared_ptr<hit_func_map> collision_map(init_map());
                 int status;
                 const std::type_info  &ti = typeid(what);
-                string realname = abi::__cxa_demangle(ti.name(), 0, 0, &status);
+                string realname_ful = abi::__cxa_demangle(ti.name(), 0, 0, &status);
+                cout<<realname_ful<<endl;
+                string [] ymd;
+                boost::split(ymd,realname_ful , boost::is_any_of("::"));
+                string realname=ymd[ymd.length-1];
                 cout<<realname<<endl;
                 for(auto& c:(*collision_map))
                 {                    
