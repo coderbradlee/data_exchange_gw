@@ -713,13 +713,13 @@ namespace x3
             static hit_func lookup(const game_object& what)
             {
                 std::shared_ptr<hit_func_map> collision_map(init_map());
-               
+                int status;
+                const std::type_info  &ti = typeid(what);
+                string realname = abi::__cxa_demangle(ti.name(), 0, 0, &status);
+                cout<<realname<<endl;
                 for(auto& c:(*collision_map))
-                {
-                    //cout<<type_index(typeid(what))<<endl;
-                    cout<<typeid(what).name()<<endl;
-                    cout<<c.first<<endl;
-                    if(c.first==typeid(what).name())
+                {                    
+                    if(c.first==realname)
                     {
                         return c.second;
                     }
