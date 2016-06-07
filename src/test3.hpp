@@ -534,24 +534,24 @@ namespace x3
                 char_proxy& operator=(const char_proxy& r)
                 {
                     cout<<"char_proxy::operator=():"<<this<<":"<<endl;
-                    if (theString.value->isShared()) 
+                    if (m_string.m_value->is_shared()) 
                     {
-                        theString.value = new StringValue(theString.value->data);
+                        m_string.m_value = new string_data(m_string.m_value->m_data);
                     }
                        
-                        theString.value->data[charIndex] =
-                        rhs.theString.value->data[rhs.charIndex];
+                        m_string.m_value->m_data[m_char_index] =
+                        rhs.m_string.m_value->m_data[rhs.m_char_index];
                         return *this;
                 }
                 char_proxy& operator=(char c)
                 {
                     cout<<"char_proxy::operator=(char c):"<<this<<":"<<endl;
-                    if (theString.value->isShared()) 
+                    if (m_string.m_value->is_shared()) 
                     {
-                        theString.value = new StringValue(theString.value->data);
+                        m_string.m_value = new string_data(m_string.m_value->m_data);
                     
                     }
-                        theString.value->data[charIndex] = c;
+                        m_string.m_value->m_data[m_char_index] = c;
                         return *this;
                 }
                 operator char()const
