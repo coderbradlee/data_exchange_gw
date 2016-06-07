@@ -682,7 +682,7 @@ namespace x3
                 cout<<"space_ship virtual void collides(asteroid& other)"<<endl;
             }
             
-            hit_func_map *init_map()
+            static hit_func_map *init_map()
             {
                 hit_func_map* h=new hit_func_map;
                 (*h)["space_ship"]=&space_ship_collides;
