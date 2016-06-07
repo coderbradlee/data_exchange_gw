@@ -540,7 +540,7 @@ namespace x3
                     }
                        
                         m_string.m_value->m_data[m_char_index] =
-                        r.m_string.m_value->m_data[rhs.m_char_index];
+                        r.m_string.m_value->m_data[r.m_char_index];
                         return *this;
                 }
                 char_proxy& operator=(char c)
