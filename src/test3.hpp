@@ -686,7 +686,7 @@ namespace x3
             static hit_func_map *init_map()
             {
                 hit_func_map* h=new hit_func_map;
-                (*h)["space_ship"]=&space_ship_collides;
+                (*h)["space_ship"]=&space_ship::space_ship_collides;
                 (*h)["space_station"]=&space_station_collides;
                 (*h)["asteroid"]=&asteroid_collides;
             }
