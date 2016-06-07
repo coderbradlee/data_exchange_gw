@@ -712,9 +712,9 @@ namespace x3
                
                 for(auto& c:(*collision_map))
                 {
-                    cout<<typeinfo(what).name()<<endl;
+                    cout<<std::typeinfo(what).name()<<endl;
                     cout<<c.first<<endl;
-                    if(c.first==typeinfo(what).name())
+                    if(c.first==std::typeinfo(what).name())
                     {
                         return c.second;
                     }
