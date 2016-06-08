@@ -781,14 +781,14 @@ namespace x3
         } // okay
         const B b;
         //cout<<"--------------------"<<endl;
-        Class Base()
+        class Base()
        {
            public:
              
                 virtual Bar() { cout << "base bar()" << endl; }
        };
        
-       Class DerOne: public Base
+       class DerOne: public Base
        {
           public:
           
