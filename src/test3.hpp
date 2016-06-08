@@ -847,7 +847,7 @@ namespace x3
                 {
                     for (int i:source) 
                     {
-                        std::cout << i <<  " ";
+                        std::cout << i <<endl;;
                     }
                 });
 
