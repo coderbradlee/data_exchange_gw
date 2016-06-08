@@ -840,7 +840,8 @@ namespace x3
     }
     namespace test_coroutine
     {
-        void test()
+
+        void test5()
         {
             boost::coroutines::asymmetric_coroutine<int>::push_type sink( // constructor does NOT enter coroutine-function
                 [&](boost::coroutines::asymmetric_coroutine<int>::pull_type& source)
@@ -984,6 +985,19 @@ namespace x3
             coro1();
 
             std::cout << "Done" << std::endl;
+        }
+        void test()
+        {
+            boost::coroutines::asymmetric_coroutine<boost::tuple<int,int>>::push_type sink(
+                [&](boost::coroutines::asymmetric_coroutine<boost::tuple<int,int>>::pull_type& source)
+                {
+                    // access tuple {7,11}; x==7 y==1
+                    int x,y;
+                    boost::tie(x,y)=source.get();
+                    cout<<x<<":"<<y<<endl;
+                });
+            cout<<"-------------------"<<endl;
+            sink(boost::make_tuple(7,11));
         }
     }
 	void test()
