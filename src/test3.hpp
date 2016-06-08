@@ -866,9 +866,9 @@ namespace x3
             }
             coro("exit");
             if(!coro)
-      　　  {
+            {
                 cout<<"complete"<<endl;
-            }  
+            }
         }
     }
 	void test()
