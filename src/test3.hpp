@@ -740,7 +740,7 @@ namespace x3
     }
     namespace test_template_const
     {
-        int const& max(const int const& a,const int const& b)
+        int const& max(const int &const a,const int &const b)
         {
             return a>b?a:b;
         }
