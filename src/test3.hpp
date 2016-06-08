@@ -765,6 +765,10 @@ namespace x3
         class T {}; // trivial
         struct B 
         {
+            B()
+            {
+                cout<<"B"<<endl;
+            }
             ~B() 
             {
                 cout<<"~B"<<endl;
@@ -775,14 +779,18 @@ namespace x3
             long long n; // automatic, trivial
             new (&n) double(3.14); // reuse with a different type okay
         } // okay
+        const B b;
         void test()
          {
             B b; // automatic non-trivially destructible
             cout<<"--------1------------"<<endl;
             b.~B(); // end lifetime (not required, since no side-effects)
             cout<<"--------2------------"<<endl;
-            new (&b) T; // wrong type: okay until the destructor is called
-            cout<<"--------3------------"<<endl;
+//            new (&b) T; // wrong type: okay until the destructor is called
+
+            new (const_cast<B*>(&b)) const B; 
+            cout<<"--------3------------"<<endl;   
+
         } // destructor 
     }
 	void test()
