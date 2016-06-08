@@ -1114,8 +1114,8 @@ namespace x3
             });
 
             {
-                boost::coroutines::symmetric_coroutine<void>::call_type coro(
-                    [&](boost::coroutines::symmetric_coroutine<void>::yield_type yield)
+                boost::coroutines::symmetric_coroutine<int>::call_type coro(
+                    [&](boost::coroutines::symmetric_coroutine<int>::yield_type yield)
                     {
                         X x;
                         std::cout<<"fn()"<<std::endl;
