@@ -742,14 +742,22 @@ namespace x3
     {
         const int & max(const int &a,const int &b)
         {
-            int x=a>b?a:b;
-            return x;
+            return a>b?a:b;
+           //return x;
         }
+        const std::string& foo(const std::string& temp)
+        {
+                return temp;
+        }
+
+        
         void test()
         {
             int x;
             x=max(1,2);
             cout<<x<<endl;
+            const std::string& ref = foo("abcde");
+            std::cout << ref << std::endl;
         }
     }
 	void test()
