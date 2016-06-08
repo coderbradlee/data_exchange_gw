@@ -842,6 +842,49 @@ namespace x3
     {
         void test()
         {
+            struct FinalEOL
+            {
+                ~FinalEOL()
+                {
+                    std::cout << std::endl;
+                }
+            };
+
+        const int num=5, width=15;
+        boost::coroutines::asymmetric_coroutine<std::string>::push_type writer(
+            [&](boost::coroutines::asymmetric_coroutine<std::string>::pull_type& in)
+            {
+                cout<<"enter pull function"<<endl;
+                // finish the last line when we leave by whatever means
+                FinalEOL eol;
+                // pull values from upstream, lay them out 'num' to a line
+                for (;;)
+                {
+                    for(int i=0;i<num;++i)
+                    {
+                        // when we exhaust the input, stop
+                        if(!in) return;
+                        std::cout << std::setw(width) << in.get();
+                        // now that we've handled this item, advance to next
+                        in();
+                    }
+                    // after 'num' items, line break
+                    std::cout << std::endl;
+                }
+            });
+
+        std::vector<std::string> words
+        {
+            "peas", "porridge", "hot", "peas",
+            "porridge", "cold", "peas", "porridge",
+            "in", "the", "pot", "nine",
+            "days", "old" 
+        };
+
+        std::copy(boost::begin(words),boost::end(words),boost::begin(writer));
+        }
+        void test2()
+        {
             boost::coroutines::asymmetric_coroutine<int>::pull_type source(
             [&](boost::coroutines::asymmetric_coroutine<int>::push_type& sink)
             {
