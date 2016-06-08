@@ -842,6 +842,25 @@ namespace x3
     {
         void test()
         {
+            boost::coroutines::asymmetric_coroutine<int>::pull_type source( // constructor enters coroutine-function
+            [&](boost::coroutines::asymmetric_coroutine<int>::push_type& sink)
+            {
+                sink(1); // push {1} back to main-context
+                sink(2); // push {1} back to main-context
+                sink(3); // push {2} back to main-context
+                sink(4); // push {3} back to main-context
+                sink(5); // push {5} back to main-context
+                sink(6); // push {8} back to main-context
+            });
+
+            while(source)
+            {            // test if pull-coroutine is valid
+                int ret=source.get(); // access data value
+                source();             // context-switch to coroutine-function
+            }
+        }
+        void test3()
+        {
             struct FinalEOL
             {
                 ~FinalEOL()
