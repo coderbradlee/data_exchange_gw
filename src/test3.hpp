@@ -780,6 +780,7 @@ namespace x3
             new (&n) double(3.14); // reuse with a different type okay
         } // okay
         const B b;
+        cout<<"--------------------"<<endl;
         void test()
          {
             B b; // automatic non-trivially destructible
