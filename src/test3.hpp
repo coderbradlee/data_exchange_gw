@@ -801,6 +801,20 @@ namespace x3
               
              virtual void Bar() { cout << "DerTwo Bar()" << endl; }
       };
+      Base GetBase()
+      {
+          return Base();
+      }
+      
+       DerOne GetDerOne()
+      {
+           return DerOne();
+      }
+      
+      DerTwo GetDerTwo()
+      {
+           return DerTwo();
+      }
         void test()
          {
             B b; // automatic non-trivially destructible
@@ -812,13 +826,13 @@ namespace x3
             new (const_cast<B*>(&b)) const B; 
             cout<<"--------3------------"<<endl;   
 
-          const Base& ref1(Base());
-          const Base& ref2(DerOne());
-          const Base& ref3(DerTwo());
-      
-          ref1.Bar();
-          ref2.Bar();
-          ref3.Bar();
+              const Base& ref1=GetBase();
+              const Base& ref2=GetDerOne();
+              const Base& ref3=GetDerTwo();
+          
+              ref1.Bar();
+              ref2.Bar();
+              ref3.Bar();
         } // destructor 
     }
 	void test()
