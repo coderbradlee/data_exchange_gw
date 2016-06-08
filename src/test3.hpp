@@ -986,7 +986,7 @@ namespace x3
 
             std::cout << "Done" << std::endl;
         }
-        void test()
+        void test6()
         {
             boost::coroutines::asymmetric_coroutine<boost::tuple<int,int>>::push_type sink(
                 [&](boost::coroutines::asymmetric_coroutine<boost::tuple<int,int>>::pull_type& source)
@@ -998,6 +998,43 @@ namespace x3
                 });
             cout<<"-------------------"<<endl;
             sink(boost::make_tuple(7,11));
+        }
+        void test()
+        {
+            struct X 
+            {
+                X()
+                {
+                    std::cout<<"X()"<<std::endl;
+                }
+
+                ~X()
+                {
+                    std::cout<<"~X()"<<std::endl;
+                }
+            };
+
+            {
+                boost::coroutines::asymmetric_coroutine<void>::push_type sink(
+                    [&](boost::coroutines::asymmetric_coroutine<void>::pull_type& source)
+                    {
+                        X x;
+                        for(int=0;;++i)
+                        {
+                            std::cout<<"fn(): "<<i<<std::endl;
+                            // transfer execution control back to main()
+                            source();
+                        }
+                    });
+
+                sink();
+                sink();
+                sink();
+                sink();
+                sink();
+
+                std::cout<<"sink is complete: "<<std::boolalpha<<!sink<<"\n";
+            }
         }
     }
 	void test()
