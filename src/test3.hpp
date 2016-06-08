@@ -842,33 +842,33 @@ namespace x3
     {
         void test()
         {
-            typedef boost::coroutines::coroutine<std::string(std::string)> my_coro;
-            my_coro coro([](my_coro::caller_type& caller)
-                {
-                    while(caller.has_result())
-                    {
-                        if(caller.get()=="exit")
-                        {
-                            return;
-                        }
-                        cout<<caller.get()<<endl;
-                        caller("ok");
-                    }
-                },"init arg");
-            if(coro.has_result())
-            {
-                cout<<coro.get()<<endl;
-            }
-            coro("two");
-            if(coro.has_result())
-            {
-                cout<<coro.get()<<endl;
-            }
-            coro("exit");
-            if(!coro)
-            {
-                cout<<"complete"<<endl;
-            }
+            typedef boost::coroutines::symmetric_coroutine< void >  coro_t;
+            coro_t::call_type * other1 = 0;
+            coro_t::call_type * other2 = 0;
+
+            coro_t::call_type coro1(
+                [&]( coro_t::yield_type & yield) {
+                    std::cout << "foo1" << std::endl;
+                    yield( * other2);
+                    std::cout << "foo2" << std::endl;
+                    yield( * other2);
+                    std::cout << "foo3" << std::endl;
+                });
+            coro_t::call_type coro2(
+                [&]( coro_t::yield_type & yield) {
+                    std::cout << "bar1" << std::endl;
+                    yield( * other1);
+                    std::cout << "bar2" << std::endl;
+                    yield( * other1);
+                    std::cout << "bar3" << std::endl;
+                });
+
+            other1 = & coro1;
+            other2 = & coro2;
+
+            coro1();
+
+            std::cout << "Done" << std::endl;
         }
     }
 	void test()
