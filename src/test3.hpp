@@ -779,7 +779,7 @@ namespace x3
             long long n; // automatic, trivial
             new (&n) double(3.14); // reuse with a different type okay
         } // okay
-        const B b;
+        //const B b;
         //cout<<"--------------------"<<endl;
         class Base
        {
@@ -841,6 +841,28 @@ namespace x3
     namespace test_coroutine
     {
         void test()
+        {
+            boost::coroutines::asymmetric_coroutine<int>::pull_type source(
+            [&](boost::coroutines::asymmetric_coroutine<int>::push_type& sink)
+            {
+                cout<<"reenter push_type"<<endl;
+                int first=1,second=1;
+                sink(first);
+                sink(second);
+                for(int i=0;i<8;++i)
+                {
+                    int third=first+second;
+                    first=second;
+                    second=third;
+                    sink(third);
+                    cout<<i<<":"<<first<<":"<<second<<":"<<third<<endl;
+                }
+            });
+
+            for(auto i:source)
+                std::cout << i <<  " ";
+        }
+        void test1()
         {
             typedef boost::coroutines::symmetric_coroutine< void >  coro_t;
             coro_t::call_type * other1 = 0;
