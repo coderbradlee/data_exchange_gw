@@ -742,7 +742,8 @@ namespace x3
     {
         const int & max(const int &a,const int &b)
         {
-            return a>b?a:b;
+            int x=a>b?a:b;
+            return x;
         }
         void test()
         {
