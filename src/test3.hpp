@@ -760,6 +760,31 @@ namespace x3
             std::cout << ref << std::endl;
         }
     }
+    namespace test_lifetime
+    {
+        class T {}; // trivial
+        struct B 
+        {
+            ~B() 
+            {
+                cout<<"~B"<<endl;
+            } // non-trivial
+        };
+        void x() 
+        {
+            long long n; // automatic, trivial
+            new (&n) double(3.14); // reuse with a different type okay
+        } // okay
+        void test()
+         {
+            B b; // automatic non-trivially destructible
+            cout<<"--------1------------"<<endl;
+            b.~B(); // end lifetime (not required, since no side-effects)
+            cout<<"--------2------------"<<endl;
+            new (&b) T; // wrong type: okay until the destructor is called
+            cout<<"--------3------------"<<endl;
+        } // destructor 
+    }
 	void test()
 	{
 		
@@ -770,7 +795,8 @@ namespace x3
         //test_string_reference_counting::test();
         //test_object_reference_counting::test();
         //test_twofold_virtual::test();
-        test_template_const::test();
+        //test_template_const::test();
+        test_lifetime::test();
 	}
 }
 }
