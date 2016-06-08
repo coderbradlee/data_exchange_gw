@@ -999,7 +999,7 @@ namespace x3
             cout<<"-------------------"<<endl;
             sink(boost::make_tuple(7,11));
         }
-        void test()
+        void test7()
         {
             struct X 
             {
@@ -1035,6 +1035,27 @@ namespace x3
 
                 std::cout<<"sink is complete: "<<std::boolalpha<<!sink<<"\n";
             }
+        }
+        void test()
+        {
+            int number=2,exponent=8;
+            boost::coroutines::asymmetric_coroutine< int >::pull_type source(
+                [&]( boost::coroutines::asymmetric_coroutine< int >::push_type & sink)
+                {
+                    int counter=0,result=1;
+                    while(counter++<exponent)
+                    {
+                        result=result*number;
+                        sink(result);
+                        cout<<result<<endl;
+                    }
+                });
+            cout<<"---------------------"<<endl;
+            for (auto i:source)
+            {
+                std::cout << i <<  " ";
+            }    
+            cout<<"======================"<<endl;
         }
     }
 	void test()
