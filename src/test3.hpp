@@ -1053,7 +1053,7 @@ namespace x3
             cout<<"---------------------"<<endl;
             for (auto i:source)
             {
-                std::cout << i <<  " ";
+                std::cout << i <<  ":";
             }    
             cout<<"======================"<<endl;
         }
