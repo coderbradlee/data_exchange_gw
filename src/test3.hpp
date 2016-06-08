@@ -842,6 +842,25 @@ namespace x3
     {
         void test()
         {
+            boost::coroutines::asymmetric_coroutine<int>::push_type sink( // constructor does NOT enter coroutine-function
+                [&](boost::coroutines::asymmetric_coroutine<int>::pull_type& source)
+                {
+                    for (int i:source) 
+                    {
+                        std::cout << i <<  " ";
+                    }
+                });
+
+            std::vector<int> v{1,2,3,4,5};
+            cout<<"---------------"<<endl;
+            for( int i:v)
+            {
+                cout<<"======================="<<endl;
+                sink(i); // push {i} to coroutine-function
+            }
+        }
+        void test4()
+        {
             boost::coroutines::asymmetric_coroutine<int>::pull_type source( // constructor enters coroutine-function
             [&](boost::coroutines::asymmetric_coroutine<int>::push_type& sink)
             {
