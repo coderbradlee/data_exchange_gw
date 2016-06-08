@@ -738,6 +738,17 @@ namespace x3
             s.collide(sss);
         }
     }
+    namespace test_template_const
+    {
+        int const& max(const int const& a,const int const& b)
+        {
+            return a>b?a:b;
+        }
+        void test()
+        {
+            max(1,2);
+        }
+    }
 	void test()
 	{
 		
@@ -747,7 +758,8 @@ namespace x3
         //test_function_pointer::test();
         //test_string_reference_counting::test();
         //test_object_reference_counting::test();
-        test_twofold_virtual::test();
+        //test_twofold_virtual::test();
+        test_template_const::test();
 	}
 }
 }
