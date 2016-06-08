@@ -842,7 +842,7 @@ namespace x3
     {
         void test()
         {
-            typedef boost::coroutine::coroutine<std::string(std::string)> my_coro;
+            typedef boost::coroutines::coroutine<std::string(std::string)> my_coro;
 
         }
     }
