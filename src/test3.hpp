@@ -1057,7 +1057,7 @@ namespace x3
             }    
             cout<<"======================"<<endl;
         }
-        void test()
+        void test9()
         {
             boost::coroutines::asymmetric_coroutine<int>::push_type sink(
             [&](boost::coroutines::asymmetric_coroutine<int>::pull_type& source)
@@ -1072,6 +1072,24 @@ namespace x3
             cout<<"----------------"<<endl;
             std::vector<int> v{1,2,3,4,5};
             std::copy(boost::begin(v),boost::end(v),boost::begin(sink));
+        }
+        void test()
+        {
+            boost::coroutines::symmetric_coroutine<int>::call_type coro( // constructor does NOT enter coroutine-function
+            [&](boost::coroutines::symmetric_coroutine<int>::yield_type& yield)
+            {
+                for (;;) 
+                {
+                    std::cout << yield.get() <<  " ";
+                    yield(); // jump back to starting context
+                }
+            });
+            cout<<"-------------"<<endl;
+            coro(1); // transfer {1} to coroutine-function
+            coro(2); // transfer {2} to coroutine-function
+            coro(3); // transfer {3} to coroutine-function
+            coro(4); // transfer {4} to coroutine-function
+            coro(5); // transfer {5} to coroutine-function
         }
     }
 	void test()
