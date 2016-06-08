@@ -870,7 +870,7 @@ namespace x3
                         in();
                     }
                     // after 'num' items, line break
-                    std::cout << std::endl;
+                    std::cout <<" ::"<< std::endl;
                 }
             });
 
