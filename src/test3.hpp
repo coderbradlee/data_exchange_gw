@@ -1036,7 +1036,7 @@ namespace x3
                 std::cout<<"sink is complete: "<<std::boolalpha<<!sink<<"\n";
             }
         }
-        void test()
+        void test8()
         {
             int number=2,exponent=8;
             boost::coroutines::asymmetric_coroutine< int >::pull_type source(
@@ -1056,6 +1056,22 @@ namespace x3
                 std::cout << i <<  ":";
             }    
             cout<<"======================"<<endl;
+        }
+        void test()
+        {
+            boost::coroutines::asymmetric_coroutine<int>::push_type sink(
+            [&](boost::coroutines::asymmetric_coroutine<int>::pull_type& source)
+            {
+                while(source)
+                {
+                    std::cout << source.get() <<  " ";
+                    source();
+                }
+                cout<<":"<<endl;
+            });
+            cout<<"----------------"<<endl;
+            std::vector<int> v{1,2,3,4,5};
+            std::copy(boost::begin(v),boost::end(v),boost::begin(sink));
         }
     }
 	void test()
