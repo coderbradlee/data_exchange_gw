@@ -838,6 +838,14 @@ namespace x3
               ref3.Bar();
         } // destructor 
     }
+    namespace test_coroutine
+    {
+        void test()
+        {
+            typedef boost::coroutine::coroutine<std::string(std::string)> my_coro;
+
+        }
+    }
 	void test()
 	{
 		
@@ -849,7 +857,8 @@ namespace x3
         //test_object_reference_counting::test();
         //test_twofold_virtual::test();
         //test_template_const::test();
-        test_lifetime::test();
+        //test_lifetime::test();
+        test_coroutine::test();
 	}
 }
 }
