@@ -746,7 +746,8 @@ namespace x3
         }
         void test()
         {
-            max(1,2);
+            int x=max(1,2);
+            cout<<x<<endl;
         }
     }
 	void test()
