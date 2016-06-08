@@ -847,6 +847,7 @@ namespace x3
                 ~FinalEOL()
                 {
                     std::cout << std::endl;
+                    cout<<"~~"<<endl;
                 }
             };
 
