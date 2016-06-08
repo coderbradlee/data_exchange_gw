@@ -780,7 +780,27 @@ namespace x3
             new (&n) double(3.14); // reuse with a different type okay
         } // okay
         const B b;
-        cout<<"--------------------"<<endl;
+        //cout<<"--------------------"<<endl;
+        Class Base()
+       {
+           public:
+             
+                virtual Bar() { cout << "base bar()" << endl; }
+       };
+       
+       Class DerOne: public Base
+       {
+          public:
+          
+             virtual Bar() { cout << "DerOne Bar()" << endl; }
+      };
+      
+      class DerTwo: public Base
+      {
+          public:
+              
+             virtual Bar() { cout << "DerTwo Bar()" << endl; }
+      };
         void test()
          {
             B b; // automatic non-trivially destructible
@@ -792,6 +812,13 @@ namespace x3
             new (const_cast<B*>(&b)) const B; 
             cout<<"--------3------------"<<endl;   
 
+          const Base& ref1 = Base();
+          const Base& ref2 = DerOne();
+          const Base& ref3 = DerTwo();
+      
+          ref1.Bar();
+          ref2.Bar();
+          ref3.Bar();
         } // destructor 
     }
 	void test()
