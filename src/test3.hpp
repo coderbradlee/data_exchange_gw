@@ -1109,7 +1109,7 @@ namespace x3
                         X x;
                         std::cout<<"other_coro:"<<yield.get()<<std::endl;
                         // transfer execution control to other coroutine
-                        
+                        yield();
                     });
 
             {
