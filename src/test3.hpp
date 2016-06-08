@@ -843,7 +843,30 @@ namespace x3
         void test()
         {
             typedef boost::coroutines::coroutine<std::string(std::string)> my_coro;
-
+            my_coro coro([](my_coro::caller_type& caller)
+                {
+                    while(caller.has_result())
+                    {
+                        if(caller.get()=="exit")
+                        {
+                            return;
+                        }
+                        cout<<caller.get()<<endl;
+                        caller("ok");
+                    }
+                },"init arg");
+            if(coro.has_result())
+            {
+                cout<<coro.get()<<endl;
+            }
+            coro("two");
+            if(coro.has_result())
+            {
+                cout<<coro.get()<<endl;
+            }
+            coro("exit");
+            if (!coro)　　// 执行完毕或者被设置空后为false
+      　　     std::cout << "the coroutine is complete" << std::endl;
         }
     }
 	void test()
