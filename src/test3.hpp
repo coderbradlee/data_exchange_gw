@@ -785,21 +785,21 @@ namespace x3
        {
            public:
              
-                virtual void Bar() { cout << "base bar()" << endl; }
+                virtual void Bar()const { cout << "base bar()" << endl; }
        };
        
        class DerOne: public Base
        {
           public:
           
-             virtual void Bar() { cout << "DerOne Bar()" << endl; }
+             virtual void Bar()const { cout << "DerOne Bar()" << endl; }
       };
       
       class DerTwo: public Base
       {
           public:
               
-             virtual void Bar() { cout << "DerTwo Bar()" << endl; }
+             virtual void Bar()const { cout << "DerTwo Bar()" << endl; }
       };
       Base GetBase()
       {
