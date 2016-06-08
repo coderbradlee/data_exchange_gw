@@ -1104,7 +1104,13 @@ namespace x3
                 }
             };
 
-            boost::coroutines::symmetric_coroutine<int>::call_type other_coro(...);
+            boost::coroutines::symmetric_coroutine<int>::call_type other_coro([&](boost::coroutines::symmetric_coroutine<int>::yield_type& yield)
+                    {
+                        X x;
+                        std::cout<<"other_coro:"<<yield.get()<<std::endl;
+                        // transfer execution control to other coroutine
+                        
+                    });
 
             {
                 boost::coroutines::symmetric_coroutine<void>::call_type coro(
