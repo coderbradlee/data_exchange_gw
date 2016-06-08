@@ -851,16 +851,20 @@ namespace x3
                 sink(second);
                 for(int i=0;i<8;++i)
                 {
+                    cout<<i<<":"<<first<<":"<<second<<":"<<third<<endl;
                     int third=first+second;
                     first=second;
                     second=third;
                     sink(third);
-                    cout<<i<<":"<<first<<":"<<second<<":"<<third<<endl;
+
                 }
             });
 
             for(auto i:source)
-                std::cout << i <<  " ";
+            {
+                //std::cout << i <<  " ";
+            }
+
         }
         void test1()
         {
