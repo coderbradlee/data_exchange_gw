@@ -848,7 +848,7 @@ namespace x3
                 for(int i=0;i<6;++i)
                 {
                     cout<<i<<endl;
-                    sink(1);
+                    sink(i);
                 }
                 // cout<<
                 // sink(1); // push {1} back to main-context
@@ -858,7 +858,7 @@ namespace x3
                 // sink(5); // push {5} back to main-context
                 // sink(6); // push {8} back to main-context
             });
-
+            cout<<"--------------"<<endl;
             while(source)
             {            // test if pull-coroutine is valid
                 cout<<":"<<endl;
