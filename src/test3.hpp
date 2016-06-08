@@ -1085,11 +1085,11 @@ namespace x3
                 }
             });
             cout<<"-------------"<<endl;
-            coro(1); // transfer {1} to coroutine-function
-            coro(2); // transfer {2} to coroutine-function
-            coro(3); // transfer {3} to coroutine-function
-            coro(4); // transfer {4} to coroutine-function
-            coro(5); // transfer {5} to coroutine-function
+            coro(11); // transfer {1} to coroutine-function
+            coro(22); // transfer {2} to coroutine-function
+            coro(33); // transfer {3} to coroutine-function
+            coro(44); // transfer {4} to coroutine-function
+            coro(55); // transfer {5} to coroutine-function
         }
     }
 	void test()
