@@ -826,10 +826,13 @@ namespace x3
             new (const_cast<B*>(&b)) const B; 
             cout<<"--------3------------"<<endl;   
 
-              const Base& ref1=GetBase();
-              const Base& ref2=GetDerOne();
-              const Base& ref3=GetDerTwo();
+              // const Base& ref1=GetBase();
+              // const Base& ref2=GetDerOne();
+              // const Base& ref3=GetDerTwo();
           
+              const Base& ref1(Base());
+              const Base& ref2(DerOne());
+              const Base& ref3(DerTwo());
               ref1.Bar();
               ref2.Bar();
               ref3.Bar();
