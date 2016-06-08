@@ -1073,7 +1073,7 @@ namespace x3
             std::vector<int> v{1,2,3,4,5};
             std::copy(boost::begin(v),boost::end(v),boost::begin(sink));
         }
-        void test()
+        void test10()
         {
             boost::coroutines::symmetric_coroutine<int>::call_type coro( // constructor does NOT enter coroutine-function
             [&](boost::coroutines::symmetric_coroutine<int>::yield_type& yield)
@@ -1090,6 +1090,36 @@ namespace x3
             coro(33); // transfer {3} to coroutine-function
             coro(44); // transfer {4} to coroutine-function
             coro(55); // transfer {5} to coroutine-function
+        }
+        void test()
+        {
+            struct X 
+            {
+                X(){
+                    std::cout<<"X()"<<std::endl;
+                }
+
+                ~X(){
+                    std::cout<<"~X()"<<std::endl;
+                }
+            };
+
+            boost::coroutines::symmetric_coroutine<int>::call_type other_coro(...);
+
+            {
+                boost::coroutines::symmetric_coroutine<void>::call_type coro(
+                    [&](boost::coroutines::symmetric_coroutine<void>::yield_type& yield)
+                    {
+                        X x;
+                        std::cout<<"fn()"<<std::endl;
+                        // transfer execution control to other coroutine
+                        yield( other_coro, 7);
+                    });
+
+                coro();
+
+                std::cout<<"coro is complete: "<<std::boolalpha<<!coro<<"\n";
+            }
         }
     }
 	void test()
