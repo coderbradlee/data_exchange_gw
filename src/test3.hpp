@@ -781,7 +781,7 @@ namespace x3
         } // okay
         const B b;
         //cout<<"--------------------"<<endl;
-        class Base()
+        class Base
        {
            public:
              
