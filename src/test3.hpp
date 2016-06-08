@@ -1019,7 +1019,7 @@ namespace x3
                     [&](boost::coroutines::asymmetric_coroutine<void>::pull_type& source)
                     {
                         X x;
-                        for(int=0;;++i)
+                        for(int i=0;;++i)
                         {
                             std::cout<<"fn(): "<<i<<std::endl;
                             // transfer execution control back to main()
