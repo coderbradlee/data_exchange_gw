@@ -850,7 +850,7 @@ namespace x3
                 }
             };
 
-        const int num=5, width=15;
+        const int num=5, width=10;
         boost::coroutines::asymmetric_coroutine<std::string>::push_type writer(
             [&](boost::coroutines::asymmetric_coroutine<std::string>::pull_type& in)
             {
