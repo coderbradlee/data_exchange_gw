@@ -812,9 +812,9 @@ namespace x3
             new (const_cast<B*>(&b)) const B; 
             cout<<"--------3------------"<<endl;   
 
-          const Base& ref1 = Base();
-          const Base& ref2 = DerOne();
-          const Base& ref3 = DerTwo();
+          const Base& ref1(Base());
+          const Base& ref2(DerOne());
+          const Base& ref3(DerTwo());
       
           ref1.Bar();
           ref2.Bar();
