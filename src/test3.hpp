@@ -830,9 +830,9 @@ namespace x3
               // const Base& ref2=GetDerOne();
               // const Base& ref3=GetDerTwo();
           
-              const Base& ref1(Base());
-              const Base& ref2(DerOne());
-              const Base& ref3(DerTwo());
+              const Base& ref1(Base{});
+              const Base& ref2(DerOne{});
+              const Base& ref3(DerTwo{});
               ref1.Bar();
               ref2.Bar();
               ref3.Bar();
