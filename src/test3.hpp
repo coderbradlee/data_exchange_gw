@@ -865,8 +865,10 @@ namespace x3
                 cout<<coro.get()<<endl;
             }
             coro("exit");
-            if(!coro)　　// 执行完毕或者被设置空后为false
-      　　     std::cout << "the coroutine is complete" << std::endl;
+            if(!coro)//　　// 执行完毕或者被设置空后为false
+      　　  {
+                cout<<"complete"<<endl;
+            }  
         }
     }
 	void test()
