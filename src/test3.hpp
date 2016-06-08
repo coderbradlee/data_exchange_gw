@@ -1104,7 +1104,7 @@ namespace x3
                 }
             };
 
-            boost::coroutines::symmetric_coroutine<int>::call_type other_coro([=](boost::coroutines::symmetric_coroutine<int>::yield_type yield)
+            boost::coroutines::symmetric_coroutine<int>::call_type other_coro([](boost::coroutines::symmetric_coroutine<int>::yield_type yield)
             {
                 for (;;) 
                 {
