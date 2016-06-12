@@ -1267,6 +1267,13 @@ namespace x3
             print(v);
             cout<<"---------------------------"<<endl;
             print(u);
+            list<wstring>::const_iterator it=v.begin();
+            advance(it,3);
+            v.splice(it,u);
+            cout<<"---------------------------"<<endl;
+            print(v);
+            cout<<"---------------------------"<<endl;
+            print(u);
         }
     }
 	void test()
