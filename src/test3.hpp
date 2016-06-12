@@ -1327,9 +1327,9 @@ namespace x3
         {
             people people_array[3]=
             {
-                people("a",1);
-                people("b",2);
-                people("c",3);
+                people("a",1),
+                people("b",2),
+                people("c",3)
             };
             set<people,people_comparer> ps(people_array,people_array+3);
             set<people,people_comparer> ps1;
