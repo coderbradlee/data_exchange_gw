@@ -1274,6 +1274,7 @@ namespace x3
             print(v);
             cout<<"---------------------------"<<endl;
             print(u);
+            v.splice(v.begin(),v,it,v.end());
         }
     }
 	void test()
