@@ -1241,7 +1241,7 @@ namespace x3
         }
         void test()
         {
-            std::vector<std::wstring> v;
+            std::list<std::wstring> v;
             v.reserve(10);
             v.push_back(L"test1");
             v.push_back(L"test2");
@@ -1250,9 +1250,23 @@ namespace x3
             v.push_back(L"aa");
             //print(v);
             //v.erase(remove_if(v.begin(),v.end(),remove_condition(L"test")),v.end());
-            v.erase(remove_if(v.begin(),v.end(),[](wstring m_w){return m_w.find(L"test")!=-1;}),v.end());
+            //v.erase(remove_if(v.begin(),v.end(),[](wstring m_w){return m_w.find(L"test")!=-1;}),v.end());
             cout<<"---------------------------"<<endl;
             print(v);
+            cout<<"---------------------------"<<endl;
+            std::list<std::wstring> u;
+            u.reserve(10);
+            u.push_back(L"a");
+            u.push_back(L"b");
+            u.push_back(L"c");
+            u.push_back(L"d");
+            u.push_back(L"e");
+            print(u);
+            v.splice(v.begin(),u);
+            cout<<"---------------------------"<<endl;
+            print(v);
+            cout<<"---------------------------"<<endl;
+            print(u);
         }
     }
 	void test()
