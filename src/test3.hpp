@@ -1216,6 +1216,39 @@ namespace x3
             }
         }
     }
+    namespace test_remove_if
+    {
+        class remove_condition:public std::unary_function<wstring,bool>
+        {
+        public:
+            remove_condition(const wstring& w):m_w(w){}
+            bool operator()(const wstring& w)const
+            {
+                return w.find(m_w)!=-1;
+            }
+            wstring m_w;
+        };
+        void print(const std::vector<wstring>& v)
+        {
+            for(const auto& i:v)
+            {
+                wcout<<i<<endl;
+            }
+        }
+        void test()
+        {
+            std::vector<std::wstring> v;
+            v.reserve(10);
+            v.push_back(L"test1");
+            v.push_back(L"test2");
+            v.push_back(L"test3");
+            v.push_back(L"test4");
+            v.push_back(L"aa");
+            print(v);
+            v.erase(remove_if(v.begin(),v.end(),remove_condition(L"test")),v.end());
+            print(v);
+        }
+    }
 	void test()
 	{
 		
@@ -1230,7 +1263,8 @@ namespace x3
         //test_lifetime::test();
         //test_coroutine::test();
         //test_traits::test();
-        test_vector::test();
+        //test_vector::test();
+        test_remove_if::test();
 	}
 }
 }
