@@ -1232,7 +1232,7 @@ namespace x3
             }
             wstring m_w;
         };
-        void print(const std::vector<wstring>& v)
+        void print(const std::list<wstring>& v)
         {
             for(const auto& i:v)
             {
@@ -1242,7 +1242,7 @@ namespace x3
         void test()
         {
             std::list<std::wstring> v;
-            v.reserve(10);
+            //v.reserve(10);
             v.push_back(L"test1");
             v.push_back(L"test2");
             v.push_back(L"test3");
@@ -1255,7 +1255,7 @@ namespace x3
             print(v);
             cout<<"---------------------------"<<endl;
             std::list<std::wstring> u;
-            u.reserve(10);
+            //u.reserve(10);
             u.push_back(L"a");
             u.push_back(L"b");
             u.push_back(L"c");
