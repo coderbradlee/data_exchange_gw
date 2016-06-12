@@ -1147,7 +1147,7 @@ namespace x3
             size_t l=strlen(c);
             char *p=c;
             char *q=c+l;
-            cout<<sigma<char>(p,q)<<endl;
+            cout<<(int)sigma<char>(p,q)<<endl;
         }
     }
 	void test()
