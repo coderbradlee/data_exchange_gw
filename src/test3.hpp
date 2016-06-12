@@ -1206,6 +1206,7 @@ namespace x3
                 wcout<<ws1<<endl;
                 cout<<sizeof(ws1)<<endl;
                 cout<<sizeof(L"test")<<endl;
+                cout<<sizeof("test")<<endl;
             }
             catch(const std::exception& ex)
             {
