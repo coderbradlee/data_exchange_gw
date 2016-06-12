@@ -1223,11 +1223,11 @@ namespace x3
         public:
             remove_condition(const wstring& w):m_w(w)
             {
-                wcout<<"constructor:"<<m_w<<endl;
+                wcout<<"constructor:"<<w<<endl;
             }
             bool operator()(const wstring& w)const
             {
-                wcout<<"operator():"<<m_w<<endl;
+                wcout<<"operator():"<<w<<endl;
                 return w.find(m_w)!=-1;
             }
             wstring m_w;
