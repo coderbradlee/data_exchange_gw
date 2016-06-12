@@ -1378,7 +1378,7 @@ namespace x3
             cout.imbue(loc);
             
 
-            string text="Hello World! あにま! Linux2.6 and Windows7 is word and number. שָלוֹם עוֹלָם!";
+           string text="Hello World! あにま! Linux2.6 and Windows7 is word and number. שָלוֹם עוֹלָם!";
 
             cout<<text<<endl;
 
