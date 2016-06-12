@@ -1348,7 +1348,8 @@ namespace x3
             set<people,people_comparer>::iterator it=dest.find(people("b",2));
             if(it!=dest.end())
             {
-                const_cast<people&>(*it).set_name("bb");
+                //const_cast<people&>(*it).set_name("bb");
+                static_cast<people>(*it).set_name("bb");
             }
             print(dest);
         }
