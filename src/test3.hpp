@@ -1156,6 +1156,7 @@ namespace x3
         template<>
         class sigma_traits<char>
         {
+        public:
             typedef int return_type;
         };
         template<>
