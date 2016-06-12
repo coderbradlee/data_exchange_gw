@@ -1315,7 +1315,7 @@ namespace x3
                 return p1.get_id()<p2.get_id();
             }
         }
-        void print(const set<people>& s)
+        void print(const set<people,people_comparer>& s)
         {
             for(const auto& i:s)
             {
