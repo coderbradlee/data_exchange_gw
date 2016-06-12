@@ -1201,10 +1201,11 @@ namespace x3
             v.push_back(L"test");
             try
             {
-                std::wstring ws1=v[3];
+                std::wstring ws1=v[0];
                 //wstring ws2=v.at(3);
                 wcout<<ws1<<endl;
                 cout<<sizeof(ws1)<<endl;
+                cout<<sizeof(L"test")<<endl;
             }
             catch(const std::exception& ex)
             {
