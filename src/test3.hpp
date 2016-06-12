@@ -1187,7 +1187,7 @@ namespace x3
             char *p=c;
             char *q=c+l;
             cout<<(int)sigma<char>(p,q)<<endl;
-
+            cout<<sigma2<char>(p,q)<<endl;
         }
     }
 	void test()
