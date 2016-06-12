@@ -1278,6 +1278,75 @@ namespace x3
             print(u);
         }
     }
+    namespace test_set
+    {
+        class people
+        {
+        public:
+
+            people(const string& name,const size_t id):m_name(name),m_id(id)
+            {
+                cout<<"constructor"<<endl;
+            }
+            const string& get_name()const
+            {
+                return m_name;
+            }
+            const size_t get_id()const
+            {
+                return m_id;
+            }
+            bool set_name(const string& name)
+            {
+                m_name=name;
+            }
+            boot set_id(const size_t id)
+            {
+                m_id=id;
+            }
+        private:
+            string m_name;
+            size_t m_id;
+        };
+        struct people_comparer:public binary_function<people,people,bool>
+        {
+            bool operator()(const people& p1,const people& p2)const
+            {
+                return p1.get_id()<p2.get_id();
+            }
+        }
+        void print(const set<people>& s)
+        {
+            for(const auto& i:s)
+            {
+                cout<<i.get_id<<":"<<i.get_name<<endl;
+            }
+            cout<<"-----------------"<<endl;
+        }
+        void test()
+        {
+            people people_array[3]=
+            {
+                people("a",1);
+                people("b",2);
+                people("c",3);
+            };
+            set<people,people_comparer> ps(people_array,people_array+3);
+            set<people,people_comparer> ps1;
+            ps1.insert(people("c",3));
+            ps1.insert(people("d",4));
+            print(ps);
+            print(ps1);
+            set<people,people_comparer> dest;
+            insert_iterator<set<people,people_comparer>> ii(dest,dest.begin());
+            set_union(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
+            print(dest);
+            // set_intersection(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
+            // print(dest);
+            // set_difference(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
+            // print(dest);
+        }
+    }
 	void test()
 	{
 		
@@ -1293,7 +1362,8 @@ namespace x3
         //test_coroutine::test();
         //test_traits::test();
         //test_vector::test();
-        test_remove_if::test();
+        //test_remove_if::test();
+        test_set::test();
 	}
 }
 }
