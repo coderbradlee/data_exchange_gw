@@ -1300,7 +1300,7 @@ namespace x3
             {
                 m_name=name;
             }
-            boot set_id(const size_t id)
+            bool set_id(const size_t id)
             {
                 m_id=id;
             }
@@ -1314,12 +1314,12 @@ namespace x3
             {
                 return p1.get_id()<p2.get_id();
             }
-        }
+        };
         void print(const set<people,people_comparer>& s)
         {
             for(const auto& i:s)
             {
-                cout<<i.get_id<<":"<<i.get_name<<endl;
+                cout<<i.get_id()<<":"<<i.get_name()<<endl;
             }
             cout<<"-----------------"<<endl;
         }
