@@ -1197,7 +1197,7 @@ namespace x3
             cout<<sizeof(string)<<endl;
             cout<<sizeof(wstring)<<endl;
             std::vector<std::wstring> v;
-            v.reserve[10];
+            v.reserve(10);
             v.push_back(L"test");
             try
             {
