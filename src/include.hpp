@@ -73,5 +73,8 @@ using namespace boost::posix_time;
 #include <boost/nondet_random.hpp>
 #include <boost/coroutine/all.hpp>
 #include <boost/locale.hpp>
+#include <iostream>
+#include <cassert>
+#include <ctime>
 #endif
 
