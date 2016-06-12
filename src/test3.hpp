@@ -1147,27 +1147,27 @@ namespace x3
         template<>
         class sigma_traits<char>
         {
-        //public:
+        public:
             typedef int return_type;
         };
         template<>
         class sigma_traits<short>
-        {
+        {public:
             typedef int return_type;
         };
         template<>
         class sigma_traits<int>
-        {
+        {public:
             typedef long return_type;
         };
         template<>
         class sigma_traits<unsigned int>
-        {
+        {public:
             typedef unsigned long return_type;
         };
         template<>
         class sigma_traits<float>
-        {
+        {public:
             typedef double return_type;
         };
         template<typename T> inline typename sigma_traits<T>::return_type sigma2(const T* start,const T* end)
@@ -1190,6 +1190,27 @@ namespace x3
             cout<<sigma2<char>(p,q)<<endl;
         }
     }
+    namespace test_vector
+    {
+        void test()
+        {
+            cout<<sizeof(string)<<endl;
+            cout<<sizeof(wstring)<<endl;
+            std::vector<std::wstring> v;
+            v.reserve[10];
+            v.push_back("test");
+            try
+            {
+                std::wstring ws1=v[3];
+                wstring ws2=v.at(3);
+
+            }
+            catch(const std::exception& ex)
+            {
+                cout<<ex.what()<<endl;
+            }
+        }
+    }
 	void test()
 	{
 		
@@ -1203,7 +1224,8 @@ namespace x3
         //test_template_const::test();
         //test_lifetime::test();
         //test_coroutine::test();
-        test_traits::test();
+        //test_traits::test();
+        test_vector::test();
 	}
 }
 }
