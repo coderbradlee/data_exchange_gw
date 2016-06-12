@@ -1221,9 +1221,13 @@ namespace x3
         class remove_condition:public std::unary_function<wstring,bool>
         {
         public:
-            remove_condition(const wstring& w):m_w(w){}
+            remove_condition(const wstring& w):m_w(w)
+            {
+                cout<<"constructor"<<endl;
+            }
             bool operator()(const wstring& w)const
             {
+                cout<<"operator()"<<endl;
                 return w.find(m_w)!=-1;
             }
             wstring m_w;
@@ -1246,6 +1250,7 @@ namespace x3
             v.push_back(L"aa");
             print(v);
             v.erase(remove_if(v.begin(),v.end(),remove_condition(L"test")),v.end());
+            //v.erase(remove_if(v.begin(),v.end(),[](wstring m_w){return m_w.find(L"test")!=-1;}),v.end());
             print(v);
         }
     }
