@@ -1202,7 +1202,7 @@ namespace x3
             try
             {
                 std::wstring ws1=v[0];
-                //wstring ws2=v.at(3);
+                wstring ws2=v.at(3);
                 wcout<<ws1<<endl;
                 cout<<sizeof(ws1)<<endl;
                 cout<<sizeof(L"test")<<endl;
