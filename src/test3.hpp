@@ -1141,6 +1141,43 @@ namespace x3
             }
             return total;
         }
+        template<typename T> inline typename sigma_traits<T>::return_type sigma2(const T* start,const T* end)
+        {
+            typedef typename sigma_traits<T>::return_type return_type;
+            return_type total=return_type();
+            while(start!=end)
+            {
+                total+=*start++;
+            }
+            return total;
+        }
+        template<typename T>
+        class sigma_traits{};
+        template<>
+        class sigma_traits<char>
+        {
+            typedef int return_type;
+        };
+        template<>
+        class sigma_traits<short>
+        {
+            typedef int return_type;
+        };
+        template<>
+        class sigma_traits<int>
+        {
+            typedef long return_type;
+        };
+        template<>
+        class sigma_traits<unsigned int>
+        {
+            typedef unsigned long return_type;
+        };
+        template<>
+        class sigma_traits<float>
+        {
+            typedef double return_type;
+        };
         void test()
         {
             char c[]="abc";
@@ -1148,6 +1185,7 @@ namespace x3
             char *p=c;
             char *q=c+l;
             cout<<(int)sigma<char>(p,q)<<endl;
+
         }
     }
 	void test()
