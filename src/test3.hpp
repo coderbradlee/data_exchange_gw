@@ -1208,6 +1208,7 @@ namespace x3
                 cout<<sizeof(L"test")<<endl;
                 cout<<sizeof(L"测试")<<endl;
                 cout<<sizeof("test")<<endl;
+                cout<<sizeof("测试")<<endl;
             }
             catch(const std::exception& ex)
             {
