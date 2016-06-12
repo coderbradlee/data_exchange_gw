@@ -1355,6 +1355,15 @@ namespace x3
             print(dest);
         }
     }
+    namespace test_function_object
+    {
+        void test()
+        {
+            std::greater<int> g;
+            cout<<boolalpha<<g(10,3)<<endl;
+            cout<<greater<int>()(100,300)<<endl;
+        }
+    }
 	void test()
 	{
 		
@@ -1371,7 +1380,8 @@ namespace x3
         //test_traits::test();
         //test_vector::test();
         //test_remove_if::test();
-        test_set::test();
+        //test_set::test();
+        test_function_object::test();
 	}
 }
 }
