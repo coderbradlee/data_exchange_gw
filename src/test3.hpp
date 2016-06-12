@@ -1349,7 +1349,7 @@ namespace x3
             if(it!=dest.end())
             {
                 //const_cast<people&>(*it).set_name("bb");
-                static_cast<people>(*it).set_name("bb");
+                static_cast<people&>(*it).set_name("bb");
             }
             print(dest);
         }
