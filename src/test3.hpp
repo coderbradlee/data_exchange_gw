@@ -1130,6 +1130,26 @@ namespace x3
             }
         }
     }
+    namespace test_traits
+    {
+        template<typename T> inline T sigma(const T* start,const T* end)
+        {
+            T total=T();
+            while(start!=end)
+            {
+                total+=*start++;
+            }
+            return total;
+        }
+        void test()
+        {
+            char c[]="abc";
+            size_t l=strlen(c);
+            char *p=c;
+            char *q=c+l;
+            cout<<sigma<char>(p,q)<<endl;
+        }
+    }
 	void test()
 	{
 		
@@ -1142,7 +1162,8 @@ namespace x3
         //test_twofold_virtual::test();
         //test_template_const::test();
         //test_lifetime::test();
-        test_coroutine::test();
+        //test_coroutine::test();
+        test_traits::test();
 	}
 }
 }
