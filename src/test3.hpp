@@ -1341,10 +1341,10 @@ namespace x3
             insert_iterator<set<people,people_comparer>> ii(dest,dest.begin());
             // set_union(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
             // print(dest);
-            set_intersection(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
-            print(dest);
-            // set_difference(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
+            // set_intersection(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
             // print(dest);
+            set_difference(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
+            print(dest);
         }
     }
 	void test()
