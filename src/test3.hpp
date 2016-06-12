@@ -1269,12 +1269,13 @@ namespace x3
             print(u);
             list<wstring>::const_iterator it=v.begin();
             advance(it,3);
-            u.splice(u.begin(),v,it);
+            //u.splice(u.begin(),v,it);
+            
+            v.splice(v.begin(),u,it,v.end());
             cout<<"---------------------------"<<endl;
             print(v);
             cout<<"---------------------------"<<endl;
             print(u);
-            v.splice(v.begin(),v,it,v.end());
         }
     }
 	void test()
