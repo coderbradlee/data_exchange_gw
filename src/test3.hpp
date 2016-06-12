@@ -1141,16 +1141,7 @@ namespace x3
             }
             return total;
         }
-        template<typename T> inline typename sigma_traits<T>::return_type sigma2(const T* start,const T* end)
-        {
-            typedef typename sigma_traits<T>::return_type return_type;
-            return_type total=return_type();
-            while(start!=end)
-            {
-                total+=*start++;
-            }
-            return total;
-        }
+        
         template<typename T>
         class sigma_traits{};
         template<>
@@ -1179,6 +1170,16 @@ namespace x3
         {
             typedef double return_type;
         };
+        template<typename T> inline typename sigma_traits<T>::return_type sigma2(const T* start,const T* end)
+        {
+            typedef typename sigma_traits<T>::return_type return_type;
+            return_type total=return_type();
+            while(start!=end)
+            {
+                total+=*start++;
+            }
+            return total;
+        }
         void test()
         {
             char c[]="abc";
