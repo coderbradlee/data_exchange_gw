@@ -1350,6 +1350,7 @@ namespace x3
             {
                 const_cast<people&>(*it).set_name("bb");
             }
+            print(dest);
         }
     }
 	void test()
