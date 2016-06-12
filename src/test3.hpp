@@ -1345,7 +1345,7 @@ namespace x3
             // print(dest);
             set_difference(ps.begin(),ps.end(),ps1.begin(),ps1.end(),ii,people_comparer());
             print(dest);
-            auto it=dest.find(people("b",2));
+            set<people,people_comparer>::iterator it=dest.find(people("b",2));
             if(it!=dest.end())
             {
                 it->set_name("bb");
