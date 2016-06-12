@@ -1203,7 +1203,7 @@ namespace x3
             {
                 std::wstring ws1=v[3];
                 //wstring ws2=v.at(3);
-                cout<<ws1<<endl;
+                wcout<<ws1<<endl;
                 cout<<sizeof(ws1)<<endl;
             }
             catch(const std::exception& ex)
