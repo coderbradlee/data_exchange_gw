@@ -1249,8 +1249,8 @@ namespace x3
             v.push_back(L"test4");
             v.push_back(L"aa");
             //print(v);
-            v.erase(remove_if(v.begin(),v.end(),remove_condition(L"test")),v.end());
-            //v.erase(remove_if(v.begin(),v.end(),[](wstring m_w){return m_w.find(L"test")!=-1;}),v.end());
+            //v.erase(remove_if(v.begin(),v.end(),remove_condition(L"test")),v.end());
+            v.erase(remove_if(v.begin(),v.end(),[](wstring m_w){return m_w.find(L"test")!=-1;}),v.end());
             cout<<"---------------------------"<<endl;
             print(v);
         }
