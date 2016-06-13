@@ -1366,7 +1366,7 @@ namespace x3
     }
     namespace test_locale
     {
-        void test1()
+        void test()
         {
              using namespace boost::locale;
             using namespace std;
@@ -1422,7 +1422,7 @@ namespace x3
             cout<<"|\n\n";
             
         }
-        void test()
+        void test1()
         {
             using namespace boost::locale;
             using namespace std;
