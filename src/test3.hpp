@@ -1532,6 +1532,22 @@ namespace x3
         }
 
     }
+    namespace test_test
+    {
+        void test()
+        {
+            int *a=new int(10);
+            int *b=new int(20);
+            cout<<"a=0x"<<hex<<a<<endl;
+            cout<<"b=0x"<<hex<<b<<endl;
+            a=(int*)(b-a);
+            cout<<"a=0x"<<hex<<a<<endl;
+            b=(int*)(b-a);
+            cout<<"b=0x"<<hex<<b<<endl;
+            a=(int*)(b+int(a));
+            cout<<"a=0x"<<hex<<a<<endl;
+        }
+    }
 	void test()
 	{
 		
@@ -1551,7 +1567,8 @@ namespace x3
         //test_set::test();
         //test_function_object::test();
         //test_locale::test();
-        test_string_size::test();
+        //test_string_size::test();
+        test_test::test();
 	}
 }
 }

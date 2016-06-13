@@ -77,7 +77,7 @@ using namespace boost::posix_time;
 #include <cassert>
 #include <ctime>
 //////////reduce compile time
-#include <boost/asio/impl/src.hpp>
-#define BOOST_ASIO_SEPARATE_COMPILATION
+// #include <boost/asio/impl/src.hpp>
+// #define BOOST_ASIO_SEPARATE_COMPILATION
 #endif
 
