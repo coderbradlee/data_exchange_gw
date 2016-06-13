@@ -1518,10 +1518,7 @@ namespace x3
               };
               struct _Alloc_hider : _Alloc
               {
-                _Alloc_hider(_CharT* __dat, const _Alloc& __a) _GLIBCXX_NOEXCEPT
-                : _Alloc(__a), _M_p(__dat) { }
-
-                _CharT* _M_p; // The actual data.
+                int* _M_p; // The actual data.
               };
             mutable _Alloc_hider  _M_dataplus;
             _Rep_base t;
