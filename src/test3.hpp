@@ -1510,18 +1510,18 @@ namespace x3
     {
         class test_string
         {
-              struct _Rep_base
-              {
-                int*       _M_length;
-                int*       _M_capacity;
-                int*        _M_refcount;
-              };
-              struct _Alloc_hider
-              {
-                int* _M_p; // The actual data.
-              };
-            mutable _Alloc_hider  _M_dataplus;
-            _Rep_base t;
+          struct _Rep_base
+          {
+            int*       _M_length;
+            int*       _M_capacity;
+            int*        _M_refcount;
+          };
+          struct _Alloc_hider
+          {
+            int* _M_p; // The actual data.
+          };
+          mutable _Alloc_hider  _M_dataplus;
+          _Rep_base t;
         };
         void test()
         {
