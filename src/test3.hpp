@@ -1538,14 +1538,14 @@ namespace x3
         {
             int *a=new int(10);
             int *b=new int(20);
-            cout<<"a=0x"<<hex<<a<<endl;
-            cout<<"b=0x"<<hex<<b<<endl;
+            cout<<"a="<<hex<<a<<endl;
+            cout<<"b="<<hex<<b<<endl;
             a=(int*)(b-a);
-            cout<<"a=0x"<<hex<<a<<endl;
+            cout<<"a="<<hex<<a<<endl;
             b=(int*)(b-a);
-            cout<<"b=0x"<<hex<<b<<endl;
+            cout<<"b="<<hex<<b<<endl;
             a=(int*)(b+(long)a);
-            cout<<"a=0x"<<hex<<a<<endl;
+            cout<<"a="<<hex<<a<<endl;
             cout<<*a<<endl;
             cout<<*b<<endl;
         }
