@@ -1366,7 +1366,7 @@ namespace x3
     }
     namespace test_locale
     {
-        void test()
+        void test2()
         {
              using namespace boost::locale;
             using namespace std;
@@ -1448,6 +1448,63 @@ namespace x3
             cout<<"This is title case "<<to_title("Hello World!")<<endl;
             cout<<"This is fold case "<<fold_case("Hello World!")<<endl;
         }
+        void test()
+        {
+            using namespace boost::locale;
+
+            generator gen;
+            std::locale::global(gen(""));
+            std::cout.imbue(std::locale());
+            // Setup environment
+
+            boost::locale::date_time now;
+
+            date_time start=now;
+
+            // Set the first day of the first month of this year
+            start.set(period::month(),now.minimum(period::month()));
+            start.set(period::day(),start.minimum(period::day()));
+
+            int current_year = period::year(now);
+
+
+            // Display current year
+            std::cout << format("{1,ftime='%Y'}") % now << std::endl;
+
+            //
+            // Run forward untill current year is the date
+            //
+            for(now=start; period::year(now) == current_year;) {
+
+                // Print heading of month
+                if(calendar().is_gregorian()) 
+                    std::cout << format("{1,ftime='%B'}") % now <<std::endl;
+                else
+                    std::cout << format("{1,ftime='%B'} ({1,ftime='%Y-%m-%d',locale=en} - {2,locale=en,ftime='%Y-%m-%d'})")
+                        % now 
+                        % date_time(now,now.maximum(period::day())*period::day()) << std::endl;
+
+                int first = calendar().first_day_of_week();
+
+                // Print weeks days
+                for(int i=0;i<7;i++) {
+                    date_time tmp(now,period::day_of_week() * (first + i));
+                    std::cout << format("{1,w=8,ftime='%a'} ") % tmp;
+                }
+                std::cout << std::endl;
+
+                int current_month = now / period::month();
+                int skip = now / period::day_of_week_local() - 1;
+                for(int i=0;i<skip*9;i++)
+                    std::cout << ' ';
+                for(;now / period::month() == current_month ;now += period::day()) {
+                    std::cout << format("{1,w=8,ftime='%e'} ") % now;     
+                    if(now / period::day_of_week_local() == 7)
+                        std::cout << std::endl;
+                }
+                std::cout << std::endl;
+            }
+        }
     }
 	void test()
 	{
@@ -1463,11 +1520,11 @@ namespace x3
         //test_lifetime::test();
         //test_coroutine::test();
         //test_traits::test();
-        //test_vector::test();
+        test_vector::test();
         //test_remove_if::test();
         //test_set::test();
         //test_function_object::test();
-        test_locale::test();
+        //test_locale::test();
 	}
 }
 }
