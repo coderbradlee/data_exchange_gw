@@ -1516,7 +1516,7 @@ namespace x3
                 int*       _M_capacity;
                 int*        _M_refcount;
               };
-              struct _Alloc_hider : _Alloc
+              struct _Alloc_hider
               {
                 int* _M_p; // The actual data.
               };
