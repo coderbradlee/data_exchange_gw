@@ -1542,7 +1542,7 @@ namespace x3
             cout<<"b="<<hex<<b<<endl;
             a=(int*)(b-a);
             cout<<"a="<<hex<<a<<endl;
-            b=(int*)(b-a);
+            b=(int*)(b-(long)a);
             cout<<"b="<<hex<<b<<endl;
             a=(int*)(b+(long)a);
             cout<<"a="<<hex<<a<<endl;
