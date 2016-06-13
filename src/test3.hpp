@@ -1544,7 +1544,7 @@ namespace x3
             cout<<"a=0x"<<hex<<a<<endl;
             b=(int*)(b-a);
             cout<<"b=0x"<<hex<<b<<endl;
-            a=(int*)(b+int(a));
+            a=(int*)(b+a);
             cout<<"a=0x"<<hex<<a<<endl;
         }
     }
