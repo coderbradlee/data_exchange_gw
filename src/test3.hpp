@@ -1506,6 +1506,32 @@ namespace x3
             }
         }
     }
+    namespace test_string_size
+    {
+        class test_string
+        {
+              struct _Rep_base
+              {
+                int*       _M_length;
+                int*       _M_capacity;
+                int*        _M_refcount;
+              };
+              struct _Alloc_hider : _Alloc
+              {
+                _Alloc_hider(_CharT* __dat, const _Alloc& __a) _GLIBCXX_NOEXCEPT
+                : _Alloc(__a), _M_p(__dat) { }
+
+                _CharT* _M_p; // The actual data.
+              };
+            mutable _Alloc_hider  _M_dataplus;
+            _Rep_base t;
+        };
+        void test()
+        {
+            cout<<sizeof(test_string)<<endl;
+        }
+
+    }
 	void test()
 	{
 		
@@ -1520,11 +1546,12 @@ namespace x3
         //test_lifetime::test();
         //test_coroutine::test();
         //test_traits::test();
-        test_vector::test();
+        //test_vector::test();
         //test_remove_if::test();
         //test_set::test();
         //test_function_object::test();
         //test_locale::test();
+        test_string_size::test();
 	}
 }
 }
