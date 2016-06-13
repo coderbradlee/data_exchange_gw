@@ -1525,6 +1525,9 @@ namespace x3
         };
         void test()
         {
+            cout<<sizeof(string)<<endl;
+            string s("adfaf");
+            cout<<sizeof(s)<<endl;
             cout<<sizeof(test_string)<<endl;
         }
 
