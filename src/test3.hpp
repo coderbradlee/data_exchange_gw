@@ -1566,7 +1566,7 @@ namespace x3
             for(int i=0;i<5;++i)
             {
                 //io.post(one.wrap(boost::bind(func,i)));
-                one.wrap(boost::bind(func,i));
+                io.wrap(boost::bind(func,i));
             }
             // for(int i=5;i<10;++i)
             // {
