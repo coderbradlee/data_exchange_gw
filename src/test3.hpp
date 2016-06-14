@@ -1562,9 +1562,14 @@ namespace x3
         void test()
         {   
             boost::asio::io_service io;
-            for(int i=0;i<10;++i)
+            boost::asio::io_service::strand one(io),two(io);
+            for(int i=0;i<5;++i)
             {
-                io.post(boost::bind(func,i));
+                io.post(one.wrap(boost::bind(func,i)));
+            }
+            for(int i=5;i<10;++i)
+            {
+                io.post(two.wrap(boost::bind(func,i)));
             }
             boost::thread_group th;
             for(int i=0;i<4;++i)
