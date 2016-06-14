@@ -23,7 +23,13 @@ void sig_handler (int signal_number)
 	cout<<"(exception:signal)" <<signal_number<<endl;
 	exit(signal_number);  
 }
-
+void signal_handler(const boost::system::error_code & err, int signal_number)
+{
+  BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<signal_number;
+	boost_log->get_initsink()->flush();
+	cout<<"(exception:signal)" <<err<<":"<<signal_number<<endl;
+	exit(signal_number);  
+}
 void register_signal()
 {
 	// mp::signal<const char*> sig;
@@ -47,13 +53,7 @@ void register_signal()
 	sig.async_wait(signal_handler);
 	
 }
-void signal_handler(const boost::system::error_code & err, int signal_number)
-{
-  BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<signal_number;
-	boost_log->get_initsink()->flush();
-	cout<<"(exception:signal)" <<err<<":"<<signal_number<<endl;
-	exit(signal_number);  
-}
+
 
 #endif	/* BOOST_SIGNALSET_HPP */
 
