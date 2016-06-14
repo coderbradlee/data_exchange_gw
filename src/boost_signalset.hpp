@@ -48,10 +48,12 @@ void register_signal()
  //    sig("step 5");
 	boost::asio::io_service service;
     for(int i=1;i<16;++i)
-	//std::signal(i, sig_handler);  
-		boost::asio::signal_set sig(service, i, i+16);
-	sig.async_wait(signal_handler);
-	
+	{
+		//std::signal(i, sig_handler);  
+			boost::asio::signal_set sig(service, i, i+16);
+		sig.async_wait(signal_handler);
+	}
+
 }
 
 
