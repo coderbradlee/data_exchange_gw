@@ -1567,7 +1567,8 @@ namespace x3
             {
                 //io.post(one.wrap(boost::bind(func,i)));
                 //one.post(boost::bind(func,i));
-                one.wrap(boost::bind(func,i));
+                //one.wrap(boost::bind(func,i));
+                one.dispatch(boost::bind(func,i));
             }
             //io.post(one);
             // for(int i=5;i<10;++i)
@@ -1653,6 +1654,10 @@ namespace x3
             worker_threads.join_all();  
         }
     }
+    namespace test_strand_io2
+    {
+
+    }
 	void test()
 	{
 		
@@ -1674,8 +1679,9 @@ namespace x3
         //test_locale::test();
         //test_string_size::test();
         //test_test::test();
-        //test_asio_post::test();
-        test_strand_io::test();
+        test_asio_post::test();
+        //test_strand_io::test();
+        //test_strand_io::test();
 	}
 }
 }
