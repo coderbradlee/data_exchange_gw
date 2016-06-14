@@ -1550,6 +1550,28 @@ namespace x3
             cout<<*b<<endl;
         }
     }
+    namespace test_asio_post
+    {
+        void func(int i)
+        {
+            boost::mutex cs;
+            boost::mutex::scoped_lock lc(cs);
+            cout<<i<<endl;
+        }
+        void test()
+        {   
+            boost::asio::io_service io;
+            for(int i=0;i<10;++i)
+            {
+                io.post(boost::bind(func,i));
+            }
+            boost::thread_group th;
+            for(int i=0;i<4;++i)
+                th.create_thread([&](){io.run();});
+            boost::this_thread::sleep(boost::posix_time::millisec(500));
+            th.join_all();
+        }
+    }
 	void test()
 	{
 		
@@ -1570,7 +1592,8 @@ namespace x3
         //test_function_object::test();
         //test_locale::test();
         //test_string_size::test();
-        test_test::test();
+        //test_test::test();
+        test_asio_post::test();
 	}
 }
 }
