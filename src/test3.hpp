@@ -1620,8 +1620,9 @@ namespace x3
         {  
             for( int x = 0; x < 3; ++x )  
             {  
+                io_service->post( boost::bind( &Post, x * 2 + 1 ) ); 
                 io_service->dispatch( boost::bind( &Dispatch, x * 2 ) );  
-                io_service->post( boost::bind( &Post, x * 2 + 1 ) );  
+                 
                 boost::this_thread::sleep( boost::posix_time::milliseconds( 1000 ) );  
             }  
         }  
