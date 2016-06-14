@@ -1567,10 +1567,10 @@ namespace x3
             {
                 io.post(one.wrap(boost::bind(func,i)));
             }
-            for(int i=5;i<10;++i)
-            {
-                io.post(two.wrap(boost::bind(func,i)));
-            }
+            // for(int i=5;i<10;++i)
+            // {
+            //     io.post(two.wrap(boost::bind(func,i)));
+            // }
             boost::thread_group th;
             for(int i=0;i<4;++i)
                 th.create_thread([&](){io.run();});
