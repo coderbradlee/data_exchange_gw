@@ -14,8 +14,6 @@ int main()
 	try
 	{
 		register_signal();
-		
-
 
 		{
 			x3::design_model::test();
