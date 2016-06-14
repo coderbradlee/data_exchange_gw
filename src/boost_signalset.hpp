@@ -40,8 +40,20 @@ void register_signal()
  //        sig("step 4");
  //    }
  //    sig("step 5");
-    for(int i=1;i<32;++i)
-	std::signal(i, sig_handler);  
+	boost::asio::io_service service;
+    for(int i=1;i<16;++i)
+	//std::signal(i, sig_handler);  
+		boost::asio::signal_set sig(service, i, i+16);
+	sig.async_wait(signal_handler);
+	
 }
+void signal_handler(const boost::system::error_code & err, int signal)
+{
+  BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<signal_number;
+	boost_log->get_initsink()->flush();
+	cout<<"(exception:signal)" <<err<<":"<<signal_number<<endl;
+	exit(signal_number);  
+}
+
 #endif	/* BOOST_SIGNALSET_HPP */
 
