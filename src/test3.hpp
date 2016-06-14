@@ -1565,8 +1565,8 @@ namespace x3
             boost::asio::io_service::strand one(io),two(io);
             for(int i=0;i<5;++i)
             {
-                //io.post(one.wrap(boost::bind(func,i)));
-                io.dispatch(boost::bind(func,i));
+                io.post(one.wrap(boost::bind(func,i)));
+                //io.dispatch(boost::bind(func,i));
             }
             // for(int i=5;i<10;++i)
             // {
