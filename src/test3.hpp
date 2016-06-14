@@ -1565,8 +1565,8 @@ namespace x3
             boost::asio::io_service::strand one(io),two(io);
             for(int i=0;i<5;++i)
             {
-                io.post(one.wrap(boost::bind(func,i)));
-                //io.dispatch(boost::bind(func,i));
+                //io.post(one.wrap(boost::bind(func,i)));
+                one.post(boost::bind(func,i));
             }
             // for(int i=5;i<10;++i)
             // {
@@ -1575,7 +1575,7 @@ namespace x3
             boost::thread_group th;
             for(int i=0;i<4;++i)
                 th.create_thread([&](){io.run();});
-            boost::this_thread::sleep(boost::posix_time::millisec(500));
+            boost::this_thread::sleep(boost::posix_time::millisec(2000));
             th.join_all();
         }
     }
