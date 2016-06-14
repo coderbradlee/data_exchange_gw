@@ -1640,7 +1640,7 @@ namespace x3
             global_stream_lock.unlock();  
           
             boost::thread_group worker_threads;  
-            for( int x = 0; x < 2; ++x )  
+            for( int x = 0; x < 5; ++x )  
             {  
                 worker_threads.create_thread( boost::bind( &WorkerThread, io_service ) );  
             }  
