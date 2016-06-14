@@ -1623,7 +1623,7 @@ namespace x3
                 io_service->post( boost::bind( &Post, x * 2 + 1 ) ); 
                 io_service->dispatch( boost::bind( &Dispatch, x * 2 ) );  
                  
-                boost::this_thread::sleep( boost::posix_time::milliseconds( 1000 ) );  
+                //boost::this_thread::sleep( boost::posix_time::milliseconds( 1000 ) );  
             }  
         }  
         void test()
