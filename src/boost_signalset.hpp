@@ -47,7 +47,7 @@ void register_signal()
 	sig.async_wait(signal_handler);
 	
 }
-void signal_handler(const boost::system::error_code & err, int signal)
+void signal_handler(const boost::system::error_code & err, int signal_number)
 {
   BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<signal_number;
 	boost_log->get_initsink()->flush();
