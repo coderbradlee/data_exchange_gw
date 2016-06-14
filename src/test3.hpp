@@ -1552,9 +1552,10 @@ namespace x3
     }
     namespace test_asio_post
     {
+        boost::mutex cs;
         void func(int i)
         {
-            boost::mutex cs;
+            
             boost::mutex::scoped_lock lc(cs);
             cout<<i<<endl;
         }
