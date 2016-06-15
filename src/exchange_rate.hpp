@@ -27,9 +27,9 @@ public:
 			curl_share_setopt(share_handle, CURLSHOPT_SHARE, CURL_LOCK_DATA_DNS);
 		}
 		curl_easy_setopt(m_curl, CURLOPT_SHARE, share_handle);
-		curl_easy_setopt(m_curl, CURLOPT_DNS_CACHE_TIMEOUT, 60 * 5);
-		curl_easy_setopt(m_curl, CURLOPT_TIMEOUT, 100 );
-		curl_easy_setopt(m_curl, CURLOPT_CONNECTTIMEOUT,5);
+		curl_easy_setopt(m_curl, CURLOPT_DNS_CACHE_TIMEOUT, 600 * 5);
+		curl_easy_setopt(m_curl, CURLOPT_TIMEOUT, 1000 );
+		curl_easy_setopt(m_curl, CURLOPT_CONNECTTIMEOUT,50);
 	}
 	virtual ~exchange_rate()
 	{
@@ -529,6 +529,7 @@ public:
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 			string exchange_rate=get_exchange_rate_api_data();
 
+			//boost::this_thread::sleep(boost::posix_time::millisec(5000));
 			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
