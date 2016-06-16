@@ -418,7 +418,7 @@ public:
 				
 				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
 				
-				//cout << insert_sql << endl;
+				cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();

@@ -1,4 +1,21 @@
-﻿2016.05.11
+﻿2016.06.16
+增加英镑与欧元 人民币与欧元间的汇率  通过美元转换
+GBP（J4YVQ3URHVVUS1E9261D） EUR（J4YVQ3URS8G4NI6ALIBL） CNY（J4YVQ3URQAX0UVAWQVSO）
+
+GBP：EUR 执行如下sql输出：J1KWEPEIKQKH29VVVGVH
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URHVVUS1E9261D' and target_currency_id='J4YVQ3URS8G4NI6ALIBL'
+用于检测是否插入的sql
+select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW' and createBy='exchange_gw'
+
+EUR：GBP 执行如下sql输出：WWXO1XTYC92ACAPWWXNW
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URS8G4NI6ALIBL' and target_currency_id='J4YVQ3URHVVUS1E9261D'
+
+EUR：CNY 执行如下sql输出：NOMHTSSMMID4YPEKRWYT
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URS8G4NI6ALIBL' and target_currency_id='J4YVQ3URQAX0UVAWQVSO'
+CNY：EUR 执行如下sql输出：J8SR2YX0NLA7UFTKFES1
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URQAX0UVAWQVSO' and target_currency_id='J4YVQ3URS8G4NI6ALIBL'
+
+2016.05.11
 增加分支exchange_rate，处理税率
 select code,currency_id from t_currency
 {//CAD 加元与美元的汇率
@@ -6,7 +23,7 @@ select code from t_currency where currency_id='J4YVQ3URS8G4NI6ALIBL'
 select code from t_currency where currency_id='J4YVQ3USQNO3U430EKE1'
 select currency_id from t_currency where code='CAD'
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3USQNO3U430EKE1' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
-select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW'
+select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW' and createBy='exchange_gw'
 insert into t_currency_daily_exchange_rate values(rand_string(20),'TFTBLZNSNBNAZAZGC2RW','2016','05','11',0.772558,'2016-05-11','2016-05-11 14:51:05','','','','','',0,1);
 
 insert into t_currency_daily_exchange_rate values(rand_string(20),'TFTBLZNSNBNAZAZGC2RW','2016','05','12',0.777849913,'2016-05-12','2016-05-12 15:04:00','exchange_gw','2016-05-12 15:04:00','exchange_gw','','',0,1)
