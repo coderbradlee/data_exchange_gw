@@ -52,6 +52,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_exchange_rate_request_interval=m_pt.get<size_t>("exchange_rate.request_interval");
 			m_exchange_rate_key=m_pt.get<std::string>("exchange_rate.key");
 			m_exchange_rate_write_rate_queue=m_pt.get<std::string>("exchange_rate.write_rate_queue");
+			m_exchange_rate_insert_time=m_pt.get<std::string>("exchange_rate.insert_time");
 			/////////////////////////////////////////
 			m_mysql_eu_ip = m_pt.get<std::string>("mysql_eu.ip");
 			m_mysql_eu_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_eu.port"));
@@ -105,6 +106,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		size_t m_exchange_rate_request_interval;	
 		string m_exchange_rate_key;
 		string m_exchange_rate_write_rate_queue;
+		string m_exchange_rate_insert_time;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
 };

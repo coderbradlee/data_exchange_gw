@@ -412,25 +412,26 @@ public:
  			string month=ymd[1];
  			string day=ymd[2];
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-			if(t_currency_daily_exchange_rate_tuple_vector.empty())
+			//if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				//insert
 				
 				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
+				
 				//cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				boost_log->get_initsink()->flush();
 			}
-			else
-			{
-				//update
-				string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+",updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
-				//cout << update_sql << endl;
-				m_conn->runCommand(update_sql.c_str());
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
-				boost_log->get_initsink()->flush();
-			}
+			// else
+			// {
+			// 	//update
+			// 	string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.from_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+",updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
+			// 	//cout << update_sql << endl;
+			// 	m_conn->runCommand(update_sql.c_str());
+			// 	BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
+			// 	boost_log->get_initsink()->flush();
+			// }
 		}
 		catch (const MySqlException& e)
 		{
@@ -637,7 +638,21 @@ public:
         	{
         		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
         	}
-        	start_update();
+        	ptime now = second_clock::local_time();			
+			string hour_minute_second = to_simple_string(now.time_of_day());
+			std::vector<std::string> hms;
+ 			
+			boost::split(hms,hour_minute_second , boost::is_any_of(":"));
+ 			//string [] ymd=to_iso_extended_string(now.date()).split('-');
+ 			string hour=hms[0];
+ 			string minute=hms[1];
+ 			
+        	string hour_minute=hour+":"+minute;
+        	if(hour_minute==get_config->m_exchange_rate_insert_time)
+        	{
+        		start_update();
+        	}
+        	
         	//cout<<"handle wait"<<endl;
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_exchange_rate_request_interval));  
             m_d_t.async_wait(boost::bind(&exchange_rate_on_time::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
