@@ -190,6 +190,21 @@ public:
 		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 };
+class general_rate_data
+{
+public:
+	string first_code;
+	string second_code;
+	string first_currency_id;
+	string second_currency_id;
+	string first_second_currency_exchange_rate_id;
+	string second_first_currency_exchange_rate_id;
+	float first_second_exchange_rate;
+	void print()
+	{
+		cout<<"{"<<first_code<<":"<<second_code<<":"<<first_second_currency_exchange_rate_id<<":"<<second_first_currency_exchange_rate_id<<":"<<first_second_exchange_rate<<"}"<<endl;
+	}
+};
 class mysql_database
 {
 public:
@@ -380,7 +395,34 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 	}
-	void special_update()
+	string get_exchange_rate_id(const string& from,const string& to)
+	{
+		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
+		
+			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
+			string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+from+"\' and target_currency_id=\'"+to+"\'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
+			if(!t_currency_daily_exchange_rate_tuple_vector.empty())
+			{
+				for(const auto& v:t_currency_daily_exchange_rate_tuple_vector)
+					return v;
+			}
+	}
+	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
+	{
+		EUR_GBP_class.first_second_currency_exchange_rate_id=get_exchange_rate_id
+		(EUR_GBP_class.first_currency_id,EUR_GBP_class.second_currency_id);
+		EUR_GBP_class.second_first_currency_exchange_rate_id=get_exchange_rate_id
+		(EUR_GBP_class.second_currency_id,EUR_GBP_class.first_currency_id);
+
+		EUR_CNY_class.first_second_currency_exchange_rate_id=get_exchange_rate_id
+		(EUR_CNY_class.first_currency_id,EUR_CNY_class.second_currency_id);
+		EUR_CNY_class.second_first_currency_exchange_rate_id=get_exchange_rate_id
+		(EUR_CNY_class.second_currency_id,EUR_CNY_class.first_currency_id);
+		
+	}
+	void general_update()
 	{
 		try
 		{
@@ -390,19 +432,54 @@ public:
 			// string currency_id;//J4YVQ3USQNO3U430EKE1
 			// string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
 			// string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-			//float 
+			float EUR_GBP=0,EUR_CNY=0; 
+			float EUR_USD=0,USD_GBP=0;
+			float USD_CNY=0;
+// class general_rate_data
+// {
+// public:
+// 	string first_code;
+// 	string second_code;
+// 	string first_currency_id;
+// 	string second_currency_id;
+// 	string first_second_currency_exchange_rate_id;
+// 	string second_first_currency_exchange_rate_id;
+// 	float first_second_exchange_rate;
+// };
+			general_rate_data EUR_GBP_class;
+			general_rate_data EUR_CNY_class;
 			for(auto& item :m_exchage_rate_data_array)
 			{
-				//if
+				
+				if(item.code=="EUR")
+				{
+					EUR_USD=item.to_usd_exchange_rate;
+					EUR_GBP_class.first_code=item.code;
+					EUR_GBP_class.first_currency_id=item.currency_id;
+					EUR_CNY_class.first_code=item.code;
+					EUR_CNY_class.first_currency_id=item.currency_id;
+				}
+				else if(item.code=="GBP")
+				{
+					USD_GBP=item.from_usd_exchange_rate;
+					EUR_GBP_class.second_code=item.code;
+					EUR_GBP_class.second_currency_id=item.currency_id;
+				}
+				else if(item.code=="CNY")
+				{
+					USD_CNY=item.from_usd_exchange_rate;
+					EUR_CNY_class.second_code=item.code;
+					EUR_CNY_class.second_currency_id=item.currency_id;
+				}
 				//update_exchange_rate_to_mysql(item);
 			}
-		// typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
-		
-		// 	std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
-		// 	string query_sql = "select exchange_rate_id from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+item.from_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
-		// 	cout << query_sql << endl;
-		// 	m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
-
+			EUR_GBP=EUR_USD*USD_GBP;
+			EUR_CNY=EUR_USD*USD_CNY;
+			EUR_GBP_class.first_second_exchange_rate=EUR_GBP;
+			EUR_CNY_class.first_second_exchange_rate=EUR_GBP;
+			get_exchange_rate_id(EUR_GBP_class,EUR_CNY_class);
+			EUR_GBP_class.print();
+			EUR_CNY_class.print();
 		// 	BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 		// 	boost_log->get_initsink()->flush();
 		// 	/********************************/
@@ -710,7 +787,7 @@ public:
         	if(hour_minute==get_config->m_exchange_rate_insert_time)
         	{
         		start_update();
-        		special_update();
+        		general_update();
         		boost::this_thread::sleep(boost::posix_time::millisec(60000));
         	}
         	
@@ -807,6 +884,7 @@ private:
 	deadline_timer m_d_t;
 	std::vector<exchage_rate_data> m_exchage_rate_data_array;
 	exchage_rate_data m_usd_info;
+	vector<general_rate_data> m_general_rate_data;
 
 };
 void start_exchange_rate_thread()
