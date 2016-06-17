@@ -400,7 +400,7 @@ public:
 		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
-			string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+from+"\' and target_currency_id=\'"+to+"\'";
+			string query_sql = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+from+"\' and target_currency_id=\'"+to+"\'";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
 			if(!t_currency_daily_exchange_rate_tuple_vector.empty())
