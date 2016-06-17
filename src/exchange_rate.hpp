@@ -422,6 +422,33 @@ public:
 		(EUR_CNY_class.second_currency_id,EUR_CNY_class.first_currency_id);
 		
 	}
+	void insert_exchange_rate(const string& exchange_rate_id,const string& rate)
+	{
+		ptime now = second_clock::local_time();
+ 			std::vector<std::string> ymd;
+ 			string today=to_iso_extended_string(now.date());
+			boost::split(ymd,today , boost::is_any_of("-"));
+ 			//string [] ymd=to_iso_extended_string(now.date()).split('-');
+ 			string year=ymd[0];
+ 			string month=ymd[1];
+ 			string day=ymd[2];
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+			
+			string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
+			
+			cout << insert_sql << endl;
+			m_conn->runCommand(insert_sql.c_str());
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+			
+	}
+	void insert_exchange_rate(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
+	{
+		insert_exchange_rate(EUR_GBP_class.first_second_currency_exchange_rate_id,EUR_GBP_class.first_second_exchange_rate);
+		insert_exchange_rate(EUR_GBP_class.second_first_currency_exchange_rate_id,1/EUR_GBP_class.first_second_exchange_rate);
+		insert_exchange_rate(EUR_CNY_class.first_second_currency_exchange_rate_id,EUR_CNY_class.first_second_exchange_rate);
+		insert_exchange_rate(EUR_CNY_class.second_first_currency_exchange_rate_id,1/EUR_CNY_class.first_second_exchange_rate);
+	}
 	void general_update()
 	{
 		try
@@ -480,29 +507,7 @@ public:
 			get_exchange_rate_id(EUR_GBP_class,EUR_CNY_class);
 			EUR_GBP_class.print();
 			EUR_CNY_class.print();
-		// 	BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-		// 	boost_log->get_initsink()->flush();
-		// 	/********************************/
-		// 	cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
-		// 	/********************************/
-			
-			
- 	// 		ptime now = second_clock::local_time();
- 	// 		std::vector<std::string> ymd;
- 	// 		string today=to_iso_extended_string(now.date());
-		// 	boost::split(ymd,today , boost::is_any_of("-"));
- 	// 		//string [] ymd=to_iso_extended_string(now.date()).split('-');
- 	// 		string year=ymd[0];
- 	// 		string month=ymd[1];
- 	// 		string day=ymd[2];
-		// 	string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-			
-		// 		string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
-				
-		// 		cout << insert_sql << endl;
-		// 		m_conn->runCommand(insert_sql.c_str());
-		// 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
-		// 		boost_log->get_initsink()->flush();
+			insert_exchange_rate(EUR_GBP_class,EUR_CNY_class);
 			
 		}
 		catch (const MySqlException& e)
