@@ -406,7 +406,7 @@ public:
 			if(!t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				for(const auto& v:t_currency_daily_exchange_rate_tuple_vector)
-					return v;
+					return *v;
 			}
 	}
 	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
