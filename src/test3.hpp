@@ -1658,6 +1658,15 @@ namespace x3
     {
 
     }
+    namespace test_salary
+    {
+        void test()
+        {
+            float  base=14000;
+            float final=base*0.825-((base*0.825-3500)*0.2-555);
+            cout<<final<<endl;
+        }
+    }
 	void test()
 	{
 		
@@ -1679,9 +1688,10 @@ namespace x3
         //test_locale::test();
         //test_string_size::test();
         //test_test::test();
-        test_asio_post::test();
+        //test_asio_post::test();
         //test_strand_io::test();
         //test_strand_io::test();
+        test_salary::test();
 	}
 }
 }
