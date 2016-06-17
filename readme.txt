@@ -4,8 +4,7 @@ GBP（J4YVQ3URHVVUS1E9261D） EUR（J4YVQ3URS8G4NI6ALIBL） CNY（J4YVQ3URQAX0UV
 
 GBP：EUR 执行如下sql输出：J1KWEPEIKQKH29VVVGVH
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URHVVUS1E9261D' and target_currency_id='J4YVQ3URS8G4NI6ALIBL'
-用于检测是否插入的sql
-select * from t_currency_daily_exchange_rate where exchange_rate_id='TFTBLZNSNBNAZAZGC2RW' and createBy='exchange_gw'
+
 
 EUR：GBP 执行如下sql输出：WWXO1XTYC92ACAPWWXNW
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URS8G4NI6ALIBL' and target_currency_id='J4YVQ3URHVVUS1E9261D'
@@ -14,6 +13,11 @@ EUR：CNY 执行如下sql输出：NOMHTSSMMID4YPEKRWYT
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URS8G4NI6ALIBL' and target_currency_id='J4YVQ3URQAX0UVAWQVSO'
 CNY：EUR 执行如下sql输出：J8SR2YX0NLA7UFTKFES1
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3URQAX0UVAWQVSO' and target_currency_id='J4YVQ3URS8G4NI6ALIBL'
+
+
+用于检测是否插入的sql
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='J1KWEPEIKQKH29VVVGVH' and createBy='exchange_gw'
+WWXO1XTYC92ACAPWWXNW，NOMHTSSMMID4YPEKRWYT，J8SR2YX0NLA7UFTKFES1
 
 2016.05.11
 增加分支exchange_rate，处理税率
