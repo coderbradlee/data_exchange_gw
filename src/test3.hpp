@@ -1665,6 +1665,15 @@ namespace x3
             float  base=14000;
             float final=base*0.825-((base*0.825-3500)*0.2-555);
             cout<<final<<endl;
+            float x=14000,y;
+            float before_tax=y-y*0.105-x*0.07;
+            before_tax=11600.60;
+            y=(before_tax+x*0.07)/(1-0.105);
+            cout<<y<<endl;
+            float tax=(before_tax-3500)*0.2-555;
+            cout<<tax<<endl;
+            float changed=before_tax-tax;
+            cout<<changed<<endl;
         }
     }
 	void test()
