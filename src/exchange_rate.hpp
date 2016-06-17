@@ -445,9 +445,11 @@ public:
 	void insert_exchange_rate(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
 	{
 		insert_exchange_rate(EUR_GBP_class.first_second_currency_exchange_rate_id,EUR_GBP_class.first_second_exchange_rate);
-		insert_exchange_rate(EUR_GBP_class.second_first_currency_exchange_rate_id,1/EUR_GBP_class.first_second_exchange_rate);
+		string temp=boost::lexical_cast<string>(1/boost::lexical_cast<float>(EUR_GBP_class.first_second_exchange_rate));
+		insert_exchange_rate(EUR_GBP_class.second_first_currency_exchange_rate_id,temp);
 		insert_exchange_rate(EUR_CNY_class.first_second_currency_exchange_rate_id,EUR_CNY_class.first_second_exchange_rate);
-		insert_exchange_rate(EUR_CNY_class.second_first_currency_exchange_rate_id,1/EUR_CNY_class.first_second_exchange_rate);
+		temp=boost::lexical_cast<string>(1/boost::lexical_cast<float>(EUR_CNY_class.first_second_exchange_rate));
+		insert_exchange_rate(EUR_CNY_class.second_first_currency_exchange_rate_id,temp);
 	}
 	void general_update()
 	{
