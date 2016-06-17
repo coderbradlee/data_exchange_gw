@@ -199,7 +199,7 @@ public:
 	string second_currency_id;
 	string first_second_currency_exchange_rate_id;
 	string second_first_currency_exchange_rate_id;
-	float first_second_exchange_rate;
+	string first_second_exchange_rate;
 	void print()
 	{
 		cout<<"{"<<first_code<<":"<<second_code<<":"<<first_second_currency_exchange_rate_id<<":"<<second_first_currency_exchange_rate_id<<":"<<first_second_exchange_rate<<"}"<<endl;
@@ -453,7 +453,7 @@ public:
 				
 				if(item.code=="EUR")
 				{
-					EUR_USD=item.to_usd_exchange_rate;
+					EUR_USD=item.from_usd_exchange_rate=boost::lexical_cast<float>(item.to_usd_exchange_rate);
 					EUR_GBP_class.first_code=item.code;
 					EUR_GBP_class.first_currency_id=item.currency_id;
 					EUR_CNY_class.first_code=item.code;
@@ -461,13 +461,13 @@ public:
 				}
 				else if(item.code=="GBP")
 				{
-					USD_GBP=item.from_usd_exchange_rate;
+					USD_GBP=boost::lexical_cast<float>(item.from_usd_exchange_rate);
 					EUR_GBP_class.second_code=item.code;
 					EUR_GBP_class.second_currency_id=item.currency_id;
 				}
 				else if(item.code=="CNY")
 				{
-					USD_CNY=item.from_usd_exchange_rate;
+					USD_CNY=boost::lexical_cast<float>(item.from_usd_exchange_rate);
 					EUR_CNY_class.second_code=item.code;
 					EUR_CNY_class.second_currency_id=item.currency_id;
 				}
@@ -475,8 +475,8 @@ public:
 			}
 			EUR_GBP=EUR_USD*USD_GBP;
 			EUR_CNY=EUR_USD*USD_CNY;
-			EUR_GBP_class.first_second_exchange_rate=EUR_GBP;
-			EUR_CNY_class.first_second_exchange_rate=EUR_GBP;
+			EUR_GBP_class.first_second_exchange_rate=boost::lexical_cast<string>(EUR_GBP);
+			EUR_CNY_class.first_second_exchange_rate=boost::lexical_cast<string>(EUR_CNY);
 			get_exchange_rate_id(EUR_GBP_class,EUR_CNY_class);
 			EUR_GBP_class.print();
 			EUR_CNY_class.print();
