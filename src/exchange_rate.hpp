@@ -406,7 +406,7 @@ public:
 			if(!t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				for(const auto& v:t_currency_daily_exchange_rate_tuple_vector)
-					return *v;
+					return *(std::get<0>(v));
 			}
 	}
 	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
@@ -453,7 +453,7 @@ public:
 				
 				if(item.code=="EUR")
 				{
-					EUR_USD=item.from_usd_exchange_rate=boost::lexical_cast<float>(item.to_usd_exchange_rate);
+					EUR_USD=boost::lexical_cast<float>(item.to_usd_exchange_rate);
 					EUR_GBP_class.first_code=item.code;
 					EUR_GBP_class.first_currency_id=item.currency_id;
 					EUR_CNY_class.first_code=item.code;
