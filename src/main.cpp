@@ -14,7 +14,9 @@ int main()
 	try
 	{
 		{
-			start_exchange_rate_thread();
+			exchange_rate_server_start();
+			//test
+			//curl -u testapi@orderbot.com:ShinyElephant232# -X GET http://172.18.100.87:8688/exchange_rate/?target=SGD&time=2016-06-20
 		}
 		{
 			//effective_cplusplus::test();

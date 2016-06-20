@@ -158,8 +158,22 @@ void authentication_handler(const std::shared_ptr< Session > session,
 void get_general_func(const std::shared_ptr< Session > session)
 {
 	const auto request = session->get_request();
-	string target_rate_name = request->get_path_parameter("name");
-	
+	string path = request->get_path();
+	auto ret = request->get_query_parameters();
+	string source,target,which_day;
+
+	for (auto& r : ret)
+	{	
+		//cout << r.first << ":" << r.second << endl;
+		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+		//param+=r.first+"="+r.second+"&";
+		if(r.first=="source")
+			source=r.second;
+		else if(r.first=="target")
+			target=r.second;
+		else if(r.first=="time")
+			which_day=r.second;	
+	}
 	
 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
 	{
@@ -172,7 +186,7 @@ void get_general_func(const std::shared_ptr< Session > session)
 		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
 
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_os));
-		string rate=producer_exchange_rate_on_time_os->get_rate(target_rate_name);
+		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
 		session->close(OK, rate), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });

@@ -229,7 +229,7 @@ public:
 	{
 		
 	}
-	string get_rate_from_myql(const string& exchange_rate_id)
+	string get_rate_from_myql(const string& exchange_rate_id,const string& which_day)
 	{
 		try
 		{
@@ -238,7 +238,7 @@ public:
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
 			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
-			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and createBy='exchange_gw'";
+			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and createBy='exchange_gw' and exchange_date='"+which_day+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
 
@@ -930,7 +930,7 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	} 
-	string get_rate(const string& target)
+	string get_rate(const string& source,const string& target,const string& which_day)
 	{
 		get_info_from_myql();
 		//SKW TRL RUR PLZ
@@ -938,7 +938,7 @@ public:
 		{
 			if(item->code==target)
 			{
-				return get_rate_from_myql(item->from_usd_exchange_rate_id);
+				return get_rate_from_myql(item->from_usd_exchange_rate_id,which_day);
 			}
 		}
 	}
