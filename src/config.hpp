@@ -53,6 +53,8 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_exchange_rate_key=m_pt.get<std::string>("exchange_rate.key");
 			m_exchange_rate_write_rate_queue=m_pt.get<std::string>("exchange_rate.write_rate_queue");
 			m_exchange_rate_insert_time=m_pt.get<std::string>("exchange_rate.insert_time");
+			m_exchange_rate_username=m_pt.get<std::string>("exchange_rate.username");
+			m_exchange_rate_password=m_pt.get<std::string>("exchange_rate.password");
 			/////////////////////////////////////////
 			m_mysql_eu_ip = m_pt.get<std::string>("mysql_eu.ip");
 			m_mysql_eu_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_eu.port"));
@@ -65,6 +67,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_mysql_js_username = m_pt.get<std::string>("mysql_js.username");
 			m_mysql_js_password = m_pt.get<std::string>("mysql_js.password");
 			m_mysql_js_database = m_pt.get<std::string>("mysql_js.database");
+
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -107,6 +110,8 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_exchange_rate_key;
 		string m_exchange_rate_write_rate_queue;
 		string m_exchange_rate_insert_time;
+		string m_exchange_rate_username;
+		string m_exchange_rate_password;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
 };

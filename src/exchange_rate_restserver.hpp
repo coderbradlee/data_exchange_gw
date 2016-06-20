@@ -145,12 +145,13 @@ void authentication_handler(const std::shared_ptr< restbed::Session > session,
 		//	//session->close(OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } });
 		//});
 	}
-
-	// if (authorization not_eq "Basic dGVzdGFwaUBvcmRlcmJvdC5jb206U2hpbnlFbGVwaGFudDIzMiM=")
-	// {
-	// 	session->close(UNAUTHORIZED, { { "WWW-Authenticate", "Basic realm=\"restbed\"" } });
-	// }
-	// else
+	string temp;
+	Base64Encode(get_config->m_exchange_rate_username+":"+get_config->m_exchange_rate_password,&temp);
+	if (authorization not_eq "Basic "+temp)//dGVzdGFwaUBvcmRlcmJvdC5jb206U2hpbnlFbGVwaGFudDIzMiM=")
+	{
+		session->close(UNAUTHORIZED, { { "WWW-Authenticate", "Basic realm=\"restbed\"" } });
+	}
+	else
 	{
 		callback(session);
 	}
