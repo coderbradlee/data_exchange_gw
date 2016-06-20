@@ -28,7 +28,8 @@ using namespace boost::posix_time;
 #include "config.hpp"
 #include "exchange_rate.hpp"
 using namespace restbed;
-
+namespace exchange_rate
+{
 //////////////default
 void default_handler(const std::shared_ptr< restbed::Session > session)
 {
@@ -70,12 +71,12 @@ void default_handler(const std::shared_ptr< restbed::Session > session)
 	}
 }
 /////////////error
-void faulty_method_handler(const std::shared_ptr< Session >)
+void faulty_method_handler(const std::shared_ptr< restbed::Session >)
 {
 	throw SERVICE_UNAVAILABLE;
 }
 
-void resource_error_handler(const int, const std::exception&, const std::shared_ptr< Session > session)
+void resource_error_handler(const int, const std::exception&, const std::shared_ptr< restbed::Session > session)
 {
 	if (session->is_open())
 	{
@@ -88,7 +89,7 @@ void resource_error_handler(const int, const std::exception&, const std::shared_
 	}
 }
 
-void service_error_handler(const int, const std::exception& ex, const std::shared_ptr< Session > session)
+void service_error_handler(const int, const std::exception& ex, const std::shared_ptr< restbed::Session > session)
 {
 	if (session->is_open())
 	{
@@ -103,8 +104,8 @@ void service_error_handler(const int, const std::exception& ex, const std::share
 }
 
 ////////////////////auth
-void authentication_handler(const std::shared_ptr< Session > session,
-	const function< void(const std::shared_ptr< Session >) >& callback)
+void authentication_handler(const std::shared_ptr< restbed::Session > session,
+	const function< void(const std::shared_ptr< restbed::Session >) >& callback)
 {
 	const auto request = session->get_request();
 	auto authorization = request->get_header("Authorization");
@@ -155,7 +156,7 @@ void authentication_handler(const std::shared_ptr< Session > session,
 	}
 }
 /////////////////regular
-void get_general_func(const std::shared_ptr< Session > session)
+void get_general_func(const std::shared_ptr< restbed::Session > session)
 {
 	const auto request = session->get_request();
 	string path = request->get_path();
@@ -175,7 +176,7 @@ void get_general_func(const std::shared_ptr< Session > session)
 			which_day=r.second;	
 	}
 	
-	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{
 		
 		mysql_database mysql_eu;
@@ -196,44 +197,44 @@ void get_general_func(const std::shared_ptr< Session > session)
 		/////////////////////////////////////////////////////
 	});
 }
-void get_orders_param_func(const std::shared_ptr< Session > session)
-{
-	//get_general_func(session);
-	const auto request = session->get_request();
-	string path = request->get_path();
-	string param="";
-	auto ret = request->get_query_parameters();
-	for (auto& r : ret)
-	{	
-		//cout << r.first << ":" << r.second << endl;
-		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
-		param+=r.first+"="+r.second+"&";
-	}
+// void get_orders_param_func(const std::shared_ptr< restbed::Session > session)
+// {
+// 	//get_general_func(session);
+// 	const auto request = session->get_request();
+// 	string path = request->get_path();
+// 	string param="";
+// 	auto ret = request->get_query_parameters();
+// 	for (auto& r : ret)
+// 	{	
+// 		//cout << r.first << ":" << r.second << endl;
+// 		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+// 		param+=r.first+"="+r.second+"&";
+// 	}
 
 	
-	size_t content_length = 0;
-	request->get_header("Content-Length", content_length);
-	//cout<<__LINE__<<":"<<request->get_header( "SessionID" )<<endl;
-	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
-	{
-		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
-		order->request("GET", path, param, "");
+// 	size_t content_length = 0;
+// 	request->get_header("Content-Length", content_length);
+// 	//cout<<__LINE__<<":"<<request->get_header( "SessionID" )<<endl;
+// 	session->fetch(content_length, [=](const std::shared_ptr< Session > session, const Bytes & content_body)
+// 	{
+// 		boost::shared_ptr<orderbot> order = boost::shared_ptr<orderbot>(new orderbot(get_config->m_orderbot_username, get_config->m_orderbot_password, get_config->m_orderbot_url));
+// 		order->request("GET", path, param, "");
 		
-		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
-		cout<<"status:"<<order->get_status()<<endl;
-		session->close(order->get_status(), *(order->get_data()), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_length()) } });
+// 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
+// 		cout<<"status:"<<order->get_status()<<endl;
+// 		session->close(order->get_status(), *(order->get_data()), { {"Cache-Control","no-cache"},{"Pragma","no-cache"},{ "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(order->get_length()) } });
 		
-		////////////////////////////////////////////////////////////
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<order->get_status()<<":"<<*(order->get_data());
-		boost_log->get_initsink()->flush();
-		/////////////////////////////////////////////////////
-	});
+// 		////////////////////////////////////////////////////////////
+// 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<order->get_status()<<":"<<*(order->get_data());
+// 		boost_log->get_initsink()->flush();
+// 		/////////////////////////////////////////////////////
+// 	});
+// }
+void get_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
+{	
+	get_general_func(session);
 }
-void get_exchange_rate_func(const std::shared_ptr< Session > session)
-{	get_general_func(session);
 
 }
-
-
 
 #endif	

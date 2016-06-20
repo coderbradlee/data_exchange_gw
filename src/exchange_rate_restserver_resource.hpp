@@ -2,6 +2,8 @@
 #define	EXCHANGE_RATE_RESTSERVER_RESOURCE_HPP
 
 #include "exchange_rate_restserver.hpp"
+namespace exchange_rate
+{
 void exchange_rate_server_start()
 {
 	/////////////////////////////////////////////////////////
@@ -64,5 +66,5 @@ void exchange_rate_server_start()
 		service.start(settings);
 
 }
-
+}
 #endif	
