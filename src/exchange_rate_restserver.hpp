@@ -174,19 +174,100 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			target=r.second;
 		else if(r.first=="time")
 			which_day=r.second;	
+		else if(r.first=="database")
+			database_name=r.second;	
+	}
+	
+	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
+	{		
+		mysql_database mysql_xx;
+		if(database_name=="os")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_database;
+		}
+		else if(database_name=="js")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
+		}
+		else// if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_eu_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_eu_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_eu_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_eu_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_eu_database;
+		}
+
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
+		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
+		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
+		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
+		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
+				////////////////////////////////////////////////////////////
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate;
+		boost_log->get_initsink()->flush();
+		/////////////////////////////////////////////////////
+	});
+}
+void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
+{
+	const auto request = session->get_request();
+	string path = request->get_path();
+	auto ret = request->get_query_parameters();
+	string source,target,which_day,database_name;
+
+	for (auto& r : ret)
+	{	
+		//cout << r.first << ":" << r.second << endl;
+		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+		//param+=r.first+"="+r.second+"&";
+		if(r.first=="source")
+			source=r.second;
+		else if(r.first=="target")
+			target=r.second;
+		else if(r.first=="time")
+			which_day=r.second;	
+		else if(r.first=="database")
+			database_name=r.second;	
 	}
 	
 	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{
+		mysql_database mysql_xx;
+		if(database_name=="os")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_database;
+		}
+		else if(database_name=="js")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
+		}
+		else// if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_eu_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_eu_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_eu_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_eu_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_eu_database;
+		}
 		
-		mysql_database mysql_eu;
-		mysql_eu.m_mysql_ip=get_config->m_mysql_eu_ip;
-		mysql_eu.m_mysql_port=get_config->m_mysql_eu_port;
-		mysql_eu.m_mysql_username=get_config->m_mysql_eu_username;
-		mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
-		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
-
-		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_eu));
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
 		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
