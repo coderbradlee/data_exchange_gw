@@ -967,7 +967,7 @@ public:
 			}
 		}
 	}
-	string update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
+	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
 	{
 		get_info_from_myql();
 		//SKW TRL RUR PLZ
@@ -975,7 +975,7 @@ public:
 		{
 			if(item->code==target)
 			{
-				return update_rate_from_mysql(item->from_usd_exchange_rate_id,which_day,ratio);
+				update_rate_from_mysql(item->from_usd_exchange_rate_id,which_day,ratio);
 			}
 		}
 	}

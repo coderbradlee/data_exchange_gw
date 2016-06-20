@@ -270,12 +270,13 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 		}
 		
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
-		string rate=producer_exchange_rate_on_time_os->update_rate(source,target,which_day,ratio);
-		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
+		producer_exchange_rate_on_time_os->update_rate(source,target,which_day,ratio);
+		cout<<__FILE__<<":"<<__LINE__<<":"<<endl;
+		string temp="update ok";
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
-		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
+		session->close(OK, temp, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(temp.length()) } });
 				////////////////////////////////////////////////////////////
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate;
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<temp;
 		boost_log->get_initsink()->flush();
 		/////////////////////////////////////////////////////
 	});
