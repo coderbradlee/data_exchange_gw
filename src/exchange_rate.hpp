@@ -496,6 +496,25 @@ public:
 			boost_log->get_initsink()->flush();
 			
 	}
+	void update_rate_from_mysql(const string& from_usd_exchange_rate_id,const string& which_day,const string& ratio)
+	{
+ 			std::vector<std::string> ymd;
+ 			
+			boost::split(ymd,which_day , boost::is_any_of("-"));
+ 			//string [] ymd=to_iso_extended_string(now.date()).split('-');
+ 			string year=ymd[0];
+ 			string month=ymd[1];
+ 			string day=ymd[2];
+			string p4 = which_day + " 00:00:05";
+			
+			string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
+			
+			cout << insert_sql << endl;
+			m_conn->runCommand(insert_sql.c_str());
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+			
+	}
 	void insert_exchange_rate(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
 	{
 		insert_exchange_rate(EUR_GBP_class.first_second_currency_exchange_rate_id,EUR_GBP_class.first_second_exchange_rate);
@@ -945,6 +964,18 @@ public:
 			if(item->code==target)
 			{
 				return get_rate_from_myql(item->from_usd_exchange_rate_id,which_day);
+			}
+		}
+	}
+	string update_rate(const string& source,const string& target,const string& which_day)
+	{
+		get_info_from_myql();
+		//SKW TRL RUR PLZ
+		for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
+		{
+			if(item->code==target)
+			{
+				return update_rate_from_mysql(item->from_usd_exchange_rate_id,which_day,ratio);
 			}
 		}
 	}

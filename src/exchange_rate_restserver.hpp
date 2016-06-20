@@ -222,7 +222,7 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 	const auto request = session->get_request();
 	string path = request->get_path();
 	auto ret = request->get_query_parameters();
-	string source,target,which_day,database_name;
+	string source,target,which_day,database_name,ratio;
 
 	for (auto& r : ret)
 	{	
@@ -237,6 +237,8 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 			which_day=r.second;	
 		else if(r.first=="database")
 			database_name=r.second;	
+		else if(r.first=="ratio")
+			ratio=r.second;	
 	}
 	
 	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
@@ -268,7 +270,7 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 		}
 		
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
-		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
+		string rate=producer_exchange_rate_on_time_os->update_rate(source,target,which_day,ratio);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
 		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
