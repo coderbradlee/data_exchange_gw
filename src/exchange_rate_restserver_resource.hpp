@@ -59,7 +59,7 @@ void exchange_rate_server_start()
 		// service.publish(default_index2);
 
 
-		service.set_authentication_handler(authentication_handler);
+		//service.set_authentication_handler(authentication_handler);
 		
 		service.set_error_handler(service_error_handler);
 		service.set_logger(std::make_shared< CustomLogger >());

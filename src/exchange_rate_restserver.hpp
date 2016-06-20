@@ -232,6 +232,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 // }
 void get_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 {	
+	cout<<__FILE__<<":"<<__LINE__<<endl;
 	get_general_func(session);
 }
 
