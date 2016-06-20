@@ -229,10 +229,11 @@ public:
 	{
 		
 	}
-	string get_rate_from_myql(const string& exchange_rate_id,const string& which_day)
+	string get_rate_from_myql(const string& exchange_rate_id,string which_day)
 	{
 		try
 		{
+
 			if(which_day.length()==0)
 			{
 				ptime now = second_clock::local_time();
