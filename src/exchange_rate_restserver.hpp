@@ -186,13 +186,13 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 		mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
 		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
 
-		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_os));
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_eu));
 		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
 		session->close(OK, rate), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
 				////////////////////////////////////////////////////////////
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate);
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate;
 		boost_log->get_initsink()->flush();
 		/////////////////////////////////////////////////////
 	});
