@@ -177,7 +177,7 @@ void update()
 			{
 				for(int j=0;j<5;++j)
 				{
-					exchange_rate_rest_client t(currency_name[i], ratio[i][j],update_time[j],"eu");
+					boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(currency_name[i], ratio[i][j],update_time[j],"eu"));
 					boost::this_thread::sleep(boost::posix_time::millisec(1000));
 					cout<<__FILE__<<":"<<__LINE__<<":"<<t.get_data()<<endl;
 					
