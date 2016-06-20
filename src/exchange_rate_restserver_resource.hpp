@@ -30,7 +30,7 @@ void exchange_rate_server_start()
 		
 		/////////////////////////////////////
 		auto get_exchange_rate = std::make_shared< Resource >();
-		get_exchange_rate->set_path("/exchange_rate/{name: [\\?].*}");
+		//get_exchange_rate->set_path("/exchange_rate/{name: [\\?].*}");
 		get_exchange_rate->set_path("/exchange_rate/");
 		//curl -u testapi@orderbot.com:ShinyElephant232# -X GET http://172.18.100.85:8688/admin/orders.json/?created_at_min=2015-01-01\&limit=200\&page=1\&order_status=unconfirmed,unshipped,to_be_shipped\&Sales_channels=dtc,wholesale
 		//http://172.18.100.85:8688/admin/orders.json/?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
