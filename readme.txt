@@ -1,4 +1,20 @@
-﻿2016.06.20增加读取汇率的restful接口
+﻿
+没有exchange_rate_id的，需要插入
+NZD
+insert into  t_currency_exchange_rate
+(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
+(rand_string(20),'J4YVQ3UR37WOQ6GEDGRF','WFAO6WEAXANHTQKCPNFW',0,7,0,'2016-06-20 09:15:00','','2016-06-20 09:15:00','',0,1)
+KRW
+insert into  apollo_os.t_currency_exchange_rate
+(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
+(rand_string(20),'J4YVQ3UR37WOQ6GEDGRF','FROGZ0R92WM6GPCLZIT3',0,7,0,'2016-06-20 09:15:00','','2016-06-20 09:15:00','',0,1)
+HKD
+insert into  apollo_os.t_currency_exchange_rate
+(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
+(rand_string(20),'J4YVQ3UR37WOQ6GEDGRF','J4YVQ3UR4MZHAG2SI1XY',0,7,0,'2016-06-20 09:15:00','','2016-06-20 09:15:00','',0,1)
+
+
+2016.06.20增加读取汇率的restful接口
 select currency_id from t_currency where code='SGD'  新加坡元
 结果：J4YVQ3URCXINMGRXGGE0（SGD） J4YVQ3UR37WOQ6GEDGRF（USD）
 select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3UR37WOQ6GEDGRF' and target_currency_id='J4YVQ3URCXINMGRXGGE0'
