@@ -30,7 +30,7 @@ using namespace boost::posix_time;
 using namespace restbed;
 
 //////////////default
-void default_handler(const std::shared_ptr< Session > session)
+void default_handler(const std::shared_ptr< restbed::Session > session)
 {
 	try
 	{
