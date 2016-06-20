@@ -16,6 +16,7 @@ int main()
 	{
 		{
 			exchange_rate_namespace::exchange_rate_server_start();
+			boost::this_thread::sleep(boost::posix_time::millisec(5000));
 			//test
 			//curl -X GET http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&database=eu
 			//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
