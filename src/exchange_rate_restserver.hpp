@@ -176,7 +176,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			which_day=r.second;	
 	}
 	
-	session->fetch(content_length, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
+	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{
 		
 		mysql_database mysql_eu;
