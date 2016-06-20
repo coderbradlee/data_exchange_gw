@@ -2,7 +2,7 @@
 #define	EXCHANGE_RATE_RESTSERVER_RESOURCE_HPP
 
 #include "exchange_rate_restserver.hpp"
-namespace exchange_rate
+namespace exchange_rate_namespace
 {
 void exchange_rate_server_start()
 {

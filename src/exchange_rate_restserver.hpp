@@ -28,7 +28,7 @@ using namespace boost::posix_time;
 #include "config.hpp"
 #include "exchange_rate.hpp"
 using namespace restbed;
-namespace exchange_rate
+namespace exchange_rate_namespace
 {
 //////////////default
 void default_handler(const std::shared_ptr< restbed::Session > session)
