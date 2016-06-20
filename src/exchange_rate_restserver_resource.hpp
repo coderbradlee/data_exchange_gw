@@ -120,6 +120,7 @@ protected:
 
 	void curl(const std::string& uri, const std::string& method = "GET", bool auth=false)
 	{	
+		set_url(uri);
 		curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, download_callback);
 		curl_easy_setopt(m_curl, CURLOPT_MAXREDIRS, 50L);
 		curl_easy_setopt(m_curl, CURLOPT_TCP_KEEPALIVE, 1L);
@@ -179,7 +180,7 @@ void update()
 				{
 					boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(currency_name[i], ratio[i][j],update_time[j],"eu"));
 					boost::this_thread::sleep(boost::posix_time::millisec(1000));
-					cout<<__FILE__<<":"<<__LINE__<<":"<<t.get_data()<<endl;
+					cout<<__FILE__<<":"<<__LINE__<<":"<<t->get_data()<<endl;
 					
 				}
 			}
