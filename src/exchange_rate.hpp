@@ -233,6 +233,11 @@ public:
 	{
 		try
 		{
+			if(which_day.length()==0)
+			{
+				ptime now = second_clock::local_time();
+ 				which_day=to_iso_extended_string(now.date());
+			}
 		typedef tuple<unique_ptr<float>> t_exchange_rate_tuple;
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
