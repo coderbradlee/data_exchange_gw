@@ -190,7 +190,7 @@ void update()
 			boost::thread_group pool;  
 		    pool.create_thread(boost::bind(exchange_rate_server_start));  
 		    
-		    pool.create_thread(boost::bind(update));  
+		    //pool.create_thread(boost::bind(update));  
 		  
 		    pool.join_all();  
 			
