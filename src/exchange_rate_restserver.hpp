@@ -147,7 +147,7 @@ void authentication_handler(const std::shared_ptr< restbed::Session > session,
 		//});
 	}
 	string temp;
-	Base64Encode(get_config->m_exchange_rate_username+":"+get_config->m_exchange_rate_password,&temp);
+	SimpleWeb::Base64Encode(get_config->m_exchange_rate_username+":"+get_config->m_exchange_rate_password,&temp);
 	if (authorization not_eq "Basic "+temp)//dGVzdGFwaUBvcmRlcmJvdC5jb206U2hpbnlFbGVwaGFudDIzMiM=")
 	{
 		session->close(UNAUTHORIZED, { { "WWW-Authenticate", "Basic realm=\"restbed\"" } });
