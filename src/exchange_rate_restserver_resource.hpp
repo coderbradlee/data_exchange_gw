@@ -132,12 +132,13 @@ protected:
 	{
 		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
 	}
-public:
+
 	bool on_request() 
 	{
 		m_data.clear();
 		return 0 == curl_easy_perform(m_curl);
 	}
+public:
 	string get_data()
 	{
 		return m_data;
@@ -177,10 +178,9 @@ void update()
 				for(int j=0;j<5;++j)
 				{
 					exchange_rate_rest_client t(currency_name[i], ratio[i][j],update_time[j],"eu");
-					if(t.on_request())
-					{
-						cout<<t.get_data()<<endl;
-					}
+					boost::this_thread::sleep(boost::posix_time::millisec(1000));
+					cout<<__FILE__<<":"<<__LINE__<<":"<<t.get_data()<<endl;
+					
 				}
 			}
 }
