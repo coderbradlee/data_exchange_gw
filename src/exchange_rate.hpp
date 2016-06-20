@@ -507,7 +507,7 @@ public:
  			string day=ymd[2];
 			string p4 = which_day + " 00:00:05";
 			
-			string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
+			string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+p4+"\',\'exchange_gw_rest\',\'"+p4+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
 			
 			cout << insert_sql << endl;
 			m_conn->runCommand(insert_sql.c_str());
