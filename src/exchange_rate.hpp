@@ -967,7 +967,7 @@ public:
 			}
 		}
 	}
-	string update_rate(const string& source,const string& target,const string& which_day)
+	string update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
 	{
 		get_info_from_myql();
 		//SKW TRL RUR PLZ
