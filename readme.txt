@@ -1,4 +1,16 @@
-﻿2016.06.16
+﻿2016.06.20增加读取汇率的restful接口
+select currency_id from t_currency where code='SGD'  新加坡元
+结果：J4YVQ3URCXINMGRXGGE0（SGD） J4YVQ3UR37WOQ6GEDGRF（USD）
+select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id='J4YVQ3UR37WOQ6GEDGRF' and target_currency_id='J4YVQ3URCXINMGRXGGE0'
+结果：BVVFOOI1LDHQSY3DL0AK
+insert into  t_currency_exchange_rate
+(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
+(rand_string(20),'J4YVQ3UR37WOQ6GEDGRF','J4YVQ3URCXINMGRXGGE0',0,7,0,'2016-06-20 09:15:00','','2016-06-20 09:15:00','',0,1)
+
+检测：
+select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
+
+2016.06.16
 增加英镑与欧元 人民币与欧元间的汇率  通过美元转换
 GBP（J4YVQ3URHVVUS1E9261D） EUR（J4YVQ3URS8G4NI6ALIBL） CNY（J4YVQ3URQAX0UVAWQVSO）
 
