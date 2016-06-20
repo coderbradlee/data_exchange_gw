@@ -149,7 +149,7 @@ void update()
 {
 	std::vector<string> update_time{"2016-06-03","2016-06-07","2016-06-08","2016-06-13","2016-06-15"};
 			std::vector<string> currency_name{"SGD","AUD","NZD","CAD","EUR","GBP","INR","JPY","KRW","ZAR","IDR","TRY","MXN","CNY","THB","BRL","HKD","RUR"};
-			string[][] ratio
+			string[18][5] ratio
 			{
 				{"1.3780","1.3603","1.3549","1.3637","1.3602"},
 				{"1.3853","1.3600","1.3440","1.3586","1.3640"},
