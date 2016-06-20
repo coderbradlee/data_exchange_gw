@@ -132,6 +132,7 @@ protected:
 	{
 		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
 	}
+public:
 	bool on_request() 
 	{
 		m_data.clear();
