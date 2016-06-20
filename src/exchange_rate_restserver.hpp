@@ -27,6 +27,7 @@ using namespace boost::posix_time;
 #include <restbed>
 #include "config.hpp"
 #include "exchange_rate.hpp"
+#include "shared.hpp"
 using namespace restbed;
 namespace exchange_rate_namespace
 {
