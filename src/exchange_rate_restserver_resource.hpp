@@ -148,6 +148,7 @@ protected:
 };
 void update()
 {
+	boost::this_thread::sleep(boost::posix_time::millisec(5000));
 	std::vector<string> update_time{"2016-06-03","2016-06-07","2016-06-08","2016-06-13","2016-06-15"};
 			std::vector<string> currency_name{"SGD","AUD","NZD","CAD","EUR","GBP","INR","JPY","KRW","ZAR","IDR","TRY","MXN","CNY","THB","BRL","HKD","RUR"};
 			string ratio[18][5] 
@@ -183,6 +184,20 @@ void update()
 				}
 			}
 }
+		void start()
+		{
+			boost::thread_group pool;  
+		    pool.create_thread(boost::bind(exchange_rate_server_start));  
+		    
+		    pool.create_thread(boost::bind(update));  
+		  
+		    pool.join_all();  
 			
+			
+			//test
+			//curl -X GET http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&database=eu
+			//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
+			
+		}	
 }
 #endif	
