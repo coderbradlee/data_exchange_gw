@@ -229,6 +229,54 @@ public:
 	{
 		
 	}
+	string get_rate_from_myql(const string& exchange_rate_id)
+	{
+		try
+		{
+		typedef tuple<unique_ptr<float>> t_exchange_rate_tuple;
+		//select code,currency_id from t_currency
+			//typedef tuple<string,double> credit_tuple;
+			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
+			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
+			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and createBy='exchange_gw'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			/********************************/
+			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			/********************************/
+			if(t_exchange_rate_tuple_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+				return "0";
+			}
+			for (const auto& item : t_exchange_rate_tuple_vector)
+			{
+				return *(std::get<1>(item));	
+			}
+			
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+	}
 	void get_info_from_myql()
 	{
 		try
@@ -882,6 +930,18 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	} 
+	string get_rate(const string& target)
+	{
+		get_info_from_myql();
+		//SKW TRL RUR PLZ
+		for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
+		{
+			if(item->code==target)
+			{
+				return get_rate_from_myql(item->from_usd_exchange_rate_id);
+			}
+		}
+	}
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
