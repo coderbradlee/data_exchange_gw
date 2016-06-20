@@ -257,7 +257,7 @@ public:
 			}
 			for (const auto& item : t_exchange_rate_tuple_vector)
 			{
-				return *(std::get<1>(item));	
+				return *(std::get<0>(item));	
 			}
 			
 		}
