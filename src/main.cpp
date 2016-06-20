@@ -15,7 +15,7 @@ int main()
 	try
 	{
 		{
-			start();
+			exchange_rate_namespace::start();
 			
 		}
 		{
