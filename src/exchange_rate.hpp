@@ -257,7 +257,7 @@ public:
 			}
 			for (const auto& item : t_exchange_rate_tuple_vector)
 			{
-				return *(std::get<0>(item));	
+				return boost::lexical_cast<string>(*(std::get<0>(item)));	
 			}
 			
 		}
