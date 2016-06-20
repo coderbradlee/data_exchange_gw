@@ -17,7 +17,7 @@ int main()
 		{
 			exchange_rate_namespace::exchange_rate_server_start();
 			//test
-			//curl -X GET http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-
+			//curl -X GET http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03
 			//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708
 		}
 		{
