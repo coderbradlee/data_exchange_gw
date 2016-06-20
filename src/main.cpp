@@ -5,6 +5,7 @@
 #include "orderbot_restserver_resource.hpp"
 #include "activemq_producer_consumer.hpp"
 #include "boost_signalset.hpp"
+#include "exchange_rate_restserver_resource.hpp"
 #include "test.hpp"
 int main()
 {
