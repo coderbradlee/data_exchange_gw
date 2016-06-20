@@ -79,7 +79,7 @@ public:
 		string url="http://172.18.100.87:8688/exchange_rate/?target="+currency_name+"&time="+which_day+"&ratio="+ratio+"&database="+database;
 		curl(url, "POST", true);
 	}
-	virtual ~download_tax_from_taxrate()
+	virtual ~exchange_rate_rest_client()
 	{
 		curl_easy_cleanup(m_curl);
 		curl_global_cleanup();	
@@ -109,7 +109,7 @@ protected:
 			//cout << __LINE__ << endl;
 			m_data.clear();
 			m_data.append(buffer, size*nmemb);
-			m_taxfile->addData(m_data);
+			
 			result = size*nmemb;
 		}
 		/*cout <<__LINE__<<":"<<  buffer << endl;*/
