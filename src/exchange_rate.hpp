@@ -244,7 +244,7 @@ public:
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
 			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
-			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and createBy='exchange_gw' or createBy='exchange_gw_rest' and exchange_date='"+which_day+"'";
+			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and (createBy='exchange_gw' or createBy='exchange_gw_rest') and exchange_date='"+which_day+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
 
