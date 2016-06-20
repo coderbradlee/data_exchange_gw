@@ -190,7 +190,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
-		session->close(OK, rate), { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
+		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
 				////////////////////////////////////////////////////////////
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate;
 		boost_log->get_initsink()->flush();
