@@ -5,9 +5,7 @@
 #include "orderbot_restserver_resource.hpp"
 #include "activemq_producer_consumer.hpp"
 #include "boost_signalset.hpp"
-#include "test.hpp"
-#include "test2.hpp"
-#include "test3.hpp"
+#include "test4.hpp"
 
 int main()
 {
@@ -16,7 +14,7 @@ int main()
 		register_signal();
 
 		{
-			x3::design_model::test();
+			x3::test();
 
 		}
 		{
