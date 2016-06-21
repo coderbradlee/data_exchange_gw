@@ -23,7 +23,7 @@ namespace x3
         };
         void test()
         {
-            std::vector<int> v{3,4,2,8,15,267};
+            std::vector<int> v{3,4,2,8,15,15,267};
             for(const auto &n:v)
             {
                 cout<<' '<<n;
@@ -44,6 +44,8 @@ namespace x3
 
             auto it=std::find_if(v.begin(),v.end(),std::bind(std::greater<int>(),std::placeholders::_1,10));
             cout<<*it<<endl;
+            int n=std::count(v.begin(),v.end(),16);
+            cout<<n<<endl;
         }
     }
 	void test()
