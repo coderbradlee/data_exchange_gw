@@ -52,7 +52,7 @@ namespace x3
             std::vector<int> v2{3,4,2,8,16,15,267};
             typedef std::vector<int>::iterator it_type;
             std::pair<it_type,it_type> p=std::mismatch(v.begin(),v.end(),v2.begin());
-            //cout<<*p.first<<":"<<*p.second<<endl;
+            cout<<*p.first<<":"<<*p.second<<endl;
         }
     }
 	void test()
