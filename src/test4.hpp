@@ -263,6 +263,12 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
+            adjacent_difference(v1.begin(),v1.end(),v1.begin(),multiplies<int>());
+            for(const auto& n:v1)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
         }
     }
 	void test()
