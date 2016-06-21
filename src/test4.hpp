@@ -28,11 +28,13 @@ namespace x3
             {
                 cout<<' '<<n;
             }
+            cout<<endl;
             std::for_each(v.begin(),v.end(),[](int& n){n++;});
             for(const auto&n:v)
             {
                 cout<<' '<<n;
             }
+            cout<<endl;
             sum s=std::for_each(v.begin(),v.end(),sum());
             for(const auto&n:v)
             {
