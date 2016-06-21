@@ -200,7 +200,7 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
-            std::vector<int> v3{6,7,9};
+            std::vector<int> v3{66,77,99};
             v2.reserve(8);
             copy_backward(v3.begin(), v3.end(), v2.end());
             for(const auto& n:v2)
