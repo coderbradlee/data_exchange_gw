@@ -117,9 +117,17 @@ namespace x3
             //     cout<<n<<" ";
             // }
             // cout<<endl;
-            std::vector<int> v{1,2,3,4};
-            std::vector<int> v2(v.size());
-            std::transform(v.begin(),v.end(),v2.begin(),std::negate<int>());
+            // std::vector<int> v{1,2,3,4};
+            // std::vector<int> v2(v.size());
+            // std::transform(v.begin(),v.end(),v2.begin(),std::negate<int>());
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            std::vector<int> v1{1,2,3};
+            std::vector<int> v2{10,20,30};
+            std::transform(v1.begin(),v1.end(),v2.begin(),std::plus<int>());
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
