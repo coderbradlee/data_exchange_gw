@@ -145,71 +145,85 @@ namespace x3
             // {
             //     cout<<n<<" ";
             // }
-            std::vector<int> v(5);
-            std::fill(v.begin(),v.end(),10);
+            // std::vector<int> v(5);
+            // std::fill(v.begin(),v.end(),10);
+            // for(const auto& n:v)
+            // {
+            //     cout<<n<<" ";
+            // }cout<<endl;
+            // std::vector<int> v2{1,2,3,4,5};
+            // //std::generate(v2.begin(),v2.end(),rand);
+            // for(const auto& n:v2)
+            // {
+            //     //cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // // reverse(v2.begin(),v2.end());
+            // // for(const auto& n:v2)
+            // // {
+            // //     cout<<n<<" ";
+            // // }
+            // // cout<<endl;
+            // // rotate(v2.begin(),v2.begin()+2,v2.end());
+            // // for(const auto& n:v2)
+            // // {
+            // //     cout<<n<<" ";
+            // // }
+            // // cout<<endl;
+            // random_shuffle(v2.begin(),v2.end());
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,4));
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // // sort(v2.begin(),v2.end());
+            // // for(const auto& n:v2)
+            // // {
+            // //     cout<<n<<" ";
+            // // }
+            // // cout<<endl;
+            // partial_sort(v2.begin(),v2.begin()+2,v2.end());
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // make_heap(v2.begin(),v2.end());
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // // std::vector<int> v3{66,77,99};
+            
+            // // copy_backward(v3.begin(), v3.end(), v2.end());
+            // v2.push_back(200);
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }cout<<endl;
+            // push_heap(v2.begin(),v2.end());
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }cout<<endl;
+            int elem[]={100,90,99,70,80,30,45,20,35,10,95};
+            std::vector<int> v(elem,elem+n-1);
+            const int n=sizeof(elem)/sizeof(int);
+            make_heap(v.begin(),v.end());
             for(const auto& n:v)
             {
                 cout<<n<<" ";
             }cout<<endl;
-            std::vector<int> v2{1,2,3,4,5};
-            //std::generate(v2.begin(),v2.end(),rand);
-            for(const auto& n:v2)
-            {
-                //cout<<n<<" ";
-            }
-            cout<<endl;
-            // reverse(v2.begin(),v2.end());
-            // for(const auto& n:v2)
-            // {
-            //     cout<<n<<" ";
-            // }
-            // cout<<endl;
-            // rotate(v2.begin(),v2.begin()+2,v2.end());
-            // for(const auto& n:v2)
-            // {
-            //     cout<<n<<" ";
-            // }
-            // cout<<endl;
-            random_shuffle(v2.begin(),v2.end());
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,4));
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            // sort(v2.begin(),v2.end());
-            // for(const auto& n:v2)
-            // {
-            //     cout<<n<<" ";
-            // }
-            // cout<<endl;
-            partial_sort(v2.begin(),v2.begin()+2,v2.end());
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            make_heap(v2.begin(),v2.end());
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            // std::vector<int> v3{66,77,99};
-            
-            // copy_backward(v3.begin(), v3.end(), v2.end());
-            v2.push_back(200);
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }cout<<endl;
-            push_heap(v2.begin(),v2.end());
-            for(const auto& n:v2)
+            v.push_back(95);
+            push_heap(v.begin(),v.end());
+            for(const auto& n:v)
             {
                 cout<<n<<" ";
             }cout<<endl;
