@@ -312,7 +312,7 @@ namespace x3
             {
                 if(p!=nullptr)
                 {
-                    ::operator delete p;
+                    ::operator delete(p);
                     cout<<"operator delete"<<endl;
                 }
             }
