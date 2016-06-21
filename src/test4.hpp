@@ -162,6 +162,11 @@ namespace x3
             {
                 cout<<n<<" ";
             }
+            rotate(v2.begin(),v2.begin()+2,v2.end());
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
         }
     }
 	void test()
