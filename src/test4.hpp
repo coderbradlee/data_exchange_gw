@@ -151,11 +151,11 @@ namespace x3
             {
                 cout<<n<<" ";
             }cout<<endl;
-            std::vector<int> v2(5);
-            std::generate(v2.begin(),v2.end(),rand);
+            std::vector<int> v2{1,2,3,4,5};
+            //std::generate(v2.begin(),v2.end(),rand);
             for(const auto& n:v2)
             {
-                cout<<n<<" ";
+                //cout<<n<<" ";
             }
             cout<<endl;
             reverse(v2.begin(),v2.end());
@@ -176,7 +176,7 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
-            partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,1804289383));
+            partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,2));
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
