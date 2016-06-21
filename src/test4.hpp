@@ -41,6 +41,9 @@ namespace x3
                 cout<<' '<<n;
             }
             cout<<endl<<s.m_sum<<endl;
+
+            auto it=std::find_if(v.begin(),v.end(),std::bind(std::greater<int>(),_1,10);
+                cout<<*it<<endl;
         }
     }
 	void test()
