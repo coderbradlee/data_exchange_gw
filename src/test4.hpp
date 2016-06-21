@@ -201,6 +201,7 @@ namespace x3
             }
             cout<<endl;
             std::vector<int> v3{6,7,9};
+            v2.reserve(8);
             copy_backward(v3.begin(), v3.end(), v2.end());
             for(const auto& n:v2)
             {
