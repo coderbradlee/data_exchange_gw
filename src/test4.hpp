@@ -71,7 +71,7 @@ namespace x3
             // {
             //     cout<<n<<endl;
             // }
-            std::vector<int> v3(v1);
+            std::vector<int> v3(v);
             std::copy_backward(v3.begin(),v3.end()-1,v2.end());
             for(const auto& n:v3)
             {
