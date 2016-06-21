@@ -71,13 +71,13 @@ namespace x3
             // {
             //     cout<<n<<endl;
             // }
-            std::vector<int> v3(v);
+            // std::vector<int> v3(v);
             
-            std::copy_backward(v3.begin(),v3.end()-2,v3.end());
-            for(const auto& n:v3)
-            {
-                cout<<n<<endl;
-            }
+            // std::copy_backward(v3.begin(),v3.end()-2,v3.end());
+            // for(const auto& n:v3)
+            // {
+            //     cout<<n<<endl;
+            // }
             // std::vector<int> from_vector;
             // for (int i = 0; i < 10; i++) 
             // {
@@ -93,7 +93,19 @@ namespace x3
             // {
             //     std::cout << to_vector[i] << " ";
             // }
-
+            std::vector<int> v{1,2,3,4,5};
+            std::vector<int> v2{11,22,33,44};
+            std::swap(v,v2);
+            for(const auto& n:v)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
         }
     }
 	void test()
