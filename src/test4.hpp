@@ -56,8 +56,8 @@ namespace x3
             // cout<<n<<endl;
             // n=std::count_if(v.begin(),v.end(),std::bind(std::less<int>(),std::placeholders::_1,10));
             // cout<<n<<endl;
-            std::vector<int> v{3,4,2,8,15,15,267};
-            std::vector<int> v2{3,8};
+            // std::vector<int> v{3,4,2,8,15,15,267};
+            // std::vector<int> v2{3,8};
             // typedef std::vector<int>::iterator it_type;
             // std::pair<it_type,it_type> p=std::mismatch(v.begin(),v.end(),v2.begin(),v2.end());
             // cout<<*p.first<<":"<<*p.second<<endl;
