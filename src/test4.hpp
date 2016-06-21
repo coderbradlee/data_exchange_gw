@@ -106,6 +106,17 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
+            std::swap_ranges(v2.begin(),v2.end(),v.begin());
+            for(const auto& n:v)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
         }
     }
 	void test()
