@@ -228,6 +228,12 @@ namespace x3
             {
                 cout<<n<<" ";
             }cout<<endl;
+            v.erase(v.begin()+1);
+            pop_heap(v.begin(),v.end());
+            for(const auto& n:v)
+            {
+                cout<<n<<" ";
+            }cout<<endl;
         }
     }
 	void test()
