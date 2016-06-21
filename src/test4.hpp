@@ -93,25 +93,33 @@ namespace x3
             // {
             //     std::cout << to_vector[i] << " ";
             // }
-            std::vector<int> v{1,2,3,4,5};
-            std::vector<int> v2{11,22,33,44};
-            std::swap(v,v2);
-            for(const auto& n:v)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            for(const auto& n:v2)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
-            std::swap_ranges(v.begin(),v.end(),v2.begin());
-            for(const auto& n:v)
-            {
-                cout<<n<<" ";
-            }
-            cout<<endl;
+            // std::vector<int> v{1,2,3,4,5};
+            // std::vector<int> v2{11,22,33,44};
+            // std::swap(v,v2);
+            // for(const auto& n:v)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // std::swap_ranges(v.begin(),v.end(),v2.begin());
+            // for(const auto& n:v)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            // cout<<endl;
+            std::vector<int> v{1,2,3,4};
+            std::vector<int> v2(v.size());
+            std::transform(v.begin(),v.end(),v2.begin(),std::negate<int>());
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
