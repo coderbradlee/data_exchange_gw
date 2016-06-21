@@ -127,7 +127,7 @@ namespace x3
             // cout<<endl;
             std::vector<int> v1{1,2,3};
             std::vector<int> v2{10,20,30};
-            std::transform(v1.begin(),v1.end(),v2.begin(),std::plus<int>());
+            std::transform(v1.begin(),v1.end(),v2.begin(),v2.begin(),std::plus<int>());
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
