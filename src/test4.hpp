@@ -200,6 +200,17 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
+            std::vector<int> v3{6,7,9};
+            copy_backward(v3.begin(), v3.end(), v2.end());
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }cout<<endl;
+            push_heap(v2.begin(),v2.end());
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }cout<<endl;
         }
     }
 	void test()
