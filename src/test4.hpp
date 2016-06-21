@@ -200,9 +200,10 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
-            std::vector<int> v3{66,77,99};
-            v2.reserve(8);
-            copy_backward(v3.begin(), v3.end(), v2.end());
+            // std::vector<int> v3{66,77,99};
+            
+            // copy_backward(v3.begin(), v3.end(), v2.end());
+            v2.push_back(200);
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
