@@ -42,7 +42,7 @@ namespace x3
             }
             cout<<endl<<s.m_sum<<endl;
 
-            auto it=std::find_if(v.begin(),v.end(),std::bind(std::greater<int>(),placeholders::_1,10);
+            auto it=std::find_if(v.begin(),v.end(),std::bind(std::greater<int>(),std::placeholders::_1,10);
                 cout<<*it<<endl;
         }
     }
