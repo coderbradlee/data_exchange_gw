@@ -304,7 +304,7 @@ namespace x3
             }
             pointer allocate(size_type n,const void* p=nullptr)
             {
-                T* b=(T*) operator new((size_t)(n*sizeof(T)));
+                T* b=(T*) ::operator new((size_t)(n*sizeof(T)));
                 cout<<hex<<(size_t)b<<endl;
                 return b;
             }
@@ -312,7 +312,7 @@ namespace x3
             {
                 if(p!=nullptr)
                 {
-                    operator delete p;
+                    ::operator delete p;
                     cout<<"operator delete"<<endl;
                 }
             }
