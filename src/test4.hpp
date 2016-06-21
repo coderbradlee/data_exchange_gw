@@ -74,10 +74,21 @@ namespace x3
             std::vector<int> v3(v);
             v3.reserve(v.size()+2);
             std::copy_backward(v3.begin(),v3.end()-1,v2.end());
-            for(const auto& n:v3)
-            {
-                cout<<n<<endl;
+            std::vector<int> from_vector;
+            for (int i = 0; i < 10; i++) {
+                from_vector.push_back(i);
             }
+         
+            std::vector<int> to_vector(15);
+         
+            std::copy_backward(from_vector.begin(), from_vector.end(), to_vector.end());
+         
+            std::cout << "to_vector contains: ";
+            for (unsigned int i = 0; i < to_vector.size(); i++) 
+            {
+                std::cout << to_vector[i] << " ";
+            }
+
         }
     }
 	void test()
