@@ -150,7 +150,7 @@ namespace x3
             for(const auto& n:v)
             {
                 cout<<n<<" ";
-            }
+            }cout<<endl;
             std::vector<int> v2(5);
             std::generate(v2.begin(),v2.end(),rand);
             for(const auto& n:v2)
@@ -165,6 +165,12 @@ namespace x3
             }
             cout<<endl;
             rotate(v2.begin(),v2.begin()+2,v2.end());
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
+            random_shuffle(v2.begin(),v2.end());
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
