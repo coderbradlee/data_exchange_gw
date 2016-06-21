@@ -138,9 +138,21 @@ namespace x3
             // {
             //     cout<<n<<" ";
             // }
-            std::vector<int> v1{1,2,3,4};
-            std::vector<int> v2(v1.size());
-            std::replace_copy_if(v1.begin(),v1.end(),v2.begin(),std::bind(std::greater_equal<int>(),std::placeholders::_1,3),0);
+            // std::vector<int> v1{1,2,3,4};
+            // std::vector<int> v2(v1.size());
+            // std::replace_copy_if(v1.begin(),v1.end(),v2.begin(),std::bind(std::greater_equal<int>(),std::placeholders::_1,3),0);
+            // for(const auto& n:v2)
+            // {
+            //     cout<<n<<" ";
+            // }
+            std::vector<int> v(5);
+            std::fill(v.begin(),v.end(),10);
+            for(const auto& n:v)
+            {
+                cout<<n<<" ";
+            }
+            std::vector<int> v2(5);
+            std::generate(v2.begin(),v2.end(),rand);
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
