@@ -140,7 +140,7 @@ namespace x3
             // }
             std::vector<int> v1{1,2,3,4};
             std::vector<int> v2(v1.size());
-            std::replace_copy_if(v1.begin(),v1.end(),v2.begin(),std::bind(std::greater_equal<int>(),3),0);
+            std::replace_copy_if(v1.begin(),v1.end(),v2.begin(),std::bind(std::greater_equal<int>(),std::placeholders::_1,3),0);
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
