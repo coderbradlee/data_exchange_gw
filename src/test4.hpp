@@ -257,6 +257,12 @@ namespace x3
             std::vector<int> v2{4,5,6};
             cout<<inner_product(v1.begin(),v1.end(),v2.begin(),0)<<endl;
             cout<<inner_product(v1.begin(),v1.end(),v2.begin(),1,std::multiplies<int>(),std::plus<int>())<<endl;
+            partial_sum(v1.begin(),v1.end(),v1.begin());
+            for(const auto& n:v1)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
         }
     }
 	void test()
