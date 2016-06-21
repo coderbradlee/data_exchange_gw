@@ -255,7 +255,8 @@ namespace x3
             // cout<<std::accumulate(v.begin(),v.end(),1,std::multiplies<int>())<<endl;
             std::vector<int> v1{1,2,3};
             std::vector<int> v2{4,5,6};
-            cout<<inner_product(v1.begin(),v1.end(),v2,0);
+            cout<<inner_product(v1.begin(),v1.end(),v2.begin(),0)<<endl;
+            cout<<inner_product(v1.begin(),v1.end(),v2.begin(),1,std::multiplies<int>(),std::plus<int>())<<endl;
         }
     }
 	void test()
