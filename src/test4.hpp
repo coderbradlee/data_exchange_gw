@@ -271,10 +271,85 @@ namespace x3
             cout<<endl;
         }
     }
+    namespace test_allocator
+    {
+        template<typename T>
+        class allocator
+        {
+        public:
+            typedef T value_type;
+            typedef T* pointer;
+            typedef const T* const_pointer;
+            typedef T& reference;
+            typedef const T& const_reference;
+            typedef size_t size_type;
+            typedef int difference_type;
+            template<typename U>
+            struct  rebind
+            {
+                typedef allocator<U> other;
+            };
+            allocator()
+            {
+                cout<<"allocator construct"<<endl;
+            }
+            allocator(allocator<T> const&)
+            {
+                cout<<"allocator copy construct"<<endl;
+            }
+            template<typename U>
+            allocator(allocator<U> const&)
+            {
+                cout<<"allocator template copy construct"<<endl;
+            }
+            pointer allocate(size_type n,const void* p=nullptr)
+            {
+                T* b=(T*) operator new((size_t)(n*sizeof(T)));
+                cout<<hex<<(size_t)b<<endl;
+                return b;
+            }
+            void deallocate(pointer p,size_type n)
+            {
+                if(p!=nullptr)
+                {
+                    operator delete p;
+                    cout<<"operator delete"<<endl;
+                }
+            }
+            void construct(pointer p,const T& v)
+            {
+                new(p) T(v);
+                cout<<"placement new"<<endl;
+            }
+            void destroy(pointer p,size_type n)
+            {
+                p->~T();
+                cout<<"destroy"<<endl;
+            }
+            size_type max_size()const
+            {
+                return size_type(1000);
+            }
+            pointer address(reference x)
+            {
+                return (pointer)&x;
+            }
+            const_pointer const_address(const_reference x)
+            {
+                return (const_pointer)&x;
+            }
+        };
+        void test()
+        {
+            std::vector<int,allocator<int>> v{1,2,3};
+            for_each(v.begin(),v.end(),[](int x){cout<<x<<endl;});
+
+        }
+    }
 	void test()
 	{
-
-        test_for_each::test();
+        test_allocator::test();
+        //test_for_each::test();
 	}
 
 }
