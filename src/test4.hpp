@@ -66,7 +66,7 @@ namespace x3
             // auto it=std::search(v.begin(),v.end(),v2.begin(),v2.end(),search_double<int>());
             // cout<<*it<<endl;
             std::vector<int> v3(v.size());
-            std::copy_n(v,4,v3.begin());
+            std::copy_n(v.begin(),4,v3.begin());
             for(const auto& n:v3)
             {
                 cout<<n<<endl;
