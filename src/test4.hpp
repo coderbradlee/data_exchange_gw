@@ -247,9 +247,9 @@ namespace x3
         }
         void test()
         {
-            std::vector<int> v(100);
-            std::iota(v.begin(),v.end(),1);
-            cout<<accumulate(v.begin(),v.end(),0)<<endl;
+            // std::vector<int> v(100);
+            // std::iota(v.begin(),v.end(),1);
+            // cout<<accumulate(v.begin(),v.end(),0)<<endl;
             std::vector<int> v(10);
             std::iota(v.begin(),v.end(),1);
             cout<<std::accumulate(v.begin(),v.end(),1,std::multiplies<int>())<<endl;
