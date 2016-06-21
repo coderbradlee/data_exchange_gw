@@ -58,13 +58,19 @@ namespace x3
             // cout<<n<<endl;
             std::vector<int> v{3,4,2,8,15,15,267};
             std::vector<int> v2{3,8};
-            typedef std::vector<int>::iterator it_type;
-            std::pair<it_type,it_type> p=std::mismatch(v.begin(),v.end(),v2.begin(),v2.end());
-            cout<<*p.first<<":"<<*p.second<<endl;
-            cout<<std::equal(v.begin(),v.end(),v2.begin(),v2.end())<<endl;
-            cout<<std::equal(v.begin(),v.begin()+4,v2.begin(),v2.begin()+4)<<endl;
-            auto it=std::search(v.begin(),v.end(),v2.begin(),v2.end(),search_double<int>());
-            cout<<*it<<endl;
+            // typedef std::vector<int>::iterator it_type;
+            // std::pair<it_type,it_type> p=std::mismatch(v.begin(),v.end(),v2.begin(),v2.end());
+            // cout<<*p.first<<":"<<*p.second<<endl;
+            // cout<<std::equal(v.begin(),v.end(),v2.begin(),v2.end())<<endl;
+            // cout<<std::equal(v.begin(),v.begin()+4,v2.begin(),v2.begin()+4)<<endl;
+            // auto it=std::search(v.begin(),v.end(),v2.begin(),v2.end(),search_double<int>());
+            // cout<<*it<<endl;
+            std::vector<int> v3(v.size());
+            std::copy_n(v,4,v3.begin());
+            for(const auto& n:v3)
+            {
+                cout<<n<<endl;
+            }
         }
     }
 	void test()
