@@ -133,6 +133,11 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
+            replace(v2.begin(),v2.end(),bind(std::greater_equal<int>(),20),0);
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
         }
     }
 	void test()
