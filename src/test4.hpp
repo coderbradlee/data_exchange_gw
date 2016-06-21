@@ -29,7 +29,7 @@ namespace x3
                 return r==l*2;
             }
         };
-        void test()
+        void test1()
         {
             // std::vector<int> v{3,4,2,8,15,15,267};
             // for(const auto &n:v)
@@ -244,6 +244,12 @@ namespace x3
             {
                 cout<<n<<" ";
             }cout<<endl;
+        }
+        void test()
+        {
+            std::vector<int> v(100);
+            std::iota(v.begin(),v.end(),1);
+            cout<<accumulate(v.begin(),v.end(),0)<<endl;
         }
     }
 	void test()
