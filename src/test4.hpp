@@ -234,6 +234,11 @@ namespace x3
             {
                 cout<<n<<" ";
             }cout<<endl;
+            sort_heap(v.begin(),v.end());
+            for(const auto& n:v)
+            {
+                cout<<n<<" ";
+            }cout<<endl;
         }
     }
 	void test()
