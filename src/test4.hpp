@@ -46,6 +46,8 @@ namespace x3
             cout<<*it<<endl;
             int n=std::count(v.begin(),v.end(),16);
             cout<<n<<endl;
+            n=std::count(v.begin(),v.end(),std::bind(std::less<int>(),std::placeholders::_1,10));
+            cout<<n<<endl;
         }
     }
 	void test()
