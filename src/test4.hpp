@@ -214,8 +214,9 @@ namespace x3
             //     cout<<n<<" ";
             // }cout<<endl;
             int elem[]={100,90,99,70,80,30,45,20,35,10,95};
-            std::vector<int> v(elem,elem+n-1);
             const int n=sizeof(elem)/sizeof(int);
+            std::vector<int> v(elem,elem+n-1);
+            
             make_heap(v.begin(),v.end());
             for(const auto& n:v)
             {
