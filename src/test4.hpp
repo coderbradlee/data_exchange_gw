@@ -65,8 +65,14 @@ namespace x3
             // cout<<std::equal(v.begin(),v.begin()+4,v2.begin(),v2.begin()+4)<<endl;
             // auto it=std::search(v.begin(),v.end(),v2.begin(),v2.end(),search_double<int>());
             // cout<<*it<<endl;
-            std::vector<int> v3(v.size());
-            std::copy_n(v.begin(),4,v3.begin());
+            // std::vector<int> v3(v.size());
+            // std::copy_n(v.begin(),4,v3.begin());
+            // for(const auto& n:v3)
+            // {
+            //     cout<<n<<endl;
+            // }
+            std::vector<int> v3(v1);
+            std::copy_backward(v3.begin(),v3.end()-1,v2.end());
             for(const auto& n:v3)
             {
                 cout<<n<<endl;
