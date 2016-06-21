@@ -305,7 +305,7 @@ namespace x3
             pointer allocate(size_type n,const void* p=nullptr)
             {
                 T* b=(T*) ::operator new((size_t)(n*sizeof(T)));
-                cout<<hex<<(size_t)b<<endl;
+                cout<<hex<<(size_t)b<<":"<< n*sizeof(T)<<endl;
                 return b;
             }
             void deallocate(pointer p,size_type n)
