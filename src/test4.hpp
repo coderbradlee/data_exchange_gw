@@ -176,7 +176,13 @@ namespace x3
                 cout<<n<<" ";
             }
             cout<<endl;
-            partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,846930886));
+            partition(v2.begin(),v2.end(),bind(std::less<int>(),std::placeholders::_1,1804289383));
+            for(const auto& n:v2)
+            {
+                cout<<n<<" ";
+            }
+            cout<<endl;
+            sort(v2.begin(),v2.end());
             for(const auto& n:v2)
             {
                 cout<<n<<" ";
