@@ -15,7 +15,7 @@ int main()
 
 		{
 			x3::test();
-
+			this_thread::sleep_for(chrono::seconds(10));
 		}
 		{
 			//start_exchange_rate_thread();
