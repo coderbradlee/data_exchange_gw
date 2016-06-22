@@ -2,6 +2,15 @@
 #define	BOOST_SIGNALSET_HPP
 #include "include.hpp"
 #include "sigslot.hpp"
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <execinfo.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <string.h>
+#include <unistd.h>
 //boost::asio::signal_set signals(io_service, SIGINT, SIGTERM);
 //signals.add(SIGUSR1); // 也可以直接用add函数添加信号
 // boost::asio::signal_set signal_set_all(SIGTERM);
