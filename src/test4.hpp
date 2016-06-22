@@ -357,7 +357,7 @@ namespace x3
                }
                cout<<t<<endl;
                cout<<s<<endl;
-               cout<<sizeof(s)<<endl;
+               cout<<sizeof(std::string)<<endl;
         }
     }
 	void test()
