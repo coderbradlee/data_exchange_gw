@@ -51,8 +51,17 @@ static void print_reason(int sig)
     int i;
     strings = backtrace_symbols(array, size);
     printf("Obtained %d stack frames.\n", size);
+    
+    BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal,stack frames)" <<size;
+	boost_log->get_initsink()->flush();
+	
+
     for (i = 0; i < size; i++)
-        printf("%s\n", strings[i]);
+	 {
+	 	printf("%s\n", strings[i]);
+	 	BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<strings[i];
+	 }   
+	 boost_log->get_initsink()->flush();
     free(strings);
 
 #endif
@@ -89,12 +98,23 @@ void register_signal()
     // sigaction(SIGABRT, &myAction, NULL); // 异常终止
     for(int i=1;i<32;++i)
     {
-    	sigaction(SIGABRT, &myAction, NULL);
+    	sigaction(i, &myAction, NULL);
     }
-    sigaction(SIGINT, &myAction, NULL);
+    //sigaction(SIGINT, &myAction, NULL);
 
 }
 
-
+void die()
+{
+    char *test1;
+    char *test2;
+    char *test3;
+    char *test4 = NULL;
+    strcpy(test4, "ab");
+}
+void test1()
+{
+    die();
+}
 #endif	/* BOOST_SIGNALSET_HPP */
 
