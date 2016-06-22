@@ -308,7 +308,7 @@ namespace x3
                 cout<<hex<<(size_t)b<<":"<< n*sizeof(T)<<endl;
                 return b;
             }
-            void deallocate(pointer p,size_type n)
+            void deallocate(pointer (p),size_type n)
             {
                 if(p!=nullptr)
                 {
