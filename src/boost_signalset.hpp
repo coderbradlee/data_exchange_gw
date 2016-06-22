@@ -85,6 +85,12 @@ void register_signal()
     myAction.sa_handler = print_reason;
     sigemptyset(&myAction.sa_mask);
     myAction.sa_flags = SA_RESTART | SA_SIGINFO;
+    // sigaction(SIGSEGV, &myAction, NULL); // 无效内存引用
+    // sigaction(SIGABRT, &myAction, NULL); // 异常终止
+    for(int i=1;i<32;++i)
+    {
+    	sigaction(SIGABRT, &myAction, NULL);
+    }
 }
 
 
