@@ -377,7 +377,7 @@ namespace x3
             int temp(x);
             std::vector<int> v;
             std::vector<int> v2;
-            transform(v.begin(),v.end(),back_inserter(v2),temp);
+            //transform(v.begin(),v.end(),back_inserter(v2),temp);
             print(v);
             print(v2);
 
