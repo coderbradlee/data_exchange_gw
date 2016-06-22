@@ -344,6 +344,19 @@ namespace x3
             std::vector<int,allocator<int>> v{1,2,3};
             for_each(v.begin(),v.end(),[](int x){cout<<x<<endl;});
 
+                string s("abc");
+               string t;
+               char & c(s[1]);
+
+               t = s;   // Data typically shared between s and t.
+               c = 'z';     // How many strings does this modify?
+               if (t[1] == 'z') {
+                    printf("wrong\n");
+               } else {
+                    printf("right\n");
+               }
+               cout<<t<<endl;
+               cout<<s<<endl;
         }
     }
 	void test()
