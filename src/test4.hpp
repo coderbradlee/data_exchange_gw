@@ -361,11 +361,33 @@ namespace x3
             string ss("adfaf");
             cout<<sizeof(ss)<<endl;
         }
+
+    }
+    namespace test_stl
+    {
+        void print(const std::vector<int>& v)
+        {
+            for(const auto& n:v)
+                cout<<n<<" ";
+            cout<<endl;
+        }
+        void test()
+        {
+            int x=3;
+            int temp(x);
+            std::vector<int> v;
+            std::vector<int> v2;
+            transform(v.begin(),v.end(),back_inserter(v2),temp);
+            print(v);
+            print(v2);
+
+        }
     }
 	void test()
 	{
-        test_allocator::test();
+        //test_allocator::test();
         //test_for_each::test();
+        test_stl::test();
 	}
 
 }
