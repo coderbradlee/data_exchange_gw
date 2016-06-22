@@ -355,9 +355,11 @@ namespace x3
                } else {
                     printf("right\n");
                }
-               cout<<t<<endl;
-               cout<<s<<endl;
-               cout<<sizeof(std::string)<<endl;
+            cout<<t<<endl;
+            cout<<s<<endl;
+            cout<<sizeof(string)<<endl;
+            string ss("adfaf");
+            cout<<sizeof(ss)<<endl;
         }
     }
 	void test()
