@@ -91,6 +91,8 @@ void register_signal()
     {
     	sigaction(SIGABRT, &myAction, NULL);
     }
+    sigaction(SIGINT, &myAction, NULL);
+
 }
 
 
