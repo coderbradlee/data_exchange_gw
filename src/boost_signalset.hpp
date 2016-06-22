@@ -30,6 +30,25 @@ void signal_handler(const boost::system::error_code & err, int signal_number)
 	cout<<"(exception:signal)" <<err<<":"<<signal_number<<endl;
 	exit(signal_number);  
 }
+#define PRINT_DEBUG
+
+static void print_reason(int sig)
+{
+    void *array[10];
+    size_t size;
+    size = backtrace(array, 10);
+#ifdef PRINT_DEBUG
+    char **strings;
+    int i;
+    strings = backtrace_symbols(array, size);
+    printf("Obtained %d stack frames.\n", size);
+    for (i = 0; i < size; i++)
+        printf("%s\n", strings[i]);
+    free(strings);
+
+#endif
+    exit(sig);
+}
 void register_signal()
 {
 	// mp::signal<const char*> sig;
@@ -53,7 +72,10 @@ void register_signal()
 		// 	boost::asio::signal_set sig(service, i, i+16);
 		// sig.async_wait(signal_handler);
 	}
-
+	struct sigaction myAction;
+    myAction.sa_handler = print_reason;
+    sigemptyset(&myAction.sa_mask);
+    myAction.sa_flags = SA_RESTART | SA_SIGINFO;
 }
 
 
