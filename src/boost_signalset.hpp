@@ -67,7 +67,7 @@ static void print_reason(int sig)
 #endif
     BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:signal)" <<sig;
 	boost_log->get_initsink()->flush();
-	cout<<"(exception:signal)" <<err<<":"<<sig<<endl;
+	cout<<"(exception:signal)"<<":"<<sig<<endl;
 	exit(sig);  
 }
 void register_signal()
