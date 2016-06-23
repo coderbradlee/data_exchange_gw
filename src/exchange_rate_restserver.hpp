@@ -201,7 +201,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
 		}
-		else// if(database_name=="eu")
+		else if(database_name=="eu")
 		{
 			mysql_xx.m_mysql_ip=get_config->m_mysql_eu_ip;
 			mysql_xx.m_mysql_port=get_config->m_mysql_eu_port;
@@ -209,7 +209,14 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_eu_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_eu_database;
 		}
-
+		else// if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_as_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_as_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_as_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
+		}
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
 		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
@@ -264,7 +271,7 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
 		}
-		else// if(database_name=="eu")
+		else if(database_name=="eu")
 		{
 			mysql_xx.m_mysql_ip=get_config->m_mysql_eu_ip;
 			mysql_xx.m_mysql_port=get_config->m_mysql_eu_port;
@@ -272,7 +279,14 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_eu_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_eu_database;
 		}
-		
+		else// if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_as_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_as_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_as_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
+		}
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
 		producer_exchange_rate_on_time_os->update_rate(source,target,which_day,ratio);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<endl;

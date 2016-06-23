@@ -1,4 +1,9 @@
 ﻿
+curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?target=THB\&time=2016-06-23\&database=eu
+POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
+
+
+
 没有exchange_rate_id的，需要插入
 NZD
 insert into  t_currency_exchange_rate

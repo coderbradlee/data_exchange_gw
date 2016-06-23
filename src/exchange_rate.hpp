@@ -1014,18 +1014,26 @@ void start_exchange_rate_thread()
 		mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
 		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
 
-
+		mysql_database mysql_as;
+		mysql_as.m_mysql_ip=get_config->m_mysql_as_ip;
+		mysql_as.m_mysql_port=get_config->m_mysql_as_port;
+		mysql_as.m_mysql_username=get_config->m_mysql_as_username;
+		mysql_as.m_mysql_password=get_config->m_mysql_as_password;
+		mysql_as.m_mysql_database=get_config->m_mysql_as_database;
 
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_os));
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_js(new exchange_rate_on_time(mysql_js));
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_eu(new exchange_rate_on_time(mysql_eu));
-
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_as(new exchange_rate_on_time(mysql_as));
+		
 		thread producer_exchange_rate_on_time_os_Thread([&producer_exchange_rate_on_time_os](){producer_exchange_rate_on_time_os->start();});
 		thread producer_exchange_rate_on_time_js_Thread([&producer_exchange_rate_on_time_js](){producer_exchange_rate_on_time_js->start();});
 		thread producer_exchange_rate_on_time_eu_Thread([&producer_exchange_rate_on_time_eu](){producer_exchange_rate_on_time_eu->start();});
+		thread producer_exchange_rate_on_time_as_Thread([&producer_exchange_rate_on_time_as](){producer_exchange_rate_on_time_as->start();});
 		producer_exchange_rate_on_time_os_Thread.join();
 		producer_exchange_rate_on_time_js_Thread.join();
 		producer_exchange_rate_on_time_eu_Thread.join();
+		producer_exchange_rate_on_time_as_Thread.join();
 }
 #endif
 

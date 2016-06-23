@@ -63,11 +63,16 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_mysql_eu_database = m_pt.get<std::string>("mysql_eu.database");
 
 			m_mysql_js_ip = m_pt.get<std::string>("mysql_js.ip");
-			m_mysql_js_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_eu.port"));
+			m_mysql_js_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_js.port"));
 			m_mysql_js_username = m_pt.get<std::string>("mysql_js.username");
 			m_mysql_js_password = m_pt.get<std::string>("mysql_js.password");
 			m_mysql_js_database = m_pt.get<std::string>("mysql_js.database");
-
+			///////////////////////////////////////////
+			m_mysql_as_ip = m_pt.get<std::string>("mysql_as.ip");
+			m_mysql_as_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_as.port"));
+			m_mysql_as_username = m_pt.get<std::string>("mysql_as.username");
+			m_mysql_as_password = m_pt.get<std::string>("mysql_as.password");
+			m_mysql_as_database = m_pt.get<std::string>("mysql_as.database");
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -88,6 +93,12 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_mysql_js_username;
 		string m_mysql_js_password;
 		string m_mysql_js_database;
+		//////////////////
+		string m_mysql_as_ip;
+		unsigned short m_mysql_as_port;
+		string m_mysql_as_username;
+		string m_mysql_as_password;
+		string m_mysql_as_database;
 		//////////////////////////
 		string m_mysql_table;
 		string m_mysql_table2;
