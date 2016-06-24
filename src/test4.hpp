@@ -414,7 +414,7 @@ namespace x3
                 cout<<++count<<":";
                 copy(v1.begin(),v1.end(),std::ostream_iterator<int>(cout,","));
                 cout<<endl;
-            }(next_permutation(v1.begin(),v1.end()));
+            }while(next_permutation(v1.begin(),v1.end()));
 
             cout<<"------------------"<<endl;
             //print<int>(v);
