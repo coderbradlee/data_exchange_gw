@@ -395,41 +395,53 @@ namespace x3
         }
         void test()
         {
-            std::vector<int> v{3,2,1};
+           //  std::vector<int> v{3,2,1};
+           //  int count=0;
+           //  do
+           //  {
+           //      cout<<++count<<":";
+           //      copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
+           //      cout<<endl;
+           //  }while(prev_permutation(v.begin(),v.end()));
+
+           //  cout<<"------------------"<<endl;
+           //  //print<int>(v);
+           //  ////////////////////////////////////////////
+           //  std::vector<int> v1{1,2,3};
+           //  count=0;
+           //  do
+           //  {
+           //      cout<<++count<<":";
+           //      copy(v1.begin(),v1.end(),std::ostream_iterator<int>(cout,","));
+           //      cout<<endl;
+           //  }while(next_permutation(v1.begin(),v1.end()));
+
+           //  cout<<"------------------"<<endl;
+           //  //print<int>(v);
+           //  ///////////////////////////////////////////
+           //  std::vector<char> v2{'a','a','b','b','b'};
+           //  count=0;
+           //  do
+           //  {
+           //      cout<<++count<<":";
+           //      copy(v2.begin(),v2.end(),std::ostream_iterator<char>(cout,","));
+           //      cout<<endl;
+           //  }while(prev_permutation(v2.begin(),v2.end()));
+           //  cout<<"------------------"<<endl;
+           // // print<char>(v2);
+            std::vector<int> v{1,2,3,4};
+            std::vector<int> selector{1,1,0,0};
             int count=0;
             do
             {
                 cout<<++count<<":";
-                copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
+                for(int i=0;i<4;++i)
+                {
+                    if(selector[i]==1)
+                        cout<<v[i]<<",";
+                }
                 cout<<endl;
-            }while(prev_permutation(v.begin(),v.end()));
-
-            cout<<"------------------"<<endl;
-            //print<int>(v);
-            ////////////////////////////////////////////
-            std::vector<int> v1{1,2,3};
-            count=0;
-            do
-            {
-                cout<<++count<<":";
-                copy(v1.begin(),v1.end(),std::ostream_iterator<int>(cout,","));
-                cout<<endl;
-            }while(next_permutation(v1.begin(),v1.end()));
-
-            cout<<"------------------"<<endl;
-            //print<int>(v);
-            ///////////////////////////////////////////
-            std::vector<char> v2{'a','a','b','b','b'};
-            count=0;
-            do
-            {
-                cout<<++count<<":";
-                copy(v2.begin(),v2.end(),std::ostream_iterator<char>(cout,","));
-                cout<<endl;
-            }while(prev_permutation(v2.begin(),v2.end()));
-            cout<<"------------------"<<endl;
-           // print<char>(v2);
-            
+            }while(prev_permutation(selector.begin(),selector.end()));
         }
     }
 	void test()
