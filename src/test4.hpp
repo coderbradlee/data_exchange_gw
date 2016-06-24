@@ -398,12 +398,12 @@ namespace x3
             }while(next_permutation(v.begin(),v.end()));
 
             cout<<"------------------"<<endl;
-            std::vector<int> v2{1,2,3};
+            std::vector<char> v2{'a','a','b','b','b'};
             count=0;
             do
             {
                 cout<<++count<<":";
-                copy(v2.begin(),v2.end(),std::ostream_iterator<int>(cout,","));
+                copy(v2.begin(),v2.end(),std::ostream_iterator<char>(cout,","));
                 cout<<endl;
             }while(next_permutation(v2.begin(),v2.end()));
         }
