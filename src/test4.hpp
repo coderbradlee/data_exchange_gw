@@ -444,12 +444,23 @@ namespace x3
             }while(prev_permutation(selector.begin(),selector.end()));
         }
     }
+    namespace test_unique
+    {
+
+        void test()
+        {
+            string str="a  b   c     d";
+            auto it=unique(str.begin(),str.end(),[](char x,char y){return x==' '&&y==' ';});
+            str.erase(it,str.end());
+        }
+    }
 	void test()
 	{
         //test_allocator::test();
         //test_for_each::test();
         //test_stl::test();
-        test_permutation::test();
+        //test_permutation::test();
+        test_unique::test();
 	}
 
 }
