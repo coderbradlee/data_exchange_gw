@@ -409,10 +409,10 @@ namespace x3
             ////////////////////////////////////////////
             std::vector<int> v1{1,2,3};
             count=0;
-            while(next_permutation(v.begin(),v.end()))
+            while(next_permutation(v1.begin(),v1.end()))
             {
                 cout<<++count<<":";
-                copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
+                copy(v1.begin(),v1.end(),std::ostream_iterator<int>(cout,","));
                 cout<<endl;
             };
 
