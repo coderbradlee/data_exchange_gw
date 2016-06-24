@@ -453,6 +453,10 @@ namespace x3
             auto it=unique(str.begin(),str.end(),[](char x,char y){return x==' '&&y==' ';});
             str.erase(it,str.end());
             cout<<str<<endl;
+            std::vector<int> v{1,2,3,4,5,6};
+            stable_partition(v.begin(),v.end(),[](int i){return i%2==0;})
+            copy(v.begin(),v.end(),ostream_iterator<int>(cout,","));
+            cout<<endl;
         }
     }
 	void test()
