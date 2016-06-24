@@ -405,7 +405,7 @@ namespace x3
             }while(prev_permutation(v.begin(),v.end()));
 
             cout<<"------------------"<<endl;
-            print<int>(v);
+            //print<int>(v);
             ////////////////////////////////////////////
             std::vector<int> v1{1,2,3};
             count=0;
@@ -417,7 +417,7 @@ namespace x3
             };
 
             cout<<"------------------"<<endl;
-            print<int>(v);
+            //print<int>(v);
             ///////////////////////////////////////////
             std::vector<char> v2{'a','a','b','b','b'};
             count=0;
@@ -428,7 +428,7 @@ namespace x3
                 cout<<endl;
             }while(prev_permutation(v2.begin(),v2.end()));
             cout<<"------------------"<<endl;
-            print<char>(v2);
+           // print<char>(v2);
             
         }
     }
