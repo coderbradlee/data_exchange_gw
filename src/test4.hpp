@@ -452,6 +452,7 @@ namespace x3
             string str="a  b   c     d";
             auto it=unique(str.begin(),str.end(),[](char x,char y){return x==' '&&y==' ';});
             str.erase(it,str.end());
+            cout<<str<<endl;
         }
     }
 	void test()
