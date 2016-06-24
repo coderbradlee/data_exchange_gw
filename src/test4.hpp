@@ -412,7 +412,8 @@ namespace x3
 	{
         //test_allocator::test();
         //test_for_each::test();
-        test_stl::test();
+        //test_stl::test();
+        test_permutation::test();
 	}
 
 }
