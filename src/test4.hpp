@@ -395,7 +395,7 @@ namespace x3
         }
         void test()
         {
-            std::vector<int> v{1,2,3};
+            std::vector<int> v{3,2,1};
             int count=0;
             do
             {
@@ -409,12 +409,12 @@ namespace x3
             ////////////////////////////////////////////
             std::vector<int> v1{1,2,3};
             count=0;
-            while(next_permutation(v1.begin(),v1.end()))
+            do
             {
                 cout<<++count<<":";
                 copy(v1.begin(),v1.end(),std::ostream_iterator<int>(cout,","));
                 cout<<endl;
-            };
+            }(next_permutation(v1.begin(),v1.end()));
 
             cout<<"------------------"<<endl;
             //print<int>(v);
