@@ -388,9 +388,10 @@ namespace x3
         template<typename T>
         void print(const std::vector<T>& v)
         {
-            for(const auto& n:v)
-                cout<<n<<" ";
-            cout<<"***************************"<<endl;
+            // for(const auto& n:v)
+            //     cout<<n<<" ";
+            copy(v.begin(),v.end(),std::ostream_iterator<T>(cout,","));
+            cout<<endl<<"***************************"<<endl;
         }
         void test()
         {
