@@ -383,6 +383,31 @@ namespace x3
 
         }
     }
+    namespace test_permutation
+    {
+
+        void test()
+        {
+            std::vector<int> v{1,2,3};
+            int count=0;
+            do
+            {
+                cout<<++count<<":";
+                copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
+                cout<<endl;
+            }while(next_permutation(v.begin(),v.end()));
+
+            cout<<"------------------"<<endl;
+            std::vector<int> v2{1,2,3};
+            count=0;
+            do
+            {
+                cout<<++count<<":";
+                copy(v2.begin(),v2.end(),std::ostream_iterator<int>(cout,","));
+                cout<<endl;
+            }while(next_permutation(v2.begin(),v2.end()));
+        }
+    }
 	void test()
 	{
         //test_allocator::test();
