@@ -402,7 +402,7 @@ namespace x3
                 cout<<++count<<":";
                 copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
                 cout<<endl;
-            }while(next_permutation(v.begin(),v.end()));
+            }while(prev_permutation(v.begin(),v.end()));
 
             cout<<"------------------"<<endl;
             print<int>(v);
@@ -426,7 +426,7 @@ namespace x3
                 cout<<++count<<":";
                 copy(v2.begin(),v2.end(),std::ostream_iterator<char>(cout,","));
                 cout<<endl;
-            }while(next_permutation(v2.begin(),v2.end()));
+            }while(prev_permutation(v2.begin(),v2.end()));
             cout<<"------------------"<<endl;
             print<char>(v2);
             
