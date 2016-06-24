@@ -385,7 +385,13 @@ namespace x3
     }
     namespace test_permutation
     {
-
+        template<typename T>
+        void print(const std::vector<T>& v)
+        {
+            for(const auto& n:v)
+                cout<<n<<" ";
+            cout<<"***************************"<<endl;
+        }
         void test()
         {
             std::vector<int> v{1,2,3};
@@ -398,6 +404,20 @@ namespace x3
             }while(next_permutation(v.begin(),v.end()));
 
             cout<<"------------------"<<endl;
+            print<int>(v);
+            ////////////////////////////////////////////
+            std::vector<int> v1{1,2,3};
+            count=0;
+            while(next_permutation(v.begin(),v.end()))
+            {
+                cout<<++count<<":";
+                copy(v.begin(),v.end(),std::ostream_iterator<int>(cout,","));
+                cout<<endl;
+            };
+
+            cout<<"------------------"<<endl;
+            print<int>(v);
+            ///////////////////////////////////////////
             std::vector<char> v2{'a','a','b','b','b'};
             count=0;
             do
@@ -406,6 +426,9 @@ namespace x3
                 copy(v2.begin(),v2.end(),std::ostream_iterator<char>(cout,","));
                 cout<<endl;
             }while(next_permutation(v2.begin(),v2.end()));
+            cout<<"------------------"<<endl;
+            print<char>(v2);
+            
         }
     }
 	void test()
