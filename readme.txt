@@ -1,5 +1,5 @@
 ﻿
-curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?target=THB\&time=2016-06-23\&database=eu
+curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?target=THB\&time=2016-06-24\&database=as
 POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
 
 
