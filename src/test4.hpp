@@ -662,7 +662,7 @@ namespace x3
             init(int i):a(i){}
             //static int d=0;
             static const int i=0;
-            //static const double e=1.0;
+            constexpr static const double e=1.0;
             //static const char* const f="e";
             int a=1;
             double b{1.2};
