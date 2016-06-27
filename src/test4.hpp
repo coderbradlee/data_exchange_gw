@@ -654,6 +654,16 @@ namespace x3
             cout<<v<<endl;
         }
     }
+    namespace test_static_const
+    {
+        class init
+        {
+            static int d=0;
+            static const int i=0;
+            static const double e=1.0f;
+            static const char* const f="e";
+        };
+    }
 	void test()
 	{
         //test_allocator::test();
