@@ -520,7 +520,7 @@ namespace x3
             for(size_t i=0;i<k_files;++i)
             {
                 File file(rand()%1000);
-                generate(file.begin(),file.end(),rand());
+                generate(file.begin(),file.end(),&rand);
                 sort(file.begin(),file.end());
                 files[i].swap(file);
             }
