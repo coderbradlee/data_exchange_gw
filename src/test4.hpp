@@ -344,7 +344,7 @@ namespace x3
             std::vector<int,allocator<int>> v{1,2,3};
             for_each(v.begin(),v.end(),[](int x){cout<<x<<endl;});
 
-                string s("abc");
+               string s("abc");
                string t;
                char & c(s[1]);
 
@@ -459,13 +459,83 @@ namespace x3
             cout<<endl;
         }
     }
+    namespace test_merge_n
+    {
+        typedef int record;
+        typedef std::vector<record> File;
+        struct input
+        {
+            record value;
+            size_t index;
+            const File* file;
+            explicit input(const File* f):value(-1),index(0),file(f)
+            {
+            }
+            bool next()
+            {
+                if(index<file->size())
+                {
+                    value=(*file)[index];
+                    ++index;
+                    return true;
+                }
+                else
+                    return false;
+            }
+            bool operator<(const input& r)const
+            {
+                return value<r.value;
+            }
+        };
+        File merge_n(const std::vector<File>& files)
+        {
+            File output;
+            std::vector<input> inputs;
+            for(size_t i=0;i<files.size();++i)
+            {
+                input in(&files[i]);
+                if(in.next())
+                {
+                    inputs.push_back(in);
+                }
+            }
+            make_heap(inputs.begin(),inputs.end());
+            while(!inputs.empty())
+            {
+                pop_heap(inputs.begin(),inputs.end());
+                output.push_back(inputs.back().value);
+                if(inputs.back().next())
+                {
+                    push_heap(inputs.begin(),inputs.end());
+                }
+                else
+                    inputs.pop_back();
+            }
+            return output;
+        }
+        void test()
+        {
+            const int k_files=32;
+            std::vector<File> files(k_files);
+            for(size_t i=0;i<k_files;++i)
+            {
+                File file(rand()%1000);
+                generate(file.begin(),file.end(),rand());
+                sort(file.begin(),file.end());
+                files[i].swap(file);
+            }
+            File out=merge_n(files);
+            copy(out.begin(),out.end(),iostream_iterator<record>(cout," "));
+        }
+    }
 	void test()
 	{
         //test_allocator::test();
         //test_for_each::test();
         //test_stl::test();
         //test_permutation::test();
-        test_unique::test();
+        //test_unique::test();
+        test_merge_n::test();
 	}
 
 }
