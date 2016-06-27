@@ -661,7 +661,8 @@ namespace x3
         //test_stl::test();
         //test_permutation::test();
         //test_unique::test();
-        test_merge_n::test();
+        //test_merge_n::test();
+        test_ip_range::test();
 	}
 
 }
