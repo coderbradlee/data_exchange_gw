@@ -535,7 +535,7 @@ namespace x3
             uint32_t start;
             uint32_t end;
             int value;
-            bool operator<(const ip_range& r)
+            bool operator<(const ip_range& r)const
             {
                 return start<r.start;
             }
