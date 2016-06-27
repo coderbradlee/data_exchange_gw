@@ -525,7 +525,7 @@ namespace x3
                 files[i].swap(file);
             }
             File out=merge_n(files);
-            copy(out.begin(),out.end(),iostream_iterator<record>(cout," "));
+            copy(out.begin(),out.end(),ostream_iterator<record>(cout," "));
         }
     }
 	void test()
