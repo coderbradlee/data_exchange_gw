@@ -528,6 +528,132 @@ namespace x3
             copy(out.begin(),out.end(),ostream_iterator<record>(cout," "));
         }
     }
+    namespace test_ip_range
+    {
+        struct  ip_range
+        {
+            uint32_t start;
+            uint32_t end;
+            int value;
+            bool operator<(const ip_range& r)
+            {
+                return start<r.start;
+            }
+        };
+        int find_ip(const std::vector<ip_range>& ranges,uint32_t ip)
+        {
+            int result=-1;
+            if(!ranges.empty())
+            {
+                ip_range needle={ip,0,0};
+                auto it=lower_bound(ranges.begin(),ranges.end(),needle);
+                if(it==ranges.end())
+                {
+                    --it;
+                }
+                else if(it!=ranges.begin()&&it->start>ip)
+                {
+                    --it;
+                }
+                if(it->start<ip&&it->end>=ip)
+                {
+                    result=it->value;
+                }
+
+            }
+            return result;
+        }
+        bool operator==(const ip_range& l,const ip_range& r)
+        {
+            return l.start==r.start;
+        }
+        void test()
+        {
+            std::vector<ip_range> ranges;
+            ip_range r1={123,234,999};
+            ranges.push_back(r1);
+            sort(ranges.begin(),ranges.end());
+            int v=find_ip(ranges,0);
+            cout<<v<<endl;
+            v = findIpValue(ranges, 122);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 123);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 234);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 235);
+            cout<<v<<endl;
+
+              IPrange r2 = { 1000, 2000, 7777 };
+              ranges.push_back(r2);
+
+              sort(ranges.begin(), ranges.end());
+              assert(adjacent_find(ranges.begin(), ranges.end()) == ranges.end());
+
+              v = findIpValue(ranges, 0);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 122);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 123);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 234);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 235);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 999);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1000);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1500);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 2000);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 2001);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824);
+            cout<<v<<endl;
+
+              IPrange r3 = { 1073741824U*3, 1073741824U*3+1073741823U, 5555 };
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*2);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*3);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*3+1073741822U);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*3+1073741823U);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*3+1073741824U);
+            cout<<v<<endl;
+
+              IPrange r4 = { 1073741824U*3+1073741823U, 1073741824U*3+1073741823U, 3333 };
+              ranges.push_back(r4);
+
+              v = findIpValue(ranges, 1073741824U*3+1073741822U);
+            cout<<v<<endl;
+
+              v = findIpValue(ranges, 1073741824U*3+1073741823U);
+            cout<<v<<endl;
+        }
+    }
 	void test()
 	{
         //test_allocator::test();
