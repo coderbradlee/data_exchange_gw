@@ -662,6 +662,8 @@ namespace x3
             static const int i=0;
             //static const double e=1.0;
             //static const char* const f="e";
+            int a=1;
+            double b{1.2};
         };
     }
 	void test()
