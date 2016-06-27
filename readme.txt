@@ -5,13 +5,18 @@ POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio
 
 没有exchange_rate_id的，需要插入
 TRY
+
+insert into  t_currency_exchange_rate
+(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
+(rand_string(20),'J4YVQ3UR37WOQ6GEDGRF','G7MIFB2S0VL20NKEIMYG',0,7,0,'2016-06-27 17:35:00','','2016-06-27 17:35:00','',0,1)
+
 insert into  t_currency_exchange_rate
 (currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
 (rand_string(20),'G7MIFB2S0VL20NKEIMYG','J4YVQ3UR37WOQ6GEDGRF',0,7,0,'2016-06-27 17:35:00','','2016-06-27 17:35:00','',0,1)
 
 //select currency_exchange_rate_id from t_currency_exchange_rate where //source_currency_id='G7MIFB2S0VL20NKEIMYG' and target_currency_id='J4YVQ3UR37WOQ6GEDGRF'
-//结果:3EVVZDB5LQDJBEJSAJTN
-//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='3EVVZDB5LQDJBEJSAJTN' and createBy='exchange_gw'
+//结果:CVUOQYIEF8KDDPVIUQW8
+//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='CVUOQYIEF8KDDPVIUQW8' and createBy='exchange_gw'
 
 
 
