@@ -658,10 +658,10 @@ namespace x3
     {
         class init
         {
-            static int d=0;
+            //static int d=0;
             static const int i=0;
-            static const double e=1.0;
-            static const char* const f="e";
+            //static const double e=1.0;
+            //static const char* const f="e";
         };
     }
 	void test()
