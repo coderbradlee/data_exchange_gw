@@ -142,7 +142,7 @@ namespace x5
             file_split(int file_number):m_file_number(file_number){}
             void split()
             {
-                for(size_t i=0;i<m_file_number;++i)
+                for(int i=0;i<m_file_number;++i)
                 {
                     this_thread::sleep_for(chrono::seconds(2));
                     double temp=(i+1)/m_file_number;
