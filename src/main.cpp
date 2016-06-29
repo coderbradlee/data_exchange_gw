@@ -5,7 +5,7 @@
 #include "orderbot_restserver_resource.hpp"
 #include "activemq_producer_consumer.hpp"
 #include "boost_signalset.hpp"
-#include "test4.hpp"
+#include "test5.hpp"
 
 int main()
 {
@@ -14,7 +14,7 @@ int main()
 		register_signal();
 
 		{
-			x3::test();
+			x5::test();
 			//this_thread::sleep_for(chrono::seconds(10));
 			//test1();
 		}
