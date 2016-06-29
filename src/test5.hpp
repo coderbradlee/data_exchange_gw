@@ -105,10 +105,81 @@ namespace x5
             cout<<s->caculate_tax()<<endl;
         }
     }
+    namespace test_design_model_observer
+    {
+        class i_progress
+        {
+        public:
+            virtual void do_progress(int ratio)=0;
+            virtual ~i_progress(){}
+        };
+        class dot_progress:public i_progress
+        {
+        public:
+            void do_progress(int ratio)
+            {
+                for(size_t i=0;i<ratio;++i)
+                cout<<"."
+                cout<<endl;
+            }
+        };
+        class pound_progress:public i_progress
+        {
+        public:
+            void do_progress(int ratio)
+            {
+                for(size_t i=0;i<ratio;++i)
+                cout<<"#"
+                cout<<endl;
+            }
+            
+        };
+        class file_split
+        {
+        public:
+            file_split(int file_number):m_file_number(file_number){}
+            void split()
+            {
+                for(size_t i=0;i<m_file_number;++i)
+                {
+                    this_thread::sleep_for(chrono::seconds(2));
+                    on_progress(i/m_file_number);
+                }
+            }
+            void add_iprogress(boost::shared_ptr<i_progress> i)
+            {
+                m_i_progress.push_back(i);
+            }
+            void remove_iprogress(boost::shared_ptr<i_progress> i)
+            {
+                m_i_progress.remove(i);
+            }
+        private:
+            void on_progress(double ratio)
+            {
+                for(const auto& i:m_i_progress)
+                {
+                    i->do_progress(ratio*m_file_number);
+                }
+            }
+            std::list<boost::shared_ptr<i_progress>> m_i_progress;
+            int m_file_number;
+        };
+        void test()
+        {
+            boost::shared_ptr<file_split> f(new file_split(10));
+            boost::shared_ptr<i_progress> d(new dot_progress());
+            boost::shared_ptr<i_progress> p(new pound_progress());
+            f->add_iprogress(d);
+            f->add_iprogress(p);
+            f->split();
+        }
+    }
 	void test()
 	{
         //test_design_model_template_method::test();
-        test_design_model_strategy::test();
+        //test_design_model_strategy::test();
+        test_design_model_observer::test();
 	}
 
 }
