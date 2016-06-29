@@ -66,10 +66,49 @@ namespace x5
             boost::shared_ptr<aplication> t(new aplication());
             t->run();
         }
-    }   
+    }  
+    namespace  test_design_model_strategy
+    {
+        class tax
+        {
+        public:
+            virtual ~tax(){}
+        
+            virtual double caculate_tax()=0;
+
+        };
+        class cn_tax:public tax
+        {
+        public:
+            double caculate_tax()
+            {
+                return 10.234;
+            }
+        };
+        class sales_order
+        {
+        public:
+            sales_order(boost::shared_ptr<tax> t):m_tax(t)
+            {}
+            ~sales_order(){}
+            double caculate_tax()
+            {
+                m_tax->caculate_tax();
+            }
+        private:
+            boost::shared_ptr<tax> m_tax;
+        };
+        void test()
+        {
+            boost::shared_ptr<tax> t(new cn_tax());
+            boost::shared_ptr<sales_order> s(new sales_order(t));
+            cout<<s->caculate_tax()<<endl;
+        }
+    }
 	void test()
 	{
-        test_design_model_template_method::test();
+        //test_design_model_template_method::test();
+        test_design_model_strategy::test();
 	}
 
 }
