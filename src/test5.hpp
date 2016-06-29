@@ -128,6 +128,7 @@ namespace x5
         public:
             void do_progress(int ratio)
             {
+                cout<<ratio<<endl;
                 for(size_t i=0;i<ratio;++i)
                 cout<<"#";
                 cout<<endl;
