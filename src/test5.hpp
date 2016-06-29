@@ -118,6 +118,7 @@ namespace x5
         public:
             void do_progress(int ratio)
             {
+                cout<<ratio<<endl;
                 for(size_t i=0;i<ratio;++i)
                 cout<<".";
                 cout<<endl;
@@ -144,7 +145,7 @@ namespace x5
                 for(size_t i=0;i<m_file_number;++i)
                 {
                     this_thread::sleep_for(chrono::seconds(2));
-                    on_progress(i/m_file_number);
+                    on_progress(i+1/m_file_number);
                 }
             }
             void add_iprogress(boost::shared_ptr<i_progress> i)
