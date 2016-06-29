@@ -709,7 +709,7 @@ public:
 				xxx_cny=xxx_usd*USD_CNY;
 				cny_xxx=1/xxx_cny;
 				boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(item.code,"CNY", boost::lexical_cast<string>(xxx_cny),today,"js"));
-				boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client("CNY",item.code, boost::lexical_cast<string>(cny_xxx),today,"js"));
+				boost::shared_ptr<exchange_rate_rest_client> t2(new exchange_rate_rest_client("CNY",item.code, boost::lexical_cast<string>(cny_xxx),today,"js"));
 			}			
 		}
 		catch (const MySqlException& e)
