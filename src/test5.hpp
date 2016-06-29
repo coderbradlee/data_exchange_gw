@@ -146,6 +146,7 @@ namespace x5
                 {
                     this_thread::sleep_for(chrono::seconds(2));
                     double temp=(i+1)/m_file_number;
+                    cout<<temp<<endl;
                     on_progress(temp);
                 }
             }
@@ -160,7 +161,7 @@ namespace x5
         private:
             void on_progress(double ratio)
             {
-                cout<<ratio<<endl;
+                //cout<<ratio<<endl;
                 for(const auto& i:m_i_progress)
                 {
                     i->do_progress(ratio*m_file_number);
