@@ -995,7 +995,7 @@ public:
         	{
         		start_update();
         		general_update();
-        		update_cny();
+        		//update_cny();
         		boost::this_thread::sleep(boost::posix_time::millisec(60000));
         	}
         	

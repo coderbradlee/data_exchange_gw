@@ -165,7 +165,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 	const auto request = session->get_request();
 	string path = request->get_path();
 	auto ret = request->get_query_parameters();
-	string source,target,which_day,database_name;
+	string source="USD",target,which_day,database_name;
 
 	for (auto& r : ret)
 	{	
@@ -233,7 +233,7 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 	const auto request = session->get_request();
 	string path = request->get_path();
 	auto ret = request->get_query_parameters();
-	string source,target,which_day,database_name,ratio;
+	string source="USD",target,which_day,database_name,ratio;
 
 	for (auto& r : ret)
 	{	
