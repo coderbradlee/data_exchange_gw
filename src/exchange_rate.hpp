@@ -692,12 +692,10 @@ public:
 			// string currency_id;//J4YVQ3USQNO3U430EKE1
 			// string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
 			// string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-			float EUR_GBP=0,EUR_CNY=0; 
-			float EUR_USD=0,USD_GBP=0;
+			
 			float USD_CNY=0;
 			float xxx_cny=0,cny_xxx=0;
 			float xxx_usd;
-			float usd_xxx;
 			string source,target;
 			//EUR_CNY=EUR_USD*USD_CNY;
 			for(auto& item :m_exchage_rate_data_array)
