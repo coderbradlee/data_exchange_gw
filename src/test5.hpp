@@ -60,7 +60,7 @@ namespace x5
             {
                 cout<<"aplication step4"<<endl;
             }
-        }
+        };
         void test()
         {
             boost::shared_ptr<aplication> t(new aplication());
