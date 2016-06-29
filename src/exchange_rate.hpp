@@ -2,6 +2,88 @@
 #define	EXCHANGE_RATE_HPP
 
 #include  "include.hpp"
+class exchange_rate_rest_client
+{
+public:
+	exchange_rate_rest_client(const string& source,const std::string& target, const std::string& ratio,const string& which_day,const string& database)
+	{
+		//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
+		curl_global_init(CURL_GLOBAL_ALL);
+		m_curl = curl_easy_init();
+		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
+		curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, this);
+		string url="http://172.18.100.87:8688/exchange_rate/?source="+source+"&target="+currency_name+"&time="+which_day+"&ratio="+ratio+"&database="+database;
+		curl(url, "POST", true);
+	}
+	virtual ~exchange_rate_rest_client()
+	{
+		curl_easy_cleanup(m_curl);
+		curl_global_cleanup();	
+	}
+	
+protected:	
+	static size_t download_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
+	{
+		if (thisPtr)
+		{
+			//cout << __LINE__ << endl;
+			return ((exchange_rate_rest_client*)thisPtr)->download_write_data(buffer, size, nmemb);
+		}
+
+		else
+		{
+			//cout << __LINE__ << endl;
+			return 0;
+		}
+
+	}
+	size_t download_write_data(const char *buffer, size_t size, size_t nmemb)
+	{
+		int result = 0;
+		if (buffer != 0)
+		{
+			//cout << __LINE__ << endl;
+			m_data.clear();
+			m_data.append(buffer, size*nmemb);
+			
+			result = size*nmemb;
+		}
+		/*cout <<__LINE__<<":"<<  buffer << endl;*/
+		//cout << __LINE__ << ":" << m_data << endl;
+		
+		return result;
+	}
+
+	void curl(const std::string& uri, const std::string& method = "GET", bool auth=false)
+	{	
+		set_url(uri);
+		curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, download_callback);
+		curl_easy_setopt(m_curl, CURLOPT_MAXREDIRS, 50L);
+		curl_easy_setopt(m_curl, CURLOPT_TCP_KEEPALIVE, 1L);
+		curl_easy_setopt(m_curl, CURLOPT_CUSTOMREQUEST, method.c_str());
+		cout << __LINE__ << "request:"<<uri << endl;
+		on_request();
+		
+	}
+	void set_url(const std::string& url) const
+	{
+		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
+	}
+
+	bool on_request() 
+	{
+		m_data.clear();
+		return 0 == curl_easy_perform(m_curl);
+	}
+public:
+	string get_data()
+	{
+		return m_data;
+	}
+protected:	
+	std::string m_data;
+	CURL* m_curl;
+};
 //#define DEBUG
 //https://www.exchangerate-api.com/USD/GBP?k=d2408a508ec4f2bec554f465
 class exchange_rate
@@ -596,6 +678,53 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 	}
+	void update_cny()
+	{
+		try
+		{
+			ptime now = second_clock::local_time();
+ 			
+ 			string today=to_iso_extended_string(now.date());
+			
+			// string code;//CAD
+			// string to_usd_exchange_rate;//0.772558
+			// string from_usd_exchange_rate;//0.772558
+			// string currency_id;//J4YVQ3USQNO3U430EKE1
+			// string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+			// string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+			float EUR_GBP=0,EUR_CNY=0; 
+			float EUR_USD=0,USD_GBP=0;
+			float USD_CNY=0;
+			float xxx_cny=0,cny_xxx=0;
+			float xxx_usd;
+			float usd_xxx;
+			string source,target;
+			//EUR_CNY=EUR_USD*USD_CNY;
+			for(auto& item :m_exchage_rate_data_array)
+			{	
+				if(item.code=="CNY")
+					USD_CNY=boost::lexical_cast<float>(item.from_usd_exchange_rate);
+			}
+			for(auto& item :m_exchage_rate_data_array)
+			{	
+				xxx_usd=boost::lexical_cast<float>(item.to_usd_exchange_rate);
+				xxx_cny=xxx_usd*USD_CNY;
+				cny_xxx=1/xxx_cny;
+				boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(item.code,"CNY", xxx_cny,today,"js"));
+				boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client("CNY",item.code, cny_xxx,today,"js"));
+			}			
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+		}
+	}
 	void update_from_usd_exchange_rate(const exchage_rate_data& item)
 	{
 		try
@@ -868,6 +997,7 @@ public:
         	{
         		start_update();
         		general_update();
+        		update_cny();
         		boost::this_thread::sleep(boost::posix_time::millisec(60000));
         	}
         	

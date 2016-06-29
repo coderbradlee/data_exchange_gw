@@ -1,6 +1,6 @@
 ﻿
 curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?target=THB\&time=2016-06-24\&database=as
-POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
+curl -u test:test -X POST http://172.18.100.87:8688/exchange_rate/?source=CNY\&target=TRY\&time=2016-06-29\&ratio=0.435791\&database=js
 
 
 没有exchange_rate_id的，需要插入
