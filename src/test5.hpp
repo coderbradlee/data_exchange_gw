@@ -93,7 +93,7 @@ namespace x5
             ~sales_order(){}
             double caculate_tax()
             {
-                m_tax->caculate_tax();
+                return m_tax->caculate_tax();
             }
         private:
             boost::shared_ptr<tax> m_tax;
