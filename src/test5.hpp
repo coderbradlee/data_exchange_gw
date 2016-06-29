@@ -180,11 +180,20 @@ namespace x5
             f->split();
         }
     }
+    namespace test_design_model_decorator
+    {
+
+        void test()
+        {
+
+        }
+    }
 	void test()
 	{
         //test_design_model_template_method::test();
         //test_design_model_strategy::test();
-        test_design_model_observer::test();
+        //test_design_model_observer::test();
+        test_design_model_decorator::test();
 	}
 
 }
