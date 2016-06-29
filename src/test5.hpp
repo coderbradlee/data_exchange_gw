@@ -118,7 +118,7 @@ namespace x5
         public:
             void do_progress(int ratio)
             {
-                cout<<ratio<<endl;
+                //cout<<ratio<<endl;
                 for(size_t i=0;i<ratio;++i)
                 cout<<".";
                 cout<<endl;
@@ -129,7 +129,7 @@ namespace x5
         public:
             void do_progress(int ratio)
             {
-                cout<<ratio<<endl;
+                //cout<<ratio<<endl;
                 for(size_t i=0;i<ratio;++i)
                 cout<<"#";
                 cout<<endl;
@@ -159,6 +159,7 @@ namespace x5
         private:
             void on_progress(double ratio)
             {
+                cout<<ratio<<endl;
                 for(const auto& i:m_i_progress)
                 {
                     i->do_progress(ratio*m_file_number);
