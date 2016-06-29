@@ -418,6 +418,7 @@ private:
 			start();
 		}
 	}
+public:
 	void start()
 	{
 		try
@@ -433,6 +434,7 @@ private:
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 	}
+private:
 	void handle_wait(const boost::system::error_code& error)  
     {  
         if(!error)  
