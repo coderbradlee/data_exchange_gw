@@ -119,7 +119,7 @@ namespace x5
             void do_progress(int ratio)
             {
                 for(size_t i=0;i<ratio;++i)
-                cout<<"."
+                cout<<".";
                 cout<<endl;
             }
         };
@@ -129,7 +129,7 @@ namespace x5
             void do_progress(int ratio)
             {
                 for(size_t i=0;i<ratio;++i)
-                cout<<"#"
+                cout<<"#";
                 cout<<endl;
             }
             
