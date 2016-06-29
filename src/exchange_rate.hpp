@@ -12,7 +12,7 @@ public:
 		m_curl = curl_easy_init();
 		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
 		curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, this);
-		string url="http://172.18.100.87:8688/exchange_rate/?source="+source+"&target="+currency_name+"&time="+which_day+"&ratio="+ratio+"&database="+database;
+		string url="http://172.18.100.87:8688/exchange_rate/?source="+source+"&target="+target+"&time="+which_day+"&ratio="+ratio+"&database="+database;
 		curl(url, "POST", true);
 	}
 	virtual ~exchange_rate_rest_client()
