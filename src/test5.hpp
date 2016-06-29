@@ -145,7 +145,7 @@ namespace x5
                 for(int i=0;i<m_file_number;++i)
                 {
                     this_thread::sleep_for(chrono::seconds(2));
-                    double temp=(i+1)/m_file_number;
+                    double temp=(double)(i+1)/m_file_number;
                     cout<<temp<<endl;
                     on_progress(temp);
                 }
