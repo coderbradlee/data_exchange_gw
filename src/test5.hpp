@@ -188,12 +188,79 @@ namespace x5
 
         }
     }
+    namespace test_design_model_bridge
+    {
+        class messager_impl
+        {
+        public:
+            virtual void play()=0;
+            virtual ~messager_impl(){}
+        };
+        class messager_base
+        {
+        public:
+            messager_base(shared_ptr<messager_impl> m):m_messager_impl(m){}
+            virtual ~messager_base(){}
+            void login(const string& username,const string& password)=0;
+            
+        protected:
+            shared_ptr<messager_impl> m_messager_impl;
+        };
+        class pc_messager_impl:public messager_impl
+        {
+        public:
+            void play()
+            {
+                cout<<"pc messager_impl play"<<endl;
+            }
+        };
+        class mobile_messager_impl:public messager_impl
+        {
+        public:
+            void play()
+            {
+                cout<<"mobile messager_impl play"<<endl;
+            }
+        };
+        class messager_lite:public messager_base
+        {
+        public:
+            void login(const string& username,const string& password)
+            {
+                cout<<"messager_lite login"<<endl;
+                m_messager_impl->play();
+            }
+            
+        };
+        class messager_all:public messager_base
+        {
+        public:
+            void login(const string& username,const string& password)
+            {
+                cout<<"messager_all login"<<endl;
+                m_messager_impl->play();
+            }
+            
+        };
+        void test()
+        {
+            shared_ptr<messager_impl> pc(new pc_messager_impl());
+            shared_ptr<messager_impl> mobile(new pc_messager_impl());
+            shared_ptr<messager_base> ms(new messager_lite(pc));
+            ms->login("te","sfd");
+            cout<<"---------------------"<<endl;
+            shared_ptr<messager_base> ms2(new messager_all(mobile));
+            ms2->login("te","sfd");
+            cout<<"---------------------"<<endl;
+        }
+    }
 	void test()
 	{
         //test_design_model_template_method::test();
         //test_design_model_strategy::test();
         //test_design_model_observer::test();
-        test_design_model_decorator::test();
+        //test_design_model_decorator::test();
+        test_design_model_bridge::test();
 	}
 
 }
