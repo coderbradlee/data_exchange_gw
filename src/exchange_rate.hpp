@@ -1275,7 +1275,7 @@ public:
 	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
 	{
 		string id=get_exchange_rate_id(source,target);
-		if(it.length()==0)
+		if(id.length()==0)
 		{
 			insert_exchange_rate_id(source,target);
 		}
