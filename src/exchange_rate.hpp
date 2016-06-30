@@ -2,88 +2,209 @@
 #define	EXCHANGE_RATE_HPP
 
 #include  "include.hpp"
-// class exchange_rate_rest_client
-// {
-// public:
-// 	exchange_rate_rest_client(const string& source,const std::string& target, const std::string& ratio,const string& which_day,const string& database)
-// 	{
-// 		//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
-// 		curl_global_init(CURL_GLOBAL_ALL);
-// 		m_curl = curl_easy_init();
-// 		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
-// 		curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, this);
-// 		string url="http://127.0.0.1:"+get_config->m_port+"/exchange_rate/?source="+source+"&target="+target+"&time="+which_day+"&ratio="+ratio+"&database="+database;
-// 		curl(url, "POST", true);
-// 	}
-// 	virtual ~exchange_rate_rest_client()
-// 	{
-// 		curl_easy_cleanup(m_curl);
-// 		curl_global_cleanup();	
-// 	}
-	
-// protected:	
-// 	static size_t download_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
-// 	{
-// 		if (thisPtr)
-// 		{
-// 			//cout << __LINE__ << endl;
-// 			return ((exchange_rate_rest_client*)thisPtr)->download_write_data(buffer, size, nmemb);
-// 		}
+class exchange_rate_rest
+{
+public:
+	exchange_rate_rest(mysql_database mysql_input)//:m_mysql_database(mysql_input)
+	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+		m_conn=boost::shared_ptr<MySql>(new MySql(mysql_input.m_mysql_ip.c_str(), mysql_input.m_mysql_username.c_str(), mysql_input.m_mysql_password.c_str(), mysql_input.m_mysql_database.c_str(), mysql_input.m_mysql_port));
+	}
+	exchange_rate_rest(boost::shared_ptr<MySql> conn):m_conn(conn)//,m_mysql_database(mysql_input)
+	{}
+	string get_rate(const string& source,const string& target,const string& which_day)
+	{
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
+		string id=get_exchange_rate_id(source,target);
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
+		return get_rate_from_myql(id,which_day);
 
-// 		else
-// 		{
-// 			//cout << __LINE__ << endl;
-// 			return 0;
-// 		}
+	}
+	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
+	{
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
+		string id=get_exchange_rate_id(source,target);
+		if(id.length()==0)
+		{
+			insert_exchange_rate_id(source,target);
+			id=get_exchange_rate_id(source,target);
+		}
+		insert_exchange_rate(id,which_day,ratio);
+		
+	}
+private:
+	void insert_exchange_rate_id(const string& source,const string& target)
+	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+		string source_currency_id=get_currency_id(source);
+		string target_currency_id=get_currency_id(target);
+		if(source_currency_id.length()==0||target_currency_id.length()==0)
+		{
+			return;
+		}
+		ptime now = second_clock::local_time();
+		string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
-// 	}
-// 	size_t download_write_data(const char *buffer, size_t size, size_t nmemb)
-// 	{
-// 		int result = 0;
-// 		if (buffer != 0)
-// 		{
-// 			//cout << __LINE__ << endl;
-// 			m_data.clear();
-// 			m_data.append(buffer, size*nmemb);
+		//string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
+		string insert_sql = "insert into t_currency_exchange_rate(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values(rand_string(20),'"+source_currency_id+"','"+target_currency_id+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
+		cout << insert_sql << endl;
+		m_conn->runCommand(insert_sql.c_str());
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+		boost_log->get_initsink()->flush();
+	}
+	string get_currency_id(const string& code)
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			typedef tuple<unique_ptr<string>> t_currency_tuple;
+		//select code,currency_id from t_currency
+			//typedef tuple<string,double> credit_tuple;
+			std::vector<t_currency_tuple> t_currency_tuple_vector;
+			string query_sql = "select currency_id from t_currency where code='"+code+"'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
 			
-// 			result = size*nmemb;
-// 		}
-// 		/*cout <<__LINE__<<":"<<  buffer << endl;*/
-// 		//cout << __LINE__ << ":" << m_data << endl;
+			if(t_currency_tuple_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+			}
+			for (const auto& item : t_currency_tuple_vector)
+			{
+				return *(std::get<0>(item));						
+			}
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
+	string get_exchange_rate_id(const string& source,const string& target)
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			string source_currency_id=get_currency_id(source);
+			string target_currency_id=get_currency_id(target);
 		
-// 		return result;
-// 	}
-
-// 	void curl(const std::string& uri, const std::string& method = "GET", bool auth=false)
-// 	{	
-// 		set_url(uri);
-// 		curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, download_callback);
-// 		curl_easy_setopt(m_curl, CURLOPT_MAXREDIRS, 50L);
-// 		curl_easy_setopt(m_curl, CURLOPT_TCP_KEEPALIVE, 1L);
-// 		curl_easy_setopt(m_curl, CURLOPT_CUSTOMREQUEST, method.c_str());
-// 		cout << __LINE__ << "request:"<<uri << endl;
-// 		on_request();
+			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
-// 	}
-// 	void set_url(const std::string& url) const
-// 	{
-// 		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
-// 	}
+			typedef tuple<unique_ptr<string>> c;
 
-// 	bool on_request() 
-// 	{
-// 		m_data.clear();
-// 		return 0 == curl_easy_perform(m_curl);
-// 	}
-// public:
-// 	string get_data()
-// 	{
-// 		return m_data;
-// 	}
-// protected:	
-// 	std::string m_data;
-// 	CURL* m_curl;
-// };
+			vector<c> exchange_rate_ids;
+			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
+			if(exchange_rate_ids.empty())
+				return "";
+			for(const auto& i : exchange_rate_ids)
+				return *(std::get<0>(i));
+				
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
+	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
+	{
+		if(exchange_rate_id.length()==0)
+			return;
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+		std::vector<std::string> hms;
+		boost::split(hms,which_day , boost::is_any_of("-"));
+  		string year=hms[0];
+  		string month=hms[1];
+		string day=hms[2];
+
+		string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
+		
+		cout << insert_sql << endl;
+		m_conn->runCommand(insert_sql.c_str());
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+		boost_log->get_initsink()->flush();
+			
+	}
+	string get_rate_from_myql(const string& exchange_rate_id,string which_day)
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			if(exchange_rate_id.length()==0)
+				return "0";
+			if(which_day.length()==0)
+			{
+				ptime now = second_clock::local_time();
+ 				which_day=to_iso_extended_string(now.date());
+			}
+		typedef tuple<unique_ptr<float>> t_exchange_rate_tuple;
+		//select code,currency_id from t_currency
+			//typedef tuple<string,double> credit_tuple;
+			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
+			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
+			string query_sql = "select exchange_ratio from t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and (createBy='exchange_gw' or createBy='exchange_gw_rest') and exchange_date='"+which_day+"'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			/********************************/
+			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
+			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			/********************************/
+			if(t_exchange_rate_tuple_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+				return "0";
+			}
+			for (const auto& item : t_exchange_rate_tuple_vector)
+			{
+				return boost::lexical_cast<string>(*(std::get<0>(item)));	
+			}
+			
+		}
+		catch (CMSException& e) 
+        {
+            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "0";
+        }
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;return "0";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;return "0";
+		}
+	}
+private:
+	boost::shared_ptr<MySql> m_conn;
+	//mysql_database m_mysql_database;
+};
 //#define DEBUG
 //https://www.exchangerate-api.com/USD/GBP?k=d2408a508ec4f2bec554f465
 class exchange_rate
@@ -1263,209 +1384,7 @@ private:
 	vector<general_rate_data> m_general_rate_data;
 
 };
-class exchange_rate_rest
-{
-public:
-	exchange_rate_rest(mysql_database mysql_input)//:m_mysql_database(mysql_input)
-	{
-		cout<<__FILE__<<":"<<__LINE__<<endl;
-		m_conn=boost::shared_ptr<MySql>(new MySql(mysql_input.m_mysql_ip.c_str(), mysql_input.m_mysql_username.c_str(), mysql_input.m_mysql_password.c_str(), mysql_input.m_mysql_database.c_str(), mysql_input.m_mysql_port));
-	}
-	exchange_rate_rest(boost::shared_ptr<MySql> conn):m_conn(conn)//,m_mysql_database(mysql_input)
-	{}
-	string get_rate(const string& source,const string& target,const string& which_day)
-	{
-		//cout<<__FILE__<<":"<<__LINE__<<endl;
-		string id=get_exchange_rate_id(source,target);
-		//cout<<__FILE__<<":"<<__LINE__<<endl;
-		return get_rate_from_myql(id,which_day);
 
-	}
-	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
-	{
-		//cout<<__FILE__<<":"<<__LINE__<<endl;
-		string id=get_exchange_rate_id(source,target);
-		if(id.length()==0)
-		{
-			insert_exchange_rate_id(source,target);
-			id=get_exchange_rate_id(source,target);
-		}
-		insert_exchange_rate(id,which_day,ratio);
-		
-	}
-private:
-	void insert_exchange_rate_id(const string& source,const string& target)
-	{
-		cout<<__FILE__<<":"<<__LINE__<<endl;
-		string source_currency_id=get_currency_id(source);
-		string target_currency_id=get_currency_id(target);
-		if(source_currency_id.length()==0||target_currency_id.length()==0)
-		{
-			return;
-		}
-		ptime now = second_clock::local_time();
-		string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-
-		//string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
-		string insert_sql = "insert into t_currency_exchange_rate(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values(rand_string(20),'"+source_currency_id+"','"+target_currency_id+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
-		cout << insert_sql << endl;
-		m_conn->runCommand(insert_sql.c_str());
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
-		boost_log->get_initsink()->flush();
-	}
-	string get_currency_id(const string& code)
-	{
-		try
-		{
-			cout<<__FILE__<<":"<<__LINE__<<endl;
-			typedef tuple<unique_ptr<string>> t_currency_tuple;
-		//select code,currency_id from t_currency
-			//typedef tuple<string,double> credit_tuple;
-			std::vector<t_currency_tuple> t_currency_tuple_vector;
-			string query_sql = "select currency_id from t_currency where code='"+code+"'";
-			cout << query_sql << endl;
-			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
-
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			boost_log->get_initsink()->flush();
-			
-			if(t_currency_tuple_vector.empty())
-			{
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
-				boost_log->get_initsink()->flush();
-				cout<<"nothing select from t_currency"<<endl;
-			}
-			for (const auto& item : t_currency_tuple_vector)
-			{
-				return *(std::get<0>(item));						
-			}
-		}
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
-			return "";
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			return "";
-		}
-	}
-	string get_exchange_rate_id(const string& source,const string& target)
-	{
-		try
-		{
-			cout<<__FILE__<<":"<<__LINE__<<endl;
-			string source_currency_id=get_currency_id(source);
-			string target_currency_id=get_currency_id(target);
-		
-			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
-		
-			typedef tuple<unique_ptr<string>> c;
-
-			vector<c> exchange_rate_ids;
-			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
-			if(exchange_rate_ids.empty())
-				return "";
-			for(const auto& i : exchange_rate_ids)
-				return *(std::get<0>(i));
-				
-		}
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
-			return "";
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			return "";
-		}
-	}
-	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
-	{
-		if(exchange_rate_id.length()==0)
-			return;
-		cout<<__FILE__<<":"<<__LINE__<<endl;
-		std::vector<std::string> hms;
-		boost::split(hms,which_day , boost::is_any_of("-"));
-  		string year=hms[0];
-  		string month=hms[1];
-		string day=hms[2];
-
-		string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
-		
-		cout << insert_sql << endl;
-		m_conn->runCommand(insert_sql.c_str());
-		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
-		boost_log->get_initsink()->flush();
-			
-	}
-	string get_rate_from_myql(const string& exchange_rate_id,string which_day)
-	{
-		try
-		{
-			cout<<__FILE__<<":"<<__LINE__<<endl;
-			if(exchange_rate_id.length()==0)
-				return "0";
-			if(which_day.length()==0)
-			{
-				ptime now = second_clock::local_time();
- 				which_day=to_iso_extended_string(now.date());
-			}
-		typedef tuple<unique_ptr<float>> t_exchange_rate_tuple;
-		//select code,currency_id from t_currency
-			//typedef tuple<string,double> credit_tuple;
-			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
-			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
-			string query_sql = "select exchange_ratio from t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and (createBy='exchange_gw' or createBy='exchange_gw_rest') and exchange_date='"+which_day+"'";
-			cout << query_sql << endl;
-			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
-
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			boost_log->get_initsink()->flush();
-			/********************************/
-			cout.setf(ios::showpoint); cout.setf(ios::fixed); cout.precision(8);
-			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			/********************************/
-			if(t_exchange_rate_tuple_vector.empty())
-			{
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
-				boost_log->get_initsink()->flush();
-				cout<<"nothing select from t_currency"<<endl;
-				return "0";
-			}
-			for (const auto& item : t_exchange_rate_tuple_vector)
-			{
-				return boost::lexical_cast<string>(*(std::get<0>(item)));	
-			}
-			
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			return "0";
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;return "0";
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;return "0";
-		}
-	}
-private:
-	boost::shared_ptr<MySql> m_conn;
-	//mysql_database m_mysql_database;
-};
 void start_exchange_rate_thread()
 {
 		mysql_database mysql_os;
