@@ -1264,16 +1264,20 @@ class exchange_rate_rest
 public:
 	exchange_rate_rest(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
 	}
 	string get_rate(const string& source,const string& target,const string& which_day)
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		string id=get_exchange_rate_id(source,target);
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		return get_rate_from_myql(id,which_day);
 
 	}
 	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		string id=get_exchange_rate_id(source,target);
 		if(id.length()==0)
 		{
@@ -1285,6 +1289,7 @@ public:
 private:
 	void insert_exchange_rate_id(const string& source,const string& target)
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		string source_currency_id=get_currency_id(source);
 		string target_currency_id=get_currency_id(target);
 		if(source_currency_id.length()==0||target_currency_id.length()==0)
@@ -1305,6 +1310,7 @@ private:
 	{
 		try
 		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
 			typedef tuple<unique_ptr<string>> t_currency_tuple;
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
@@ -1344,6 +1350,7 @@ private:
 	{
 		try
 		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
 			string source_currency_id=get_currency_id(source);
 			string target_currency_id=get_currency_id(target);
 		
@@ -1374,6 +1381,7 @@ private:
 	}
 	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
 	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
 		std::vector<std::string> hms;
 		boost::split(hms,which_day , boost::is_any_of("-"));
   		string year=hms[0];
@@ -1392,6 +1400,7 @@ private:
 	{
 		try
 		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
 			if(exchange_rate_id.length()==0)
 				return "0";
 			if(which_day.length()==0)
