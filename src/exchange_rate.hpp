@@ -1122,34 +1122,34 @@ public:
 			return "";
 		}
 	}
-	string get_exchange_rate_id(const string& source,const string& target)
-	{
-		try
-		{
-			string source_currency_id=get_currency_id(source);
-			string target_currency_id=get_currency_id(target);
+	// string get_exchange_rate_id(const string& source,const string& target)
+	// {
+	// 	try
+	// 	{
+	// 		string source_currency_id=get_currency_id(source);
+	// 		string target_currency_id=get_currency_id(target);
 		
-			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
+	// 		string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
-			typedef tuple<unique_ptr<string>> c;
+	// 		typedef tuple<unique_ptr<string>> c;
 
-			vector<c> exchange_rate_ids;
-			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
-			for(const auto& i : exchange_rate_ids)
-				return *(std::get<0>(i));
+	// 		vector<c> exchange_rate_ids;
+	// 		m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
+	// 		for(const auto& i : exchange_rate_ids)
+	// 			return *(std::get<0>(i));
 				
-		}
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-	}
+	// 	}
+	// 	catch (const MySqlException& e)
+	// 	{
+	// 		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+	// 		boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+	// 	}
+	// 	catch(std::exception& e)
+	// 	{
+	// 		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+	// 		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+	// 	}
+	// }
 	string get_rate_from_myql(const string& exchange_rate_id,string which_day)
 	{
 		try
