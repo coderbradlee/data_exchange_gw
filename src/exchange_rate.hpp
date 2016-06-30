@@ -2,88 +2,88 @@
 #define	EXCHANGE_RATE_HPP
 
 #include  "include.hpp"
-class exchange_rate_rest_client
-{
-public:
-	exchange_rate_rest_client(const string& source,const std::string& target, const std::string& ratio,const string& which_day,const string& database)
-	{
-		//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
-		curl_global_init(CURL_GLOBAL_ALL);
-		m_curl = curl_easy_init();
-		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
-		curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, this);
-		string url="http://127.0.0.1:8688/exchange_rate/?source="+source+"&target="+target+"&time="+which_day+"&ratio="+ratio+"&database="+database;
-		curl(url, "POST", true);
-	}
-	virtual ~exchange_rate_rest_client()
-	{
-		curl_easy_cleanup(m_curl);
-		curl_global_cleanup();	
-	}
+// class exchange_rate_rest_client
+// {
+// public:
+// 	exchange_rate_rest_client(const string& source,const std::string& target, const std::string& ratio,const string& which_day,const string& database)
+// 	{
+// 		//curl -X POST http://172.18.100.87:8688/exchange_rate/?target=SGD\&time=2016-06-03\&ratio=1.3708\&database=eu
+// 		curl_global_init(CURL_GLOBAL_ALL);
+// 		m_curl = curl_easy_init();
+// 		curl_easy_setopt(m_curl, CURLOPT_FOLLOWLOCATION, 1);
+// 		curl_easy_setopt(m_curl, CURLOPT_WRITEDATA, this);
+// 		string url="http://127.0.0.1:"+get_config->m_port+"/exchange_rate/?source="+source+"&target="+target+"&time="+which_day+"&ratio="+ratio+"&database="+database;
+// 		curl(url, "POST", true);
+// 	}
+// 	virtual ~exchange_rate_rest_client()
+// 	{
+// 		curl_easy_cleanup(m_curl);
+// 		curl_global_cleanup();	
+// 	}
 	
-protected:	
-	static size_t download_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
-	{
-		if (thisPtr)
-		{
-			//cout << __LINE__ << endl;
-			return ((exchange_rate_rest_client*)thisPtr)->download_write_data(buffer, size, nmemb);
-		}
+// protected:	
+// 	static size_t download_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)
+// 	{
+// 		if (thisPtr)
+// 		{
+// 			//cout << __LINE__ << endl;
+// 			return ((exchange_rate_rest_client*)thisPtr)->download_write_data(buffer, size, nmemb);
+// 		}
 
-		else
-		{
-			//cout << __LINE__ << endl;
-			return 0;
-		}
+// 		else
+// 		{
+// 			//cout << __LINE__ << endl;
+// 			return 0;
+// 		}
 
-	}
-	size_t download_write_data(const char *buffer, size_t size, size_t nmemb)
-	{
-		int result = 0;
-		if (buffer != 0)
-		{
-			//cout << __LINE__ << endl;
-			m_data.clear();
-			m_data.append(buffer, size*nmemb);
+// 	}
+// 	size_t download_write_data(const char *buffer, size_t size, size_t nmemb)
+// 	{
+// 		int result = 0;
+// 		if (buffer != 0)
+// 		{
+// 			//cout << __LINE__ << endl;
+// 			m_data.clear();
+// 			m_data.append(buffer, size*nmemb);
 			
-			result = size*nmemb;
-		}
-		/*cout <<__LINE__<<":"<<  buffer << endl;*/
-		//cout << __LINE__ << ":" << m_data << endl;
+// 			result = size*nmemb;
+// 		}
+// 		/*cout <<__LINE__<<":"<<  buffer << endl;*/
+// 		//cout << __LINE__ << ":" << m_data << endl;
 		
-		return result;
-	}
+// 		return result;
+// 	}
 
-	void curl(const std::string& uri, const std::string& method = "GET", bool auth=false)
-	{	
-		set_url(uri);
-		curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, download_callback);
-		curl_easy_setopt(m_curl, CURLOPT_MAXREDIRS, 50L);
-		curl_easy_setopt(m_curl, CURLOPT_TCP_KEEPALIVE, 1L);
-		curl_easy_setopt(m_curl, CURLOPT_CUSTOMREQUEST, method.c_str());
-		cout << __LINE__ << "request:"<<uri << endl;
-		on_request();
+// 	void curl(const std::string& uri, const std::string& method = "GET", bool auth=false)
+// 	{	
+// 		set_url(uri);
+// 		curl_easy_setopt(m_curl, CURLOPT_WRITEFUNCTION, download_callback);
+// 		curl_easy_setopt(m_curl, CURLOPT_MAXREDIRS, 50L);
+// 		curl_easy_setopt(m_curl, CURLOPT_TCP_KEEPALIVE, 1L);
+// 		curl_easy_setopt(m_curl, CURLOPT_CUSTOMREQUEST, method.c_str());
+// 		cout << __LINE__ << "request:"<<uri << endl;
+// 		on_request();
 		
-	}
-	void set_url(const std::string& url) const
-	{
-		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
-	}
+// 	}
+// 	void set_url(const std::string& url) const
+// 	{
+// 		curl_easy_setopt(m_curl, CURLOPT_URL, url.c_str());
+// 	}
 
-	bool on_request() 
-	{
-		m_data.clear();
-		return 0 == curl_easy_perform(m_curl);
-	}
-public:
-	string get_data()
-	{
-		return m_data;
-	}
-protected:	
-	std::string m_data;
-	CURL* m_curl;
-};
+// 	bool on_request() 
+// 	{
+// 		m_data.clear();
+// 		return 0 == curl_easy_perform(m_curl);
+// 	}
+// public:
+// 	string get_data()
+// 	{
+// 		return m_data;
+// 	}
+// protected:	
+// 	std::string m_data;
+// 	CURL* m_curl;
+// };
 //#define DEBUG
 //https://www.exchangerate-api.com/USD/GBP?k=d2408a508ec4f2bec554f465
 class exchange_rate
@@ -708,8 +708,12 @@ public:
 				xxx_usd=boost::lexical_cast<float>(item.to_usd_exchange_rate);
 				xxx_cny=xxx_usd*USD_CNY;
 				cny_xxx=1/xxx_cny;
-				boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(item.code,"CNY", boost::lexical_cast<string>(xxx_cny),today,"js"));
-				boost::shared_ptr<exchange_rate_rest_client> t2(new exchange_rate_rest_client("CNY",item.code, boost::lexical_cast<string>(cny_xxx),today,"js"));
+				// vector<string> v{"os","js","eu","as"};
+				// boost::shared_ptr<exchange_rate_rest_client> t(new exchange_rate_rest_client(item.code,"CNY", boost::lexical_cast<string>(xxx_cny),today,"js"));
+				// boost::shared_ptr<exchange_rate_rest_client> t2(new exchange_rate_rest_client("CNY",item.code, boost::lexical_cast<string>(cny_xxx),today,"js"));
+				boost::shared_ptr<exchange_rate_rest> p(new exchange_rate_rest(m_conn));
+				p->update_rate(item.code,"CNY",today,boost::lexical_cast<string>(xxx_cny));
+				p->update_rate("CNY",item.code,today,boost::lexical_cast<string>(cny_xxx));
 			}			
 		}
 		catch (const MySqlException& e)
@@ -1262,11 +1266,13 @@ private:
 class exchange_rate_rest
 {
 public:
-	exchange_rate_rest(mysql_database mysql_input):m_mysql_database(mysql_input)
+	exchange_rate_rest(mysql_database mysql_input)//:m_mysql_database(mysql_input)
 	{
 		cout<<__FILE__<<":"<<__LINE__<<endl;
-		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
+		m_conn=boost::shared_ptr<MySql>(new MySql(mysql_input.m_mysql_ip.c_str(), mysql_input.m_mysql_username.c_str(), mysql_input.m_mysql_password.c_str(), mysql_input.m_mysql_database.c_str(), mysql_input.m_mysql_port));
 	}
+	exchange_rate_rest(boost::shared_ptr<MySql> conn):m_conn(conn)//,m_mysql_database(mysql_input)
+	{}
 	string get_rate(const string& source,const string& target,const string& which_day)
 	{
 		//cout<<__FILE__<<":"<<__LINE__<<endl;
@@ -1316,7 +1322,7 @@ private:
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_currency_tuple> t_currency_tuple_vector;
-			string query_sql = "select currency_id from "+m_mysql_database.m_mysql_database + ".t_currency where code='"+code+"'";
+			string query_sql = "select currency_id from t_currency where code='"+code+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
 
@@ -1416,7 +1422,7 @@ private:
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_exchange_rate_tuple> t_exchange_rate_tuple_vector;
 			//select * from apollo_eu.t_currency_daily_exchange_rate where exchange_rate_id='BVVFOOI1LDHQSY3DL0AK' and createBy='exchange_gw'
-			string query_sql = "select exchange_ratio from "+m_mysql_database.m_mysql_database + ".t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and (createBy='exchange_gw' or createBy='exchange_gw_rest') and exchange_date='"+which_day+"'";
+			string query_sql = "select exchange_ratio from t_currency_daily_exchange_rate where exchange_rate_id=\'"+exchange_rate_id+"\' and (createBy='exchange_gw' or createBy='exchange_gw_rest') and exchange_date='"+which_day+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_exchange_rate_tuple_vector, query_sql.c_str());
 
@@ -1458,7 +1464,7 @@ private:
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
-	mysql_database m_mysql_database;
+	//mysql_database m_mysql_database;
 };
 void start_exchange_rate_thread()
 {
