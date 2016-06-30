@@ -249,7 +249,7 @@ namespace x5
         void test()
         {
             boost::shared_ptr<messager_impl> pc(new pc_messager_impl());
-            boost::shared_ptr<messager_impl> mobile(new pc_messager_impl());
+            boost::shared_ptr<messager_impl> mobile(new mobile_messager_impl());
             boost::shared_ptr<messager_base> ms(new messager_lite(pc));
             ms->login("te","sfd");
             cout<<"---------------------"<<endl;
