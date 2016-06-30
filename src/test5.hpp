@@ -204,7 +204,7 @@ namespace x5
             void login(const string& username,const string& password)=0;
             
         protected:
-            shared_ptr<messager_impl> m_messager_impl;
+            boost::shared_ptr<messager_impl> m_messager_impl;
         };
         class pc_messager_impl:public messager_impl
         {
@@ -244,12 +244,12 @@ namespace x5
         };
         void test()
         {
-            shared_ptr<messager_impl> pc(new pc_messager_impl());
-            shared_ptr<messager_impl> mobile(new pc_messager_impl());
-            shared_ptr<messager_base> ms(new messager_lite(pc));
+            boost::shared_ptr<messager_impl> pc(new pc_messager_impl());
+            boost::shared_ptr<messager_impl> mobile(new pc_messager_impl());
+            boost::shared_ptr<messager_base> ms(new messager_lite(pc));
             ms->login("te","sfd");
             cout<<"---------------------"<<endl;
-            shared_ptr<messager_base> ms2(new messager_all(mobile));
+            boost::shared_ptr<messager_base> ms2(new messager_all(mobile));
             ms2->login("te","sfd");
             cout<<"---------------------"<<endl;
         }
