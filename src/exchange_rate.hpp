@@ -1295,9 +1295,7 @@ private:
 		string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
 		//string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
-		string insert_sql = "insert into  t_currency_exchange_rate
-(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values
-(rand_string(20),'"+source_currency_id+"','"+target_currency_id+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
+		string insert_sql = "insert into t_currency_exchange_rate(currency_exchange_rate_id,source_currency_id,target_currency_id,calculation_method,decimal_digits,match_method,createAt,createBy,updateAt,updateBy,dr,data_version)values(rand_string(20),'"+source_currency_id+"','"+target_currency_id+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
 		cout << insert_sql << endl;
 		m_conn->runCommand(insert_sql.c_str());
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
