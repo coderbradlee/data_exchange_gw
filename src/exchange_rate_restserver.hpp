@@ -217,7 +217,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
 		}
-		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
+		boost::shared_ptr<exchange_rate_rest> producer_exchange_rate_on_time_os(new exchange_rate_rest(mysql_xx));
 		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
@@ -287,7 +287,7 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
 		}
-		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_xx));
+		boost::shared_ptr<exchange_rate_rest> producer_exchange_rate_on_time_os(new exchange_rate_rest(mysql_xx));
 		producer_exchange_rate_on_time_os->update_rate(source,target,which_day,ratio);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<endl;
 		string temp="update ok";
