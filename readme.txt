@@ -1,6 +1,7 @@
 ﻿tag未重构及更新人民币对其他币种汇率之前
 
-
+curl -u test:test -X GET http://172.18.100.85:8988/exchange_rate/?source=CNY\&target=TRY\&time=2016-06-30\&database=js
+curl -u test:test -X POST http://172.18.100.85:8988/exchange_rate/?source=CNY\&target=TRY\&time=2016-06-30\&ratio=0.435394\&database=js
 
 
 curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?target=THB\&time=2016-06-24\&database=as
