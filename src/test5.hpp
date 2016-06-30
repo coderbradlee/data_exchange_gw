@@ -199,9 +199,9 @@ namespace x5
         class messager_base
         {
         public:
-            messager_base(shared_ptr<messager_impl> m):m_messager_impl(m){}
+            messager_base(boost::shared_ptr<messager_impl> m):m_messager_impl(m){}
             virtual ~messager_base(){}
-            void login(const string& username,const string& password)=0;
+            virtual void login(const string& username,const string& password)=0;
             
         protected:
             boost::shared_ptr<messager_impl> m_messager_impl;
