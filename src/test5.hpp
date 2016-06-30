@@ -182,10 +182,67 @@ namespace x5
     }
     namespace test_design_model_decorator
     {
-
+        class stream_base
+        {
+        public:
+            virtual void read()=0;
+            virtual void write()=0;
+            virtual ~stream_base(){}
+        };
+        class file_stream:public stream_base
+        {
+        public:
+            void read()
+            {
+                cout<<"file_stream read"<<endl;
+            }
+            void write()
+            {
+                cout<<"file_stream write"<<endl;
+            }
+        };
+        class network_stream:public stream_base
+        {
+        public:
+            void read()
+            {
+                cout<<"network_stream read"<<endl;
+            }
+            void write()
+            {
+                cout<<"network_stream write"<<endl;
+            }
+        };
+        class decorator_stream_base:public stream_base
+        {
+        public:
+            decorator_stream_base(boost::shared_ptr<stream_base> s):m_stream_base(s){}
+        protected:
+            boost::shared_ptr<stream_base> m_stream_base;
+        };
+        class crypto_stream:public decorator_stream_base
+        {
+        public:
+            crypto_stream(boost::shared_ptr<stream_base> s):decorator_stream_base(s){}
+            void read()
+            {
+                cout<<"crypto_stream crypto"<<endl;
+                m_stream_base->read();
+            }
+            void write()
+            {
+                cout<<"crypto_stream decrypto"<<endl;
+                m_stream_base->write();
+            }
+        };
         void test()
         {
-
+            boost::shared_ptr<stream_base> f(new file_stream());
+            boost::shared_ptr<stream_base> n(new network_stream());
+            boost::shared_ptr<stream_base> cf(new crypto_stream(f));
+            boost::shared_ptr<stream_base> cn(new crypto_stream(n));
+            cf->read();
+            cn->write();
         }
     }
     namespace test_design_model_bridge
@@ -258,13 +315,14 @@ namespace x5
             cout<<"---------------------"<<endl;
         }
     }
+
 	void test()
 	{
         //test_design_model_template_method::test();
         //test_design_model_strategy::test();
         //test_design_model_observer::test();
-        //test_design_model_decorator::test();
-        test_design_model_bridge::test();
+        test_design_model_decorator::test();
+        //test_design_model_bridge::test();
 	}
 
 }
