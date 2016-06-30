@@ -1129,12 +1129,12 @@ public:
 			string source_currency_id=get_currency_id(source);
 			string target_currency_id=get_currency_id(target);
 		
-			string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
+			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
 			typedef tuple<unique_ptr<string>> c;
 
 			vector<c> exchange_rate_ids;
-			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
+			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
 			for(const auto& i : exchange_rate_ids)
 				return *(std::get<0>(i));
 				
@@ -1347,12 +1347,12 @@ private:
 			string source_currency_id=get_currency_id(source);
 			string target_currency_id=get_currency_id(target);
 		
-			string get_exchange_rate_id = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
+			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
 			typedef tuple<unique_ptr<string>> c;
 
 			vector<c> exchange_rate_ids;
-			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
+			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
 			if(exchange_rate_ids.empty())
 				return "";
 			for(const auto& i : exchange_rate_ids)
