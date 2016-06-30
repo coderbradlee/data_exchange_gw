@@ -1453,7 +1453,8 @@ private:
 	deadline_timer m_d_t;	
 	vector<general_rate_data> m_general_rate_data_array;
 	string m_usd_currency_id;
-	boost::shared_ptr<mysql_database> m_mysql_database;
+	//boost::shared_ptr<mysql_database> m_mysql_database;
+	mysql_database m_mysql_database;
 };
 void start_exchange_rate_thread()
 {
