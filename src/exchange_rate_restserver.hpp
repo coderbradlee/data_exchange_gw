@@ -169,7 +169,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 
 	for (auto& r : ret)
 	{	
-		//cout << r.first << ":" << r.second << endl;
+		cout << r.first << ":" << r.second << endl;
 		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
 		//param+=r.first+"="+r.second+"&";
 		if(r.first=="source")
