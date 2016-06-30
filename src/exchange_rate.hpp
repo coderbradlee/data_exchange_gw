@@ -1309,7 +1309,7 @@ private:
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_currency_tuple> t_currency_tuple_vector;
-			string query_sql = "select currency_id from "+m_mysql_database->m_mysql_database + ".t_currency where code='"+code+"'";
+			string query_sql = "select currency_id from "+m_mysql_database.m_mysql_database + ".t_currency where code='"+code+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
 
