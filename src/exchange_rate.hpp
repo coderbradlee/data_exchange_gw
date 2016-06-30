@@ -2,6 +2,51 @@
 #define	EXCHANGE_RATE_HPP
 
 #include  "include.hpp"
+class exchage_rate_data
+{
+public:
+	string code;//CAD
+	string to_usd_exchange_rate;//0.772558
+	string from_usd_exchange_rate;//0.772558
+	string currency_id;//J4YVQ3USQNO3U430EKE1
+	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+	void print()
+	{	cout<<"{";
+		cout<<code<<":";
+		cout<<to_usd_exchange_rate<<":";//0.772558
+		cout<<from_usd_exchange_rate<<":";//0.772558
+		cout<<currency_id<<":";//J4YVQ3USQNO3U430EKE1
+		cout<<to_usd_exchange_rate_id<<":";//TFTBLZNSNBNAZAZGC2RW
+		cout<<from_usd_exchange_rate_id<<"}";//TFTBLZNSNBNAZAZGC2RW
+		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+	}
+};
+class general_rate_data
+{
+public:
+	string first_code;
+	string second_code;
+	string first_currency_id;
+	string second_currency_id;
+	string first_second_currency_exchange_rate_id;
+	string second_first_currency_exchange_rate_id;
+	string first_second_exchange_rate;
+	void print()
+	{
+		cout<<"{"<<first_code<<":"<<second_code<<":"<<first_second_currency_exchange_rate_id<<":"<<second_first_currency_exchange_rate_id<<":"<<first_second_exchange_rate<<"}"<<endl;
+	}
+};
+class mysql_database
+{
+public:
+	string m_mysql_ip;
+	unsigned short m_mysql_port;
+	string m_mysql_username;
+	string m_mysql_password;
+	string m_mysql_database;
+
+};
 class exchange_rate_rest
 {
 public:
@@ -373,51 +418,7 @@ protected:
 };
 CURLSH* exchange_rate::share_handle = NULL;
 
-class exchage_rate_data
-{
-public:
-	string code;//CAD
-	string to_usd_exchange_rate;//0.772558
-	string from_usd_exchange_rate;//0.772558
-	string currency_id;//J4YVQ3USQNO3U430EKE1
-	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-	void print()
-	{	cout<<"{";
-		cout<<code<<":";
-		cout<<to_usd_exchange_rate<<":";//0.772558
-		cout<<from_usd_exchange_rate<<":";//0.772558
-		cout<<currency_id<<":";//J4YVQ3USQNO3U430EKE1
-		cout<<to_usd_exchange_rate_id<<":";//TFTBLZNSNBNAZAZGC2RW
-		cout<<from_usd_exchange_rate_id<<"}";//TFTBLZNSNBNAZAZGC2RW
-		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-	}
-};
-class general_rate_data
-{
-public:
-	string first_code;
-	string second_code;
-	string first_currency_id;
-	string second_currency_id;
-	string first_second_currency_exchange_rate_id;
-	string second_first_currency_exchange_rate_id;
-	string first_second_exchange_rate;
-	void print()
-	{
-		cout<<"{"<<first_code<<":"<<second_code<<":"<<first_second_currency_exchange_rate_id<<":"<<second_first_currency_exchange_rate_id<<":"<<first_second_exchange_rate<<"}"<<endl;
-	}
-};
-class mysql_database
-{
-public:
-	string m_mysql_ip;
-	unsigned short m_mysql_port;
-	string m_mysql_username;
-	string m_mysql_password;
-	string m_mysql_database;
 
-};
 class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>
 {
 	mysql_database m_mysql_database;
