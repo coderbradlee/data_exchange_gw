@@ -169,7 +169,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 
 	for (auto& r : ret)
 	{	
-		cout << r.first << ":" << r.second << endl;
+		//cout << r.first << ":" << r.second << endl;
 		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
 		//param+=r.first+"="+r.second+"&";
 		if(r.first=="source")
@@ -217,8 +217,8 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
 			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
 		}
-		boost::shared_ptr<exchange_rate_rest> producer_exchange_rate_on_time_os(new exchange_rate_rest(mysql_xx));
-		string rate=producer_exchange_rate_on_time_os->get_rate(source,target,which_day);
+		boost::shared_ptr<exchange_rate_rest> p(new exchange_rate_rest(mysql_xx));
+		string rate=p->get_rate(source,target,which_day);
 		cout<<__FILE__<<":"<<__LINE__<<":"<<rate<<endl;
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
 		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });

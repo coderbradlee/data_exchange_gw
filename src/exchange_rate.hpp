@@ -1269,19 +1269,20 @@ public:
 	}
 	string get_rate(const string& source,const string& target,const string& which_day)
 	{
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
 		string id=get_exchange_rate_id(source,target);
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
 		return get_rate_from_myql(id,which_day);
 
 	}
 	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
 	{
-		cout<<__FILE__<<":"<<__LINE__<<endl;
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
 		string id=get_exchange_rate_id(source,target);
 		if(id.length()==0)
 		{
 			insert_exchange_rate_id(source,target);
+			id=get_exchange_rate_id(source,target);
 		}
 		insert_exchange_rate(id,which_day,ratio);
 		
@@ -1381,6 +1382,8 @@ private:
 	}
 	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
 	{
+		if(exchange_rate_id.length()==0)
+			return;
 		cout<<__FILE__<<":"<<__LINE__<<endl;
 		std::vector<std::string> hms;
 		boost::split(hms,which_day , boost::is_any_of("-"));
