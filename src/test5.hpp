@@ -209,6 +209,7 @@ namespace x5
         class pc_messager_impl:public messager_impl
         {
         public:
+
             void play()
             {
                 cout<<"pc messager_impl play"<<endl;
@@ -217,6 +218,7 @@ namespace x5
         class mobile_messager_impl:public messager_impl
         {
         public:
+
             void play()
             {
                 cout<<"mobile messager_impl play"<<endl;
@@ -225,6 +227,7 @@ namespace x5
         class messager_lite:public messager_base
         {
         public:
+            using messager_base::messager_base;
             void login(const string& username,const string& password)
             {
                 cout<<"messager_lite login"<<endl;
@@ -235,6 +238,7 @@ namespace x5
         class messager_all:public messager_base
         {
         public:
+            using messager_base::messager_base;
             void login(const string& username,const string& password)
             {
                 cout<<"messager_all login"<<endl;
