@@ -1203,20 +1203,20 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	}
-	string get_rate(const string& source,const string& target,const string& which_day)
-	{
-		// get_info_from_myql();
-		// //SKW TRL RUR PLZ
-		// for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
-		// {
-		// 	if(item->code==target)
-		// 	{
-		// 		return get_rate_from_myql(item->from_usd_exchange_rate_id,which_day);
-		// 	}
-		// }
-		string id=get_exchange_rate_id(source,target);
-		return get_rate_from_myql(id,which_day);
-	}
+	// string get_rate(const string& source,const string& target,const string& which_day)
+	// {
+	// 	// get_info_from_myql();
+	// 	// //SKW TRL RUR PLZ
+	// 	// for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
+	// 	// {
+	// 	// 	if(item->code==target)
+	// 	// 	{
+	// 	// 		return get_rate_from_myql(item->from_usd_exchange_rate_id,which_day);
+	// 	// 	}
+	// 	// }
+	// 	string id=get_exchange_rate_id(source,target);
+	// 	return get_rate_from_myql(id,which_day);
+	// }
 	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
 	{
 		std::vector<std::string> hms;
@@ -1233,20 +1233,20 @@ public:
 		boost_log->get_initsink()->flush();
 			
 	}
-	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
-	{
-		// get_info_from_myql();
-		// //SKW TRL RUR PLZ
-		// for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
-		// {
-		// 	if(item->code==target)
-		// 	{
-		// 		update_rate_from_mysql(item->from_usd_exchange_rate_id,which_day,ratio);
-		// 	}
-		// }
-		string id=get_exchange_rate_id(source,target);
-		insert_exchange_rate(id,which_day,ratio);
-	}
+	// void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)
+	// {
+	// 	// get_info_from_myql();
+	// 	// //SKW TRL RUR PLZ
+	// 	// for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
+	// 	// {
+	// 	// 	if(item->code==target)
+	// 	// 	{
+	// 	// 		update_rate_from_mysql(item->from_usd_exchange_rate_id,which_day,ratio);
+	// 	// 	}
+	// 	// }
+	// 	string id=get_exchange_rate_id(source,target);
+	// 	insert_exchange_rate(id,which_day,ratio);
+	// }
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
@@ -1262,7 +1262,7 @@ private:
 class exchange_rate_rest
 {
 public:
-	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
+	exchange_rate_rest(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
 	{
 		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
 	}
