@@ -1262,7 +1262,7 @@ private:
 class exchange_rate_rest
 {
 public:
-	exchange_rate_rest(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
+	exchange_rate_rest(mysql_database mysql_input):m_mysql_database(mysql_input)
 	{
 		cout<<__FILE__<<":"<<__LINE__<<endl;
 		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
@@ -1455,14 +1455,6 @@ private:
 	}
 private:
 	boost::shared_ptr<MySql> m_conn;
-	string m_today_string;
-	string m_product_all;
-	std::stringstream m_ss;
-	boost::asio::io_service m_io_s;  
-	deadline_timer m_d_t;	
-	vector<general_rate_data> m_general_rate_data_array;
-	string m_usd_currency_id;
-	//boost::shared_ptr<mysql_database> m_mysql_database;
 	mysql_database m_mysql_database;
 };
 void start_exchange_rate_thread()
