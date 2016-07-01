@@ -243,7 +243,8 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;return "0";
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;//m_conn=nullptr;
+			return "0";
 		}
 		catch(std::exception& e)
 		{
