@@ -179,8 +179,11 @@ private:
 	}
 	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
 	{
-		if(exchange_rate_id.length()==0)
+		if(exchange_rate_id.length()==0||ratio.length()==0)
+		{
 			return;
+		}
+		
 		cout<<__FILE__<<":"<<__LINE__<<endl;
 		std::vector<std::string> hms;
 		boost::split(hms,which_day , boost::is_any_of("-"));
@@ -627,7 +630,7 @@ public:
  			string day=ymd[2];
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			//if(t_currency_daily_exchange_rate_tuple_vector.empty())
-			if(item.to_usd_exchange_rate.length()==0)
+			if(item.to_usd_exchange_rate_id.length()==0||item.to_usd_exchange_rate.length()==0)
 			{
 				return;
 			}
@@ -703,6 +706,7 @@ public:
 	}
 	void insert_exchange_rate(const string& exchange_rate_id,const string& rate)
 	{
+		if(exchange_rate_id.length()==0||rate.length()==0) return;
 		ptime now = second_clock::local_time();
  			std::vector<std::string> ymd;
  			string today=to_iso_extended_string(now.date());
@@ -723,6 +727,7 @@ public:
 	}
 	void update_rate_from_mysql(const string& from_usd_exchange_rate_id,const string& which_day,const string& ratio)
 	{
+		if(from_usd_exchange_rate_id.length()==0||ratio.length()==0) return;
  			std::vector<std::string> ymd;
  			
 			boost::split(ymd,which_day , boost::is_any_of("-"));
@@ -874,6 +879,7 @@ public:
 	{
 		try
 		{
+			if(item.from_usd_exchange_rate_id.length()==0) return;
 		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
 		
 			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
@@ -905,7 +911,10 @@ public:
 			//if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			{
 				//insert
-				
+				if(item.from_usd_exchange_rate_id.length()==0||item.from_usd_exchange_rate.length()==0)
+				{
+					return;
+				}
 				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.from_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.from_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
 				
 				cout << insert_sql << endl;
@@ -1029,7 +1038,7 @@ public:
 				return;
 			}
 			const auto& quotes = j["quotes"];
-			cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			//cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<quotes<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
 
