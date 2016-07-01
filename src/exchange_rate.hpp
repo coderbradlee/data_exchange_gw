@@ -621,25 +621,17 @@ public:
 			//if(t_currency_daily_exchange_rate_tuple_vector.empty())
 			if(item.to_usd_exchange_rate.length()==0)
 			{
-				//insert
-				
-				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
-
-				cout << insert_sql << endl;
-				m_conn->runCommand(insert_sql.c_str());
-				
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
-				boost_log->get_initsink()->flush();
+				return;
 			}
-			// else
-			// {
-			// 	//update
-			// 	string update_sql = "update t_currency_daily_exchange_rate set year=\'"+year+"\',month=\'"+month+"\',day=\'"+day+"\',exchange_ratio="+item.to_usd_exchange_rate+",exchange_date=\'"+to_iso_extended_string(now.date())+"\',updateAt=\'"+p4+"\'"+",updateBy=\'exchange_gw\' where exchange_rate_id=\'"+item.to_usd_exchange_rate_id+"\' and createBy=\'exchange_gw\'";
-			// 	//cout << update_sql << endl;
-			// 	m_conn->runCommand(update_sql.c_str());
-			// 	BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
-			// 	boost_log->get_initsink()->flush();
-			// }
+			
+			string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
+
+			cout << insert_sql << endl;
+			m_conn->runCommand(insert_sql.c_str());
+			
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+		
 		}
 		catch (const MySqlException& e)
 		{
