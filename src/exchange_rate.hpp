@@ -619,10 +619,12 @@ public:
  			string day=ymd[2];
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			//if(t_currency_daily_exchange_rate_tuple_vector.empty())
+			if(item.to_usd_exchange_rate.length()==0)
 			{
 				//insert
 				
-					string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
+				string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
+
 				cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
 				
