@@ -1431,6 +1431,39 @@ public:
 			return "";
 		}
 	}
+	string get_exchange_rate_id(const string& source,const string& target)
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			string source_currency_id=get_currency_id(source);
+			string target_currency_id=get_currency_id(target);
+		
+			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
+		
+			typedef tuple<unique_ptr<string>> c;
+
+			vector<c> exchange_rate_ids;
+			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
+			if(exchange_rate_ids.empty())
+				return "";
+			for(const auto& i : exchange_rate_ids)
+				return *(std::get<0>(i));
+				
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
