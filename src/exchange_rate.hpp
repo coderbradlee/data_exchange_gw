@@ -118,6 +118,7 @@ private:
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
 				boost_log->get_initsink()->flush();
 				cout<<"nothing select from t_currency"<<endl;
+				return "";
 			}
 			for (const auto& item : t_currency_tuple_vector)
 			{
@@ -501,6 +502,7 @@ public:
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
 				boost_log->get_initsink()->flush();
 				cout<<"nothing select from t_currency"<<endl;
+				return;
 			}
 			for (const auto& item : t_currency_tuple_vector)
 			{
@@ -1192,6 +1194,7 @@ public:
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
 				boost_log->get_initsink()->flush();
 				cout<<"nothing select from t_currency"<<endl;
+				return "";
 			}
 			for (const auto& item : t_currency_tuple_vector)
 			{
