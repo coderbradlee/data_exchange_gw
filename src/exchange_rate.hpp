@@ -540,6 +540,11 @@ public:
 			
 						vector<c> exchange_rate_ids;
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id.c_str());
+						if(exchange_rate_ids.empty())
+						{
+							insert_exchange_rate_id(temp.currency_id,m_usd_info.currency_id);
+							temp.to_usd_exchange_rate_id=get_exchange_rate_id(temp.currency_id,m_usd_info.currency_id);
+						}
 						for(const auto& i : exchange_rate_ids)
 						temp.to_usd_exchange_rate_id=*(std::get<0>(i));
 						exchange_rate_ids.clear();
@@ -549,6 +554,11 @@ public:
 			
 						vector<c> exchange_rate_ids;
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id2.c_str());
+						if(exchange_rate_ids.empty())
+						{
+							insert_exchange_rate_id(m_usd_info.currency_id,temp.currency_id);
+							temp.to_usd_exchange_rate_id=get_exchange_rate_id(m_usd_info.currency_id,temp.currency_id);
+						}
 						for(const auto& i : exchange_rate_ids)
 						temp.from_usd_exchange_rate_id=*(std::get<0>(i));
 						exchange_rate_ids.clear();
@@ -640,19 +650,38 @@ public:
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 	}
-	string get_exchange_rate_id(const string& from,const string& to)
+	string get_exchange_rate_id(const string& source,const string& target)
 	{
-		typedef tuple<unique_ptr<string>> t_currency_daily_exchange_rate_tuple;
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			string source_currency_id=get_currency_id(source);
+			string target_currency_id=get_currency_id(target);
 		
-			std::vector<t_currency_daily_exchange_rate_tuple> t_currency_daily_exchange_rate_tuple_vector;
-			string query_sql = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+from+"\' and target_currency_id=\'"+to+"\'";
-			//cout << query_sql << endl;
-			m_conn->runQuery(&t_currency_daily_exchange_rate_tuple_vector, query_sql.c_str());
-			if(!t_currency_daily_exchange_rate_tuple_vector.empty())
-			{
-				for(const auto& v:t_currency_daily_exchange_rate_tuple_vector)
-					return *(std::get<0>(v));
-			}
+			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
+		
+			typedef tuple<unique_ptr<string>> c;
+
+			vector<c> exchange_rate_ids;
+			m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_ids.c_str());
+			if(exchange_rate_ids.empty())
+				return "";
+			for(const auto& i : exchange_rate_ids)
+				return *(std::get<0>(i));
+				
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
 	}
 	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)
 	{
