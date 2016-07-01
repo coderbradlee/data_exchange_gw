@@ -1,4 +1,5 @@
-﻿tag exchange_rate_api_depoyv1.1
+﻿tag exchange_rate_api_depoyv1.2
+tag exchange_rate_api_depoyv1.1
 
 tag未重构及更新人民币对其他币种汇率之前
 curl -u test:test -X GET http://172.30.1.5:8688/exchange_rate/?source=USD\&target=CNY\&time=2016-07-01\&database=os
