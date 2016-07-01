@@ -1,9 +1,7 @@
 #include "config.hpp"
 #include "orderbot.hpp"
 #include "credit_ontime.hpp"
-#include "activemq.hpp"
 #include "orderbot_restserver_resource.hpp"
-#include "activemq_producer_consumer.hpp"
 #include "boost_signalset.hpp"
 #include "test5.hpp"
 
