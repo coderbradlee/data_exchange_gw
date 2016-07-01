@@ -61,6 +61,8 @@ public:
 	{
 		//cout<<__FILE__<<":"<<__LINE__<<endl;
 		string id=get_exchange_rate_id(source,target);
+		if(id.length()==0)
+			return "0";
 		//cout<<__FILE__<<":"<<__LINE__<<endl;
 		return get_rate_from_myql(id,which_day);
 
@@ -101,6 +103,7 @@ private:
 	{
 		try
 		{
+			if(code.length()==0) return "";
 			cout<<__FILE__<<":"<<__LINE__<<endl;
 			typedef tuple<unique_ptr<string>> t_currency_tuple;
 		//select code,currency_id from t_currency
@@ -145,7 +148,10 @@ private:
 			cout<<__FILE__<<":"<<__LINE__<<endl;
 			string source_currency_id=get_currency_id(source);
 			string target_currency_id=get_currency_id(target);
-		
+			if(source_currency_id.length()==0||target_currency_id.length()==0)
+			{
+				return "";
+			}
 			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
 			typedef tuple<unique_ptr<string>> c;
@@ -653,7 +659,10 @@ public:
 			cout<<__FILE__<<":"<<__LINE__<<endl;
 			string source_currency_id=get_currency_id(source);
 			string target_currency_id=get_currency_id(target);
-		
+			if(source_currency_id.length()==0||target_currency_id.length()==0)
+			{
+				return "";
+			}
 			string get_exchange_rate_ids = "select currency_exchange_rate_id from t_currency_exchange_rate where source_currency_id=\'"+source_currency_id+"\' and target_currency_id=\'"+target_currency_id+"\'";
 		
 			typedef tuple<unique_ptr<string>> c;
@@ -1027,7 +1036,7 @@ public:
 			for(auto& item :m_exchage_rate_data_array)
 			{
 				string usditem="USD"+item.code;
-				cout<<usditem<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				//cout<<usditem<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				if (quotes.find(usditem) == quotes.end()) 
 				{
   					cout<<item.code<<":"<<__FILE__<<":"<<__LINE__<<endl;
@@ -1177,11 +1186,13 @@ public:
 	{
 		try
 		{
+			if(code.length()==0) return "";
 			cout<<__FILE__<<":"<<__LINE__<<endl;
 			typedef tuple<unique_ptr<string>> t_currency_tuple;
 		//select code,currency_id from t_currency
 			//typedef tuple<string,double> credit_tuple;
 			std::vector<t_currency_tuple> t_currency_tuple_vector;
+
 			string query_sql = "select currency_id from t_currency where code='"+code+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
