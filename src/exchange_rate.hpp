@@ -229,12 +229,7 @@ private:
 			}
 			
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			return "0";
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -471,11 +466,7 @@ public:
 			}
 			
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -573,11 +564,7 @@ public:
 			}	
 			t_currency_tuple_vector.clear();
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -954,11 +941,7 @@ public:
 			update_exchange_rate_to_mysql(item);
 		}
 		}	
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
@@ -1049,12 +1032,7 @@ public:
 			cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			update_exchange_rate_to_mysql();
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
@@ -1083,11 +1061,7 @@ public:
 				boost_log->get_initsink()->flush();
 				cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
@@ -1142,11 +1116,7 @@ public:
 				boost_log->get_initsink()->flush();
 				cout<<e.what()<<endl;
 		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
+		
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
@@ -1160,55 +1130,55 @@ public:
 	}
 	
 	
-	void send_message_to_activemq()
-	{
-		try
-		{
-		string message(m_ss.str());
-		message.erase(remove(message.begin(), message.end(), '\n'), message.end());
-		//activemq::library::ActiveMQCPP::initializeLibrary();
-		std::string brokerURI =
-	        "failover://(tcp://"+get_config->m_activemq_url+
-	       // "?wireFormat=openwire"
-	       // "&connection.useAsyncSend=true"
-	       // "&transport.commandTracingEnabled=true"
-	       // "&transport.tcpTracingEnabled=true"
-	       // "&wireFormat.tightEncodingEnabled=true"
-	        ")";
+	// void send_message_to_activemq()
+	// {
+	// 	try
+	// 	{
+	// 	string message(m_ss.str());
+	// 	message.erase(remove(message.begin(), message.end(), '\n'), message.end());
+	// 	//activemq::library::ActiveMQCPP::initializeLibrary();
+	// 	std::string brokerURI =
+	//         "failover://(tcp://"+get_config->m_activemq_url+
+	//        // "?wireFormat=openwire"
+	//        // "&connection.useAsyncSend=true"
+	//        // "&transport.commandTracingEnabled=true"
+	//        // "&transport.tcpTracingEnabled=true"
+	//        // "&wireFormat.tightEncodingEnabled=true"
+	//         ")";
 
-	    bool useTopics = false;
+	//     bool useTopics = false;
 
-	    boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_exchange_rate_write_rate_queue, useTopics,true ));
+	//     boost::shared_ptr<activemq_cms_producer> producer(new activemq_cms_producer(message,brokerURI, 1, get_config->m_exchange_rate_write_rate_queue, useTopics,true ));
 
-	    producer->run();
+	//     producer->run();
 
-	    producer->close();
+	//     producer->close();
 
-	    //activemq::library::ActiveMQCPP::shutdownLibrary();
-	    }
-	    catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		catch (CMSException& e) 
-        {
-            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-        }
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			m_conn=nullptr;
-		}
-		catch(std::exception& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-		}
-	} 
+	//     //activemq::library::ActiveMQCPP::shutdownLibrary();
+	//     }
+	//     catch(json_parser_error& e) 
+	// 	{
+	// 		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+	// 			boost_log->get_initsink()->flush();
+	// 			cout<<e.what()<<endl;
+	// 	}
+	// 	catch (CMSException& e) 
+ //        {
+ //            BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+	// 		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+ //        }
+	// 	catch (const MySqlException& e)
+	// 	{
+	// 		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+	// 		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+	// 		m_conn=nullptr;
+	// 	}
+	// 	catch(std::exception& e)
+	// 	{
+	// 		BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+	// 		boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+	// 	}
+	// } 
 	// string get_currency_id(const string& code)
 	// {
 	// 	try
