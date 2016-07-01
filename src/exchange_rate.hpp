@@ -623,7 +623,7 @@ public:
 				//insert
 				
 					string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+item.to_usd_exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+item.to_usd_exchange_rate+",\'"+to_iso_extended_string(now.date())+"\',\'"+p4+"\',\'exchange_gw\',\'"+p4+"\',\'exchange_gw\',\'\',\'\',0,1)";
-					//cout << insert_sql << endl;
+				cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
 				
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
@@ -642,7 +642,7 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;//m_conn=nullptr;
 		}
 		catch(std::exception& e)
 		{
