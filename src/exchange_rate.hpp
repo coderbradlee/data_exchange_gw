@@ -542,8 +542,8 @@ public:
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id1.c_str());
 						if(exchange_rate_ids.empty())
 						{
-							insert_exchange_rate_id(temp.currency_id,m_usd_info.currency_id);
-							temp.to_usd_exchange_rate_id=get_exchange_rate_id(temp.currency_id,m_usd_info.currency_id);
+							insert_exchange_rate_id(temp.code,m_usd_info.code);
+							temp.to_usd_exchange_rate_id=get_exchange_rate_id(temp.code,m_usd_info.code);
 						}
 						for(const auto& i : exchange_rate_ids)
 						temp.to_usd_exchange_rate_id=*(std::get<0>(i));
@@ -556,8 +556,8 @@ public:
 						m_conn->runQuery(&exchange_rate_ids,get_exchange_rate_id2.c_str());
 						if(exchange_rate_ids.empty())
 						{
-							insert_exchange_rate_id(m_usd_info.currency_id,temp.currency_id);
-							temp.from_usd_exchange_rate_id=get_exchange_rate_id(m_usd_info.currency_id,temp.currency_id);
+							insert_exchange_rate_id(m_usd_info.code,temp.code);
+							temp.from_usd_exchange_rate_id=get_exchange_rate_id(m_usd_info.code,temp.code);
 						}
 						for(const auto& i : exchange_rate_ids)
 						temp.from_usd_exchange_rate_id=*(std::get<0>(i));
