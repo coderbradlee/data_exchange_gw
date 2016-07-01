@@ -1391,6 +1391,46 @@ public:
 		boost_log->get_initsink()->flush();
 			
 	}
+	string get_currency_id(const string& code)
+	{
+		try
+		{
+			cout<<__FILE__<<":"<<__LINE__<<endl;
+			typedef tuple<unique_ptr<string>> t_currency_tuple;
+		//select code,currency_id from t_currency
+			//typedef tuple<string,double> credit_tuple;
+			std::vector<t_currency_tuple> t_currency_tuple_vector;
+			string query_sql = "select currency_id from t_currency where code='"+code+"'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			
+			if(t_currency_tuple_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+			}
+			for (const auto& item : t_currency_tuple_vector)
+			{
+				return *(std::get<0>(item));						
+			}
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
