@@ -315,14 +315,31 @@ namespace x5
             cout<<"---------------------"<<endl;
         }
     }
+    namespace test_boost_log
+    {
+        void test()
+        {
+            boost::timer::cpu_timer pass;
+            pass.start();
+            
+            for(int i=0;i<1000000;++i)
+            {
+                BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"asdfasdf";
+        
+            }
+            boost_log->get_initsink()->flush();
+            std::cout << "now time elapsed:" << pass.format(6) << std::endl;
 
+        }
+    }
 	void test()
 	{
         //test_design_model_template_method::test();
         //test_design_model_strategy::test();
         //test_design_model_observer::test();
-        test_design_model_decorator::test();
+        //test_design_model_decorator::test();
         //test_design_model_bridge::test();
+        test_boost_log::test();
 	}
 
 }
