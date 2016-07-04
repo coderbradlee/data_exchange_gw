@@ -1,4 +1,36 @@
-﻿tag exchange_rate_api_depoyv1.2
+﻿线上配置：
+[mysql]
+ip=172.30.1.1
+port=3306
+username=renesola
+password=renes0la.xx
+database=apollo_os
+table=t_customer_credit_flow_20160317bk
+table2=t_customer_master_20160317bk
+
+[mysql_eu]
+ip=172.30.1.1
+port=3306
+username=renesola
+password=renes0la.xx
+database=apollo_eu
+
+[mysql_js]
+ip=172.30.1.16
+port=3306
+username=renesola
+password=renes0la.xx
+database=apollo_js
+[mysql_as]
+ip=172.30.1.16
+port=3306
+username=renesola
+password=renes0la.xx
+database=apollo_as
+
+
+
+tag exchange_rate_api_depoyv1.2
 tag exchange_rate_api_depoyv1.1
 
 tag未重构及更新人民币对其他币种汇率之前
