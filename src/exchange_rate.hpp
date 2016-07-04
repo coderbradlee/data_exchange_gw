@@ -1028,7 +1028,8 @@ public:
 
 			//boost::this_thread::sleep(boost::posix_time::millisec(5000));
 			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
+			//BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"get rate from curl"<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
 
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
@@ -1040,7 +1041,8 @@ public:
 			}
 			const auto& quotes = j["quotes"];
 			//cout<<quotes<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<quotes<<":"<<__FILE__<<":"<<__LINE__;
+			//BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<quotes<<":"<<__FILE__<<":"<<__LINE__;
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"get rate from curl"<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
 
 			for(auto& item :m_exchage_rate_data_array)
