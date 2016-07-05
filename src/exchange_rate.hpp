@@ -482,11 +482,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 	}
 	void get_info_from_myql()
@@ -580,7 +582,7 @@ public:
 				catch (const MySqlException& e)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << get_exchange_rate_id1 << "(2)" << get_exchange_rate_id2 << "(exception:)" << e.what();
-					boost_log->get_initsink()->flush();m_conn=nullptr;
+					boost_log->get_initsink()->flush();start();
 				}
 				m_exchage_rate_data_array.push_back(temp);
 			}	
@@ -590,12 +592,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 	}
 	void update_to_usd_exchange_rate(const exchage_rate_data& item)
@@ -648,12 +652,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;//m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 	}
 	string get_exchange_rate_id(const string& source,const string& target)
@@ -819,12 +825,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 	}
 	void update_cny()
@@ -868,12 +876,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 	}
 	void update_from_usd_exchange_rate(const exchage_rate_data& item)
@@ -936,7 +946,8 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
@@ -965,12 +976,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
 		}
 	}
 	void update_exchange_rate_to_mysql()
@@ -989,12 +1002,14 @@ public:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 	}
 	
@@ -1066,11 +1081,13 @@ public:
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+					start();
 				}
 				catch(...)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << "unknown error"<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<"unknown error"<<":"<<__FILE__<<":"<<__LINE__<<endl;
+					start();
 				}
 				
     			
@@ -1101,22 +1118,11 @@ public:
 		    m_d_t.async_wait(boost::bind(&exchange_rate_on_time::handle_wait, shared_from_this(), boost::asio::placeholders::error));  
 			m_io_s.run();
 		}
-		catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-		}
-		
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
-		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+
 		}
 	}
 	void handle_wait(const boost::system::error_code& error)  
@@ -1156,22 +1162,11 @@ public:
 		{
 			get_exchange_rate();
 		}
-		catch(json_parser_error& e) 
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-				boost_log->get_initsink()->flush();
-				cout<<e.what()<<endl;
-		}
-		
-		catch (const MySqlException& e)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
-		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 	}
 	
