@@ -1279,16 +1279,16 @@ void start_exchange_rate_thread()
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_os(new exchange_rate_on_time(mysql_os));
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_js(new exchange_rate_on_time(mysql_js));
 		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_eu(new exchange_rate_on_time(mysql_eu));
-		//boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_as(new exchange_rate_on_time(mysql_as));
+		boost::shared_ptr<exchange_rate_on_time> producer_exchange_rate_on_time_as(new exchange_rate_on_time(mysql_as));
 		
 		thread producer_exchange_rate_on_time_os_Thread([&producer_exchange_rate_on_time_os](){producer_exchange_rate_on_time_os->start();});
 		thread producer_exchange_rate_on_time_js_Thread([&producer_exchange_rate_on_time_js](){producer_exchange_rate_on_time_js->start();});
 		thread producer_exchange_rate_on_time_eu_Thread([&producer_exchange_rate_on_time_eu](){producer_exchange_rate_on_time_eu->start();});
-		//thread producer_exchange_rate_on_time_as_Thread([&producer_exchange_rate_on_time_as](){producer_exchange_rate_on_time_as->start();});
+		thread producer_exchange_rate_on_time_as_Thread([&producer_exchange_rate_on_time_as](){producer_exchange_rate_on_time_as->start();});
 		producer_exchange_rate_on_time_os_Thread.join();
 		producer_exchange_rate_on_time_js_Thread.join();
 		producer_exchange_rate_on_time_eu_Thread.join();
-		//producer_exchange_rate_on_time_as_Thread.join();
+		producer_exchange_rate_on_time_as_Thread.join();
 }
 #endif
 
