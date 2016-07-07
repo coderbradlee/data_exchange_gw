@@ -109,7 +109,12 @@ class MySql {
             std::vector<std::tuple<OutputArgs...>>* results,
             const MySqlPreparedStatement& statement,
             const InputArgs&...) const;
-
+        //add close function
+        void close()
+        {
+            mysql_close(connection_);
+            connection_=nullptr;
+        }
     private:
         MYSQL* connection_;
 };

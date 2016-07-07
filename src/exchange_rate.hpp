@@ -429,9 +429,9 @@ class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_
 {
 	mysql_database m_mysql_database;
 public:
-	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input)
+	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input),m_conn(nullptr)
 	{
-		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
+		//m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
 		
 		//m_today_string=to_iso_extended_string(boost::gregorian::day_clock::local_day());
 	}
@@ -1148,7 +1148,10 @@ public:
         		start_update();
         		general_update();
         		update_cny();
+        		m_conn->close();
+        		m_conn=nullptr;
         		boost::this_thread::sleep(boost::posix_time::millisec(60000));
+
         	}
         	
         	//cout<<"handle wait"<<endl;

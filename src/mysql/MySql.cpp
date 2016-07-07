@@ -80,7 +80,10 @@ MySql::MySql(
 
 
 MySql::~MySql() {
-    mysql_close(connection_);
+    if(connection_!=nullptr)
+    {
+        mysql_close(connection_);
+    }   
 }
 
 
