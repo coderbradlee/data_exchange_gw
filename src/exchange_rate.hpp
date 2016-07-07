@@ -1128,13 +1128,7 @@ public:
 	void handle_wait(const boost::system::error_code& error)  
     {  
         if(!error)  
-        {  cout<<__FILE__<<":"<<__LINE__<<endl;
-        	if(m_conn==nullptr)
-        	{
-        		cout<<__FILE__<<":"<<__LINE__<<endl;
-        		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
-        		cout<<__FILE__<<":"<<__LINE__<<endl;
-        	}
+        {  
         	ptime now = second_clock::local_time();			
 			string hour_minute_second = to_simple_string(now.time_of_day());
 			std::vector<std::string> hms;
@@ -1147,6 +1141,13 @@ public:
         	string hour_minute=hour+":"+minute;
         	if(hour_minute==get_config->m_exchange_rate_insert_time)
         	{
+        		cout<<__FILE__<<":"<<__LINE__<<endl;
+	        	if(m_conn==nullptr)
+	        	{
+	        		cout<<__FILE__<<":"<<__LINE__<<endl;
+	        		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
+	        		cout<<__FILE__<<":"<<__LINE__<<endl;
+	        	}
         		start_update();
         		general_update();
         		update_cny();
