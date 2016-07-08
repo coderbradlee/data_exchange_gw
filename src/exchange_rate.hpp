@@ -1290,11 +1290,11 @@ void start_exchange_rate_thread()
 		thread producer_exchange_rate_on_time_os_Thread([&producer_exchange_rate_on_time_os](){producer_exchange_rate_on_time_os->start();});
 		thread producer_exchange_rate_on_time_js_Thread([&producer_exchange_rate_on_time_js](){producer_exchange_rate_on_time_js->start();});
 		thread producer_exchange_rate_on_time_eu_Thread([&producer_exchange_rate_on_time_eu](){producer_exchange_rate_on_time_eu->start();});
-		thread producer_exchange_rate_on_time_as_Thread([&producer_exchange_rate_on_time_as](){producer_exchange_rate_on_time_as->start();});
+		//thread producer_exchange_rate_on_time_as_Thread([&producer_exchange_rate_on_time_as](){producer_exchange_rate_on_time_as->start();});
 		producer_exchange_rate_on_time_os_Thread.join();
 		producer_exchange_rate_on_time_js_Thread.join();
 		producer_exchange_rate_on_time_eu_Thread.join();
-		producer_exchange_rate_on_time_as_Thread.join();
+		//producer_exchange_rate_on_time_as_Thread.join();
 }
 #endif
 
