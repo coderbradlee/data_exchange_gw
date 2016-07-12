@@ -1141,6 +1141,7 @@ public:
         	string hour_minute=hour+":"+minute;
         	if(hour_minute==get_config->m_exchange_rate_insert_time)
         	{
+        		boost::this_thread::sleep(boost::posix_time::millisec(60000));
         		cout<<__FILE__<<":"<<__LINE__<<endl;
 	        	if(m_conn==nullptr)
 	        	{
@@ -1153,8 +1154,7 @@ public:
         		update_cny();
         		m_conn->close();
         		m_conn=nullptr;
-        		boost::this_thread::sleep(boost::posix_time::millisec(60000));
-
+        		
         	}
         	
         	//cout<<"handle wait"<<endl;
