@@ -226,10 +226,10 @@ private:
 		string day=hms[2];
 
 		//string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
-		string update_sql="update t_currency_daily_exchange_rate set exchange_ratio="+ratio+"where exchange_date='"+year+"-"+month+"-"+ day+"' and (updateBy='exchange_gw' or updateBy='exchange_gw_rest') and dayexchange_rate_id='"+exchange_rate_id+"'";
+		string update_sql="update t_currency_daily_exchange_rate set exchange_ratio="+ratio+" where exchange_date='"+year+"-"+month+"-"+ day+"' and (updateBy='exchange_gw' or updateBy='exchange_gw_rest') and exchange_rate_id='"+exchange_rate_id+"'";
 
 		cout << update_sql << endl;
-		//m_conn->runCommand(update_sql.c_str());
+		m_conn->runCommand(update_sql.c_str());
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
 		boost_log->get_initsink()->flush();
 			
