@@ -7,6 +7,13 @@
 	4、利用curl对自身请求，更新日元汇率为他们临时要求的110,配置增加usd_jpy=110，当设置为0时不update
 	curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-07-13\&ratio=110\&database=js
 
+yahoo.finance.xchange限制https://developer.yahoo.com/yql/guide/usage_info_limits.html
+
+
+               Public	        OAuth with API Key
+YQL Endpoint	/v1/public/*	/v1/yql/*
+Hourly Cap	2,000 requests/hour per IP	20,000 requests/hour per IP
+Daily Cap	None	100,000 total requests/day per API Key
 
 
 	curl -u test:test -X GET http://172.18.100.87:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-07-13\&database=js
