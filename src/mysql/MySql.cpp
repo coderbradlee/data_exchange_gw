@@ -28,7 +28,7 @@ MySql::MySql(
     : connection_(mysql_init(nullptr))
 {
     if (nullptr == connection_) {
-        throw MySqlException("Unable to connect to MySQL");
+        throw MySqlException("mysql_init31 Unable to connect to MySQL");
     }
 
     const MYSQL* const success = mysql_real_connect(
@@ -59,7 +59,7 @@ MySql::MySql(
     : connection_(mysql_init(nullptr))
 {
     if (nullptr == connection_) {
-        throw MySqlException("Unable to connect to MySQL");
+        throw MySqlException("mysql_init62 Unable to connect to MySQL");
     }
 
     const MYSQL* const success = mysql_real_connect(
