@@ -1280,6 +1280,23 @@ public:
 			start_timer();
 		}
 	}
+	void handle_wait_method()
+	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+    	if(m_conn==nullptr)
+    	{
+    		cout<<__FILE__<<":"<<__LINE__<<endl;
+    		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
+    		cout<<__FILE__<<":"<<__LINE__<<endl;
+    	}
+		start_update();
+		general_update();
+		update_cny();
+		update_jpy();
+		m_conn->close();
+		m_conn=nullptr;
+		boost::this_thread::sleep(boost::posix_time::millisec(60000));
+	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
         if(!error)  
@@ -1298,21 +1315,27 @@ public:
  			
         	string hour_minute=hour+":"+minute;
         	if(hour_minute==get_config->m_exchange_rate_insert_time)
-        	{       		
-        		cout<<__FILE__<<":"<<__LINE__<<endl;
-	        	if(m_conn==nullptr)
-	        	{
-	        		cout<<__FILE__<<":"<<__LINE__<<endl;
-	        		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
-	        		cout<<__FILE__<<":"<<__LINE__<<endl;
-	        	}
-        		start_update();
-        		general_update();
-        		update_cny();
-        		update_jpy();
-        		m_conn->close();
-        		m_conn=nullptr;
-        		boost::this_thread::sleep(boost::posix_time::millisec(60000));
+        	{   
+        		if(m_mysql_database.m_mysql_database=="apollo_os")	
+        		{
+        			handle_wait_method();
+        		}	
+        		else if(m_mysql_database.m_mysql_database=="apollo_js")	
+        		{
+        			boost::this_thread::sleep(boost::posix_time::millisec(60000));
+        			handle_wait_method();
+        		}	
+        		else if(m_mysql_database.m_mysql_database=="apollo_eu")	
+        		{
+        			boost::this_thread::sleep(boost::posix_time::millisec(120000));
+        			handle_wait_method();
+        		}
+        		else if(m_mysql_database.m_mysql_database=="apollo_as")	
+        		{
+        			boost::this_thread::sleep(boost::posix_time::millisec(180000));
+        			handle_wait_method();
+        		}
+
         	}
         	
         	//cout<<"handle wait"<<endl;
