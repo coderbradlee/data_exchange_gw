@@ -926,6 +926,34 @@ public:
 			start();
 		}
 	}
+	void update_jpy()
+	{
+		try
+		{
+			if(get_config->m_exchange_rate_usd_jpy!="0")
+			{
+				ptime now = second_clock::local_time();
+ 			
+ 				string today=to_iso_extended_string(now.date());
+				boost::shared_ptr<exchange_rate_rest> p(new exchange_rate_rest(m_conn));
+				p->update_rate_put("USD","CNY",today,boost::lexical_cast<string>(get_config->m_exchange_rate_usd_jpy));
+				//p->update_rate_put("CNY",item.code,today,boost::lexical_cast<string>(cny_xxx));	
+			}
+				
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			start();
+		}
+	}
 	void update_from_usd_exchange_rate(const exchage_rate_data& item)
 	{
 		try
@@ -1267,6 +1295,7 @@ public:
         		start_update();
         		general_update();
         		update_cny();
+        		update_jpy();
         		m_conn->close();
         		m_conn=nullptr;
         		
