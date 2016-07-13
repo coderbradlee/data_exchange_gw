@@ -1084,7 +1084,7 @@ public:
 	string get_exchange_rate_api_data()
 	{
 		//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
-		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
+		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate("http://www.apilayer.net"));
 				rate->request("GET", "/api/live", "access_key="+get_config->m_exchange_rate_key, "");
 				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				return *(rate->m_data);
