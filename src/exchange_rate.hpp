@@ -1181,8 +1181,8 @@ public:
 // }
 			// 
 			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
-			//string exchange_rate=get_exchange_rate_api_data();
-			string exchange_rate=get_exchange_rate_from_yahoo();
+			string exchange_rate=get_exchange_rate_api_data();
+			//string exchange_rate=get_exchange_rate_from_yahoo();
 			//boost::this_thread::sleep(boost::posix_time::millisec(5000));
 			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			//BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
@@ -1263,8 +1263,8 @@ public:
 		}
 		catch (const MySqlException& e)
 		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 		}
 		catch(std::exception& e)
 		{
