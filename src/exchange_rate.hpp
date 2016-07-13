@@ -936,8 +936,8 @@ public:
  			
  				string today=to_iso_extended_string(now.date());
 				boost::shared_ptr<exchange_rate_rest> p(new exchange_rate_rest(m_conn));
-				p->update_rate_put("USD","CNY",today,boost::lexical_cast<string>(get_config->m_exchange_rate_usd_jpy));
-				//p->update_rate_put("CNY",item.code,today,boost::lexical_cast<string>(cny_xxx));	
+				p->update_rate_put("USD","JPY",today,boost::lexical_cast<string>(get_config->m_exchange_rate_usd_jpy));
+				p->update_rate_put("JPY","USD",today,boost::lexical_cast<string>(1/boost::lexical_cast<float>(get_config->m_exchange_rate_usd_jpy)));	
 			}
 				
 		}
