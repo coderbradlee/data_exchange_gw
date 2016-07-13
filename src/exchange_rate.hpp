@@ -1284,6 +1284,9 @@ public:
     {  
         if(!error)  
         {  
+        	BOOST_LOG_SEV(slg, severity_level::error) <<"(error:)" <<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+			
         	ptime now = second_clock::local_time();			
 			string hour_minute_second = to_simple_string(now.time_of_day());
 			std::vector<std::string> hms;
