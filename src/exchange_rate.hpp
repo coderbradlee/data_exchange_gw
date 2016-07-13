@@ -1309,6 +1309,12 @@ public:
         	//cout<<"handle wait"<<endl;
             m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_exchange_rate_request_interval));  
             m_d_t.async_wait(boost::bind(&exchange_rate_on_time::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
+    	}
+    	else
+    	{
+    		start();
+    		BOOST_LOG_SEV(slg, severity_level::error) <<"(error:)" <<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
     	}   
 	}  
 	void start_update()
