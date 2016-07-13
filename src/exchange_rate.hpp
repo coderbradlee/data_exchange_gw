@@ -79,6 +79,18 @@ public:
 		insert_exchange_rate(id,which_day,ratio);
 		
 	}
+	void update_rate_put(const string& source,const string& target,const string& which_day,const string& ratio)
+	{
+		//cout<<__FILE__<<":"<<__LINE__<<endl;
+		string id=get_exchange_rate_id(source,target);
+		if(id.length()==0)
+		{
+			insert_exchange_rate_id(source,target);
+			id=get_exchange_rate_id(source,target);
+		}
+		update_exchange_rate(id,which_day,ratio);
+		
+	}
 private:
 	void insert_exchange_rate_id(const string& source,const string& target)
 	{
@@ -196,6 +208,29 @@ private:
 		cout << insert_sql << endl;
 		m_conn->runCommand(insert_sql.c_str());
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+		boost_log->get_initsink()->flush();
+			
+	}
+	void update_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)
+	{
+		if(exchange_rate_id.length()==0||ratio.length()==0)
+		{
+			return;
+		}
+		
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+		std::vector<std::string> hms;
+		boost::split(hms,which_day , boost::is_any_of("-"));
+  		string year=hms[0];
+  		string month=hms[1];
+		string day=hms[2];
+
+		//string insert_sql = "insert into t_currency_daily_exchange_rate values(rand_string(20),\'"+exchange_rate_id+"\',\'"+year+"\',\'"+month+"\',\'"+day+"\',"+ratio+",\'"+which_day+"\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'"+which_day+" 00:00:05"+"\',\'exchange_gw_rest\',\'\',\'\',0,1)";
+		string update_sql="update t_currency_daily_exchange_rate set exchange_ratio="+ratio+"where exchange_date='"+year+"-"+month+"-"+ day+"' and (updateBy='exchange_gw' or updateBy='exchange_gw_rest') and dayexchange_rate_id='"+exchange_rate_id+"'";
+
+		cout << update_sql << endl;
+		//m_conn->runCommand(update_sql.c_str());
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<update_sql<<":"<<__FILE__<<":"<<__LINE__;
 		boost_log->get_initsink()->flush();
 			
 	}
@@ -1025,8 +1060,8 @@ public:
 	{
 		//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
 		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
-				rate->request("GET", get_config->m_exchange_rate_key, "", "");
-				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+				rate->request("GET", "", "", "");
+				cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 
 				return convert_json(*(rate->m_data));
 	}

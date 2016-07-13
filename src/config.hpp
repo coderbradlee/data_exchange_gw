@@ -15,10 +15,12 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 	public:
 		static boost::shared_ptr<iconfig> get_instance(const std::string& filename)
 		{
-			boost::mutex::scoped_lock t(m_mu);
+			
 			if (m_ps == nullptr)
 			{
-				m_ps = boost::shared_ptr<iconfig>(new iconfig(filename));
+				boost::mutex::scoped_lock t(m_mu);
+				if (m_ps == nullptr)
+					m_ps = boost::shared_ptr<iconfig>(new iconfig(filename));
 			}
 			
 			return m_ps;

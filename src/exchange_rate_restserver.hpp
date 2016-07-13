@@ -299,6 +299,77 @@ void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 		/////////////////////////////////////////////////////
 	});
 }
+void put_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
+{
+	const auto request = session->get_request();
+	string path = request->get_path();
+	auto ret = request->get_query_parameters();
+	string source="USD",target,which_day,database_name,ratio;
+
+	for (auto& r : ret)
+	{	
+		//cout << r.first << ":" << r.second << endl;
+		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
+		//param+=r.first+"="+r.second+"&";
+		if(r.first=="source")
+			source=r.second;
+		else if(r.first=="target")
+			target=r.second;
+		else if(r.first=="time")
+			which_day=r.second;	
+		else if(r.first=="database")
+			database_name=r.second;	
+		else if(r.first=="ratio")
+			ratio=r.second;	
+	}
+	
+	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
+	{
+		mysql_database mysql_xx;
+		if(database_name=="os")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_database;
+		}
+		else if(database_name=="js")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
+		}
+		else if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_eu_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_eu_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_eu_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_eu_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_eu_database;
+		}
+		else// if(database_name=="eu")
+		{
+			mysql_xx.m_mysql_ip=get_config->m_mysql_as_ip;
+			mysql_xx.m_mysql_port=get_config->m_mysql_as_port;
+			mysql_xx.m_mysql_username=get_config->m_mysql_as_username;
+			mysql_xx.m_mysql_password=get_config->m_mysql_as_password;
+			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
+		}
+		boost::shared_ptr<exchange_rate_rest> producer_exchange_rate_on_time_os(new exchange_rate_rest(mysql_xx));
+		producer_exchange_rate_on_time_os->update_rate_put(source,target,which_day,ratio);
+		cout<<__FILE__<<":"<<__LINE__<<":"<<endl;
+		string temp="update ok";
+		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
+		session->close(OK, temp, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(temp.length()) } });
+				////////////////////////////////////////////////////////////
+		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<temp;
+		boost_log->get_initsink()->flush();
+		/////////////////////////////////////////////////////
+	});
+}
 // void get_orders_param_func(const std::shared_ptr< restbed::Session > session)
 // {
 // 	//get_general_func(session);

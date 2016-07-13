@@ -36,6 +36,7 @@ void exchange_rate_server_start()
 		//http://172.18.100.85:8688/admin/orders.json/?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
 		get_exchange_rate->set_method_handler("GET", get_exchange_rate_func);
 		get_exchange_rate->set_method_handler("POST", post_exchange_rate_func);
+		get_exchange_rate->set_method_handler("PUT", put_exchange_rate_func);
 		get_exchange_rate->set_error_handler(&resource_error_handler);
 
 

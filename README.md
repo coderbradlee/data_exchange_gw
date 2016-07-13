@@ -4,3 +4,5 @@
 	3、同时PUT接口解决
 		（1）平日人民币/美元汇率取中行9.30后第一笔交易的折算价
 		（2）月末最后一天人民币/美元汇率取当天第一笔（EG. 6月30日早上0点后第一笔）现汇买入/卖出价的平均价
+
+	curl -u test:test -X PUT http://172.18.100.87:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-07-13\&ratio=110\&database=js
