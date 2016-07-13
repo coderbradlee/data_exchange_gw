@@ -7,7 +7,8 @@
 	4、利用curl对自身请求，更新日元汇率为他们临时要求的110,配置增加usd_jpy=110，当设置为0时不update
 	curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-07-13\&ratio=110\&database=js
 
-yahoo.finance.xchange限制https://developer.yahoo.com/yql/guide/usage_info_limits.html
+yahoo.finance.xchange接口限制如下：
+https://developer.yahoo.com/yql/guide/usage_info_limits.html
 
 
                Public	        OAuth with API Key
