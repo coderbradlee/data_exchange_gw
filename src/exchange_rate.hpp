@@ -387,7 +387,12 @@ protected:
 
 	void curl(const std::string& uri, const std::string& method = "GET", const std::string& param = "", const std::string& content = "")
 	{
-		set_url(m_url + uri + "?" + param);
+		if(param.length()!=0)
+			set_url(m_url + uri + "?" + param);
+		else
+			set_url(m_url + uri);
+		
+
 		//cout << __LINE__ << ":" << uri << endl;
 
 #ifdef DEBUG
