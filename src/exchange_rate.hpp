@@ -522,13 +522,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;m_conn=nullptr;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void get_info_from_myql()
@@ -622,7 +622,7 @@ public:
 				catch (const MySqlException& e)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) << "(1)" << get_exchange_rate_id1 << "(2)" << get_exchange_rate_id2 << "(exception:)" << e.what();
-					boost_log->get_initsink()->flush();start();
+					boost_log->get_initsink()->flush();start_timer();
 				}
 				m_exchage_rate_data_array.push_back(temp);
 			}	
@@ -633,13 +633,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void update_to_usd_exchange_rate(const exchage_rate_data& item)
@@ -693,13 +693,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	string get_exchange_rate_id(const string& source,const string& target)
@@ -866,13 +866,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void update_cny()
@@ -917,13 +917,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void update_jpy()
@@ -945,13 +945,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void update_from_usd_exchange_rate(const exchage_rate_data& item)
@@ -1015,7 +1015,7 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
@@ -1045,13 +1045,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void update_exchange_rate_to_mysql()
@@ -1071,13 +1071,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 	}
 	
@@ -1188,8 +1188,8 @@ public:
 			//BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"get rate from curl"<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
-			if(exchange_rate.length()==0)
-				return;
+			//if(exchange_rate.length()==0)
+			//	return;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			
 			if (j.find("quotes") == j.end()) 
@@ -1224,13 +1224,13 @@ public:
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					start();
+					start_timer();
 				}
 				catch(...)
 				{
 					BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<item.code<<":" << "unknown error"<<":"<<__FILE__<<":"<<__LINE__;
 					boost_log->get_initsink()->flush();cout<<item.code<<"unknown error"<<":"<<__FILE__<<":"<<__LINE__<<endl;
-					start();
+					start_timer();
 				}
 				
     			
@@ -1243,14 +1243,20 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;m_conn=nullptr;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
+	}
+	void start_timer()
+	{
+		m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_exchange_rate_request_interval));
+		  
+		m_d_t.async_wait(boost::bind(&exchange_rate_on_time::handle_wait, shared_from_this(), boost::asio::placeholders::error));
 	}
 	void start()
 	{
@@ -1265,13 +1271,13 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-			start();
+			start_timer();
 		}
 	}
 	void handle_wait(const boost::system::error_code& error)  
@@ -1312,7 +1318,7 @@ public:
     	}
     	else
     	{
-    		start();
+    		start_timer();
     		BOOST_LOG_SEV(slg, severity_level::error) <<"(error:)" <<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
     	}   
@@ -1327,7 +1333,7 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__;;
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
+			start_timer();
 		}
 	}
 	
