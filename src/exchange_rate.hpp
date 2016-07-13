@@ -1021,13 +1021,74 @@ public:
 				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
 				return *(rate->m_data);
 	}
+	string get_exchange_rate_from_yahoo()
+	{
+		//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
+		boost::shared_ptr<exchange_rate> rate = boost::shared_ptr<exchange_rate>(new exchange_rate(get_config->m_exchange_rate_url));
+				rate->request("GET", get_config->m_exchange_rate_key, "", "");
+				//cout<<*(rate->m_data)<<":"<<__FILE__<<":"<<__LINE__<<endl;
+
+				return convert_json(*(rate->m_data));
+	}
+	string convert_json(const string& source)
+	{
+				//{
+	//   "quotes":{
+	//     "USDCNY":6.683198,
+	//     "USDEUR":0.8993
+	//   }
+	// }
+			//{"query":{"count":27,"created":"2016-07-12T09:16:05Z","lang":"zh-CN","results":{"rate":[{"id":"USDEUR","Rate":"0.9049"},{"id":"USDJPY","Rate":"103.4770"},{"id":"USDBGN","Rate":"1.7701"},{"id":"USDGBP","Rate":"0.7645"},{"id":"USDPLN","Rate":"4.0007"},{"id":"USDRON","Rate":"4.0594"},{"id":"USDSEK","Rate":"8.5780"},{"id":"USDHRK","Rate":"6.7240"},{"id":"USDRUB","Rate":"64.0240"},{"id":"USDTRY","Rate":"2.9010"},{"id":"USDAUD","Rate":"1.3181"},{"id":"USDBRL","Rate":"3.3098"},{"id":"USDCAD","Rate":"1.3097"},{"id":"USDCNY","Rate":"6.6917"},{"id":"USDHKD","Rate":"7.7575"},{"id":"USDIDR","Rate":"13080.0000"},{"id":"USDINR","Rate":"67.1380"},{"id":"USDKRW","Rate":"1148.3000"},{"id":"USDMXN","Rate":"18.4196"},{"id":"USDNZD","Rate":"1.3812"},{"id":"USDPHP","Rate":"47.2500"},{"id":"USDSGD","Rate":"1.3520"},{"id":"USDTHB","Rate":"35.1400"},{"id":"USDZAR","Rate":"14.4255"},{"id":"USDTWD","Rate":"32.1880"},{"id":"USDCNY","Rate":"6.6917"},{"id":"USDPHP","Rate":"47.2500"}]}}}
+			
+		try
+		{
+				const auto& j = nlohmann_map::json::parse(source);
+			const auto& query = j["query"];//results":{"rate
+			const auto& results =query["results"];
+			if (results.find("rate") == results.end()) 
+			{
+				//LOG_ERROR<<"get json error from yahoo.finance.xchange:";
+				return "";
+			}
+			const auto& rate=results["rate"];
+			string temp="{\"quotes\":{";
+			for(const auto& r:rate)
+			{
+				string id=r["id"];
+				string Rate=r["Rate"];
+				//cout<<id<<":"<<Rate<<endl;
+				temp+="\""+id+"\":"+Rate+",";
+			}
+			string a=temp.substr(0,temp.length()-1);
+			return a+"}}";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":" << e.what()<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			return "";
+		}
+		catch(...)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<< "unknown error"<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();//cout<<item.code<<"unknown error"<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			return "";
+		}
+	}
 	void get_exchange_rate()
 	{
 		try
 		{
-			//http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.xchange where pair in ("USDEUR", "USDJPY", "USDBGN", "USDCZK", "USDDKK", "USDGBP", "USDHUF", "USDLTL", "USDLVL", "USDPLN", "USDRON", "USDSEK", "USDCHF", "USDNOK", "USDHRK", "USDRUB", "USDTRY", "USDAUD", "USDBRL", "USDCAD", "USDCNY", "USDHKD", "USDIDR", "USDILS", "USDINR", "USDKRW", "USDMXN", "USDMYR", "USDNZD", "USDPHP", "USDSGD", "USDTHB", "USDZAR", "USDISK")&env=store://datatables.org/alltableswithkeys
-			//KRW TRY USD HKD SKW INR SGD GBP TWD JPY BGN CNY EUR SEK TRL ZAR THB MXP HRK ROL CAD RUR PHP IDR BRL AUD PLZ MXN NZD
+			////http://query.yahooapis.com/v1/public/yql?q=select id,Rate from yahoo.finance.xchange where pair in ("USDEUR", "USDJPY", "USDBGN", "USDGBP", "USDPLN", "USDRON", "USDSEK", "USDHRK", "USDRUB", "USDTRY", "USDAUD", "USDBRL", "USDCAD", "USDCNY", "USDHKD", "USDIDR", "USDINR", "USDKRW", "USDMXN", "USDNZD", "USDPHP", "USDSGD", "USDTHB", "USDZAR","USDTWD","USDCNY","USDPHP")&format=json&env=store://datatables.org/alltableswithkeys
 
+//KRW TRY USD HKD SKW INR SGD GBP TWD JPY BGN CNY EUR SEK TRL ZAR THB MXP HRK ROL CAD RUR PHP IDR BRL AUD PLZ MXN NZD
+
+			// RUR 对应雅虎的RUB
+			// TRL 对应雅虎的TRY
+			// MXP 对应雅虎的MXN
+			// ROL 对应雅虎的RON
+			// PLZ 对应雅虎的PLN
+			
 			get_info_from_myql();
 			//SKW TRL RUR PLZ
 			for(std::vector<exchage_rate_data>::iterator item=m_exchage_rate_data_array.begin();item!=m_exchage_rate_data_array.end();++item)
@@ -1038,15 +1099,29 @@ public:
 				}
 			}
 
-			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
-			string exchange_rate=get_exchange_rate_api_data();
 
+			//{
+//   "success":true,
+//   "terms":"https:\/\/currencylayer.com\/terms",
+//   "privacy":"https:\/\/currencylayer.com\/privacy",
+//   "timestamp":1468312932,
+//   "source":"USD",
+//   "quotes":{
+//     "USDCNY":6.683198,
+//     "USDEUR":0.8993
+//   }
+// }
+			// 
+			//http://www.apilayer.net/api/live?access_key=beed451506493436d5a5ec0966b5e72a
+			//string exchange_rate=get_exchange_rate_api_data();
+			string exchange_rate=get_exchange_rate_from_yahoo();
 			//boost::this_thread::sleep(boost::posix_time::millisec(5000));
 			cout<<exchange_rate<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			//BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<exchange_rate<<":"<<__FILE__<<":"<<__LINE__;
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<"get rate from curl"<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
-
+			if(exchange_rate.length()==0)
+				return;
 			const auto& j = nlohmann_map::json::parse(exchange_rate);
 			
 			if (j.find("quotes") == j.end()) 
