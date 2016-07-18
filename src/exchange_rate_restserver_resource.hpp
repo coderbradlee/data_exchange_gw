@@ -44,7 +44,7 @@ void exchange_rate_server_start()
 
 		////////////////////////////////////////////////////////
 		auto settings = std::make_shared< Settings >();
-		settings->set_bind_address( "0.0.0.0" );
+		//settings->set_bind_address( "0.0.0.0" );
 		settings->set_port(get_config->m_port);
 		settings->set_worker_limit(get_config->m_threads);
 		settings->set_default_header("Connection", "keep-alive");
