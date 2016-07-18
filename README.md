@@ -1,3 +1,5 @@
+2016.07.18 tag exchange_rate_api_depoyv1.6
+解决最近几天插入的数据每天都增加一条的问题，今天线上数据库同样的数据插入了四条，昨天三条
 2016.07.13 tag exchange_rate_api_depoyv1.5
 	1、在tag exchange_rate_api_depoyv1.4基础上，根据财务部要求更改数据源为雅虎
 	2、增加PUT接口，针对近期要求美元/日元的汇率为110，在每天程序更新汇率的基础上将美元对日元的汇率更新为110
