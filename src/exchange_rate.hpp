@@ -1295,7 +1295,7 @@ public:
 		update_jpy();
 		m_conn->close();
 		m_conn=nullptr;
-		boost::this_thread::sleep(boost::posix_time::millisec(60000));
+		boost::this_thread::sleep(boost::posix_time::seconds(30));
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
@@ -1322,17 +1322,17 @@ public:
         		}	
         		else if(m_mysql_database.m_mysql_database=="apollo_js")	
         		{
-        			boost::this_thread::sleep(boost::posix_time::millisec(60000));
+        			boost::this_thread::sleep(boost::posix_time::seconds(70));
         			handle_wait_method();
         		}	
         		else if(m_mysql_database.m_mysql_database=="apollo_eu")	
         		{
-        			boost::this_thread::sleep(boost::posix_time::millisec(120000));
+        			boost::this_thread::sleep(boost::posix_time::seconds(120));
         			handle_wait_method();
         		}
         		else if(m_mysql_database.m_mysql_database=="apollo_as")	
         		{
-        			boost::this_thread::sleep(boost::posix_time::millisec(180000));
+        			boost::this_thread::sleep(boost::posix_time::seconds(180));
         			handle_wait_method();
         		}
 
