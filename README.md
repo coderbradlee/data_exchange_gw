@@ -1,4 +1,10 @@
 
+2016.07.20 tag exchange_rate_api_depoyv1.7
+解决最近几天插入的数据每天都增加一条的问题，1.6没有解决，现在找到问题：
+是m_exchage_rate_data_array，这个数据每次都从数据库拉取一次，导致每天数据会double
+
+
+GET http://172.18.100.87:8088/flowNo/us/so
 
 本地:172.18.22.202
 2016.07.18 tag exchange_rate_api_depoyv1.6

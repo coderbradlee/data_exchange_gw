@@ -1,0 +1,1674 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ACTIVEMQ_CMS_HPP	.\src\activemq_cms.hpp	2;"	d
+ACTIVEMQ_HPP	.\src\activemq.hpp	2;"	d
+ACTIVEMQ_ORDER_HPP	.\src\activemq_order.hpp	2;"	d
+ACTIVEMQ_PRODUCER_CONSUMER_HPP	.\src\activemq_producer_consumer.hpp	2;"	d
+ACTIVEMQ_PRODUCT_INVENTORY_HPP	.\src\activemq_product_inventory.hpp	2;"	d
+Absolute	.\include\corvusoft\restbed\uri.hpp	/^            static const bool Absolute = false;$/;"	m	class:restbed::Uri
+AsynchronousReader	.\src\csv.h	/^                class AsynchronousReader{$/;"	c	namespace:io::detail
+BOOST_DATE_TIME_SOURCE	.\src\include.hpp	52;"	d
+BOOST_LOG_DYN_LINK	.\src\renesolalog.hpp	2;"	d
+BOOST_SIGNALSET_HPP	.\src\boost_signalset.hpp	2;"	d
+BOOST_SPIRIT_THREADSAFE	.\src\exchange_rate_restserver.hpp	3;"	d
+BOOST_SPIRIT_THREADSAFE	.\src\include.hpp	53;"	d
+BOOST_SPIRIT_THREADSAFE	.\src\include.hpp	69;"	d
+BOOST_SPIRIT_THREADSAFE	.\src\orderbot_restserver.hpp	3;"	d
+BOOST_SPIRIT_THREADSAFE	.\src\serverResource.hpp	3;"	d
+Base64Decode	.\src\shared.hpp	/^	bool Base64Decode(const string& input, string* output)$/;"	f	namespace:SimpleWeb
+Base64Encode	.\src\shared.hpp	/^	bool Base64Encode(const string& input, string* output)$/;"	f	namespace:SimpleWeb
+Byte	.\include\corvusoft\restbed\byte.hpp	/^    typedef uint8_t Byte;$/;"	t	namespace:restbed
+ByteSourceBase	.\src\csv.h	/^        class ByteSourceBase{$/;"	c	namespace:io
+Bytes	.\include\corvusoft\restbed\byte.hpp	/^    typedef std::vector< Byte > Bytes;$/;"	t	namespace:restbed
+CLIENT_HTTPS_HPP	.\src\client_https.hpp	2;"	d
+CLIENT_HTTP_HPP	.\src\client_http.hpp	2;"	d
+CONFIG_HPP	.\src\config.hpp	2;"	d
+CREDIT_ONTIME_HPP	.\src\credit_ontime.hpp	2;"	d
+CSVReader	.\src\csv.h	/^			explicit CSVReader(Args&&...args) :in(std::forward<Args>(args)...){$/;"	f	class:io::CSVReader
+CSVReader	.\src\csv.h	/^		class CSVReader{$/;"	c	namespace:io
+CSV_H	.\src\csv.h	33;"	d
+Client	.\src\client_http.hpp	/^        Client(const std::string& server_port_path) : ClientBase<HTTP>::ClientBase(server_port_path, 80) $/;"	f	class:SimpleWeb::Client
+Client	.\src\client_http.hpp	/^    class Client : public ClientBase<socket_type> {};$/;"	c	namespace:SimpleWeb
+Client	.\src\client_http.hpp	/^    class Client<HTTP> : public ClientBase<HTTP> $/;"	c	namespace:SimpleWeb
+Client	.\src\client_https.hpp	/^        Client(const std::string& server_port_path, bool verify_certificate=true, $/;"	f	class:SimpleWeb::Client
+Client	.\src\client_https.hpp	/^    class Client<HTTPS> : public ClientBase<HTTPS> $/;"	c	namespace:SimpleWeb
+ClientBase	.\src\client_http.hpp	/^        ClientBase(const std::string& host_port, unsigned short default_port) : $/;"	f	class:SimpleWeb::ClientBase
+ClientBase	.\src\client_http.hpp	/^    class ClientBase $/;"	c	namespace:SimpleWeb
+ConnInfo	.\src\asiohiper.hpp	/^} ConnInfo;$/;"	t	typeref:struct:_ConnInfo
+ContextPlaceholder	.\include\corvusoft\restbed\context_placeholder.hpp	/^            ContextPlaceholder( const Type& value ) : ContextPlaceholderBase( ),$/;"	f	class:restbed::ContextPlaceholder
+ContextPlaceholder	.\include\corvusoft\restbed\context_placeholder.hpp	/^    class ContextPlaceholder : public ContextPlaceholderBase$/;"	c	namespace:restbed
+ContextPlaceholderBase	.\include\corvusoft\restbed\context_placeholder_base.hpp	/^    class ContextPlaceholderBase$/;"	c	namespace:restbed
+ContextValue	.\include\corvusoft\restbed\context_value.hpp	/^            ContextValue( const ContextValue& original ) : m_placeholder( original.m_placeholder )$/;"	f	class:restbed::ContextValue
+ContextValue	.\include\corvusoft\restbed\context_value.hpp	/^            ContextValue( const Type& value ) : m_placeholder( new ContextPlaceholder< Type >( value ) )$/;"	f	class:restbed::ContextValue
+ContextValue	.\include\corvusoft\restbed\context_value.hpp	/^    class ContextValue$/;"	c	namespace:restbed
+CreatePoints	.\src\test.hpp	/^	std::vector<Date> CreatePoints()$/;"	f	namespace:brad
+CustomLogger	.\src\renesolalog.hpp	/^class CustomLogger : public Logger$/;"	c
+Date	.\src\test.hpp	/^		Date(int year,int month,int day):m_year(year),m_month(month),m_day(day)$/;"	f	class:brad::Date
+Date	.\src\test.hpp	/^	class Date$/;"	c	namespace:brad
+DecimalSeparator	.\src\json_fifo_map.hpp	/^class DecimalSeparator : public std::numpunct<char>$/;"	c	namespace:nlohmann_fifo_map::__anon1
+DecimalSeparator	.\src\json_map.hpp	/^class DecimalSeparator : public std::numpunct<char>$/;"	c	namespace:nlohmann_map::__anon3
+ERROR	.\include\corvusoft\restbed\logger.hpp	9;"	d
+EXCHANGE_RATE_HPP	.\src\exchange_rate.hpp	2;"	d
+EXCHANGE_RATE_RESTSERVER_HPP	.\src\exchange_rate_restserver.hpp	2;"	d
+EXCHANGE_RATE_RESTSERVER_RESOURCE_HPP	.\src\exchange_rate_restserver_resource.hpp	2;"	d
+Friend	.\src\mysql\OutputBinder.hpp	/^class Friend {$/;"	c	namespace:OutputBinderPrivate
+GlobalInfo	.\src\asiohiper.hpp	/^} GlobalInfo;$/;"	t	typeref:struct:_GlobalInfo
+HTTP	.\src\client_http.hpp	/^    typedef boost::asio::ip::tcp::socket HTTP;$/;"	t	namespace:SimpleWeb
+HTTP	.\src\server_http.hpp	/^    typedef boost::asio::ip::tcp::socket HTTP;$/;"	t	namespace:SimpleWeb
+HTTPS	.\src\client_https.hpp	/^    typedef boost::asio::ssl::stream<boost::asio::ip::tcp::socket> HTTPS;$/;"	t	namespace:SimpleWeb
+HTTPS	.\src\server_https.hpp	/^    typedef boost::asio::ssl::stream<boost::asio::ip::tcp::socket> HTTPS;    $/;"	t	namespace:SimpleWeb
+Http	.\include\corvusoft\restbed\http.hpp	/^    class Http$/;"	c	namespace:restbed
+HttpClient	.\src\serverResource.hpp	/^typedef SimpleWeb::Client<SimpleWeb::HTTP> HttpClient;$/;"	t
+HttpServer	.\src\serverResource.hpp	/^typedef SimpleWeb::Server<SimpleWeb::HTTP> HttpServer;$/;"	t
+HttpsClient	.\src\serverResource.hpp	/^typedef SimpleWeb::Client<SimpleWeb::HTTPS> HttpsClient;$/;"	t
+HttpsServer	.\src\serverResource.hpp	/^typedef SimpleWeb::Server<SimpleWeb::HTTPS> HttpsServer;$/;"	t
+INCLUDE_HPP	.\src\include.hpp	2;"	d
+INPUTBINDER_HPP_	.\src\mysql\InputBinder.hpp	2;"	d
+INPUT_BINDER_FLOATING_TYPE_SPECIALIZATION	.\src\mysql\InputBinder.hpp	144;"	d
+INPUT_BINDER_INTEGRAL_TYPE_SPECIALIZATION	.\src\mysql\InputBinder.hpp	113;"	d
+InputBinder	.\src\mysql\InputBinder.hpp	/^struct InputBinder {$/;"	s	namespace:InputBinderPrivate
+InputBinder	.\src\mysql\InputBinder.hpp	/^struct InputBinder<N, Head, Tail...> {$/;"	s	namespace:InputBinderPrivate
+InputBinder	.\src\mysql\InputBinder.hpp	/^struct InputBinder<N, char*, Tail...> {$/;"	s	namespace:InputBinderPrivate
+InputBinder	.\src\mysql\InputBinder.hpp	/^struct InputBinder<N, const char*, Tail...> {$/;"	s	namespace:InputBinderPrivate
+InputBinder	.\src\mysql\InputBinder.hpp	/^struct InputBinder<N, std::string, Tail...> {$/;"	s	namespace:InputBinderPrivate
+InputBinderPrivate	.\src\mysql\InputBinder.hpp	/^namespace InputBinderPrivate {$/;"	n
+LineReader	.\src\csv.h	/^                LineReader(const char*file_name, FILE*file){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const char*file_name, const char*data_begin, const char*data_end){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const char*file_name, std::istream&in){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const char*file_name, std::unique_ptr<ByteSourceBase>byte_source){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const std::string&file_name, FILE*file){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const std::string&file_name, const char*data_begin, const char*data_end){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const std::string&file_name, std::istream&in){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                LineReader(const std::string&file_name, std::unique_ptr<ByteSourceBase>byte_source){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                explicit LineReader(const char*file_name){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^                explicit LineReader(const std::string&file_name){$/;"	f	class:io::LineReader
+LineReader	.\src\csv.h	/^        class LineReader{$/;"	c	namespace:io
+Logger	.\include\corvusoft\restbed\logger.hpp	/^    class Logger$/;"	c	namespace:restbed
+MSG_OUT	.\src\asiohiper.hpp	6;"	d
+MYSQL_API_HPP	.\src\mysql\mysql_api.hpp	2;"	d
+MYSQL_HPP_	.\src\mysql\MySql.hpp	2;"	d
+MYSQL_PREPARED_STATEMENT_HPP_	.\src\mysql\MySqlPreparedStatement.hpp	2;"	d
+MY_SQL_EXCEPTION_HPP_	.\src\mysql\MySqlException.hpp	2;"	d
+MySql	.\src\mysql\MySql.cpp	/^MySql::MySql($/;"	f	class:MySql
+MySql	.\src\mysql\MySql.hpp	/^class MySql {$/;"	c
+MySqlException	.\src\mysql\MySqlException.cpp	/^MySqlException::MySqlException(const MYSQL* const connection)$/;"	f	class:MySqlException
+MySqlException	.\src\mysql\MySqlException.cpp	/^MySqlException::MySqlException(const MySqlPreparedStatement& statement)$/;"	f	class:MySqlException
+MySqlException	.\src\mysql\MySqlException.cpp	/^MySqlException::MySqlException(const string& message)$/;"	f	class:MySqlException
+MySqlException	.\src\mysql\MySqlException.hpp	/^class MySqlException : public std::exception {$/;"	c
+MySqlPreparedStatement	.\src\mysql\MySqlPreparedStatement.cpp	/^MySqlPreparedStatement::MySqlPreparedStatement($/;"	f	class:MySqlPreparedStatement
+MySqlPreparedStatement	.\src\mysql\MySqlPreparedStatement.hpp	/^class MySqlPreparedStatement {$/;"	c
+NLOHMANN_FIFO_MAP_HPP	.\src\fifo_map.hpp	22;"	d
+NLOHMANN_JSON_FIFO_MAP_HPP	.\src\json_fifo_map.hpp	30;"	d
+NLOHMANN_JSON_MAP_HPP	.\src\json_map.hpp	30;"	d
+NULL_VALUE_ERROR_MESSAGE	.\src\mysql\OutputBinder.hpp	/^static const char NULL_VALUE_ERROR_MESSAGE[] = \\$/;"	m	namespace:OutputBinderPrivate
+NonOwningIStreamByteSource	.\src\csv.h	/^                        explicit NonOwningIStreamByteSource(std::istream&in):in(in){}$/;"	f	class:io::detail::NonOwningIStreamByteSource
+NonOwningIStreamByteSource	.\src\csv.h	/^                class NonOwningIStreamByteSource : public ByteSourceBase{$/;"	c	namespace:io::detail
+NonOwningStringByteSource	.\src\csv.h	/^                        NonOwningStringByteSource(const char*str, long long size):str(str), remaining_byte_count(size){}$/;"	f	class:io::detail::NonOwningStringByteSource
+NonOwningStringByteSource	.\src\csv.h	/^                class NonOwningStringByteSource : public ByteSourceBase{$/;"	c	namespace:io::detail
+ORDERBOT_HPP	.\src\orderbot.hpp	2;"	d
+ORDERBOT_RESTSERVER_HPP	.\src\orderbot_restserver.hpp	2;"	d
+ORDERBOT_RESTSERVER_RESOURCE_HPP	.\src\orderbot_restserver_resource.hpp	2;"	d
+OUTPUTBINDER_HPP_	.\src\mysql\OutputBinder.hpp	2;"	d
+OUTPUT_BINDER_ELEMENT_SETTER_SPECIALIZATION	.\src\mysql\OutputBinder.hpp	302;"	d
+OUTPUT_BINDER_PARAMETER_SETTER_SPECIALIZATION	.\src\mysql\OutputBinder.hpp	402;"	d
+OutputBinderParameterSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderParameterSetter {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderParameterSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderParameterSetter<T*> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderParameterSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderParameterSetter<std::shared_ptr<T>> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderParameterSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderParameterSetter<std::unique_ptr<T>> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderPrivate	.\src\mysql\MySqlPreparedStatement.hpp	/^namespace OutputBinderPrivate {$/;"	n
+OutputBinderPrivate	.\src\mysql\OutputBinder.cpp	/^namespace OutputBinderPrivate {$/;"	n	file:
+OutputBinderPrivate	.\src\mysql\OutputBinder.hpp	/^namespace OutputBinderPrivate {$/;"	n
+OutputBinderResultSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderResultSetter {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderResultSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderResultSetter<T*> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderResultSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderResultSetter<std::shared_ptr<T>> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderResultSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderResultSetter<std::string> {$/;"	c	namespace:OutputBinderPrivate
+OutputBinderResultSetter	.\src\mysql\OutputBinder.hpp	/^class OutputBinderResultSetter<std::unique_ptr<T>> {$/;"	c	namespace:OutputBinderPrivate
+OwningStdIOByteSourceBase	.\src\csv.h	/^                        explicit OwningStdIOByteSourceBase(FILE*file):file(file){$/;"	f	class:io::detail::OwningStdIOByteSourceBase
+OwningStdIOByteSourceBase	.\src\csv.h	/^                class OwningStdIOByteSourceBase : public ByteSourceBase{$/;"	c	namespace:io::detail
+PAYPAL_HPP	.\src\paypal.hpp	2;"	d
+Relative	.\include\corvusoft\restbed\uri.hpp	/^            static const bool Relative = true;$/;"	m	class:restbed::Uri
+Request	.\include\corvusoft\restbed\request.hpp	/^    class Request$/;"	c	namespace:restbed
+Request	.\src\server_http.hpp	/^            Request(): content(&streambuf) {}$/;"	f	class:SimpleWeb::ServerBase::Request
+Request	.\src\server_http.hpp	/^        class Request $/;"	c	class:SimpleWeb::ServerBase
+Resource	.\include\corvusoft\restbed\resource.hpp	/^    class Resource$/;"	c	namespace:restbed
+Response	.\include\corvusoft\restbed\response.hpp	/^    class Response$/;"	c	namespace:restbed
+Response	.\src\client_http.hpp	/^            Response(): content(&content_buffer) {};$/;"	f	class:SimpleWeb::ClientBase::Response
+Response	.\src\client_http.hpp	/^        class Response $/;"	c	class:SimpleWeb::ClientBase
+Response	.\src\server_http.hpp	/^            Response(boost::asio::io_service& io_service, std::shared_ptr<socket_type> socket, std::shared_ptr<boost::asio::strand> strand, $/;"	f	class:SimpleWeb::ServerBase::Response
+Response	.\src\server_http.hpp	/^        class Response $/;"	c	class:SimpleWeb::ServerBase
+Rule	.\include\corvusoft\restbed\rule.hpp	/^    class Rule$/;"	c	namespace:restbed
+SERVER_HTTPS_HPP	.\src\server_https.hpp	2;"	d
+SERVER_HTTP_HPP	.\src\server_http.hpp	2;"	d
+SERVER_RESOURCE_HPP	.\src\serverResource.hpp	2;"	d
+SHARED_HPP	.\src\shared.hpp	2;"	d
+SSLSettings	.\include\corvusoft\restbed\ssl_settings.hpp	/^    class SSLSettings$/;"	c	namespace:restbed
+Server	.\src\server_http.hpp	/^        Server(unsigned short port=8080, size_t num_threads=10, size_t timeout_request=5, size_t timeout_content=300) : $/;"	f	class:SimpleWeb::Server
+Server	.\src\server_http.hpp	/^    class Server : public ServerBase<socket_type> {};$/;"	c	namespace:SimpleWeb
+Server	.\src\server_http.hpp	/^    class Server<HTTP> : public ServerBase<HTTP> $/;"	c	namespace:SimpleWeb
+Server	.\src\server_https.hpp	/^        Server(unsigned short port, size_t num_threads, const std::string& cert_file, const std::string& private_key_file,$/;"	f	class:SimpleWeb::Server
+Server	.\src\server_https.hpp	/^    class Server<HTTPS> : public ServerBase<HTTPS> $/;"	c	namespace:SimpleWeb
+ServerBase	.\src\server_http.hpp	/^        ServerBase(unsigned short port, size_t num_threads, size_t timeout_request, size_t timeout_send_or_receive) : $/;"	f	class:SimpleWeb::ServerBase
+ServerBase	.\src\server_http.hpp	/^    class ServerBase $/;"	c	namespace:SimpleWeb
+Service	.\include\corvusoft\restbed\service.hpp	/^    class Service$/;"	c	namespace:restbed
+Session	.\include\corvusoft\restbed\session.hpp	/^    class Session : public std::enable_shared_from_this< Session >$/;"	c	namespace:restbed
+SessionManager	.\include\corvusoft\restbed\session_manager.hpp	/^    class SessionManager$/;"	c	namespace:restbed
+Settings	.\include\corvusoft\restbed\settings.hpp	/^    class Settings$/;"	c	namespace:restbed
+SimpleWeb	.\src\client_http.hpp	/^namespace SimpleWeb $/;"	n
+SimpleWeb	.\src\client_https.hpp	/^namespace SimpleWeb $/;"	n
+SimpleWeb	.\src\server_http.hpp	/^namespace SimpleWeb $/;"	n
+SimpleWeb	.\src\server_https.hpp	/^namespace SimpleWeb $/;"	n
+SimpleWeb	.\src\shared.hpp	/^namespace SimpleWeb$/;"	n
+Sort	.\src\test.hpp	/^	void Sort(std::vector<Date>& v)$/;"	f	namespace:brad
+String	.\include\corvusoft\restbed\string.hpp	/^    class String$/;"	c	namespace:restbed
+SynchronousReader	.\src\csv.h	/^                class SynchronousReader{$/;"	c	namespace:io::detail
+SyslogLogger	.\include\corvusoft\restbed\syslog_logger.hpp	/^class SyslogLogger : public Logger$/;"	c
+TEST_HPP	.\src\test.hpp	2;"	d
+Uri	.\include\corvusoft\restbed\uri.hpp	/^    class Uri$/;"	c	namespace:restbed
+WEBCLIENT_HPP	.\src\curl_client.hpp	2;"	d
+WebClient	.\src\curl_client.hpp	/^WebClient::WebClient() {$/;"	f	class:WebClient
+WebClient	.\src\curl_client.hpp	/^WebClient::WebClient(const WebClient& orig) {}$/;"	f	class:WebClient
+WebClient	.\src\curl_client.hpp	/^WebClient::WebClient(const std::string& url, std::string user, std::string password) : WebClient() {$/;"	f	class:WebClient
+WebClient	.\src\curl_client.hpp	/^WebClient::WebClient(const std::string& url, std::string user,std::string password,std::string def) : WebClient() {$/;"	f	class:WebClient
+WebClient	.\src\curl_client.hpp	/^class WebClient {$/;"	c
+_ConnInfo	.\src\asiohiper.hpp	/^typedef struct _ConnInfo$/;"	s
+_GlobalInfo	.\src\asiohiper.hpp	/^typedef struct _GlobalInfo$/;"	s
+_RESTBED_BYTE_H	.\include\corvusoft\restbed\byte.hpp	6;"	d
+_RESTBED_CONTEXT_PLACEHOLDER_BASE_H	.\include\corvusoft\restbed\context_placeholder_base.hpp	6;"	d
+_RESTBED_CONTEXT_PLACEHOLDER_H	.\include\corvusoft\restbed\context_placeholder.hpp	6;"	d
+_RESTBED_CONTEXT_VALUE_H	.\include\corvusoft\restbed\context_value.hpp	6;"	d
+_RESTBED_HTTP_H	.\include\corvusoft\restbed\http.hpp	6;"	d
+_RESTBED_LOGGER_H	.\include\corvusoft\restbed\logger.hpp	6;"	d
+_RESTBED_REQUEST_H	.\include\corvusoft\restbed\request.hpp	6;"	d
+_RESTBED_RESOURCE_H	.\include\corvusoft\restbed\resource.hpp	6;"	d
+_RESTBED_RESPONSE_H	.\include\corvusoft\restbed\response.hpp	6;"	d
+_RESTBED_RULE_H	.\include\corvusoft\restbed\rule.hpp	6;"	d
+_RESTBED_SERVICE_H	.\include\corvusoft\restbed\service.hpp	6;"	d
+_RESTBED_SESSION_H	.\include\corvusoft\restbed\session.hpp	6;"	d
+_RESTBED_SESSION_MANAGER_H	.\include\corvusoft\restbed\session_manager.hpp	6;"	d
+_RESTBED_SETTINGS_H	.\include\corvusoft\restbed\settings.hpp	6;"	d
+_RESTBED_SSL_SETTINGS_H	.\include\corvusoft\restbed\ssl_settings.hpp	6;"	d
+_RESTBED_STATUS_CODE_H	.\include\corvusoft\restbed\status_code.hpp	6;"	d
+_RESTBED_STRING_H	.\include\corvusoft\restbed\string.hpp	6;"	d
+_RESTBED_URI_H	.\include\corvusoft\restbed\uri.hpp	6;"	d
+_json	.\src\json_map.hpp	/^inline nlohmann_map::json operator "" _json(const char* s, std::size_t)$/;"	f
+_json_pointer	.\src\json_map.hpp	/^inline nlohmann_map::json::json_pointer operator "" _json_pointer(const char* s, std::size_t)$/;"	f
+accept	.\src\server_http.hpp	/^        void accept() $/;"	f	class:SimpleWeb::Server
+accept	.\src\server_https.hpp	/^        void accept()$/;"	f	class:SimpleWeb::Server
+acceptor	.\src\server_http.hpp	/^        boost::asio::ip::tcp::acceptor acceptor;$/;"	m	class:SimpleWeb::ServerBase
+activemq_cms_consumer	.\src\activemq_cms.hpp	/^    activemq_cms_consumer( const std::string& brokerURI,$/;"	f	class:activemq_cms_consumer
+activemq_cms_consumer	.\src\activemq_cms.hpp	/^class activemq_cms_consumer : public ExceptionListener,$/;"	c
+activemq_cms_producer	.\src\activemq_cms.hpp	/^    activemq_cms_producer(const std::string& message, const std::string& brokerURI, unsigned int numMessages,$/;"	f	class:activemq_cms_producer
+activemq_cms_producer	.\src\activemq_cms.hpp	/^class activemq_cms_producer : public Runnable$/;"	c
+activemq_producer_consumer	.\src\activemq_producer_consumer.hpp	/^class activemq_producer_consumer$/;"	c
+activemq_rest	.\src\activemq.hpp	/^	activemq_rest(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr)$/;"	f	class:activemq_rest
+activemq_rest	.\src\activemq.hpp	/^class activemq_rest$/;"	c
+addData	.\src\paypal.hpp	/^	void addData(std::string data)$/;"	f	class:taxfile
+add_header	.\src\curl_client.hpp	/^	void add_header(std::string h)$/;"	f	class:WebClient
+add_key	.\src\fifo_map.hpp	/^    void add_key(const Key& key)$/;"	f	class:nlohmann::fifo_map_compare
+addsock	.\src\asiohiper.hpp	/^static void addsock(curl_socket_t s, CURL *easy, int action, GlobalInfo *g)$/;"	f
+adl_postconstruct	.\src\activemq_cms.hpp	/^      void adl_postconstruct(const boost::shared_ptr<T> &, activemq_cms_producer *)$/;"	f	class:activemq_cms_producer
+adl_predestruct	.\src\activemq_cms.hpp	/^    friend void adl_predestruct(activemq_cms_producer *)$/;"	f	class:activemq_cms_producer
+anchor	.\src\json_fifo_map.hpp	/^                : anchor(it)$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+anchor	.\src\json_fifo_map.hpp	/^            IteratorType anchor;$/;"	m	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+anchor	.\src\json_map.hpp	/^                : anchor(it)$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+anchor	.\src\json_map.hpp	/^            IteratorType anchor;$/;"	m	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+apollo	.\src\serverResource.hpp	/^	int apollo()$/;"	f	class:server_resource
+apollo	.\src\serverResource.hpp	/^	int apollo()$/;"	f	class:servers_resource
+array	.\src\json_fifo_map.hpp	/^        array,           \/\/\/< array (ordered collection of values)$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+array	.\src\json_fifo_map.hpp	/^        array_t* array;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+array	.\src\json_fifo_map.hpp	/^    static basic_json array(std::initializer_list<basic_json> init =$/;"	f	class:nlohmann_fifo_map::basic_json
+array	.\src\json_map.hpp	/^        array,           \/\/\/< array (ordered collection of values)$/;"	m	class:nlohmann_map::basic_json::value_t
+array	.\src\json_map.hpp	/^        array_t* array;$/;"	m	union:nlohmann_map::basic_json::json_value
+array	.\src\json_map.hpp	/^    static basic_json array(std::initializer_list<basic_json> init =$/;"	f	class:nlohmann_map::basic_json
+array_end	.\src\json_fifo_map.hpp	/^        array_end,$/;"	m	class:nlohmann_fifo_map::basic_json::parse_event_t
+array_end	.\src\json_map.hpp	/^        array_end,$/;"	m	class:nlohmann_map::basic_json::parse_event_t
+array_index	.\src\json_fifo_map.hpp	/^            size_t array_index = 0;$/;"	m	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+array_index	.\src\json_map.hpp	/^            size_t array_index = 0;$/;"	m	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+array_iterator	.\src\json_fifo_map.hpp	/^        typename array_t::iterator array_iterator;$/;"	m	struct:nlohmann_fifo_map::basic_json::internal_iterator
+array_iterator	.\src\json_map.hpp	/^        typename array_t::iterator array_iterator;$/;"	m	struct:nlohmann_map::basic_json::internal_iterator
+array_start	.\src\json_fifo_map.hpp	/^        array_start,$/;"	m	class:nlohmann_fifo_map::basic_json::parse_event_t
+array_start	.\src\json_map.hpp	/^        array_start,$/;"	m	class:nlohmann_map::basic_json::parse_event_t
+asio_context	.\src\client_https.hpp	/^        boost::asio::ssl::context asio_context;$/;"	m	class:SimpleWeb::Client
+asio_endpoint	.\src\client_http.hpp	/^        boost::asio::ip::tcp::endpoint asio_endpoint;$/;"	m	class:SimpleWeb::ClientBase
+asio_io_service	.\src\client_http.hpp	/^        boost::asio::io_service asio_io_service;$/;"	m	class:SimpleWeb::ClientBase
+asio_resolver	.\src\client_http.hpp	/^        boost::asio::ip::tcp::resolver asio_resolver;$/;"	m	class:SimpleWeb::ClientBase
+async_flush	.\src\server_http.hpp	/^            void async_flush(std::function<void((const boost::system::error_code&))> callback=nullptr) $/;"	f	class:SimpleWeb::ServerBase::Response
+async_flush	.\src\server_http.hpp	/^        static Response& async_flush(Response& r) $/;"	f	class:SimpleWeb::ServerBase
+async_timer	.\src\server_http.hpp	/^            std::shared_ptr<boost::asio::deadline_timer> async_timer;$/;"	m	class:SimpleWeb::ServerBase::Response
+async_waiting	.\src\server_http.hpp	/^            std::shared_ptr<bool> async_waiting;$/;"	m	class:SimpleWeb::ServerBase::Response
+async_writing	.\src\server_http.hpp	/^            std::shared_ptr<bool> async_writing;$/;"	m	class:SimpleWeb::ServerBase::Response
+at	.\src\fifo_map.hpp	/^    T& at(const Key& key)$/;"	f	class:nlohmann::fifo_map
+at	.\src\fifo_map.hpp	/^    const T& at(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+at	.\src\json_fifo_map.hpp	/^    const_reference at(const json_pointer& ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_fifo_map.hpp	/^    const_reference at(const typename object_t::key_type& key) const$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_fifo_map.hpp	/^    const_reference at(size_type idx) const$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_fifo_map.hpp	/^    reference at(const json_pointer& ptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_fifo_map.hpp	/^    reference at(const typename object_t::key_type& key)$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_fifo_map.hpp	/^    reference at(size_type idx)$/;"	f	class:nlohmann_fifo_map::basic_json
+at	.\src\json_map.hpp	/^    const_reference at(const json_pointer& ptr) const$/;"	f	class:nlohmann_map::basic_json
+at	.\src\json_map.hpp	/^    const_reference at(const typename object_t::key_type& key) const$/;"	f	class:nlohmann_map::basic_json
+at	.\src\json_map.hpp	/^    const_reference at(size_type idx) const$/;"	f	class:nlohmann_map::basic_json
+at	.\src\json_map.hpp	/^    reference at(const json_pointer& ptr)$/;"	f	class:nlohmann_map::basic_json
+at	.\src\json_map.hpp	/^    reference at(const typename object_t::key_type& key)$/;"	f	class:nlohmann_map::basic_json
+at	.\src\json_map.hpp	/^    reference at(size_type idx)$/;"	f	class:nlohmann_map::basic_json
+auth	.\src\serverResource.hpp	/^		bool auth(std::shared_ptr<HttpServer::Request> request,const string& user_pass)$/;"	f	class:server_resource
+authentication_handler	.\src\exchange_rate_restserver.hpp	/^void authentication_handler(const std::shared_ptr< restbed::Session > session,$/;"	f	namespace:exchange_rate_namespace
+authentication_handler	.\src\orderbot_restserver.hpp	/^void authentication_handler(const std::shared_ptr< Session > session,$/;"	f
+back	.\src\json_fifo_map.hpp	/^    const_reference back() const$/;"	f	class:nlohmann_fifo_map::basic_json
+back	.\src\json_fifo_map.hpp	/^    reference back()$/;"	f	class:nlohmann_fifo_map::basic_json
+back	.\src\json_map.hpp	/^    const_reference back() const$/;"	f	class:nlohmann_map::basic_json
+back	.\src\json_map.hpp	/^    reference back()$/;"	f	class:nlohmann_map::basic_json
+base	.\src\csv.h	/^                struct base : std::exception{$/;"	s	namespace:io::error
+base_iterator	.\src\json_fifo_map.hpp	/^            : base_iterator(it)$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+base_iterator	.\src\json_fifo_map.hpp	/^            : base_iterator(object)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+base_iterator	.\src\json_fifo_map.hpp	/^            : base_iterator(other)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+base_iterator	.\src\json_map.hpp	/^            : base_iterator(it)$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+base_iterator	.\src\json_map.hpp	/^            : base_iterator(object)$/;"	f	class:nlohmann_map::basic_json::iterator
+base_iterator	.\src\json_map.hpp	/^            : base_iterator(other)$/;"	f	class:nlohmann_map::basic_json::iterator
+basic_json	.\src\json_fifo_map.hpp	/^        : basic_json(value_t::null)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(InputIT first, InputIT last) : m_type(first.m_object->m_type)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const CompatibleArrayType& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const CompatibleObjectType& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const CompatibleStringType& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const array_t& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const basic_json& other)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const object_t& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const string_t& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const typename string_t::value_type* val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(const value_t value_type)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(size_type cnt, const basic_json& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    basic_json(std::initializer_list<basic_json> init,$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^    explicit basic_json(std::istream& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+basic_json	.\src\json_fifo_map.hpp	/^class basic_json$/;"	c	namespace:nlohmann_fifo_map
+basic_json	.\src\json_map.hpp	/^        : basic_json(value_t::null)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(InputIT first, InputIT last) : m_type(first.m_object->m_type)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const CompatibleArrayType& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const CompatibleObjectType& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const CompatibleStringType& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const array_t& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const basic_json& other)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const object_t& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const string_t& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const typename string_t::value_type* val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(const value_t value_type)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(size_type cnt, const basic_json& val)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    basic_json(std::initializer_list<basic_json> init,$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^    explicit basic_json(std::istream& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_map::basic_json
+basic_json	.\src\json_map.hpp	/^class basic_json$/;"	c	namespace:nlohmann_map
+begin_array	.\src\json_fifo_map.hpp	/^            begin_array,     \/\/\/< the character for array begin "["$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+begin_array	.\src\json_map.hpp	/^            begin_array,     \/\/\/< the character for array begin "["$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+begin_object	.\src\json_fifo_map.hpp	/^            begin_object,    \/\/\/< the character for object begin "{"$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+begin_object	.\src\json_map.hpp	/^            begin_object,    \/\/\/< the character for object begin "{"$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+begin_value	.\src\json_fifo_map.hpp	/^        static constexpr difference_type begin_value = 0;$/;"	m	class:nlohmann_fifo_map::basic_json::primitive_iterator_t
+begin_value	.\src\json_map.hpp	/^        static constexpr difference_type begin_value = 0;$/;"	m	class:nlohmann_map::basic_json::primitive_iterator_t
+bind	.\src\mysql\InputBinder.hpp	/^    static void bind($/;"	f	struct:InputBinderPrivate::InputBinder
+bind	.\src\mysql\InputBinder.hpp	/^    static void bind(std::vector<MYSQL_BIND>* const) {}$/;"	f	struct:InputBinderPrivate::InputBinder
+bindAndExecuteStatement	.\src\mysql\OutputBinder.cpp	/^int Friend::bindAndExecuteStatement($/;"	f	class:OutputBinderPrivate::Friend
+bindInputs	.\src\mysql\InputBinder.hpp	/^void bindInputs($/;"	f
+bindParameters	.\src\mysql\OutputBinder.hpp	/^void bindParameters($/;"	f	namespace:OutputBinderPrivate
+bits	.\src\json_fifo_map.hpp	/^        } bits;$/;"	m	union:nlohmann_fifo_map::basic_json::type_data_t	typeref:struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+bits	.\src\json_map.hpp	/^        } bits;$/;"	m	union:nlohmann_map::basic_json::type_data_t	typeref:struct:nlohmann_map::basic_json::type_data_t::__anon4
+block_len	.\src\csv.h	/^                static const int block_len = 1<<24;$/;"	m	class:io::LineReader
+boolean	.\src\json_fifo_map.hpp	/^        boolean,         \/\/\/< boolean value$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+boolean	.\src\json_fifo_map.hpp	/^        boolean_t boolean;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+boolean	.\src\json_fifo_map.hpp	/^        json_value(boolean_t v) noexcept : boolean(v) {}$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+boolean	.\src\json_map.hpp	/^        boolean,         \/\/\/< boolean value$/;"	m	class:nlohmann_map::basic_json::value_t
+boolean	.\src\json_map.hpp	/^        boolean_t boolean;$/;"	m	union:nlohmann_map::basic_json::json_value
+boolean	.\src\json_map.hpp	/^        json_value(boolean_t v) noexcept : boolean(v) {}$/;"	f	union:nlohmann_map::basic_json::json_value
+boost_log	.\src\renesolalog.hpp	/^boost::shared_ptr<singleton_boost_log> boost_log = singleton_boost_log::get_instance();/;"	v
+brad	.\src\test.hpp	/^namespace brad$/;"	n
+brokerURI	.\src\activemq_cms.hpp	/^    std::string brokerURI;$/;"	m	class:activemq_cms_consumer
+brokerURI	.\src\activemq_cms.hpp	/^    std::string brokerURI;$/;"	m	class:activemq_cms_producer
+buffer	.\src\csv.h	/^                        char*buffer;$/;"	m	class:io::detail::AsynchronousReader
+buffer	.\src\csv.h	/^                        char*buffer;$/;"	m	class:io::detail::SynchronousReader
+buffer	.\src\csv.h	/^                char*buffer;$/;"	m	class:io::LineReader
+byte_source	.\src\csv.h	/^                        std::unique_ptr<ByteSourceBase>byte_source;$/;"	m	class:io::detail::AsynchronousReader
+byte_source	.\src\csv.h	/^                        std::unique_ptr<ByteSourceBase>byte_source;$/;"	m	class:io::detail::SynchronousReader
+callback	.\src\json_fifo_map.hpp	/^        parser_callback_t callback;$/;"	m	class:nlohmann_fifo_map::basic_json::parser
+callback	.\src\json_map.hpp	/^        parser_callback_t callback;$/;"	m	class:nlohmann_map::basic_json::parser
+can_not_open_file	.\src\csv.h	/^                struct can_not_open_file :$/;"	s	namespace:io::error
+check_multi_info	.\src\asiohiper.hpp	/^static void check_multi_info(GlobalInfo *g)$/;"	f
+chop_next_column	.\src\csv.h	/^                void chop_next_column($/;"	f	namespace:io::detail
+cleanup	.\src\activemq_cms.hpp	/^    void cleanup()$/;"	f	class:activemq_cms_producer
+cleanup	.\src\activemq_cms.hpp	/^    void cleanup(){$/;"	f	class:activemq_cms_consumer
+clientAck	.\src\activemq_cms.hpp	/^    bool clientAck;$/;"	m	class:activemq_cms_consumer
+clientAck	.\src\activemq_cms.hpp	/^    bool clientAck;$/;"	m	class:activemq_cms_producer
+close	.\src\activemq_cms.hpp	/^    void close() $/;"	f	class:activemq_cms_producer
+close	.\src\activemq_cms.hpp	/^    void close() {$/;"	f	class:activemq_cms_consumer
+close	.\src\mysql\MySql.hpp	/^        void close()$/;"	f	class:MySql
+close_socket_callback	.\src\activemq.hpp	/^	static int close_socket_callback(void *clientp, curl_socket_t item)$/;"	f	class:activemq_rest
+close_socket_callback	.\src\exchange_rate.hpp	/^	static int close_socket_callback(void *clientp, curl_socket_t item)$/;"	f	class:exchange_rate
+close_socket_callback	.\src\orderbot.hpp	/^	static int close_socket_callback(void *clientp, curl_socket_t item)$/;"	f	class:orderbot
+closesocket	.\src\asiohiper.hpp	/^static int closesocket(void *clientp, curl_socket_t item)$/;"	f
+code	.\src\exchange_rate.hpp	/^	string code;\/\/CAD$/;"	m	class:exchage_rate_data
+col_order	.\src\csv.h	/^			std::vector<int>col_order;$/;"	m	class:io::CSVReader
+column_content	.\src\csv.h	/^                        char column_content[max_column_content_length+1];$/;"	m	struct:io::error::with_column_content
+column_name	.\src\csv.h	/^                        char column_name[max_column_name_length+1];$/;"	m	struct:io::error::with_column_name
+column_names	.\src\csv.h	/^			std::string column_names[column_count];$/;"	m	class:io::CSVReader
+common_ancestor	.\src\test.hpp	/^	boost::shared_ptr<tree> common_ancestor(boost::shared_ptr<tree> root, boost::shared_ptr<tree> p, boost::shared_ptr<tree> q)$/;"	f	namespace:x
+common_ancestor_helper	.\src\test.hpp	/^	boost::shared_ptr<tree> common_ancestor_helper(boost::shared_ptr<tree> root, boost::shared_ptr<tree> p, boost::shared_ptr<tree> q)$/;"	f	namespace:x
+comp	.\src\test.hpp	/^	 class comp$/;"	c	namespace:brad
+connect	.\src\client_http.hpp	/^        void connect() $/;"	f	class:SimpleWeb::Client
+connect	.\src\client_https.hpp	/^        void connect() $/;"	f	class:SimpleWeb::Client
+connection	.\src\activemq_cms.hpp	/^    Connection* connection;$/;"	m	class:activemq_cms_consumer
+connection	.\src\activemq_cms.hpp	/^    Connection* connection;$/;"	m	class:activemq_cms_producer
+connection_	.\src\mysql\MySql.hpp	/^        MYSQL* connection_;$/;"	m	class:MySql
+const_iterator	.\src\json_fifo_map.hpp	/^    class const_iterator : public std::iterator<std::random_access_iterator_tag, const basic_json>$/;"	c	class:nlohmann_fifo_map::basic_json
+const_iterator	.\src\json_map.hpp	/^    class const_iterator : public std::iterator<std::random_access_iterator_tag, const basic_json>$/;"	c	class:nlohmann_map::basic_json
+consumer	.\src\activemq_cms.hpp	/^    MessageConsumer* consumer;$/;"	m	class:activemq_cms_consumer
+container	.\src\json_fifo_map.hpp	/^        typename IteratorType::reference container;$/;"	m	class:nlohmann_fifo_map::basic_json::iteration_proxy
+container	.\src\json_map.hpp	/^        typename IteratorType::reference container;$/;"	m	class:nlohmann_map::basic_json::iteration_proxy
+content	.\src\client_http.hpp	/^            std::istream content;$/;"	m	class:SimpleWeb::ClientBase::Response
+content	.\src\server_http.hpp	/^            std::istream content;$/;"	m	class:SimpleWeb::ServerBase::Request
+content_buffer	.\src\client_http.hpp	/^            boost::asio::streambuf content_buffer;$/;"	m	class:SimpleWeb::ClientBase::Response
+context	.\src\server_https.hpp	/^        boost::asio::ssl::context context;$/;"	m	class:SimpleWeb::Server
+convert_json	.\src\exchange_rate.hpp	/^	string convert_json(const string& source)$/;"	f	class:exchange_rate_on_time
+copy_opt	.\src\activemq.hpp	/^	void copy_opt()$/;"	f	class:activemq_rest
+copy_opt	.\src\orderbot.hpp	/^	void copy_opt()$/;"	f	class:orderbot
+count	.\src\fifo_map.hpp	/^    size_type count(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+count	.\src\json_fifo_map.hpp	/^    size_type count(typename object_t::key_type key) const$/;"	f	class:nlohmann_fifo_map::basic_json
+count	.\src\json_map.hpp	/^    size_type count(typename object_t::key_type key) const$/;"	f	class:nlohmann_map::basic_json
+covers	.\src\test.hpp	/^	bool covers(boost::shared_ptr<tree> root, boost::shared_ptr<tree> p)$/;"	f	namespace:x
+create	.\src\json_fifo_map.hpp	/^    static T* create(Args&& ... args)$/;"	f	class:nlohmann_fifo_map::basic_json
+create	.\src\json_map.hpp	/^    static T* create(Args&& ... args)$/;"	f	class:nlohmann_map::basic_json
+create_dir	.\src\paypal.hpp	/^bool create_dir(std::string dir)$/;"	f
+credit_ontime	.\src\credit_ontime.hpp	/^	credit_ontime()$/;"	f	class:credit_ontime
+credit_ontime	.\src\credit_ontime.hpp	/^class credit_ontime$/;"	c
+critical	.\src\renesolalog.hpp	/^	critical$/;"	e	enum:severity_level
+curl	.\src\activemq.hpp	/^	void curl(const std::string& uri, const std::string& method = "GET", const std::string& param = "", const std::string& content = "")$/;"	f	class:activemq_rest
+curl	.\src\exchange_rate.hpp	/^	void curl(const std::string& uri, const std::string& method = "GET", const std::string& param = "", const std::string& content = "")$/;"	f	class:exchange_rate
+curl	.\src\orderbot.hpp	/^	void curl(const std::string& uri, const std::string& method = "GET", const std::string& param = "", const std::string& content = "")$/;"	f	class:orderbot
+curl	.\src\paypal.hpp	/^	void curl(const std::string& uri, const std::string& method = "GET", const std::string& filename="", bool auth=false)$/;"	f	class:download_tax_from_taxrate
+currency_id	.\src\exchange_rate.hpp	/^	string currency_id;\/\/J4YVQ3USQNO3U430EKE1$/;"	m	class:exchage_rate_data
+data	.\src\json_fifo_map.hpp	/^        uint16_t data;$/;"	m	union:nlohmann_fifo_map::basic_json::type_data_t
+data	.\src\json_map.hpp	/^        uint16_t data;$/;"	m	union:nlohmann_map::basic_json::type_data_t
+data	.\src\test.hpp	/^		int data;$/;"	m	class:x::tree
+data_begin	.\src\csv.h	/^                int data_begin;$/;"	m	class:io::LineReader
+data_end	.\src\csv.h	/^                int data_end;$/;"	m	class:io::LineReader
+decode_request_orderbot	.\src\activemq_cms.hpp	/^    void decode_request_orderbot(const string& texts)$/;"	f	class:activemq_cms_consumer
+default_handler	.\src\exchange_rate_restserver.hpp	/^void default_handler(const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+default_handler	.\src\orderbot_restserver.hpp	/^void default_handler(const std::shared_ptr< Session > session)$/;"	f
+default_resource	.\src\server_http.hpp	/^            std::function<void(ServerBase<socket_type>::Response&, std::shared_ptr<ServerBase<socket_type>::Request>)> > default_resource;$/;"	m	class:SimpleWeb::ServerBase
+defaultindex	.\src\serverResource.hpp	/^	void defaultindex()$/;"	f	class:server_resource
+defaultindex	.\src\serverResource.hpp	/^	void defaultindex()$/;"	f	class:servers_resource
+depth	.\src\json_fifo_map.hpp	/^        int depth = 0;$/;"	m	class:nlohmann_fifo_map::basic_json::parser
+depth	.\src\json_map.hpp	/^        int depth = 0;$/;"	m	class:nlohmann_map::basic_json::parser
+desired_byte_count	.\src\csv.h	/^                        int desired_byte_count;$/;"	m	class:io::detail::AsynchronousReader
+desired_byte_count	.\src\csv.h	/^                        int desired_byte_count;$/;"	m	class:io::detail::SynchronousReader
+destURI	.\src\activemq_cms.hpp	/^    std::string destURI;$/;"	m	class:activemq_cms_consumer
+destURI	.\src\activemq_cms.hpp	/^    std::string destURI;$/;"	m	class:activemq_cms_producer
+destination	.\src\activemq_cms.hpp	/^    Destination* destination;$/;"	m	class:activemq_cms_consumer
+destination	.\src\activemq_cms.hpp	/^    Destination* destination;$/;"	m	class:activemq_cms_producer
+detail	.\include\corvusoft\restbed\request.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\resource.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\response.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\rule.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\service.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\session.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\session_manager.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\settings.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\ssl_settings.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\include\corvusoft\restbed\uri.hpp	/^    namespace detail$/;"	n	namespace:restbed
+detail	.\src\csv.h	/^        namespace detail{$/;"	n	namespace:io
+do_decimal_point	.\src\json_fifo_map.hpp	/^    char do_decimal_point() const$/;"	f	class:nlohmann_fifo_map::__anon1::DecimalSeparator
+do_decimal_point	.\src\json_map.hpp	/^    char do_decimal_point() const$/;"	f	class:nlohmann_map::__anon3::DecimalSeparator
+double_quote_escape	.\src\csv.h	/^        struct double_quote_escape{$/;"	s	namespace:io
+download_callback	.\src\paypal.hpp	/^	static size_t download_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)$/;"	f	class:download_tax_from_taxrate
+download_mutex	.\src\paypal.hpp	/^boost::mutex download_mutex;$/;"	v
+download_tax_from_taxrate	.\src\paypal.hpp	/^	download_tax_from_taxrate(const std::string& filename, const std::string& save_path) :path(save_path)$/;"	f	class:download_tax_from_taxrate
+download_tax_from_taxrate	.\src\paypal.hpp	/^class download_tax_from_taxrate$/;"	c
+download_write_data	.\src\paypal.hpp	/^	size_t download_write_data(const char *buffer, size_t size, size_t nmemb)$/;"	f	class:download_tax_from_taxrate
+dump	.\src\json_fifo_map.hpp	/^    string_t dump(const int indent = -1) const$/;"	f	class:nlohmann_fifo_map::basic_json
+dump	.\src\json_fifo_map.hpp	/^    void dump(std::ostream& o,$/;"	f	class:nlohmann_fifo_map::basic_json
+dump	.\src\json_map.hpp	/^    string_t dump(const int indent = -1) const$/;"	f	class:nlohmann_map::basic_json
+dump	.\src\json_map.hpp	/^    void dump(std::ostream& o,$/;"	f	class:nlohmann_map::basic_json
+duplicated_column_in_header	.\src\csv.h	/^                struct duplicated_column_in_header :$/;"	s	namespace:io::error
+easy	.\src\asiohiper.hpp	/^  CURL *easy;$/;"	m	struct:_ConnInfo
+ec	.\src\client_https.hpp	/^		boost::system::error_code  ec;$/;"	m	class:SimpleWeb::Client
+effective_cplusplus	.\src\test.hpp	/^namespace effective_cplusplus$/;"	n
+emplace	.\src\fifo_map.hpp	/^    std::pair<iterator, bool> emplace(Args&& ... args)$/;"	f	class:nlohmann::fifo_map
+emplace_hint	.\src\fifo_map.hpp	/^    iterator emplace_hint(const_iterator hint, Args&& ... args)$/;"	f	class:nlohmann::fifo_map
+empty	.\include\corvusoft\restbed\string.hpp	/^            static const std::string empty;$/;"	m	class:restbed::String
+empty_line_comment	.\src\csv.h	/^        struct empty_line_comment{$/;"	s	namespace:io
+encodePostFields	.\src\curl_client.hpp	/^std::string WebClient::encodePostFields() {$/;"	f	class:WebClient
+encodedPostFields	.\src\curl_client.hpp	/^    char * encodedPostFields;$/;"	m	class:WebClient
+end_array	.\src\json_fifo_map.hpp	/^            end_array,       \/\/\/< the character for array end "]"$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+end_array	.\src\json_map.hpp	/^            end_array,       \/\/\/< the character for array end "]"$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+end_object	.\src\json_fifo_map.hpp	/^            end_object,      \/\/\/< the character for object end "}"$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+end_object	.\src\json_map.hpp	/^            end_object,      \/\/\/< the character for object end "}"$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+end_value	.\src\json_fifo_map.hpp	/^        static constexpr difference_type end_value = begin_value + 1;$/;"	m	class:nlohmann_fifo_map::basic_json::primitive_iterator_t
+end_value	.\src\json_map.hpp	/^        static constexpr difference_type end_value = begin_value + 1;$/;"	m	class:nlohmann_map::basic_json::primitive_iterator_t
+endpoint	.\src\server_http.hpp	/^        boost::asio::ip::tcp::endpoint endpoint;$/;"	m	class:SimpleWeb::ServerBase
+equal_range	.\src\fifo_map.hpp	/^    std::pair<const_iterator, const_iterator> equal_range(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+equal_range	.\src\fifo_map.hpp	/^    std::pair<iterator, iterator> equal_range(const Key& key)$/;"	f	class:nlohmann::fifo_map
+erase	.\src\fifo_map.hpp	/^    iterator erase(const_iterator first, const_iterator last)$/;"	f	class:nlohmann::fifo_map
+erase	.\src\fifo_map.hpp	/^    iterator erase(const_iterator pos)$/;"	f	class:nlohmann::fifo_map
+erase	.\src\fifo_map.hpp	/^    size_type erase(const key_type& key)$/;"	f	class:nlohmann::fifo_map
+erase	.\src\json_fifo_map.hpp	/^    InteratorType erase(InteratorType first, InteratorType last)$/;"	f	class:nlohmann_fifo_map::basic_json
+erase	.\src\json_fifo_map.hpp	/^    InteratorType erase(InteratorType pos)$/;"	f	class:nlohmann_fifo_map::basic_json
+erase	.\src\json_fifo_map.hpp	/^    size_type erase(const typename object_t::key_type& key)$/;"	f	class:nlohmann_fifo_map::basic_json
+erase	.\src\json_fifo_map.hpp	/^    void erase(const size_type idx)$/;"	f	class:nlohmann_fifo_map::basic_json
+erase	.\src\json_map.hpp	/^    InteratorType erase(InteratorType first, InteratorType last)$/;"	f	class:nlohmann_map::basic_json
+erase	.\src\json_map.hpp	/^    InteratorType erase(InteratorType pos)$/;"	f	class:nlohmann_map::basic_json
+erase	.\src\json_map.hpp	/^    size_type erase(const typename object_t::key_type& key)$/;"	f	class:nlohmann_map::basic_json
+erase	.\src\json_map.hpp	/^    void erase(const size_type idx)$/;"	f	class:nlohmann_map::basic_json
+errno_value	.\src\csv.h	/^                        int errno_value;$/;"	m	struct:io::error::with_errno
+error	.\src\asiohiper.hpp	/^  char error[CURL_ERROR_SIZE];$/;"	m	struct:_ConnInfo
+error	.\src\csv.h	/^        namespace error{$/;"	n	namespace:io
+error	.\src\renesolalog.hpp	/^	error,$/;"	e	enum:severity_level
+error_message_buffer	.\src\csv.h	/^                        mutable char error_message_buffer[256];$/;"	m	struct:io::error::base
+escape_string	.\src\json_fifo_map.hpp	/^    static string_t escape_string(const string_t& s)$/;"	f	class:nlohmann_fifo_map::basic_json
+escape_string	.\src\json_map.hpp	/^    static string_t escape_string(const string_t& s)$/;"	f	class:nlohmann_map::basic_json
+escaped_string_not_closed	.\src\csv.h	/^                struct escaped_string_not_closed :$/;"	s	namespace:io::error
+event_cb	.\src\asiohiper.hpp	/^static void event_cb(GlobalInfo *g, boost::asio::ip::tcp::socket *tcp_socket,$/;"	f
+exchage_rate_data	.\src\exchange_rate.hpp	/^class exchage_rate_data$/;"	c
+exchange_rate	.\src\exchange_rate.hpp	/^	exchange_rate(const std::string& url) : m_url(url),m_request_status(0),m_data(nullptr)$/;"	f	class:exchange_rate
+exchange_rate	.\src\exchange_rate.hpp	/^class exchange_rate$/;"	c
+exchange_rate_namespace	.\src\exchange_rate_restserver.hpp	/^namespace exchange_rate_namespace$/;"	n
+exchange_rate_namespace	.\src\exchange_rate_restserver_resource.hpp	/^namespace exchange_rate_namespace$/;"	n
+exchange_rate_on_time	.\src\exchange_rate.hpp	/^	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input),m_conn(nullptr)$/;"	f	class:exchange_rate_on_time
+exchange_rate_on_time	.\src\exchange_rate.hpp	/^class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>$/;"	c
+exchange_rate_rest	.\src\exchange_rate.hpp	/^	exchange_rate_rest(boost::shared_ptr<MySql> conn):m_conn(conn)\/\/,m_mysql_database(mysql_input)$/;"	f	class:exchange_rate_rest
+exchange_rate_rest	.\src\exchange_rate.hpp	/^	exchange_rate_rest(mysql_database mysql_input)\/\/:m_mysql_database(mysql_input)$/;"	f	class:exchange_rate_rest
+exchange_rate_rest	.\src\exchange_rate.hpp	/^class exchange_rate_rest$/;"	c
+exchange_rate_server_start	.\src\exchange_rate_restserver_resource.hpp	/^void exchange_rate_server_start()$/;"	f	namespace:exchange_rate_namespace
+exp_cap	.\src\json_fifo_map.hpp	/^            uint16_t exp_cap : 1;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+exp_cap	.\src\json_map.hpp	/^            uint16_t exp_cap : 1;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+exp_plus	.\src\json_fifo_map.hpp	/^            uint16_t exp_plus : 1;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+exp_plus	.\src\json_map.hpp	/^            uint16_t exp_plus : 1;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+expect	.\src\json_fifo_map.hpp	/^        void expect(typename lexer::token_type t) const$/;"	f	class:nlohmann_fifo_map::basic_json::parser
+expect	.\src\json_map.hpp	/^        void expect(typename lexer::token_type t) const$/;"	f	class:nlohmann_map::basic_json::parser
+extra_column_in_header	.\src\csv.h	/^                struct extra_column_in_header :$/;"	s	namespace:io::error
+faulty_method_handler	.\src\exchange_rate_restserver.hpp	/^void faulty_method_handler(const std::shared_ptr< restbed::Session >)$/;"	f	namespace:exchange_rate_namespace
+faulty_method_handler	.\src\orderbot_restserver.hpp	/^void faulty_method_handler(const std::shared_ptr< Session >)$/;"	f
+fetch	.\src\mysql\OutputBinder.cpp	/^int Friend::fetch(const MySqlPreparedStatement& statement) {$/;"	f	class:OutputBinderPrivate::Friend
+fieldCount_	.\src\mysql\MySqlPreparedStatement.hpp	/^        size_t fieldCount_;$/;"	m	class:MySqlPreparedStatement
+fifo_map	.\src\fifo_map.hpp	/^    > class fifo_map$/;"	c	namespace:nlohmann
+fifo_map	.\src\fifo_map.hpp	/^    fifo_map() : m_keys(), m_compare(&m_keys), m_map(m_compare) {}$/;"	f	class:nlohmann::fifo_map
+fifo_map	.\src\fifo_map.hpp	/^    fifo_map(InputIterator first, InputIterator last)$/;"	f	class:nlohmann::fifo_map
+fifo_map	.\src\fifo_map.hpp	/^    fifo_map(std::initializer_list<value_type> init) : fifo_map()$/;"	f	class:nlohmann::fifo_map
+fifo_map_compare	.\src\fifo_map.hpp	/^    fifo_map_compare(std::unordered_map<Key, std::size_t>* k) : keys(k) {}$/;"	f	class:nlohmann::fifo_map_compare
+fifo_map_compare	.\src\fifo_map.hpp	/^class fifo_map_compare$/;"	c	namespace:nlohmann
+file	.\src\csv.h	/^                        FILE*file;$/;"	m	class:io::detail::OwningStdIOByteSourceBase
+file_line	.\src\csv.h	/^                        int file_line;$/;"	m	struct:io::error::with_file_line
+file_line	.\src\csv.h	/^                unsigned file_line;$/;"	m	class:io::LineReader
+file_name	.\src\csv.h	/^                        char file_name[max_file_name_length+1];$/;"	m	struct:io::error::with_file_name
+file_name	.\src\csv.h	/^                char file_name[error::max_file_name_length+1];$/;"	m	class:io::LineReader
+file_sink	.\src\renesolalog.hpp	/^typedef sinks::synchronous_sink< sinks::text_file_backend > file_sink;$/;"	t
+filename	.\src\paypal.hpp	/^	std::string filename;$/;"	m	class:taxfile
+find	.\src\fifo_map.hpp	/^    const_iterator find(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+find	.\src\fifo_map.hpp	/^    iterator find(const Key& key)$/;"	f	class:nlohmann::fifo_map
+find	.\src\json_fifo_map.hpp	/^    const_iterator find(typename object_t::key_type key) const$/;"	f	class:nlohmann_fifo_map::basic_json
+find	.\src\json_fifo_map.hpp	/^    iterator find(typename object_t::key_type key)$/;"	f	class:nlohmann_fifo_map::basic_json
+find	.\src\json_map.hpp	/^    const_iterator find(typename object_t::key_type key) const$/;"	f	class:nlohmann_map::basic_json
+find	.\src\json_map.hpp	/^    iterator find(typename object_t::key_type key)$/;"	f	class:nlohmann_map::basic_json
+find_next_column_end	.\src\csv.h	/^                static const char*find_next_column_end(const char*col_begin){$/;"	f	struct:io::double_quote_escape
+find_next_column_end	.\src\csv.h	/^                static const char*find_next_column_end(const char*col_begin){$/;"	f	struct:io::no_quote_escape
+find_resource	.\src\server_http.hpp	/^        void find_resource(std::shared_ptr<socket_type> socket, std::shared_ptr<Request> request) $/;"	f	class:SimpleWeb::ServerBase
+finish_read	.\src\csv.h	/^                        int finish_read(){$/;"	f	class:io::detail::AsynchronousReader
+finish_read	.\src\csv.h	/^                        int finish_read(){$/;"	f	class:io::detail::SynchronousReader
+first_code	.\src\exchange_rate.hpp	/^	string first_code;$/;"	m	class:general_rate_data
+first_currency_id	.\src\exchange_rate.hpp	/^	string first_currency_id;$/;"	m	class:general_rate_data
+first_second_currency_exchange_rate_id	.\src\exchange_rate.hpp	/^	string first_second_currency_exchange_rate_id;$/;"	m	class:general_rate_data
+first_second_exchange_rate	.\src\exchange_rate.hpp	/^	string first_second_exchange_rate;$/;"	m	class:general_rate_data
+flatten	.\src\json_fifo_map.hpp	/^        static void flatten(const std::string reference_string,$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+flatten	.\src\json_fifo_map.hpp	/^    basic_json flatten() const$/;"	f	class:nlohmann_fifo_map::basic_json
+flatten	.\src\json_map.hpp	/^        static void flatten(const std::string reference_string,$/;"	f	class:nlohmann_map::basic_json::json_pointer
+flatten	.\src\json_map.hpp	/^    basic_json flatten() const$/;"	f	class:nlohmann_map::basic_json
+flush	.\src\server_http.hpp	/^            void flush() $/;"	f	class:SimpleWeb::ServerBase::Response
+flush	.\src\server_http.hpp	/^        static Response& flush(Response& r)$/;"	f	class:SimpleWeb::ServerBase
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::can_not_open_file
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::duplicated_column_in_header
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::escaped_string_not_closed
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::extra_column_in_header
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::header_missing
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::integer_must_be_positive
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::integer_overflow
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::integer_underflow
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::invalid_single_character
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::line_length_limit_exceeded
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::missing_column_in_header
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::no_digit
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::too_few_columns
+format_error_message	.\src\csv.h	/^                        void format_error_message()const{$/;"	f	struct:io::error::too_many_columns
+fp	.\src\paypal.hpp	/^	std::ofstream fp;$/;"	m	class:taxfile
+from_usd_exchange_rate	.\src\exchange_rate.hpp	/^	string from_usd_exchange_rate;\/\/0.772558$/;"	m	class:exchage_rate_data
+from_usd_exchange_rate_id	.\src\exchange_rate.hpp	/^	string from_usd_exchange_rate_id;\/\/TFTBLZNSNBNAZAZGC2RW$/;"	m	class:exchage_rate_data
+front	.\src\json_fifo_map.hpp	/^    const_reference front() const$/;"	f	class:nlohmann_fifo_map::basic_json
+front	.\src\json_fifo_map.hpp	/^    reference front()$/;"	f	class:nlohmann_fifo_map::basic_json
+front	.\src\json_map.hpp	/^    const_reference front() const$/;"	f	class:nlohmann_map::basic_json
+front	.\src\json_map.hpp	/^    reference front()$/;"	f	class:nlohmann_map::basic_json
+general_rate_data	.\src\exchange_rate.hpp	/^class general_rate_data$/;"	c
+general_update	.\src\exchange_rate.hpp	/^	void general_update()$/;"	f	class:exchange_rate_on_time
+get	.\src\json_fifo_map.hpp	/^    ValueType get() const$/;"	f	class:nlohmann_fifo_map::basic_json
+get	.\src\json_map.hpp	/^    ValueType get() const$/;"	f	class:nlohmann_map::basic_json
+getFieldCount	.\src\mysql\MySqlPreparedStatement.hpp	/^        size_t getFieldCount() const {$/;"	f	class:MySqlPreparedStatement
+getParameterCount	.\src\mysql\MySqlPreparedStatement.hpp	/^        size_t getParameterCount() const {$/;"	f	class:MySqlPreparedStatement
+getResult	.\src\curl_client.hpp	/^    std::string getResult() { return m_data; }$/;"	f	class:WebClient
+getServerErrorMessage	.\src\mysql\MySqlException.cpp	/^const char* MySqlException::getServerErrorMessage($/;"	f	class:MySqlException
+getServerErrorMessage	.\src\mysql\MySqlException.cpp	/^const char* MySqlException::getServerErrorMessage(const MYSQL* const conn) {$/;"	f	class:MySqlException
+get_Countries_param_func	.\src\orderbot_restserver.hpp	/^void get_Countries_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_States_param_func	.\src\orderbot_restserver.hpp	/^void get_States_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_Vendors_param_func	.\src\orderbot_restserver.hpp	/^void get_Vendors_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_account_groups_param_func	.\src\orderbot_restserver.hpp	/^void get_account_groups_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_account_num_func	.\src\orderbot_restserver.hpp	/^void get_account_num_func(const std::shared_ptr< Session > session)$/;"	f
+get_account_param_func	.\src\orderbot_restserver.hpp	/^void get_account_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_allocator	.\src\json_fifo_map.hpp	/^    static allocator_type get_allocator()$/;"	f	class:nlohmann_fifo_map::basic_json
+get_allocator	.\src\json_map.hpp	/^    static allocator_type get_allocator()$/;"	f	class:nlohmann_map::basic_json
+get_and_create	.\src\json_fifo_map.hpp	/^        reference get_and_create(reference j) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+get_and_create	.\src\json_map.hpp	/^        reference get_and_create(reference j) const$/;"	f	class:nlohmann_map::basic_json::json_pointer
+get_checked	.\src\json_fifo_map.hpp	/^        const_reference get_checked(const_pointer ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+get_checked	.\src\json_fifo_map.hpp	/^        reference get_checked(pointer ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+get_checked	.\src\json_map.hpp	/^        const_reference get_checked(const_pointer ptr) const$/;"	f	class:nlohmann_map::basic_json::json_pointer
+get_checked	.\src\json_map.hpp	/^        reference get_checked(pointer ptr) const$/;"	f	class:nlohmann_map::basic_json::json_pointer
+get_config	.\src\config.hpp	/^boost::shared_ptr<iconfig> get_config = iconfig::get_instance("config.ini");$/;"	v
+get_currency_id	.\src\exchange_rate.hpp	/^	string get_currency_id(const string& code)$/;"	f	class:exchange_rate_on_time
+get_currency_id	.\src\exchange_rate.hpp	/^	string get_currency_id(const string& code)$/;"	f	class:exchange_rate_rest
+get_customer_from_orderbot	.\src\activemq_cms.hpp	/^    int get_customer_from_orderbot(const string& ship_to_customer_name)$/;"	f	class:activemq_cms_consumer
+get_customers_num_func	.\src\orderbot_restserver.hpp	/^void get_customers_num_func(const std::shared_ptr< Session > session)$/;"	f
+get_customers_param_func	.\src\orderbot_restserver.hpp	/^void get_customers_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_data	.\src\activemq.hpp	/^	string get_data()$/;"	f	class:activemq_rest
+get_data	.\src\exchange_rate.hpp	/^	boost::shared_ptr<string> get_data()$/;"	f	class:exchange_rate
+get_data	.\src\orderbot.hpp	/^	boost::shared_ptr<string> get_data()$/;"	f	class:orderbot
+get_day	.\src\test.hpp	/^		int get_day() const$/;"	f	class:brad::Date
+get_distribution_centers_param_func	.\src\orderbot_restserver.hpp	/^void get_distribution_centers_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_exchange_rate	.\src\exchange_rate.hpp	/^	void get_exchange_rate()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_api_data	.\src\exchange_rate.hpp	/^	string get_exchange_rate_api_data()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_from_yahoo	.\src\exchange_rate.hpp	/^	string get_exchange_rate_from_yahoo()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_func	.\src\exchange_rate_restserver.hpp	/^void get_exchange_rate_func(const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+get_exchange_rate_id	.\src\exchange_rate.hpp	/^	string get_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_id	.\src\exchange_rate.hpp	/^	string get_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_rest
+get_exchange_rate_id	.\src\exchange_rate.hpp	/^	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)$/;"	f	class:exchange_rate_on_time
+get_file_line	.\src\csv.h	/^			unsigned get_file_line()const{$/;"	f	class:io::CSVReader
+get_file_line	.\src\csv.h	/^                unsigned get_file_line()const{$/;"	f	class:io::LineReader
+get_general_func	.\src\exchange_rate_restserver.hpp	/^void get_general_func(const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+get_general_func	.\src\orderbot_restserver.hpp	/^void get_general_func(const std::shared_ptr< Session > session)$/;"	f
+get_impl	.\src\json_fifo_map.hpp	/^    T get_impl(T*) const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_impl	.\src\json_fifo_map.hpp	/^    array_t get_impl(array_t*) const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_impl	.\src\json_fifo_map.hpp	/^    constexpr boolean_t get_impl(boolean_t*) const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_impl	.\src\json_fifo_map.hpp	/^    object_t get_impl(object_t*) const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_impl	.\src\json_fifo_map.hpp	/^    std::vector<T> get_impl(std::vector<T>*) const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_impl	.\src\json_map.hpp	/^    T get_impl(T*) const$/;"	f	class:nlohmann_map::basic_json
+get_impl	.\src\json_map.hpp	/^    array_t get_impl(array_t*) const$/;"	f	class:nlohmann_map::basic_json
+get_impl	.\src\json_map.hpp	/^    constexpr boolean_t get_impl(boolean_t*) const$/;"	f	class:nlohmann_map::basic_json
+get_impl	.\src\json_map.hpp	/^    object_t get_impl(object_t*) const$/;"	f	class:nlohmann_map::basic_json
+get_impl	.\src\json_map.hpp	/^    std::vector<T> get_impl(std::vector<T>*) const$/;"	f	class:nlohmann_map::basic_json
+get_info_from_myql	.\src\exchange_rate.hpp	/^	void get_info_from_myql()$/;"	f	class:exchange_rate_on_time
+get_initsink	.\src\renesolalog.hpp	/^	boost::shared_ptr<file_sink> get_initsink()$/;"	f	class:singleton_boost_log
+get_instance	.\src\config.hpp	/^		static boost::shared_ptr<iconfig> get_instance(const std::string& filename)$/;"	f	class:iconfig
+get_instance	.\src\renesolalog.hpp	/^	static boost::shared_ptr<singleton_boost_log> get_instance()$/;"	f	class:singleton_boost_log
+get_length	.\src\exchange_rate.hpp	/^	long int get_length()$/;"	f	class:exchange_rate
+get_length	.\src\orderbot.hpp	/^	long int get_length()$/;"	f	class:orderbot
+get_log_level	.\src\renesolalog.hpp	/^	severity_level get_log_level()$/;"	f	class:singleton_boost_log
+get_month	.\src\test.hpp	/^		int get_month() const$/;"	f	class:brad::Date
+get_number	.\src\json_fifo_map.hpp	/^        void get_number(basic_json& result) const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+get_number	.\src\json_map.hpp	/^        void get_number(basic_json& result) const$/;"	f	class:nlohmann_map::basic_json::lexer
+get_order_guides_param_func	.\src\orderbot_restserver.hpp	/^void get_order_guides_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_orders_num_func	.\src\orderbot_restserver.hpp	/^void get_orders_num_func(const std::shared_ptr< Session > session)$/;"	f
+get_orders_param_func	.\src\orderbot_restserver.hpp	/^void get_orders_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_product_all	.\src\activemq_product_inventory.hpp	/^	void get_product_all()$/;"	f	class:product_inventory
+get_product_id	.\src\activemq_product_inventory.hpp	/^	string get_product_id(const string& product_name)$/;"	f	class:product_inventory
+get_product_structure_param_func	.\src\orderbot_restserver.hpp	/^void get_product_structure_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_product_variables_param_func	.\src\orderbot_restserver.hpp	/^void get_product_variables_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_products_num_func	.\src\orderbot_restserver.hpp	/^void get_products_num_func(const std::shared_ptr< Session > session)$/;"	f
+get_products_param_func	.\src\orderbot_restserver.hpp	/^void get_products_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_purchase_unit_categories_param_func	.\src\orderbot_restserver.hpp	/^void get_purchase_unit_categories_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_random_int	.\src\test.hpp	/^	int get_random_int(int head, int tail) $/;"	f	namespace:brad
+get_rate	.\src\exchange_rate.hpp	/^	string get_rate(const string& source,const string& target,const string& which_day)$/;"	f	class:exchange_rate_rest
+get_rate_from_myql	.\src\exchange_rate.hpp	/^	string get_rate_from_myql(const string& exchange_rate_id,string which_day)$/;"	f	class:exchange_rate_on_time
+get_rate_from_myql	.\src\exchange_rate.hpp	/^	string get_rate_from_myql(const string& exchange_rate_id,string which_day)$/;"	f	class:exchange_rate_rest
+get_ref	.\src\json_fifo_map.hpp	/^    ReferenceType get_ref() const$/;"	f	class:nlohmann_fifo_map::basic_json
+get_ref	.\src\json_fifo_map.hpp	/^    ReferenceType get_ref()$/;"	f	class:nlohmann_fifo_map::basic_json
+get_ref	.\src\json_map.hpp	/^    ReferenceType get_ref() const$/;"	f	class:nlohmann_map::basic_json
+get_ref	.\src\json_map.hpp	/^    ReferenceType get_ref()$/;"	f	class:nlohmann_map::basic_json
+get_ref_impl	.\src\json_fifo_map.hpp	/^    static ReferenceType get_ref_impl(ThisType& obj)$/;"	f	class:nlohmann_fifo_map::basic_json
+get_ref_impl	.\src\json_map.hpp	/^    static ReferenceType get_ref_impl(ThisType& obj)$/;"	f	class:nlohmann_map::basic_json
+get_salesrep_groups_param_func	.\src\orderbot_restserver.hpp	/^void get_salesrep_groups_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_salesreps_num_func	.\src\orderbot_restserver.hpp	/^void get_salesreps_num_func(const std::shared_ptr< Session > session)$/;"	f
+get_salesreps_param_func	.\src\orderbot_restserver.hpp	/^void get_salesreps_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_status	.\src\exchange_rate.hpp	/^	long int get_status()$/;"	f	class:exchange_rate
+get_status	.\src\orderbot.hpp	/^	long int get_status()$/;"	f	class:orderbot
+get_string	.\src\json_fifo_map.hpp	/^        string_t get_string() const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+get_string	.\src\json_map.hpp	/^        string_t get_string() const$/;"	f	class:nlohmann_map::basic_json::lexer
+get_token	.\src\json_fifo_map.hpp	/^        string_t get_token() const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+get_token	.\src\json_map.hpp	/^        string_t get_token() const$/;"	f	class:nlohmann_map::basic_json::lexer
+get_truncated_file_name	.\src\csv.h	/^			const char*get_truncated_file_name()const{$/;"	f	class:io::CSVReader
+get_truncated_file_name	.\src\csv.h	/^                const char*get_truncated_file_name()const{$/;"	f	class:io::LineReader
+get_unchecked	.\src\json_fifo_map.hpp	/^        const_reference get_unchecked(const_pointer ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+get_unchecked	.\src\json_fifo_map.hpp	/^        reference get_unchecked(pointer ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+get_unchecked	.\src\json_map.hpp	/^        const_reference get_unchecked(const_pointer ptr) const$/;"	f	class:nlohmann_map::basic_json::json_pointer
+get_unchecked	.\src\json_map.hpp	/^        reference get_unchecked(pointer ptr) const$/;"	f	class:nlohmann_map::basic_json::json_pointer
+get_units_of_measurement_types_param_func	.\src\orderbot_restserver.hpp	/^void get_units_of_measurement_types_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_vendor_purchase_unit_of_measurements_param_func	.\src\orderbot_restserver.hpp	/^void get_vendor_purchase_unit_of_measurements_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_websites_param_func	.\src\orderbot_restserver.hpp	/^void get_websites_param_func(const std::shared_ptr< Session > session)$/;"	f
+get_year	.\src\test.hpp	/^		int get_year() const$/;"	f	class:brad::Date
+global	.\src\asiohiper.hpp	/^  GlobalInfo *global;$/;"	m	struct:_ConnInfo
+handle_connect	.\src\client_https.hpp	/^		void handle_connect(const boost::system::error_code& error)$/;"	f	class:SimpleWeb::Client
+handle_handshake	.\src\client_https.hpp	/^		void handle_handshake(const boost::system::error_code& error)$/;"	f	class:SimpleWeb::Client
+handle_wait	.\src\activemq_product_inventory.hpp	/^	void handle_wait(const boost::system::error_code& error)  $/;"	f	class:product_inventory
+handle_wait	.\src\exchange_rate.hpp	/^	void handle_wait(const boost::system::error_code& error)  $/;"	f	class:exchange_rate_on_time
+handle_wait_method	.\src\exchange_rate.hpp	/^	void handle_wait_method()$/;"	f	class:exchange_rate_on_time
+has_column	.\src\csv.h	/^			bool has_column(const std::string&name) const {$/;"	f	class:io::CSVReader
+has_exp	.\src\json_fifo_map.hpp	/^            uint16_t has_exp : 1;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+has_exp	.\src\json_map.hpp	/^            uint16_t has_exp : 1;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+has_mapped_type	.\src\json_fifo_map.hpp	/^struct has_mapped_type$/;"	s	namespace:nlohmann_fifo_map::__anon1
+has_mapped_type	.\src\json_map.hpp	/^struct has_mapped_type$/;"	s	namespace:nlohmann_map::__anon3
+hash	.\src\json_fifo_map.hpp	/^struct hash<nlohmann_fifo_map::json>$/;"	s	namespace:std
+hash	.\src\json_map.hpp	/^struct hash<nlohmann_map::json>$/;"	s	namespace:std
+header	.\src\client_http.hpp	/^            std::unordered_map<std::string, std::string> header;$/;"	m	class:SimpleWeb::ClientBase::Response
+header	.\src\server_http.hpp	/^            std::unordered_map<std::string, std::string> header;$/;"	m	class:SimpleWeb::ServerBase::Request
+header_missing	.\src\csv.h	/^                struct header_missing :$/;"	s	namespace:io::error
+host	.\src\client_http.hpp	/^        std::string host;$/;"	m	class:SimpleWeb::ClientBase
+http_version	.\src\client_http.hpp	/^            std::string http_version, status_code;$/;"	m	class:SimpleWeb::ClientBase::Response
+http_version	.\src\server_http.hpp	/^            std::string method, path, http_version;$/;"	m	class:SimpleWeb::ServerBase::Request
+iconfig	.\src\config.hpp	/^		iconfig(const std::string& filename)$/;"	f	class:iconfig
+iconfig	.\src\config.hpp	/^class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable$/;"	c
+ignore_column	.\src\csv.h	/^        typedef unsigned ignore_column;$/;"	t	namespace:io
+ignore_extra_column	.\src\csv.h	/^        static const ignore_column ignore_extra_column = 1;$/;"	m	namespace:io
+ignore_missing_column	.\src\csv.h	/^        static const ignore_column ignore_missing_column = 2;$/;"	m	namespace:io
+ignore_no_column	.\src\csv.h	/^        static const ignore_column ignore_no_column = 0;$/;"	m	namespace:io
+ignore_overflow	.\src\csv.h	/^        struct ignore_overflow{$/;"	s	namespace:io
+in	.\src\csv.h	/^			LineReader in;$/;"	m	class:io::CSVReader
+in	.\src\csv.h	/^                       std::istream&in;$/;"	m	class:io::detail::NonOwningIStreamByteSource
+init	.\src\csv.h	/^                        void init(std::unique_ptr<ByteSourceBase>arg_byte_source){$/;"	f	class:io::detail::AsynchronousReader
+init	.\src\csv.h	/^                        void init(std::unique_ptr<ByteSourceBase>arg_byte_source){$/;"	f	class:io::detail::SynchronousReader
+init	.\src\csv.h	/^                void init(std::unique_ptr<ByteSourceBase>byte_source){$/;"	f	class:io::LineReader
+initlog	.\src\renesolalog.hpp	/^	boost::shared_ptr< file_sink > initlog()$/;"	f	class:singleton_boost_log
+initsink_	.\src\renesolalog.hpp	/^	boost::shared_ptr< file_sink > initsink_;$/;"	m	class:singleton_boost_log
+insert	.\src\fifo_map.hpp	/^    iterator insert(const_iterator hint, const value_type& value)$/;"	f	class:nlohmann::fifo_map
+insert	.\src\fifo_map.hpp	/^    iterator insert(const_iterator hint, value_type&& value)$/;"	f	class:nlohmann::fifo_map
+insert	.\src\fifo_map.hpp	/^    std::pair<iterator, bool> insert( P&& value )$/;"	f	class:nlohmann::fifo_map
+insert	.\src\fifo_map.hpp	/^    std::pair<iterator, bool> insert(const value_type& value)$/;"	f	class:nlohmann::fifo_map
+insert	.\src\fifo_map.hpp	/^    void insert(InputIt first, InputIt last)$/;"	f	class:nlohmann::fifo_map
+insert	.\src\fifo_map.hpp	/^    void insert(std::initializer_list<value_type> ilist)$/;"	f	class:nlohmann::fifo_map
+insert	.\src\json_fifo_map.hpp	/^    iterator insert(const_iterator pos, basic_json&& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+insert	.\src\json_fifo_map.hpp	/^    iterator insert(const_iterator pos, const basic_json& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+insert	.\src\json_fifo_map.hpp	/^    iterator insert(const_iterator pos, const_iterator first, const_iterator last)$/;"	f	class:nlohmann_fifo_map::basic_json
+insert	.\src\json_fifo_map.hpp	/^    iterator insert(const_iterator pos, size_type cnt, const basic_json& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+insert	.\src\json_fifo_map.hpp	/^    iterator insert(const_iterator pos, std::initializer_list<basic_json> ilist)$/;"	f	class:nlohmann_fifo_map::basic_json
+insert	.\src\json_map.hpp	/^    iterator insert(const_iterator pos, basic_json&& val)$/;"	f	class:nlohmann_map::basic_json
+insert	.\src\json_map.hpp	/^    iterator insert(const_iterator pos, const basic_json& val)$/;"	f	class:nlohmann_map::basic_json
+insert	.\src\json_map.hpp	/^    iterator insert(const_iterator pos, const_iterator first, const_iterator last)$/;"	f	class:nlohmann_map::basic_json
+insert	.\src\json_map.hpp	/^    iterator insert(const_iterator pos, size_type cnt, const basic_json& val)$/;"	f	class:nlohmann_map::basic_json
+insert	.\src\json_map.hpp	/^    iterator insert(const_iterator pos, std::initializer_list<basic_json> ilist)$/;"	f	class:nlohmann_map::basic_json
+insert_exchange_rate	.\src\exchange_rate.hpp	/^	void insert_exchange_rate(const string& exchange_rate_id,const string& rate)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate	.\src\exchange_rate.hpp	/^	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+insert_exchange_rate	.\src\exchange_rate.hpp	/^	void insert_exchange_rate(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate_id	.\src\exchange_rate.hpp	/^	void insert_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate_id	.\src\exchange_rate.hpp	/^	void insert_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_rest
+int_	.\src\mysql\OutputBinder.hpp	/^template<int I> struct int_ {};  \/\/ Compile-time counter$/;"	s	namespace:OutputBinderPrivate
+int_	.\src\mysql\mysql_api.hpp	/^template <std::size_t> struct int_ {};  \/\/ compile-time counter$/;"	s
+integer_must_be_positive	.\src\csv.h	/^                struct integer_must_be_positive :$/;"	s	namespace:io::error
+integer_overflow	.\src\csv.h	/^                struct integer_overflow :$/;"	s	namespace:io::error
+integer_underflow	.\src\csv.h	/^                struct integer_underflow :$/;"	s	namespace:io::error
+internal_iterator	.\src\json_fifo_map.hpp	/^    struct internal_iterator$/;"	s	class:nlohmann_fifo_map::basic_json
+internal_iterator	.\src\json_map.hpp	/^    struct internal_iterator$/;"	s	class:nlohmann_map::basic_json
+invalid_single_character	.\src\csv.h	/^                struct invalid_single_character :$/;"	s	namespace:io::error
+io	.\src\csv.h	/^namespace io{$/;"	n
+io_service	.\src\asiohiper.hpp	/^boost::asio::io_service io_service;$/;"	v
+io_service	.\src\server_http.hpp	/^        boost::asio::io_service io_service;$/;"	m	class:SimpleWeb::ServerBase
+is_comment	.\src\csv.h	/^                static bool is_comment(const char*){$/;"	f	struct:io::no_comment
+is_comment	.\src\csv.h	/^                static bool is_comment(const char*line){$/;"	f	struct:io::empty_line_comment
+is_comment	.\src\csv.h	/^                static bool is_comment(const char*line){$/;"	f	struct:io::single_and_empty_line_comment
+is_comment	.\src\csv.h	/^                static bool is_comment(const char*line){$/;"	f	struct:io::single_line_comment
+is_comment_start_char	.\src\csv.h	/^                constexpr static bool is_comment_start_char(char c){$/;"	f	struct:io::single_line_comment
+is_comment_start_char	.\src\csv.h	/^                constexpr static bool is_comment_start_char(char c, char comment_start_char, OtherCommentStartChars...other_comment_start_chars){$/;"	f	struct:io::single_line_comment
+is_trim_char	.\src\csv.h	/^                constexpr static bool is_trim_char(char c, char trim_char, OtherTrimChars...other_trim_chars){$/;"	f	struct:io::trim_chars
+is_trim_char	.\src\csv.h	/^                constexpr static bool is_trim_char(char){$/;"	f	struct:io::trim_chars
+is_valid	.\src\csv.h	/^                        bool is_valid()const{$/;"	f	class:io::detail::AsynchronousReader
+is_valid	.\src\csv.h	/^                        bool is_valid()const{$/;"	f	class:io::detail::SynchronousReader
+iteration_proxy	.\src\json_fifo_map.hpp	/^        explicit iteration_proxy(typename IteratorType::reference cont)$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy
+iteration_proxy	.\src\json_fifo_map.hpp	/^    class iteration_proxy$/;"	c	class:nlohmann_fifo_map::basic_json
+iteration_proxy	.\src\json_map.hpp	/^        explicit iteration_proxy(typename IteratorType::reference cont)$/;"	f	class:nlohmann_map::basic_json::iteration_proxy
+iteration_proxy	.\src\json_map.hpp	/^    class iteration_proxy$/;"	c	class:nlohmann_map::basic_json
+iteration_proxy_internal	.\src\json_fifo_map.hpp	/^        class iteration_proxy_internal$/;"	c	class:nlohmann_fifo_map::basic_json::iteration_proxy
+iteration_proxy_internal	.\src\json_map.hpp	/^        class iteration_proxy_internal$/;"	c	class:nlohmann_map::basic_json::iteration_proxy
+iterator	.\src\json_fifo_map.hpp	/^    class iterator : public const_iterator$/;"	c	class:nlohmann_fifo_map::basic_json
+iterator	.\src\json_map.hpp	/^    class iterator : public const_iterator$/;"	c	class:nlohmann_map::basic_json
+iterator_wrapper	.\src\json_fifo_map.hpp	/^    static iteration_proxy<const_iterator> iterator_wrapper(const_reference cont)$/;"	f	class:nlohmann_fifo_map::basic_json
+iterator_wrapper	.\src\json_fifo_map.hpp	/^    static iteration_proxy<iterator> iterator_wrapper(reference cont)$/;"	f	class:nlohmann_fifo_map::basic_json
+iterator_wrapper	.\src\json_map.hpp	/^    static iteration_proxy<const_iterator> iterator_wrapper(const_reference cont)$/;"	f	class:nlohmann_map::basic_json
+iterator_wrapper	.\src\json_map.hpp	/^    static iteration_proxy<iterator> iterator_wrapper(reference cont)$/;"	f	class:nlohmann_map::basic_json
+json_pointer	.\src\json_fifo_map.hpp	/^        explicit json_pointer(const std::string& s = "")$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+json_pointer	.\src\json_fifo_map.hpp	/^    class json_pointer$/;"	c	class:nlohmann_fifo_map::basic_json
+json_pointer	.\src\json_map.hpp	/^        explicit json_pointer(const std::string& s = "")$/;"	f	class:nlohmann_map::basic_json::json_pointer
+json_pointer	.\src\json_map.hpp	/^    class json_pointer$/;"	c	class:nlohmann_map::basic_json
+json_reverse_iterator	.\src\json_fifo_map.hpp	/^    class json_reverse_iterator : public std::reverse_iterator<Base>$/;"	c	class:nlohmann_fifo_map::basic_json
+json_reverse_iterator	.\src\json_map.hpp	/^    class json_reverse_iterator : public std::reverse_iterator<Base>$/;"	c	class:nlohmann_map::basic_json
+json_value	.\src\json_fifo_map.hpp	/^        json_value(const array_t& value)$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+json_value	.\src\json_fifo_map.hpp	/^        json_value(const object_t& value)$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+json_value	.\src\json_fifo_map.hpp	/^        json_value(const string_t& value)$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+json_value	.\src\json_fifo_map.hpp	/^        json_value(value_t t)$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+json_value	.\src\json_fifo_map.hpp	/^    union json_value$/;"	u	class:nlohmann_fifo_map::basic_json
+json_value	.\src\json_map.hpp	/^        json_value(const array_t& value)$/;"	f	union:nlohmann_map::basic_json::json_value
+json_value	.\src\json_map.hpp	/^        json_value(const object_t& value)$/;"	f	union:nlohmann_map::basic_json::json_value
+json_value	.\src\json_map.hpp	/^        json_value(const string_t& value)$/;"	f	union:nlohmann_map::basic_json::json_value
+json_value	.\src\json_map.hpp	/^        json_value(value_t t)$/;"	f	union:nlohmann_map::basic_json::json_value
+json_value	.\src\json_map.hpp	/^    union json_value$/;"	u	class:nlohmann_map::basic_json
+key	.\src\json_fifo_map.hpp	/^            typename basic_json::string_t key() const$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+key	.\src\json_fifo_map.hpp	/^        key,$/;"	m	class:nlohmann_fifo_map::basic_json::parse_event_t
+key	.\src\json_fifo_map.hpp	/^        typename object_t::key_type key() const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+key	.\src\json_fifo_map.hpp	/^        typename object_t::key_type key() const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+key	.\src\json_map.hpp	/^            typename basic_json::string_t key() const$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+key	.\src\json_map.hpp	/^        key,$/;"	m	class:nlohmann_map::basic_json::parse_event_t
+key	.\src\json_map.hpp	/^        typename object_t::key_type key() const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+key	.\src\json_map.hpp	/^        typename object_t::key_type key() const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+key_comp	.\src\fifo_map.hpp	/^    key_compare key_comp() const$/;"	f	class:nlohmann::fifo_map
+keys	.\src\fifo_map.hpp	/^    std::unordered_map<Key, std::size_t>* keys = nullptr;$/;"	m	class:nlohmann::fifo_map_compare
+last_token	.\src\json_fifo_map.hpp	/^        typename lexer::token_type last_token = lexer::token_type::uninitialized;$/;"	m	class:nlohmann_fifo_map::basic_json::parser
+last_token	.\src\json_map.hpp	/^        typename lexer::token_type last_token = lexer::token_type::uninitialized;$/;"	m	class:nlohmann_map::basic_json::parser
+left	.\src\test.hpp	/^		boost::shared_ptr<tree> left;$/;"	m	class:x::tree
+length	.\src\test.hpp	/^	int length(int x)$/;"	f	namespace:x
+lexer	.\src\json_fifo_map.hpp	/^    class lexer$/;"	c	class:nlohmann_fifo_map::basic_json
+lexer	.\src\json_map.hpp	/^    class lexer$/;"	c	class:nlohmann_map::basic_json
+line_length_limit_exceeded	.\src\csv.h	/^                struct line_length_limit_exceeded :$/;"	s	namespace:io::error
+literal_false	.\src\json_fifo_map.hpp	/^            literal_false,   \/\/\/< the "false" literal$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+literal_false	.\src\json_map.hpp	/^            literal_false,   \/\/\/< the "false" literal$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+literal_null	.\src\json_fifo_map.hpp	/^            literal_null,    \/\/\/< the "null" literal$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+literal_null	.\src\json_map.hpp	/^            literal_null,    \/\/\/< the "null" literal$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+literal_true	.\src\json_fifo_map.hpp	/^            literal_true,    \/\/\/< the "true" literal$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+literal_true	.\src\json_map.hpp	/^            literal_true,    \/\/\/< the "true" literal$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+lock	.\src\csv.h	/^                        std::mutex lock;$/;"	m	class:io::detail::AsynchronousReader
+log	.\include\corvusoft\restbed\syslog_logger.hpp	/^        void log( const Level level, const char* format, ... )$/;"	f	class:SyslogLogger
+log	.\src\renesolalog.hpp	/^	void log(const Level, const char* fmt, ...)$/;"	f	class:CustomLogger
+log_if	.\include\corvusoft\restbed\syslog_logger.hpp	/^        void log_if( bool expression, const Level level, const char* format, ... )$/;"	f	class:SyslogLogger
+log_if	.\src\renesolalog.hpp	/^	void log_if(bool expression, const Level level, const char* format, ...)$/;"	f	class:CustomLogger
+log_level_	.\src\renesolalog.hpp	/^	severity_level log_level_;$/;"	m	class:singleton_boost_log
+lower_bound	.\src\fifo_map.hpp	/^    const_iterator lower_bound(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+lower_bound	.\src\fifo_map.hpp	/^    iterator lower_bound(const Key& key)$/;"	f	class:nlohmann::fifo_map
+m_activemq_password	.\src\config.hpp	/^		string m_activemq_password;$/;"	m	class:iconfig
+m_activemq_read_order_queue	.\src\config.hpp	/^		string m_activemq_read_order_queue;	$/;"	m	class:iconfig
+m_activemq_read_queue	.\src\config.hpp	/^		string m_activemq_read_queue;$/;"	m	class:iconfig
+m_activemq_url	.\src\config.hpp	/^		string m_activemq_url;$/;"	m	class:iconfig
+m_activemq_username	.\src\config.hpp	/^		string m_activemq_username;$/;"	m	class:iconfig
+m_activemq_write_order_queue	.\src\config.hpp	/^		string m_activemq_write_order_queue;	$/;"	m	class:iconfig
+m_activemq_write_product_queue	.\src\config.hpp	/^		string m_activemq_write_product_queue;	$/;"	m	class:iconfig
+m_activemq_write_queue	.\src\config.hpp	/^		string m_activemq_write_queue;	$/;"	m	class:iconfig
+m_buffer	.\src\json_fifo_map.hpp	/^            : m_stream(nullptr), m_buffer(s)$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+m_buffer	.\src\json_fifo_map.hpp	/^            : m_stream(s), m_buffer()$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+m_buffer	.\src\json_fifo_map.hpp	/^        string_t m_buffer;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_buffer	.\src\json_map.hpp	/^            : m_stream(nullptr), m_buffer(s)$/;"	f	class:nlohmann_map::basic_json::lexer
+m_buffer	.\src\json_map.hpp	/^            : m_stream(s), m_buffer()$/;"	f	class:nlohmann_map::basic_json::lexer
+m_buffer	.\src\json_map.hpp	/^        string_t m_buffer;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_compare	.\src\fifo_map.hpp	/^    Compare m_compare;$/;"	m	class:nlohmann::fifo_map
+m_conn	.\src\activemq_product_inventory.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:product_inventory
+m_conn	.\src\credit_ontime.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:credit_ontime
+m_conn	.\src\exchange_rate.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:exchange_rate_on_time
+m_conn	.\src\exchange_rate.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:exchange_rate_rest
+m_content	.\src\json_fifo_map.hpp	/^        const lexer_char_t* m_content = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_content	.\src\json_map.hpp	/^        const lexer_char_t* m_content = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_curl	.\src\activemq.hpp	/^	CURL* m_curl;$/;"	m	class:activemq_rest
+m_curl	.\src\curl_client.hpp	/^    CURL* m_curl;$/;"	m	class:WebClient
+m_curl	.\src\exchange_rate.hpp	/^	CURL* m_curl;$/;"	m	class:exchange_rate
+m_curl	.\src\orderbot.hpp	/^	CURL* m_curl;$/;"	m	class:orderbot
+m_curl	.\src\paypal.hpp	/^	CURL* m_curl;$/;"	m	class:download_tax_from_taxrate
+m_cursor	.\src\json_fifo_map.hpp	/^        const lexer_char_t* m_cursor = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_cursor	.\src\json_map.hpp	/^        const lexer_char_t* m_cursor = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_d_t	.\src\activemq_product_inventory.hpp	/^	deadline_timer m_d_t;$/;"	m	class:product_inventory
+m_d_t	.\src\exchange_rate.hpp	/^	deadline_timer m_d_t;$/;"	m	class:exchange_rate_on_time
+m_data	.\src\activemq.hpp	/^	std::string m_data;$/;"	m	class:activemq_rest
+m_data	.\src\curl_client.hpp	/^    std::string m_data;$/;"	m	class:WebClient
+m_data	.\src\exchange_rate.hpp	/^	boost::shared_ptr<std::string> m_data;$/;"	m	class:exchange_rate
+m_data	.\src\orderbot.hpp	/^	boost::shared_ptr<std::string> m_data;$/;"	m	class:orderbot
+m_data	.\src\paypal.hpp	/^	std::string m_data;$/;"	m	class:download_tax_from_taxrate
+m_data_parse_callback	.\src\activemq.hpp	/^	std::function<void()> m_data_parse_callback;$/;"	m	class:activemq_rest
+m_data_parse_callback	.\src\orderbot.hpp	/^	std::function<void()> m_data_parse_callback;$/;"	m	class:orderbot
+m_day	.\src\test.hpp	/^		int m_day;	$/;"	m	class:brad::Date
+m_download_url	.\src\paypal.hpp	/^	static const std::string m_download_url;$/;"	m	class:download_tax_from_taxrate
+m_download_url	.\src\paypal.hpp	/^const string download_tax_from_taxrate::m_download_url = "http:\/\/taxrates.csv.s3.amazonaws.com\/";$/;"	m	class:download_tax_from_taxrate
+m_exchage_rate_data_array	.\src\exchange_rate.hpp	/^	std::vector<exchage_rate_data> m_exchage_rate_data_array;$/;"	m	class:exchange_rate_on_time
+m_exchange_rate_insert_time	.\src\config.hpp	/^		string m_exchange_rate_insert_time;$/;"	m	class:iconfig
+m_exchange_rate_key	.\src\config.hpp	/^		string m_exchange_rate_key;$/;"	m	class:iconfig
+m_exchange_rate_password	.\src\config.hpp	/^		string m_exchange_rate_password;$/;"	m	class:iconfig
+m_exchange_rate_request_interval	.\src\config.hpp	/^		size_t m_exchange_rate_request_interval;	$/;"	m	class:iconfig
+m_exchange_rate_url	.\src\config.hpp	/^		string m_exchange_rate_url;	$/;"	m	class:iconfig
+m_exchange_rate_usd_jpy	.\src\config.hpp	/^		string m_exchange_rate_usd_jpy;$/;"	m	class:iconfig
+m_exchange_rate_username	.\src\config.hpp	/^		string m_exchange_rate_username;$/;"	m	class:iconfig
+m_exchange_rate_write_rate_queue	.\src\config.hpp	/^		string m_exchange_rate_write_rate_queue;$/;"	m	class:iconfig
+m_general_rate_data	.\src\exchange_rate.hpp	/^	vector<general_rate_data> m_general_rate_data;$/;"	m	class:exchange_rate_on_time
+m_headerlist	.\src\curl_client.hpp	/^	struct curl_slist *m_headerlist;$/;"	m	class:WebClient	typeref:struct:WebClient::curl_slist
+m_io_s	.\src\activemq_product_inventory.hpp	/^	boost::asio::io_service m_io_s;  $/;"	m	class:product_inventory
+m_io_s	.\src\exchange_rate.hpp	/^	boost::asio::io_service m_io_s;  $/;"	m	class:exchange_rate_on_time
+m_it	.\src\json_fifo_map.hpp	/^            : m_object(other.m_object), m_it(other.m_it)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+m_it	.\src\json_fifo_map.hpp	/^        difference_type m_it = std::numeric_limits<std::ptrdiff_t>::denorm_min();$/;"	m	class:nlohmann_fifo_map::basic_json::primitive_iterator_t
+m_it	.\src\json_fifo_map.hpp	/^        internal_iterator m_it = internal_iterator();$/;"	m	class:nlohmann_fifo_map::basic_json::const_iterator
+m_it	.\src\json_map.hpp	/^            : m_object(other.m_object), m_it(other.m_it)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+m_it	.\src\json_map.hpp	/^        difference_type m_it = std::numeric_limits<std::ptrdiff_t>::denorm_min();$/;"	m	class:nlohmann_map::basic_json::primitive_iterator_t
+m_it	.\src\json_map.hpp	/^        internal_iterator m_it = internal_iterator();$/;"	m	class:nlohmann_map::basic_json::const_iterator
+m_keys	.\src\fifo_map.hpp	/^    std::unordered_map<Key, std::size_t> m_keys;$/;"	m	class:nlohmann::fifo_map
+m_lexer	.\src\json_fifo_map.hpp	/^            : callback(cb), m_lexer(s)$/;"	f	class:nlohmann_fifo_map::basic_json::parser
+m_lexer	.\src\json_fifo_map.hpp	/^        lexer m_lexer;$/;"	m	class:nlohmann_fifo_map::basic_json::parser
+m_lexer	.\src\json_map.hpp	/^            : callback(cb), m_lexer(s)$/;"	f	class:nlohmann_map::basic_json::parser
+m_lexer	.\src\json_map.hpp	/^        lexer m_lexer;$/;"	m	class:nlohmann_map::basic_json::parser
+m_limit	.\src\json_fifo_map.hpp	/^        const lexer_char_t* m_limit = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_limit	.\src\json_map.hpp	/^        const lexer_char_t* m_limit = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_map	.\src\fifo_map.hpp	/^    internal_map_type m_map;$/;"	m	class:nlohmann::fifo_map
+m_marker	.\src\json_fifo_map.hpp	/^        const lexer_char_t* m_marker = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_marker	.\src\json_map.hpp	/^        const lexer_char_t* m_marker = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_messages	.\src\activemq_cms.hpp	/^    std::string m_messages;$/;"	m	class:activemq_cms_producer
+m_month	.\src\test.hpp	/^		int m_month;$/;"	m	class:brad::Date
+m_mu	.\src\config.hpp	/^		static boost::mutex m_mu;	$/;"	m	class:iconfig
+m_mu	.\src\config.hpp	/^boost::mutex iconfig::m_mu;$/;"	m	class:iconfig
+m_mysql_as_database	.\src\config.hpp	/^		string m_mysql_as_database;$/;"	m	class:iconfig
+m_mysql_as_ip	.\src\config.hpp	/^		string m_mysql_as_ip;$/;"	m	class:iconfig
+m_mysql_as_password	.\src\config.hpp	/^		string m_mysql_as_password;$/;"	m	class:iconfig
+m_mysql_as_port	.\src\config.hpp	/^		unsigned short m_mysql_as_port;$/;"	m	class:iconfig
+m_mysql_as_username	.\src\config.hpp	/^		string m_mysql_as_username;$/;"	m	class:iconfig
+m_mysql_database	.\src\config.hpp	/^		string m_mysql_database;$/;"	m	class:iconfig
+m_mysql_database	.\src\exchange_rate.hpp	/^	mysql_database m_mysql_database;$/;"	m	class:exchange_rate_on_time
+m_mysql_database	.\src\exchange_rate.hpp	/^	string m_mysql_database;$/;"	m	class:mysql_database
+m_mysql_eu_database	.\src\config.hpp	/^		string m_mysql_eu_database;$/;"	m	class:iconfig
+m_mysql_eu_ip	.\src\config.hpp	/^		string m_mysql_eu_ip;$/;"	m	class:iconfig
+m_mysql_eu_password	.\src\config.hpp	/^		string m_mysql_eu_password;$/;"	m	class:iconfig
+m_mysql_eu_port	.\src\config.hpp	/^		unsigned short m_mysql_eu_port;$/;"	m	class:iconfig
+m_mysql_eu_username	.\src\config.hpp	/^		string m_mysql_eu_username;$/;"	m	class:iconfig
+m_mysql_ip	.\src\config.hpp	/^		string m_mysql_ip;$/;"	m	class:iconfig
+m_mysql_ip	.\src\exchange_rate.hpp	/^	string m_mysql_ip;$/;"	m	class:mysql_database
+m_mysql_js_database	.\src\config.hpp	/^		string m_mysql_js_database;$/;"	m	class:iconfig
+m_mysql_js_ip	.\src\config.hpp	/^		string m_mysql_js_ip;$/;"	m	class:iconfig
+m_mysql_js_password	.\src\config.hpp	/^		string m_mysql_js_password;$/;"	m	class:iconfig
+m_mysql_js_port	.\src\config.hpp	/^		unsigned short m_mysql_js_port;$/;"	m	class:iconfig
+m_mysql_js_username	.\src\config.hpp	/^		string m_mysql_js_username;$/;"	m	class:iconfig
+m_mysql_password	.\src\config.hpp	/^		string m_mysql_password;$/;"	m	class:iconfig
+m_mysql_password	.\src\exchange_rate.hpp	/^	string m_mysql_password;$/;"	m	class:mysql_database
+m_mysql_port	.\src\config.hpp	/^		unsigned short m_mysql_port;$/;"	m	class:iconfig
+m_mysql_port	.\src\exchange_rate.hpp	/^	unsigned short m_mysql_port;$/;"	m	class:mysql_database
+m_mysql_table	.\src\config.hpp	/^		string m_mysql_table;$/;"	m	class:iconfig
+m_mysql_table2	.\src\config.hpp	/^		string m_mysql_table2;$/;"	m	class:iconfig
+m_mysql_username	.\src\config.hpp	/^		string m_mysql_username;$/;"	m	class:iconfig
+m_mysql_username	.\src\exchange_rate.hpp	/^	string m_mysql_username;$/;"	m	class:mysql_database
+m_name	.\src\test.hpp	/^		std::string& m_name;$/;"	m	class:effective_cplusplus::reference_class
+m_object	.\src\json_fifo_map.hpp	/^            : m_object(object)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+m_object	.\src\json_fifo_map.hpp	/^            : m_object(other.m_object)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+m_object	.\src\json_fifo_map.hpp	/^        pointer m_object = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::const_iterator
+m_object	.\src\json_map.hpp	/^            : m_object(object)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+m_object	.\src\json_map.hpp	/^            : m_object(other.m_object)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+m_object	.\src\json_map.hpp	/^        pointer m_object = nullptr;$/;"	m	class:nlohmann_map::basic_json::const_iterator
+m_opt_resource	.\src\activemq.hpp	/^	    std::function<void()> > > > > m_opt_resource;$/;"	m	class:activemq_rest
+m_opt_resource	.\src\orderbot.hpp	/^	    std::function<void()> > > > > m_opt_resource;$/;"	m	class:orderbot
+m_orderbot_password	.\src\config.hpp	/^		string m_orderbot_password;$/;"	m	class:iconfig
+m_orderbot_url	.\src\config.hpp	/^		string m_orderbot_url;	$/;"	m	class:iconfig
+m_orderbot_username	.\src\config.hpp	/^		string m_orderbot_username;$/;"	m	class:iconfig
+m_password	.\src\activemq.hpp	/^	std::string m_password;$/;"	m	class:activemq_rest
+m_password	.\src\orderbot.hpp	/^	std::string m_password;$/;"	m	class:orderbot
+m_pimpl	.\include\corvusoft\restbed\request.hpp	/^            detail::RequestImpl* m_pimpl;$/;"	m	class:restbed::Request
+m_pimpl	.\include\corvusoft\restbed\resource.hpp	/^            detail::ResourceImpl* m_pimpl;$/;"	m	class:restbed::Resource
+m_pimpl	.\include\corvusoft\restbed\response.hpp	/^            detail::ResponseImpl* m_pimpl;$/;"	m	class:restbed::Response
+m_pimpl	.\include\corvusoft\restbed\rule.hpp	/^            detail::RuleImpl* m_pimpl;$/;"	m	class:restbed::Rule
+m_pimpl	.\include\corvusoft\restbed\service.hpp	/^            detail::ServiceImpl* m_pimpl;$/;"	m	class:restbed::Service
+m_pimpl	.\include\corvusoft\restbed\session.hpp	/^            detail::SessionImpl* m_pimpl;$/;"	m	class:restbed::Session
+m_pimpl	.\include\corvusoft\restbed\settings.hpp	/^            detail::SettingsImpl* m_pimpl;$/;"	m	class:restbed::Settings
+m_pimpl	.\include\corvusoft\restbed\ssl_settings.hpp	/^            detail::SSLSettingsImpl* m_pimpl;$/;"	m	class:restbed::SSLSettings
+m_pimpl	.\include\corvusoft\restbed\uri.hpp	/^            detail::UriImpl* m_pimpl;$/;"	m	class:restbed::Uri
+m_placeholder	.\include\corvusoft\restbed\context_value.hpp	/^            const std::shared_ptr< ContextPlaceholderBase > m_placeholder;$/;"	m	class:restbed::ContextValue
+m_port	.\src\config.hpp	/^		size_t m_port;$/;"	m	class:iconfig
+m_postfields	.\src\curl_client.hpp	/^    std::map<std::string, std::string> m_postfields;$/;"	m	class:WebClient
+m_product_all	.\src\activemq_product_inventory.hpp	/^	boost::shared_ptr<string> m_product_all;$/;"	m	class:product_inventory
+m_product_all	.\src\exchange_rate.hpp	/^	boost::shared_ptr<string> m_product_all;$/;"	m	class:exchange_rate_on_time
+m_ps	.\src\config.hpp	/^		static boost::shared_ptr<iconfig> m_ps;$/;"	m	class:iconfig
+m_ps	.\src\config.hpp	/^boost::shared_ptr<iconfig> iconfig::m_ps = nullptr;$/;"	m	class:iconfig
+m_pt	.\src\config.hpp	/^		boost::property_tree::ptree m_pt;$/;"	m	class:iconfig
+m_request_status	.\src\exchange_rate.hpp	/^	long int m_request_status;$/;"	m	class:exchange_rate
+m_request_status	.\src\orderbot.hpp	/^	long int m_request_status;$/;"	m	class:orderbot
+m_resource	.\src\activemq.hpp	/^	    std::function<void()> > >  m_resource;$/;"	m	class:activemq_rest
+m_resource	.\src\orderbot.hpp	/^	    std::function<void()> > >  m_resource;$/;"	m	class:orderbot
+m_server	.\src\serverResource.hpp	/^		boost::shared_ptr<HttpServer> m_server;$/;"	m	class:server_resource
+m_server	.\src\serverResource.hpp	/^	boost::shared_ptr<HttpsServer> m_server;$/;"	m	class:servers_resource
+m_ss	.\src\activemq_cms.hpp	/^    string m_ss;$/;"	m	class:activemq_cms_consumer
+m_ss	.\src\activemq_order.hpp	/^		std::stringstream m_ss;$/;"	m	class:order_activemq
+m_ss	.\src\activemq_product_inventory.hpp	/^	std::stringstream m_ss;$/;"	m	class:product_inventory
+m_ss	.\src\exchange_rate.hpp	/^	std::stringstream m_ss;$/;"	m	class:exchange_rate_on_time
+m_ss_tomq	.\src\activemq_cms.hpp	/^    std::stringstream m_ss_tomq;$/;"	m	class:activemq_cms_consumer
+m_start	.\src\json_fifo_map.hpp	/^        const lexer_char_t* m_start = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_start	.\src\json_map.hpp	/^        const lexer_char_t* m_start = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_stream	.\src\json_fifo_map.hpp	/^        std::istream* m_stream = nullptr;$/;"	m	class:nlohmann_fifo_map::basic_json::lexer
+m_stream	.\src\json_map.hpp	/^        std::istream* m_stream = nullptr;$/;"	m	class:nlohmann_map::basic_json::lexer
+m_taxfile	.\src\paypal.hpp	/^	boost::shared_ptr<taxfile> m_taxfile;$/;"	m	class:download_tax_from_taxrate
+m_threads	.\src\config.hpp	/^		size_t m_threads;$/;"	m	class:iconfig
+m_today_string	.\src\activemq_order.hpp	/^		string m_today_string;$/;"	m	class:order_activemq
+m_today_string	.\src\activemq_product_inventory.hpp	/^	string m_today_string;$/;"	m	class:product_inventory
+m_today_string	.\src\credit_ontime.hpp	/^	string m_today_string;$/;"	m	class:credit_ontime
+m_today_string	.\src\exchange_rate.hpp	/^	string m_today_string;$/;"	m	class:exchange_rate_on_time
+m_type	.\src\json_fifo_map.hpp	/^    type_data_t m_type = value_t::null;$/;"	m	class:nlohmann_fifo_map::basic_json
+m_type	.\src\json_map.hpp	/^    type_data_t m_type = value_t::null;$/;"	m	class:nlohmann_map::basic_json
+m_url	.\src\activemq.hpp	/^	std::string m_url;$/;"	m	class:activemq_rest
+m_url	.\src\exchange_rate.hpp	/^	std::string m_url;$/;"	m	class:exchange_rate
+m_url	.\src\orderbot.hpp	/^	std::string m_url;$/;"	m	class:orderbot
+m_usd_info	.\src\exchange_rate.hpp	/^	exchage_rate_data m_usd_info;$/;"	m	class:exchange_rate_on_time
+m_username	.\src\activemq.hpp	/^	std::string m_username;$/;"	m	class:activemq_rest
+m_username	.\src\orderbot.hpp	/^	std::string m_username;$/;"	m	class:orderbot
+m_value	.\include\corvusoft\restbed\context_placeholder.hpp	/^            const Type m_value;$/;"	m	class:restbed::ContextPlaceholder
+m_value	.\src\json_fifo_map.hpp	/^        : m_type(value_t::boolean), m_value(val)$/;"	f	class:nlohmann_fifo_map::basic_json
+m_value	.\src\json_fifo_map.hpp	/^        : m_type(value_t::number_float), m_value(val)$/;"	f	class:nlohmann_fifo_map::basic_json
+m_value	.\src\json_fifo_map.hpp	/^        : m_type(value_t::number_integer), m_value(val)$/;"	f	class:nlohmann_fifo_map::basic_json
+m_value	.\src\json_fifo_map.hpp	/^        : m_type(value_t::number_unsigned), m_value(val)$/;"	f	class:nlohmann_fifo_map::basic_json
+m_value	.\src\json_fifo_map.hpp	/^    json_value m_value = {};$/;"	m	class:nlohmann_fifo_map::basic_json
+m_value	.\src\json_map.hpp	/^        : m_type(value_t::boolean), m_value(val)$/;"	f	class:nlohmann_map::basic_json
+m_value	.\src\json_map.hpp	/^        : m_type(value_t::number_float), m_value(val)$/;"	f	class:nlohmann_map::basic_json
+m_value	.\src\json_map.hpp	/^        : m_type(value_t::number_integer), m_value(val)$/;"	f	class:nlohmann_map::basic_json
+m_value	.\src\json_map.hpp	/^        : m_type(value_t::number_unsigned), m_value(val)$/;"	f	class:nlohmann_map::basic_json
+m_value	.\src\json_map.hpp	/^    json_value m_value = {};$/;"	m	class:nlohmann_map::basic_json
+m_value	.\src\test.hpp	/^		T m_value;$/;"	m	class:effective_cplusplus::reference_class
+m_write_product_interval	.\src\config.hpp	/^		size_t m_write_product_interval;$/;"	m	class:iconfig
+m_year	.\src\test.hpp	/^		int m_year;$/;"	m	class:brad::Date
+main	.\src\main.cpp	/^int main()$/;"	f
+makeDelete	.\src\curl_client.hpp	/^bool WebClient::makeDelete() {$/;"	f	class:WebClient
+makeGet	.\src\curl_client.hpp	/^bool WebClient::makeGet() {$/;"	f	class:WebClient
+makePost	.\src\curl_client.hpp	/^bool WebClient::makePost() {$/;"	f	class:WebClient
+makeRequest	.\src\curl_client.hpp	/^bool WebClient::makeRequest() {$/;"	f	class:WebClient
+manip	.\src\server_http.hpp	/^            Response& operator<<(Response& (*manip)(Response&)) $/;"	f	class:SimpleWeb::ServerBase::Response
+manip	.\src\server_http.hpp	/^            Response& operator<<(std::ostream& (*manip)(std::ostream&))$/;"	f	class:SimpleWeb::ServerBase::Response
+max_column_content_length	.\src\csv.h	/^                const int max_column_content_length = 63;$/;"	m	namespace:io::error
+max_column_name_length	.\src\csv.h	/^                const int max_column_name_length = 63;$/;"	m	namespace:io::error
+max_file_name_length	.\src\csv.h	/^                const int max_file_name_length = 255;$/;"	m	namespace:io::error
+mcode_or_die	.\src\asiohiper.hpp	/^static void mcode_or_die(const char *where, CURLMcode code)$/;"	f
+merge_bit	.\src\test.hpp	/^	void merge_bit(int n, int m, int j, int i)$/;"	f	namespace:x
+message_	.\src\mysql\MySqlException.hpp	/^        const std::string message_;$/;"	m	class:MySqlException
+method	.\src\server_http.hpp	/^            std::string method, path, http_version;$/;"	m	class:SimpleWeb::ServerBase::Request
+mid_travel	.\src\test.hpp	/^	void mid_travel(boost::shared_ptr<tree> root)$/;"	f	namespace:x
+missing_column_in_header	.\src\csv.h	/^                struct missing_column_in_header :$/;"	s	namespace:io::error
+move	.\src\json_fifo_map.hpp	/^          m_value(std::move(other.m_value))$/;"	f	class:nlohmann_fifo_map::basic_json
+move	.\src\json_map.hpp	/^          m_value(std::move(other.m_value))$/;"	f	class:nlohmann_map::basic_json
+mu_	.\src\renesolalog.hpp	/^	static boost::mutex mu_;$/;"	m	class:singleton_boost_log
+mu_	.\src\renesolalog.hpp	/^boost::mutex singleton_boost_log::mu_;$/;"	m	class:singleton_boost_log
+multi	.\src\asiohiper.hpp	/^  CURLM *multi;$/;"	m	struct:_GlobalInfo
+multi_timer_cb	.\src\asiohiper.hpp	/^static int multi_timer_cb(CURLM *multi, long timeout_ms, GlobalInfo *g)$/;"	f
+mysql_bind_length_t	.\src\mysql\OutputBinder.hpp	/^>())>::type mysql_bind_length_t;$/;"	t
+mysql_database	.\src\exchange_rate.hpp	/^class mysql_database$/;"	c
+name_separator	.\src\json_fifo_map.hpp	/^            name_separator,  \/\/\/< the name separator ":"$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+name_separator	.\src\json_map.hpp	/^            name_separator,  \/\/\/< the name separator ":"$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+new_conn	.\src\asiohiper.hpp	/^static void new_conn(std::string url, GlobalInfo *g, std::string user = "admin", std::string password = "admin")$/;"	f
+next_line	.\src\csv.h	/^                char*next_line(){$/;"	f	class:io::LineReader
+nlohmann	.\src\fifo_map.hpp	/^namespace nlohmann$/;"	n
+nlohmann_fifo_map	.\src\json_fifo_map.hpp	/^namespace nlohmann_fifo_map$/;"	n
+nlohmann_map	.\src\json_map.hpp	/^namespace nlohmann_map$/;"	n
+no_comment	.\src\csv.h	/^        struct no_comment{$/;"	s	namespace:io
+no_digit	.\src\csv.h	/^                struct no_digit :$/;"	s	namespace:io::error
+no_quote_escape	.\src\csv.h	/^        struct no_quote_escape{$/;"	s	namespace:io
+noexcept	.\src\json_fifo_map.hpp	/^                 nlohmann_fifo_map::json& j2) noexcept($/;"	f	namespace:std
+noexcept	.\src\json_fifo_map.hpp	/^        const_iterator& operator=(const_iterator other) noexcept($/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+noexcept	.\src\json_fifo_map.hpp	/^        internal_iterator() noexcept$/;"	m	struct:nlohmann_fifo_map::basic_json::internal_iterator
+noexcept	.\src\json_fifo_map.hpp	/^        iterator& operator=(iterator other) noexcept($/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+noexcept	.\src\json_fifo_map.hpp	/^    reference& operator=(basic_json other) noexcept ($/;"	f	class:nlohmann_fifo_map::basic_json
+noexcept	.\src\json_fifo_map.hpp	/^    void swap(reference other) noexcept ($/;"	f	class:nlohmann_fifo_map::basic_json
+noexcept	.\src\json_map.hpp	/^                 nlohmann_map::json& j2) noexcept($/;"	f	namespace:std
+noexcept	.\src\json_map.hpp	/^        const_iterator& operator=(const_iterator other) noexcept($/;"	f	class:nlohmann_map::basic_json::const_iterator
+noexcept	.\src\json_map.hpp	/^        internal_iterator() noexcept$/;"	m	struct:nlohmann_map::basic_json::internal_iterator
+noexcept	.\src\json_map.hpp	/^        iterator& operator=(iterator other) noexcept($/;"	f	class:nlohmann_map::basic_json::iterator
+noexcept	.\src\json_map.hpp	/^    reference& operator=(basic_json other) noexcept ($/;"	f	class:nlohmann_map::basic_json
+noexcept	.\src\json_map.hpp	/^    void swap(reference other) noexcept ($/;"	f	class:nlohmann_map::basic_json
+noexcept	.\src\mysql\MySqlException.hpp	/^        const char* what() const noexcept;$/;"	m	class:MySqlException
+noexcept	.\src\mysql\MySqlException.hpp	/^        ~MySqlException() noexcept;$/;"	m	class:MySqlException
+normal	.\src\renesolalog.hpp	/^	normal,$/;"	e	enum:severity_level
+notification	.\src\renesolalog.hpp	/^	notification,$/;"	e	enum:severity_level
+null	.\src\json_fifo_map.hpp	/^        null,            \/\/\/< null value$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+null	.\src\json_map.hpp	/^        null,            \/\/\/< null value$/;"	m	class:nlohmann_map::basic_json::value_t
+nullptr	.\src\mysql\MySql.hpp	24;"	d
+numMessages	.\src\activemq_cms.hpp	/^    unsigned int numMessages;$/;"	m	class:activemq_cms_producer
+num_threads	.\src\server_http.hpp	/^        size_t num_threads;$/;"	m	class:SimpleWeb::ServerBase
+number_float	.\src\json_fifo_map.hpp	/^        json_value(number_float_t v) noexcept : number_float(v) {}$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+number_float	.\src\json_fifo_map.hpp	/^        number_float,    \/\/\/< number value (floating-point)$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+number_float	.\src\json_fifo_map.hpp	/^        number_float_t number_float;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+number_float	.\src\json_map.hpp	/^        json_value(number_float_t v) noexcept : number_float(v) {}$/;"	f	union:nlohmann_map::basic_json::json_value
+number_float	.\src\json_map.hpp	/^        number_float,    \/\/\/< number value (floating-point)$/;"	m	class:nlohmann_map::basic_json::value_t
+number_float	.\src\json_map.hpp	/^        number_float_t number_float;$/;"	m	union:nlohmann_map::basic_json::json_value
+number_float_t	.\src\json_fifo_map.hpp	/^        : basic_json(number_float_t(val))$/;"	f	class:nlohmann_fifo_map::basic_json
+number_float_t	.\src\json_map.hpp	/^        : basic_json(number_float_t(val))$/;"	f	class:nlohmann_map::basic_json
+number_integer	.\src\json_fifo_map.hpp	/^        json_value(number_integer_t v) noexcept : number_integer(v) {}$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+number_integer	.\src\json_fifo_map.hpp	/^        number_integer,  \/\/\/< number value (integer)$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+number_integer	.\src\json_fifo_map.hpp	/^        number_integer_t number_integer;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+number_integer	.\src\json_map.hpp	/^        json_value(number_integer_t v) noexcept : number_integer(v) {}$/;"	f	union:nlohmann_map::basic_json::json_value
+number_integer	.\src\json_map.hpp	/^        number_integer,  \/\/\/< number value (integer)$/;"	m	class:nlohmann_map::basic_json::value_t
+number_integer	.\src\json_map.hpp	/^        number_integer_t number_integer;$/;"	m	union:nlohmann_map::basic_json::json_value
+number_unsigned	.\src\json_fifo_map.hpp	/^        json_value(number_unsigned_t v) noexcept : number_unsigned(v) {}$/;"	f	union:nlohmann_fifo_map::basic_json::json_value
+number_unsigned	.\src\json_fifo_map.hpp	/^        number_unsigned, \/\/\/< number value (unsigned integer)$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+number_unsigned	.\src\json_fifo_map.hpp	/^        number_unsigned_t number_unsigned;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+number_unsigned	.\src\json_map.hpp	/^        json_value(number_unsigned_t v) noexcept : number_unsigned(v) {}$/;"	f	union:nlohmann_map::basic_json::json_value
+number_unsigned	.\src\json_map.hpp	/^        number_unsigned, \/\/\/< number value (unsigned integer)$/;"	m	class:nlohmann_map::basic_json::value_t
+number_unsigned	.\src\json_map.hpp	/^        number_unsigned_t number_unsigned;$/;"	m	union:nlohmann_map::basic_json::json_value
+object	.\src\json_fifo_map.hpp	/^        object,          \/\/\/< object (unordered set of name\/value pairs)$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+object	.\src\json_fifo_map.hpp	/^        object_t* object;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+object	.\src\json_fifo_map.hpp	/^    static basic_json object(std::initializer_list<basic_json> init =$/;"	f	class:nlohmann_fifo_map::basic_json
+object	.\src\json_map.hpp	/^        object,          \/\/\/< object (unordered set of name\/value pairs)$/;"	m	class:nlohmann_map::basic_json::value_t
+object	.\src\json_map.hpp	/^        object_t* object;$/;"	m	union:nlohmann_map::basic_json::json_value
+object	.\src\json_map.hpp	/^    static basic_json object(std::initializer_list<basic_json> init =$/;"	f	class:nlohmann_map::basic_json
+object_end	.\src\json_fifo_map.hpp	/^        object_end,$/;"	m	class:nlohmann_fifo_map::basic_json::parse_event_t
+object_end	.\src\json_map.hpp	/^        object_end,$/;"	m	class:nlohmann_map::basic_json::parse_event_t
+object_iterator	.\src\json_fifo_map.hpp	/^        typename object_t::iterator object_iterator;$/;"	m	struct:nlohmann_fifo_map::basic_json::internal_iterator
+object_iterator	.\src\json_map.hpp	/^        typename object_t::iterator object_iterator;$/;"	m	struct:nlohmann_map::basic_json::internal_iterator
+object_start	.\src\json_fifo_map.hpp	/^        object_start,$/;"	m	class:nlohmann_fifo_map::basic_json::parse_event_t
+object_start	.\src\json_map.hpp	/^        object_start,$/;"	m	class:nlohmann_map::basic_json::parse_event_t
+onException	.\src\activemq_cms.hpp	/^    virtual void onException( const CMSException& ex AMQCPP_UNUSED ) {$/;"	f	class:activemq_cms_consumer
+onMessage	.\src\activemq_cms.hpp	/^    virtual void onMessage( const Message* message ) {$/;"	f	class:activemq_cms_consumer
+on_overflow	.\src\csv.h	/^                static void on_overflow(T&){$/;"	f	struct:io::throw_on_overflow
+on_overflow	.\src\csv.h	/^                static void on_overflow(T&){}$/;"	f	struct:io::ignore_overflow
+on_overflow	.\src\csv.h	/^                static void on_overflow(T&x){$/;"	f	struct:io::set_to_max_on_overflow
+on_request	.\src\activemq.hpp	/^	bool on_request()$/;"	f	class:activemq_rest
+on_request	.\src\exchange_rate.hpp	/^	bool on_request()$/;"	f	class:exchange_rate
+on_request	.\src\orderbot.hpp	/^	bool on_request()$/;"	f	class:orderbot
+on_request	.\src\paypal.hpp	/^	bool on_request() $/;"	f	class:download_tax_from_taxrate
+on_underflow	.\src\csv.h	/^                static void on_underflow(T&){$/;"	f	struct:io::throw_on_overflow
+on_underflow	.\src\csv.h	/^                static void on_underflow(T&){}$/;"	f	struct:io::ignore_overflow
+on_underflow	.\src\csv.h	/^                static void on_underflow(T&x){$/;"	f	struct:io::set_to_max_on_overflow
+open_file	.\src\csv.h	/^                static std::unique_ptr<ByteSourceBase> open_file(const char*file_name){$/;"	f	class:io::LineReader
+opensocket	.\src\asiohiper.hpp	/^static curl_socket_t opensocket(void *clientp, curlsocktype purpose,$/;"	f
+operator !=	.\src\fifo_map.hpp	/^    friend bool operator!=(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator !=	.\src\json_fifo_map.hpp	/^            bool operator!= (const iteration_proxy_internal& o) const$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator !=	.\src\json_fifo_map.hpp	/^        bool operator!=(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator !=	.\src\json_map.hpp	/^            bool operator!= (const iteration_proxy_internal& o) const$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator !=	.\src\json_map.hpp	/^        bool operator!=(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator ()	.\src\fifo_map.hpp	/^    bool operator()(const Key& lhs, const Key& rhs) const$/;"	f	class:nlohmann::fifo_map_compare
+operator ()	.\src\json_fifo_map.hpp	/^    std::size_t operator()(const nlohmann_fifo_map::json& j) const$/;"	f	struct:std::hash
+operator ()	.\src\json_map.hpp	/^    std::size_t operator()(const nlohmann_map::json& j) const$/;"	f	struct:std::hash
+operator ()	.\src\serverResource.hpp	/^	void operator() (boost::shared_ptr<HttpServer> server)$/;"	f	class:server_resource
+operator ()	.\src\test.hpp	/^	     bool operator() (const Date &a , const Date  &b) const$/;"	f	class:brad::comp
+operator *	.\src\json_fifo_map.hpp	/^            iteration_proxy_internal& operator*()$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator *	.\src\json_fifo_map.hpp	/^        reference operator*() const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator *	.\src\json_fifo_map.hpp	/^        reference operator*() const$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator *	.\src\json_map.hpp	/^            iteration_proxy_internal& operator*()$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator *	.\src\json_map.hpp	/^        reference operator*() const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator *	.\src\json_map.hpp	/^        reference operator*() const$/;"	f	class:nlohmann_map::basic_json::iterator
+operator +	.\src\json_fifo_map.hpp	/^        const_iterator operator+(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator +	.\src\json_fifo_map.hpp	/^        iterator operator+(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator +	.\src\json_fifo_map.hpp	/^        json_reverse_iterator operator+(difference_type i) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator +	.\src\json_map.hpp	/^        const_iterator operator+(difference_type i)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator +	.\src\json_map.hpp	/^        iterator operator+(difference_type i)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator +	.\src\json_map.hpp	/^        json_reverse_iterator operator+(difference_type i) const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator ++	.\src\json_fifo_map.hpp	/^            iteration_proxy_internal& operator++()$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator ++	.\src\json_fifo_map.hpp	/^        const_iterator operator++(int)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator ++	.\src\json_fifo_map.hpp	/^        const_iterator& operator++()$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator ++	.\src\json_fifo_map.hpp	/^        iterator operator++(int)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator ++	.\src\json_fifo_map.hpp	/^        iterator& operator++()$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator ++	.\src\json_fifo_map.hpp	/^        json_reverse_iterator operator++(int)$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator ++	.\src\json_fifo_map.hpp	/^        json_reverse_iterator& operator++()$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator ++	.\src\json_map.hpp	/^            iteration_proxy_internal& operator++()$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+operator ++	.\src\json_map.hpp	/^        const_iterator operator++(int)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator ++	.\src\json_map.hpp	/^        const_iterator& operator++()$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator ++	.\src\json_map.hpp	/^        iterator operator++(int)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator ++	.\src\json_map.hpp	/^        iterator& operator++()$/;"	f	class:nlohmann_map::basic_json::iterator
+operator ++	.\src\json_map.hpp	/^        json_reverse_iterator operator++(int)$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator ++	.\src\json_map.hpp	/^        json_reverse_iterator& operator++()$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator +=	.\src\json_fifo_map.hpp	/^        const_iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator +=	.\src\json_fifo_map.hpp	/^        iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator +=	.\src\json_fifo_map.hpp	/^        json_reverse_iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator +=	.\src\json_fifo_map.hpp	/^    reference operator+=(basic_json&& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator +=	.\src\json_fifo_map.hpp	/^    reference operator+=(const basic_json& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator +=	.\src\json_fifo_map.hpp	/^    reference operator+=(const typename object_t::value_type& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator +=	.\src\json_map.hpp	/^        const_iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator +=	.\src\json_map.hpp	/^        iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator +=	.\src\json_map.hpp	/^        json_reverse_iterator& operator+=(difference_type i)$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator +=	.\src\json_map.hpp	/^    reference operator+=(basic_json&& val)$/;"	f	class:nlohmann_map::basic_json
+operator +=	.\src\json_map.hpp	/^    reference operator+=(const basic_json& val)$/;"	f	class:nlohmann_map::basic_json
+operator +=	.\src\json_map.hpp	/^    reference operator+=(const typename object_t::value_type& val)$/;"	f	class:nlohmann_map::basic_json
+operator -	.\src\json_fifo_map.hpp	/^        const_iterator operator-(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator -	.\src\json_fifo_map.hpp	/^        difference_type operator-(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator -	.\src\json_fifo_map.hpp	/^        difference_type operator-(const iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator -	.\src\json_fifo_map.hpp	/^        difference_type operator-(const json_reverse_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator -	.\src\json_fifo_map.hpp	/^        iterator operator-(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator -	.\src\json_fifo_map.hpp	/^        json_reverse_iterator operator-(difference_type i) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator -	.\src\json_map.hpp	/^        const_iterator operator-(difference_type i)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator -	.\src\json_map.hpp	/^        difference_type operator-(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator -	.\src\json_map.hpp	/^        difference_type operator-(const iterator& other) const$/;"	f	class:nlohmann_map::basic_json::iterator
+operator -	.\src\json_map.hpp	/^        difference_type operator-(const json_reverse_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator -	.\src\json_map.hpp	/^        iterator operator-(difference_type i)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator -	.\src\json_map.hpp	/^        json_reverse_iterator operator-(difference_type i) const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator --	.\src\json_fifo_map.hpp	/^        const_iterator operator--(int)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator --	.\src\json_fifo_map.hpp	/^        const_iterator& operator--()$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator --	.\src\json_fifo_map.hpp	/^        iterator operator--(int)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator --	.\src\json_fifo_map.hpp	/^        iterator& operator--()$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator --	.\src\json_fifo_map.hpp	/^        json_reverse_iterator operator--(int)$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator --	.\src\json_fifo_map.hpp	/^        json_reverse_iterator& operator--()$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator --	.\src\json_map.hpp	/^        const_iterator operator--(int)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator --	.\src\json_map.hpp	/^        const_iterator& operator--()$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator --	.\src\json_map.hpp	/^        iterator operator--(int)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator --	.\src\json_map.hpp	/^        iterator& operator--()$/;"	f	class:nlohmann_map::basic_json::iterator
+operator --	.\src\json_map.hpp	/^        json_reverse_iterator operator--(int)$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator --	.\src\json_map.hpp	/^        json_reverse_iterator& operator--()$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator -=	.\src\json_fifo_map.hpp	/^        const_iterator& operator-=(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator -=	.\src\json_fifo_map.hpp	/^        iterator& operator-=(difference_type i)$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator -=	.\src\json_map.hpp	/^        const_iterator& operator-=(difference_type i)$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator -=	.\src\json_map.hpp	/^        iterator& operator-=(difference_type i)$/;"	f	class:nlohmann_map::basic_json::iterator
+operator ->	.\src\json_fifo_map.hpp	/^        pointer operator->() const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator ->	.\src\json_fifo_map.hpp	/^        pointer operator->() const$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator ->	.\src\json_map.hpp	/^        pointer operator->() const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator ->	.\src\json_map.hpp	/^        pointer operator->() const$/;"	f	class:nlohmann_map::basic_json::iterator
+operator <	.\src\fifo_map.hpp	/^    friend bool operator<(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator <	.\src\json_fifo_map.hpp	/^        bool operator<(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator <	.\src\json_map.hpp	/^        bool operator<(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator <	.\src\test.hpp	/^	inline bool operator<(const Date& l,const Date& r)$/;"	f	namespace:brad
+operator <<	.\src\json_fifo_map.hpp	/^    friend std::istream& operator<<(basic_json& j, std::istream& i)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator <<	.\src\json_fifo_map.hpp	/^    friend std::ostream& operator<<(std::ostream& o, const basic_json& j)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator <<	.\src\json_map.hpp	/^    friend std::istream& operator<<(basic_json& j, std::istream& i)$/;"	f	class:nlohmann_map::basic_json
+operator <<	.\src\json_map.hpp	/^    friend std::ostream& operator<<(std::ostream& o, const basic_json& j)$/;"	f	class:nlohmann_map::basic_json
+operator <<	.\src\mysql\mysql_api.hpp	/^ostream& operator<<($/;"	f
+operator <<	.\src\mysql\mysql_api.hpp	/^ostream& operator<<(ostream& out, const unique_ptr<T>& ptr) {$/;"	f
+operator <<	.\src\renesolalog.hpp	/^inline std::basic_ostream< CharT, TraitsT >& operator<< ($/;"	f
+operator <<	.\src\server_http.hpp	/^            Response& operator<<(const T& t)$/;"	f	class:SimpleWeb::ServerBase::Response
+operator <=	.\src\fifo_map.hpp	/^    friend bool operator<=(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator <=	.\src\json_fifo_map.hpp	/^        bool operator<=(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator <=	.\src\json_map.hpp	/^        bool operator<=(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator =	.\src\json_fifo_map.hpp	/^        type_data_t& operator=(value_t rhs)$/;"	f	union:nlohmann_fifo_map::basic_json::type_data_t
+operator =	.\src\json_map.hpp	/^        type_data_t& operator=(value_t rhs)$/;"	f	union:nlohmann_map::basic_json::type_data_t
+operator =	.\src\test.hpp	/^		reference_class& operator=(const reference_class& r)$/;"	f	class:effective_cplusplus::reference_class
+operator ==	.\src\fifo_map.hpp	/^    friend bool operator==(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator ==	.\src\json_fifo_map.hpp	/^        bool operator==(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator ==	.\src\json_fifo_map.hpp	/^        bool operator==(const value_t& rhs) const$/;"	f	union:nlohmann_fifo_map::basic_json::type_data_t
+operator ==	.\src\json_map.hpp	/^        bool operator==(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator ==	.\src\json_map.hpp	/^        bool operator==(const value_t& rhs) const$/;"	f	union:nlohmann_map::basic_json::type_data_t
+operator ==	.\src\test.hpp	/^	inline bool operator==(const Date& l,const Date& r)$/;"	f	namespace:brad
+operator >	.\src\fifo_map.hpp	/^    friend bool operator>(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator >	.\src\json_fifo_map.hpp	/^        bool operator>(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator >	.\src\json_map.hpp	/^        bool operator>(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator >	.\src\test.hpp	/^	inline bool operator>(const Date& l,const Date& r)$/;"	f	namespace:brad
+operator >=	.\src\fifo_map.hpp	/^    friend bool operator>=(const fifo_map& lhs, const fifo_map& rhs)$/;"	f	class:nlohmann::fifo_map
+operator >=	.\src\json_fifo_map.hpp	/^        bool operator>=(const const_iterator& other) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator >=	.\src\json_map.hpp	/^        bool operator>=(const const_iterator& other) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator >>	.\src\json_fifo_map.hpp	/^    friend std::istream& operator>>(std::istream& i, basic_json& j)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator >>	.\src\json_fifo_map.hpp	/^    friend std::ostream& operator>>(const basic_json& j, std::ostream& o)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator >>	.\src\json_map.hpp	/^    friend std::istream& operator>>(std::istream& i, basic_json& j)$/;"	f	class:nlohmann_map::basic_json
+operator >>	.\src\json_map.hpp	/^    friend std::ostream& operator>>(const basic_json& j, std::ostream& o)$/;"	f	class:nlohmann_map::basic_json
+operator Type	.\include\corvusoft\restbed\context_placeholder.hpp	/^            operator Type( void )$/;"	f	class:restbed::ContextPlaceholder
+operator Type	.\include\corvusoft\restbed\context_value.hpp	/^            template< typename Type > operator Type( void ) const$/;"	f	class:restbed::ContextValue
+operator ValueType	.\src\json_fifo_map.hpp	/^    operator ValueType() const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator ValueType	.\src\json_map.hpp	/^    operator ValueType() const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\fifo_map.hpp	/^    T& operator[](Key&& key)$/;"	f	class:nlohmann::fifo_map
+operator []	.\src\fifo_map.hpp	/^    T& operator[](const Key& key)$/;"	f	class:nlohmann::fifo_map
+operator []	.\src\json_fifo_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+operator []	.\src\json_fifo_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+operator []	.\src\json_fifo_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+operator []	.\src\json_fifo_map.hpp	/^    const_reference operator[](T * (&key)[n]) const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    const_reference operator[](T* key) const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    const_reference operator[](const json_pointer& ptr) const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    const_reference operator[](const typename object_t::key_type& key) const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    const_reference operator[](size_type idx) const$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    reference operator[](T * (&key)[n])$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    reference operator[](T* key)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    reference operator[](const json_pointer& ptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    reference operator[](const typename object_t::key_type& key)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_fifo_map.hpp	/^    reference operator[](size_type idx)$/;"	f	class:nlohmann_fifo_map::basic_json
+operator []	.\src\json_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+operator []	.\src\json_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_map::basic_json::iterator
+operator []	.\src\json_map.hpp	/^        reference operator[](difference_type n) const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+operator []	.\src\json_map.hpp	/^    const_reference operator[](T * (&key)[n]) const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    const_reference operator[](T* key) const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    const_reference operator[](const json_pointer& ptr) const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    const_reference operator[](const typename object_t::key_type& key) const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    const_reference operator[](size_type idx) const$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    reference operator[](T * (&key)[n])$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    reference operator[](T* key)$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    reference operator[](const json_pointer& ptr)$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    reference operator[](const typename object_t::key_type& key)$/;"	f	class:nlohmann_map::basic_json
+operator []	.\src\json_map.hpp	/^    reference operator[](size_type idx)$/;"	f	class:nlohmann_map::basic_json
+operator value_t	.\src\json_fifo_map.hpp	/^        operator value_t() const$/;"	f	union:nlohmann_fifo_map::basic_json::type_data_t
+operator value_t	.\src\json_map.hpp	/^        operator value_t() const$/;"	f	union:nlohmann_map::basic_json::type_data_t
+opt_resource	.\src\server_http.hpp	/^            std::function<void(ServerBase<socket_type>::Response&, std::shared_ptr<ServerBase<socket_type>::Request>)> > > > > opt_resource;$/;"	m	class:SimpleWeb::ServerBase
+order_activemq	.\src\activemq_order.hpp	/^	order_activemq(){}$/;"	f	class:order_activemq
+order_activemq	.\src\activemq_order.hpp	/^class order_activemq$/;"	c
+orderbot	.\src\orderbot.hpp	/^	orderbot(const std::string& user, const std::string& password, const std::string& url) : m_username(user), m_password(password), m_url(url), m_data_parse_callback(nullptr),m_request_status(0),m_data(nullptr)\/\/,m_content(&m_content_buffer)$/;"	f	class:orderbot
+orderbot	.\src\orderbot.hpp	/^class orderbot$/;"	c
+orderbot_server_start	.\src\orderbot_restserver_resource.hpp	/^void orderbot_server_start()$/;"	f
+original	.\include\corvusoft\restbed\context_placeholder.hpp	/^            ContextPlaceholder( const ContextPlaceholder& original ) = delete;$/;"	m	class:restbed::ContextPlaceholder
+original	.\include\corvusoft\restbed\context_placeholder_base.hpp	/^            ContextPlaceholderBase( const ContextPlaceholderBase& original ) = delete;$/;"	m	class:restbed::ContextPlaceholderBase
+original	.\include\corvusoft\restbed\http.hpp	/^            Http( const Http& original ) = delete;$/;"	m	class:restbed::Http
+original	.\include\corvusoft\restbed\logger.hpp	/^            explicit Logger( const Logger& original ) = default;$/;"	m	class:restbed::Logger
+original	.\include\corvusoft\restbed\request.hpp	/^            Request( const Request& original ) = delete;$/;"	m	class:restbed::Request
+original	.\include\corvusoft\restbed\resource.hpp	/^            Resource( const Resource& original ) = delete;$/;"	m	class:restbed::Resource
+original	.\include\corvusoft\restbed\response.hpp	/^            Response( const Response& original ) = delete;$/;"	m	class:restbed::Response
+original	.\include\corvusoft\restbed\service.hpp	/^            Service( const Service& original ) = delete;$/;"	m	class:restbed::Service
+original	.\include\corvusoft\restbed\session.hpp	/^            Session( const Session& original ) = delete;$/;"	m	class:restbed::Session
+original	.\include\corvusoft\restbed\session_manager.hpp	/^            SessionManager( const SessionManager& original ) = delete;$/;"	m	class:restbed::SessionManager
+original	.\include\corvusoft\restbed\settings.hpp	/^            Settings( const Settings& original ) = delete;$/;"	m	class:restbed::Settings
+original	.\include\corvusoft\restbed\ssl_settings.hpp	/^            SSLSettings( const SSLSettings& original ) = delete;$/;"	m	class:restbed::SSLSettings
+original	.\include\corvusoft\restbed\string.hpp	/^            String( const String& original ) = delete;$/;"	m	class:restbed::String
+parameterCount_	.\src\mysql\MySqlPreparedStatement.hpp	/^        size_t parameterCount_;$/;"	m	class:MySqlPreparedStatement
+parse	.\src\csv.h	/^                template<class overflow_policy> void parse(char*col, double&x) { parse_float(col, x); }$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy> void parse(char*col, float&x) { parse_float(col, x); }$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy> void parse(char*col, long double&x) { parse_float(col, x); }$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, signed char &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, signed int &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, signed long &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, signed long long &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, signed short &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, unsigned char &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, unsigned int &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, unsigned long &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, unsigned long long &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                template<class overflow_policy>void parse(char*col, unsigned short &x)$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                void parse(char*col, T&x){$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                void parse(char*col, char &x){$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                void parse(char*col, char*&x){$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                void parse(char*col, const char*&x){$/;"	f	namespace:io::detail
+parse	.\src\csv.h	/^                void parse(char*col, std::string&x){$/;"	f	namespace:io::detail
+parse	.\src\json_fifo_map.hpp	/^        basic_json parse()$/;"	f	class:nlohmann_fifo_map::basic_json::parser
+parse	.\src\json_fifo_map.hpp	/^    static basic_json parse(const string_t& s, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+parse	.\src\json_fifo_map.hpp	/^    static basic_json parse(std::istream& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+parse	.\src\json_fifo_map.hpp	/^    static basic_json parse(std::istream&& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_fifo_map::basic_json
+parse	.\src\json_map.hpp	/^        basic_json parse()$/;"	f	class:nlohmann_map::basic_json::parser
+parse	.\src\json_map.hpp	/^    static basic_json parse(const string_t& s, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_map::basic_json
+parse	.\src\json_map.hpp	/^    static basic_json parse(std::istream& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_map::basic_json
+parse	.\src\json_map.hpp	/^    static basic_json parse(std::istream&& i, parser_callback_t cb = nullptr)$/;"	f	class:nlohmann_map::basic_json
+parse_error	.\src\json_fifo_map.hpp	/^            parse_error,     \/\/\/< indicating a parse error$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+parse_error	.\src\json_map.hpp	/^            parse_error,     \/\/\/< indicating a parse error$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+parse_event_t	.\src\json_fifo_map.hpp	/^    enum class parse_event_t : uint8_t$/;"	c	class:nlohmann_fifo_map::basic_json
+parse_event_t	.\src\json_map.hpp	/^    enum class parse_event_t : uint8_t$/;"	c	class:nlohmann_map::basic_json
+parse_float	.\src\csv.h	/^                void parse_float(const char*col, T&x){$/;"	f	namespace:io::detail
+parse_header_line	.\src\csv.h	/^                void parse_header_line($/;"	f	namespace:io::detail
+parse_helper	.\src\csv.h	/^			void parse_helper(std::size_t r, T&t, ColType&...cols){$/;"	f	class:io::CSVReader
+parse_helper	.\src\csv.h	/^			void parse_helper(std::size_t){}$/;"	f	class:io::CSVReader
+parse_internal	.\src\json_fifo_map.hpp	/^        basic_json parse_internal(bool keep)$/;"	f	class:nlohmann_fifo_map::basic_json::parser
+parse_internal	.\src\json_map.hpp	/^        basic_json parse_internal(bool keep)$/;"	f	class:nlohmann_map::basic_json::parser
+parse_line	.\src\csv.h	/^                void parse_line($/;"	f	namespace:io::detail
+parse_request	.\src\server_http.hpp	/^        void parse_request(std::shared_ptr<Request> request, std::istream& stream) const $/;"	f	class:SimpleWeb::ServerBase
+parse_response_header	.\src\client_http.hpp	/^        void parse_response_header(std::shared_ptr<Response> response, std::istream& stream) const $/;"	f	class:SimpleWeb::ClientBase
+parse_signed_integer	.\src\csv.h	/^                void parse_signed_integer(const char*col, T&x){$/;"	f	namespace:io::detail
+parse_unsigned_integer	.\src\csv.h	/^                void parse_unsigned_integer(const char*col, T&x){$/;"	f	namespace:io::detail
+parsed	.\src\json_fifo_map.hpp	/^            uint16_t parsed : 1;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+parsed	.\src\json_map.hpp	/^            uint16_t parsed : 1;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+parser	.\src\json_fifo_map.hpp	/^    class parser$/;"	c	class:nlohmann_fifo_map::basic_json
+parser	.\src\json_map.hpp	/^    class parser$/;"	c	class:nlohmann_map::basic_json
+parser_json_write_ss	.\src\activemq_cms.hpp	/^	void parser_json_write_ss(const string& texts)$/;"	f	class:activemq_cms_consumer
+path	.\src\paypal.hpp	/^	std::string path;$/;"	m	class:download_tax_from_taxrate
+path	.\src\server_http.hpp	/^            std::string method, path, http_version;$/;"	m	class:SimpleWeb::ServerBase::Request
+path_match	.\src\activemq.hpp	/^	std::smatch path_match;$/;"	m	class:activemq_rest
+path_match	.\src\orderbot.hpp	/^	std::smatch path_match;$/;"	m	class:orderbot
+path_match	.\src\server_http.hpp	/^            std::smatch path_match;$/;"	m	class:SimpleWeb::ServerBase::Request
+port	.\src\client_http.hpp	/^        unsigned short port;$/;"	m	class:SimpleWeb::ClientBase
+postField	.\src\curl_client.hpp	/^void WebClient::postField(std::string key, std::string value) {$/;"	f	class:WebClient
+post_account_param_func	.\src\orderbot_restserver.hpp	/^void post_account_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_customers_param_func	.\src\orderbot_restserver.hpp	/^void post_customers_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_exchange_rate_func	.\src\exchange_rate_restserver.hpp	/^void post_exchange_rate_func(const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+post_orders_param_func	.\src\orderbot_restserver.hpp	/^void post_orders_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_product_categories_param_func	.\src\orderbot_restserver.hpp	/^void post_product_categories_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_product_groups_param_func	.\src\orderbot_restserver.hpp	/^void post_product_groups_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_product_variable_groups_param_func	.\src\orderbot_restserver.hpp	/^void post_product_variable_groups_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_product_variable_values_param_func	.\src\orderbot_restserver.hpp	/^void post_product_variable_values_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_product_variables_param_func	.\src\orderbot_restserver.hpp	/^void post_product_variables_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_products_param_func	.\src\orderbot_restserver.hpp	/^void post_products_param_func(const std::shared_ptr< Session > session)$/;"	f
+post_salesreps_param_func	.\src\orderbot_restserver.hpp	/^void post_salesreps_param_func(const std::shared_ptr< Session > session)$/;"	f
+precision	.\src\json_fifo_map.hpp	/^            uint16_t precision : 8;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+precision	.\src\json_map.hpp	/^            uint16_t precision : 8;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+prepareStatement	.\src\mysql\MySql.cpp	/^MySqlPreparedStatement MySql::prepareStatement(const char* const command) const {$/;"	f	class:MySql
+primitive_iterator	.\src\json_fifo_map.hpp	/^            : object_iterator(), array_iterator(), primitive_iterator()$/;"	f	struct:nlohmann_fifo_map::basic_json::internal_iterator
+primitive_iterator	.\src\json_fifo_map.hpp	/^        primitive_iterator_t primitive_iterator;$/;"	m	struct:nlohmann_fifo_map::basic_json::internal_iterator
+primitive_iterator	.\src\json_map.hpp	/^            : object_iterator(), array_iterator(), primitive_iterator()$/;"	f	struct:nlohmann_map::basic_json::internal_iterator
+primitive_iterator	.\src\json_map.hpp	/^        primitive_iterator_t primitive_iterator;$/;"	m	struct:nlohmann_map::basic_json::internal_iterator
+primitive_iterator_t	.\src\json_fifo_map.hpp	/^    class primitive_iterator_t$/;"	c	class:nlohmann_fifo_map::basic_json
+primitive_iterator_t	.\src\json_map.hpp	/^    class primitive_iterator_t$/;"	c	class:nlohmann_map::basic_json
+print	.\src\exchange_rate.hpp	/^	void print()$/;"	f	class:exchage_rate_data
+print	.\src\exchange_rate.hpp	/^	void print()$/;"	f	class:general_rate_data
+print	.\src\test.hpp	/^		void print() const$/;"	f	class:brad::Date
+print	.\src\test.hpp	/^		void print()$/;"	f	class:effective_cplusplus::reference_class
+print	.\src\test.hpp	/^	void print(std::vector<std::vector<string>> vec)$/;"	f	namespace:x
+printTuple	.\src\mysql\mysql_api.hpp	/^void printTuple(basic_ostream<Char, Traits>& out, Tuple const& t, int_<0>) {$/;"	f
+printTuple	.\src\mysql\mysql_api.hpp	/^void printTuple(basic_ostream<Char, Traits>& out, Tuple const& t, int_<I>) {$/;"	f
+printTupleVector	.\src\mysql\mysql_api.hpp	/^void printTupleVector(const vector<Tuple>& v) {$/;"	f
+process_content	.\src\activemq.hpp	/^	void process_content()$/;"	f	class:activemq_rest
+process_content	.\src\exchange_rate.hpp	/^	void process_content()$/;"	f	class:exchange_rate
+process_content	.\src\orderbot.hpp	/^	void process_content()$/;"	f	class:orderbot
+producer	.\src\activemq_cms.hpp	/^   	MessageProducer* producer;$/;"	m	class:activemq_cms_producer
+product_inventory	.\src\activemq_product_inventory.hpp	/^	product_inventory():m_d_t(m_io_s),m_product_all(nullptr)$/;"	f	class:product_inventory
+product_inventory	.\src\activemq_product_inventory.hpp	/^class product_inventory:public boost::enable_shared_from_this<product_inventory>$/;"	c
+prog_cb	.\src\asiohiper.hpp	/^static int prog_cb(void *p, double dltotal, double dlnow, double ult,$/;"	f
+ps_	.\src\renesolalog.hpp	/^	static boost::shared_ptr<singleton_boost_log> ps_;$/;"	m	class:singleton_boost_log
+ps_	.\src\renesolalog.hpp	/^boost::shared_ptr<singleton_boost_log> singleton_boost_log::ps_ = nullptr;$/;"	m	class:singleton_boost_log
+push_back	.\src\json_fifo_map.hpp	/^    void push_back(basic_json&& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+push_back	.\src\json_fifo_map.hpp	/^    void push_back(const basic_json& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+push_back	.\src\json_fifo_map.hpp	/^    void push_back(const typename object_t::value_type& val)$/;"	f	class:nlohmann_fifo_map::basic_json
+push_back	.\src\json_map.hpp	/^    void push_back(basic_json&& val)$/;"	f	class:nlohmann_map::basic_json
+push_back	.\src\json_map.hpp	/^    void push_back(const basic_json& val)$/;"	f	class:nlohmann_map::basic_json
+push_back	.\src\json_map.hpp	/^    void push_back(const typename object_t::value_type& val)$/;"	f	class:nlohmann_map::basic_json
+put_account_num_func	.\src\orderbot_restserver.hpp	/^void put_account_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_customers_num_func	.\src\orderbot_restserver.hpp	/^void put_customers_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_exchange_rate_func	.\src\exchange_rate_restserver.hpp	/^void put_exchange_rate_func(const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+put_orders_num_func	.\src\orderbot_restserver.hpp	/^void put_orders_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_product_categories_num_func	.\src\orderbot_restserver.hpp	/^void put_product_categories_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_product_groups_num_func	.\src\orderbot_restserver.hpp	/^void put_product_groups_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_product_variable_values_num_func	.\src\orderbot_restserver.hpp	/^void put_product_variable_values_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_product_variables_num_func	.\src\orderbot_restserver.hpp	/^void put_product_variables_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_products_num_func	.\src\orderbot_restserver.hpp	/^void put_products_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_salesreps_num_func	.\src\orderbot_restserver.hpp	/^void put_salesreps_num_func(const std::shared_ptr< Session > session)$/;"	f
+put_variable_groups_num_func	.\src\orderbot_restserver.hpp	/^void put_variable_groups_num_func(const std::shared_ptr< Session > session)$/;"	f
+read	.\src\csv.h	/^                        int read(char*buffer, int desired_byte_count){$/;"	f	class:io::detail::NonOwningStringByteSource
+read	.\src\csv.h	/^                        int read(char*buffer, int size){$/;"	f	class:io::detail::NonOwningIStreamByteSource
+read	.\src\csv.h	/^                        int read(char*buffer, int size){$/;"	f	class:io::detail::OwningStdIOByteSourceBase
+read_byte_count	.\src\csv.h	/^                        int read_byte_count;$/;"	m	class:io::detail::AsynchronousReader
+read_error	.\src\csv.h	/^                        std::exception_ptr read_error;$/;"	m	class:io::detail::AsynchronousReader
+read_finished_condition	.\src\csv.h	/^                        std::condition_variable read_finished_condition;$/;"	m	class:io::detail::AsynchronousReader
+read_header	.\src\csv.h	/^			void read_header(ignore_column ignore_policy, ColNames...cols){$/;"	f	class:io::CSVReader
+read_request_and_content	.\src\server_http.hpp	/^        void read_request_and_content(std::shared_ptr<socket_type> socket) $/;"	f	class:SimpleWeb::ServerBase
+read_requested_condition	.\src\csv.h	/^                        std::condition_variable read_requested_condition;  $/;"	m	class:io::detail::AsynchronousReader
+read_row	.\src\csv.h	/^			bool read_row(ColType& ...cols){$/;"	f	class:io::CSVReader
+reader	.\src\csv.h	/^                detail::AsynchronousReader reader;$/;"	m	class:io::LineReader
+reader	.\src\csv.h	/^                detail::SynchronousReader reader;$/;"	m	class:io::LineReader
+reference_class	.\src\test.hpp	/^		reference_class(std::string& name,const T& value):m_name(name),m_value(value){}$/;"	f	class:effective_cplusplus::reference_class
+reference_class	.\src\test.hpp	/^	class reference_class$/;"	c	namespace:effective_cplusplus
+refetchTruncatedColumns	.\src\mysql\OutputBinder.cpp	/^void Friend::refetchTruncatedColumns($/;"	f	class:OutputBinderPrivate::Friend
+register_callback	.\src\activemq.hpp	/^	void register_callback()$/;"	f	class:activemq_rest
+register_callback	.\src\orderbot.hpp	/^	void register_callback()$/;"	f	class:orderbot
+remaining_byte_count	.\src\csv.h	/^                        long long remaining_byte_count;$/;"	m	class:io::detail::NonOwningStringByteSource
+remove_key	.\src\fifo_map.hpp	/^    void remove_key(const Key& key)$/;"	f	class:nlohmann::fifo_map_compare
+remsock	.\src\asiohiper.hpp	/^static void remsock(int *f, GlobalInfo *g)$/;"	f
+replace_all	.\src\orderbot_restserver.hpp	/^std::string&   replace_all(std::string&   str,const   std::string&   old_value,const   std::string&   new_value)     $/;"	f
+replace_all	.\src\shared.hpp	/^	std::string&   replace_all(std::string&   str, const   std::string&   old_value, const   std::string&   new_value)$/;"	f	namespace:SimpleWeb
+replace_all_distinct	.\src\orderbot_restserver.hpp	/^std::string&   replace_all_distinct(std::string&   str,const   std::string&   old_value,const   std::string&   new_value)     $/;"	f
+replace_all_distinct	.\src\shared.hpp	/^	std::string&   replace_all_distinct(std::string&   str, const   std::string&   old_value, const   std::string&   new_value)$/;"	f	namespace:SimpleWeb
+replace_substring	.\src\json_fifo_map.hpp	/^        static void replace_substring(std::string& s,$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+replace_substring	.\src\json_map.hpp	/^        static void replace_substring(std::string& s,$/;"	f	class:nlohmann_map::basic_json::json_pointer
+request	.\src\activemq.hpp	/^	void request(const std::string& method, const std::string& path, const std::string& param, const std::string& content)$/;"	f	class:activemq_rest
+request	.\src\client_http.hpp	/^        std::shared_ptr<Response> request(const std::string& request_type, const std::string& path, std::ostream& content, $/;"	f	class:SimpleWeb::ClientBase
+request	.\src\client_http.hpp	/^        std::shared_ptr<Response> request(const std::string& request_type, const std::string& path="\/", $/;"	f	class:SimpleWeb::ClientBase
+request	.\src\exchange_rate.hpp	/^	void request(const std::string& method, const std::string& path, const std::string& param, const std::string& content)$/;"	f	class:exchange_rate
+request	.\src\orderbot.hpp	/^	void request(const std::string& method, const std::string& path, const std::string& param, const std::string& content)$/;"	f	class:orderbot
+request_callback	.\src\activemq.hpp	/^	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)$/;"	f	class:activemq_rest
+request_callback	.\src\exchange_rate.hpp	/^	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)$/;"	f	class:exchange_rate
+request_callback	.\src\orderbot.hpp	/^	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)$/;"	f	class:orderbot
+request_write_data	.\src\activemq.hpp	/^	size_t request_write_data(const char *buffer, size_t size, size_t nmemb)$/;"	f	class:activemq_rest
+request_write_data	.\src\exchange_rate.hpp	/^	size_t request_write_data(const char *buffer, size_t size, size_t nmemb)$/;"	f	class:exchange_rate
+request_write_data	.\src\orderbot.hpp	/^	size_t request_write_data(const char *buffer, size_t size, size_t nmemb)$/;"	f	class:orderbot
+reset	.\src\curl_client.hpp	/^void WebClient::reset() {$/;"	f	class:WebClient
+resource	.\src\server_http.hpp	/^            std::function<void(ServerBase<socket_type>::Response&, std::shared_ptr<ServerBase<socket_type>::Request>)> > >  resource;$/;"	m	class:SimpleWeb::ServerBase
+resource_error_handler	.\src\exchange_rate_restserver.hpp	/^void resource_error_handler(const int, const std::exception&, const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+resource_error_handler	.\src\orderbot_restserver.hpp	/^void resource_error_handler(const int, const std::exception&, const std::shared_ptr< Session > session)$/;"	f
+restbed	.\include\corvusoft\restbed\byte.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\context_placeholder.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\context_placeholder_base.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\context_value.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\http.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\logger.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\request.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\resource.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\response.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\rule.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\service.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\session.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\session_manager.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\settings.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\ssl_settings.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\status_code.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\string.hpp	/^namespace restbed$/;"	n
+restbed	.\include\corvusoft\restbed\uri.hpp	/^namespace restbed$/;"	n
+retRabbitoverview	.\src\asiohiper.hpp	/^std::string retRabbitoverview = "";$/;"	v
+rhs	.\src\mysql\MySql.hpp	/^        MySql& operator=(MySql&& rhs) = delete;$/;"	m	class:MySql
+rhs	.\src\mysql\MySql.hpp	/^        MySql& operator=(const MySql& rhs) = delete;$/;"	m	class:MySql
+rhs	.\src\mysql\MySql.hpp	/^        MySql(MySql&& rhs) = delete;$/;"	m	class:MySql
+rhs	.\src\mysql\MySql.hpp	/^        MySql(const MySql& rhs) = delete;$/;"	m	class:MySql
+rhs	.\src\mysql\MySqlPreparedStatement.hpp	/^        MySqlPreparedStatement(MySqlPreparedStatement&& rhs) = default;$/;"	m	class:MySqlPreparedStatement
+right	.\src\test.hpp	/^		boost::shared_ptr<tree> right;$/;"	m	class:x::tree
+rotate	.\src\test.hpp	/^	void rotate(std::vector<std::vector<string>>& vec)$/;"	f	namespace:x
+row	.\src\csv.h	/^			char*(row[column_count]);$/;"	m	class:io::CSVReader
+run	.\src\activemq_cms.hpp	/^    virtual void run() $/;"	f	class:activemq_cms_producer
+runCommand	.\src\mysql\MySql.cpp	/^my_ulonglong MySql::runCommand(const char* const command) {$/;"	f	class:MySql
+runCommand	.\src\mysql\MySql.hpp	/^my_ulonglong MySql::runCommand($/;"	f	class:MySql
+runConsumer	.\src\activemq_cms.hpp	/^    void runConsumer() {$/;"	f	class:activemq_cms_consumer
+runQuery	.\src\mysql\MySql.hpp	/^void MySql::runQuery($/;"	f	class:MySql
+second_code	.\src\exchange_rate.hpp	/^	string second_code;$/;"	m	class:general_rate_data
+second_currency_id	.\src\exchange_rate.hpp	/^	string second_currency_id;$/;"	m	class:general_rate_data
+second_first_currency_exchange_rate_id	.\src\exchange_rate.hpp	/^	string second_first_currency_exchange_rate_id;$/;"	m	class:general_rate_data
+send_message_to_activemq	.\src\activemq_cms.hpp	/^    void send_message_to_activemq()$/;"	f	class:activemq_cms_consumer
+send_message_to_activemq	.\src\activemq_product_inventory.hpp	/^	void send_message_to_activemq()$/;"	f	class:product_inventory
+send_to_mq	.\src\activemq_product_inventory.hpp	/^	void send_to_mq()$/;"	f	class:product_inventory
+server_resource	.\src\serverResource.hpp	/^class server_resource$/;"	c
+servers_resource	.\src\serverResource.hpp	/^	servers_resource(boost::shared_ptr<HttpsServer> server)$/;"	f	class:servers_resource
+servers_resource	.\src\serverResource.hpp	/^class servers_resource$/;"	c
+service_error_handler	.\src\exchange_rate_restserver.hpp	/^void service_error_handler(const int, const std::exception& ex, const std::shared_ptr< restbed::Session > session)$/;"	f	namespace:exchange_rate_namespace
+service_error_handler	.\src\orderbot_restserver.hpp	/^void service_error_handler(const int, const std::exception& ex, const std::shared_ptr< Session > session)$/;"	f
+session	.\src\activemq_cms.hpp	/^    cms::Session* session;$/;"	m	class:activemq_cms_consumer
+session	.\src\activemq_cms.hpp	/^    cms::Session* session;$/;"	m	class:activemq_cms_producer
+setFilename	.\src\paypal.hpp	/^	void setFilename(std::string filename)$/;"	f	class:taxfile
+setParameter	.\src\mysql\OutputBinder.hpp	/^void OutputBinderParameterSetter<T*>::setParameter($/;"	f	class:OutputBinderPrivate::OutputBinderParameterSetter
+setParameter	.\src\mysql\OutputBinder.hpp	/^void OutputBinderParameterSetter<T>::setParameter($/;"	f	class:OutputBinderPrivate::OutputBinderParameterSetter
+setParameter	.\src\mysql\OutputBinder.hpp	/^void OutputBinderParameterSetter<std::shared_ptr<T>>::setParameter($/;"	f	class:OutputBinderPrivate::OutputBinderParameterSetter
+setParameter	.\src\mysql\OutputBinder.hpp	/^void OutputBinderParameterSetter<std::unique_ptr<T>>::setParameter($/;"	f	class:OutputBinderPrivate::OutputBinderParameterSetter
+setResult	.\src\mysql\OutputBinder.hpp	/^        static void setResult($/;"	f	class:OutputBinderPrivate::OutputBinderResultSetter
+setResult	.\src\mysql\OutputBinder.hpp	/^void OutputBinderResultSetter<T*>::setResult(T** const, const MYSQL_BIND&) {$/;"	f	class:OutputBinderPrivate::OutputBinderResultSetter
+setResult	.\src\mysql\OutputBinder.hpp	/^void OutputBinderResultSetter<T>::setResult($/;"	f	class:OutputBinderPrivate::OutputBinderResultSetter
+setResult	.\src\mysql\OutputBinder.hpp	/^void OutputBinderResultSetter<std::shared_ptr<T>>::setResult($/;"	f	class:OutputBinderPrivate::OutputBinderResultSetter
+setResult	.\src\mysql\OutputBinder.hpp	/^void OutputBinderResultSetter<std::unique_ptr<T>>::setResult($/;"	f	class:OutputBinderPrivate::OutputBinderResultSetter
+setResultTuple	.\src\mysql\OutputBinder.hpp	/^void setResultTuple($/;"	f	namespace:OutputBinderPrivate
+setResults	.\src\mysql\OutputBinder.hpp	/^void setResults($/;"	f
+setSize	.\src\paypal.hpp	/^	void setSize(int size)$/;"	f	class:taxfile
+setURL	.\src\curl_client.hpp	/^void WebClient::setURL(const std::string& url) {$/;"	f	class:WebClient
+set_column_content	.\src\csv.h	/^                        void set_column_content(const char*column_content){$/;"	f	struct:io::error::with_column_content
+set_column_name	.\src\csv.h	/^                        void set_column_name(const char*column_name){$/;"	f	struct:io::error::with_column_name
+set_column_names	.\src\csv.h	/^			void set_column_names(){}$/;"	f	class:io::CSVReader
+set_column_names	.\src\csv.h	/^			void set_column_names(std::string s, ColNames...cols){$/;"	f	class:io::CSVReader
+set_errno	.\src\csv.h	/^                        void set_errno(int errno_value){$/;"	f	struct:io::error::with_errno
+set_file_line	.\src\csv.h	/^			void set_file_line(unsigned file_line){$/;"	f	class:io::CSVReader
+set_file_line	.\src\csv.h	/^                        void set_file_line(int file_line){$/;"	f	struct:io::error::with_file_line
+set_file_line	.\src\csv.h	/^                void set_file_line(unsigned file_line){$/;"	f	class:io::LineReader
+set_file_name	.\src\csv.h	/^			void set_file_name(const char*file_name){$/;"	f	class:io::CSVReader
+set_file_name	.\src\csv.h	/^			void set_file_name(const std::string&file_name){$/;"	f	class:io::CSVReader
+set_file_name	.\src\csv.h	/^                        void set_file_name(const char*file_name){$/;"	f	struct:io::error::with_file_name
+set_file_name	.\src\csv.h	/^                void set_file_name(const char*file_name){$/;"	f	class:io::LineReader
+set_file_name	.\src\csv.h	/^                void set_file_name(const std::string&file_name){$/;"	f	class:io::LineReader
+set_header	.\src\csv.h	/^			void set_header(ColNames...cols){$/;"	f	class:io::CSVReader
+set_timeout_on_socket	.\src\server_http.hpp	/^        std::shared_ptr<boost::asio::deadline_timer> set_timeout_on_socket(std::shared_ptr<socket_type> socket, size_t seconds) $/;"	f	class:SimpleWeb::ServerBase
+set_timeout_on_socket	.\src\server_http.hpp	/^        std::shared_ptr<boost::asio::deadline_timer> set_timeout_on_socket(std::shared_ptr<socket_type> socket, std::shared_ptr<boost::asio::strand> strand, size_t seconds) $/;"	f	class:SimpleWeb::ServerBase
+set_to_max_on_overflow	.\src\csv.h	/^        struct set_to_max_on_overflow{$/;"	s	namespace:io
+set_url	.\src\activemq.hpp	/^	void set_url(const std::string& url) const$/;"	f	class:activemq_rest
+set_url	.\src\exchange_rate.hpp	/^	void set_url(const std::string& url) const$/;"	f	class:exchange_rate
+set_url	.\src\orderbot.hpp	/^	void set_url(const std::string& url) const$/;"	f	class:orderbot
+set_url	.\src\paypal.hpp	/^	void set_url(const std::string& url) const$/;"	f	class:download_tax_from_taxrate
+setsock	.\src\asiohiper.hpp	/^static void setsock(int *fdp, curl_socket_t s, CURL*e, int act, GlobalInfo*g)$/;"	f
+severity_level	.\src\renesolalog.hpp	/^enum severity_level$/;"	g
+share_handle	.\src\activemq.hpp	/^	static CURLSH* share_handle;$/;"	m	class:activemq_rest
+share_handle	.\src\activemq.hpp	/^CURLSH* activemq_rest::share_handle = NULL;$/;"	m	class:activemq_rest
+share_handle	.\src\exchange_rate.hpp	/^	static CURLSH* share_handle;	$/;"	m	class:exchange_rate
+share_handle	.\src\exchange_rate.hpp	/^CURLSH* exchange_rate::share_handle = NULL;$/;"	m	class:exchange_rate
+share_handle	.\src\orderbot.hpp	/^	static CURLSH* share_handle;$/;"	m	class:orderbot
+share_handle	.\src\orderbot.hpp	/^CURLSH* orderbot::share_handle = NULL;$/;"	m	class:orderbot
+sig_handler	.\src\boost_signalset.hpp	/^void sig_handler (int signal_number)$/;"	f
+single_and_empty_line_comment	.\src\csv.h	/^        struct single_and_empty_line_comment{$/;"	s	namespace:io
+single_line_comment	.\src\csv.h	/^        struct single_line_comment{$/;"	s	namespace:io
+singleton_boost_log	.\src\renesolalog.hpp	/^	singleton_boost_log()$/;"	f	class:singleton_boost_log
+singleton_boost_log	.\src\renesolalog.hpp	/^class singleton_boost_log :public boost::enable_shared_from_this<singleton_boost_log>, boost::noncopyable$/;"	c
+size	.\src\paypal.hpp	/^	int size;$/;"	m	class:taxfile
+slg	.\src\renesolalog.hpp	/^src::severity_logger< severity_level > slg;$/;"	v
+sock_cb	.\src\asiohiper.hpp	/^static int sock_cb(CURL *e, curl_socket_t s, int what, void *cbp, void *sockp)$/;"	f
+socket	.\src\client_http.hpp	/^        std::shared_ptr<socket_type> socket;$/;"	m	class:SimpleWeb::ClientBase
+socket	.\src\server_http.hpp	/^            std::shared_ptr<socket_type> socket;$/;"	m	class:SimpleWeb::ServerBase::Response
+socket_error	.\src\client_http.hpp	/^        bool socket_error;$/;"	m	class:SimpleWeb::ClientBase
+socket_map	.\src\asiohiper.hpp	/^std::map<curl_socket_t, boost::asio::ip::tcp::socket *> socket_map;$/;"	v
+split	.\src\json_fifo_map.hpp	/^        static std::vector<std::string> split(std::string reference_string)$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+split	.\src\json_map.hpp	/^        static std::vector<std::string> split(std::string reference_string)$/;"	f	class:nlohmann_map::basic_json::json_pointer
+start	.\include\corvusoft\restbed\syslog_logger.hpp	/^        void start( const shared_ptr< const Settings >& )$/;"	f	class:SyslogLogger
+start	.\src\activemq_order.hpp	/^	virtual void start() $/;"	f	class:order_activemq
+start	.\src\activemq_producer_consumer.hpp	/^	void start()$/;"	f	class:activemq_producer_consumer
+start	.\src\activemq_product_inventory.hpp	/^	void start()$/;"	f	class:product_inventory
+start	.\src\exchange_rate.hpp	/^	void start()$/;"	f	class:exchange_rate_on_time
+start	.\src\exchange_rate_restserver_resource.hpp	/^		void start()$/;"	f	namespace:exchange_rate_namespace
+start	.\src\renesolalog.hpp	/^	void start(const std::shared_ptr< const Settings >&)$/;"	f	class:CustomLogger
+start	.\src\server_http.hpp	/^        void start() $/;"	f	class:SimpleWeb::ServerBase
+start_consume_listener	.\src\activemq_order.hpp	/^	void start_consume_listener()$/;"	f	class:order_activemq
+start_exchange_rate_thread	.\src\exchange_rate.hpp	/^void start_exchange_rate_thread()$/;"	f
+start_read	.\src\csv.h	/^                        void start_read(char*arg_buffer, int arg_desired_byte_count){$/;"	f	class:io::detail::AsynchronousReader
+start_read	.\src\csv.h	/^                        void start_read(char*arg_buffer, int arg_desired_byte_count){$/;"	f	class:io::detail::SynchronousReader
+start_timer	.\src\exchange_rate.hpp	/^	void start_timer()$/;"	f	class:exchange_rate_on_time
+start_update	.\src\activemq_product_inventory.hpp	/^	void start_update()$/;"	f	class:product_inventory
+start_update	.\src\credit_ontime.hpp	/^	void start_update()$/;"	f	class:credit_ontime
+start_update	.\src\exchange_rate.hpp	/^	void start_update()$/;"	f	class:exchange_rate_on_time
+statementHandle_	.\src\mysql\MySqlPreparedStatement.hpp	/^        MYSQL_STMT* statementHandle_;$/;"	m	class:MySqlPreparedStatement
+static_cast	.\src\json_fifo_map.hpp	/^          m_value(static_cast<number_integer_t>(val))$/;"	f	class:nlohmann_fifo_map::basic_json
+static_cast	.\src\json_fifo_map.hpp	/^          m_value(static_cast<number_unsigned_t>(val))$/;"	f	class:nlohmann_fifo_map::basic_json
+static_cast	.\src\json_map.hpp	/^          m_value(static_cast<number_integer_t>(val))$/;"	f	class:nlohmann_map::basic_json
+static_cast	.\src\json_map.hpp	/^          m_value(static_cast<number_unsigned_t>(val))$/;"	f	class:nlohmann_map::basic_json
+status_code	.\src\client_http.hpp	/^            std::string http_version, status_code;$/;"	m	class:SimpleWeb::ClientBase::Response
+std	.\src\fifo_map.hpp	/^namespace std$/;"	n
+std	.\src\json_fifo_map.hpp	/^namespace std$/;"	n
+std	.\src\json_map.hpp	/^namespace std$/;"	n
+still_running	.\src\asiohiper.hpp	/^  int still_running;$/;"	m	struct:_GlobalInfo
+stop	.\include\corvusoft\restbed\syslog_logger.hpp	/^        void stop( void )$/;"	f	class:SyslogLogger
+stop	.\src\renesolalog.hpp	/^	void stop(void)$/;"	f	class:CustomLogger
+stop	.\src\server_http.hpp	/^        void stop() $/;"	f	class:SimpleWeb::ServerBase
+str	.\src\csv.h	/^                        const char*str;$/;"	m	class:io::detail::NonOwningStringByteSource
+str_to_float_t	.\src\json_fifo_map.hpp	/^        double str_to_float_t(double* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+str_to_float_t	.\src\json_fifo_map.hpp	/^        float str_to_float_t(float* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+str_to_float_t	.\src\json_fifo_map.hpp	/^        long double str_to_float_t(long double* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+str_to_float_t	.\src\json_map.hpp	/^        double str_to_float_t(double* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_map::basic_json::lexer
+str_to_float_t	.\src\json_map.hpp	/^        float str_to_float_t(float* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_map::basic_json::lexer
+str_to_float_t	.\src\json_map.hpp	/^        long double str_to_float_t(long double* \/* type *\/, char** endptr) const$/;"	f	class:nlohmann_map::basic_json::lexer
+strand	.\src\server_http.hpp	/^            std::shared_ptr<boost::asio::strand> strand;$/;"	m	class:SimpleWeb::ServerBase::Response
+stream	.\src\server_http.hpp	/^            std::ostream stream;$/;"	m	class:SimpleWeb::ServerBase::Response
+streambuf	.\src\server_http.hpp	/^            boost::asio::streambuf streambuf;$/;"	m	class:SimpleWeb::ServerBase::Request
+streambuf	.\src\server_http.hpp	/^            boost::asio::streambuf streambuf;$/;"	m	class:SimpleWeb::ServerBase::Response
+string	.\src\json_fifo_map.hpp	/^        string,          \/\/\/< string value$/;"	m	class:nlohmann_fifo_map::basic_json::value_t
+string	.\src\json_fifo_map.hpp	/^        string_t* string;$/;"	m	union:nlohmann_fifo_map::basic_json::json_value
+string	.\src\json_map.hpp	/^        string,          \/\/\/< string value$/;"	m	class:nlohmann_map::basic_json::value_t
+string	.\src\json_map.hpp	/^        string_t* string;$/;"	m	union:nlohmann_map::basic_json::json_value
+swap	.\src\fifo_map.hpp	/^    void swap(fifo_map& other)$/;"	f	class:nlohmann::fifo_map
+swap	.\src\fifo_map.hpp	/^inline void swap(nlohmann::fifo_map<Key, T, Compare, Allocator>& m1,$/;"	f	namespace:std
+swap	.\src\json_fifo_map.hpp	/^    void swap(array_t& other)$/;"	f	class:nlohmann_fifo_map::basic_json
+swap	.\src\json_fifo_map.hpp	/^    void swap(object_t& other)$/;"	f	class:nlohmann_fifo_map::basic_json
+swap	.\src\json_fifo_map.hpp	/^    void swap(string_t& other)$/;"	f	class:nlohmann_fifo_map::basic_json
+swap	.\src\json_map.hpp	/^    void swap(array_t& other)$/;"	f	class:nlohmann_map::basic_json
+swap	.\src\json_map.hpp	/^    void swap(object_t& other)$/;"	f	class:nlohmann_map::basic_json
+swap	.\src\json_map.hpp	/^    void swap(string_t& other)$/;"	f	class:nlohmann_map::basic_json
+taxfile	.\src\paypal.hpp	/^	taxfile(std::string filename, int size, bool bin = false)$/;"	f	class:taxfile
+taxfile	.\src\paypal.hpp	/^class taxfile$/;"	c
+termination_requested	.\src\csv.h	/^                        bool termination_requested;$/;"	m	class:io::detail::AsynchronousReader
+test	.\src\test.hpp	/^	void test()$/;"	f	namespace:brad
+test	.\src\test.hpp	/^	void test()$/;"	f	namespace:effective_cplusplus
+test	.\src\test.hpp	/^	void test()$/;"	f	namespace:x
+test_bit_set	.\src\test.hpp	/^	void test_bit_set()$/;"	f	namespace:x
+test_merge_bit	.\src\test.hpp	/^	void test_merge_bit()$/;"	f	namespace:x
+test_nlohmann_fifo_map	.\src\test.hpp	/^	void test_nlohmann_fifo_map()$/;"	f	namespace:x
+test_tree	.\src\test.hpp	/^	void test_tree()$/;"	f	namespace:x
+thread_download	.\src\paypal.hpp	/^void thread_download(std::string& filename, std::string& save_path)$/;"	f
+threads	.\src\server_http.hpp	/^        std::vector<std::thread> threads;$/;"	m	class:SimpleWeb::ServerBase
+throwIfFetchError	.\src\mysql\OutputBinder.cpp	/^void Friend::throwIfFetchError($/;"	f	class:OutputBinderPrivate::Friend
+throwIfParameterCountWrong	.\src\mysql\OutputBinder.cpp	/^void Friend::throwIfParameterCountWrong($/;"	f	class:OutputBinderPrivate::Friend
+throw_on_overflow	.\src\csv.h	/^        struct throw_on_overflow{$/;"	s	namespace:io
+timeout_content	.\src\server_http.hpp	/^        size_t timeout_content;$/;"	m	class:SimpleWeb::ServerBase
+timeout_request	.\src\server_http.hpp	/^        size_t timeout_request;$/;"	m	class:SimpleWeb::ServerBase
+timer_cb	.\src\asiohiper.hpp	/^static void timer_cb(const boost::system::error_code & error, GlobalInfo *g)$/;"	f
+timestamp	.\src\fifo_map.hpp	/^    size_t timestamp = 1;$/;"	m	class:nlohmann::fifo_map_compare
+to_unicode	.\src\json_fifo_map.hpp	/^        static string_t to_unicode(const std::size_t codepoint1,$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+to_unicode	.\src\json_map.hpp	/^        static string_t to_unicode(const std::size_t codepoint1,$/;"	f	class:nlohmann_map::basic_json::lexer
+to_usd_exchange_rate	.\src\exchange_rate.hpp	/^	string to_usd_exchange_rate;\/\/0.772558$/;"	m	class:exchage_rate_data
+to_usd_exchange_rate_id	.\src\exchange_rate.hpp	/^	string to_usd_exchange_rate_id;\/\/TFTBLZNSNBNAZAZGC2RW$/;"	m	class:exchage_rate_data
+token_type	.\src\json_fifo_map.hpp	/^        enum class token_type$/;"	c	class:nlohmann_fifo_map::basic_json::lexer
+token_type	.\src\json_map.hpp	/^        enum class token_type$/;"	c	class:nlohmann_map::basic_json::lexer
+token_type_name	.\src\json_fifo_map.hpp	/^        static std::string token_type_name(token_type t)$/;"	f	class:nlohmann_fifo_map::basic_json::lexer
+token_type_name	.\src\json_map.hpp	/^        static std::string token_type_name(token_type t)$/;"	f	class:nlohmann_map::basic_json::lexer
+too_few_columns	.\src\csv.h	/^                struct too_few_columns :$/;"	s	namespace:io::error
+too_many_columns	.\src\csv.h	/^                struct too_many_columns :$/;"	s	namespace:io::error
+transportInterrupted	.\src\activemq_cms.hpp	/^    virtual void transportInterrupted() {$/;"	f	class:activemq_cms_consumer
+transportResumed	.\src\activemq_cms.hpp	/^    virtual void transportResumed() {$/;"	f	class:activemq_cms_consumer
+tree	.\src\test.hpp	/^		tree(int data) :data(data), left(nullptr), right(nullptr)$/;"	f	class:x::tree
+tree	.\src\test.hpp	/^	class tree$/;"	c	namespace:x
+trim	.\src\csv.h	/^                static void trim(char*&str_begin, char*&str_end){$/;"	f	struct:io::trim_chars
+trim_chars	.\src\csv.h	/^        struct trim_chars{$/;"	s	namespace:io
+type	.\include\corvusoft\restbed\context_placeholder.hpp	/^            const std::type_info& type( void ) const$/;"	f	class:restbed::ContextPlaceholder
+type	.\src\json_fifo_map.hpp	/^            uint16_t type : 4;$/;"	m	struct:nlohmann_fifo_map::basic_json::type_data_t::__anon2
+type	.\src\json_map.hpp	/^            uint16_t type : 4;$/;"	m	struct:nlohmann_map::basic_json::type_data_t::__anon4
+type_data_t	.\src\json_fifo_map.hpp	/^    union type_data_t$/;"	u	class:nlohmann_fifo_map::basic_json
+type_data_t	.\src\json_map.hpp	/^    union type_data_t$/;"	u	class:nlohmann_map::basic_json
+unescape	.\src\csv.h	/^                static void unescape(char*&, char*&){$/;"	f	struct:io::no_quote_escape
+unescape	.\src\csv.h	/^                static void unescape(char*&col_begin, char*&col_end){$/;"	f	struct:io::double_quote_escape
+unexpect	.\src\json_fifo_map.hpp	/^        void unexpect(typename lexer::token_type t) const$/;"	f	class:nlohmann_fifo_map::basic_json::parser
+unexpect	.\src\json_map.hpp	/^        void unexpect(typename lexer::token_type t) const$/;"	f	class:nlohmann_map::basic_json::parser
+unflatten	.\src\json_fifo_map.hpp	/^        static basic_json unflatten(const basic_json& value)$/;"	f	class:nlohmann_fifo_map::basic_json::json_pointer
+unflatten	.\src\json_fifo_map.hpp	/^    basic_json unflatten() const$/;"	f	class:nlohmann_fifo_map::basic_json
+unflatten	.\src\json_map.hpp	/^        static basic_json unflatten(const basic_json& value)$/;"	f	class:nlohmann_map::basic_json::json_pointer
+unflatten	.\src\json_map.hpp	/^    basic_json unflatten() const$/;"	f	class:nlohmann_map::basic_json
+uninitialized	.\src\json_fifo_map.hpp	/^            uninitialized,   \/\/\/< indicating the scanner is uninitialized$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+uninitialized	.\src\json_map.hpp	/^            uninitialized,   \/\/\/< indicating the scanner is uninitialized$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+update_bit	.\src\test.hpp	/^	int update_bit(int n, int m, int i, int j)$/;"	f	namespace:x
+update_cny	.\src\exchange_rate.hpp	/^	void update_cny()$/;"	f	class:exchange_rate_on_time
+update_exchange_rate	.\src\exchange_rate.hpp	/^	void update_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_exchange_rate_to_mysql	.\src\exchange_rate.hpp	/^	void update_exchange_rate_to_mysql()$/;"	f	class:exchange_rate_on_time
+update_exchange_rate_to_mysql	.\src\exchange_rate.hpp	/^	void update_exchange_rate_to_mysql(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+update_from_usd_exchange_rate	.\src\exchange_rate.hpp	/^	void update_from_usd_exchange_rate(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+update_jpy	.\src\exchange_rate.hpp	/^	void update_jpy()$/;"	f	class:exchange_rate_on_time
+update_rate	.\src\exchange_rate.hpp	/^	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_rate_from_mysql	.\src\exchange_rate.hpp	/^	void update_rate_from_mysql(const string& from_usd_exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_on_time
+update_rate_put	.\src\exchange_rate.hpp	/^	void update_rate_put(const string& source,const string& target,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_to_usd_exchange_rate	.\src\exchange_rate.hpp	/^	void update_to_usd_exchange_rate(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+uploads_init_dir	.\src\paypal.hpp	/^string uploads_init_dir()$/;"	f
+upper_bound	.\src\fifo_map.hpp	/^    const_iterator upper_bound(const Key& key) const$/;"	f	class:nlohmann::fifo_map
+upper_bound	.\src\fifo_map.hpp	/^    iterator upper_bound(const Key& key)$/;"	f	class:nlohmann::fifo_map
+url	.\src\asiohiper.hpp	/^  char *url;$/;"	m	struct:_ConnInfo
+urlEncode	.\src\curl_client.hpp	/^std::string WebClient::urlEncode(const std::string& str) {$/;"	f	class:WebClient
+useTopic	.\src\activemq_cms.hpp	/^    bool useTopic;$/;"	m	class:activemq_cms_consumer
+useTopic	.\src\activemq_cms.hpp	/^    bool useTopic;$/;"	m	class:activemq_cms_producer
+value	.\include\corvusoft\restbed\context_placeholder.hpp	/^            ContextPlaceholder& operator =( const ContextPlaceholder& value ) = delete;$/;"	m	class:restbed::ContextPlaceholder
+value	.\include\corvusoft\restbed\context_placeholder_base.hpp	/^            ContextPlaceholderBase& operator =( const ContextPlaceholderBase& value ) = delete;$/;"	m	class:restbed::ContextPlaceholderBase
+value	.\include\corvusoft\restbed\context_value.hpp	/^            ContextValue& operator =( const ContextValue& value ) = delete;$/;"	m	class:restbed::ContextValue
+value	.\include\corvusoft\restbed\http.hpp	/^            Http& operator =( const Http& value ) = delete;$/;"	m	class:restbed::Http
+value	.\include\corvusoft\restbed\logger.hpp	/^            Logger& operator =( const Logger& value ) = default;$/;"	m	class:restbed::Logger
+value	.\include\corvusoft\restbed\request.hpp	/^            Request& operator =( const Request& value ) = delete;$/;"	m	class:restbed::Request
+value	.\include\corvusoft\restbed\resource.hpp	/^            Resource& operator =( const Resource& value ) = delete;$/;"	m	class:restbed::Resource
+value	.\include\corvusoft\restbed\response.hpp	/^            Response& operator =( const Response& value ) = delete;$/;"	m	class:restbed::Response
+value	.\include\corvusoft\restbed\service.hpp	/^            Service& operator =( const Service& value ) = delete;$/;"	m	class:restbed::Service
+value	.\include\corvusoft\restbed\session.hpp	/^            Session& operator =( const Session& value ) = delete;$/;"	m	class:restbed::Session
+value	.\include\corvusoft\restbed\session_manager.hpp	/^            SessionManager& operator =( const SessionManager& value ) = delete;$/;"	m	class:restbed::SessionManager
+value	.\include\corvusoft\restbed\settings.hpp	/^            Settings& operator =( const Settings& value ) = delete;$/;"	m	class:restbed::Settings
+value	.\include\corvusoft\restbed\ssl_settings.hpp	/^            SSLSettings& operator =( const SSLSettings& value ) = delete;$/;"	m	class:restbed::SSLSettings
+value	.\include\corvusoft\restbed\string.hpp	/^            String& operator =( const String& value ) = delete;$/;"	m	class:restbed::String
+value	.\src\json_fifo_map.hpp	/^            typename IteratorType::reference value() const$/;"	f	class:nlohmann_fifo_map::basic_json::iteration_proxy::iteration_proxy_internal
+value	.\src\json_fifo_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_fifo_map::basic_json::const_iterator
+value	.\src\json_fifo_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_fifo_map::basic_json::iterator
+value	.\src\json_fifo_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_fifo_map::basic_json::json_reverse_iterator
+value	.\src\json_fifo_map.hpp	/^    ValueType value(const typename object_t::key_type& key, ValueType default_value) const$/;"	f	class:nlohmann_fifo_map::basic_json
+value	.\src\json_fifo_map.hpp	/^    static constexpr bool value = sizeof(test<T>(0)) == 1;$/;"	m	struct:nlohmann_fifo_map::__anon1::has_mapped_type
+value	.\src\json_fifo_map.hpp	/^    string_t value(const typename object_t::key_type& key, const char* default_value) const$/;"	f	class:nlohmann_fifo_map::basic_json
+value	.\src\json_map.hpp	/^            typename IteratorType::reference value() const$/;"	f	class:nlohmann_map::basic_json::iteration_proxy::iteration_proxy_internal
+value	.\src\json_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_map::basic_json::const_iterator
+value	.\src\json_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_map::basic_json::iterator
+value	.\src\json_map.hpp	/^        reference value() const$/;"	f	class:nlohmann_map::basic_json::json_reverse_iterator
+value	.\src\json_map.hpp	/^    ValueType value(const typename object_t::key_type& key, ValueType default_value) const$/;"	f	class:nlohmann_map::basic_json
+value	.\src\json_map.hpp	/^    static constexpr bool value = sizeof(test<T>(0)) == 1;$/;"	m	struct:nlohmann_map::__anon3::has_mapped_type
+value	.\src\json_map.hpp	/^    string_t value(const typename object_t::key_type& key, const char* default_value) const$/;"	f	class:nlohmann_map::basic_json
+value_number	.\src\json_fifo_map.hpp	/^            value_number,    \/\/\/< a number -- use get_number() for actual value$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+value_number	.\src\json_map.hpp	/^            value_number,    \/\/\/< a number -- use get_number() for actual value$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+value_separator	.\src\json_fifo_map.hpp	/^            value_separator, \/\/\/< the value separator ","$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+value_separator	.\src\json_map.hpp	/^            value_separator, \/\/\/< the value separator ","$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+value_string	.\src\json_fifo_map.hpp	/^            value_string,    \/\/\/< a string -- use get_string() for actual value$/;"	m	class:nlohmann_fifo_map::basic_json::lexer::token_type
+value_string	.\src\json_map.hpp	/^            value_string,    \/\/\/< a string -- use get_string() for actual value$/;"	m	class:nlohmann_map::basic_json::lexer::token_type
+value_t	.\src\json_fifo_map.hpp	/^    enum class value_t : uint8_t$/;"	c	class:nlohmann_fifo_map::basic_json
+value_t	.\src\json_map.hpp	/^    enum class value_t : uint8_t$/;"	c	class:nlohmann_map::basic_json
+warning	.\src\renesolalog.hpp	/^	warning,$/;"	e	enum:severity_level
+what	.\src\csv.h	/^                        const char*what()const throw(){$/;"	f	struct:io::error::base
+with_column_content	.\src\csv.h	/^                        with_column_content(){$/;"	f	struct:io::error::with_column_content
+with_column_content	.\src\csv.h	/^                struct with_column_content{$/;"	s	namespace:io::error
+with_column_name	.\src\csv.h	/^                        with_column_name(){$/;"	f	struct:io::error::with_column_name
+with_column_name	.\src\csv.h	/^                struct with_column_name{$/;"	s	namespace:io::error
+with_errno	.\src\csv.h	/^                        with_errno(){$/;"	f	struct:io::error::with_errno
+with_errno	.\src\csv.h	/^                struct with_errno{$/;"	s	namespace:io::error
+with_file_line	.\src\csv.h	/^                        with_file_line(){$/;"	f	struct:io::error::with_file_line
+with_file_line	.\src\csv.h	/^                struct with_file_line{$/;"	s	namespace:io::error
+with_file_name	.\src\csv.h	/^                        with_file_name(){$/;"	f	struct:io::error::with_file_name
+with_file_name	.\src\csv.h	/^                struct with_file_name{$/;"	s	namespace:io::error
+worker	.\src\csv.h	/^                        std::thread worker;$/;"	m	class:io::detail::AsynchronousReader
+writeData	.\src\curl_client.hpp	/^size_t WebClient::writeData(const char *buffer, size_t size, size_t nmemb) {$/;"	f	class:WebClient
+writeDataCallback	.\src\curl_client.hpp	/^size_t WebClient::writeDataCallback(char *buffer, size_t size, size_t nmemb, void* thisPtr) {$/;"	f	class:WebClient
+write_cb	.\src\asiohiper.hpp	/^static size_t write_cb(void *ptr, size_t size, size_t nmemb, void *data)$/;"	f
+write_response	.\src\server_http.hpp	/^        void write_response(std::shared_ptr<socket_type> socket, std::shared_ptr<Request> request, $/;"	f	class:SimpleWeb::ServerBase
+x	.\src\test.hpp	/^namespace x$/;"	n
+yield	.\src\server_http.hpp	/^            boost::asio::yield_context& yield;$/;"	m	class:SimpleWeb::ServerBase::Response
+~AsynchronousReader	.\src\csv.h	/^                        ~AsynchronousReader(){$/;"	f	class:io::detail::AsynchronousReader
+~ByteSourceBase	.\src\csv.h	/^                virtual ~ByteSourceBase(){}$/;"	f	class:io::ByteSourceBase
+~ContextPlaceholder	.\include\corvusoft\restbed\context_placeholder.hpp	/^            virtual ~ContextPlaceholder( void )$/;"	f	class:restbed::ContextPlaceholder
+~ContextValue	.\include\corvusoft\restbed\context_value.hpp	/^            virtual ~ContextValue( void )$/;"	f	class:restbed::ContextValue
+~LineReader	.\src\csv.h	/^                ~LineReader(){$/;"	f	class:io::LineReader
+~MySql	.\src\mysql\MySql.cpp	/^MySql::~MySql() {$/;"	f	class:MySql
+~MySqlPreparedStatement	.\src\mysql\MySqlPreparedStatement.cpp	/^MySqlPreparedStatement::~MySqlPreparedStatement() {$/;"	f	class:MySqlPreparedStatement
+~NonOwningIStreamByteSource	.\src\csv.h	/^                        ~NonOwningIStreamByteSource(){}$/;"	f	class:io::detail::NonOwningIStreamByteSource
+~NonOwningStringByteSource	.\src\csv.h	/^                        ~NonOwningStringByteSource(){}$/;"	f	class:io::detail::NonOwningStringByteSource
+~OwningStdIOByteSourceBase	.\src\csv.h	/^                        ~OwningStdIOByteSourceBase(){$/;"	f	class:io::detail::OwningStdIOByteSourceBase
+~WebClient	.\src\curl_client.hpp	/^WebClient::~WebClient() {$/;"	f	class:WebClient
+~activemq_cms_consumer	.\src\activemq_cms.hpp	/^    virtual ~activemq_cms_consumer() {$/;"	f	class:activemq_cms_consumer
+~activemq_cms_producer	.\src\activemq_cms.hpp	/^    virtual ~activemq_cms_producer()$/;"	f	class:activemq_cms_producer
+~activemq_rest	.\src\activemq.hpp	/^	virtual ~activemq_rest()$/;"	f	class:activemq_rest
+~basic_json	.\src\json_fifo_map.hpp	/^    ~basic_json()$/;"	f	class:nlohmann_fifo_map::basic_json
+~basic_json	.\src\json_map.hpp	/^    ~basic_json()$/;"	f	class:nlohmann_map::basic_json
+~download_tax_from_taxrate	.\src\paypal.hpp	/^	virtual ~download_tax_from_taxrate()$/;"	f	class:download_tax_from_taxrate
+~exchange_rate	.\src\exchange_rate.hpp	/^	virtual ~exchange_rate()$/;"	f	class:exchange_rate
+~exchange_rate_on_time	.\src\exchange_rate.hpp	/^	~exchange_rate_on_time()$/;"	f	class:exchange_rate_on_time
+~orderbot	.\src\orderbot.hpp	/^	virtual ~orderbot()$/;"	f	class:orderbot
+~product_inventory	.\src\activemq_product_inventory.hpp	/^	~product_inventory()$/;"	f	class:product_inventory
+~taxfile	.\src\paypal.hpp	/^	~taxfile()$/;"	f	class:taxfile

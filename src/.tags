@@ -1,0 +1,102 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+EXCHANGE_RATE_HPP	exchange_rate.hpp	2;"	d
+close_socket_callback	exchange_rate.hpp	/^	static int close_socket_callback(void *clientp, curl_socket_t item)$/;"	f	class:exchange_rate
+code	exchange_rate.hpp	/^	string code;\/\/CAD$/;"	m	class:exchage_rate_data
+convert_json	exchange_rate.hpp	/^	string convert_json(const string& source)$/;"	f	class:exchange_rate_on_time
+curl	exchange_rate.hpp	/^	void curl(const std::string& uri, const std::string& method = "GET", const std::string& param = "", const std::string& content = "")$/;"	f	class:exchange_rate
+currency_id	exchange_rate.hpp	/^	string currency_id;\/\/J4YVQ3USQNO3U430EKE1$/;"	m	class:exchage_rate_data
+exchage_rate_data	exchange_rate.hpp	/^class exchage_rate_data$/;"	c
+exchange_rate	exchange_rate.hpp	/^	exchange_rate(const std::string& url) : m_url(url),m_request_status(0),m_data(nullptr)$/;"	f	class:exchange_rate
+exchange_rate	exchange_rate.hpp	/^class exchange_rate$/;"	c
+exchange_rate_on_time	exchange_rate.hpp	/^	exchange_rate_on_time(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input),m_conn(nullptr)$/;"	f	class:exchange_rate_on_time
+exchange_rate_on_time	exchange_rate.hpp	/^class exchange_rate_on_time:public boost::enable_shared_from_this<exchange_rate_on_time>$/;"	c
+exchange_rate_rest	exchange_rate.hpp	/^	exchange_rate_rest(boost::shared_ptr<MySql> conn):m_conn(conn)\/\/,m_mysql_database(mysql_input)$/;"	f	class:exchange_rate_rest
+exchange_rate_rest	exchange_rate.hpp	/^	exchange_rate_rest(mysql_database mysql_input)\/\/:m_mysql_database(mysql_input)$/;"	f	class:exchange_rate_rest
+exchange_rate_rest	exchange_rate.hpp	/^class exchange_rate_rest$/;"	c
+first_code	exchange_rate.hpp	/^	string first_code;$/;"	m	class:general_rate_data
+first_currency_id	exchange_rate.hpp	/^	string first_currency_id;$/;"	m	class:general_rate_data
+first_second_currency_exchange_rate_id	exchange_rate.hpp	/^	string first_second_currency_exchange_rate_id;$/;"	m	class:general_rate_data
+first_second_exchange_rate	exchange_rate.hpp	/^	string first_second_exchange_rate;$/;"	m	class:general_rate_data
+from_usd_exchange_rate	exchange_rate.hpp	/^	string from_usd_exchange_rate;\/\/0.772558$/;"	m	class:exchage_rate_data
+from_usd_exchange_rate_id	exchange_rate.hpp	/^	string from_usd_exchange_rate_id;\/\/TFTBLZNSNBNAZAZGC2RW$/;"	m	class:exchage_rate_data
+general_rate_data	exchange_rate.hpp	/^class general_rate_data$/;"	c
+general_update	exchange_rate.hpp	/^	void general_update()$/;"	f	class:exchange_rate_on_time
+get_currency_id	exchange_rate.hpp	/^	string get_currency_id(const string& code)$/;"	f	class:exchange_rate_on_time
+get_currency_id	exchange_rate.hpp	/^	string get_currency_id(const string& code)$/;"	f	class:exchange_rate_rest
+get_data	exchange_rate.hpp	/^	boost::shared_ptr<string> get_data()$/;"	f	class:exchange_rate
+get_exchange_rate	exchange_rate.hpp	/^	void get_exchange_rate()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_api_data	exchange_rate.hpp	/^	string get_exchange_rate_api_data()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_from_yahoo	exchange_rate.hpp	/^	string get_exchange_rate_from_yahoo()$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_id	exchange_rate.hpp	/^	string get_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_on_time
+get_exchange_rate_id	exchange_rate.hpp	/^	string get_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_rest
+get_exchange_rate_id	exchange_rate.hpp	/^	void get_exchange_rate_id(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)$/;"	f	class:exchange_rate_on_time
+get_info_from_myql	exchange_rate.hpp	/^	void get_info_from_myql()$/;"	f	class:exchange_rate_on_time
+get_length	exchange_rate.hpp	/^	long int get_length()$/;"	f	class:exchange_rate
+get_rate	exchange_rate.hpp	/^	string get_rate(const string& source,const string& target,const string& which_day)$/;"	f	class:exchange_rate_rest
+get_rate_from_myql	exchange_rate.hpp	/^	string get_rate_from_myql(const string& exchange_rate_id,string which_day)$/;"	f	class:exchange_rate_on_time
+get_rate_from_myql	exchange_rate.hpp	/^	string get_rate_from_myql(const string& exchange_rate_id,string which_day)$/;"	f	class:exchange_rate_rest
+get_status	exchange_rate.hpp	/^	long int get_status()$/;"	f	class:exchange_rate
+handle_wait	exchange_rate.hpp	/^	void handle_wait(const boost::system::error_code& error)  $/;"	f	class:exchange_rate_on_time
+handle_wait_method	exchange_rate.hpp	/^	void handle_wait_method()$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate	exchange_rate.hpp	/^	void insert_exchange_rate(const string& exchange_rate_id,const string& rate)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate	exchange_rate.hpp	/^	void insert_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+insert_exchange_rate	exchange_rate.hpp	/^	void insert_exchange_rate(general_rate_data& EUR_GBP_class,general_rate_data&EUR_CNY_class)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate_id	exchange_rate.hpp	/^	void insert_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_on_time
+insert_exchange_rate_id	exchange_rate.hpp	/^	void insert_exchange_rate_id(const string& source,const string& target)$/;"	f	class:exchange_rate_rest
+m_conn	exchange_rate.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:exchange_rate_on_time
+m_conn	exchange_rate.hpp	/^	boost::shared_ptr<MySql> m_conn;$/;"	m	class:exchange_rate_rest
+m_curl	exchange_rate.hpp	/^	CURL* m_curl;$/;"	m	class:exchange_rate
+m_d_t	exchange_rate.hpp	/^	deadline_timer m_d_t;$/;"	m	class:exchange_rate_on_time
+m_data	exchange_rate.hpp	/^	boost::shared_ptr<std::string> m_data;$/;"	m	class:exchange_rate
+m_exchage_rate_data_array	exchange_rate.hpp	/^	std::vector<exchage_rate_data> m_exchage_rate_data_array;$/;"	m	class:exchange_rate_on_time
+m_general_rate_data	exchange_rate.hpp	/^	vector<general_rate_data> m_general_rate_data;$/;"	m	class:exchange_rate_on_time
+m_io_s	exchange_rate.hpp	/^	boost::asio::io_service m_io_s;  $/;"	m	class:exchange_rate_on_time
+m_mysql_database	exchange_rate.hpp	/^	mysql_database m_mysql_database;$/;"	m	class:exchange_rate_on_time
+m_mysql_database	exchange_rate.hpp	/^	string m_mysql_database;$/;"	m	class:mysql_database
+m_mysql_ip	exchange_rate.hpp	/^	string m_mysql_ip;$/;"	m	class:mysql_database
+m_mysql_password	exchange_rate.hpp	/^	string m_mysql_password;$/;"	m	class:mysql_database
+m_mysql_port	exchange_rate.hpp	/^	unsigned short m_mysql_port;$/;"	m	class:mysql_database
+m_mysql_username	exchange_rate.hpp	/^	string m_mysql_username;$/;"	m	class:mysql_database
+m_product_all	exchange_rate.hpp	/^	boost::shared_ptr<string> m_product_all;$/;"	m	class:exchange_rate_on_time
+m_request_status	exchange_rate.hpp	/^	long int m_request_status;$/;"	m	class:exchange_rate
+m_ss	exchange_rate.hpp	/^	std::stringstream m_ss;$/;"	m	class:exchange_rate_on_time
+m_today_string	exchange_rate.hpp	/^	string m_today_string;$/;"	m	class:exchange_rate_on_time
+m_url	exchange_rate.hpp	/^	std::string m_url;$/;"	m	class:exchange_rate
+m_usd_info	exchange_rate.hpp	/^	exchage_rate_data m_usd_info;$/;"	m	class:exchange_rate_on_time
+mysql_database	exchange_rate.hpp	/^class mysql_database$/;"	c
+on_request	exchange_rate.hpp	/^	bool on_request()$/;"	f	class:exchange_rate
+print	exchange_rate.hpp	/^	void print()$/;"	f	class:exchage_rate_data
+print	exchange_rate.hpp	/^	void print()$/;"	f	class:general_rate_data
+process_content	exchange_rate.hpp	/^	void process_content()$/;"	f	class:exchange_rate
+request	exchange_rate.hpp	/^	void request(const std::string& method, const std::string& path, const std::string& param, const std::string& content)$/;"	f	class:exchange_rate
+request_callback	exchange_rate.hpp	/^	static size_t request_callback(char *buffer, size_t size, size_t nmemb, void* thisPtr)$/;"	f	class:exchange_rate
+request_write_data	exchange_rate.hpp	/^	size_t request_write_data(const char *buffer, size_t size, size_t nmemb)$/;"	f	class:exchange_rate
+second_code	exchange_rate.hpp	/^	string second_code;$/;"	m	class:general_rate_data
+second_currency_id	exchange_rate.hpp	/^	string second_currency_id;$/;"	m	class:general_rate_data
+second_first_currency_exchange_rate_id	exchange_rate.hpp	/^	string second_first_currency_exchange_rate_id;$/;"	m	class:general_rate_data
+set_url	exchange_rate.hpp	/^	void set_url(const std::string& url) const$/;"	f	class:exchange_rate
+share_handle	exchange_rate.hpp	/^	static CURLSH* share_handle;	$/;"	m	class:exchange_rate
+share_handle	exchange_rate.hpp	/^CURLSH* exchange_rate::share_handle = NULL;$/;"	m	class:exchange_rate
+start	exchange_rate.hpp	/^	void start()$/;"	f	class:exchange_rate_on_time
+start_exchange_rate_thread	exchange_rate.hpp	/^void start_exchange_rate_thread()$/;"	f
+start_timer	exchange_rate.hpp	/^	void start_timer()$/;"	f	class:exchange_rate_on_time
+start_update	exchange_rate.hpp	/^	void start_update()$/;"	f	class:exchange_rate_on_time
+to_usd_exchange_rate	exchange_rate.hpp	/^	string to_usd_exchange_rate;\/\/0.772558$/;"	m	class:exchage_rate_data
+to_usd_exchange_rate_id	exchange_rate.hpp	/^	string to_usd_exchange_rate_id;\/\/TFTBLZNSNBNAZAZGC2RW$/;"	m	class:exchage_rate_data
+update_cny	exchange_rate.hpp	/^	void update_cny()$/;"	f	class:exchange_rate_on_time
+update_exchange_rate	exchange_rate.hpp	/^	void update_exchange_rate(const string& exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_exchange_rate_to_mysql	exchange_rate.hpp	/^	void update_exchange_rate_to_mysql()$/;"	f	class:exchange_rate_on_time
+update_exchange_rate_to_mysql	exchange_rate.hpp	/^	void update_exchange_rate_to_mysql(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+update_from_usd_exchange_rate	exchange_rate.hpp	/^	void update_from_usd_exchange_rate(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+update_jpy	exchange_rate.hpp	/^	void update_jpy()$/;"	f	class:exchange_rate_on_time
+update_rate	exchange_rate.hpp	/^	void update_rate(const string& source,const string& target,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_rate_from_mysql	exchange_rate.hpp	/^	void update_rate_from_mysql(const string& from_usd_exchange_rate_id,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_on_time
+update_rate_put	exchange_rate.hpp	/^	void update_rate_put(const string& source,const string& target,const string& which_day,const string& ratio)$/;"	f	class:exchange_rate_rest
+update_to_usd_exchange_rate	exchange_rate.hpp	/^	void update_to_usd_exchange_rate(const exchage_rate_data& item)$/;"	f	class:exchange_rate_on_time
+~exchange_rate	exchange_rate.hpp	/^	virtual ~exchange_rate()$/;"	f	class:exchange_rate
+~exchange_rate_on_time	exchange_rate.hpp	/^	~exchange_rate_on_time()$/;"	f	class:exchange_rate_on_time
