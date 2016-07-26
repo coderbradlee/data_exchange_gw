@@ -1298,6 +1298,7 @@ public:
     	}
     	else
     	{
+    		boost::this_thread::sleep(boost::posix_time::millisec(10000));
     		start_timer();
     		BOOST_LOG_SEV(slg, severity_level::error) <<"(error:)" <<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
