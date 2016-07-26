@@ -1,4 +1,5 @@
-
+2016.07.27 tag exchange_rate_api_depoyv1.8
+(error:):src/exchange_rate.hpp:1302  去掉此地方日志写入
 2016.07.20 tag exchange_rate_api_depoyv1.7
 解决最近几天插入的数据每天都增加一条的问题，1.6没有解决，现在找到问题：
 是m_exchage_rate_data_array，这个数据每次都从数据库拉取一次，导致每天数据会double
