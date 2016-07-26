@@ -7,7 +7,7 @@
 
 GET http://172.18.100.87:8088/flowNo/us/so
 
-本地:172.18.22.202
+本地数据库:172.18.22.202
 2016.07.18 tag exchange_rate_api_depoyv1.6
 解决最近几天插入的数据每天都增加一条的问题，今天线上数据库同样的数据插入了四条，昨天三条
 2016.07.13 tag exchange_rate_api_depoyv1.5
