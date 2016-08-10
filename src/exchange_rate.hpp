@@ -76,7 +76,7 @@ private:
 
 			string insert_sql = "update t_website set deploy_software_version='"+version+"',deploy_time='"+p4+"',updateBy='exchange_gw_rest',updateAt='"+p4+"'"+" where access_url='"+url+"'";
 			cout << insert_sql << endl;
-			//m_conn->runCommand(insert_sql.c_str());
+			m_conn->runCommand(insert_sql.c_str());
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 			boost_log->get_initsink()->flush();
 			return true;
