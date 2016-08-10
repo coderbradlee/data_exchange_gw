@@ -427,8 +427,15 @@ void update_svn_version_func(const std::shared_ptr< restbed::Session > session)
 			mysql_xx.m_mysql_database=get_config->m_mysql_as_database;
 		}
 		boost::shared_ptr<update_svn_version_rest> t(new update_svn_version_rest(mysql_xx));
-		t->update_version_put(version,website_url);
-		string temp="update ok";
+		string temp;
+		if(t->update_version_put(version,website_url))
+		{
+			temp="updated successfully";
+		}	
+		else
+		{
+			temp="updated failed";
+		}
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
 		session->close(OK, temp, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(temp.length()) } });
 				////////////////////////////////////////////////////////////
