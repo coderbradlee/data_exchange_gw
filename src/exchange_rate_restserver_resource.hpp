@@ -42,7 +42,7 @@ void exchange_rate_server_start()
 ///////////////////////////////////////////////////////
 		auto update_svn_version = std::make_shared< Resource >();
 		
-		update_svn_version->set_path("/exchange_rate/");
+		update_svn_version->set_path("/deploy_software_version/");
 
 		update_svn_version->set_method_handler("PUT", update_svn_version_func);
 		update_svn_version->set_error_handler(&resource_error_handler);
