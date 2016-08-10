@@ -74,7 +74,7 @@ private:
 			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
-			string insert_sql = "update t_website set deploy_software_version='"+version+"',deploy_time='"+p4+"'"+"',updateBy='exchange_gw_rest',updateAt='"+p4+"'"+" where access_url='"+url+"'";
+			string insert_sql = "update t_website set deploy_software_version='"+version+"',deploy_time='"+p4+"',updateBy='exchange_gw_rest',updateAt='"+p4+"'"+" where access_url='"+url+"'";
 			cout << insert_sql << endl;
 			//m_conn->runCommand(insert_sql.c_str());
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
