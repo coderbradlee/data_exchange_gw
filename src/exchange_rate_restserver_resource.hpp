@@ -39,6 +39,13 @@ void exchange_rate_server_start()
 		get_exchange_rate->set_method_handler("PUT", put_exchange_rate_func);
 		get_exchange_rate->set_error_handler(&resource_error_handler);
 
+///////////////////////////////////////////////////////
+		auto update_svn_version = std::make_shared< Resource >();
+		
+		update_svn_version->set_path("/exchange_rate/");
+
+		update_svn_version->set_method_handler("PUT", update_svn_version_func);
+		update_svn_version->set_error_handler(&resource_error_handler);
 
 		
 
@@ -52,7 +59,7 @@ void exchange_rate_server_start()
 		Service service;
 		
 		service.publish(get_exchange_rate);
-		//service.publish(put_orders_num);
+		service.publish(update_svn_version);
 		//service.publish(get_orders_param);
 		
 

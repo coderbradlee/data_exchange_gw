@@ -1,3 +1,9 @@
+2016.08.09
+增加写入svn版本的接口
+
+
+2016.08.05 解决172.18.100.87上程序启动时发生signal 27,重新拉取代码并编译
+
 2016.07.27 tag exchange_rate_api_depoyv1.8
 (error:):src/exchange_rate.hpp:1302  去掉此地方日志写入
 2016.07.20 tag exchange_rate_api_depoyv1.7

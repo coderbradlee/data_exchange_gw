@@ -47,6 +47,58 @@ public:
 	string m_mysql_database;
 
 };
+class update_svn_version_rest
+{
+public:
+	update_svn_version_rest(mysql_database mysql_input)//:m_mysql_database(mysql_input)
+	{
+		cout<<__FILE__<<":"<<__LINE__<<endl;
+		m_conn=boost::shared_ptr<MySql>(new MySql(mysql_input.m_mysql_ip.c_str(), mysql_input.m_mysql_username.c_str(), mysql_input.m_mysql_password.c_str(), mysql_input.m_mysql_database.c_str(), mysql_input.m_mysql_port));
+	}
+	update_svn_version_rest(boost::shared_ptr<MySql> conn):m_conn(conn)//,m_mysql_database(mysql_input)
+	{}
+	
+	bool update_version_put(const string& version,const string& url)
+	{
+		return do_update(version,url);	
+	}
+private:
+	bool do_update(const string& version,const string& url)
+	{
+		try
+		{
+			if(version.length()==0||url.length()==0)
+			{
+				return false;
+			}
+			ptime now = second_clock::local_time();
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+
+			string insert_sql = "update t_website set deploy_software_version='"+version+"',deploy_time='"+p4+"' where access_url='"+url+"'";
+			cout << insert_sql << endl;
+			m_conn->runCommand(insert_sql.c_str());
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+			return true;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;//m_conn=nullptr;
+			return "";
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
+	
+private:
+	boost::shared_ptr<MySql> m_conn;
+	//mysql_database m_mysql_database;
+};
 class exchange_rate_rest
 {
 public:
