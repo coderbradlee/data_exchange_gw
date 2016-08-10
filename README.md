@@ -1,6 +1,6 @@
 2016.08.09
 增加写入svn版本的接口
-//curl -u test:test -X PUT http://172.18.100.87:8688/deploy_software_version/?ver=v1.0\&url=http://au.renesola.com/\&database=apollo_os
+//curl -u test:test -X PUT http://172.18.100.87:8688/deploy_software_version/?ver=v1.0\&url=http://au.renesola.com/\&database=apollo_js
 
 2016.08.05 解决172.18.100.87上程序启动时发生signal 27,重新拉取代码并编译
 
