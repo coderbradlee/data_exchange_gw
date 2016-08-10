@@ -372,7 +372,7 @@ void put_exchange_rate_func(const std::shared_ptr< restbed::Session > session)
 }
 void update_svn_version_func(const std::shared_ptr< restbed::Session > session)
 {
-	//curl -u test:test -X GET http://172.18.100.87:8688/deploy_software_version/?ver=$version\&url=$website_url\&database=apollo_os
+	
 	const auto request = session->get_request();
 	string path = request->get_path();
 	auto ret = request->get_query_parameters();
