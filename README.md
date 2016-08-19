@@ -1,3 +1,5 @@
+2016.08.19 更新svn版本到线上，tag exchange_rate_api_depoyv1.9
+
 2016.08.09
 增加写入svn版本的接口
 //curl -u test:test -X PUT http://172.18.100.87:8688/deploy_software_version/?ver=v1.0\&url=http://au.renesola.com/\&database=apollo_js
