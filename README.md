@@ -1,3 +1,8 @@
+2016.10.21
+curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-10-21\&ratio=105\&database=js
+curl -u test:test -X GET http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-10-21\&database=js
+curl -u test:test -X POST http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-10-21\&ratio=105\&database=as
+
 2016.08.19 更新svn版本到线上，tag exchange_rate_api_depoyv1.9
 
 2016.08.09
