@@ -1,3 +1,13 @@
+2016.12.06
+ 更新线上环境，今日美元对日元汇率为112
+curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-12-06\&ratio=112\&database=js
+curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-12-06\&ratio=112\&database=os
+curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-12-06\&ratio=112\&database=as
+curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-12-06\&ratio=112\&database=eu
+
+curl -u test:test -X GET http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-12-06\&database=os
+
+curl -u test:test -X GET http://127.0.0.1:8688/exchange_rate/?source=USD\&target=CNY\&time=2016-12-06\&database=as
 2016.10.21
 curl -u test:test -X PUT http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-10-21\&ratio=105\&database=js
 curl -u test:test -X GET http://127.0.0.1:8688/exchange_rate/?source=USD\&target=JPY\&time=2016-10-21\&database=js
