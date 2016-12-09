@@ -1,35 +1,9 @@
 #pragma once
 
 #include  "include.hpp"
-struct exchage_rate_data
-{
-	string code;//CAD
-	string to_usd_exchange_rate;//0.772558
-	string from_usd_exchange_rate;//0.772558
-	string currency_id;//J4YVQ3USQNO3U430EKE1
-	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-	void print()
-	{	cout<<"{";
-		cout<<code<<":";
-		cout<<to_usd_exchange_rate<<":";//0.772558
-		cout<<from_usd_exchange_rate<<":";//0.772558
-		cout<<currency_id<<":";//J4YVQ3USQNO3U430EKE1
-		cout<<to_usd_exchange_rate_id<<":";//TFTBLZNSNBNAZAZGC2RW
-		cout<<from_usd_exchange_rate_id<<"}";//TFTBLZNSNBNAZAZGC2RW
-		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-	}
-};
 
-class mysql_database
-{
-public:
-	string m_mysql_ip;
-	unsigned short m_mysql_port;
-	string m_mysql_username;
-	string m_mysql_password;
-	string m_mysql_database;
-};
+
+
 class cskutop:public boost::enable_shared_from_this<cskutop>
 {
 	mysql_database m_mysql_database;
