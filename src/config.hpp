@@ -131,7 +131,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_exchange_rate_password;
 		string m_exchange_rate_usd_jpy;
 
-		string m_sku_top10_request_interval;
+		size_t m_sku_top10_request_interval;
 		string m_sku_top10_insert_time;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;

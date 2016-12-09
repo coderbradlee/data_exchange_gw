@@ -2,8 +2,6 @@
 
 #include  "include.hpp"
 
-
-
 class cskutop:public boost::enable_shared_from_this<cskutop>
 {
 	mysql_database m_mysql_database;
