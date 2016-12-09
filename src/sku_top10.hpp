@@ -82,20 +82,14 @@ public:
 		}
 		catch (const MySqlException& e)
 		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			start();
 		}
 		catch(std::exception& e)
 		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
-			start();
-		}
-		catch(...)
-		{
-			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << "unknown error";
-			boost_log->get_initsink()->flush();cout<<"unknown error"<<endl;
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 			start();
 		}
 	}
