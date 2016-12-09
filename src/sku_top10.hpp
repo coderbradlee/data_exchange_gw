@@ -66,17 +66,30 @@ public:
 	void handle_wait_method()
 	{
 		cout<<"handle_wait_method"<<":"<<__FILE__<<":"<<__LINE__<<endl;
-    	if(m_conn==nullptr)
-    	{
-    		cout<<__FILE__<<":"<<__LINE__<<endl;
-    		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
-    		cout<<__FILE__<<":"<<__LINE__<<endl;
-    	}
-		get_info_from_myql();
-		
-		m_conn->close();
-		m_conn=nullptr;
-		boost::this_thread::sleep(boost::posix_time::millisec(30000));
+		try
+		{
+	    	if(m_conn==nullptr)
+	    	{
+	    		cout<<__FILE__<<":"<<__LINE__<<endl;
+	    		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
+	    		cout<<__FILE__<<":"<<__LINE__<<endl;
+	    	}
+			get_info_from_myql();
+			
+			m_conn->close();
+			m_conn=nullptr;
+			boost::this_thread::sleep(boost::posix_time::millisec(30000));
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
