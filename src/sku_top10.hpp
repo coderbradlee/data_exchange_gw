@@ -84,11 +84,19 @@ public:
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			start();
+		}
+		catch(...)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << "unknown error";
+			boost_log->get_initsink()->flush();cout<<"unknown error"<<endl;
+			start();
 		}
 	}
 	void handle_wait(const boost::system::error_code& error)  
