@@ -76,6 +76,9 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_mysql_as_username = m_pt.get<std::string>("mysql_as.username");
 			m_mysql_as_password = m_pt.get<std::string>("mysql_as.password");
 			m_mysql_as_database = m_pt.get<std::string>("mysql_as.database");
+			////////////////////////////////////
+			m_sku_top10_request_interval=m_pt.get<size_t>("sku_top10.request_interval");
+			m_sku_top10_insert_time=m_pt.get<std::string>("sku_top10.insert_time");
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -127,6 +130,9 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_exchange_rate_username;
 		string m_exchange_rate_password;
 		string m_exchange_rate_usd_jpy;
+
+		string m_sku_top10_request_interval;
+		string m_sku_top10_insert_time;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
 };
