@@ -80,7 +80,7 @@ public:
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
-    	cout<<"handle_wait"<<__FILE__<<":"<<__LINE__<<endl;
+    	cout<<"handle_wait "<<__FILE__<<":"<<__LINE__<<endl;
         if(!error)  
         {  
         	ptime now = second_clock::local_time();			
@@ -153,12 +153,12 @@ void sku_top10()
 		boost::shared_ptr<cskutop> pas(new cskutop(mysql_as));
 		
 		thread pos_Thread([&pos](){pos->start();});
-		thread pjs_Thread([&pjs](){pjs->start();});
-		thread peu_Thread([&peu](){peu->start();});
-		thread pas_Thread([&pas](){pas->start();});
+		// thread pjs_Thread([&pjs](){pjs->start();});
+		// thread peu_Thread([&peu](){peu->start();});
+		// thread pas_Thread([&pas](){pas->start();});
 		pos_Thread.join();
-		pjs_Thread.join();
-		peu_Thread.join();
-		pas_Thread.join();
-}
+// 		pjs_Thread.join();
+// 		peu_Thread.join();
+// 		pas_Thread.join();
+// }
 
