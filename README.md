@@ -1,5 +1,6 @@
 2016.12.09
 增加统计sku top10功能
+每晚根据当天新增 SalesOrder 更新 t_sales_statistic（销售统计表），t_sales_statistic_detail（销售统计明细表）；
 
 2016.12.06
  更新线上环境，今日美元对日元汇率为112
