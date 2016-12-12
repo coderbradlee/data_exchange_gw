@@ -9,51 +9,60 @@ public:
 	cskutop(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input),m_conn(nullptr)
 	{
 	}
-	
-	void get_info_from_myql()
+private:
+	bool get_sales_order()
 	{
 		try
 		{
-		typedef tuple<unique_ptr<string>, unique_ptr<string>> t_currency_tuple;
-		//select code,currency_id from t_currency
-			//typedef tuple<string,double> credit_tuple;
-			std::vector<t_currency_tuple> t_currency_tuple_vector;
-			string query_sql = "select code,currency_id from "+m_mysql_database.m_mysql_database + ".t_currency";
+			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order";
 			cout << query_sql << endl;
-			m_conn->runQuery(&t_currency_tuple_vector, query_sql.c_str());
+			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			boost_log->get_initsink()->flush();
 			
-			if(t_currency_tuple_vector.empty())
+			if(m_sales_order_vector.empty())
 			{
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
 				boost_log->get_initsink()->flush();
 				cout<<"nothing select from t_currency"<<endl;
-				return;
+				return false;
 			}
-			for (const auto& item : t_currency_tuple_vector)
-			{
-				if(*(std::get<0>(item))=="USD")
-				{
-					m_usd_info.code="USD";
-					m_usd_info.currency_id=*(std::get<1>(item));
-					cout<<m_usd_info.code<<":"<<m_usd_info.currency_id<<":"<<__FILE__<<":"<<__LINE__<<endl;
-				}			
-			}
+			return true;
 		}
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return false;
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return false;
 		}
 	}
-	
+	void get_sales_order_detail()
+	{
+		for(const auto& i : m_sales_order_vector)
+		{
+			get_sales_order_detail(*(std::get<0>(i)),*(std::get<1>(i))) ;
+		}
+	}
+	void get_sales_order_detail(const string& sales_order_id,const string& company_id)
+	{
+		std::cout<<sales_order_id<<":"<<company_id<<std::endl;
+	}
+	void update_sales_statistics()
+	{
+
+	}
+	void update_sales_statistics_detail()
+	{
+
+	}
+public:	
 	void start()
 	{
 		m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_sku_top10_request_interval));
@@ -61,6 +70,7 @@ public:
 	    m_d_t.async_wait(boost::bind(&cskutop::handle_wait, shared_from_this(), boost::asio::placeholders::error));  
 		m_io_s.run();
 	}
+private:
 	void handle_wait_method()
 	{
 		cout<<"handle_wait_method"<<":"<<__FILE__<<":"<<__LINE__<<endl;
@@ -72,7 +82,12 @@ public:
 	    		m_conn=boost::shared_ptr<MySql>(new MySql(m_mysql_database.m_mysql_ip.c_str(), m_mysql_database.m_mysql_username.c_str(), m_mysql_database.m_mysql_password.c_str(), m_mysql_database.m_mysql_database.c_str(), m_mysql_database.m_mysql_port));
 	    		cout<<__FILE__<<":"<<__LINE__<<endl;
 	    	}
-			get_info_from_myql();
+			if(get_sales_order())
+			{
+				get_sales_order_detail();
+				update_sales_statistics();
+				update_sales_statistics_detail();
+			}
 			
 			m_conn->close();
 			m_conn=nullptr;
@@ -122,10 +137,11 @@ private:
 	std::stringstream m_ss;
 	boost::asio::io_service m_io_s;  
 	deadline_timer m_d_t;
-	std::vector<exchage_rate_data> m_exchage_rate_data_array;
-	exchage_rate_data m_usd_info;
-	vector<general_rate_data> m_general_rate_data;
-
+	typedef tuple<
+			unique_ptr<string>, 
+			unique_ptr<string>,
+			>m_sales_order;
+	std::vector<m_sales_order> m_sales_order_vector;
 };
 
 void sku_top10()
