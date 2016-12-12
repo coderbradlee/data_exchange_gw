@@ -59,7 +59,7 @@ private:
 		{
 			get_sales_order_detail(*(std::get<0>(i))) ;
 			cout<<m_sales_order_detail_vector.size()<<endl;
-			update_sales_statistics();
+			update_sales_statistics(*(std::get<1>(i)));
 			update_sales_statistics_detail();
 			m_sales_order_detail_vector.clear();
 		}
@@ -171,8 +171,8 @@ private:
 			if(get_sales_order())
 			{
 				get_sales_order_detail();
-				update_sales_statistics();
-				update_sales_statistics_detail();
+				// update_sales_statistics();
+				// update_sales_statistics_detail();
 			}
 			
 			m_conn->close();
