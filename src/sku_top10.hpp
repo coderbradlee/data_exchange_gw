@@ -53,12 +53,26 @@ private:
 			return false;
 		}
 	}
+	void sort_item_master()
+	{
+		for(const auto& i:m_sales_order_detail)
+		{
+			string item_master_id=*(std::get<0>(i));
+			int quantity=*(std::get<3>(i));
+			if(m_item_master.find(item_master_id)!=m_item_master.end())
+				m_item_master[item_master_id]+=quantity;
+			else
+				m_item_master[item_master_id]=quantity;
+		}
+		
+	}
 	void get_sales_order_detail()
 	{
 		for(const auto& i : m_sales_order_vector)
 		{
 			get_sales_order_detail(*(std::get<0>(i))) ;
 			cout<<m_sales_order_detail_vector.size()<<endl;
+			sort_item_master();
 			update_sales_statistics(*(std::get<1>(i)));
 			update_sales_statistics_detail();
 			m_sales_order_detail_vector.clear();
@@ -83,6 +97,7 @@ private:
 				cout<<"nothing select from t_currency"<<endl;
 				return false;
 			}
+
 			return true;
 		}
 		catch (const MySqlException& e)
@@ -122,6 +137,7 @@ private:
 	{
 		try
 		{
+			//需要用map保存一份数据，以item_master_id为键值，以quantity累加和排序
 			for(const auto& i:m_sales_order_detail_vector)
 			{
 				string product_category_id=get_product_category_id(*(std::get<0>(i)),company_id);
@@ -232,9 +248,10 @@ private:
 			unique_ptr<string>, //item_master_id
 			unique_ptr<string>, //unit_price
 			unique_ptr<string>, //uom_id
-			unique_ptr<string> //quantity
+			unique_ptr<int> //quantity
 			>m_sales_order_detail;
 	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
+	std::map<string,int,[](){return }> m_item_master;
 };
 
 void sku_top10()
