@@ -139,7 +139,7 @@ private:
 	deadline_timer m_d_t;
 	typedef tuple<
 			unique_ptr<string>, 
-			unique_ptr<string>,
+			unique_ptr<string>
 			>m_sales_order;
 	std::vector<m_sales_order> m_sales_order_vector;
 };
