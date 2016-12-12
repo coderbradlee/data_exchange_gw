@@ -47,11 +47,14 @@ private:
 	{
 		for(const auto& i : m_sales_order_vector)
 		{
-			get_sales_order_detail(*(std::get<0>(i)),*(std::get<1>(i))) ;
+			get_sales_order_detail(*(std::get<0>(i))) ;
 			cout<<m_sales_order_detail_vector.size()<<endl;
+			update_sales_statistics();
+			update_sales_statistics_detail();
+			m_sales_order_detail_vector.clear();
 		}
 	}
-	bool get_sales_order_detail(const string& sales_order_id,const string& company_id)
+	bool get_sales_order_detail(const string& sales_order_id)
 	{
 		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
 		try
