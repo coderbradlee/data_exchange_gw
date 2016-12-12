@@ -116,7 +116,7 @@ private:
 				}
 			}
 		}
-		
+		return "";
 	}
 	void update_sales_statistics(const string& company_id)
 	{
@@ -125,7 +125,7 @@ private:
 			for(const auto& i:m_sales_order_detail_vector)
 			{
 				string product_category_id=get_product_category_id(*(std::get<0>(i)),company_id);
-				cout<<product_category_id<<endl;
+				cout<<product_category_id<<":"<<__LINE__<<endl;
 				if(product_category_id.empty())
 					return;
 				ptime now = second_clock::local_time();
