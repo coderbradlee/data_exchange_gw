@@ -3,11 +3,11 @@
 #include  "include.hpp"
 string rand_string(int len)
 {
-	string choice="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	string choice="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     string ret;
     for(int i=0;i<len;++i)
     {
-    	ret+=choice[rand()%62];
+    	ret+=choice[rand()%36];
     }
     cout<<ret<<endl;
    return ret;
