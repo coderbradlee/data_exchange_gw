@@ -48,11 +48,36 @@ private:
 		for(const auto& i : m_sales_order_vector)
 		{
 			get_sales_order_detail(*(std::get<0>(i)),*(std::get<1>(i))) ;
+			cout<<m_sales_order_detail_vector.size()<<endl;
 		}
 	}
-	void get_sales_order_detail(const string& sales_order_id,const string& company_id)
+	bool get_sales_order_detail(const string& sales_order_id,const string& company_id)
 	{
-		std::cout<<sales_order_id<<":"<<company_id<<std::endl;
+		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
+		try
+		{
+			string query_sql = "select item_master_id,unit_price,uom_id,quantity from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
+			cout << query_sql << endl;
+			m_conn->runQuery(&m_sales_order_detail_vector, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			
+			if(m_sales_order_detail_vector.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_currency"<<endl;
+				return false;
+			}
+			return true;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return false;
+		}
 	}
 	void update_sales_statistics()
 	{
@@ -138,10 +163,17 @@ private:
 	boost::asio::io_service m_io_s;  
 	deadline_timer m_d_t;
 	typedef tuple<
-			unique_ptr<string>, 
-			unique_ptr<string>
+			unique_ptr<string>, //sales_order_id
+			unique_ptr<string> //company_id
 			>m_sales_order;
 	std::vector<m_sales_order> m_sales_order_vector;
+	typedef tuple<
+			unique_ptr<string>, //item_master_id
+			unique_ptr<string>, //unit_price
+			unique_ptr<string>, //uom_id
+			unique_ptr<string> //quantity
+			>m_sales_order_detail;
+	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
 };
 
 void sku_top10()
