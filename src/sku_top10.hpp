@@ -124,7 +124,7 @@ private:
 		{
 			for(const auto& i:m_sales_order_detail_vector)
 			{
-				string product_category_id=get_product_category_id(*(std::get<0>(i),company_id);
+				string product_category_id=get_product_category_id(*(std::get<0>(i)),company_id);
 				cout<<product_category_id<<endl;
 				if(product_category_id.empty())
 					return;
