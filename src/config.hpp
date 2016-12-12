@@ -77,6 +77,12 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_mysql_as_password = m_pt.get<std::string>("mysql_as.password");
 			m_mysql_as_database = m_pt.get<std::string>("mysql_as.database");
 			////////////////////////////////////
+			m_mysql_eu_erp_ip = m_pt.get<std::string>("mysql_eu_erp.ip");
+			m_mysql_eu_erp_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_eu_erp.port"));
+			m_mysql_eu_erp_username = m_pt.get<std::string>("mysql_eu_erp.username");
+			m_mysql_eu_erp_password = m_pt.get<std::string>("mysql_eu_erp.password");
+			m_mysql_eu_erp_database = m_pt.get<std::string>("mysql_eu_erp.database");
+			////////////////////////////////////
 			m_sku_top10_request_interval=m_pt.get<size_t>("sku_top10.request_interval");
 			m_sku_top10_insert_time=m_pt.get<std::string>("sku_top10.insert_time");
 		}
@@ -105,6 +111,12 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_mysql_as_username;
 		string m_mysql_as_password;
 		string m_mysql_as_database;
+		//////////////////////////
+		string m_mysql_eu_erp_ip;
+		unsigned short m_mysql_eu_erp_port;
+		string m_mysql_eu_erp_username;
+		string m_mysql_eu_erp_password;
+		string m_mysql_eu_erp_database;
 		//////////////////////////
 		string m_mysql_table;
 		string m_mysql_table2;

@@ -130,46 +130,55 @@ private:
 
 void sku_top10()
 {
-		mysql_database mysql_os;
-		mysql_os.m_mysql_ip=get_config->m_mysql_ip;
-		mysql_os.m_mysql_port=get_config->m_mysql_port;
-		mysql_os.m_mysql_username=get_config->m_mysql_username;
-		mysql_os.m_mysql_password=get_config->m_mysql_password;
-		mysql_os.m_mysql_database=get_config->m_mysql_database;
+		// mysql_database mysql_os;
+		// mysql_os.m_mysql_ip=get_config->m_mysql_ip;
+		// mysql_os.m_mysql_port=get_config->m_mysql_port;
+		// mysql_os.m_mysql_username=get_config->m_mysql_username;
+		// mysql_os.m_mysql_password=get_config->m_mysql_password;
+		// mysql_os.m_mysql_database=get_config->m_mysql_database;
 
-		mysql_database mysql_js;
-		mysql_js.m_mysql_ip=get_config->m_mysql_js_ip;
-		mysql_js.m_mysql_port=get_config->m_mysql_js_port;
-		mysql_js.m_mysql_username=get_config->m_mysql_js_username;
-		mysql_js.m_mysql_password=get_config->m_mysql_js_password;
-		mysql_js.m_mysql_database=get_config->m_mysql_js_database;
+		// mysql_database mysql_js;
+		// mysql_js.m_mysql_ip=get_config->m_mysql_js_ip;
+		// mysql_js.m_mysql_port=get_config->m_mysql_js_port;
+		// mysql_js.m_mysql_username=get_config->m_mysql_js_username;
+		// mysql_js.m_mysql_password=get_config->m_mysql_js_password;
+		// mysql_js.m_mysql_database=get_config->m_mysql_js_database;
 
-		mysql_database mysql_eu;
-		mysql_eu.m_mysql_ip=get_config->m_mysql_eu_ip;
-		mysql_eu.m_mysql_port=get_config->m_mysql_eu_port;
-		mysql_eu.m_mysql_username=get_config->m_mysql_eu_username;
-		mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
-		mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
+		// mysql_database mysql_eu;
+		// mysql_eu.m_mysql_ip=get_config->m_mysql_eu_ip;
+		// mysql_eu.m_mysql_port=get_config->m_mysql_eu_port;
+		// mysql_eu.m_mysql_username=get_config->m_mysql_eu_username;
+		// mysql_eu.m_mysql_password=get_config->m_mysql_eu_password;
+		// mysql_eu.m_mysql_database=get_config->m_mysql_eu_database;
 
-		mysql_database mysql_as;
-		mysql_as.m_mysql_ip=get_config->m_mysql_as_ip;
-		mysql_as.m_mysql_port=get_config->m_mysql_as_port;
-		mysql_as.m_mysql_username=get_config->m_mysql_as_username;
-		mysql_as.m_mysql_password=get_config->m_mysql_as_password;
-		mysql_as.m_mysql_database=get_config->m_mysql_as_database;
-
-		boost::shared_ptr<cskutop> pos(new cskutop(mysql_os));
-		boost::shared_ptr<cskutop> pjs(new cskutop(mysql_js));
-		boost::shared_ptr<cskutop> peu(new cskutop(mysql_eu));
-		boost::shared_ptr<cskutop> pas(new cskutop(mysql_as));
+		// mysql_database mysql_as;
+		// mysql_as.m_mysql_ip=get_config->m_mysql_as_ip;
+		// mysql_as.m_mysql_port=get_config->m_mysql_as_port;
+		// mysql_as.m_mysql_username=get_config->m_mysql_as_username;
+		// mysql_as.m_mysql_password=get_config->m_mysql_as_password;
+		// mysql_as.m_mysql_database=get_config->m_mysql_as_database;
 		
-		thread pos_Thread([&pos](){pos->start();});
+		mysql_database mysql_eu_erp;
+		mysql_eu_erp.m_mysql_ip=get_config->m_mysql_eu_erp_ip;
+		mysql_eu_erp.m_mysql_port=get_config->m_mysql_eu_erp_port;
+		mysql_eu_erp.m_mysql_username=get_config->m_mysql_eu_erp_username;
+		mysql_eu_erp.m_mysql_password=get_config->m_mysql_eu_erp_password;
+		mysql_eu_erp.m_mysql_database=get_config->m_mysql_eu_erp_database;
+
+		// boost::shared_ptr<cskutop> pos(new cskutop(mysql_os));
+		// boost::shared_ptr<cskutop> pjs(new cskutop(mysql_js));
+		// boost::shared_ptr<cskutop> peu(new cskutop(mysql_eu));
+		// boost::shared_ptr<cskutop> pas(new cskutop(mysql_as));
+		boost::shared_ptr<cskutop> perp(new cskutop(mysql_eu_erp));
+		// thread pos_Thread([&pos](){pos->start();});
 		// thread pjs_Thread([&pjs](){pjs->start();});
 		// thread peu_Thread([&peu](){peu->start();});
 		// thread pas_Thread([&pas](){pas->start();});
-		pos_Thread.join();
+		thread perp_Thread([&perp](){perp->start();});
+		// pos_Thread.join();
 // 		pjs_Thread.join();
 // 		peu_Thread.join();
 // 		pas_Thread.join();
+		perp_Thread.join();
 }
 
