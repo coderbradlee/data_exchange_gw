@@ -92,18 +92,51 @@ private:
 			return false;
 		}
 	}
-	void update_sales_statistics()
+	string get_product_category_id(const string& item_master_id,const string& company_id)
+	{
+		typedef tuple<
+			unique_ptr<string>
+			>anyonestring;
+		std::vector<anyonestring> one_string_vector;
+		string query_string="select item_basic_id from t_item_master where item_master_id='"+item_master_id+"' and company_id='"+company_id+"'";
+		m_conn->runQuery(&one_string_vector, query_string.c_str());
+		if(one_string_vector.size()>0)
+		{
+			query_string="select item_category_id from t_item_basic where item_basic_id='"+*(std::get<0>(one_string_vector[0]))+"'";
+			one_string_vector.clear();
+			m_conn->runQuery(&one_string_vector, query_string.c_str());
+			if(one_string_vector.size()>0)
+			{
+				query_string="select product_category_id from t_product_category_item_category_link where item_category_id='"+*(std::get<0>(one_string_vector[0]))+"'";
+				one_string_vector.clear();
+				m_conn->runQuery(&one_string_vector, query_string.c_str());
+				if(one_string_vector.size()>0)
+				{
+					return *(std::get<0>(one_string_vector[0]));
+				}
+			}
+		}
+		
+	}
+	void update_sales_statistics(const string& company_id)
 	{
 		try
 		{
-			ptime now = second_clock::local_time();
-			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-
-			string insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,updateAt,updateBy,dr,data_version)values("+rand_string(20)+",'"+"source_currency_id"+"','"+"target_currency_id"+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
-			cout << insert_sql << endl;
-			//m_conn->runCommand(insert_sql.c_str());
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
-			boost_log->get_initsink()->flush();
+			for(const auto& i:m_sales_order_detail_vector)
+			{
+				string product_category_id=get_product_category_id(*(std::get<0>(i),company_id);
+				cout<<product_category_id<<endl;
+				if(product_category_id.empty())
+					return;
+				ptime now = second_clock::local_time();
+				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+	
+				string insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,updateAt,updateBy,dr,data_version)values("+rand_string(20)+","+company_id+","+product_category_id+","+*(std::get<0>(i)+",'"+"source_currency_id"+"','"+"target_currency_id"+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
+				//cout << insert_sql << endl;
+				//m_conn->runCommand(insert_sql.c_str());
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+				//boost_log->get_initsink()->flush();
+			}
 		}
 		catch (const MySqlException& e)
 		{
