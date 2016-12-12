@@ -1,7 +1,17 @@
 #pragma once
 
 #include  "include.hpp"
-
+string rand_string(int len)
+{
+	string choice="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    string ret;
+    for(int i=0;i<len;++i)
+    {
+    	ret+=choice[rand()%62];
+    }
+    cout<<ret<<endl;
+   return ret;
+}
 class cskutop:public boost::enable_shared_from_this<cskutop>
 {
 	mysql_database m_mysql_database;
@@ -84,7 +94,22 @@ private:
 	}
 	void update_sales_statistics()
 	{
+		try
+		{
+			ptime now = second_clock::local_time();
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
+			string insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,updateAt,updateBy,dr,data_version)values("+rand_string(20)+",'"+source_currency_id+"','"+target_currency_id+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
+			cout << insert_sql << endl;
+			//m_conn->runCommand(insert_sql.c_str());
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
+			boost_log->get_initsink()->flush();
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
 	}
 	void update_sales_statistics_detail()
 	{
