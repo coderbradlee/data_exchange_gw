@@ -66,7 +66,7 @@ private:
 			for(const auto& j:i.second)
 			{
 				string item_master_id=*(std::get<1>(j));
-				int quantity=*(std::get<5>(j));
+				int quantity=*(std::get<4>(j));
 				//cout<<i.first<<":"<<<<<<endl;
 				if(item_master_quantity.find(item_master_id)!=item_master_quantity.end())
 				{
