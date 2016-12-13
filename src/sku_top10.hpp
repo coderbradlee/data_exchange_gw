@@ -206,7 +206,8 @@ private:
 			{
 				return false;
 			}
-			ret=*(std::get<0>(users[0]));
+			ret=std::get<0>(users[0]);
+			// *(std::get<0>(one_string_vector[0]))
 			return true;
 		}
 		catch (const MySqlException& e)
