@@ -94,7 +94,7 @@ private:
 		sort(item_master_vector.begin(),item_master_vector.end(),cmp_by_value());
 		if(item_master_vector.size()>10)
 		{
-			item_master_vector.erase(item_master_vector.begin()+10);
+			item_master_vector.erase(item_master_vector.begin()+10,item_master_vector.end());
 		}
 		m_all_sorted[company_id]=item_master_vector;
 	}
