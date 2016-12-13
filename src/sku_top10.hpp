@@ -57,8 +57,8 @@ private:
 	{
 		for(const auto& i:m_sales_order_detail_vector)
 		{
-			string item_master_id=*(std::get<0>(i));
-			int quantity=*(std::get<3>(i));
+			string item_master_id=*(std::get<1>(i));
+			int quantity=*(std::get<4>(i));
 			if(m_item_master.find(item_master_id)!=m_item_master.end())
 				m_item_master[item_master_id]+=quantity;
 			else
@@ -95,7 +95,6 @@ private:
 		//sort_item_master();
 		for(const auto& i:m_all)
 		{
-			
 			for(const auto& j:i.second)
 			{
 				cout<<i.first<<":"<<*(std::get<0>(j))<<*(std::get<1>(j))<<endl;
