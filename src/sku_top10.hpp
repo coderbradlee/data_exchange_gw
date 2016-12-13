@@ -67,7 +67,7 @@ private:
 		}
 		for(const auto& i:m_item_master)
 		{
-			cout<<i.first<<":"<<i.second<<" ";
+			cout<<i.first<<":"<<i.second<<endl;
 		}
 		cout<<endl;
 	}
