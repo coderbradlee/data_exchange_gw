@@ -221,7 +221,7 @@ private:
 				string insert_sql;
 				if(is_exist(company_id,i.first))
 				{
-					insert_sql = "update t_sales_statistics set updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+sort_no+", where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
+					insert_sql = "update t_sales_statistics set updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+", where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
 				}
 				else
 				{
