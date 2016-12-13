@@ -108,7 +108,7 @@ private:
 		item_master_sum();
 		for(const auto& i:m_all_sorted)
 		{
-			for(const auto& j:i)
+			for(const auto& j:i.second)
 			{
 				cout<<i.first<<":"<<j.first<<":"<<j.second<<endl;
 			}
