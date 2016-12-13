@@ -252,8 +252,8 @@ private:
 					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+rand_string(20)+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
 				
-				cout << insert_sql << endl;
-				//m_conn->runCommand(insert_sql.c_str());
+				//cout << insert_sql << endl;
+				m_conn->runCommand(insert_sql.c_str());
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				//boost_log->get_initsink()->flush();
 				++sort_no;
