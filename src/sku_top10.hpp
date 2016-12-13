@@ -119,7 +119,7 @@ private:
 		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
 		try
 		{
-			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
+			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity,sales_order_detail_id from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&m_all[company_id], query_sql.c_str());
 
@@ -192,13 +192,13 @@ private:
 		}
 		return "";
 	}
-	bool is_exist(const string& company_id,const string& item_master_id)
+	bool is_exist(const string& company_id,const string& item_master_id,string ret)
 	{
 		try
 		{
 			typedef tuple<string> userTuple;
 		    vector<userTuple> users;
-			string query_sql = "select company_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and item_master_id='"+item_master_id+"'";
+			string query_sql = "select sales_statistics_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and item_master_id='"+item_master_id+"'";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&users, query_sql.c_str());
 
@@ -206,7 +206,7 @@ private:
 			{
 				return false;
 			}
-
+			ret=*(std::get<0>(users[0]));
 			return true;
 		}
 		catch (const MySqlException& e)
@@ -225,7 +225,8 @@ private:
 			// unique_ptr<string>, //item_master_id
 			// unique_ptr<string>, //unit_price
 			// unique_ptr<string>, //uom_id
-			// unique_ptr<int> //quantity
+			// unique_ptr<int>, //quantity
+			// unique_ptr<string>, //sales_order_detail_id
 			// >m_sales_order_detail;
 			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 			// std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
@@ -242,14 +243,21 @@ private:
 				ptime now = second_clock::local_time();
 				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 				string start_time=p4.substr(0,4)+"-01-01 00:00:00";
-				string insert_sql;
-				if(is_exist(company_id,i.first))
+				string insert_sql,insert_statistics_detail;
+				string sales_statistics_id;
+				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
+					cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
 					insert_sql = "update t_sales_statistics set updateBy='data_exchange_gw',updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+" where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
+					//insert_statistics_detail="insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
 				else
 				{
-					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+rand_string(20)+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
+					sales_statistics_id=rand_string(20);
+					string sales_statistics_detail_id=rand_string(20);
+					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
+
+					//insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
 				
 				//cout << insert_sql << endl;
@@ -353,7 +361,8 @@ private:
 			unique_ptr<string>, //item_master_id
 			unique_ptr<string>, //unit_price
 			unique_ptr<string>, //uom_id
-			unique_ptr<int> //quantity
+			unique_ptr<int>, //quantity
+			unique_ptr<string>//sales_order_detail_id
 			>m_sales_order_detail;
 	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
 	
@@ -366,6 +375,8 @@ private:
   	};
 	std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 	std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
+	std::map<string,std::vector<string>> m_item_master_order_detail_id;
+	//map<item_master_id,vector<sales_order>>
 };
 
 void sku_top10()
