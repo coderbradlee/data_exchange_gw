@@ -53,7 +53,7 @@ private:
 			return false;
 		}
 	}
-	void sort_item_master()
+	void item_master_sum()
 	{
 		for(const auto& i:m_sales_order_detail_vector)
 		{
@@ -64,6 +64,10 @@ private:
 			else
 				m_item_master[item_master_id]=quantity;	
 		}
+		
+	}
+	void sort_item_master()
+	{
 		for(const auto& i:m_item_master)
 		{
 			//cout<<i.first<<":"<<i.second<<endl;
@@ -83,7 +87,7 @@ private:
 		{
 			get_sales_order_detail(*(std::get<0>(i))) ;
 			cout<<m_sales_order_detail_vector.size()<<endl;
-			
+			item_master_sum();
 			// update_sales_statistics(*(std::get<1>(i)));
 			// update_sales_statistics_detail();
 			m_sales_order_detail_vector.clear();
@@ -100,7 +104,7 @@ private:
 			m_conn->runQuery(&m_sales_order_detail_vector, query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			boost_log->get_initsink()->flush();
+			//boost_log->get_initsink()->flush();
 			
 			if(m_sales_order_detail_vector.empty())
 			{
