@@ -246,16 +246,17 @@ private:
 				string start_time=p4.substr(0,4)+"-01-01 00:00:00";
 				string insert_sql,insert_statistics_detail;
 				string sales_statistics_id;
+				
 				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
 					cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
 					insert_sql = "update t_sales_statistics set updateBy='data_exchange_gw',updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+" where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
-					//insert_statistics_detail="insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
+					// insert_statistics_detail="insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
 				else
 				{
 					sales_statistics_id=rand_string(20);
-					string sales_statistics_detail_id=rand_string(20);
+					
 					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 
 					//insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
@@ -263,6 +264,7 @@ private:
 				
 				//cout << insert_sql << endl;
 				m_conn->runCommand(insert_sql.c_str());
+				update_sales_statistics_detail(company_id,sales_statistics_id,i.first);
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				//boost_log->get_initsink()->flush();
 				++sort_no;
@@ -274,9 +276,86 @@ private:
 			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
 		}
 	}
-	void update_sales_statistics_detail()
+	string get_sales_id(const string& sales_order_id)
+	{
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select sales_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where sales_order_id='"+sales_order_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return "";
+			}
+			return std::get<0>(users[0]);
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
+	string get_owner_sales_id()
 	{
 
+	}
+	string get_customer_master_id(const string& sales_order_id)
+	{
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select customer_master_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where sales_order_id='"+sales_order_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return "";
+			}
+			return std::get<0>(users[0]);
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
+	void update_sales_statistics_detail(
+		const string& company_id,
+		const string& sales_statistics_id,
+		const string& item_master_id)
+	{
+		// typedef tuple<
+			// unique_ptr<string>, //sales_order_id
+			// unique_ptr<string>, //item_master_id
+			// unique_ptr<string>, //unit_price
+			// unique_ptr<string>, //uom_id
+			// unique_ptr<int>, //quantity
+			// unique_ptr<string>, //sales_order_detail_id
+			// >m_sales_order_detail;
+			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
+		string sales_statistics_detail_id=rand_string(20);
+		for(const auto& i:m_all[company_id])
+		{
+			if(*(std::get<1>(i))==item_master_id)
+			{
+				string sales_order_id=*(std::get<0>(i));
+				string unit_price=*(std::get<2>(i));
+				string sales_order_quantity=boost::lexical_cast<std::string>(*(std::get<4>(i)));
+				string sales_id=get_sales_id(sales_order_id);
+				string owner_sales_id=get_owner_sales_id();
+				string customer_master_id=get_customer_master_id(sales_order_id);
+				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
+				cout<<insert_statistics_detail<<":"<<__LINE__<<endl;
+			}
+		}
+		
 	}
 public:	
 	void start()
