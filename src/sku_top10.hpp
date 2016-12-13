@@ -273,7 +273,7 @@ private:
   	{
   		bool operator()(const PAIR& lhs, const PAIR& rhs) 
   		{  
-		  return lhs.second < rhs.second;  
+		  return lhs.second > rhs.second;  
 		}
   	};
 	std::map<string,int> m_item_master;
