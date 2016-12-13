@@ -258,10 +258,13 @@ private:
 	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
 	typedef pair<string, int> PAIR;  
   
-	bool cmp_by_value(const PAIR& lhs, const PAIR& rhs) 
-	{  
-	  return lhs.second < rhs.second;  
-	}
+  	struct cmp_by_value
+  	{
+  		bool operator()(const PAIR& lhs, const PAIR& rhs) 
+  		{  
+		  return lhs.second < rhs.second;  
+		}
+  	};
 	std::set<PAIR,cmp_by_value> m_item_master;
 };
 
