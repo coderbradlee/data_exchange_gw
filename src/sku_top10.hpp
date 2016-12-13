@@ -64,7 +64,11 @@ private:
 			else
 				m_item_master[item_master_id]=quantity;	
 		}
-		m_item_master_vector(m_item_master.begin(),m_item_master.end());
+		for(const auto& i:m_item_master)
+		{
+			m_item_master_vector.insert(pair<string,int>(i.first,i.second));
+		}
+		
 		sort(m_item_master_vector.begin(),m_item_master_vector.end(),cmp_by_value);
 		for(const auto& i:m_item_master_vector)
 		{
