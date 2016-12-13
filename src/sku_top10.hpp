@@ -66,13 +66,14 @@ private:
 		}
 		for(const auto& i:m_item_master)
 		{
+			cout<<i.first<<":"<<i.second<<endl;
 			m_item_master_vector.push_back(pair<string,int>(i.first,i.second));
 		}
 		
 		sort(m_item_master_vector.begin(),m_item_master_vector.end(),cmp_by_value());
 		for(const auto& i:m_item_master_vector)
 		{
-			cout<<i.first<<":"<<i.second<<endl;
+			//cout<<i.first<<":"<<i.second<<endl;
 		}
 		cout<<endl;
 	}
