@@ -271,6 +271,7 @@ private:
 			>m_sales_order;
 	std::vector<m_sales_order> m_sales_order_vector;
 	typedef tuple<
+			unique_ptr<string>, //sales_order_id
 			unique_ptr<string>, //item_master_id
 			unique_ptr<string>, //unit_price
 			unique_ptr<string>, //uom_id
