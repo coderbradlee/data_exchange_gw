@@ -192,6 +192,30 @@ private:
 		}
 		return "";
 	}
+	bool is_exist(const string& company_id,const string& item_master_id)
+	{
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and item_master_id='"+item_master_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return false;
+			}
+
+			return true;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return false;
+		}
+	}
 	void update_sales_statistics(const string& company_id)
 	{
 		try
