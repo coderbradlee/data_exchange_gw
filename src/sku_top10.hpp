@@ -63,7 +63,7 @@ private:
 			// 	m_item_master[item_master_id]+=quantity;
 			// else
 			// 	m_item_master[item_master_id]=quantity;
-			m_item_master.insert(std::pair(item_master_id,quantity));
+			m_item_master.insert(std::pair<string,int>(item_master_id,quantity));
 		}
 		for(const auto& i:m_item_master)
 		{
