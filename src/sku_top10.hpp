@@ -92,6 +92,10 @@ private:
 		}
 		
 		sort(item_master_vector.begin(),item_master_vector.end(),cmp_by_value());
+		if(item_master_vector.size()>10)
+		{
+			item_master_vector.erase(item_master_vector.begin()+10);
+		}
 		m_all_sorted[company_id]=item_master_vector;
 	}
 	void get_sales_order_detail()
@@ -106,13 +110,7 @@ private:
 			//m_sales_order_detail_vector.clear();
 		}
 		item_master_sum();
-		for(const auto& i:m_all_sorted)
-		{
-			for(const auto& j:i.second)
-			{
-				cout<<i.first<<":"<<j.first<<":"<<j.second<<endl;
-			}
-		}
+		
 	}
 	bool get_sales_order_detail(
 		const string& sales_order_id,
@@ -171,25 +169,61 @@ private:
 		}
 		return "";
 	}
+	void update_sales_statistics()
+	{
+		for(const auto& i:m_all_sorted)
+		{
+			// for(const auto& j:i.second)
+			// {
+			// 	cout<<i.first<<":"<<j.first<<":"<<j.second<<endl;
+			// }
+			update_sales_statistics(i.first);
+
+		}
+	}
+	string get_sales_uom_id(const vector<m_sales_order_detail>& sorted_detail,const string& item_master_id)
+	{
+		for(const auto& i:sorted_detail)
+		{
+			if(item_master_id==*(std::get<1>(i)))
+			{
+				return *(std::get<3>(i));
+			}
+		}
+		return "";
+	}
 	void update_sales_statistics(const string& company_id)
 	{
 		try
 		{
-			//需要用map保存一份数据，以item_master_id为键值，以quantity累加和排序
-			for(const auto& i:m_sales_order_detail_vector)
+			// typedef tuple<
+			// unique_ptr<string>, //sales_order_id
+			// unique_ptr<string>, //item_master_id
+			// unique_ptr<string>, //unit_price
+			// unique_ptr<string>, //uom_id
+			// unique_ptr<int> //quantity
+			// >m_sales_order_detail;
+			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
+			// std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
+			vector<pair<string,int>> sorted=m_all_sorted[company_id];
+			vector<m_sales_order_detail> sorted_detail=m_all[company_id];
+			int sort_no=1;
+			for(const auto& i:sorted)
 			{
-				string product_category_id=get_product_category_id(*(std::get<0>(i)),company_id);
+				string product_category_id=get_product_category_id(i.first,company_id);
 				cout<<product_category_id<<":"<<__LINE__<<endl;
 				if(product_category_id.empty())
-					return;
+					continue;
+				string sales_uom_id=get_sales_uom_id(sorted_detail,i.first);
 				ptime now = second_clock::local_time();
 				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 	
-				string insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,updateAt,updateBy,dr,data_version)values("+rand_string(20)+","+company_id+","+product_category_id+","+*(std::get<0>(i))+",'"+"source_currency_id"+"','"+"target_currency_id"+"',0,7,0,'"+p4+"','','"+p4+"','',0,1)";
-				//cout << insert_sql << endl;
+				string insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+rand_string(20)+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+i.second+",'"+sales_uom_id+"','"+p4+"','"+p4+"','"+p4+"',"+sort_no+"'"+p4+"','data_exchange_gw',0,1)";
+				cout << insert_sql << endl;
 				//m_conn->runCommand(insert_sql.c_str());
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<insert_sql<<":"<<__FILE__<<":"<<__LINE__;
 				//boost_log->get_initsink()->flush();
+				++sort_no;
 			}
 		}
 		catch (const MySqlException& e)
@@ -225,7 +259,7 @@ private:
 			if(get_sales_order())
 			{
 				get_sales_order_detail();
-				// update_sales_statistics();
+				update_sales_statistics();
 				// update_sales_statistics_detail();
 			}
 			
