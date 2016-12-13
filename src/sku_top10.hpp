@@ -64,7 +64,11 @@ private:
 			else
 				m_item_master[item_master_id]=quantity;
 		}
-		
+		for(const auto& i:m_item_master)
+		{
+			cout<<i.fisrt<<":"<<i.second<<" ";
+		}
+		cout<<endl;
 	}
 	void get_sales_order_detail()
 	{
@@ -73,8 +77,8 @@ private:
 			get_sales_order_detail(*(std::get<0>(i))) ;
 			cout<<m_sales_order_detail_vector.size()<<endl;
 			sort_item_master();
-			update_sales_statistics(*(std::get<1>(i)));
-			update_sales_statistics_detail();
+			// update_sales_statistics(*(std::get<1>(i)));
+			// update_sales_statistics_detail();
 			m_sales_order_detail_vector.clear();
 		}
 	}
@@ -251,7 +255,13 @@ private:
 			unique_ptr<int> //quantity
 			>m_sales_order_detail;
 	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
-	std::map<string,int,[](){return }> m_item_master;
+	typedef pair<string, int> PAIR;  
+  
+	bool cmp_by_value(const PAIR& lhs, const PAIR& rhs) 
+	{  
+	  return lhs.second < rhs.second;  
+	}
+	std::map<string,int,cmp_by_value> m_item_master;
 };
 
 void sku_top10()
