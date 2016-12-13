@@ -85,28 +85,38 @@ private:
 	{
 		for(const auto& i : m_sales_order_vector)
 		{
-			get_sales_order_detail(*(std::get<0>(i))) ;
-			cout<<m_sales_order_detail_vector.size()<<endl;
-			item_master_sum();
+			get_sales_order_detail(*(std::get<0>(i)),*(std::get<1>(i))) ;
+			//cout<<m_sales_order_detail_vector.size()<<endl;
+			//item_master_sum();
 			// update_sales_statistics(*(std::get<1>(i)));
 			// update_sales_statistics_detail();
-			m_sales_order_detail_vector.clear();
+			//m_sales_order_detail_vector.clear();
 		}
-		sort_item_master();
+		//sort_item_master();
+		for(const auto& i:m_all)
+		{
+			
+			for(const auto& j:i.second)
+			{
+				cout<<i.first<<":"<<*(std::get<0>(j))<<*(std::get<1>(j))<<endl;
+			}
+		}
 	}
-	bool get_sales_order_detail(const string& sales_order_id)
+	bool get_sales_order_detail(
+		const string& sales_order_id,
+		const string& company_id)
 	{
 		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
 		try
 		{
-			string query_sql = "select item_master_id,unit_price,uom_id,quantity from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
-			cout << query_sql << endl;
-			m_conn->runQuery(&m_sales_order_detail_vector, query_sql.c_str());
+			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&m_all[company_id], query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			//boost_log->get_initsink()->flush();
 			
-			if(m_sales_order_detail_vector.empty())
+			if(m_all[company_id].empty())
 			{
 				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_currency";
 				boost_log->get_initsink()->flush();
@@ -278,6 +288,7 @@ private:
   	};
 	std::map<string,int> m_item_master;
 	std::vector<PAIR> m_item_master_vector;
+	std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 };
 
 void sku_top10()
