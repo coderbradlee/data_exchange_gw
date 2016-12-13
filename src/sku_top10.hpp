@@ -59,13 +59,14 @@ private:
 		{
 			string item_master_id=*(std::get<0>(i));
 			int quantity=*(std::get<3>(i));
-			// if(m_item_master.find(item_master_id)!=m_item_master.end())
-			// 	m_item_master[item_master_id]+=quantity;
-			// else
-			// 	m_item_master[item_master_id]=quantity;
-			m_item_master.insert(std::pair<string,int>(item_master_id,quantity));
+			if(m_item_master.find(item_master_id)!=m_item_master.end())
+				m_item_master[item_master_id]+=quantity;
+			else
+				m_item_master[item_master_id]=quantity;	
 		}
-		for(const auto& i:m_item_master)
+		m_item_master_vector(m_item_master.begin(),m_item_master.end());
+		sort(m_item_master_vector.begin(),m_item_master_vector.end(),cmp_by_value);
+		for(const auto& i:m_item_master_vector)
 		{
 			cout<<i.first<<":"<<i.second<<endl;
 		}
@@ -265,7 +266,8 @@ private:
 		  return lhs.second < rhs.second;  
 		}
   	};
-	std::set<PAIR,cmp_by_value> m_item_master;
+	std::map<string,int> m_item_master;
+	std::vector<PAIR> m_item_master_vector;
 };
 
 void sku_top10()
