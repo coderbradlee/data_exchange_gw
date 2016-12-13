@@ -192,7 +192,7 @@ private:
 		}
 		return "";
 	}
-	bool is_exist(const string& company_id,const string& item_master_id,string ret)
+	bool is_exist(const string& company_id,const string& item_master_id,string& ret)
 	{
 		try
 		{
