@@ -55,7 +55,7 @@ private:
 	}
 	void sort_item_master()
 	{
-		for(const auto& i:m_sales_order_detail)
+		for(const auto& i:m_sales_order_detail_vector)
 		{
 			string item_master_id=*(std::get<0>(i));
 			int quantity=*(std::get<3>(i));
@@ -67,7 +67,7 @@ private:
 		}
 		for(const auto& i:m_item_master)
 		{
-			cout<<i.fisrt<<":"<<i.second<<" ";
+			cout<<i.first<<":"<<i.second<<" ";
 		}
 		cout<<endl;
 	}
