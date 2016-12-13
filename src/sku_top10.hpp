@@ -181,9 +181,9 @@ private:
 
 		}
 	}
-	string get_sales_uom_id(const vector<m_sales_order_detail>& sorted_detail,const string& item_master_id)
+	string get_sales_uom_id(const string& company_id,const string& item_master_id)
 	{
-		for(const auto& i:sorted_detail)
+		for(const auto& i:m_all[company_id])
 		{
 			if(item_master_id==*(std::get<1>(i)))
 			{
@@ -206,7 +206,7 @@ private:
 			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 			// std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
 			vector<pair<string,int>> sorted=m_all_sorted[company_id];
-			vector<m_sales_order_detail> sorted_detail=m_all[company_id];
+			//vector<m_sales_order_detail> sorted_detail=m_all[company_id];
 			int sort_no=1;
 			for(const auto& i:sorted)
 			{
@@ -214,7 +214,7 @@ private:
 				cout<<product_category_id<<":"<<__LINE__<<endl;
 				if(product_category_id.empty())
 					continue;
-				string sales_uom_id=get_sales_uom_id(sorted_detail,i.first);
+				string sales_uom_id=get_sales_uom_id(company_id,i.first);
 				ptime now = second_clock::local_time();
 				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 	
