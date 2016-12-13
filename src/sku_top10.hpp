@@ -16,7 +16,7 @@ class cskutop:public boost::enable_shared_from_this<cskutop>
 {
 	mysql_database m_mysql_database;
 public:
-	cskutop(mysql_database mysql_input):m_d_t(m_io_s),m_product_all(nullptr),m_mysql_database(mysql_input),m_conn(nullptr)
+	cskutop(mysql_database mysql_input):m_d_t(m_io_s),m_mysql_database(mysql_input),m_conn(nullptr)
 	{
 	}
 private:
@@ -54,32 +54,45 @@ private:
 		}
 	}
 	void item_master_sum()
-	{
-		for(const auto& i:m_sales_order_detail_vector)
+	{   
+		//company_id //sales_order_id 
+	    //item_master_id //unit_price 
+		//uom_id //quantity
+
+		//company_id item_master_id quantity 
+		map<string,int> item_master_quantity;
+		for(const auto& i:m_all)
 		{
-			string item_master_id=*(std::get<1>(i));
-			int quantity=*(std::get<4>(i));
-			if(m_item_master.find(item_master_id)!=m_item_master.end())
-				m_item_master[item_master_id]+=quantity;
-			else
-				m_item_master[item_master_id]=quantity;	
+			for(const auto& j:i.second)
+			{
+				string item_master_id=*(std::get<1>(j));
+				int quantity=*(std::get<5>(j));
+				//cout<<i.first<<":"<<<<<<endl;
+				if(item_master_quantity.find(item_master_id)!=item_master_quantity.end())
+				{
+					item_master_quantity[item_master_id]+=quantity;
+				}
+				else
+				{
+					item_master_quantity[item_master_id]=quantity;
+				}
+			}
+			sort_item_master(i.first,item_master_quantity);
+			item_master_quantity.clear();
 		}
-		
 	}
-	void sort_item_master()
+	void sort_item_master(const string& company_id,const map<string,int>& item_master_quantity)
 	{
-		for(const auto& i:m_item_master)
+		std::vector<pair<string,int>> item_master_vector;
+		
+		for(const auto& i:item_master_quantity)
 		{
 			//cout<<i.first<<":"<<i.second<<endl;
-			m_item_master_vector.push_back(pair<string,int>(i.first,i.second));
+			item_master_vector.push_back(pair<string,int>(i.first,i.second));
 		}
 		
-		sort(m_item_master_vector.begin(),m_item_master_vector.end(),cmp_by_value());
-		for(const auto& i:m_item_master_vector)
-		{
-			cout<<i.first<<":"<<i.second<<endl;
-		}
-		cout<<endl;
+		sort(item_master_vector.begin(),item_master_vector.end(),cmp_by_value());
+		m_all_sorted[company_id]=item_master_vector;
 	}
 	void get_sales_order_detail()
 	{
@@ -87,17 +100,17 @@ private:
 		{
 			get_sales_order_detail(*(std::get<0>(i)),*(std::get<1>(i))) ;
 			//cout<<m_sales_order_detail_vector.size()<<endl;
-			//item_master_sum();
+			
 			// update_sales_statistics(*(std::get<1>(i)));
 			// update_sales_statistics_detail();
 			//m_sales_order_detail_vector.clear();
 		}
-		//sort_item_master();
-		for(const auto& i:m_all)
+		item_master_sum();
+		for(const auto& i:m_all_sorted)
 		{
-			for(const auto& j:i.second)
+			for(const auto& j:i)
 			{
-				cout<<i.first<<":"<<*(std::get<0>(j))<<*(std::get<1>(j))<<endl;
+				cout<<i.first<<":"<<j.first<<":"<<j.second<<endl;
 			}
 		}
 	}
@@ -260,7 +273,6 @@ private:
 private:
 	boost::shared_ptr<MySql> m_conn;
 	string m_today_string;
-	boost::shared_ptr<string> m_product_all;
 	std::stringstream m_ss;
 	boost::asio::io_service m_io_s;  
 	deadline_timer m_d_t;
@@ -277,18 +289,16 @@ private:
 			unique_ptr<int> //quantity
 			>m_sales_order_detail;
 	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
-	typedef pair<string, int> PAIR;  
-  
+	
   	struct cmp_by_value
   	{
-  		bool operator()(const PAIR& lhs, const PAIR& rhs) 
+  		bool operator()(const pair<string, int>& lhs, const pair<string, int>& rhs) 
   		{  
 		  return lhs.second > rhs.second;  
 		}
   	};
-	std::map<string,int> m_item_master;
-	std::vector<PAIR> m_item_master_vector;
 	std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
+	std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
 };
 
 void sku_top10()
