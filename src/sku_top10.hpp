@@ -249,7 +249,7 @@ private:
 				
 				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
-					cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
+					//cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
 					insert_sql = "update t_sales_statistics set updateBy='data_exchange_gw',updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+" where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
 					// insert_statistics_detail="insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
@@ -301,7 +301,7 @@ private:
 	}
 	string get_owner_sales_id()
 	{
-
+		return "owner_sales_id";
 	}
 	string get_customer_master_id(const string& sales_order_id)
 	{
