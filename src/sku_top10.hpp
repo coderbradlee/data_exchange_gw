@@ -1,15 +1,19 @@
 #pragma once
-
+#include <random>
 #include  "include.hpp"
 string rand_string(int len)
 {
 	string choice="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     string ret;
+    std::random_device rd;
+    std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis_y(0,36);  
+	auto dice_y= std::bind(dis_y,gen);
     for(int i=0;i<len;++i)
     {
-    	ret+=choice[rand()%36];
+    	ret+=choice[dice_y()];
     }
-    cout<<ret<<endl;
+    //cout<<ret<<endl;
    return ret;
 }
 class cskutop:public boost::enable_shared_from_this<cskutop>
