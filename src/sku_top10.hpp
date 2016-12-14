@@ -302,9 +302,28 @@ private:
 			return "";
 		}
 	}
-	string get_owner_sales_id()
+	string get_owner_sales_id(const string& sales_id)
 	{
-		return "owner_sales_id";
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select employee_no from "+m_mysql_database.m_mysql_database + ".t_system_account where system_account_id='"+sales_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return "";
+			}
+			return std::get<0>(users[0]);
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
 	}
 	string get_customer_master_id(const string& sales_order_id)
 	{
@@ -378,12 +397,12 @@ private:
 				string sales_order_id=*(std::get<0>(i));
 				string unit_price=*(std::get<2>(i));
 				string sales_order_quantity=boost::lexical_cast<std::string>(*(std::get<4>(i)));
-				
+
 				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity))
 					continue;
 
 				string sales_id=get_sales_id(sales_order_id);
-				string owner_sales_id=get_owner_sales_id();
+				string owner_sales_id=get_owner_sales_id(sales_id);
 				string customer_master_id=get_customer_master_id(sales_order_id);
 				
 				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
