@@ -329,6 +329,29 @@ private:
 			return "";
 		}
 	}
+	bool is_exist_sales_order_id(const string& sales_order_id)
+	{
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics_detail where sales_order_id='"+sales_order_id+"'";
+			//cout << query_sql << endl;
+			m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return false;
+			}
+			return true;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return false;
+		}
+	}
 	void update_sales_statistics_detail(
 		const string& company_id,
 		const string& sales_statistics_id,
@@ -358,6 +381,8 @@ private:
 				string sales_id=get_sales_id(sales_order_id);
 				string owner_sales_id=get_owner_sales_id();
 				string customer_master_id=get_customer_master_id(sales_order_id);
+				if(is_exist_sales_order_id(sales_order_id))
+					continue;
 				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
 				cout<<insert_statistics_detail<<":"<<__LINE__<<endl;
 				m_conn->runCommand(insert_statistics_detail.c_str());
