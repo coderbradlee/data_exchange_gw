@@ -335,7 +335,7 @@ private:
 		{
 			typedef tuple<string> userTuple;
 		    vector<userTuple> users;
-			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics_detail where sales_order_id='"+sales_order_id+"' and quantity="+quantity;
+			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics_detail where sales_order_id='"+sales_order_id+"' and sales_order_quantity="+quantity;
 			cout << query_sql <<":"<<__LINE__<< endl;
 			m_conn->runQuery(&users, query_sql.c_str());
 
