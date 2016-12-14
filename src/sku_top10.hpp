@@ -28,7 +28,11 @@ private:
 	{
 		try
 		{
-			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order";
+			ptime now = second_clock::local_time();
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+			//string start_time=p4.substr(0,4)+"-01-01";
+			string start_time="2016-10-01";
+			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
 
