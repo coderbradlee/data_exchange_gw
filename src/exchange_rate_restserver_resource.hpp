@@ -73,8 +73,8 @@ void exchange_rate_server_start()
 void start()
 {
 	boost::thread_group pool;  
-   //  pool.create_thread(boost::bind(exchange_rate_server_start));  
-  	// pool.create_thread(boost::bind(start_exchange_rate_thread));
+    pool.create_thread(boost::bind(exchange_rate_server_start));  
+  	pool.create_thread(boost::bind(start_exchange_rate_thread));
   	
   	pool.create_thread(boost::bind(sku_top10));
     pool.join_all();  

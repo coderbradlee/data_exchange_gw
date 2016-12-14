@@ -474,13 +474,13 @@ private:
  			string minute=hms[1];
  			
         	string hour_minute=hour+":"+minute;
-        	//if(hour_minute==get_config->m_sku_top10_insert_time)
+        	if(hour_minute==get_config->m_sku_top10_insert_time)
         	{   
         		handle_wait_method();
         	}
         	
-            // m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_sku_top10_request_interval));  
-            // m_d_t.async_wait(boost::bind(&cskutop::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
+            m_d_t.expires_from_now(boost::posix_time::seconds(get_config->m_sku_top10_request_interval));  
+            m_d_t.async_wait(boost::bind(&cskutop::handle_wait,shared_from_this(), boost::asio::placeholders::error));                 
     	}
 	}  
 	
