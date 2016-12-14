@@ -461,7 +461,7 @@ private:
 	}
 	void handle_wait(const boost::system::error_code& error)  
     {  
-    	cout<<"handle_wait "<<__FILE__<<":"<<__LINE__<<endl;
+    	//cout<<"handle_wait "<<__FILE__<<":"<<__LINE__<<endl;
         if(!error)  
         {  
         	ptime now = second_clock::local_time();			
