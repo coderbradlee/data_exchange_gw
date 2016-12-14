@@ -182,7 +182,6 @@ private:
 			// 	cout<<i.first<<":"<<j.first<<":"<<j.second<<endl;
 			// }
 			update_sales_statistics(i.first);
-
 		}
 	}
 	string get_sales_uom_id(const string& company_id,const string& item_master_id)
@@ -344,12 +343,13 @@ private:
 			// unique_ptr<string>, //sales_order_detail_id
 			// >m_sales_order_detail;
 			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
-		string sales_statistics_detail_id=rand_string(20);
+		
 		string insert_statistics_detail;
 		ptime now = second_clock::local_time();
 		string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 		for(const auto& i:m_all[company_id])
 		{
+			string sales_statistics_detail_id=rand_string(20);
 			if(*(std::get<1>(i))==item_master_id)
 			{
 				string sales_order_id=*(std::get<0>(i));
