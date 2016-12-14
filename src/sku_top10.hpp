@@ -7,7 +7,7 @@ string rand_string(int len)
     string ret;
     std::random_device rd;
     std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis_y(0,36);  
+	std::uniform_int_distribution<> dis_y(0,35);  
 	auto dice_y= std::bind(dis_y,gen);
     for(int i=0;i<len;++i)
     {
