@@ -402,7 +402,8 @@ private:
 					continue;
 
 				string sales_id=get_sales_id(sales_order_id);
-				string owner_sales_id=get_owner_sales_id(sales_id);
+				// string owner_sales_id=get_owner_sales_id(sales_id);
+				string owner_sales_id=sales_id;
 				string customer_master_id=get_customer_master_id(sales_order_id);
 				
 				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
