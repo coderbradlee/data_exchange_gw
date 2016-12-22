@@ -1,3 +1,5 @@
+2016.12.22
+t_sales_order中条件增加status==4的，只取订单状态为“确认”的
 2016.12.09
 增加统计sku top10功能
 每晚根据当天新增 SalesOrder 更新 t_sales_statistic（销售统计表），t_sales_statistic_detail（销售统计明细表）；
