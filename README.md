@@ -1,3 +1,6 @@
+原型位置：
+file:///E:/renesola/svn/apollo/1.0/design/Demo/ERP/WEB-INF/Inventory/index_om.html
+
 2016.12.22
 t_sales_order中条件增加status==4的，只取订单状态为“确认”的
 按公司对累加的item_master_id的数量进行排序，是否更改为数量乘以价格？
