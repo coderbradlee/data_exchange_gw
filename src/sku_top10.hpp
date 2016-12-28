@@ -566,11 +566,11 @@ private:
 	//map<item_master_id,vector<sales_order>>
 	
 	typedef tuple<
-			unique_ptr<string>, //accounting_period_id
-			unique_ptr<string>, //code
-			unique_ptr<string>, //company_id
-			unique_ptr<string>, //opening_date
-			unique_ptr<string> //ending_date
+			string, //accounting_period_id
+			string, //code
+			string, //company_id
+			string, //opening_date
+			string //ending_date
 			>accounting_period;
 	vector<accounting_period> m_accounting_period;
 	std::map<string,accounting_period> m_accounting_periods;//key is company_id
