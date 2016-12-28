@@ -31,7 +31,10 @@ private:
 			string start_time;
 			string end_time;
 			string accounting_period_id;
-			get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time);
+			if(!get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time))
+			{
+				return false;
+			}
 			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status=4 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
@@ -267,7 +270,7 @@ private:
 			return false;
 		}
 	}
-	void get_accounting_period_tuple(
+	bool get_accounting_period_tuple(
 		const string& company_id,
 		string& accounting_period_id,
 		string& start_time,
@@ -278,6 +281,7 @@ private:
 			accounting_period_id=std::get<0>(m_accounting_periods[company_id]);
 			start_time=std::get<3>(m_accounting_periods[company_id]);
 			end_time=std::get<4>(m_accounting_periods[company_id]);
+			return true;
 		}
 		else
 		{
@@ -285,7 +289,8 @@ private:
 			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 			start_time=p4.substr(0,7)+"-01 00:00:00";
-			end_time=p4.substr(0,7)+"-31 00:00:00";
+			end_time=p4.substr(0,7)+"-31 23:59:59";
+			return false;
 		}
 	}
 	void update_sales_statistics(const string& company_id)
