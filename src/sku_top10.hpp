@@ -228,6 +228,8 @@ private:
 	{
 		try
 		{
+
+			vector<accounting_period> m_accounting_period;
 			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
@@ -572,7 +574,6 @@ private:
 			string, //opening_date
 			string //ending_date
 			>accounting_period;
-	vector<accounting_period> m_accounting_period;
 	std::map<string,accounting_period> m_accounting_periods;//key is company_id
 };
 
