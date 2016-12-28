@@ -551,6 +551,7 @@ private:
 					get_sales_order_detail();
 					update_sales_statistics();
 				}
+				m_sales_order_vector.clear();
 	    	}
 			m_conn->close();
 			m_conn=nullptr;
