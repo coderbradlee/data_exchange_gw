@@ -553,6 +553,9 @@ private:
 				}
 				m_sales_order_vector.clear();
 	    	}
+			m_accounting_periods.clear();
+			m_all_sorted.clear();
+			m_all.clear();
 			m_conn->close();
 			m_conn=nullptr;
 			boost::this_thread::sleep(boost::posix_time::millisec(30000));
@@ -596,8 +599,6 @@ private:
 
 private:
 	boost::shared_ptr<MySql> m_conn;
-	string m_today_string;
-	std::stringstream m_ss;
 	boost::asio::io_service m_io_s;  
 	deadline_timer m_d_t;
 	typedef tuple<
@@ -613,7 +614,6 @@ private:
 			unique_ptr<int>, //quantity
 			unique_ptr<string>//sales_order_detail_id
 			>m_sales_order_detail;
-	std::vector<m_sales_order_detail> m_sales_order_detail_vector;
 	
   	struct cmp_by_value
   	{
@@ -624,8 +624,6 @@ private:
   	};
 	std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 	std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
-	std::map<string,std::vector<string>> m_item_master_order_detail_id;
-	//map<item_master_id,vector<sales_order>>
 	
 	typedef tuple<
 			string, //accounting_period_id
