@@ -35,7 +35,7 @@ private:
 			{
 				return false;
 			}
-			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status=4 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
+			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status=4 and dr=0 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
 
@@ -130,7 +130,7 @@ private:
 		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
 		try
 		{
-			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity,sales_order_detail_id from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"'";
+			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity,sales_order_detail_id from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"' and dr=0";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&m_all[company_id], query_sql.c_str());
 
