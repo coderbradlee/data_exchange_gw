@@ -326,7 +326,7 @@ private:
 				if(product_category_id.empty())
 					continue;
 				string sales_uom_id=get_sales_uom_id(company_id,i.first);
-				// ptime now = second_clock::local_time();
+				ptime now = second_clock::local_time();
 				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 				// string start_time=p4.substr(0,4)+"-01-01 00:00:00";
 				string insert_sql,insert_statistics_detail;
