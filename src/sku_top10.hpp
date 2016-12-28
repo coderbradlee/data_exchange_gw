@@ -441,13 +441,16 @@ private:
 			return "";
 		}
 	}
-	bool is_exist_sales_order_id(const string& sales_order_id,const string& quantity)
+	bool is_exist_sales_order_id(
+		const string& sales_order_id,
+		const string& quantity,
+		const string& unit_price)
 	{
 		try
 		{
 			typedef tuple<string> userTuple;
 		    vector<userTuple> users;
-			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics_detail where sales_order_id='"+sales_order_id+"' and sales_order_quantity="+quantity;
+			string query_sql = "select sales_order_id from "+m_mysql_database.m_mysql_database + ".t_sales_statistics_detail where sales_order_id='"+sales_order_id+"' and sales_order_quantity="+quantity+" and unit_price='"+unit_price+"'";
 			cout << query_sql <<":"<<__LINE__<< endl;
 			m_conn->runQuery(&users, query_sql.c_str());
 
@@ -491,7 +494,7 @@ private:
 				string unit_price=*(std::get<2>(i));
 				string sales_order_quantity=boost::lexical_cast<std::string>(*(std::get<4>(i)));
 
-				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity))
+				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity,unit_price))
 					continue;
 
 				string sales_id=get_sales_id(sales_order_id);
