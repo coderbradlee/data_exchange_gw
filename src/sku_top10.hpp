@@ -54,13 +54,13 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 	}
@@ -150,7 +150,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 	}
@@ -223,7 +223,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 	}
@@ -266,7 +266,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 	}
@@ -369,7 +369,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 		}
 	}
 	string get_sales_id(const string& sales_order_id)
@@ -391,7 +391,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return "";
 		}
 	}
@@ -414,7 +414,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return "";
 		}
 	}
@@ -437,7 +437,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return "";
 		}
 	}
@@ -463,7 +463,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 	}
@@ -529,7 +529,7 @@ private:
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 		}
 	}
 	void handle_wait_method()
