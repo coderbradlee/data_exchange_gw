@@ -231,7 +231,7 @@ private:
 			ptime now = second_clock::local_time();
 			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
 
-			string query_sql = "select accounting_period_id,code,opening_date,ending_date from "+m_mysql_database.m_mysql_database + ".t_accounting_period where '"+ p4+"'<ending_date and '"+p4+"' >opening_date";
+			string query_sql = "select accounting_period_id,code,company_id,opening_date,ending_date from "+m_mysql_database.m_mysql_database + ".t_accounting_period where '"+ p4+"'<ending_date and '"+p4+"' >opening_date";
 			cout << query_sql << ":"<<__LINE__<<endl;
 			//m_conn->runQuery(&users, query_sql.c_str());
 
@@ -554,6 +554,7 @@ private:
 	typedef tuple<
 			unique_ptr<string>, //accounting_period_id
 			unique_ptr<string>, //code
+			unique_ptr<string>, //company_id
 			unique_ptr<string>, //opening_date
 			unique_ptr<string> //ending_date
 			>accounting_period;
