@@ -250,7 +250,8 @@ private:
 	// std::map<string,accounting_period> m_accounting_periods;//key is company_id
 			for(const auto& i:m_accounting_period)
 			{
-				m_accounting_periods[std::get<2>(i)]=i;
+				string company_id=std::get<2>(i);
+				m_accounting_periods[company_id]=i;
 			}
 			//string ret=std::get<0>(users[0]);
 			// *(std::get<0>(one_string_vector[0]))
