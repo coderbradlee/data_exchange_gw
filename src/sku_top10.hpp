@@ -24,15 +24,15 @@ public:
 	{
 	}
 private:
-	bool get_sales_order()
+	bool get_sales_order(const string& company_id)
 	{
 		try
 		{
-			ptime now = second_clock::local_time();
-			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-			string start_time=p4.substr(0,4)+"-01-01";
-			//string start_time="2016-10-01";
-			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status=4";
+			string start_time;
+			string end_time;
+			string accounting_period_id;
+			get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time);
+			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status=4 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
 
@@ -235,7 +235,7 @@ private:
 
 			string query_sql = "select accounting_period_id,code,company_id,opening_date,ending_date from "+m_mysql_database.m_mysql_database + ".t_accounting_period where '"+ p4+"'<ending_date and '"+p4+"' >opening_date";
 			cout << query_sql << ":"<<__LINE__<<endl;
-			//m_conn->runQuery(&m_accounting_period, query_sql.c_str());
+			m_conn->runQuery(&m_accounting_period, query_sql.c_str());
 
 			if(m_accounting_period.empty())
 			{
@@ -267,6 +267,27 @@ private:
 			return false;
 		}
 	}
+	void get_accounting_period_tuple(
+		const string& company_id,
+		string& accounting_period_id,
+		string& start_time,
+		string& end_time)
+	{
+		if(m_accounting_periods.find(company_id) != m_accounting_periods.end())
+		{
+			accounting_period_id=std::get<0>(m_accounting_periods[company_id]);
+			start_time=std::get<3>(m_accounting_periods[company_id]);
+			end_time=std::get<4>(m_accounting_periods[company_id]);
+		}
+		else
+		{
+			accounting_period_id="data_gw";
+			ptime now = second_clock::local_time();
+			string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
+			start_time=p4.substr(0,7)+"-01 00:00:00";
+			end_time=p4.substr(0,7)+"-31 00:00:00";
+		}
+	}
 	void update_sales_statistics(const string& company_id)
 	{
 		try
@@ -281,7 +302,21 @@ private:
 			// >m_sales_order_detail;
 			// std::map<string,std::vector<m_sales_order_detail>> m_all;//key is company_id
 			// std::map<string,vector<pair<string,int>>> m_all_sorted;//company_id item_master_id quantity
+			// 		typedef tuple<
+	// 		unique_ptr<string>, //accounting_period_id
+	// 		unique_ptr<string>, //code
+	// 		unique_ptr<string>, //company_id
+	// 		unique_ptr<string>, //opening_date
+	// 		unique_ptr<string> //ending_date
+	// 		>accounting_period;
+	// vector<accounting_period> m_accounting_period;
+	// std::map<string,accounting_period> m_accounting_periods;//key is company_id
 			vector<pair<string,int>> sorted=m_all_sorted[company_id];
+			string start_time;
+			string end_time;
+			string accounting_period_id;
+			get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time);
+			
 			//vector<m_sales_order_detail> sorted_detail=m_all[company_id];
 			int sort_no=1;
 			for(const auto& i:sorted)
@@ -291,9 +326,9 @@ private:
 				if(product_category_id.empty())
 					continue;
 				string sales_uom_id=get_sales_uom_id(company_id,i.first);
-				ptime now = second_clock::local_time();
+				// ptime now = second_clock::local_time();
 				string p4 = to_iso_extended_string(now.date()) + " " + to_simple_string(now.time_of_day());
-				string start_time=p4.substr(0,4)+"-01-01 00:00:00";
+				// string start_time=p4.substr(0,4)+"-01-01 00:00:00";
 				string insert_sql,insert_statistics_detail;
 				string sales_statistics_id;
 
@@ -306,14 +341,14 @@ private:
 				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
 					//cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
-					insert_sql = "update t_sales_statistics set updateBy='data_exchange_gw',updateAt='"+p4+"',statistic_ending_date='"+p4+"',total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+" where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
+					insert_sql = "update t_sales_statistics set updateBy='data_exchange_gw',updateAt='"+p4+",total_quantity_sold="+boost::lexical_cast<std::string>(i.second)+",sort_no="+boost::lexical_cast<std::string>(sort_no)+" where company_id='"+company_id+"' and item_master_id='"+i.first+"'";
 					// insert_statistics_detail="insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
 				else
 				{
 					sales_statistics_id=rand_string(20);
 					
-					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_period_id,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+accounting_year+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
+					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_period_id,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+end_time+"','"+accounting_period_id+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 
 					//insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
@@ -475,6 +510,20 @@ public:
 		m_io_s.run();
 	}
 private:
+	void get_company_id(vector<tuple<string>>& company_ids)
+	{
+		try
+		{
+			string query_sql = "select DISTINCT company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order";
+			cout << query_sql <<":"<<__LINE__<< endl;
+			m_conn->runQuery(&company_ids, query_sql.c_str());
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+		}
+	}
 	void handle_wait_method()
 	{
 		cout<<"handle_wait_method"<<":"<<__FILE__<<":"<<__LINE__<<endl;
@@ -487,12 +536,17 @@ private:
 	    		cout<<__FILE__<<":"<<__LINE__<<endl;
 	    	}
 	    	get_accounting_period();
-			// if(get_sales_order())
-			// {
-			// 	get_sales_order_detail();
-			// 	update_sales_statistics();
-			// }
-			
+	    	vector<tuple<string>> company_ids;
+	    	get_company_id(company_ids);
+	    	for(const auto& i:company_ids)
+	    	{
+	    		string company_id=std::get<0>(i);
+	    		if(get_sales_order(company_id))
+				{
+					get_sales_order_detail();
+					update_sales_statistics();
+				}
+	    	}
 			m_conn->close();
 			m_conn=nullptr;
 			boost::this_thread::sleep(boost::posix_time::millisec(30000));
