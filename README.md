@@ -1,3 +1,14 @@
+2016.12.27
+accounting_year=2016.12
+t_credit_black_list_detail
+t_credit_black_list
+t_cost_statistics
+
+
+
+t_inventory_balance
+t_inventory_balance_detail
+
 原型位置：
 file:///E:/renesola/svn/apollo/1.0/design/Demo/ERP/WEB-INF/Inventory/index_om.html
 

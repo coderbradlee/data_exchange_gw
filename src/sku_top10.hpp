@@ -224,6 +224,31 @@ private:
 			return false;
 		}
 	}
+	string get_accounting_year(const string& company_id,const string& period)
+	{
+		try
+		{
+			typedef tuple<string> userTuple;
+		    vector<userTuple> users;
+			string query_sql = "select code from "+m_mysql_database.m_mysql_database + ".t_accounting_period where company_id='"+company_id+"' and period<ending_date and period >opening_date";
+			cout << query_sql << ":"<<__LINE__<<endl;
+			//m_conn->runQuery(&users, query_sql.c_str());
+
+			if(users.empty())
+			{
+				return "";
+			}
+			ret=std::get<0>(users[0]);
+			// *(std::get<0>(one_string_vector[0]))
+			return ret;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<endl;
+			return "";
+		}
+	}
 	void update_sales_statistics(const string& company_id)
 	{
 		try
@@ -253,7 +278,13 @@ private:
 				string start_time=p4.substr(0,4)+"-01-01 00:00:00";
 				string insert_sql,insert_statistics_detail;
 				string sales_statistics_id;
-				
+
+				string accounting_year=get_accounting_year();
+				if(accounting_year.length()==0)
+				{
+					accounting_year=p4.substr(0,7);
+				}
+
 				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
 					//cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
@@ -264,7 +295,7 @@ private:
 				{
 					sales_statistics_id=rand_string(20);
 					
-					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
+					insert_sql = "insert into t_sales_statistics(sales_statistics_id,company_id,product_category_id,item_master_id,total_quantity_sold,sales_uom_id,statistic_beginning_date,statistic_ending_date,accounting_year,sort_no,createAt,createBy,dr,data_version)values('"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+accounting_year+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 
 					//insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+company_id+"','"+product_category_id+"','"+i.first+"',"+boost::lexical_cast<std::string>(i.second)+",'"+sales_uom_id+"','"+start_time+"','"+p4+"','"+p4.substr(0,4)+"',"+boost::lexical_cast<std::string>(sort_no)+",'"+p4+"','data_exchange_gw',0,1)";
 				}
