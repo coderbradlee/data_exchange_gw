@@ -233,11 +233,24 @@ private:
 
 			string query_sql = "select accounting_period_id,code,company_id,opening_date,ending_date from "+m_mysql_database.m_mysql_database + ".t_accounting_period where '"+ p4+"'<ending_date and '"+p4+"' >opening_date";
 			cout << query_sql << ":"<<__LINE__<<endl;
-			//m_conn->runQuery(&users, query_sql.c_str());
+			//m_conn->runQuery(&m_accounting_period, query_sql.c_str());
 
 			if(m_accounting_period.empty())
 			{
 				return false;
+			}
+	// 		typedef tuple<
+	// 		unique_ptr<string>, //accounting_period_id
+	// 		unique_ptr<string>, //code
+	// 		unique_ptr<string>, //company_id
+	// 		unique_ptr<string>, //opening_date
+	// 		unique_ptr<string> //ending_date
+	// 		>accounting_period;
+	// vector<accounting_period> m_accounting_period;
+	// std::map<string,accounting_period> m_accounting_periods;//key is company_id
+			for(const auto& i:m_accounting_period)
+			{
+				m_accounting_periods[std::get<2>(i)]=i;
 			}
 			//string ret=std::get<0>(users[0]);
 			// *(std::get<0>(one_string_vector[0]))
@@ -559,6 +572,7 @@ private:
 			unique_ptr<string> //ending_date
 			>accounting_period;
 	vector<accounting_period> m_accounting_period;
+	std::map<string,accounting_period> m_accounting_periods;//key is company_id
 };
 
 void sku_top10()
