@@ -494,8 +494,8 @@ private:
 				string unit_price=*(std::get<2>(i));
 				string sales_order_quantity=boost::lexical_cast<std::string>(*(std::get<4>(i)));
 
-				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity,unit_price))
-					continue;
+				// if(is_exist_sales_order_id(sales_order_id,sales_order_quantity,unit_price))
+				// 	continue;
 
 				string sales_id=get_sales_id(sales_order_id);
 				// string owner_sales_id=get_owner_sales_id(sales_id);
