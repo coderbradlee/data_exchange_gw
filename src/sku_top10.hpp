@@ -284,7 +284,7 @@ private:
 				// string accounting_year=get_accounting_year(company_id,);
 				// if(accounting_year.length()==0)
 				{
-					accounting_year=p4.substr(0,7);
+					string accounting_year=p4.substr(0,7);
 				}
 
 				if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
