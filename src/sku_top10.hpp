@@ -238,9 +238,9 @@ private:
 			{
 				return "";
 			}
-			ret=std::get<0>(users[0]);
+			//string ret=std::get<0>(users[0]);
 			// *(std::get<0>(one_string_vector[0]))
-			return ret;
+			return std::get<0>(users[0]);
 		}
 		catch (const MySqlException& e)
 		{
