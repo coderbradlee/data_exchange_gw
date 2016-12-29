@@ -1,5 +1,8 @@
-2016.12.27
-accounting_year=2016.12
+2016.12.29
+原型位置：file:///E:/renesola/svn/apollo/1.0/design/Demo/ERP/WEB-INF/Inventory/index_fm.html
+
+
+
 t_credit_black_list_detail
 t_credit_black_list
 t_cost_statistics
@@ -8,6 +11,10 @@ t_cost_statistics
 
 t_inventory_balance
 t_inventory_balance_detail
+
+2016.12.27
+accounting_year=2016.12
+关于t_sales_statistics表的accounting_period_id已经完成，tag finishsaleordertop10
 
 原型位置：
 file:///E:/renesola/svn/apollo/1.0/design/Demo/ERP/WEB-INF/Inventory/index_om.html
