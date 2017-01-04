@@ -236,8 +236,8 @@ private:
 			string query_sql = "delete from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and item_master_id='"+item_master_id+"'";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&users, query_sql.c_str());
-
 			
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) <<query_sql<<":"<<__FILE__<<":"<<__LINE__;
 			return true;
 		}
 		catch (const MySqlException& e)
