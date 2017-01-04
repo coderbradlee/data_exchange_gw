@@ -1,6 +1,6 @@
 2017.01.03
 发现有排序号t_sales_statistics中有sort_no重复的情况，原因是最新排名和原来排名已经不同，有些原来的排名需要删除
-
+目前数据库表里没有1月份订单 无法测试
 
 2016.12.29
 原型位置：file:///E:/renesola/svn/apollo/1.0/design/Demo/ERP/WEB-INF/Inventory/index_fm.html
