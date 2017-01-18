@@ -612,7 +612,7 @@ private:
  			string minute=hms[1];
  			
         	string hour_minute=hour+":"+minute;
-        	if(hour_minute==get_config->m_sku_top10_insert_time)
+        	//if(hour_minute==get_config->m_sku_top10_insert_time)
         	{   
         		handle_wait_method();
         	}
