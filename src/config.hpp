@@ -85,6 +85,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			////////////////////////////////////
 			m_sku_top10_request_interval=m_pt.get<size_t>("sku_top10.request_interval");
 			m_sku_top10_insert_time=m_pt.get<std::string>("sku_top10.insert_time");
+			m_is_ontime=m_pt.get<bool>("sku_top10.is_ontime");//true 表示指定时间执行，false为间隔insert_time 执行
 		}
 	public:
 		boost::property_tree::ptree m_pt;
@@ -147,6 +148,7 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_sku_top10_insert_time;
 		static boost::mutex m_mu;	
 		static boost::shared_ptr<iconfig> m_ps;
+		bool m_is_ontime;
 };
 boost::shared_ptr<iconfig> iconfig::m_ps = nullptr;
 boost::mutex iconfig::m_mu;
