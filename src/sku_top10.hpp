@@ -227,7 +227,7 @@ private:
 			return false;
 		}
 	}
-	bool delete_company_item_master_id(const string& company_id,const string& accounting_period_id)
+	bool delete_company_accounting_period_id(const string& company_id,const string& accounting_period_id)
 	{
 		try
 		{
@@ -341,7 +341,7 @@ private:
 			string end_time;
 			string accounting_period_id;
 			get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time);
-			
+			delete_company_accounting_period_id(company_id,accounting_period_id);
 			//vector<m_sales_order_detail> sorted_detail=m_all[company_id];
 			int sort_no=1;
 			for(const auto& i:sorted)
@@ -362,7 +362,7 @@ private:
 				//{
 					string accounting_year=p4.substr(0,7);
 				//}
-				delete_company_item_master_id(company_id,accounting_period_id);
+				// delete_company_item_master_id(company_id,accounting_period_id);
 				//if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
 					//cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
