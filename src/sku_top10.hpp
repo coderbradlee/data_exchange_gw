@@ -227,13 +227,13 @@ private:
 			return false;
 		}
 	}
-	bool delete_company_item_master_id(const string& company_id,const string& item_master_id)
+	bool delete_company_item_master_id(const string& company_id,const string& accounting_period_id)
 	{
 		try
 		{
 			typedef tuple<string> userTuple;
 		    vector<userTuple> users;
-			string query_sql = "delete from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and item_master_id='"+item_master_id+"'";
+			string query_sql = "delete from "+m_mysql_database.m_mysql_database + ".t_sales_statistics where company_id='"+company_id+"' and accounting_period_id='"+accounting_period_id+"'";
 			//cout << query_sql << endl;
 			m_conn->runQuery(&users, query_sql.c_str());
 			
@@ -362,7 +362,7 @@ private:
 				//{
 					string accounting_year=p4.substr(0,7);
 				//}
-				delete_company_item_master_id(company_id,i.first);
+				delete_company_item_master_id(company_id,accounting_period_id);
 				//if(is_exist(company_id,i.first,sales_statistics_id))//存在返回sales_statistics_id
 				{
 					//cout<<"sales_statistics_id:"<<sales_statistics_id<<endl;
