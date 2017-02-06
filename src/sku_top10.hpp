@@ -632,7 +632,7 @@ private:
 					get_sales_order_detail();
 					get_unit_price();
 					cout<<m_all[company_id].size()<<"://///////////////"<<__FILE__<<":"<<__LINE__<<endl;
-					//update_sales_statistics();
+					update_sales_statistics();
 				}
 				m_sales_order_vector.clear();
 	    	}
