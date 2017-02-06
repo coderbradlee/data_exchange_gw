@@ -153,11 +153,12 @@ private:
 			>detail;
 			for(auto& i:one_string_vector)
 			{
+				int quantity=boost::lexical_cast<int>(*(std::get<1>(i)));
 				m_all[company_id]=boost::make_tuple(
 					sales_order_id,
 					*(std::get<0>(i)),"",
 					*(std::get<2>(i)),
-					*(std::get<1>(i)),
+					quantity,
 					sales_id,customer_master_id);
 			}
 		}
