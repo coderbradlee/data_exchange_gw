@@ -458,7 +458,7 @@ private:
 				{
 					typedef tuple<string> userTuple;
 				    vector<userTuple> users;
-					string query_sql = "select unit_price from t_sales_order_detail where sales_order_id='"+std::get<0>(j)+"'";
+					string query_sql = "select unit_price from t_sales_order_detail where sales_order_id='"+std::get<0>(j)+"' and item_master_id='"+std::get<1>(j)+"'";
 					cout << query_sql <<":"<<__LINE__<<":"<<__FILE__<<endl;
 					m_conn->runQuery(&users, query_sql.c_str());
 					std::get<2>(j)=std::get<0>(users[0]);
