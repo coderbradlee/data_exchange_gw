@@ -35,7 +35,7 @@ private:
 			{
 				return false;
 			}
-			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and status>=4 and dr=0 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
+			string query_sql = "select sales_order_id,company_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where order_date>'"+start_time+"' and dr=0 and order_date<'"+end_time+"' and company_id='"+company_id+"'";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_sales_order_vector, query_sql.c_str());
 
@@ -123,6 +123,50 @@ private:
 		item_master_sum();
 		
 	}
+	void fill_m_all(
+		const string& sales_order_id,
+		const string& company_id,
+		const string& outbound_note_id,
+		const string& sales_id,
+		const string& customer_master_id)
+	{
+		try
+		{
+			typedef tuple<
+			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>>anyonestring;
+			std::vector<anyonestring> one_string_vector;
+			string query_sql = "select item_master_id,outbound_qty,uom_id from t_outbound_note_detail where outbound_note_id='"+outbound_note_id+"' and dr=0";
+			cout << query_sql <<":"<<__FILE__<<":"<<__LINE__<< endl;
+			m_conn->runQuery(&one_string_vector, query_sql.c_str());
+			BOOST_LOG_SEV(slg, notification) << query_sql;
+			// unique_ptr<string>, //sales_order_id
+			// unique_ptr<string>, //item_master_id
+			// unique_ptr<string>, //unit_price
+			// unique_ptr<string>, //uom_id
+			// unique_ptr<int>, //quantity
+			// unique_ptr<string>,//sales_id
+			// unique_ptr<string>//customer_master_id
+			typedef tuple<
+			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>,
+			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>,
+			unique_ptr<string>
+			>detail;
+			for(auto& i:one_string_vector)
+			{
+				m_all[company_id]=boost::make_tuple(
+					sales_order_id,
+					*(std::get<0>(i)),"",
+					*(std::get<2>(i)),
+					*(std::get<1>(i)),
+					sales_id,customer_master_id);
+			}
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
+		}
+	}
 	bool get_sales_order_detail(
 		const string& sales_order_id,
 		const string& company_id)
@@ -130,12 +174,19 @@ private:
 		// std::cout<<sales_order_id<<":"<<company_id<<std::endl;
 		try
 		{
-			string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity,sales_order_detail_id from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"' and dr=0";
+			typedef tuple<
+			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>>anyonestring;
+			std::vector<anyonestring> one_string_vector;
+			string query_sql = "select outbound_note_id,sales_id,customer_master_id from t_outbound_note where fulfill_status=24 and sales_order_id='"+sales_order_id+"' and company_id='"+company_id+"' and dr=0";
+			cout << query_sql << endl;
+			m_conn->runQuery(&one_string_vector, query_sql.c_str());
+			BOOST_LOG_SEV(slg, notification) << query_sql;
+			for(auto& i:one_string_vector)
+			{
+   				fill_m_all(sales_order_id,company_id,*(std::get<0>(i)),*(std::get<1>(i)),*(std::get<2>(i)));
+			}
+			// string query_sql = "select sales_order_id,item_master_id,unit_price,uom_id,quantity,sales_order_detail_id from "+m_mysql_database.m_mysql_database + ".t_sales_order_detail where sales_order_id='"+sales_order_id+"' and dr=0";
 			//cout << query_sql << endl;
-			m_conn->runQuery(&m_all[company_id], query_sql.c_str());
-
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			//boost_log->get_initsink()->flush();
 			
 			if(m_all[company_id].empty())
 			{
@@ -520,11 +571,11 @@ private:
 				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity,sales_statistics_id))
 					continue;
 
-				string sales_id=get_sales_id(sales_order_id);
+				// string sales_id=get_sales_id(sales_order_id);
 				// string owner_sales_id=get_owner_sales_id(sales_id);
-				string owner_sales_id=sales_id;
-				string customer_master_id=get_customer_master_id(sales_order_id);
-				
+				string owner_sales_id=*(std::get<5>(i));
+				// string customer_master_id=get_customer_master_id(sales_order_id);
+				string customer_master_id=*(std::get<6>(i));
 				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
 				cout<<insert_statistics_detail<<":"<<__LINE__<<endl;
 				m_conn->runCommand(insert_statistics_detail.c_str());
@@ -575,7 +626,7 @@ private:
 	    		if(get_sales_order(company_id))
 				{
 					get_sales_order_detail();
-					update_sales_statistics();
+					//update_sales_statistics();
 				}
 				m_sales_order_vector.clear();
 	    	}
@@ -646,7 +697,8 @@ private:
 			unique_ptr<string>, //unit_price
 			unique_ptr<string>, //uom_id
 			unique_ptr<int>, //quantity
-			unique_ptr<string>//sales_order_detail_id
+			unique_ptr<string>,//sales_id
+			unique_ptr<string>//customer_master_id
 			>m_sales_order_detail;
 	
   	struct cmp_by_value
