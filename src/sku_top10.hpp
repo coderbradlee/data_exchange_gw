@@ -146,11 +146,7 @@ private:
 			// unique_ptr<int>, //quantity
 			// unique_ptr<string>,//sales_id
 			// unique_ptr<string>//customer_master_id
-			typedef tuple<
-			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>,
-			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>,
-			unique_ptr<string>
-			>detail;
+			
 			string uom_id="x";
 
 			for(auto& i:one_string_vector)
@@ -632,6 +628,7 @@ private:
 	    		if(get_sales_order(company_id))
 				{
 					get_sales_order_detail();
+					cout<<m_all[company_id].size()<<":"<<__FILE__<<":"<<__LINE__<<endl;
 					//update_sales_statistics();
 				}
 				m_sales_order_vector.clear();
