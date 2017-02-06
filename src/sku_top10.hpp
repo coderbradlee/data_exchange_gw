@@ -147,7 +147,7 @@ private:
 			// unique_ptr<string>,//sales_id
 			// unique_ptr<string>//customer_master_id
 			
-			string uom_id="x";
+			string unit_price="x";
 
 			for(auto& i:one_string_vector)
 			{
@@ -155,7 +155,7 @@ private:
 				m_all[company_id].push_back(std::make_tuple(
 					sales_order_id,
 					*(std::get<0>(i)),
-					uom_id,
+					unit_price,
 					*(std::get<2>(i)),
 					quantity,
 					sales_id,
@@ -446,27 +446,29 @@ private:
 			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 		}
 	}
-	string get_sales_id(const string& sales_order_id)
+	void get_unit_price()
 	{
 		try
 		{
 			typedef tuple<string> userTuple;
 		    vector<userTuple> users;
-			string query_sql = "select sales_id from "+m_mysql_database.m_mysql_database + ".t_sales_order where sales_order_id='"+sales_order_id+"'";
-			//cout << query_sql << endl;
-			m_conn->runQuery(&users, query_sql.c_str());
-
-			if(users.empty())
+			for(auto& i:m_all)
 			{
-				return "";
+				for(auto& j:i.second)
+				{
+					typedef tuple<string> userTuple;
+				    vector<userTuple> users;
+					string query_sql = "select unit_price from t_sales_order_detail where sales_order_id='"+std::get<0>(j)+"'";
+					cout << query_sql <<":"<<__LINE__<<":"<<__FILE__<<endl;
+					m_conn->runQuery(&users, query_sql.c_str());
+					std::get<2>(j)=std::get<0>(users[0]);
+				}
 			}
-			return std::get<0>(users[0]);
 		}
 		catch (const MySqlException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
-			return "";
+			cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 		}
 	}
 	string get_owner_sales_id(const string& sales_id)
@@ -628,7 +630,8 @@ private:
 	    		if(get_sales_order(company_id))
 				{
 					get_sales_order_detail();
-					cout<<m_all[company_id].size()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+					get_unit_price();
+					cout<<m_all[company_id].size()<<"://///////////////"<<__FILE__<<":"<<__LINE__<<endl;
 					//update_sales_statistics();
 				}
 				m_sales_order_vector.clear();
