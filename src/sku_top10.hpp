@@ -156,14 +156,14 @@ private:
 			for(auto& i:one_string_vector)
 			{
 				int quantity=boost::lexical_cast<int>(*(std::get<1>(i)));
-				m_all[company_id]=boost::make_tuple(
+				m_all[company_id].push_back(boost::make_tuple(
 					sales_order_id,
 					*(std::get<0>(i)),
 					uom_id,
 					*(std::get<2>(i)),
 					quantity,
 					sales_id,
-					customer_master_id);
+					customer_master_id));
 			}
 		}
 		catch (const MySqlException& e)
