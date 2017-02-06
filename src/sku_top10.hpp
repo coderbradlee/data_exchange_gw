@@ -76,8 +76,8 @@ private:
 		{
 			for(const auto& j:i.second)
 			{
-				string item_master_id=*(std::get<1>(j));
-				int quantity=*(std::get<4>(j));
+				string item_master_id=std::get<1>(j);
+				int quantity=std::get<4>(j);
 				//cout<<i.first<<":"<<<<<<endl;
 				if(item_master_quantity.find(item_master_id)!=item_master_quantity.end())
 				{
@@ -157,13 +157,13 @@ private:
 			{
 				int quantity=boost::lexical_cast<int>(*(std::get<1>(i)));
 				m_all[company_id]=boost::make_tuple(
-					unique_ptr<string>(&sales_order_id),
-					std::get<0>(i),
-					unique_ptr<string>(&uom_id),
-					std::get<2>(i),
-					unique_ptr<string>(&quantity),
-					unique_ptr<string>(&sales_id),
-					unique_ptr<string>(&customer_master_id));
+					sales_order_id,
+					*(std::get<0>(i)),
+					uom_id,
+					*(std::get<2>(i)),
+					quantity,
+					sales_id,
+					customer_master_id);
 			}
 		}
 		catch (const MySqlException& e)
@@ -251,9 +251,9 @@ private:
 	{
 		for(const auto& i:m_all[company_id])
 		{
-			if(item_master_id==*(std::get<1>(i)))
+			if(item_master_id==std::get<1>(i))
 			{
-				return *(std::get<3>(i));
+				return std::get<3>(i);
 			}
 		}
 		return "";
@@ -567,21 +567,21 @@ private:
 		for(const auto& i:m_all[company_id])
 		{
 			string sales_statistics_detail_id=rand_string(20);
-			if(*(std::get<1>(i))==item_master_id)
+			if(std::get<1>(i)==item_master_id)
 			{
-				string sales_order_id=*(std::get<0>(i));
-				string unit_price=*(std::get<2>(i));
-				string sales_order_quantity=boost::lexical_cast<std::string>(*(std::get<4>(i)));
+				string sales_order_id=std::get<0>(i);
+				string unit_price=std::get<2>(i);
+				string sales_order_quantity=boost::lexical_cast<std::string>(std::get<4>(i));
 
 				if(is_exist_sales_order_id(sales_order_id,sales_order_quantity,sales_statistics_id))
 					continue;
 
 				// string sales_id=get_sales_id(sales_order_id);
-				string sales_id=*(std::get<5>(i));
+				string sales_id=std::get<5>(i);
 				string owner_sales_id=get_owner_sales_id(sales_id);
 				
 				// string customer_master_id=get_customer_master_id(sales_order_id);
-				string customer_master_id=*(std::get<6>(i));
+				string customer_master_id=std::get<6>(i);
 				insert_statistics_detail= "insert into t_sales_statistics_detail(sales_statistics_detail_id,sales_statistics_id,sales_order_id,sales_order_quantity,unit_price,sales_id,owner_sales_id,customer_master_id,createAt,createBy,dr,data_version)values('"+sales_statistics_detail_id+"','"+sales_statistics_id+"','"+sales_order_id+"',"+sales_order_quantity+","+unit_price+",'"+sales_id+"','"+owner_sales_id+"','"+customer_master_id+"','"+p4+"','data_exchange_gw',0,1)";
 				cout<<insert_statistics_detail<<":"<<__LINE__<<endl;
 				m_conn->runCommand(insert_statistics_detail.c_str());
@@ -697,16 +697,24 @@ private:
 			unique_ptr<string> //company_id
 			>m_sales_order;
 	std::vector<m_sales_order> m_sales_order_vector;
+	// typedef tuple<
+	// 		unique_ptr<string>, //sales_order_id
+	// 		unique_ptr<string>, //item_master_id
+	// 		unique_ptr<string>, //unit_price
+	// 		unique_ptr<string>, //uom_id
+	// 		unique_ptr<int>, //quantity
+	// 		unique_ptr<string>,//sales_id
+	// 		unique_ptr<string>//customer_master_id
+	// 		>m_sales_order_detail;
 	typedef tuple<
-			unique_ptr<string>, //sales_order_id
-			unique_ptr<string>, //item_master_id
-			unique_ptr<string>, //unit_price
-			unique_ptr<string>, //uom_id
-			unique_ptr<int>, //quantity
-			unique_ptr<string>,//sales_id
-			unique_ptr<string>//customer_master_id
+			string, //sales_order_id
+			string, //item_master_id
+			string, //unit_price
+			string, //uom_id
+			int, //quantity
+			string,//sales_id
+			string//customer_master_id
 			>m_sales_order_detail;
-	
   	struct cmp_by_value
   	{
   		bool operator()(const pair<string, int>& lhs, const pair<string, int>& rhs) 
