@@ -28,7 +28,7 @@ username=renesola
 password=renes0la.xx
 database=apollo_as
 
-
+172.18.22.202
 
 tag exchange_rate_api_depoyv1.2
 tag exchange_rate_api_depoyv1.1
