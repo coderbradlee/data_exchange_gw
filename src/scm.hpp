@@ -64,11 +64,11 @@ public:
 class mysql_info_
 {
 public:
-	string m_mysql_ip;
-	unsigned short m_mysql_port;
-	string m_mysql_username;
-	string m_mysql_password;
-	string m_mysql_database;
+	string ip;
+	unsigned short port;
+	string username;
+	string password;
+	string database;
 };
 
 class scm_supplier_rest
