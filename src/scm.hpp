@@ -86,7 +86,9 @@ public:
 private:
 	string get_vendor_to_myql()
 	{
-		return "get_vendor_to_myql";
+		string s="get_vendor_to_myql";
+		// return "get_vendor_to_myql";
+		return s;
 	}
 	void update_vendor_to_mysql()
 	{	
