@@ -35,6 +35,7 @@ namespace scm_namespace
 void post_scm_func(const std::shared_ptr< restbed::Session > session)
 {
 	const auto request = session->get_request();
+	size_t content_length = 0;
 	request->get_header("Content-Length", content_length);
 	
 	session->fetch(content_length, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
