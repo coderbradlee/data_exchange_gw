@@ -2,6 +2,13 @@
 #define	SCM_HPP
 
 #include  "include.hpp"
+#include "mysql_connection.h"
+#include "config.hpp"
+#include <cppconn/driver.h>
+#include <cppconn/exception.h>
+#include <cppconn/resultset.h>
+#include <cppconn/statement.h>
+#include <cppconn/prepared_statement.h>
 namespace scm_namespace
 {
 string rand_strings(int len)
@@ -67,9 +74,12 @@ public:
 class scm_supplier_rest
 {
 public:
-	scm_supplier_rest(mysql_database mysql_input)
+	scm_supplier_rest(boost::shared_ptr<mysql_info_> in)
 	{
-		m_conn=boost::shared_ptr<MySql>(new MySql(mysql_input.m_mysql_ip.c_str(), mysql_input.m_mysql_username.c_str(), mysql_input.m_mysql_password.c_str(), mysql_input.m_mysql_database.c_str(), mysql_input.m_mysql_port));
+		m_driver = get_driver_instance();
+		m_con = boost::shared_ptr<sql::Connection>(m_driver->connect("tcp://"+in->ip+":"+in->port, in->username, in->password));
+		
+		m_con->setSchema(in->database);
 	}
 	string get_vendor()
 	{
@@ -97,7 +107,13 @@ private:
 		std::cout<<"insert_vendor_to_mysql"<<std::endl;
 	}
 private:
-	boost::shared_ptr<MySql> m_conn;
+	boost::shared_ptr<sql::ResultSet> m_res;
+	boost::shared_ptr<sql::Statement> m_stmt;
+	boost::shared_ptr<sql::PreparedStatement> m_pstmt;
+	boost::shared_ptr<sql::Driver> m_drivers;
+	boost::shared_ptr<sql::Connection> m_con;
+
+	sql::Driver* m_driver;
 };
 }
 #endif

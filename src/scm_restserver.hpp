@@ -42,15 +42,14 @@ void post_scm_func(const std::shared_ptr< restbed::Session > session)
 	{
 		string temp_content(content_body.begin(), content_body.end());
 		std::cout<<temp_content<<std::endl;
+		boost::shared_ptr<mysql_info_> info(new mysql_info_());
+		info->ip=get_config->m_mysql_js_ip;
+		info->username=get_config->m_mysql_js_username;
+		info->password=get_config->m_mysql_js_password;
+		info->database=get_config->m_mysql_js_database;
+		info->port=boost::lexical_cast<std::string>(get_config->m_mysql_js_port);
 		
-		mysql_database mysql_xx;
-		mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
-		mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
-		mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
-		mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
-		mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
-		
-		boost::shared_ptr<scm_supplier_rest> producer_scm_supplier_rest_js(new scm_supplier_rest(mysql_xx));
+		boost::shared_ptr<scm_supplier_rest> producer_scm_supplier_rest_js(new scm_supplier_rest(info));
 		producer_scm_supplier_rest_js->insert_vendor();
 		string temp="insert ok";
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
@@ -87,15 +86,13 @@ void put_scm_func(const std::shared_ptr< restbed::Session > session)
 	
 	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{
-		mysql_database mysql_xx;
-	
-		mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
-		mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
-		mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
-		mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
-		mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
-	
-		boost::shared_ptr<scm_supplier_rest> producer_scm_supplier_rest_js(new scm_supplier_rest(mysql_xx));
+		boost::shared_ptr<mysql_info_> info(new mysql_info_());
+		info->ip=get_config->m_mysql_js_ip;
+		info->username=get_config->m_mysql_js_username;
+		info->password=get_config->m_mysql_js_password;
+		info->database=get_config->m_mysql_js_database;
+		info->port=boost::lexical_cast<std::string>(get_config->m_mysql_js_port);
+		boost::shared_ptr<scm_supplier_rest> producer_scm_supplier_rest_js(new scm_supplier_rest(info));
 		producer_scm_supplier_rest_js->update_vendor();
 		string temp="update ok";
 		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
@@ -130,15 +127,13 @@ void get_scm_general_func(const std::shared_ptr< restbed::Session > session)
 	
 	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{		
-		mysql_database mysql_xx;
-		
-		mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
-		mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
-		mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
-		mysql_xx.m_mysql_password=get_config->m_mysql_js_password;
-		mysql_xx.m_mysql_database=get_config->m_mysql_js_database;
-	
-		boost::shared_ptr<scm_supplier_rest> p(new scm_supplier_rest(mysql_xx));
+		boost::shared_ptr<mysql_info_> info(new mysql_info_());
+		info->ip=get_config->m_mysql_js_ip;
+		info->username=get_config->m_mysql_js_username;
+		info->password=get_config->m_mysql_js_password;
+		info->database=get_config->m_mysql_js_database;
+		info->port=boost::lexical_cast<std::string>(get_config->m_mysql_js_port);
+		boost::shared_ptr<scm_supplier_rest> p(new scm_supplier_rest(info));
 		
 		string rate=p->get_vendor();
 		cout<<rate<<endl;
