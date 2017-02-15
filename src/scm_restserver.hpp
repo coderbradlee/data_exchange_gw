@@ -122,7 +122,7 @@ void put_scm_func(const std::shared_ptr< restbed::Session > session)
 		/////////////////////////////////////////////////////
 	});
 }
-void get_general_func(const std::shared_ptr< restbed::Session > session)
+void get_scm_general_func(const std::shared_ptr< restbed::Session > session)
 {
 	const auto request = session->get_request();
 	string path = request->get_path();
@@ -167,7 +167,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 }
 void get_scm_func(const std::shared_ptr< restbed::Session > session)
 {	
-	get_scm_func(session);
+	get_scm_general_func(session);
 }
 
 }
