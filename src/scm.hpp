@@ -65,7 +65,7 @@ class mysql_info_
 {
 public:
 	string ip;
-	unsigned short port;
+	string port;
 	string username;
 	string password;
 	string database;
