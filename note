@@ -1,3 +1,8 @@
+
+2017.02.15
+增加如下接口
+
+
 准备API写入接口 addNewVendors（RESTful/json）， 在SCM注册新Supplier时调用，用于通知下游的ERP子系统同步注册供应商基础数据。收到来自SCM的 Supplier 数据后校验并依次写入 ERP 的如下 Vendor表：
 
 1）t_vendor_basic（供应商基本档案）
