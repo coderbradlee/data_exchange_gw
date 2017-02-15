@@ -61,7 +61,7 @@ public:
 		cout<<"{"<<first_code<<":"<<second_code<<":"<<first_second_currency_exchange_rate_id<<":"<<second_first_currency_exchange_rate_id<<":"<<first_second_exchange_rate<<"}"<<endl;
 	}
 };
-class mysql_database
+class mysql_info_
 {
 public:
 	string m_mysql_ip;
