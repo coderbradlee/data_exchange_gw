@@ -3,6 +3,7 @@
 
 #include "exchange_rate_restserver.hpp"
 #include "sku_top10.hpp"
+#include "scm_restserver.hpp"
 namespace exchange_rate_namespace
 {
 void exchange_rate_server_start()
@@ -47,7 +48,15 @@ void exchange_rate_server_start()
 
 		update_svn_version->set_method_handler("PUT", update_svn_version_func);
 		update_svn_version->set_error_handler(&resource_error_handler);
-
+////////////////////////////////////////////////////
+		auto scm_supplier = std::make_shared< Resource >();
+		
+		scm_supplier->set_path("/scm/");
+		
+		scm_supplier->set_method_handler("GET", scm_namespace::get_scm_func);
+		scm_supplier->set_method_handler("POST", scm_namespace::post_scm_func);
+		scm_supplier->set_method_handler("PUT", scm_namespace::put_scm_func);
+		scm_supplier->set_error_handler(&resource_error_handler);
 		
 
 		////////////////////////////////////////////////////////
@@ -61,7 +70,7 @@ void exchange_rate_server_start()
 		
 		service.publish(get_exchange_rate);
 		service.publish(update_svn_version);
-		
+		service.publish(scm_supplier);
 		service.set_authentication_handler(authentication_handler);
 		
 		service.set_error_handler(service_error_handler);
@@ -75,7 +84,6 @@ void start()
 	boost::thread_group pool;  
     pool.create_thread(boost::bind(exchange_rate_server_start));  
   	pool.create_thread(boost::bind(start_exchange_rate_thread));
-  	
   	pool.create_thread(boost::bind(sku_top10));
     pool.join_all();  
 	
