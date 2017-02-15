@@ -157,7 +157,7 @@ void get_general_func(const std::shared_ptr< restbed::Session > session)
 		boost::shared_ptr<scm_supplier_rest> p(new scm_supplier_rest(mysql_xx));
 		
 		string rate=p->get_vendor();
-		//cout<<order->get_length()<<":"<<*(order->get_data())<<endl;
+		cout<<rate<<endl;
 		session->close(OK, rate, { { "Content-Type", "application/json; charset=utf-8" },{ "Content-Length", ::to_string(rate.length()) } });
 				////////////////////////////////////////////////////////////
 		BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "response:"<<OK<<":"<<rate;
