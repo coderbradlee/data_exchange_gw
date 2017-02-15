@@ -1,7 +1,7 @@
 
 2017.02.15
 增加如下接口
-curl -u test:test -X POST http://172.18.100.85:8688/scm -d 'xxcontent'
+curl -u test:test -X POST http://172.18.100.85:8688/scm -d 'xxpostcontent'
 curl -u test:test -X PUT http://172.18.100.85:8688/scm -d 'xxcontent'
 curl -u test:test -X GET http://172.18.100.85:8688/scm -d 'xxcontent'
 

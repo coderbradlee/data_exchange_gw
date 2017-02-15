@@ -35,31 +35,14 @@ namespace scm_namespace
 void post_scm_func(const std::shared_ptr< restbed::Session > session)
 {
 	const auto request = session->get_request();
-	string path = request->get_path();
-	auto ret = request->get_query_parameters();
-	string source="USD",target,which_day,database_name,ratio;
-
-	for (auto& r : ret)
-	{	
-		//cout << r.first << ":" << r.second << endl;
-		////?created_at_min=2015-01-01&limit=200&page=1&order_status=unconfirmed,unshipped,to_be_shipped&Sales_channels=dtc,wholesale
-		//param+=r.first+"="+r.second+"&";
-		if(r.first=="source")
-			source=r.second;
-		else if(r.first=="target")
-			target=r.second;
-		else if(r.first=="time")
-			which_day=r.second;	
-		else if(r.first=="database")
-			database_name=r.second;	
-		else if(r.first=="ratio")
-			ratio=r.second;	
-	}
+	request->get_header("Content-Length", content_length);
 	
-	session->fetch(0, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
+	session->fetch(content_length, [=](const std::shared_ptr< restbed::Session > session, const Bytes & content_body)
 	{
-		mysql_database mysql_xx;
+		string temp_content(content_body.begin(), content_body.end());
+		std::cout<<temp_content<<std::endl;
 		
+		mysql_database mysql_xx;
 		mysql_xx.m_mysql_ip=get_config->m_mysql_js_ip;
 		mysql_xx.m_mysql_port=get_config->m_mysql_js_port;
 		mysql_xx.m_mysql_username=get_config->m_mysql_js_username;
