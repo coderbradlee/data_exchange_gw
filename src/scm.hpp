@@ -80,25 +80,18 @@ public:
 		
 		m_con->setSchema(in->database);
 	}
-	void get_vendor()
+	void get_vendor(boost::shared_ptr<std::vector<supplier_basic>> v)
 	{
-		get_vendor_to_myql();
+		get_vendor_to_myql(v);
 	}
 	
 private:
-	void get_vendor_to_myql()
+	void get_vendor_to_myql(boost::shared_ptr<std::vector<supplier_basic>> v)
 	{
-		get_supplier_basic();
-		print_supplier_basic();
+		get_supplier_basic(boost::shared_ptr<std::vector<supplier_basic>> v);
 	}
-	void print_supplier_basic()
-	{
-		for(const auto& i:m_supplier_basic)
-		{
-			i.print();
-		}
-	}
-	bool get_supplier_basic()
+	
+	bool get_supplier_basic(boost::shared_ptr<std::vector<supplier_basic>> v)
 	{
 		try
 		{
@@ -118,7 +111,7 @@ private:
 				"city_name "
 				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
-			m_conn->runQuery(&m_supplier_basic, query_sql.c_str());
+			m_conn->runQuery(&(*m_supplier_basic), query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			boost_log->get_initsink()->flush();
@@ -192,7 +185,8 @@ public:
 		boost::shared_ptr<mysql_info_> from,
 		boost::shared_ptr<mysql_info_> to):
 	m_from_database(boost::make_shared<scm_supplier_from>(from)),
-	m_to_database(boost::make_shared<scm_supplier_to>(to))
+	m_to_database(scm_supplier_to>(to)),
+	m_supplier_basic(boost::make_shared<std::vector<supplier_basic>>())
 	{
 		
 	}
@@ -204,14 +198,21 @@ public:
 private:
 	void update_vendor_to_myql()
 	{
-		m_from_database->get_vendor();
+		m_from_database->get_vendor(m_supplier_basic);
+		print_supplier_basic();
 		m_to_database->update_vendor();
 	}
-	
+	void print_supplier_basic()
+	{
+		for(const auto& i:m_supplier_basic)
+		{
+			i.print();
+		}
+	}
 private:
 	boost::shared_ptr<scm_supplier_from> m_from_database;
 	boost::shared_ptr<scm_supplier_to> m_to_database;
-	std::vector<supplier_basic> m_supplier_basic;
+	boost::shared_ptr<std::vector<supplier_basic>> m_supplier_basic;
 };
 
 }
