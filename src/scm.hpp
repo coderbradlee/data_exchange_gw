@@ -26,23 +26,23 @@ string rand_strings(int len)
     //cout<<ret<<endl;
    return ret;
 }
-class exchage_rate_data
+struct supplier_basic
 {
 public:
-	string code;//CAD
-	string to_usd_exchange_rate;//0.772558
-	string from_usd_exchange_rate;//0.772558
-	string currency_id;//J4YVQ3USQNO3U430EKE1
-	string to_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
-	string from_usd_exchange_rate_id;//TFTBLZNSNBNAZAZGC2RW
+	string supplier_id;//CAD
+	string supplier_no;//0.772558
+	string company_name_en;//0.772558
+	string status;//J4YVQ3USQNO3U430EKE1
+	string country_id;//TFTBLZNSNBNAZAZGC2RW
+	string city_name;//TFTBLZNSNBNAZAZGC2RW
 	void print()
 	{	cout<<"{";
-		cout<<code<<":";
-		cout<<to_usd_exchange_rate<<":";//0.772558
-		cout<<from_usd_exchange_rate<<":";//0.772558
-		cout<<currency_id<<":";//J4YVQ3USQNO3U430EKE1
-		cout<<to_usd_exchange_rate_id<<":";//TFTBLZNSNBNAZAZGC2RW
-		cout<<from_usd_exchange_rate_id<<"}";//TFTBLZNSNBNAZAZGC2RW
+		cout<<supplier_id<<":";
+		cout<<supplier_no<<":";
+		cout<<company_name_en<<":";
+		cout<<status<<":";
+		cout<<country_id<<":";
+		cout<<city_name<<"}";
 		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
 	}
 };
@@ -88,9 +88,63 @@ public:
 private:
 	void get_vendor_to_myql()
 	{
-		
+		get_supplier_basic();
+		print_supplier_basic();
 	}
-	
+	void print_supplier_basic()
+	{
+		for(const auto& i:m_supplier_basic)
+		{
+			i.print();
+		}
+	}
+	bool get_supplier_basic()
+	{
+		try
+		{
+			string start_time;
+			string end_time;
+			string accounting_period_id;
+			if(!get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time))
+			{
+				return false;
+			}
+			string query_sql = "select\ 
+				supplier_id,\
+				supplier_no,\
+				company_name_en,\
+				status,\
+				country_id,\
+				city_name \
+				from t_supplier_basic where dr=0";
+			cout << query_sql << endl;
+			m_conn->runQuery(&m_supplier_basic, query_sql.c_str());
+
+			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
+			boost_log->get_initsink()->flush();
+			
+			if(m_supplier_basic.empty())
+			{
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_sales_order";
+				boost_log->get_initsink()->flush();
+				cout<<"nothing select from t_sales_order"<<endl;
+				return false;
+			}
+			return true;
+		}
+		catch (const MySqlException& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
+			return false;
+		}
+		catch(std::exception& e)
+		{
+			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
+			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
+			return false;
+		}
+	}
 private:
 	boost::shared_ptr<sql::ResultSet> m_res;
 	boost::shared_ptr<sql::Statement> m_stmt;
@@ -150,12 +204,14 @@ public:
 private:
 	void update_vendor_to_myql()
 	{
-		
+		m_from_database->get_vendor();
+		m_to_database->update_vendor();
 	}
 	
 private:
 	boost::shared_ptr<scm_supplier_from> m_from_database;
 	boost::shared_ptr<scm_supplier_to> m_to_database;
+	std::vector<supplier_basic> m_supplier_basic;
 };
 
 }
