@@ -110,7 +110,7 @@ private:
     {
         try
         {
-	        string text="{\"id\": \"1\"}";
+	        string text="{\"id\": 1}";
 	        const auto& j = nlohmann_map::json::parse(text);
 	 
 		    const auto& id = j["id"];
