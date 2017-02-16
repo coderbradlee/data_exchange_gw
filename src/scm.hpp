@@ -107,13 +107,13 @@ private:
 			query(query_sql);
 			while(m_res->next())
 			{
-			 	boost::shared_ptr<supplier_basic> temp(new supplier_basic());
-			 	temp->supplier_id=m_res->getString("supplier_id");
-			 	temp->supplier_no=m_res->getString("supplier_no");
-			 	temp->company_name_en=m_res->getString("company_name_en");
-			 	temp->status=m_res->getString("status");
-			 	temp->country_id=m_res->getString("country_id");
-			 	temp->city_name=m_res->getString("city_name");
+			 	supplier_basic temp();
+			 	temp.supplier_id=m_res->getString("supplier_id");
+			 	temp.supplier_no=m_res->getString("supplier_no");
+			 	temp.company_name_en=m_res->getString("company_name_en");
+			 	temp.status=m_res->getString("status");
+			 	temp.country_id=m_res->getString("country_id");
+			 	temp.city_name=m_res->getString("city_name");
 			 	v->push_back(temp);
 			 }
 			return true;
