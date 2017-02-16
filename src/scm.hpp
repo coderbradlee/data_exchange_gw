@@ -104,23 +104,47 @@ private:
 				"city_name "
 				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
-			m_con->runQuery(&(*v), query_sql.c_str());
-
-			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
-			boost_log->get_initsink()->flush();
+			query(query_sql);
+			while(m_res->next())
+			{
+			 	boost::shared_ptr<supplier_basic> temp(new supplier_basic());
+			 	temp->supplier_id=m_res->getString("supplier_id");
+			 	temp->supplier_no=m_res->getString("supplier_no");
+			 	temp->company_name_en=m_res->getString("company_name_en");
+			 	temp->status=m_res->getString("status");
+			 	temp->country_id=m_res->getString("country_id");
+			 	temp->city_name=m_res->getString("city_name");
+			 	v->push_back(temp);
+			 }
 			return true;
 		}
-		catch (const MySqlException& e)
+		catch (sql::SQLException& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
+			cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
 		}
 		catch(std::exception& e)
 		{
 			BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)" << e.what();
-			boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
+			cout<<e.what()<<":"<<__LINE__<<":"<<__FILE__<<endl;
 			return false;
+		}
+	}
+	void query(const std::string& query_sql)
+	{
+		try 
+		{
+		  //std::cout<<__FILE__<<":"<<__LINE__<<std::endl;
+		  m_pstmt = boost::shared_ptr<sql::PreparedStatement>(m_con->prepareStatement(query_sql));
+		  m_res = boost::shared_ptr<sql::ResultSet>(m_pstmt->executeQuery());
+
+		} 
+		catch (sql::SQLException &e) 
+		{
+		  BOOST_LOG_SEV(slg, severity_level::error) <<"# ERR: " << e.what();
+		  BOOST_LOG_SEV(slg, severity_level::error) <<" (MySQL error code: " << e.getErrorCode();
+		  BOOST_LOG_SEV(slg, severity_level::error) <<", SQLState: " << e.getSQLState();
 		}
 	}
 private:
@@ -153,7 +177,22 @@ private:
 	{	
 		std::cout<<"update_vendor_to_mysql"<<std::endl;
 	}
-	
+	void query(const std::string& query_sql)
+	{
+		try 
+		{
+		  //std::cout<<__FILE__<<":"<<__LINE__<<std::endl;
+		  m_pstmt = boost::shared_ptr<sql::PreparedStatement>(m_con->prepareStatement(query_sql));
+		  m_res = boost::shared_ptr<sql::ResultSet>(m_pstmt->executeQuery());
+
+		} 
+		catch (sql::SQLException &e) 
+		{
+		  BOOST_LOG_SEV(slg, severity_level::error) <<"# ERR: " << e.what();
+		  BOOST_LOG_SEV(slg, severity_level::error) <<" (MySQL error code: " << e.getErrorCode();
+		  BOOST_LOG_SEV(slg, severity_level::error) <<", SQLState: " << e.getSQLState();
+		}
+	}
 private:
 	boost::shared_ptr<sql::ResultSet> m_res;
 	boost::shared_ptr<sql::Statement> m_stmt;
@@ -170,7 +209,7 @@ public:
 		boost::shared_ptr<mysql_info_> from,
 		boost::shared_ptr<mysql_info_> to):
 	m_from_database(boost::make_shared<scm_supplier_from>(from)),
-	m_to_database(scm_supplier_to>(to)),
+	m_to_database(boost::make_shared<scm_supplier_to>(to)),
 	m_supplier_basic(boost::make_shared<std::vector<supplier_basic>>())
 	{
 		
