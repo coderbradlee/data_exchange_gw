@@ -107,7 +107,7 @@ private:
 			query(query_sql);
 			while(m_res->next())
 			{
-			 	supplier_basic temp();
+			 	supplier_basic temp;
 			 	temp.supplier_id=m_res->getString("supplier_id");
 			 	temp.supplier_no=m_res->getString("supplier_no");
 			 	temp.company_name_en=m_res->getString("company_name_en");
