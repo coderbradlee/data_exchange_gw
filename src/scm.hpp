@@ -9,57 +9,10 @@
 #include <cppconn/resultset.h>
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
+#include "scm_data.hpp"
 namespace scm_namespace
 {
-string rand_strings(int len)
-{
-	string choice="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    string ret;
-    std::random_device rd;
-    std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis_y(0,35);  
-	auto dice_y= std::bind(dis_y,gen);
-    for(int i=0;i<len;++i)
-    {
-    	ret+=choice[dice_y()];
-    }
-    //cout<<ret<<endl;
-   return ret;
-}
-struct supplier_basic
-{
-public:
-	string supplier_id;
-	string supplier_no;
-	string company_name_en;
-	string status;
-	string country_id;
-	string city_name;
-	string province;
-    string address;
-    string zip_code;
-    string tel;
-    string fax;
-    string delivery_terms;
-    string payment_terms;
-    string trade_term_id;
-    string billing_company_name;
-    string billing_address;
-    string billing_bank_name;
-    string billing_bank_account_no;
-    string note;
-    string owner_purchaser_id;
-	void print()
-	{	cout<<"{";
-		cout<<supplier_id<<":";
-		cout<<supplier_no<<":";
-		cout<<company_name_en<<":";
-		cout<<status<<":";
-		cout<<country_id<<":";
-		cout<<city_name<<"}";
-		cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-	}
-};
+
 class general_rate_data
 {
 public:
@@ -159,7 +112,7 @@ private:
 			 	////////////////////////////
 			 	temp.note=m_res->getString("note");
 			 	temp.owner_purchaser_id=m_res->getString("owner_purchaser_id");
-			 	
+
 			 	v->push_back(temp);
 			 }
 			return true;
