@@ -70,32 +70,6 @@ public:
 	string password;
 	string database;
 };
-class scm_supplier_rest
-{
-public:
-	scm_supplier_rest(
-		boost::shared_ptr<mysql_info_> from,
-		boost::shared_ptr<mysql_info_> to):
-	boost::make_shared<scm_supplier_from>(from),
-	boost::make_shared<scm_supplier_to>(to)
-	{
-		
-	}
-	void update_vendor()
-	{
-		update_vendor_to_myql();
-	}
-	
-private:
-	void update_vendor_to_myql()
-	{
-		
-	}
-	
-private:
-	boost::shared_ptr<scm_supplier_from> m_from_database;
-	boost::shared_ptr<scm_supplier_to> m_to_database;
-};
 class scm_supplier_from
 {
 public:
@@ -157,6 +131,33 @@ private:
 
 	sql::Driver* m_driver;
 };
+class scm_supplier_rest
+{
+public:
+	scm_supplier_rest(
+		boost::shared_ptr<mysql_info_> from,
+		boost::shared_ptr<mysql_info_> to):
+	boost::make_shared<scm_supplier_from>(from),
+	boost::make_shared<scm_supplier_to>(to)
+	{
+		
+	}
+	void update_vendor()
+	{
+		update_vendor_to_myql();
+	}
+	
+private:
+	void update_vendor_to_myql()
+	{
+		
+	}
+	
+private:
+	boost::shared_ptr<scm_supplier_from> m_from_database;
+	boost::shared_ptr<scm_supplier_to> m_to_database;
+};
+
 }
 #endif
 
