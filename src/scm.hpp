@@ -95,13 +95,6 @@ private:
 	{
 		try
 		{
-			string start_time;
-			string end_time;
-			string accounting_period_id;
-			if(!get_accounting_period_tuple(company_id,accounting_period_id,start_time,end_time))
-			{
-				return false;
-			}
 			string query_sql = "select " 
 				"supplier_id,"
 				"supplier_no,"
@@ -111,7 +104,7 @@ private:
 				"city_name "
 				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
-			m_conn->runQuery(&(*m_supplier_basic), query_sql.c_str());
+			m_conn->runQuery(&(*v), query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			boost_log->get_initsink()->flush();
