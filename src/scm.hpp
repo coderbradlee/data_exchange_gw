@@ -96,7 +96,7 @@ public:
 private:
 	string get_vendor_to_myql()
 	{
-		return "get_vendor_to_myql";
+		return parser_json_write_ss();
 	}
 	void update_vendor_to_mysql()
 	{	
@@ -106,6 +106,34 @@ private:
 	{
 		std::cout<<"insert_vendor_to_mysql"<<std::endl;
 	}
+	std::string parser_json_write_ss()
+    {
+        try
+        {
+	        string text="{\"id\": \"1\"}";
+	        const auto& j = nlohmann_map::json::parse(text);
+	 
+		    const auto& id = j["id"];
+		    nlohmann_fifo_map::json ret_json_all;    
+		    ret_json_all["ret_id"]= id+1; 
+		    return ret_json_all.dump();
+	    }
+	    catch( const runtime_error& e )
+	    {
+	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+	        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+	    }   
+	    catch(std::exception& e)
+	    {
+	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
+	        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
+	    }
+	    catch(...)
+	    {
+	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":unknown error";
+	        boost_log->get_initsink()->flush();cout<<"unknown error:"<<__FILE__<<":"<<__LINE__<<endl;
+	    }
+    }
 private:
 	boost::shared_ptr<sql::ResultSet> m_res;
 	boost::shared_ptr<sql::Statement> m_stmt;

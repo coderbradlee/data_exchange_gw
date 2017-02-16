@@ -1,9 +1,9 @@
 
 2017.02.15
 增加如下接口
-curl -u test:test -X POST http://172.18.100.85:8688/scm -d 'xxpostcontent'
-curl -u test:test -X PUT http://172.18.100.85:8688/scm -d 'xxcontent'
-curl -u test:test -X GET http://172.18.100.85:8688/scm -d 'xxcontent'
+curl -u test:test -X POST http://172.18.100.85:8688/scm -d '{"key":"value"}'
+curl -u test:test -X PUT http://172.18.100.85:8688/scm -d '{"key":"value"}'
+curl -u test:test -X GET http://172.18.100.85:8688/scm -d '{"key":"value"}'
 
 准备API写入接口 addNewVendors（RESTful/json）， 在SCM注册新Supplier时调用，用于通知下游的ERP子系统同步注册供应商基础数据。收到来自SCM的 Supplier 数据后校验并依次写入 ERP 的如下 Vendor表：
 
