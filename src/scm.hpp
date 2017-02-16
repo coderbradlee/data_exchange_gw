@@ -109,14 +109,14 @@ private:
 			{
 				return false;
 			}
-			string query_sql = "select\ 
-				supplier_id,\
-				supplier_no,\
-				company_name_en,\
-				status,\
-				country_id,\
-				city_name \
-				from t_supplier_basic where dr=0";
+			string query_sql = "select " 
+				"supplier_id,"
+				"supplier_no,"
+				"company_name_en,"
+				"status,"
+				"country_id,"
+				"city_name "
+				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
 			m_conn->runQuery(&m_supplier_basic, query_sql.c_str());
 
