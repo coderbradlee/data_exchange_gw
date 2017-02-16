@@ -53,8 +53,6 @@ void exchange_rate_server_start()
 		
 		scm_supplier->set_path("/scm/");
 		
-		scm_supplier->set_method_handler("GET", scm_namespace::get_scm_func);
-		scm_supplier->set_method_handler("POST", scm_namespace::post_scm_func);
 		scm_supplier->set_method_handler("PUT", scm_namespace::put_scm_func);
 		scm_supplier->set_error_handler(&resource_error_handler);
 		
