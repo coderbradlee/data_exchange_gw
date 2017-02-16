@@ -29,12 +29,26 @@ string rand_strings(int len)
 struct supplier_basic
 {
 public:
-	string supplier_id;//CAD
-	string supplier_no;//0.772558
-	string company_name_en;//0.772558
-	string status;//J4YVQ3USQNO3U430EKE1
-	string country_id;//TFTBLZNSNBNAZAZGC2RW
-	string city_name;//TFTBLZNSNBNAZAZGC2RW
+	string supplier_id;
+	string supplier_no;
+	string company_name_en;
+	string status;
+	string country_id;
+	string city_name;
+	string province;
+    string address;
+    string zip_code;
+    string tel;
+    string fax;
+    string delivery_terms;
+    string payment_terms;
+    string trade_term_id;
+    string billing_company_name;
+    string billing_address;
+    string billing_bank_name;
+    string billing_bank_account_no;
+    string note;
+    string owner_purchaser_id;
 	void print()
 	{	cout<<"{";
 		cout<<supplier_id<<":";
@@ -101,7 +115,21 @@ private:
 				"company_name_en,"
 				"status,"
 				"country_id,"
-				"city_name "
+				"city_name,"
+				"province,"
+			    "address,"
+			    "zip_code,"
+			    "tel,"
+			    "fax,"
+			    "delivery_terms,"
+			    "payment_terms,"
+			    "trade_term_id,"
+			    "billing_company_name,"
+			    "billing_address,"
+			    "billing_bank_name,"
+			    "billing_bank_account_no,"
+			    "note,"
+			    "owner_purchaser_id "
 				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
 			query(query_sql);
@@ -114,6 +142,24 @@ private:
 			 	temp.status=m_res->getString("status");
 			 	temp.country_id=m_res->getString("country_id");
 			 	temp.city_name=m_res->getString("city_name");
+			 	//////////////////////////////
+			 	temp.province=m_res->getString("province");
+			 	temp.address=m_res->getString("address");
+			 	temp.zip_code=m_res->getString("zip_code");
+			 	temp.tel=m_res->getString("tel");
+			 	temp.fax=m_res->getString("fax");
+			 	temp.delivery_terms=m_res->getString("delivery_terms");
+			 	////////////////////////////////
+			 	temp.payment_terms=m_res->getString("payment_terms");
+			 	temp.trade_term_id=m_res->getString("trade_term_id");
+			 	temp.billing_company_name=m_res->getString("billing_company_name");
+			 	temp.billing_address=m_res->getString("billing_address");
+			 	temp.billing_bank_name=m_res->getString("billing_bank_name");
+			 	temp.billing_bank_account_no=m_res->getString("billing_bank_account_no");
+			 	////////////////////////////
+			 	temp.note=m_res->getString("note");
+			 	temp.owner_purchaser_id=m_res->getString("owner_purchaser_id");
+			 	
 			 	v->push_back(temp);
 			 }
 			return true;
