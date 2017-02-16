@@ -137,8 +137,8 @@ public:
 	scm_supplier_rest(
 		boost::shared_ptr<mysql_info_> from,
 		boost::shared_ptr<mysql_info_> to):
-	boost::make_shared<scm_supplier_from>(from),
-	boost::make_shared<scm_supplier_to>(to)
+	m_from_database(boost::make_shared<scm_supplier_from>(from)),
+	m_to_database(boost::make_shared<scm_supplier_to>(to))
 	{
 		
 	}
