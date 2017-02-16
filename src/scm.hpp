@@ -88,7 +88,7 @@ public:
 private:
 	void get_vendor_to_myql(boost::shared_ptr<std::vector<supplier_basic>> v)
 	{
-		get_supplier_basic(boost::shared_ptr<std::vector<supplier_basic>> v);
+		get_supplier_basic(v);
 	}
 	
 	bool get_supplier_basic(boost::shared_ptr<std::vector<supplier_basic>> v)
@@ -104,7 +104,7 @@ private:
 				"city_name "
 				"from t_supplier_basic where dr=0";
 			cout << query_sql << endl;
-			m_conn->runQuery(&(*v), query_sql.c_str());
+			m_con->runQuery(&(*v), query_sql.c_str());
 
 			BOOST_LOG_SEV(slg, boost_log->get_log_level()) << query_sql;
 			boost_log->get_initsink()->flush();
