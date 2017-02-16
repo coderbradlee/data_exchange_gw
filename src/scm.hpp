@@ -114,8 +114,10 @@ private:
 	        const auto& j = nlohmann_map::json::parse(text);
 	 
 		    const auto& id = j["id"];
-		    nlohmann_fifo_map::json ret_json_all;    
-		    ret_json_all["ret_id"]= id; 
+		    nlohmann_fifo_map::json ret_json_all; 
+		    int temp_id=id;   
+		    cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
+		    ret_json_all["ret_id"]= temp_id; 
 		    return ret_json_all.dump();
 	    }
 	    catch( const runtime_error& e )
