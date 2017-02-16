@@ -70,72 +70,84 @@ public:
 	string password;
 	string database;
 };
-
 class scm_supplier_rest
 {
 public:
-	scm_supplier_rest(boost::shared_ptr<mysql_info_> in)
+	scm_supplier_rest(
+		boost::shared_ptr<mysql_info_> from,
+		boost::shared_ptr<mysql_info_> to):
+	boost::make_shared<scm_supplier_from>(from),
+	boost::make_shared<scm_supplier_to>(to)
+	{
+		
+	}
+	void update_vendor()
+	{
+		update_vendor_to_myql();
+	}
+	
+private:
+	void update_vendor_to_myql()
+	{
+		
+	}
+	
+private:
+	boost::shared_ptr<scm_supplier_from> m_from_database;
+	boost::shared_ptr<scm_supplier_to> m_to_database;
+};
+class scm_supplier_from
+{
+public:
+	scm_supplier_from(boost::shared_ptr<mysql_info_> in)
 	{
 		m_driver = get_driver_instance();
 		m_con = boost::shared_ptr<sql::Connection>(m_driver->connect("tcp://"+in->ip+":"+in->port, in->username, in->password));
 		
 		m_con->setSchema(in->database);
 	}
-	string get_vendor()
+	void get_vendor()
 	{
-		return get_vendor_to_myql();
+		get_vendor_to_myql();
+	}
+	
+private:
+	void get_vendor_to_myql()
+	{
+		
+	}
+	
+private:
+	boost::shared_ptr<sql::ResultSet> m_res;
+	boost::shared_ptr<sql::Statement> m_stmt;
+	boost::shared_ptr<sql::PreparedStatement> m_pstmt;
+	boost::shared_ptr<sql::Driver> m_drivers;
+	boost::shared_ptr<sql::Connection> m_con;
+
+	sql::Driver* m_driver;
+};
+class scm_supplier_to
+{
+public:
+	scm_supplier_to(boost::shared_ptr<mysql_info_> in)
+	{
+		m_driver = get_driver_instance();
+		m_con = boost::shared_ptr<sql::Connection>(m_driver->connect("tcp://"+in->ip+":"+in->port, in->username, in->password));
+		
+		m_con->setSchema(in->database);
 	}
 	void update_vendor()
 	{	
 		update_vendor_to_mysql();	
 	}
-	void insert_vendor()
-	{
-		insert_vendor_to_mysql();
-	}
+	
 private:
-	string get_vendor_to_myql()
-	{
-		return parser_json_write_ss();
-	}
+	
 	void update_vendor_to_mysql()
 	{	
 		std::cout<<"update_vendor_to_mysql"<<std::endl;
 	}
-	void insert_vendor_to_mysql()
-	{
-		std::cout<<"insert_vendor_to_mysql"<<std::endl;
-	}
-	std::string parser_json_write_ss()
-    {
-        try
-        {
-	        string text="{\"id\": 1}";
-	        const auto& j = nlohmann_map::json::parse(text);
-	 
-		    const auto& id = j["id"];
-		    nlohmann_fifo_map::json ret_json_all; 
-		    int temp_id=id;   
-		    cout<<":"<<__FILE__<<":"<<__LINE__<<endl;
-		    ret_json_all["ret_id"]= temp_id; 
-		    return ret_json_all.dump();
-	    }
-	    catch( const runtime_error& e )
-	    {
-	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
-	        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-	    }   
-	    catch(std::exception& e)
-	    {
-	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":" << e.what();
-	        boost_log->get_initsink()->flush();cout<<e.what()<<":"<<__FILE__<<":"<<__LINE__<<endl;
-	    }
-	    catch(...)
-	    {
-	        BOOST_LOG_SEV(slg, severity_level::error) <<"(exception:)"<<":"<<__FILE__<<":"<<__LINE__<<":unknown error";
-	        boost_log->get_initsink()->flush();cout<<"unknown error:"<<__FILE__<<":"<<__LINE__<<endl;
-	    }
-    }
+	
 private:
 	boost::shared_ptr<sql::ResultSet> m_res;
 	boost::shared_ptr<sql::Statement> m_stmt;

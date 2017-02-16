@@ -83,6 +83,18 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 			m_mysql_eu_erp_password = m_pt.get<std::string>("mysql_eu_erp.password");
 			m_mysql_eu_erp_database = m_pt.get<std::string>("mysql_eu_erp.database");
 			////////////////////////////////////
+			m_mysql_scm_from_ip = m_pt.get<std::string>("mysql_scm_from.ip");
+			m_mysql_scm_from_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_scm_from.port"));
+			m_mysql_scm_from_username = m_pt.get<std::string>("mysql_scm_from.username");
+			m_mysql_scm_from_password = m_pt.get<std::string>("mysql_scm_from.password");
+			m_mysql_scm_from_database = m_pt.get<std::string>("mysql_scm_from.database");
+			////////////////////////////////////
+			m_mysql_scm_to_ip = m_pt.get<std::string>("mysql_scm_to.ip");
+			m_mysql_scm_to_port = boost::lexical_cast<unsigned short>(m_pt.get<std::string>("mysql_scm_to.port"));
+			m_mysql_scm_to_username = m_pt.get<std::string>("mysql_scm_to.username");
+			m_mysql_scm_to_password = m_pt.get<std::string>("mysql_scm_to.password");
+			m_mysql_scm_to_database = m_pt.get<std::string>("mysql_scm_to.database");
+			////////////////////////////////////
 			m_sku_top10_request_interval=m_pt.get<size_t>("sku_top10.request_interval");
 			m_sku_top10_insert_time=m_pt.get<std::string>("sku_top10.insert_time");
 			m_is_ontime=m_pt.get<bool>("sku_top10.is_ontime");//true 表示指定时间执行，false为间隔insert_time 执行
@@ -119,6 +131,18 @@ class iconfig:public boost::enable_shared_from_this<iconfig>, boost::noncopyable
 		string m_mysql_eu_erp_password;
 		string m_mysql_eu_erp_database;
 		//////////////////////////
+		string m_mysql_scm_from_ip;
+		unsigned short m_mysql_scm_from_port;
+		string m_mysql_scm_from_username;
+		string m_mysql_scm_from_password;
+		string m_mysql_scm_from_database;
+		//////////////////////////
+		string m_mysql_scm_to_ip;
+		unsigned short m_mysql_scm_to_port;
+		string m_mysql_scm_to_username;
+		string m_mysql_scm_to_password;
+		string m_mysql_scm_to_database;
+		///////////////////////////
 		string m_mysql_table;
 		string m_mysql_table2;
 		size_t m_threads;

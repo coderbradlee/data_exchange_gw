@@ -1,3 +1,22 @@
+2017.02.16
+调整 SCM<->ERP 间的数据同步方式，由原来注册供应商时间点的实时同步 改为 定时任务方式。
+源库： SCM | apollo-js
+源表：t_supplier_basic, t_supplier_contact
+目的库： apollo-eu-erp, apollo-os-erp, apllo-as-erp
+目的表：
+1）t_vendor_basic（供应商基本档案）
+2）t_vendor_master（供应商管理档案）
+3）t_vendor_bank_account（供应商银行帐号）
+4）t_vendor_contact（供应商联系人）
+5）t_vendor_contact_social_account（供应商联系人社交帐号）
+6）t_vendor_invoice_address（供应商发票地址）
+7）t_vendor_shipping_address（供应商发货地址）
+
+
+做成rest接口：
+curl -u test:test -X PUT http://172.18.100.85:8688/scm
+内部定时调用
+
 
 2017.02.15
 增加如下接口
