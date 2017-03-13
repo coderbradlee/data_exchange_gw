@@ -195,9 +195,9 @@ private:
 			
 			if(m_all[company_id].empty())
 			{
-				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_sales_order_detail";
+				BOOST_LOG_SEV(slg, boost_log->get_log_level()) << "nothing select from t_outbound_note"<<":"<<__LINE__<<":"<<__FILE__;
 				boost_log->get_initsink()->flush();
-				cout<<"nothing select from t_sales_order_detail"<<endl;
+				cout<<"nothing select from t_outbound_note"<<":"<<__LINE__<<":"<<__FILE__;
 				return false;
 			}
 
