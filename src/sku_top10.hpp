@@ -178,7 +178,11 @@ private:
 			typedef tuple<
 			unique_ptr<string>,unique_ptr<string>,unique_ptr<string>>anyonestring;
 			std::vector<anyonestring> one_string_vector;
-			string query_sql = "select outbound_note_id,sales_id,customer_master_id from t_outbound_note where fulfill_status=24 and sales_order_id='"+sales_order_id+"' and company_id='"+company_id+"' and dr=0";
+			// string query_sql = "select outbound_note_id,sales_id,customer_master_id from t_outbound_note where fulfill_status=24 and sales_order_id='"+sales_order_id+"' and company_id='"+company_id+"' and dr=0";
+			//sales_order_id varchar_1
+			//sales_id varchar_2
+			//customer_master_id varchar_3
+			string query_sql = "select outbound_note_id,varchar_2,varchar_3 from t_outbound_note where fulfill_status=24 and sales_order_id='"+varchar_1+"' and company_id='"+company_id+"' and dr=0";
 			cout << query_sql << endl;
 			m_conn->runQuery(&one_string_vector, query_sql.c_str());
 			BOOST_LOG_SEV(slg, notification) << query_sql;
